@@ -114,3 +114,20 @@
 - `context-prime`, `initref`, `load-llms-txt`
 - `add-to-changelog`, `update-docs`, `update-branch-name`
 - `create-worktrees`, `husky`, `testing_plan_integration`
+
+## ui-ux-pro-max-skill (nextlevelbuilder)
+
+- **Source:** https://github.com/nextlevelbuilder/ui-ux-pro-max-skill.git
+- **Version:** 2.2.1
+- **Location:** `~/.claude/plugins/marketplaces/nextlevelbuilder/` + `.claude/skills/`
+- **Description:** Professional UI/UX design intelligence with 67 styles, 96 palettes, 57 font pairings, 25 charts, and 13 stack guidelines for React, Next.js, Vue, Svelte, SwiftUI, React Native, Flutter, Tailwind, shadcn/ui, and more.
+
+### Skills
+
+- **ui-ux-pro-max** — Core design intelligence (styles, palettes, typography, charts)
+- **ui-styling** — Tailwind, shadcn/ui theming, canvas fonts, responsive design
+- **design** — Logo, icon, CIP design with prompt engineering and generation scripts
+- **design-system** — Design tokens, component specs, slide generation
+- **brand** — Brand guidelines, visual identity, color management, messaging
+- **slides** — Presentation creation with layout patterns and copywriting formulas
+- **banner-design** — Banner sizes and styles reference
