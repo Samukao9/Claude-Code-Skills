@@ -31,3 +31,17 @@
 - **Workflow Management:** Create and update n8n workflows (requires API config)
 - **Template Library:** Access 2,709+ workflow templates and real-world examples
 - **Modes:** stdio (Claude Desktop/Code) and HTTP server
+
+## obsidian-skills (kepano)
+
+- **Source:** https://github.com/kepano/obsidian-skills.git
+- **Location:** `.claude/skills/` (project-level skills)
+- **Description:** Collection of agent skills for working with Obsidian note-taking app file formats and tools.
+
+### Skills
+
+- **obsidian-markdown** — Create/edit Obsidian Flavored Markdown with wikilinks, callouts, properties
+- **obsidian-bases** — Work with Obsidian Bases (`.base` files) including views and filters
+- **json-canvas** — Manage JSON Canvas files (`.canvas`) with nodes and connections
+- **obsidian-cli** — CLI interaction for vault operations
+- **defuddle** — Extract clean markdown from web pages to reduce token usage
