@@ -31,6 +31,7 @@
 - **Workflow Management:** Create and update n8n workflows (requires API config)
 - **Template Library:** Access 2,709+ workflow templates and real-world examples
 - **Modes:** stdio (Claude Desktop/Code) and HTTP server
+- **Agents:** technical-researcher, deployment-engineer, n8n-mcp-tester, mcp-backend-engineer, context-manager, debugger, code-reviewer, test-automator
 
 ## obsidian-skills (kepano)
 
