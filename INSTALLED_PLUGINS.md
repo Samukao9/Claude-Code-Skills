@@ -45,3 +45,30 @@
 - **json-canvas** — Manage JSON Canvas files (`.canvas`) with nodes and connections
 - **obsidian-cli** — CLI interaction for vault operations
 - **defuddle** — Extract clean markdown from web pages to reduce token usage
+
+## get-shit-done (gsd-build)
+
+- **Source:** https://github.com/gsd-build/get-shit-done.git
+- **Version:** 1.22.4
+- **Location:** `~/.claude/` (global install — commands, agents, hooks)
+- **Description:** Meta-prompting, context engineering and spec-driven development system for Claude Code. Provides structured project planning, milestone management, and phased execution workflows.
+
+### Commands (`/gsd:*`)
+
+- `new-project`, `new-milestone`, `complete-milestone`
+- `plan-phase`, `execute-phase`, `research-phase`, `validate-phase`, `discuss-phase`
+- `add-phase`, `insert-phase`, `remove-phase`
+- `debug`, `quick`, `progress`, `health`, `cleanup`
+- `add-todo`, `check-todos`, `add-tests`, `verify-work`
+- `map-codebase`, `pause-work`, `resume-work`, `settings`, `update`
+
+### Agents
+
+- gsd-planner, gsd-executor, gsd-verifier, gsd-debugger
+- gsd-phase-researcher, gsd-project-researcher, gsd-research-synthesizer
+- gsd-codebase-mapper, gsd-roadmapper, gsd-plan-checker
+- gsd-integration-checker, gsd-nyquist-auditor
+
+### Hooks
+
+- Update checker, context window monitor, statusline
