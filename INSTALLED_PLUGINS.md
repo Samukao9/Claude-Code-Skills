@@ -72,3 +72,30 @@
 ### Hooks
 
 - Update checker, context window monitor, statusline
+
+## superpowers (obra)
+
+- **Source:** https://github.com/obra/superpowers.git
+- **Version:** 5.0.2
+- **Location:** `~/.claude/plugins/marketplaces/obra/`
+- **Description:** Core skills library for Claude Code with TDD, debugging, collaboration patterns, and proven development techniques.
+
+### Skills
+
+- using-superpowers, subagent-driven-development, dispatching-parallel-agents
+- test-driven-development, systematic-debugging, verification-before-completion
+- writing-plans, executing-plans, brainstorming
+- writing-skills, requesting-code-review, receiving-code-review
+- finishing-a-development-branch, using-git-worktrees
+
+### Commands
+
+- `/brainstorm`, `/write-plan`, `/execute-plan`
+
+### Agents
+
+- code-reviewer
+
+### Hooks
+
+- SessionStart (injects superpowers context)
