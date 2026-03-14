@@ -189,3 +189,15 @@
 - **Skills:** `find-docs` (CLI-based), `context7-mcp` (MCP-based), `context7-cli` (setup/reference)
 - **Command:** `/docs` — quick documentation lookup
 - **Agent:** `docs-researcher` — deep documentation research
+
+## ralph (snarktank)
+
+- **Source:** https://github.com/snarktank/ralph.git
+- **Version:** 1.0.0
+- **Location:** `~/.claude/plugins/marketplaces/snarktank/` + `.claude/skills/`
+- **Description:** Autonomous agent system for spec-driven development. Generates PRDs and converts them to prd.json format for autonomous execution.
+
+### Skills
+
+- **prd** — Generate Product Requirements Documents from feature descriptions (triggers on `/prd`)
+- **ralph** — Convert existing PRDs to prd.json format for Ralph's autonomous loop (triggers on `/ralph`)
