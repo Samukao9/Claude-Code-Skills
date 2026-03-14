@@ -131,3 +131,20 @@
 - **brand** — Brand guidelines, visual identity, color management, messaging
 - **slides** — Presentation creation with layout patterns and copywriting formulas
 - **banner-design** — Banner sizes and styles reference
+
+## notebooklm-py (teng-lin)
+
+- **Source:** https://github.com/teng-lin/notebooklm-py.git
+- **Version:** 0.3.4
+- **Location:** Python CLI (`notebooklm`) + `.claude/skills/notebooklm/`
+- **Description:** Complete programmatic access to Google NotebookLM — create notebooks, add sources, generate podcasts/videos/reports/quizzes, download in multiple formats. Includes features not available in the web UI.
+
+### Capabilities
+
+- **Notebooks:** Create, list, delete, rename
+- **Sources:** Add URLs, YouTube, PDFs, audio, video, images, web research
+- **Chat:** Ask questions with citations, conversation history, save as notes
+- **Generation:** Audio (podcast), video, slide decks, reports, mind maps, quizzes, flashcards, infographics, data tables
+- **Downloads:** MP3, MP4, PDF, PPTX, Markdown, JSON, CSV, HTML
+- **Languages:** 80+ supported languages for artifact generation
+- **Auth:** Google OAuth via `notebooklm login`
