@@ -148,3 +148,29 @@
 - **Downloads:** MP3, MP4, PDF, PPTX, Markdown, JSON, CSV, HTML
 - **Languages:** 80+ supported languages for artifact generation
 - **Auth:** Google OAuth via `notebooklm login`
+
+## skills (anthropics) — Official Anthropic Skills
+
+- **Source:** https://github.com/anthropics/skills.git
+- **Location:** `.claude/skills/` (project-level skills)
+- **Description:** Official collection of Claude Code skills by Anthropic covering document generation, design, development, and productivity.
+
+### Skills
+
+- **pdf** — Generate and manipulate PDF documents with forms support
+- **docx** — Create and edit Word documents
+- **xlsx** — Create and edit Excel spreadsheets
+- **pptx** — Create and edit PowerPoint presentations
+- **claude-api** — Build apps with Claude API (Python, TypeScript, Go, Java, PHP, Ruby, C#, curl)
+- **mcp-builder** — Build MCP servers with reference docs and scripts
+- **skill-creator** — Create new skills with agents, eval viewer, and templates
+- **web-artifacts-builder** — Build interactive web artifacts
+- **webapp-testing** — Test web applications with examples and scripts
+- **frontend-design** — Frontend UI/UX design patterns
+- **canvas-design** — Canvas-based design with bundled fonts
+- **brand-guidelines** — Create and apply brand guidelines
+- **theme-factory** — Generate themes with showcase PDF and templates
+- **algorithmic-art** — Create algorithmic art with templates
+- **doc-coauthoring** — Collaborative document co-authoring
+- **internal-comms** — Internal communications with examples
+- **slack-gif-creator** — Create Slack GIFs with Python
