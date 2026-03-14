@@ -201,3 +201,18 @@
 
 - **prd** — Generate Product Requirements Documents from feature descriptions (triggers on `/prd`)
 - **ralph** — Convert existing PRDs to prd.json format for Ralph's autonomous loop (triggers on `/ralph`)
+
+## ruflo / claude-flow (ruvnet)
+
+- **Source:** https://github.com/ruvnet/ruflo.git
+- **Version:** 2.5.0
+- **Location:** `~/.claude/plugins/marketplaces/ruvnet/` + MCP server (`~/.mcp.json`)
+- **Description:** Enterprise AI agent orchestration with 150+ commands, 74+ agents, SPARC methodology, swarm coordination, GitHub automation, and neural training.
+
+### Components
+
+- **38 skills** — swarm orchestration, GitHub automation, SPARC methodology, pair programming, performance analysis, hive-mind, neural training, and more
+- **23 command categories** — agents, analysis, automation, coordination, GitHub, memory, monitoring, optimization, SPARC, swarm, training, verification, workflows
+- **21 agent categories** — architecture, core, data, development, DevOps, documentation, GitHub, neural, optimization, reasoning, SPARC, swarm, testing
+- **MCP Server** — `claude-flow` for swarm coordination (40+ tools)
+- **Hooks** — SessionStart integration
