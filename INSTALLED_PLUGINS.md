@@ -174,3 +174,18 @@
 - **doc-coauthoring** — Collaborative document co-authoring
 - **internal-comms** — Internal communications with examples
 - **slack-gif-creator** — Create Slack GIFs with Python
+
+## context7 (upstash)
+
+- **Source:** https://github.com/upstash/context7.git
+- **Version:** CLI 0.3.5 / MCP 2.0.2
+- **Location:** CLI (`ctx7`), MCP server (`~/.mcp.json`), skills (`.claude/skills/`), command (`.claude/commands/docs.md`), agent (`.claude/agents/docs-researcher.md`)
+- **Description:** Up-to-date documentation lookup for any library/framework. Fetches current docs, API references, and code examples instead of relying on training data.
+
+### Components
+
+- **CLI `ctx7`** — `ctx7 library <name> <query>` + `ctx7 docs <libraryId> <query>`
+- **MCP Server** — `resolve-library-id` and `query-docs` tools via `@upstash/context7-mcp`
+- **Skills:** `find-docs` (CLI-based), `context7-mcp` (MCP-based), `context7-cli` (setup/reference)
+- **Command:** `/docs` — quick documentation lookup
+- **Agent:** `docs-researcher` — deep documentation research
