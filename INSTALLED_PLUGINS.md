@@ -99,3 +99,18 @@
 ### Hooks
 
 - SessionStart (injects superpowers context)
+
+## awesome-claude-code (hesreallyhim)
+
+- **Source:** https://github.com/hesreallyhim/awesome-claude-code.git
+- **Location:** `~/.claude/commands/awesome/` (global slash commands)
+- **Description:** Curated collection of community slash commands for Claude Code covering commits, PRs, reviews, testing, documentation, and more.
+
+### Commands (`/awesome:*`)
+
+- `act`, `clean`, `commit`, `optimize`, `release`, `todo`
+- `create-pr`, `create-pull-request`, `pr-review`, `fix-github-issue`
+- `create-prd`, `create-prp`, `create-jtbd`, `create-hook`
+- `context-prime`, `initref`, `load-llms-txt`
+- `add-to-changelog`, `update-docs`, `update-branch-name`
+- `create-worktrees`, `husky`, `testing_plan_integration`
