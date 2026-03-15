@@ -1,703 +1,708 @@
 #!/usr/bin/env python3
-"""Build QUIZZES_3_e_4_Samuel.xlsx with PuLP optimization and openpyxl formatting."""
+"""
+Build QUIZZES_3_e_4_Samuel.xlsx — Solver-ready spreadsheet.
+Decision variables are filled with PuLP optimal values.
+All formulas are real Excel formulas so Solver (LP Simplex) works directly.
+"""
 
 import pulp
 from openpyxl import Workbook
-from openpyxl.styles import Font, PatternFill, Border, Side, Alignment, numbers
+from openpyxl.styles import Font, PatternFill, Border, Side, Alignment
 from openpyxl.chart import LineChart, Reference
 from openpyxl.utils import get_column_letter
-import os, copy
+import os, shutil
 
 # ============================================================
 # STYLES
 # ============================================================
-FONT_DEFAULT = Font(name='Arial', size=10)
-FONT_HEADER = Font(name='Arial', size=10, bold=True)
-FONT_TITLE = Font(name='Arial', size=14, bold=True)
-FONT_SUBTITLE = Font(name='Arial', size=12, bold=True)
-FONT_BLUE = Font(name='Arial', size=10, color='0000FF')
-FONT_BLUE_BOLD = Font(name='Arial', size=10, color='0000FF', bold=True)
-FONT_WHITE_BOLD = Font(name='Arial', size=10, color='FFFFFF', bold=True)
-FILL_YELLOW = PatternFill(start_color='FFFF00', end_color='FFFF00', fill_type='solid')
-FILL_GRAY = PatternFill(start_color='D9D9D9', end_color='D9D9D9', fill_type='solid')
-FILL_DARK = PatternFill(start_color='4472C4', end_color='4472C4', fill_type='solid')
-FILL_LIGHT_BLUE = PatternFill(start_color='D6E4F0', end_color='D6E4F0', fill_type='solid')
-FILL_LIGHT_GREEN = PatternFill(start_color='E2EFDA', end_color='E2EFDA', fill_type='solid')
-BORDER_BLUE = Border(
-    left=Side(style='medium', color='0000FF'),
-    right=Side(style='medium', color='0000FF'),
-    top=Side(style='medium', color='0000FF'),
-    bottom=Side(style='medium', color='0000FF')
-)
-BORDER_THIN = Border(
-    left=Side(style='thin'), right=Side(style='thin'),
-    top=Side(style='thin'), bottom=Side(style='thin')
-)
-ALIGN_CENTER = Alignment(horizontal='center', vertical='center')
-ALIGN_LEFT = Alignment(horizontal='left', vertical='center', wrap_text=True)
-MONEY_FMT = '$#,##0'
-INT_FMT = '#,##0'
+F = Font(name='Arial', size=10)
+FB = Font(name='Arial', size=10, bold=True)
+FT = Font(name='Arial', size=14, bold=True)
+FS = Font(name='Arial', size=12, bold=True)
+FBLUE = Font(name='Arial', size=10, color='0000FF')
+FBLUEB = Font(name='Arial', size=10, color='0000FF', bold=True)
+FWHITEB = Font(name='Arial', size=10, color='FFFFFF', bold=True)
+FRED = Font(name='Arial', size=10, color='FF0000', bold=True)
+FYELLOW = PatternFill('solid', fgColor='FFFF00')
+FGRAY = PatternFill('solid', fgColor='D9D9D9')
+FDARK = PatternFill('solid', fgColor='4472C4')
+FLTBLUE = PatternFill('solid', fgColor='D6E4F0')
+FLTGREEN = PatternFill('solid', fgColor='E2EFDA')
+FLTYELLOW = PatternFill('solid', fgColor='FFFFCC')
+BB = Border(left=Side('medium',color='0000FF'), right=Side('medium',color='0000FF'),
+            top=Side('medium',color='0000FF'), bottom=Side('medium',color='0000FF'))
+BT = Border(left=Side('thin'), right=Side('thin'), top=Side('thin'), bottom=Side('thin'))
+AC = Alignment(horizontal='center', vertical='center')
+AL = Alignment(horizontal='left', vertical='center', wrap_text=True)
+ALT = Alignment(horizontal='left', vertical='top', wrap_text=True)
+MF = '$#,##0'
+IF_ = '#,##0'
 
-def cell_ref(row, col):
+def cr(row, col):
     return f"{get_column_letter(col)}{row}"
 
-def set_cell(ws, row, col, value, font=None, fill=None, border=None, align=None, fmt=None):
-    c = ws.cell(row=row, column=col, value=value)
-    if font: c.font = font
-    if fill: c.fill = fill
-    if border: c.border = border
-    if align: c.alignment = align
-    if fmt: c.number_format = fmt
-    return c
+def sc(ws, r, c, v, font=F, fill=None, border=None, align=None, fmt=None):
+    cell = ws.cell(row=r, column=c, value=v)
+    if font: cell.font = font
+    if fill: cell.fill = fill
+    if border: cell.border = border
+    if align: cell.alignment = align
+    if fmt: cell.number_format = fmt
+    return cell
 
-def header_row(ws, row, col_start, labels, fill=FILL_GRAY, font=FONT_HEADER):
-    for i, lbl in enumerate(labels):
-        set_cell(ws, row, col_start+i, lbl, font=font, fill=fill, border=BORDER_THIN, align=ALIGN_CENTER)
+def hdr(ws, r, c0, labels, fill=FGRAY, font=FB):
+    for i, l in enumerate(labels):
+        sc(ws, r, c0+i, l, font=font, fill=fill, border=BT, align=AC)
 
-def section_title(ws, row, col, text, merge_end=None):
-    set_cell(ws, row, col, text, font=FONT_SUBTITLE, fill=FILL_DARK)
-    ws.cell(row=row, column=col).font = FONT_WHITE_BOLD
-    if merge_end:
-        ws.merge_cells(start_row=row, start_column=col, end_row=row, end_column=merge_end)
-        for c2 in range(col, merge_end+1):
-            ws.cell(row=row, column=c2).fill = FILL_DARK
+def stitle(ws, r, c, text, end=None):
+    sc(ws, r, c, text, font=FWHITEB, fill=FDARK)
+    if end:
+        ws.merge_cells(start_row=r, start_column=c, end_row=r, end_column=end)
+        for c2 in range(c, end+1):
+            ws.cell(row=r, column=c2).fill = FDARK
 
 # ============================================================
-# QUIZ 3 — Warehouse Location (MILP)
+# QUIZ 3 — Solve with PuLP
 # ============================================================
-warehouses = ['NY', 'LA', 'Chicago', 'Atlanta']
-regions = ['Região 1', 'Região 2', 'Região 3']
-fixed_costs = {'NY': 60000, 'LA': 50000, 'Chicago': 40000, 'Atlanta': 35000}
-demands = {'Região 1': 8000, 'Região 2': 9000, 'Região 3': 7000}
-capacity = 15000
-unit_costs = {
-    ('NY','Região 1'):26, ('NY','Região 2'):41, ('NY','Região 3'):39,
-    ('LA','Região 1'):59, ('LA','Região 2'):27, ('LA','Região 3'):27,
-    ('Chicago','Região 1'):28, ('Chicago','Região 2'):32, ('Chicago','Região 3'):43,
-    ('Atlanta','Região 1'):28, ('Atlanta','Região 2'):40, ('Atlanta','Região 3'):38,
-}
+WH = ['NY', 'LA', 'Chicago', 'Atlanta']
+REG = ['Região 1', 'Região 2', 'Região 3']
+FC = {'NY':60000, 'LA':50000, 'Chicago':40000, 'Atlanta':35000}
+DEM = {'Região 1':8000, 'Região 2':9000, 'Região 3':7000}
+CAP = 15000
+UC = {('NY','Região 1'):26,('NY','Região 2'):41,('NY','Região 3'):39,
+      ('LA','Região 1'):59,('LA','Região 2'):27,('LA','Região 3'):27,
+      ('Chicago','Região 1'):28,('Chicago','Região 2'):32,('Chicago','Região 3'):43,
+      ('Atlanta','Região 1'):28,('Atlanta','Região 2'):40,('Atlanta','Região 3'):38}
 
-# Solve Quiz 3
-m3 = pulp.LpProblem("Quiz3_Warehouse", pulp.LpMinimize)
-y = {w: pulp.LpVariable(f"y_{w}", cat='Binary') for w in warehouses}
-x = {(w,r): pulp.LpVariable(f"x_{w}_{r}", lowBound=0) for w in warehouses for r in regions}
-
-m3 += (pulp.lpSum(fixed_costs[w]*y[w] for w in warehouses) +
-       pulp.lpSum(unit_costs[w,r]*x[w,r] for w in warehouses for r in regions))
-
-for r in regions:
-    m3 += pulp.lpSum(x[w,r] for w in warehouses) >= demands[r], f"Demand_{r}"
-for w in warehouses:
-    m3 += pulp.lpSum(x[w,r] for r in regions) <= capacity * y[w], f"Cap_{w}"
-m3 += y['NY'] <= y['LA'], "NY_implies_LA"
-m3 += pulp.lpSum(y[w] for w in warehouses) <= 2, "Max2"
-m3 += y['Atlanta'] + y['LA'] >= 1, "ATL_or_LA"
-
+m3 = pulp.LpProblem("Q3", pulp.LpMinimize)
+y = {w: pulp.LpVariable(f"y_{w}", cat='Binary') for w in WH}
+x = {(w,r): pulp.LpVariable(f"x_{w}_{r}", lowBound=0) for w in WH for r in REG}
+m3 += pulp.lpSum(FC[w]*y[w] for w in WH) + pulp.lpSum(UC[w,r]*x[w,r] for w in WH for r in REG)
+for r in REG: m3 += pulp.lpSum(x[w,r] for w in WH) >= DEM[r]
+for w in WH: m3 += pulp.lpSum(x[w,r] for r in REG) <= CAP * y[w]
+m3 += y['NY'] <= y['LA']
+m3 += pulp.lpSum(y[w] for w in WH) <= 2
+m3 += y['Atlanta'] + y['LA'] >= 1
 m3.solve(pulp.PULP_CBC_CMD(msg=0))
-print(f"Quiz 3 Status: {pulp.LpStatus[m3.status]}, Obj = {pulp.value(m3.objective)}")
-
-q3_y = {w: int(y[w].varValue) for w in warehouses}
-q3_x = {(w,r): x[w,r].varValue for w in warehouses for r in regions}
-q3_obj = pulp.value(m3.objective)
+print(f"Q3: {pulp.LpStatus[m3.status]}, Z* = {pulp.value(m3.objective)}")
+q3y = {w: int(y[w].varValue) for w in WH}
+q3x = {(w,r): x[w,r].varValue for w in WH for r in REG}
+q3z = pulp.value(m3.objective)
 
 # ============================================================
-# QUIZ 4 — Vehicle Distribution (LP)
+# QUIZ 4 — Solve with PuLP
 # ============================================================
-arcs = [
-    ('Porto 1','Distrib. 1',100), ('Porto 1','Revenda 3',300), ('Porto 1','Distrib. 2',130),
-    ('Porto 2','Distrib. 1',150), ('Porto 2','Revenda 2',300), ('Porto 2','Distrib. 2',120),
-    ('Distrib. 1','Revenda 3',160), ('Distrib. 1','Revenda 2',170), ('Distrib. 1','Distrib. 2',280),
-    ('Distrib. 2','Revenda 3',140), ('Distrib. 2','Revenda 2',160),
-    ('Revenda 3','Revenda 2',150),
-]
-vtypes = {'Minivan': 1.15, 'Esportivo': 0.90}
-supply = {('Porto 1','Minivan'):325, ('Porto 1','Esportivo'):450,
-          ('Porto 2','Minivan'):430, ('Porto 2','Esportivo'):300}
-demand_q4 = {('Revenda 2','Minivan'):278, ('Revenda 2','Esportivo'):523,
-             ('Revenda 3','Minivan'):477, ('Revenda 3','Esportivo'):227}
-nodes = ['Porto 1','Porto 2','Distrib. 1','Distrib. 2','Revenda 3','Revenda 2']
-intermediaries = ['Distrib. 1','Distrib. 2']
-origins = ['Porto 1','Porto 2']
-destinations = ['Revenda 3','Revenda 2']
+ARCS = [('Porto 1','Distrib. 1',100),('Porto 1','Revenda 3',300),('Porto 1','Distrib. 2',130),
+        ('Porto 2','Distrib. 1',150),('Porto 2','Revenda 2',300),('Porto 2','Distrib. 2',120),
+        ('Distrib. 1','Revenda 3',160),('Distrib. 1','Revenda 2',170),('Distrib. 1','Distrib. 2',280),
+        ('Distrib. 2','Revenda 3',140),('Distrib. 2','Revenda 2',160),
+        ('Revenda 3','Revenda 2',150)]
+VMULT = {'Minivan':1.15, 'Esportivo':0.90}
+SUP = {('Porto 1','Minivan'):325,('Porto 1','Esportivo'):450,
+       ('Porto 2','Minivan'):430,('Porto 2','Esportivo'):300}
+DEM4 = {('Revenda 3','Minivan'):477,('Revenda 3','Esportivo'):227,
+        ('Revenda 2','Minivan'):278,('Revenda 2','Esportivo'):523}
+ORIG = ['Porto 1','Porto 2']
+INTER = ['Distrib. 1','Distrib. 2']
+DEST = ['Revenda 3','Revenda 2']
 
 def solve_q4(cap=None):
-    m4 = pulp.LpProblem("Quiz4_Distribution", pulp.LpMinimize)
-    f = {}
-    for (i,j,c) in arcs:
-        for v, mult in vtypes.items():
-            f[i,j,v] = pulp.LpVariable(f"f_{i}_{j}_{v}", lowBound=0)
-    # Objective
-    m4 += pulp.lpSum(c*vtypes[v]*f[i,j,v] for (i,j,c) in arcs for v in vtypes)
-    # Flow conservation at intermediaries
-    for node in intermediaries:
-        for v in vtypes:
-            inflow = pulp.lpSum(f[i,j,v] for (i,j,c) in arcs if j == node)
-            outflow = pulp.lpSum(f[i,j,v] for (i,j,c) in arcs if i == node)
-            m4 += inflow == outflow, f"FlowCons_{node}_{v}"
-    # Supply
-    for port in origins:
-        for v in vtypes:
-            m4 += pulp.lpSum(f[port,j,v] for (i,j,c) in arcs if i == port) <= supply[port,v], f"Supply_{port}_{v}"
-    # Demand
-    for dest in destinations:
-        for v in vtypes:
-            inflow = pulp.lpSum(f[i,dest,v] for (i,j,c) in arcs if j == dest)
-            outflow = pulp.lpSum(f[dest,j,v] for (i,j,c) in arcs if i == dest)
-            m4 += inflow - outflow >= demand_q4[dest,v], f"Demand_{dest}_{v}"
-    # Capacity constraints (if specified)
+    prob = pulp.LpProblem("Q4", pulp.LpMinimize)
+    fl = {}
+    for (i,j,c) in ARCS:
+        for v in VMULT:
+            fl[i,j,v] = pulp.LpVariable(f"f_{i}_{j}_{v}", lowBound=0)
+    prob += pulp.lpSum(c*VMULT[v]*fl[i,j,v] for (i,j,c) in ARCS for v in VMULT)
+    for nd in INTER:
+        for v in VMULT:
+            prob += (pulp.lpSum(fl[i,j,v] for (i,j,c) in ARCS if j==nd) ==
+                     pulp.lpSum(fl[i,j,v] for (i,j,c) in ARCS if i==nd))
+    for p in ORIG:
+        for v in VMULT:
+            prob += pulp.lpSum(fl[p,j,v] for (i,j,c) in ARCS if i==p) <= SUP[p,v]
+    for d in DEST:
+        for v in VMULT:
+            prob += (pulp.lpSum(fl[i,d,v] for (i,j,c) in ARCS if j==d) -
+                     pulp.lpSum(fl[d,j,v] for (i,j,c) in ARCS if i==d) >= DEM4[d,v])
     if cap is not None:
-        for (i,j,c) in arcs:
-            m4 += pulp.lpSum(f[i,j,v] for v in vtypes) <= cap, f"ArcCap_{i}_{j}"
-    m4.solve(pulp.PULP_CBC_CMD(msg=0))
-    return m4, f
+        for (i,j,c) in ARCS:
+            prob += pulp.lpSum(fl[i,j,v] for v in VMULT) <= cap
+    prob.solve(pulp.PULP_CBC_CMD(msg=0))
+    return prob, fl
 
-# Solve base (no capacity)
-m4_base, f_base = solve_q4(cap=None)
-q4_obj = pulp.value(m4_base.objective)
-q4_flows = {}
-for (i,j,c) in arcs:
-    for v in vtypes:
-        val = f_base[i,j,v].varValue
-        if val and val > 0.001:
-            q4_flows[i,j,v] = val
-print(f"Quiz 4 Status: {pulp.LpStatus[m4_base.status]}, Obj = {q4_obj}")
+m4, fb = solve_q4()
+q4z = pulp.value(m4.objective)
+q4f = {}
+for (i,j,c) in ARCS:
+    for v in VMULT:
+        val = fb[i,j,v].varValue or 0
+        q4f[i,j,v] = val
+print(f"Q4: {pulp.LpStatus[m4.status]}, Z* = {q4z}")
 
-# Sensitivity analysis (item e)
-caps_range = list(range(500, 1600, 100))
-sensitivity = {}
-for cap_val in caps_range:
-    m4s, _ = solve_q4(cap=cap_val)
-    if m4s.status == 1:
-        sensitivity[cap_val] = pulp.value(m4s.objective)
-    else:
-        sensitivity[cap_val] = None
-        print(f"  Cap={cap_val}: Infeasible")
-
-# Build answer texts
-# Item c - flow description
-flow_text_lines = ["ITEM c) Fluxo ótimo por tipo de veículo:\n"]
-for v in ['Minivan', 'Esportivo']:
-    flow_text_lines.append(f"--- {v} ---")
-    for (i,j,c) in arcs:
-        val = f_base[i,j,v].varValue
-        if val and val > 0.001:
-            custo_unit = c * vtypes[v]
-            flow_text_lines.append(f"  {i} → {j}: {val:.0f} veículos (custo unitário: ${custo_unit:.2f})")
-    flow_text_lines.append("")
-flow_text = "\n".join(flow_text_lines)
-
-# Item d
-cost_text = f"ITEM d) O valor do custo mínimo total dessa operação é: ${q4_obj:,.2f}"
-
-# Quiz 3 answer text
-q3_open = [w for w in warehouses if q3_y[w]==1]
-q3_text_lines = [f"SOLUÇÃO ÓTIMA — Custo Total Mínimo: ${q3_obj:,.0f}\n",
-    f"Armazéns abertos: {', '.join(q3_open)}\n",
-    "Envios (armazém → região):"]
-for w in warehouses:
-    for r in regions:
-        val = q3_x[w,r]
-        if val and val > 0.001:
-            q3_text_lines.append(f"  {w} → {r}: {val:,.0f} unidades")
-q3_answer_text = "\n".join(q3_text_lines)
+# Sensitivity
+CAPS = list(range(500,1600,100))
+SENS = {}
+for cv in CAPS:
+    ms, _ = solve_q4(cap=cv)
+    SENS[cv] = pulp.value(ms.objective) if ms.status == 1 else None
 
 # ============================================================
-# BUILD EXCEL
+# BUILD EXCEL WORKBOOK
 # ============================================================
 wb = Workbook()
 
-# ======================== QUIZ 3 SHEET ========================
-ws3 = wb.active
-ws3.title = "Quiz 3 - Armazéns"
+# ################################################################
+# QUIZ 3 SHEET
+# ################################################################
+ws = wb.active
+ws.title = "Quiz 3 - Armazéns"
+for c in range(1,10): ws.column_dimensions[get_column_letter(c)].width = 20
 
-# -- TITLE --
-r = 1
-set_cell(ws3, r, 1, "QUIZ 3 — Localização de Armazéns (MILP)", font=FONT_TITLE)
-ws3.merge_cells('A1:H1')
+R = 1
+sc(ws, R, 1, "QUIZ 3 — Localização de Armazéns (Programação Linear Inteira Mista)", font=FT)
+ws.merge_cells('A1:H1')
 
-# -- DATA SECTION --
-r = 3
-section_title(ws3, r, 1, "1. DADOS DO PROBLEMA", merge_end=8)
+# === 1. DADOS ===
+R = 3; stitle(ws, R, 1, "1. DADOS DO PROBLEMA", end=8)
 
-r = 5
-set_cell(ws3, r, 1, "Custos Unitários (Produção + Transporte)", font=FONT_HEADER)
-r = 6
-header_row(ws3, r, 1, ['Armazém', 'Região 1', 'Região 2', 'Região 3'])
-for wi, w in enumerate(warehouses):
-    row = r + 1 + wi
-    set_cell(ws3, row, 1, w, font=FONT_BLUE, border=BORDER_THIN, align=ALIGN_CENTER)
-    for ri, reg in enumerate(regions):
-        set_cell(ws3, row, 2+ri, unit_costs[w,reg], font=FONT_BLUE, border=BORDER_THIN, align=ALIGN_CENTER, fmt=MONEY_FMT)
-# Store unit cost cell refs: row 7-10, cols B-D
-UC_START_ROW = 7
-UC_END_ROW = 10
+R = 5; sc(ws, R, 1, "Custos Unitários de Produção + Transporte ($/unidade)", font=FB)
+R = 6; hdr(ws, R, 1, ['Armazém','Região 1','Região 2','Região 3'])
+UC_R0 = 7  # rows 7-10
+for wi,w in enumerate(WH):
+    rr = UC_R0+wi
+    sc(ws, rr, 1, w, font=FBLUE, border=BT, align=AC)
+    for ri,reg in enumerate(REG):
+        sc(ws, rr, 2+ri, UC[w,reg], font=FBLUE, border=BT, align=AC, fmt=MF)
 
-r = 12
-set_cell(ws3, r, 1, "Custos Fixos Semanais", font=FONT_HEADER)
-r = 13
-header_row(ws3, r, 1, ['Armazém', 'Custo Fixo'])
-FC_START_ROW = 14
-for wi, w in enumerate(warehouses):
-    row = FC_START_ROW + wi
-    set_cell(ws3, row, 1, w, font=FONT_BLUE, border=BORDER_THIN, align=ALIGN_CENTER)
-    set_cell(ws3, row, 2, fixed_costs[w], font=FONT_BLUE, border=BORDER_THIN, align=ALIGN_CENTER, fmt=MONEY_FMT)
+R = 12; sc(ws, R, 1, "Custos Fixos Semanais", font=FB)
+R = 13; hdr(ws, R, 1, ['Armazém','Custo Fixo'])
+FC_R0 = 14  # rows 14-17
+for wi,w in enumerate(WH):
+    rr = FC_R0+wi
+    sc(ws, rr, 1, w, font=FBLUE, border=BT, align=AC)
+    sc(ws, rr, 2, FC[w], font=FBLUE, border=BT, align=AC, fmt=MF)
 
-r = 19
-set_cell(ws3, r, 1, "Demandas Semanais", font=FONT_HEADER)
-r = 20
-header_row(ws3, r, 1, ['Região', 'Demanda'])
-DEM_START_ROW = 21
-for ri, reg in enumerate(regions):
-    row = DEM_START_ROW + ri
-    set_cell(ws3, row, 1, reg, font=FONT_BLUE, border=BORDER_THIN, align=ALIGN_CENTER)
-    set_cell(ws3, row, 2, demands[reg], font=FONT_BLUE, border=BORDER_THIN, align=ALIGN_CENTER, fmt=INT_FMT)
+R = 19; sc(ws, R, 1, "Demandas Semanais por Região", font=FB)
+R = 20; hdr(ws, R, 1, ['Região','Demanda'])
+DM_R0 = 21  # rows 21-23
+for ri,reg in enumerate(REG):
+    rr = DM_R0+ri
+    sc(ws, rr, 1, reg, font=FBLUE, border=BT, align=AC)
+    sc(ws, rr, 2, DEM[reg], font=FBLUE, border=BT, align=AC, fmt=IF_)
 
-set_cell(ws3, 25, 1, "Capacidade por armazém:", font=FONT_HEADER)
-set_cell(ws3, 25, 2, capacity, font=FONT_BLUE, fmt=INT_FMT)
+R = 25; sc(ws, R, 1, "Capacidade máx. por armazém:", font=FB)
+sc(ws, R, 2, CAP, font=FBLUE, fmt=IF_)
 
-# -- DECISION VARIABLES --
-r = 27
-section_title(ws3, r, 1, "2. VARIÁVEIS DE DECISÃO", merge_end=8)
+# === 2. VARIÁVEIS DE DECISÃO ===
+R = 27; stitle(ws, R, 1, "2. VARIÁVEIS DE DECISÃO (células que o Solver altera)", end=8)
 
-r = 29
-set_cell(ws3, r, 1, "Variáveis Binárias (y_i = 1 se armazém i é aberto)", font=FONT_HEADER)
-r = 30
-header_row(ws3, r, 1, ['NY', 'LA', 'Chicago', 'Atlanta'])
-Y_ROW = 31
-for wi, w in enumerate(warehouses):
-    set_cell(ws3, Y_ROW, 1+wi, q3_y[w], font=FONT_BLUE_BOLD, border=BORDER_BLUE, align=ALIGN_CENTER, fmt='0')
+# y_i binaries
+R = 29; sc(ws, R, 1, "y_i — Abrir armazém? (0 ou 1) → VARIÁVEIS BINÁRIAS", font=FB)
+R = 30; hdr(ws, R, 1, ['y_NY','y_LA','y_Chicago','y_Atlanta'])
+YR = 31  # <<< Y variables row
+for wi,w in enumerate(WH):
+    sc(ws, YR, 1+wi, q3y[w], font=FBLUEB, border=BB, align=AC, fmt='0')
 
-r = 33
-set_cell(ws3, r, 1, "Variáveis de Envio x_ij (unidades armazém → região)", font=FONT_HEADER)
-r = 34
-header_row(ws3, r, 1, ['Armazém', 'Região 1', 'Região 2', 'Região 3', 'Total Enviado'])
-X_START_ROW = 35
-for wi, w in enumerate(warehouses):
-    row = X_START_ROW + wi
-    set_cell(ws3, row, 1, w, font=FONT_HEADER, border=BORDER_THIN, align=ALIGN_CENTER)
-    for ri, reg in enumerate(regions):
-        set_cell(ws3, row, 2+ri, q3_x[w,reg], font=FONT_BLUE_BOLD, border=BORDER_BLUE, align=ALIGN_CENTER, fmt=INT_FMT)
-    # Total sent from this warehouse
-    cols = ','.join([cell_ref(row, 2+ri) for ri in range(3)])
-    set_cell(ws3, row, 5, None, font=FONT_DEFAULT, border=BORDER_THIN, align=ALIGN_CENTER, fmt=INT_FMT)
-    ws3.cell(row=row, column=5).value = f"=SUM({cell_ref(row,2)}:{cell_ref(row,4)})"
+# x_ij continuous
+R = 33; sc(ws, R, 1, "x_ij — Unidades enviadas de armazém i → região j → VARIÁVEIS CONTÍNUAS", font=FB)
+R = 34; hdr(ws, R, 1, ['x_ij','Região 1','Região 2','Região 3','Total Enviado (LHS cap.)'])
+XR0 = 35  # rows 35-38
+for wi,w in enumerate(WH):
+    rr = XR0+wi
+    sc(ws, rr, 1, w, font=FB, border=BT, align=AC, fill=FGRAY)
+    for ri in range(3):
+        sc(ws, rr, 2+ri, q3x[w,REG[ri]], font=FBLUEB, border=BB, align=AC, fmt=IF_)
+    # col E = SUM(B:D) for this row → LHS of capacity constraint
+    sc(ws, rr, 5, f"=SUM({cr(rr,2)}:{cr(rr,4)})", font=F, border=BT, align=AC, fmt=IF_)
 
-# Demand totals row
-r = X_START_ROW + 4  # row 39
-set_cell(ws3, r, 1, "Total Recebido", font=FONT_HEADER, border=BORDER_THIN, align=ALIGN_CENTER)
+# Total received per region row → LHS of demand constraints
+R = 39; sc(ws, R, 1, "Total Recebido (LHS dem.)", font=FB, border=BT, align=AC, fill=FGRAY)
 for ri in range(3):
-    col = 2 + ri
-    formula = f"=SUM({cell_ref(X_START_ROW, col)}:{cell_ref(X_START_ROW+3, col)})"
-    set_cell(ws3, r, col, formula, font=FONT_DEFAULT, border=BORDER_THIN, align=ALIGN_CENTER, fmt=INT_FMT)
+    sc(ws, R, 2+ri, f"=SUM({cr(XR0,2+ri)}:{cr(XR0+3,2+ri)})", font=F, border=BT, align=AC, fmt=IF_)
 
-# -- OBJECTIVE FUNCTION --
-r = 41
-section_title(ws3, r, 1, "3. FUNÇÃO OBJETIVO (Minimizar Custo Total)", merge_end=8)
+# === 3. FUNÇÃO OBJETIVO ===
+R = 41; stitle(ws, R, 1, "3. FUNÇÃO OBJETIVO — Minimizar Custo Total", end=8)
 
-r = 43
-set_cell(ws3, r, 1, "Custo Fixo Total:", font=FONT_HEADER)
-# =SUMPRODUCT(B14:B17, A31:D31) — but need to map correctly
-# Fixed costs are in B14:B17, y values in A31:D31
-# We do it component by component: =B14*A31 + B15*B31 + B16*C31 + B17*D31
-fc_formula = "=" + "+".join([f"{cell_ref(FC_START_ROW+wi,2)}*{cell_ref(Y_ROW,1+wi)}" for wi in range(4)])
-set_cell(ws3, r, 2, fc_formula, font=FONT_DEFAULT, border=BORDER_THIN, fmt=MONEY_FMT)
+R = 43; sc(ws, R, 1, "Custo Fixo:", font=FB)
+# =B14*A31 + B15*B31 + B16*C31 + B17*D31
+fc_f = "=" + "+".join([f"{cr(FC_R0+i,2)}*{cr(YR,1+i)}" for i in range(4)])
+sc(ws, R, 2, fc_f, font=F, border=BT, fmt=MF)
 
-r = 44
-set_cell(ws3, r, 1, "Custo Variável Total:", font=FONT_HEADER)
-# =SUMPRODUCT(unit_costs_range, x_range)
-vc_formula = "=SUMPRODUCT(" + cell_ref(UC_START_ROW,2) + ":" + cell_ref(UC_END_ROW,4) + "," + cell_ref(X_START_ROW,2) + ":" + cell_ref(X_START_ROW+3,4) + ")"
-set_cell(ws3, r, 2, vc_formula, font=FONT_DEFAULT, border=BORDER_THIN, fmt=MONEY_FMT)
+R = 44; sc(ws, R, 1, "Custo Variável:", font=FB)
+sc(ws, R, 2, f"=SUMPRODUCT({cr(UC_R0,2)}:{cr(UC_R0+3,4)},{cr(XR0,2)}:{cr(XR0+3,4)})", font=F, border=BT, fmt=MF)
 
-r = 45
-set_cell(ws3, r, 1, "CUSTO TOTAL (FO):", font=Font(name='Arial', size=12, bold=True))
-fo_formula = f"={cell_ref(43,2)}+{cell_ref(44,2)}"
-c_fo = set_cell(ws3, r, 2, fo_formula, font=Font(name='Arial', size=12, bold=True), fill=FILL_YELLOW, border=BORDER_BLUE, fmt=MONEY_FMT)
-FO3_CELL = cell_ref(45, 2)
+R = 45; sc(ws, R, 1, "▶ CUSTO TOTAL (Célula Objetivo):", font=FS)
+FO3 = cr(45,2)
+sc(ws, 45, 2, f"={cr(43,2)}+{cr(44,2)}", font=Font(name='Arial',size=12,bold=True,color='000000'),
+   fill=FYELLOW, border=BB, fmt=MF)
 
-# -- CONSTRAINTS --
-r = 47
-section_title(ws3, r, 1, "4. RESTRIÇÕES", merge_end=8)
+# === 4. RESTRIÇÕES (com LHS fórmula | sinal | RHS) ===
+R = 47; stitle(ws, R, 1, "4. RESTRIÇÕES (LHS e RHS para o Solver)", end=8)
+R = 49; hdr(ws, R, 1, ['Descrição','Célula LHS','Fórmula LHS','Sinal','Célula RHS','Valor RHS','Status'])
 
-r = 49
-header_row(ws3, r, 1, ['Restrição', 'LHS', 'Sinal', 'RHS', 'Atendida?'])
+# Track constraint rows for Solver config
+constr_rows = []
 
+def add_constr(ws, row, desc, lhs_formula, sign, rhs_val_or_formula, is_rhs_formula=False):
+    """Add a constraint row. Returns (lhs_cell, sign, rhs_cell) strings."""
+    sc(ws, row, 1, desc, font=F, border=BT, align=AL)
+    lhs_cell = cr(row, 3)
+    rhs_cell = cr(row, 6)
+    sc(ws, row, 2, lhs_cell, font=FBLUE, border=BT, align=AC)  # shows cell ref
+    sc(ws, row, 3, lhs_formula, font=F, border=BT, align=AC, fmt=IF_)
+    sc(ws, row, 4, sign, font=FB, border=BT, align=AC)
+    sc(ws, row, 5, rhs_cell, font=FBLUE, border=BT, align=AC)
+    if is_rhs_formula:
+        sc(ws, row, 6, rhs_val_or_formula, font=F, border=BT, align=AC, fmt=IF_)
+    else:
+        sc(ws, row, 6, rhs_val_or_formula, font=FBLUE, border=BT, align=AC, fmt=IF_)
+    # Status
+    if sign == ">=":
+        sc(ws, row, 7, f'=IF({lhs_cell}>={rhs_cell},"OK","VIOLA")', font=F, border=BT, align=AC)
+    elif sign == "<=":
+        sc(ws, row, 7, f'=IF({lhs_cell}<={rhs_cell},"OK","VIOLA")', font=F, border=BT, align=AC)
+    else:
+        sc(ws, row, 7, f'=IF({lhs_cell}={rhs_cell},"OK","VIOLA")', font=F, border=BT, align=AC)
+    constr_rows.append((desc, lhs_cell, sign, rhs_cell))
+
+rr = 50
 # Demand constraints
-for ri, reg in enumerate(regions):
-    row = 50 + ri
-    set_cell(ws3, row, 1, f"Demanda {reg}", font=FONT_DEFAULT, border=BORDER_THIN)
-    lhs_ref = cell_ref(39, 2+ri)  # total received
-    set_cell(ws3, row, 2, f"={lhs_ref}", font=FONT_DEFAULT, border=BORDER_THIN, fmt=INT_FMT)
-    set_cell(ws3, row, 3, ">=", font=FONT_DEFAULT, border=BORDER_THIN, align=ALIGN_CENTER)
-    set_cell(ws3, row, 4, demands[reg], font=FONT_BLUE, border=BORDER_THIN, fmt=INT_FMT)
-    set_cell(ws3, row, 5, f'=IF({cell_ref(row,2)}>={cell_ref(row,4)},"OK","VIOLA")', font=FONT_DEFAULT, border=BORDER_THIN, align=ALIGN_CENTER)
+for ri, reg in enumerate(REG):
+    add_constr(ws, rr, f"Demanda {reg}: Σx_ij ≥ {DEM[reg]}",
+               f"={cr(39,2+ri)}", ">=", DEM[reg])
+    rr += 1
 
 # Capacity constraints
-for wi, w in enumerate(warehouses):
-    row = 53 + wi
-    set_cell(ws3, row, 1, f"Capacidade {w}", font=FONT_DEFAULT, border=BORDER_THIN)
-    lhs_ref = cell_ref(X_START_ROW+wi, 5)  # total sent
-    set_cell(ws3, row, 2, f"={lhs_ref}", font=FONT_DEFAULT, border=BORDER_THIN, fmt=INT_FMT)
-    set_cell(ws3, row, 3, "<=", font=FONT_DEFAULT, border=BORDER_THIN, align=ALIGN_CENTER)
-    rhs_formula = f"={cell_ref(25,2)}*{cell_ref(Y_ROW,1+wi)}"
-    set_cell(ws3, row, 4, rhs_formula, font=FONT_DEFAULT, border=BORDER_THIN, fmt=INT_FMT)
-    set_cell(ws3, row, 5, f'=IF({cell_ref(row,2)}<={cell_ref(row,4)},"OK","VIOLA")', font=FONT_DEFAULT, border=BORDER_THIN, align=ALIGN_CENTER)
+for wi, w in enumerate(WH):
+    add_constr(ws, rr, f"Capacidade {w}: Σx_{w}j ≤ 15000·y_{w}",
+               f"={cr(XR0+wi,5)}", "<=", f"={cr(25,2)}*{cr(YR,1+wi)}", is_rhs_formula=True)
+    rr += 1
 
 # Logical constraints
-row = 57
-set_cell(ws3, row, 1, "NY → LA (y_NY ≤ y_LA)", font=FONT_DEFAULT, border=BORDER_THIN)
-set_cell(ws3, row, 2, f"={cell_ref(Y_ROW,1)}", font=FONT_DEFAULT, border=BORDER_THIN, fmt='0')
-set_cell(ws3, row, 3, "<=", font=FONT_DEFAULT, border=BORDER_THIN, align=ALIGN_CENTER)
-set_cell(ws3, row, 4, f"={cell_ref(Y_ROW,2)}", font=FONT_DEFAULT, border=BORDER_THIN, fmt='0')
-set_cell(ws3, row, 5, f'=IF({cell_ref(row,2)}<={cell_ref(row,4)},"OK","VIOLA")', font=FONT_DEFAULT, border=BORDER_THIN, align=ALIGN_CENTER)
+add_constr(ws, rr, "NY→LA: y_NY ≤ y_LA", f"={cr(YR,1)}", "<=", f"={cr(YR,2)}", is_rhs_formula=True)
+rr += 1
+add_constr(ws, rr, "Máx 2 armazéns: Σy_i ≤ 2", f"=SUM({cr(YR,1)}:{cr(YR,4)})", "<=", 2)
+rr += 1
+add_constr(ws, rr, "ATL ou LA: y_ATL + y_LA ≥ 1", f"={cr(YR,4)}+{cr(YR,2)}", ">=", 1)
+rr += 1
 
-row = 58
-set_cell(ws3, row, 1, "Máx 2 armazéns (Σy ≤ 2)", font=FONT_DEFAULT, border=BORDER_THIN)
-set_cell(ws3, row, 2, f"=SUM({cell_ref(Y_ROW,1)}:{cell_ref(Y_ROW,4)})", font=FONT_DEFAULT, border=BORDER_THIN, fmt='0')
-set_cell(ws3, row, 3, "<=", font=FONT_DEFAULT, border=BORDER_THIN, align=ALIGN_CENTER)
-set_cell(ws3, row, 4, 2, font=FONT_BLUE, border=BORDER_THIN, fmt='0')
-set_cell(ws3, row, 5, f'=IF({cell_ref(row,2)}<={cell_ref(row,4)},"OK","VIOLA")', font=FONT_DEFAULT, border=BORDER_THIN, align=ALIGN_CENTER)
+# Binaries note
+sc(ws, rr, 1, "y_i ∈ {0,1} — Binário", font=FB, border=BT)
+sc(ws, rr, 2, f"{cr(YR,1)}:{cr(YR,4)}", font=FBLUE, border=BT, align=AC)
+sc(ws, rr, 4, "bin", font=FB, border=BT, align=AC)
+rr += 1
 
-row = 59
-set_cell(ws3, row, 1, "ATL ou LA (y_ATL + y_LA ≥ 1)", font=FONT_DEFAULT, border=BORDER_THIN)
-set_cell(ws3, row, 2, f"={cell_ref(Y_ROW,4)}+{cell_ref(Y_ROW,2)}", font=FONT_DEFAULT, border=BORDER_THIN, fmt='0')
-set_cell(ws3, row, 3, ">=", font=FONT_DEFAULT, border=BORDER_THIN, align=ALIGN_CENTER)
-set_cell(ws3, row, 4, 1, font=FONT_BLUE, border=BORDER_THIN, fmt='0')
-set_cell(ws3, row, 5, f'=IF({cell_ref(row,2)}>={cell_ref(row,4)},"OK","VIOLA")', font=FONT_DEFAULT, border=BORDER_THIN, align=ALIGN_CENTER)
+# Non-negativity
+sc(ws, rr, 1, "x_ij ≥ 0 — Não-negatividade", font=FB, border=BT)
+sc(ws, rr, 2, f"{cr(XR0,2)}:{cr(XR0+3,4)}", font=FBLUE, border=BT, align=AC)
+sc(ws, rr, 4, ">=", font=FB, border=BT, align=AC)
+sc(ws, rr, 6, 0, font=FBLUE, border=BT, align=AC)
+CONSTR3_END = rr + 1
 
-row = 60
-set_cell(ws3, row, 1, "y_i ∈ {0,1} (binário)", font=FONT_DEFAULT, border=BORDER_THIN)
-set_cell(ws3, row, 2, "Restrição de tipo", font=FONT_DEFAULT, border=BORDER_THIN)
-set_cell(ws3, row, 3, "=", font=FONT_DEFAULT, border=BORDER_THIN, align=ALIGN_CENTER)
-set_cell(ws3, row, 4, "Binário", font=FONT_BLUE, border=BORDER_THIN)
+# === 5. CONFIGURAÇÃO DO SOLVER — PASSO A PASSO ===
+R = CONSTR3_END + 1
+stitle(ws, R, 1, "5. CONFIGURAÇÃO DO SOLVER — PASSO A PASSO", end=8)
+R += 2
 
-# -- SOLVER CONFIG --
-r = 62
-section_title(ws3, r, 1, "5. CONFIGURAÇÃO DO SOLVER", merge_end=8)
-
-solver_info = [
-    ("Célula Objetivo:", f"{FO3_CELL} (Minimizar)"),
-    ("Variáveis de Decisão:", f"{cell_ref(Y_ROW,1)}:{cell_ref(Y_ROW,4)} (binárias), {cell_ref(X_START_ROW,2)}:{cell_ref(X_START_ROW+3,4)} (contínuas)"),
-    ("Método:", "Simplex LP (Branch & Bound para variáveis binárias)"),
-    ("Restrições:", ""),
+steps = [
+    ("PASSO 1:", "Abra a aba 'Dados' → clique em 'Solver' (canto superior direito)"),
+    ("PASSO 2:", f"Definir Objetivo: selecione a célula {FO3} (custo total, fundo amarelo)"),
+    ("PASSO 3:", "Para: selecione 'Mín' (minimizar)"),
+    ("PASSO 4:", f"Alterando Células Variáveis: {cr(YR,1)}:{cr(YR,4)},{cr(XR0,2)}:{cr(XR0+3,4)}"),
+    ("PASSO 5:", "Sujeito às Restrições — clique 'Adicionar' para cada uma:"),
 ]
-for si, (label, val) in enumerate(solver_info):
-    set_cell(ws3, r+2+si, 1, label, font=FONT_HEADER)
-    set_cell(ws3, r+2+si, 2, val, font=FONT_DEFAULT)
-    if si == 3:
-        ws3.merge_cells(start_row=r+2+si, start_column=2, end_row=r+2+si, end_column=8)
+for si, (lbl, txt) in enumerate(steps):
+    sc(ws, R+si, 1, lbl, font=FB, fill=FLTYELLOW)
+    sc(ws, R+si, 2, txt, font=F)
+    ws.merge_cells(start_row=R+si, start_column=2, end_row=R+si, end_column=8)
 
-# List constraints for solver
-constr_list = [
-    f"{cell_ref(50,2)} >= {cell_ref(50,4)}  (Demanda Região 1)",
-    f"{cell_ref(51,2)} >= {cell_ref(51,4)}  (Demanda Região 2)",
-    f"{cell_ref(52,2)} >= {cell_ref(52,4)}  (Demanda Região 3)",
-    f"{cell_ref(53,2)} <= {cell_ref(53,4)}  (Capacidade NY)",
-    f"{cell_ref(54,2)} <= {cell_ref(54,4)}  (Capacidade LA)",
-    f"{cell_ref(55,2)} <= {cell_ref(55,4)}  (Capacidade Chicago)",
-    f"{cell_ref(56,2)} <= {cell_ref(56,4)}  (Capacidade Atlanta)",
-    f"{cell_ref(57,2)} <= {cell_ref(57,4)}  (NY→LA)",
-    f"{cell_ref(58,2)} <= {cell_ref(58,4)}  (Máx 2 armazéns)",
-    f"{cell_ref(59,2)} >= {cell_ref(59,4)}  (ATL ou LA)",
-    f"{cell_ref(Y_ROW,1)}:{cell_ref(Y_ROW,4)} = Binário",
-    f"{cell_ref(X_START_ROW,2)}:{cell_ref(X_START_ROW+3,4)} >= 0",
+R += len(steps) + 1
+sc(ws, R, 1, "Restrições a adicionar no Solver:", font=FB)
+R += 1
+hdr(ws, R, 1, ['#','Referência da Célula (LHS)','Operador','Restrição (RHS)','Descrição'])
+R += 1
+
+# Re-list all constraints in Solver format
+solver_constrs = [
+    (f"{cr(50,3)}", ">=", f"{cr(50,6)}", "Demanda Região 1"),
+    (f"{cr(51,3)}", ">=", f"{cr(51,6)}", "Demanda Região 2"),
+    (f"{cr(52,3)}", ">=", f"{cr(52,6)}", "Demanda Região 3"),
+    (f"{cr(53,3)}", "<=", f"{cr(53,6)}", "Capacidade NY"),
+    (f"{cr(54,3)}", "<=", f"{cr(54,6)}", "Capacidade LA"),
+    (f"{cr(55,3)}", "<=", f"{cr(55,6)}", "Capacidade Chicago"),
+    (f"{cr(56,3)}", "<=", f"{cr(56,6)}", "Capacidade Atlanta"),
+    (f"{cr(57,3)}", "<=", f"{cr(57,6)}", "NY implica LA"),
+    (f"{cr(58,3)}", "<=", f"{cr(58,6)}", "Máx 2 armazéns"),
+    (f"{cr(59,3)}", ">=", f"{cr(59,6)}", "ATL ou LA"),
+    (f"{cr(YR,1)}:{cr(YR,4)}", "bin", "—", "Variáveis binárias"),
+    (f"{cr(XR0,2)}:{cr(XR0+3,4)}", ">=", "0", "Não-negatividade"),
 ]
-for ci, ctext in enumerate(constr_list):
-    set_cell(ws3, 68+ci, 2, ctext, font=FONT_DEFAULT)
+for ci, (lhs, op, rhs, desc) in enumerate(solver_constrs):
+    sc(ws, R+ci, 1, ci+1, font=F, border=BT, align=AC)
+    sc(ws, R+ci, 2, lhs, font=FBLUEB, border=BT, align=AC)
+    sc(ws, R+ci, 3, op, font=FB, border=BT, align=AC)
+    sc(ws, R+ci, 4, rhs, font=FBLUEB, border=BT, align=AC)
+    sc(ws, R+ci, 5, desc, font=F, border=BT, align=AL)
+R += len(solver_constrs) + 1
 
-# -- ANSWER SECTION --
-r = 82
-section_title(ws3, r, 1, "6. RESPOSTA POR EXTENSO", merge_end=8)
-r = 84
-set_cell(ws3, r, 1, q3_answer_text, font=Font(name='Arial', size=11), align=ALIGN_LEFT)
-ws3.merge_cells(start_row=r, start_column=1, end_row=r+8, end_column=8)
-ws3.cell(row=r, column=1).fill = FILL_LIGHT_GREEN
+sc(ws, R, 1, "PASSO 6:", font=FB, fill=FLTYELLOW)
+sc(ws, R, 2, "Selecionar Método de Resolução: 'Simplex LP'", font=FB)
+ws.merge_cells(start_row=R, start_column=2, end_row=R, end_column=8)
+R += 1
+sc(ws, R, 1, "PASSO 7:", font=FB, fill=FLTYELLOW)
+sc(ws, R, 2, "Marcar 'Tornar Variáveis Irrestritas Não Negativas' ✓", font=F)
+ws.merge_cells(start_row=R, start_column=2, end_row=R, end_column=8)
+R += 1
+sc(ws, R, 1, "PASSO 8:", font=FB, fill=FLTYELLOW)
+sc(ws, R, 2, "Clicar 'Resolver' → 'Manter Solução do Solver' → OK", font=F)
+ws.merge_cells(start_row=R, start_column=2, end_row=R, end_column=8)
+R += 2
 
-# Column widths
-for col_idx in range(1, 9):
-    ws3.column_dimensions[get_column_letter(col_idx)].width = 18
+sc(ws, R, 1, "NOTA:", font=FRED)
+sc(ws, R, 2, "O Excel usa Simplex LP com Branch & Bound interno para variáveis binárias (inteiras). "
+             "Não é necessário selecionar outro método — o Simplex LP do Solver trata binárias automaticamente.", font=F)
+ws.merge_cells(start_row=R, start_column=2, end_row=R+1, end_column=8)
+ws.cell(row=R, column=2).alignment = ALT
 
-# ======================== QUIZ 4 SHEET ========================
+# === 6. RESPOSTA POR EXTENSO ===
+R += 3
+stitle(ws, R, 1, "6. RESPOSTA POR EXTENSO", end=8)
+R += 2
+
+q3_open = [w for w in WH if q3y[w]==1]
+lines = [f"SOLUÇÃO ÓTIMA — Custo Total Mínimo: ${q3z:,.0f}",
+         "",
+         f"Armazéns abertos: {', '.join(q3_open)}",
+         f"Armazéns fechados: {', '.join(w for w in WH if q3y[w]==0)}",
+         "",
+         "Distribuição ótima (armazém → região → quantidade):"]
+for w in WH:
+    for reg in REG:
+        v = q3x[w,reg]
+        if v and v > 0.001:
+            lines.append(f"  • {w} → {reg}: {v:,.0f} unidades (custo unit.: ${UC[w,reg]})")
+lines.append("")
+lines.append("Verificação das restrições lógicas:")
+lines.append(f"  • NY aberto? {'Sim' if q3y['NY'] else 'Não'}, LA aberto? {'Sim' if q3y['LA'] else 'Não'} → NY→LA: OK")
+lines.append(f"  • Total armazéns abertos: {sum(q3y.values())} ≤ 2 → OK")
+lines.append(f"  • ATL ou LA aberto? y_ATL+y_LA = {q3y['Atlanta']+q3y['LA']} ≥ 1 → OK")
+
+sc(ws, R, 1, "\n".join(lines), font=Font(name='Arial', size=11), align=ALT)
+ws.merge_cells(start_row=R, start_column=1, end_row=R+14, end_column=8)
+ws.cell(row=R, column=1).fill = FLTGREEN
+
+# ################################################################
+# QUIZ 4 SHEET
+# ################################################################
 ws4 = wb.create_sheet("Quiz 4 - Distribuição")
+for c in range(1,13): ws4.column_dimensions[get_column_letter(c)].width = 18
 
-r = 1
-set_cell(ws4, r, 1, "QUIZ 4 — Distribuição de Veículos (PL - Fluxo em Rede)", font=FONT_TITLE)
+R = 1
+sc(ws4, R, 1, "QUIZ 4 — Distribuição de Veículos (PL - Fluxo em Rede)", font=FT)
 ws4.merge_cells('A1:K1')
 
-# -- DATA SECTION --
-r = 3
-section_title(ws4, r, 1, "1. DADOS DO PROBLEMA", merge_end=11)
+# === 1. DADOS ===
+R = 3; stitle(ws4, R, 1, "1. DADOS DO PROBLEMA", end=11)
 
-# Arcs table
-r = 5
-set_cell(ws4, r, 1, "Arcos da Rede e Custos Padrão", font=FONT_HEADER)
-r = 6
-header_row(ws4, r, 1, ['#', 'De', 'Para', 'Custo Padrão', 'Custo Minivan (×1.15)', 'Custo Esportivo (×0.90)'])
-ARC_DATA_ROW = 7
-for ai, (fr, to, cost) in enumerate(arcs):
-    row = ARC_DATA_ROW + ai
-    set_cell(ws4, row, 1, ai+1, font=FONT_DEFAULT, border=BORDER_THIN, align=ALIGN_CENTER)
-    set_cell(ws4, row, 2, fr, font=FONT_BLUE, border=BORDER_THIN)
-    set_cell(ws4, row, 3, to, font=FONT_BLUE, border=BORDER_THIN)
-    set_cell(ws4, row, 4, cost, font=FONT_BLUE, border=BORDER_THIN, fmt=MONEY_FMT)
-    set_cell(ws4, row, 5, f"={cell_ref(row,4)}*1.15", font=FONT_DEFAULT, border=BORDER_THIN, fmt='$#,##0.00')
-    set_cell(ws4, row, 6, f"={cell_ref(row,4)}*0.9", font=FONT_DEFAULT, border=BORDER_THIN, fmt='$#,##0.00')
+R = 5; sc(ws4, R, 1, "Arcos da Rede — Custos Padrão e Ajustados por Tipo de Veículo", font=FB)
+R = 6; hdr(ws4, R, 1, ['#','De','Para','Custo Padrão ($)','Custo Minivan (×1.15)','Custo Esportivo (×0.90)'])
+A_R0 = 7  # arc data rows 7-18
+for ai,(fr,to,cost) in enumerate(ARCS):
+    rr = A_R0+ai
+    sc(ws4, rr, 1, ai+1, font=F, border=BT, align=AC)
+    sc(ws4, rr, 2, fr, font=FBLUE, border=BT)
+    sc(ws4, rr, 3, to, font=FBLUE, border=BT)
+    sc(ws4, rr, 4, cost, font=FBLUE, border=BT, fmt=MF)
+    sc(ws4, rr, 5, f"={cr(rr,4)}*1.15", font=F, border=BT, fmt='$#,##0.00')
+    sc(ws4, rr, 6, f"={cr(rr,4)}*0.9", font=F, border=BT, fmt='$#,##0.00')
+A_REND = A_R0 + len(ARCS) - 1  # 18
 
-# Supply table
-r = ARC_DATA_ROW + len(arcs) + 1  # 19
-SUP_ROW = r + 1
-set_cell(ws4, r, 1, "Oferta (Portos)", font=FONT_HEADER)
-r += 1
-header_row(ws4, r, 1, ['Porto', 'Minivan', 'Esportivo'])
-for pi, port in enumerate(origins):
-    row = r + 1 + pi
-    set_cell(ws4, row, 1, port, font=FONT_BLUE, border=BORDER_THIN)
-    set_cell(ws4, row, 2, supply[port,'Minivan'], font=FONT_BLUE, border=BORDER_THIN, fmt=INT_FMT)
-    set_cell(ws4, row, 3, supply[port,'Esportivo'], font=FONT_BLUE, border=BORDER_THIN, fmt=INT_FMT)
-SUP_DATA_ROW = r + 1  # first data row of supply
+# Supply
+R = A_REND + 2
+sc(ws4, R, 1, "Oferta (Portos)", font=FB)
+R += 1; hdr(ws4, R, 1, ['Porto','Minivan','Esportivo'])
+S_R0 = R + 1
+for pi,p in enumerate(ORIG):
+    rr = S_R0+pi
+    sc(ws4, rr, 1, p, font=FBLUE, border=BT)
+    sc(ws4, rr, 2, SUP[p,'Minivan'], font=FBLUE, border=BT, fmt=IF_)
+    sc(ws4, rr, 3, SUP[p,'Esportivo'], font=FBLUE, border=BT, fmt=IF_)
 
-# Demand table
-r = SUP_DATA_ROW + 3
-DEM4_ROW = r
-set_cell(ws4, r, 1, "Demanda (Revendas)", font=FONT_HEADER)
-r += 1
-header_row(ws4, r, 1, ['Revenda', 'Minivan', 'Esportivo'])
-for di, dest in enumerate(destinations):
-    row = r + 1 + di
-    set_cell(ws4, row, 1, dest, font=FONT_BLUE, border=BORDER_THIN)
-    set_cell(ws4, row, 2, demand_q4[dest,'Minivan'], font=FONT_BLUE, border=BORDER_THIN, fmt=INT_FMT)
-    set_cell(ws4, row, 3, demand_q4[dest,'Esportivo'], font=FONT_BLUE, border=BORDER_THIN, fmt=INT_FMT)
+# Demand
+R = S_R0 + 3
+sc(ws4, R, 1, "Demanda (Revendas)", font=FB)
+R += 1; hdr(ws4, R, 1, ['Revenda','Minivan','Esportivo'])
+D4_R0 = R + 1
+for di,d in enumerate(DEST):
+    rr = D4_R0+di
+    sc(ws4, rr, 1, d, font=FBLUE, border=BT)
+    sc(ws4, rr, 2, DEM4[d,'Minivan'], font=FBLUE, border=BT, fmt=IF_)
+    sc(ws4, rr, 3, DEM4[d,'Esportivo'], font=FBLUE, border=BT, fmt=IF_)
 
-# -- DECISION VARIABLES --
-r = DEM4_ROW + 6
-VAR4_SECTION = r
-section_title(ws4, r, 1, "2. VARIÁVEIS DE DECISÃO (Fluxo por Arco e Tipo)", merge_end=11)
+# === 2. VARIÁVEIS DE DECISÃO ===
+R = D4_R0 + 4
+stitle(ws4, R, 1, "2. VARIÁVEIS DE DECISÃO — Fluxo por Arco (células que o Solver altera)", end=11)
+R += 2
+sc(ws4, R, 1, "Arco / Tipo de Veículo → Quantidades de Fluxo (variáveis) e Custos (fórmulas)", font=FB)
+R += 1
+hdr(ws4, R, 1, ['#','De','Para','Fluxo Minivan','Fluxo Esportivo','Fluxo Total',
+                  'Custo Minivan ($)','Custo Esportivo ($)','Custo Total Arco ($)'])
+FH = R  # flow header row
+F_R0 = R + 1  # flow data start
+for ai,(fr,to,cost) in enumerate(ARCS):
+    rr = F_R0+ai
+    sc(ws4, rr, 1, ai+1, font=F, border=BT, align=AC)
+    sc(ws4, rr, 2, fr, font=F, border=BT)
+    sc(ws4, rr, 3, to, font=F, border=BT)
+    # Decision variable cells — filled with PuLP solution
+    sc(ws4, rr, 4, q4f.get((fr,to,'Minivan'),0), font=FBLUEB, border=BB, align=AC, fmt=IF_)
+    sc(ws4, rr, 5, q4f.get((fr,to,'Esportivo'),0), font=FBLUEB, border=BB, align=AC, fmt=IF_)
+    # Formulas
+    sc(ws4, rr, 6, f"={cr(rr,4)}+{cr(rr,5)}", font=F, border=BT, align=AC, fmt=IF_)
+    ac = cr(A_R0+ai, 4)  # arc std cost cell
+    sc(ws4, rr, 7, f"={cr(rr,4)}*{ac}*1.15", font=F, border=BT, fmt=MF)
+    sc(ws4, rr, 8, f"={cr(rr,5)}*{ac}*0.9", font=F, border=BT, fmt=MF)
+    sc(ws4, rr, 9, f"={cr(rr,7)}+{cr(rr,8)}", font=F, border=BT, fmt=MF)
+F_REND = F_R0 + len(ARCS) - 1  # last flow row
 
-r += 2
-set_cell(ws4, r, 1, "Fluxo de Veículos por Arco", font=FONT_HEADER)
-r += 1
-header_row(ws4, r, 1, ['#', 'De', 'Para', 'Fluxo Minivan', 'Fluxo Esportivo', 'Fluxo Total', 'Custo Minivan', 'Custo Esportivo', 'Custo Total Arco'])
-FLOW_HDR_ROW = r
-FLOW_START_ROW = r + 1
-for ai, (fr, to, cost) in enumerate(arcs):
-    row = FLOW_START_ROW + ai
-    set_cell(ws4, row, 1, ai+1, font=FONT_DEFAULT, border=BORDER_THIN, align=ALIGN_CENTER)
-    set_cell(ws4, row, 2, fr, font=FONT_DEFAULT, border=BORDER_THIN)
-    set_cell(ws4, row, 3, to, font=FONT_DEFAULT, border=BORDER_THIN)
-    # Flow values (decision variables)
-    fmin = q4_flows.get((fr,to,'Minivan'), 0)
-    fesp = q4_flows.get((fr,to,'Esportivo'), 0)
-    set_cell(ws4, row, 4, fmin, font=FONT_BLUE_BOLD, border=BORDER_BLUE, align=ALIGN_CENTER, fmt=INT_FMT)
-    set_cell(ws4, row, 5, fesp, font=FONT_BLUE_BOLD, border=BORDER_BLUE, align=ALIGN_CENTER, fmt=INT_FMT)
-    # Total flow
-    set_cell(ws4, row, 6, f"={cell_ref(row,4)}+{cell_ref(row,5)}", font=FONT_DEFAULT, border=BORDER_THIN, align=ALIGN_CENTER, fmt=INT_FMT)
-    # Cost per type — reference arc cost from data section
-    arc_cost_cell = cell_ref(ARC_DATA_ROW + ai, 4)
-    set_cell(ws4, row, 7, f"={cell_ref(row,4)}*{arc_cost_cell}*1.15", font=FONT_DEFAULT, border=BORDER_THIN, fmt=MONEY_FMT)
-    set_cell(ws4, row, 8, f"={cell_ref(row,5)}*{arc_cost_cell}*0.9", font=FONT_DEFAULT, border=BORDER_THIN, fmt=MONEY_FMT)
-    set_cell(ws4, row, 9, f"={cell_ref(row,7)}+{cell_ref(row,8)}", font=FONT_DEFAULT, border=BORDER_THIN, fmt=MONEY_FMT)
+# === 3. FUNÇÃO OBJETIVO ===
+R = F_REND + 2
+stitle(ws4, R, 1, "3. FUNÇÃO OBJETIVO — Minimizar Custo Total de Transporte", end=11)
+R += 2
+sc(ws4, R, 1, "▶ CUSTO TOTAL (Célula Objetivo):", font=FS)
+FO4 = cr(R, 2)
+sc(ws4, R, 2, f"=SUM({cr(F_R0,9)}:{cr(F_REND,9)})", font=Font(name='Arial',size=12,bold=True),
+   fill=FYELLOW, border=BB, fmt=MF)
+FO4_ROW = R
 
-FLOW_END_ROW = FLOW_START_ROW + len(arcs) - 1
+# === 4. RESTRIÇÕES ===
+R = FO4_ROW + 2
+stitle(ws4, R, 1, "4. RESTRIÇÕES (LHS e RHS para o Solver)", end=11)
+R += 2
+hdr(ws4, R, 1, ['Descrição','Célula LHS','Fórmula LHS','Sinal','Célula RHS','Valor RHS','Status'])
+R += 1
 
-# -- OBJECTIVE FUNCTION --
-r = FLOW_END_ROW + 2
-section_title(ws4, r, 1, "3. FUNÇÃO OBJETIVO (Minimizar Custo Total de Transporte)", merge_end=11)
-r += 2
-set_cell(ws4, r, 1, "CUSTO TOTAL (FO):", font=Font(name='Arial', size=12, bold=True))
-fo4_formula = f"=SUM({cell_ref(FLOW_START_ROW,9)}:{cell_ref(FLOW_END_ROW,9)})"
-set_cell(ws4, r, 2, fo4_formula, font=Font(name='Arial', size=12, bold=True), fill=FILL_YELLOW, border=BORDER_BLUE, fmt=MONEY_FMT)
-FO4_ROW = r
-FO4_CELL = cell_ref(r, 2)
+def aidx_from(node):
+    return [ai for ai,(fr,to,c) in enumerate(ARCS) if fr==node]
+def aidx_to(node):
+    return [ai for ai,(fr,to,c) in enumerate(ARCS) if to==node]
 
-# -- CONSTRAINTS SECTION --
-r = FO4_ROW + 2
-CONSTR4_SECTION = r
-section_title(ws4, r, 1, "4. RESTRIÇÕES", merge_end=11)
+q4_constrs = []  # for solver config
 
-r += 2
-header_row(ws4, r, 1, ['Restrição', 'Tipo', 'LHS', 'Sinal', 'RHS', 'Atendida?'])
-CONSTR4_HDR = r
-cr = r + 1
-
-# Helper: build LHS formula for flow constraints
-def arc_indices_from(node):
-    return [ai for ai, (fr,to,c) in enumerate(arcs) if fr == node]
-def arc_indices_to(node):
-    return [ai for ai, (fr,to,c) in enumerate(arcs) if to == node]
-
-# Flow conservation constraints
-for node in intermediaries:
-    for vi, v in enumerate(['Minivan', 'Esportivo']):
-        col_flow = 4 + vi  # 4=Minivan, 5=Esportivo
-        in_refs = [cell_ref(FLOW_START_ROW+ai, col_flow) for ai in arc_indices_to(node)]
-        out_refs = [cell_ref(FLOW_START_ROW+ai, col_flow) for ai in arc_indices_from(node)]
-        lhs_in = "+".join(in_refs) if in_refs else "0"
-        lhs_out = "+".join(out_refs) if out_refs else "0"
-        set_cell(ws4, cr, 1, f"Conservação {node} ({v})", font=FONT_DEFAULT, border=BORDER_THIN)
-        set_cell(ws4, cr, 2, "Fluxo", font=FONT_DEFAULT, border=BORDER_THIN, align=ALIGN_CENTER)
-        set_cell(ws4, cr, 3, f"={lhs_in}-({lhs_out})", font=FONT_DEFAULT, border=BORDER_THIN, fmt=INT_FMT)
-        set_cell(ws4, cr, 4, "=", font=FONT_DEFAULT, border=BORDER_THIN, align=ALIGN_CENTER)
-        set_cell(ws4, cr, 5, 0, font=FONT_BLUE, border=BORDER_THIN, fmt=INT_FMT)
-        set_cell(ws4, cr, 6, f'=IF({cell_ref(cr,3)}={cell_ref(cr,5)},"OK","VIOLA")', font=FONT_DEFAULT, border=BORDER_THIN, align=ALIGN_CENTER)
-        cr += 1
-
-# Supply constraints
-for port in origins:
-    for vi, v in enumerate(['Minivan', 'Esportivo']):
-        col_flow = 4 + vi
-        out_refs = [cell_ref(FLOW_START_ROW+ai, col_flow) for ai in arc_indices_from(port)]
-        lhs = "+".join(out_refs)
-        set_cell(ws4, cr, 1, f"Oferta {port} ({v})", font=FONT_DEFAULT, border=BORDER_THIN)
-        set_cell(ws4, cr, 2, "Oferta", font=FONT_DEFAULT, border=BORDER_THIN, align=ALIGN_CENTER)
-        set_cell(ws4, cr, 3, f"={lhs}", font=FONT_DEFAULT, border=BORDER_THIN, fmt=INT_FMT)
-        set_cell(ws4, cr, 4, "<=", font=FONT_DEFAULT, border=BORDER_THIN, align=ALIGN_CENTER)
-        set_cell(ws4, cr, 5, supply[port,v], font=FONT_BLUE, border=BORDER_THIN, fmt=INT_FMT)
-        set_cell(ws4, cr, 6, f'=IF({cell_ref(cr,3)}<={cell_ref(cr,5)},"OK","VIOLA")', font=FONT_DEFAULT, border=BORDER_THIN, align=ALIGN_CENTER)
-        cr += 1
-
-# Demand constraints
-for dest in destinations:
-    for vi, v in enumerate(['Minivan', 'Esportivo']):
-        col_flow = 4 + vi
-        in_refs = [cell_ref(FLOW_START_ROW+ai, col_flow) for ai in arc_indices_to(dest)]
-        out_refs = [cell_ref(FLOW_START_ROW+ai, col_flow) for ai in arc_indices_from(dest)]
-        lhs_in = "+".join(in_refs) if in_refs else "0"
-        lhs_out = "+".join(out_refs) if out_refs else "0"
-        set_cell(ws4, cr, 1, f"Demanda {dest} ({v})", font=FONT_DEFAULT, border=BORDER_THIN)
-        set_cell(ws4, cr, 2, "Demanda", font=FONT_DEFAULT, border=BORDER_THIN, align=ALIGN_CENTER)
-        set_cell(ws4, cr, 3, f"={lhs_in}-({lhs_out})", font=FONT_DEFAULT, border=BORDER_THIN, fmt=INT_FMT)
-        set_cell(ws4, cr, 4, ">=", font=FONT_DEFAULT, border=BORDER_THIN, align=ALIGN_CENTER)
-        set_cell(ws4, cr, 5, demand_q4[dest,v], font=FONT_BLUE, border=BORDER_THIN, fmt=INT_FMT)
-        set_cell(ws4, cr, 6, f'=IF({cell_ref(cr,3)}>={cell_ref(cr,5)},"OK","VIOLA")', font=FONT_DEFAULT, border=BORDER_THIN, align=ALIGN_CENTER)
-        cr += 1
-
-CONSTR4_END = cr
-
-# -- SOLVER CONFIG --
-cr += 1
-section_title(ws4, cr, 1, "5. CONFIGURAÇÃO DO SOLVER", merge_end=11)
-cr += 2
-solver4_info = [
-    ("Célula Objetivo:", f"{FO4_CELL} (Minimizar)"),
-    ("Variáveis de Decisão:", f"{cell_ref(FLOW_START_ROW,4)}:{cell_ref(FLOW_END_ROW,5)} (fluxos contínuos ≥ 0)"),
-    ("Método:", "Simplex LP"),
-    ("Restrições:", "Ver seção 4 acima — conservação de fluxo, oferta e demanda"),
-]
-for si, (label, val) in enumerate(solver4_info):
-    set_cell(ws4, cr+si, 1, label, font=FONT_HEADER)
-    set_cell(ws4, cr+si, 2, val, font=FONT_DEFAULT)
-cr += len(solver4_info) + 1
-
-# -- ITEM c) and d) ANSWERS --
-cr += 1
-section_title(ws4, cr, 1, "6. RESPOSTAS POR EXTENSO (Itens c e d)", merge_end=11)
-cr += 2
-ANSWER_C_ROW = cr
-set_cell(ws4, cr, 1, flow_text, font=Font(name='Arial', size=11), align=ALIGN_LEFT)
-ws4.merge_cells(start_row=cr, start_column=1, end_row=cr+15, end_column=11)
-ws4.cell(row=cr, column=1).fill = FILL_LIGHT_GREEN
-
-cr = ANSWER_C_ROW + 17
-set_cell(ws4, cr, 1, cost_text, font=Font(name='Arial', size=12, bold=True), align=ALIGN_LEFT)
-ws4.merge_cells(start_row=cr, start_column=1, end_row=cr+1, end_column=11)
-ws4.cell(row=cr, column=1).fill = FILL_LIGHT_GREEN
-ANSWER_D_ROW = cr
-
-# -- ITEM e) SENSITIVITY ANALYSIS --
-cr = ANSWER_D_ROW + 3
-section_title(ws4, cr, 1, "7. ANÁLISE DE SENSIBILIDADE — Item e)", merge_end=11)
-cr += 2
-set_cell(ws4, cr, 1, "Variação do custo total conforme capacidade máxima por arco (500 a 1500, intervalos de 100)", font=FONT_HEADER)
-ws4.merge_cells(start_row=cr, start_column=1, end_row=cr, end_column=6)
-cr += 1
-header_row(ws4, cr, 1, ['Capacidade Máx/Arco', 'Custo Total', 'Status'])
-SENS_HDR_ROW = cr
-SENS_START_ROW = cr + 1
-for si, cap_val in enumerate(caps_range):
-    row = SENS_START_ROW + si
-    set_cell(ws4, row, 1, cap_val, font=FONT_BLUE, border=BORDER_THIN, fmt=INT_FMT, align=ALIGN_CENTER)
-    cost_val = sensitivity[cap_val]
-    if cost_val is not None:
-        set_cell(ws4, row, 2, round(cost_val, 2), font=FONT_DEFAULT, border=BORDER_THIN, fmt=MONEY_FMT, align=ALIGN_CENTER)
-        set_cell(ws4, row, 3, "Viável", font=FONT_DEFAULT, border=BORDER_THIN, align=ALIGN_CENTER)
+def add_c4(ws4, row, desc, lhs_f, sign, rhs_v, is_rhs_f=False):
+    lhs_c = cr(row, 3)
+    rhs_c = cr(row, 6)
+    sc(ws4, row, 1, desc, font=F, border=BT, align=AL)
+    sc(ws4, row, 2, lhs_c, font=FBLUE, border=BT, align=AC)
+    sc(ws4, row, 3, lhs_f, font=F, border=BT, align=AC, fmt=IF_)
+    sc(ws4, row, 4, sign, font=FB, border=BT, align=AC)
+    sc(ws4, row, 5, rhs_c, font=FBLUE, border=BT, align=AC)
+    sc(ws4, row, 6, rhs_v, font=FBLUE if not is_rhs_f else F, border=BT, align=AC, fmt=IF_)
+    if sign == ">=":
+        sc(ws4, row, 7, f'=IF({lhs_c}>={rhs_c},"OK","VIOLA")', font=F, border=BT, align=AC)
+    elif sign == "<=":
+        sc(ws4, row, 7, f'=IF({lhs_c}<={rhs_c},"OK","VIOLA")', font=F, border=BT, align=AC)
     else:
-        set_cell(ws4, row, 2, "N/A", font=FONT_DEFAULT, border=BORDER_THIN, align=ALIGN_CENTER)
-        set_cell(ws4, row, 3, "Inviável", font=Font(name='Arial', size=10, color='FF0000'), border=BORDER_THIN, align=ALIGN_CENTER)
-SENS_END_ROW = SENS_START_ROW + len(caps_range) - 1
+        sc(ws4, row, 7, f'=IF(ABS({lhs_c}-{rhs_c})<0.01,"OK","VIOLA")', font=F, border=BT, align=AC)
+    q4_constrs.append((desc, lhs_c, sign, rhs_c))
+
+# Flow conservation
+for nd in INTER:
+    for vi, vt in enumerate(['Minivan','Esportivo']):
+        col = 4+vi
+        ins = "+".join([cr(F_R0+ai, col) for ai in aidx_to(nd)]) or "0"
+        outs = "+".join([cr(F_R0+ai, col) for ai in aidx_from(nd)]) or "0"
+        add_c4(ws4, R, f"Conservação {nd} ({vt})", f"={ins}-({outs})", "=", 0)
+        R += 1
+
+# Supply
+for p in ORIG:
+    for vi, vt in enumerate(['Minivan','Esportivo']):
+        col = 4+vi
+        outs = "+".join([cr(F_R0+ai, col) for ai in aidx_from(p)])
+        add_c4(ws4, R, f"Oferta {p} ({vt})", f"={outs}", "<=", SUP[p,vt])
+        R += 1
+
+# Demand
+for d in DEST:
+    for vi, vt in enumerate(['Minivan','Esportivo']):
+        col = 4+vi
+        ins = "+".join([cr(F_R0+ai, col) for ai in aidx_to(d)]) or "0"
+        outs = "+".join([cr(F_R0+ai, col) for ai in aidx_from(d)]) or "0"
+        add_c4(ws4, R, f"Demanda {d} ({vt})", f"={ins}-({outs})", ">=", DEM4[d,vt])
+        R += 1
+
+# Non-negativity note
+sc(ws4, R, 1, "f_ij_v ≥ 0 — Não-negatividade (todas variáveis)", font=FB, border=BT)
+sc(ws4, R, 2, f"{cr(F_R0,4)}:{cr(F_REND,5)}", font=FBLUE, border=BT, align=AC)
+sc(ws4, R, 4, ">=", font=FB, border=BT, align=AC)
+sc(ws4, R, 6, 0, font=FBLUE, border=BT, align=AC)
+R += 2
+
+# === 5. CONFIGURAÇÃO DO SOLVER — PASSO A PASSO ===
+stitle(ws4, R, 1, "5. CONFIGURAÇÃO DO SOLVER — PASSO A PASSO", end=11)
+R += 2
+
+steps4 = [
+    ("PASSO 1:", "Abra a aba 'Dados' → clique em 'Solver' (canto superior direito)"),
+    ("PASSO 2:", f"Definir Objetivo: selecione a célula {FO4} (custo total, fundo amarelo)"),
+    ("PASSO 3:", "Para: selecione 'Mín' (minimizar)"),
+    ("PASSO 4:", f"Alterando Células Variáveis: {cr(F_R0,4)}:{cr(F_R0,5)},{cr(F_R0+1,4)}:{cr(F_R0+1,5)},...,{cr(F_REND,4)}:{cr(F_REND,5)}"
+                f"\n  → Ou simplesmente: {cr(F_R0,4)}:{cr(F_REND,5)}"),
+    ("PASSO 5:", "Sujeito às Restrições — clique 'Adicionar' para cada uma (ver tabela abaixo):"),
+]
+for si, (lbl, txt) in enumerate(steps4):
+    sc(ws4, R+si, 1, lbl, font=FB, fill=FLTYELLOW)
+    sc(ws4, R+si, 2, txt, font=F, align=ALT)
+    ws4.merge_cells(start_row=R+si, start_column=2, end_row=R+si, end_column=11)
+R += len(steps4) + 1
+
+sc(ws4, R, 1, "Restrições a adicionar no Solver:", font=FB)
+R += 1
+hdr(ws4, R, 1, ['#','Referência da Célula (LHS)','Operador','Restrição (RHS)','Descrição'])
+R += 1
+
+for ci, (desc, lhs_c, sign, rhs_c) in enumerate(q4_constrs):
+    sc(ws4, R+ci, 1, ci+1, font=F, border=BT, align=AC)
+    sc(ws4, R+ci, 2, lhs_c, font=FBLUEB, border=BT, align=AC)
+    sc(ws4, R+ci, 3, sign, font=FB, border=BT, align=AC)
+    sc(ws4, R+ci, 4, rhs_c, font=FBLUEB, border=BT, align=AC)
+    short_desc = desc.split(":")[0] if ":" in desc else desc
+    sc(ws4, R+ci, 5, short_desc, font=F, border=BT, align=AL)
+R += len(q4_constrs)
+
+# Add non-neg row
+sc(ws4, R, 1, len(q4_constrs)+1, font=F, border=BT, align=AC)
+sc(ws4, R, 2, f"{cr(F_R0,4)}:{cr(F_REND,5)}", font=FBLUEB, border=BT, align=AC)
+sc(ws4, R, 3, ">=", font=FB, border=BT, align=AC)
+sc(ws4, R, 4, "0", font=FBLUEB, border=BT, align=AC)
+sc(ws4, R, 5, "Não-negatividade", font=F, border=BT, align=AL)
+R += 2
+
+sc(ws4, R, 1, "PASSO 6:", font=FB, fill=FLTYELLOW)
+sc(ws4, R, 2, "Selecionar Método de Resolução: 'Simplex LP'", font=Font(name='Arial',size=10,bold=True))
+ws4.merge_cells(start_row=R, start_column=2, end_row=R, end_column=11)
+R += 1
+sc(ws4, R, 1, "PASSO 7:", font=FB, fill=FLTYELLOW)
+sc(ws4, R, 2, "Marcar 'Tornar Variáveis Irrestritas Não Negativas' ✓", font=F)
+ws4.merge_cells(start_row=R, start_column=2, end_row=R, end_column=11)
+R += 1
+sc(ws4, R, 1, "PASSO 8:", font=FB, fill=FLTYELLOW)
+sc(ws4, R, 2, "Clicar 'Resolver' → 'Manter Solução do Solver' → OK", font=F)
+ws4.merge_cells(start_row=R, start_column=2, end_row=R, end_column=11)
+R += 2
+
+# === 6. RESPOSTAS POR EXTENSO (c, d) ===
+stitle(ws4, R, 1, "6. RESPOSTAS POR EXTENSO — Itens c) e d)", end=11)
+R += 2
+
+# Item c
+clines = ["ITEM c) Fluxo ótimo (De → Para) e quantidades por tipo de veículo:", ""]
+for vt in ['Minivan', 'Esportivo']:
+    clines.append(f"=== {vt} (multiplicador de custo: ×{VMULT[vt]:.2f}) ===")
+    for (fr,to,cost) in ARCS:
+        val = q4f.get((fr,to,vt), 0)
+        if val > 0.001:
+            clines.append(f"  • {fr} → {to}: {val:.0f} veículos  (custo unit. ajustado: ${cost*VMULT[vt]:.2f}, custo total arco: ${val*cost*VMULT[vt]:,.2f})")
+    clines.append("")
+sc(ws4, R, 1, "\n".join(clines), font=Font(name='Arial', size=11), align=ALT)
+ws4.merge_cells(start_row=R, start_column=1, end_row=R+16, end_column=11)
+ws4.cell(row=R, column=1).fill = FLTGREEN
+R += 18
+
+# Item d
+sc(ws4, R, 1, f"ITEM d) O custo mínimo total dessa operação é: ${q4z:,.2f}", font=Font(name='Arial',size=12,bold=True), align=AL)
+ws4.merge_cells(start_row=R, start_column=1, end_row=R+1, end_column=11)
+ws4.cell(row=R, column=1).fill = FLTGREEN
+R += 3
+
+# === 7. ANÁLISE DE SENSIBILIDADE — Item e ===
+stitle(ws4, R, 1, "7. ANÁLISE DE SENSIBILIDADE — Item e)", end=11)
+R += 2
+
+sc(ws4, R, 1, "Como o custo total varia quando a capacidade máxima de cada arco vai de 500 a 1500 veículos:", font=FB)
+ws4.merge_cells(start_row=R, start_column=1, end_row=R, end_column=6)
+R += 1
+hdr(ws4, R, 1, ['Capacidade Máx/Arco','Custo Total ($)','Status','Variação vs Sem Limite'])
+SH = R  # sensitivity header
+SR0 = R + 1
+for si, cv in enumerate(CAPS):
+    rr = SR0+si
+    sc(ws4, rr, 1, cv, font=FBLUE, border=BT, fmt=IF_, align=AC)
+    sv = SENS[cv]
+    if sv is not None:
+        sc(ws4, rr, 2, round(sv,2), font=F, border=BT, fmt=MF, align=AC)
+        sc(ws4, rr, 3, "Viável", font=F, border=BT, align=AC)
+        sc(ws4, rr, 4, f"=({cr(rr,2)}-{q4z})/{q4z}", font=F, border=BT, fmt='0.00%', align=AC)
+    else:
+        sc(ws4, rr, 2, "N/A", font=F, border=BT, align=AC)
+        sc(ws4, rr, 3, "Inviável", font=FRED, border=BT, align=AC)
+SREND = SR0 + len(CAPS) - 1
+R = SREND + 2
 
 # Sensitivity text
-cr = SENS_END_ROW + 2
-sens_text_lines = ["ITEM e) Análise de Sensibilidade:\n"]
-sens_text_lines.append("Capacidade Máx/Arco → Custo Total:")
-for cap_val in caps_range:
-    cost_val = sensitivity[cap_val]
-    if cost_val is not None:
-        sens_text_lines.append(f"  {cap_val:>5} veículos → ${cost_val:>12,.2f}")
+slines = ["ITEM e) Análise de Sensibilidade — Resposta por extenso:", ""]
+slines.append("Capacidade Máx/Arco  →  Custo Total")
+for cv in CAPS:
+    sv = SENS[cv]
+    if sv is not None:
+        diff = sv - q4z
+        slines.append(f"  {cv:>5} veículos  →  ${sv:>12,.2f}  (diferença: ${diff:>+10,.2f})")
     else:
-        sens_text_lines.append(f"  {cap_val:>5} veículos → INVIÁVEL (demanda não pode ser atendida)")
+        slines.append(f"  {cv:>5} veículos  →  INVIÁVEL")
 
-# Find where cost stabilizes
-viable_costs = [(c, v) for c, v in sensitivity.items() if v is not None]
-if len(viable_costs) > 1:
-    min_cost = min(v for _, v in viable_costs)
-    stabilize_cap = min(c for c, v in viable_costs if abs(v - min_cost) < 0.01)
-    sens_text_lines.append(f"\nO custo mínimo de ${min_cost:,.2f} é atingido a partir da capacidade de {stabilize_cap} veículos/arco.")
-    sens_text_lines.append("Abaixo desse valor, as restrições de capacidade forçam rotas mais caras ou tornam o problema inviável.")
+viable = [(c,v) for c,v in SENS.items() if v is not None]
+if viable:
+    minv = min(v for _,v in viable)
+    stab = min(c for c,v in viable if abs(v-minv)<0.01)
+    slines.append("")
+    slines.append(f"Conclusão: O custo mínimo de ${minv:,.2f} (igual ao caso sem restrição de capacidade)")
+    slines.append(f"é atingido a partir de {stab} veículos/arco. Abaixo desse valor, as restrições de")
+    slines.append(f"capacidade forçam o uso de rotas mais caras, elevando o custo total.")
 
-sens_text = "\n".join(sens_text_lines)
-set_cell(ws4, cr, 1, sens_text, font=Font(name='Arial', size=11), align=ALIGN_LEFT)
-ws4.merge_cells(start_row=cr, start_column=1, end_row=cr+14, end_column=11)
-ws4.cell(row=cr, column=1).fill = FILL_LIGHT_GREEN
+sc(ws4, R, 1, "\n".join(slines), font=Font(name='Arial', size=11), align=ALT)
+ws4.merge_cells(start_row=R, start_column=1, end_row=R+16, end_column=11)
+ws4.cell(row=R, column=1).fill = FLTGREEN
 
-# -- CHART --
-# Only chart viable values
-viable_indices = [si for si, cap_val in enumerate(caps_range) if sensitivity[cap_val] is not None]
-if len(viable_indices) >= 2:
-    chart = LineChart()
-    chart.title = "Análise de Sensibilidade: Capacidade vs Custo Total"
-    chart.style = 10
-    chart.y_axis.title = "Custo Total ($)"
-    chart.x_axis.title = "Capacidade Máxima por Arco"
-    chart.width = 25
-    chart.height = 15
-
-    data_ref = Reference(ws4, min_col=2, min_row=SENS_HDR_ROW, max_row=SENS_END_ROW)
-    cats_ref = Reference(ws4, min_col=1, min_row=SENS_START_ROW, max_row=SENS_END_ROW)
-    chart.add_data(data_ref, titles_from_data=True)
-    chart.set_categories(cats_ref)
-    chart.series[0].graphicalProperties.line.width = 25000
-
-    chart_row = cr + 16
-    ws4.add_chart(chart, f"A{chart_row}")
-
-# Column widths for Quiz 4
-for col_idx in range(1, 12):
-    ws4.column_dimensions[get_column_letter(col_idx)].width = 18
+# Chart
+chart = LineChart()
+chart.title = "Análise de Sensibilidade: Capacidade Máxima por Arco vs Custo Total"
+chart.style = 10
+chart.y_axis.title = "Custo Total ($)"
+chart.x_axis.title = "Capacidade Máxima por Arco (veículos)"
+chart.width = 28
+chart.height = 16
+data_ref = Reference(ws4, min_col=2, min_row=SH, max_row=SREND)
+cats_ref = Reference(ws4, min_col=1, min_row=SR0, max_row=SREND)
+chart.add_data(data_ref, titles_from_data=True)
+chart.set_categories(cats_ref)
+chart.series[0].graphicalProperties.line.width = 25000
+ws4.add_chart(chart, f"A{R+18}")
 
 # ============================================================
-# SAVE
+# SAVE & COPY
 # ============================================================
-output_path = "/home/user/Claude-Code-Skills/QUIZZES_3_e_4_Samuel.xlsx"
-wb.save(output_path)
-print(f"\nSaved to {output_path}")
-
-# Copy to outputs
+out = "/home/user/Claude-Code-Skills/QUIZZES_3_e_4_Samuel.xlsx"
+wb.save(out)
+print(f"\nSaved: {out}")
 os.makedirs("/mnt/user-data/outputs", exist_ok=True)
-import shutil
-shutil.copy(output_path, "/mnt/user-data/outputs/QUIZZES_3_e_4_Samuel.xlsx")
-print("Copied to /mnt/user-data/outputs/QUIZZES_3_e_4_Samuel.xlsx")
+shutil.copy(out, "/mnt/user-data/outputs/QUIZZES_3_e_4_Samuel.xlsx")
+print("Copied to /mnt/user-data/outputs/")
 
-# Print solutions summary
-print("\n" + "="*60)
-print("QUIZ 3 SOLUTION SUMMARY")
-print("="*60)
-print(q3_answer_text)
 print(f"\n{'='*60}")
-print("QUIZ 4 SOLUTION SUMMARY")
-print("="*60)
-print(flow_text)
-print(cost_text)
-print("\nSensitivity:")
-for cap_val in caps_range:
-    cost_val = sensitivity[cap_val]
-    status = f"${cost_val:,.2f}" if cost_val else "INFEASIBLE"
-    print(f"  Cap={cap_val}: {status}")
+print(f"QUIZ 3: Z* = ${q3z:,.0f}")
+print(f"  Abertos: {q3_open}")
+for w in WH:
+    for reg in REG:
+        v = q3x[w,reg]
+        if v and v>0.001: print(f"    {w} → {reg}: {v:,.0f}")
+print(f"\nQUIZ 4: Z* = ${q4z:,.2f}")
+for vt in ['Minivan','Esportivo']:
+    print(f"  --- {vt} ---")
+    for (fr,to,c) in ARCS:
+        v = q4f.get((fr,to,vt),0)
+        if v>0.001: print(f"    {fr} → {to}: {v:.0f}")
+print(f"\nSensibilidade:")
+for cv in CAPS:
+    sv = SENS[cv]
+    print(f"  Cap={cv}: {'${:,.2f}'.format(sv) if sv else 'INFEASIBLE'}")
