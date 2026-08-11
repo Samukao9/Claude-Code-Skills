@@ -139,6 +139,30 @@ hr{ border:0; border-top:1px solid var(--line); margin: 40px 0; }
   color: var(--muted); padding: 16px 10px 6px; border-top: 1px solid var(--line-soft); margin-top: 8px;
 }
 .toc__group:first-of-type{ border-top:0; margin-top:0; padding-top:4px; }
+.toc li[hidden]{ display:none; }
+.toc__empty{ font-size: 14px; color: var(--muted); padding: 14px 10px; margin:0; }
+
+.rail__search{ margin-bottom: 14px; }
+.rail__search input{
+  width: 100%; font: inherit; font-size: 14px;
+  padding: 9px 12px; border-radius: 8px;
+  border: 1px solid var(--line); background: var(--bg); color: var(--text);
+}
+.rail__search input::placeholder{ color: var(--muted); }
+.rail__search input:focus{ outline: 2px solid var(--brass); outline-offset: 1px; border-color: transparent; }
+
+/* Trilhas de leitura */
+.trilhas{ display:grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); margin: 0 0 24px; }
+.trilha{
+  background: var(--card); border: 1px solid var(--line-soft); border-left: 3px solid var(--brass);
+  border-radius: 0 10px 10px 0; padding: 16px 18px; box-shadow: var(--shadow);
+}
+.trilha h4{ font-size: 16.5px; margin-bottom: 4px; }
+.trilha p{ font-size: 14px; color: var(--muted); margin: 0 0 10px; }
+.trilha ol{ margin: 0; padding-left: 18px; font-size: 14.5px; }
+.trilha li{ margin-bottom: 4px; }
+.trilha--urgente{ border-left-color: var(--barro); }
+.trilha--urgente h4{ color: var(--barro); }
 
 .main{ min-width: 0; padding: 0 0 96px; }
 .wrap{ max-width: 820px; margin: 0 auto; padding: 0 28px; }
@@ -333,6 +357,86 @@ details[open] summary{ border-bottom: 1px solid var(--line-soft); }
 details > :not(summary){ margin-top: 14px; }
 details > :last-child{ margin-bottom: 16px; }
 
+/* Autodiagnóstico */
+.quiz{
+  background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+  padding: 0 20px; margin: 0 0 18px; box-shadow: var(--shadow);
+}
+.quiz > summary{ padding: 18px 0; }
+.quiz__meta{
+  font-family: var(--mono); font-size: 10.5px; letter-spacing:.1em; text-transform: uppercase;
+  color: var(--muted); display:block; margin: 14px 0 4px;
+}
+.quiz__intro{ font-size: 15px; color: var(--text-2); margin-bottom: 18px; }
+.q{ padding: 14px 0; border-top: 1px solid var(--line-soft); }
+.q:first-of-type{ border-top: 0; }
+.q__text{ font-size: 15.5px; margin-bottom: 10px; display:block; }
+.q__text b{ font-family: var(--mono); font-size: 12px; color: var(--muted); margin-right: 8px; }
+.q__opts{ display:flex; flex-wrap: wrap; gap: 6px; }
+.q__opts label{
+  display:inline-flex; align-items:center; gap: 6px; cursor: pointer;
+  border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px;
+  font-size: 13.5px; color: var(--text-2); background: var(--bg);
+}
+.q__opts label:hover{ border-color: var(--brass); color: var(--text); }
+.q__opts input{ accent-color: var(--brass); margin:0; }
+.q__opts input:checked + span{ font-weight: 650; color: var(--brass); }
+.q__opts label:has(input:checked){ border-color: var(--brass); background: var(--brass-bg); }
+
+.quiz__actions{ display:flex; flex-wrap: wrap; gap: 10px; align-items:center; padding: 18px 0; border-top: 1px solid var(--line); margin-top: 8px; }
+/* especificidade dupla: .btn é declarado mais abaixo e venceria no empate */
+.btn.btn--solid{
+  background: var(--brass); color: var(--card); border-color: var(--brass); font-weight: 700;
+}
+.btn.btn--solid:hover{ opacity: .88; color: var(--card); }
+.quiz__out{ margin: 0 0 18px; }
+.quiz__score{
+  font-family: var(--serif); font-size: 40px; line-height:1; font-weight: 600;
+  color: var(--brass); font-variant-numeric: tabular-nums;
+}
+.quiz__score small{ font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight:400; margin-left: 6px; }
+.quiz__band{
+  font-family: var(--mono); font-size: 11px; letter-spacing:.12em; text-transform: uppercase;
+  display:inline-block; margin: 8px 0; padding: 4px 10px; border-radius: 999px;
+  border: 1px solid currentColor;
+}
+.bar{ height: 8px; border-radius: 4px; background: var(--card-2); overflow: hidden; margin: 10px 0 4px; }
+.bar > i{ display:block; height:100%; background: var(--brass); border-radius: 4px; }
+.profile{ display:grid; gap: 8px; margin: 10px 0 0; }
+.profile__row{ display:grid; grid-template-columns: minmax(120px,180px) 1fr auto; gap: 12px; align-items:center; font-size: 14.5px; }
+.profile__row .bar{ margin: 0; }
+.profile__row em{ font-style: normal; font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.hist{ font-size: 14px; color: var(--muted); }
+.hist table{ min-width: 0; font-size: 14px; }
+
+/* Roda das áreas */
+.roda{ display:grid; gap: 10px; margin: 0 0 22px; }
+.roda__row{ display:grid; grid-template-columns: minmax(110px,150px) 1fr 2.6rem; gap: 12px; align-items:center; font-size: 15px; }
+.roda__row input[type="range"]{ width:100%; accent-color: var(--brass); }
+.roda__row output{ font-family: var(--mono); font-variant-numeric: tabular-nums; text-align:right; color: var(--brass); font-weight: 700; }
+
+/* Biblioteca */
+.livro{
+  background: var(--card); border: 1px solid var(--line-soft); border-left: 3px solid var(--azul);
+  border-radius: 0 10px 10px 0; padding: 18px 20px; margin: 0 0 16px; box-shadow: var(--shadow);
+}
+.livro--ciencia{ border-left-color: var(--verde); }
+.livro--ponte{ border-left-color: var(--brass); }
+.livro h4{ margin-bottom: 2px; }
+.livro__autor{
+  font-family: var(--mono); font-size: 10.5px; letter-spacing:.1em; text-transform: uppercase;
+  color: var(--muted); display:block; margin-bottom: 10px;
+}
+.livro__tese{ font-family: var(--serif); font-size: 17px; line-height:1.45; margin-bottom: 12px; }
+.livro dl{ margin:0; display:grid; gap: 2px; }
+.livro dt{
+  font-family: var(--mono); font-size: 10px; letter-spacing:.1em; text-transform: uppercase;
+  color: var(--muted); margin-top: 10px;
+}
+.livro dd{ margin:0; font-size: 15px; }
+.livro ul{ margin: 4px 0 0; padding-left: 20px; font-size: 15px; }
+.livro li{ margin-bottom: 5px; }
+
 /* Barra de ferramentas */
 .tools{
   position: fixed; right: 18px; bottom: 18px; z-index: 50;
@@ -417,15 +521,22 @@ details > :last-child{ margin-bottom: 16px; }
     <b>Inabalável</b>
     <span>Manual pessoal · Samuel</span>
   </div>
+  <div class="rail__search">
+    <input type="search" id="tocSearch" placeholder="Buscar no manual…" aria-label="Buscar seção no índice" autocomplete="off">
+  </div>
   <ul class="toc" id="toc">
     <li class="toc__group">Começo</li>
     <li><a href="#comecar"><i>00</i>Leia isto primeiro</a></li>
+    <li><a href="#trilhas"><i>0.1</i>Trilhas de leitura</a></li>
     <li class="toc__group">Diagnóstico</li>
     <li><a href="#pilares"><i>1.1</i>Os três pilares (e mais três)</a></li>
     <li><a href="#contingente"><i>1.2</i>Por que você melhorou e caiu de novo</a></li>
     <li><a href="#seu-caso"><i>1.3</i>O seu caso, nomeado</a></li>
     <li><a href="#ciclo"><i>1.4</i>O ciclo que te prende</a></li>
     <li><a href="#vies"><i>1.5</i>Por que só as 4 falhas doem</a></li>
+    <li><a href="#sociometro"><i>1.6</i>Por que autoestima existe</a></li>
+    <li><a href="#dimensoes"><i>1.7</i>O mapa da sua vida inteira</a></li>
+    <li><a href="#escassez"><i>1.8</i>Por que aquele ano te deixou mais lento</a></li>
     <li class="toc__group">A lógica — ciência</li>
     <li><a href="#beck"><i>2.1</i>O modelo cognitivo</a></li>
     <li><a href="#bandura"><i>2.2</i>Autoeficácia: as 4 fontes</a></li>
@@ -436,6 +547,16 @@ details > :last-child{ margin-bottom: 16px; }
     <li><a href="#pigmaliao"><i>2.7</i>O que há de real na expectativa</a></li>
     <li><a href="#mitos"><i>2.8</i>Lei da atração e mantras</a></li>
     <li><a href="#corpo"><i>2.9</i>O corpo vota</a></li>
+    <li><a href="#voz"><i>2.10</i>A voz na sua cabeça</a></li>
+    <li><a href="#expectativa"><i>2.11</i>Expectativa, estresse e felicidade</a></li>
+    <li><a href="#relacoes"><i>2.12</i>O que dura: 85 anos de dados</a></li>
+    <li><a href="#brown"><i>2.13</i>Vergonha, vulnerabilidade, compaixão</a></li>
+    <li><a href="#habito"><i>2.14</i>Como hábito se forma de verdade</a></li>
+    <li><a href="#dopamina"><i>2.15</i>Dopamina e a bet</a></li>
+    <li><a href="#reach"><i>2.16</i>Perdão como método</a></li>
+    <li><a href="#coerencia"><i>2.17</i>Dar sentido ao caos</a></li>
+    <li><a href="#zdp"><i>2.18</i>O tamanho certo do desafio</a></li>
+    <li><a href="#bemestar"><i>2.19</i>Construir bem-estar, não só tirar sintoma</a></li>
     <li class="toc__group">Fundamento bíblico</li>
     <li><a href="#valor"><i>3.1</i>Valor recebido, não conquistado</a></li>
     <li><a href="#graca"><i>3.2</i>Graça contra desempenho</a></li>
@@ -447,9 +568,18 @@ details > :last-child{ margin-bottom: 16px; }
     <li><a href="#pedro"><i>3.8</i>Identidade depois do fracasso</a></li>
     <li><a href="#amor"><i>3.9</i>Amar a si mesmo direito</a></li>
     <li><a href="#ansiedade"><i>3.10</i>Ansiedade e a plateia errada</a></li>
+    <li><a href="#autoesquecimento"><i>3.11</i>A liberdade de não pensar em si</a></li>
+    <li><a href="#jose"><i>3.12</i>José: traído pela família</a></li>
+    <li><a href="#prodigo"><i>3.13</i>O pródigo e a honra restaurada</a></li>
+    <li><a href="#elias"><i>3.14</i>Elias: comida e sono antes de teologia</a></li>
+    <li><a href="#honra"><i>3.15</i>Uma cultura de honra e vergonha</a></li>
+    <li><a href="#alma"><i>3.16</i>Falar com a própria alma</a></li>
+    <li><a href="#lamento"><i>3.17</i>A permissão bíblica de reclamar</a></li>
+    <li><a href="#palavras"><i>3.18</i>Quatro palavras que mudam tudo</a></li>
     <li class="toc__group">A ponte</li>
     <li><a href="#ponte"><i>4.1</i>Onde os dois se encontram</a></li>
     <li><a href="#divergem"><i>4.2</i>Onde não se encontram</a></li>
+    <li><a href="#vanderweele"><i>4.3</i>Quando a ciência mede a fé</a></li>
     <li class="toc__group">Como construir</li>
     <li><a href="#motor"><i>5.0</i>O princípio-mestre</a></li>
     <li><a href="#mecanismos"><i>5.1</i>Os 7 mecanismos</a></li>
@@ -457,15 +587,19 @@ details > :last-child{ margin-bottom: 16px; }
     <li><a href="#comunidade"><i>5.3</i>Comunidade e confissão</a></li>
     <li><a href="#perdao"><i>5.4</i>Perdão e luto</a></li>
     <li><a href="#ajuda"><i>5.5</i>Quando buscar ajuda</a></li>
+    <li><a href="#diagnostico"><i>5.6</i>Autodiagnóstico</a></li>
     <li class="toc__group">Execução</li>
     <li><a href="#rotina"><i>6.1</i>A rotina diária</a></li>
     <li><a href="#trinta"><i>6.2</i>Plano de 30 dias</a></li>
     <li><a href="#metricas"><i>6.3</i>O que medir</a></li>
-    <li><a href="#sdr"><i>7</i>No trabalho: SDR / G4</a></li>
+    <li><a href="#areas"><i>7.0</i>As áreas da sua vida</a></li>
+    <li><a href="#sdr"><i>7.1</i>No trabalho: SDR / G4</a></li>
     <li class="toc__group">Apoio</li>
     <li><a href="#referencias"><i>8</i>Referências</a></li>
     <li><a href="#ferramentas"><i>9</i>Ferramentas imprimíveis</a></li>
+    <li><a href="#biblioteca"><i>10</i>Biblioteca comentada</a></li>
   </ul>
+  <p class="toc__empty" id="tocEmpty" hidden>Nada encontrado.</p>
 </nav>
 
 <main class="main">
@@ -477,9 +611,9 @@ details > :last-child{ margin-bottom: 16px; }
   <h1>Inabalável</h1>
   <p class="hero__sub">Como construir autoestima, autoconfiança e autoeficácia que não sobem quando você bate a meta nem desabam quando você não bate. Para a vida inteira — o trabalho é só uma das áreas.</p>
   <div class="hero__meta">
-    <span>9 partes · 13 diagramas</span>
+    <span>10 partes · 23 diagramas</span>
     <span>Citações: NVI</span>
-    <span>Estudos: Stanford, Michigan, Texas, NYU, Waterloo</span>
+    <span>Harvard · Stanford · Wharton · Oxford · Yale · Duke · Michigan · UCL · UFRGS · Bologna</span>
   </div>
 </header>
 
@@ -490,7 +624,7 @@ details > :last-child{ margin-bottom: 16px; }
     <h2>O resumo, caso você esteja sem cabeça agora</h2>
   </div>
 
-  <p class="lead">Se hoje você só conseguir ler uma coisa, leia estas dez linhas. O resto do manual é a explicação, a prova e o passo a passo de cada uma delas.</p>
+  <p class="lead">Se hoje você só conseguir ler uma coisa, leia estas doze linhas. O resto do manual é a explicação, a prova e o passo a passo de cada uma delas.</p>
 
   <div class="tldr">
     <ol>
@@ -504,26 +638,95 @@ details > :last-child{ margin-bottom: 16px; }
       <li><strong>Autoestima inabalável não é achar que você é ótimo.</strong> É parar de ficar julgando quem você é, e passar a se tratar como você trataria um amigo seu (<a href="#neff">2.4</a>).</li>
       <li><strong>A dívida com o seu avô tem resolução prática</strong>, e ela não é sentir vergonha para sempre. É restituição — a quem ficou (<a href="#restituicao">3.4</a>).</li>
       <li><strong>Comece pequeno e cumpra.</strong> Cada compromisso mínimo que você cumpre consigo mesmo é um depósito na única conta que sustenta autoconfiança de verdade (<a href="#mecanismos">5.1</a>).</li>
+      <li><strong>Sua autoestima não é um tanque: é um medidor.</strong> Ela evoluiu para medir o quanto você está sendo aceito pelos seus. Por isso traição familiar e vergonha diante da família derrubaram tudo de uma vez — o medidor leu "risco de rejeição" (<a href="#sociometro">1.6</a>).</li>
+      <li><strong>E você tem permissão de reclamar.</strong> Cerca de um terço dos Salmos é lamento. A Bíblia não pede que você finja estar bem — ela te dá um formato para dizer que não está (<a href="#lamento">3.17</a>).</li>
     </ol>
   </div>
 
-  <div class="box box--acao" style="margin-top:26px">
-    <span class="box__kicker">Como usar este manual</span>
-    <dl>
-      <dt>Se você quer entender o que está acontecendo</dt>
-      <dd>Leia a <a href="#pilares">Parte 1</a> inteira. Ela é o diagnóstico.</dd>
-      <dt>Se você quer saber por que funciona assim</dt>
-      <dd><a href="#beck">Parte 2</a> (ciência) e <a href="#valor">Parte 3</a> (Bíblia). As duas respondem "por quê" por caminhos diferentes.</dd>
-      <dt>Se você quer saber o que fazer amanhã de manhã</dt>
-      <dd>Pule direto para a <a href="#mecanismos">Parte 5</a> e a <a href="#rotina">Parte 6</a>.</dd>
-      <dt>Se a angústia for sobre a meta desse mês</dt>
-      <dd><a href="#sdr">Parte 7</a>. Mas volte depois — a Parte 7 só funciona por cima das outras.</dd>
-    </dl>
-  </div>
-
-  <div class="callout callout--alerta">
+  <div class="callout callout--alerta" style="margin-top:26px">
     <span class="callout__title">Aviso honesto</span>
     <p>Este material é estudo e treino, não tratamento. Ele não substitui psicólogo, psiquiatra, médico ou pastor. Se em algum momento aparecer vontade de se machucar, desesperança que não passa, ou vontade incontrolável de apostar de novo, procure ajuda no mesmo dia: <strong>CVV — 188</strong> (24h, gratuito) ou o <strong>CAPS</strong> mais próximo. Pedir ajuda é o oposto de fraqueza; é a coisa mais racional que existe.</p>
+  </div>
+</section>
+
+<section class="sec" id="trilhas">
+  <div class="sec__head">
+    <span class="sec__num">Parte 0.1 · Como usar</span>
+    <h2>Trilhas de leitura — você nunca precisa ler isto na ordem</h2>
+  </div>
+
+  <p class="lead">O manual é grande de propósito: ele foi feito para durar anos, não para ser lido num domingo. Escolha a trilha pelo estado em que você está agora. Nenhuma delas exige as outras.</p>
+
+  <div class="trilhas">
+    <div class="trilha trilha--urgente">
+      <h4>Estou mal agora</h4>
+      <p>4 minutos. Para quando a cabeça está pesada neste momento.</p>
+      <ol>
+        <li><a href="#neff">O protocolo de 60 segundos</a></li>
+        <li><a href="#alma">Falar com a própria alma</a></li>
+        <li><a href="#lamento">Você pode reclamar — para Deus</a></li>
+        <li><a href="#ajuda">Se for mais que um dia ruim</a> · <strong>CVV 188</strong></li>
+      </ol>
+    </div>
+
+    <div class="trilha">
+      <h4>Tenho 10 minutos</h4>
+      <p>O essencial, sem fundamentação.</p>
+      <ol>
+        <li><a href="#comecar">As doze linhas</a></li>
+        <li><a href="#motor">O motor</a></li>
+        <li><a href="#rotina">As 3 do dia</a></li>
+      </ol>
+    </div>
+
+    <div class="trilha">
+      <h4>Quero entender por que eu sou assim</h4>
+      <p>O diagnóstico completo, na ordem que faz sentido.</p>
+      <ol>
+        <li><a href="#sociometro">Por que autoestima existe</a></li>
+        <li><a href="#contingente">Por que ela oscila com a meta</a></li>
+        <li><a href="#escassez">Por que aquele ano te derrubou</a></li>
+        <li><a href="#vergonha">Culpa e vergonha</a></li>
+        <li><a href="#seu-caso">O seu caso, item por item</a></li>
+      </ol>
+    </div>
+
+    <div class="trilha">
+      <h4>Quero estudar a fundo</h4>
+      <p>Leitura linear. Algumas semanas, uma seção por dia.</p>
+      <ol>
+        <li><a href="#beck">Parte 2 — a ciência</a></li>
+        <li><a href="#valor">Parte 3 — a Bíblia</a></li>
+        <li><a href="#ponte">Parte 4 — a ponte</a></li>
+        <li><a href="#biblioteca">Parte 10 — os livros</a></li>
+      </ol>
+    </div>
+
+    <div class="trilha">
+      <h4>Quero medir onde estou</h4>
+      <p>20 minutos. Faça hoje e refaça em 30 e 90 dias.</p>
+      <ol>
+        <li><a href="#diagnostico">Os quatro instrumentos</a></li>
+        <li><a href="#areas">A roda das áreas da vida</a></li>
+        <li><a href="#metricas">O que medir toda semana</a></li>
+      </ol>
+    </div>
+
+    <div class="trilha">
+      <h4>Quero só os livros</h4>
+      <p>O que ler, em que ordem e por qual capítulo começar.</p>
+      <ol>
+        <li><a href="#biblioteca-brown">O livro que você já tem</a></li>
+        <li><a href="#biblioteca-ciencia">Essenciais científicos</a></li>
+        <li><a href="#biblioteca-biblia">Essenciais bíblicos</a></li>
+        <li><a href="#biblioteca-dor">Índice por dor</a></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="box box--acao">
+    <span class="box__kicker">Uma sugestão de ritmo</span>
+    <p>Se você quiser um caminho só, é este: <strong>hoje</strong> faça a trilha de 10 minutos e o <a href="#diagnostico">autodiagnóstico</a>. <strong>Esta semana</strong>, a trilha do "por que eu sou assim". <strong>Este mês</strong>, o <a href="#trinta">plano de 30 dias</a> junto com uma área da vida escolhida na <a href="#areas">Parte 7.0</a>. <strong>Este ano</strong>, os livros da <a href="#biblioteca">Parte 10</a>, um por mês. O manual foi escrito para aguentar esse ritmo.</p>
   </div>
 </section>
 
@@ -980,6 +1183,222 @@ details > :last-child{ margin-bottom: 16px; }
   </div>
 </section>
 
+<section class="sec" id="sociometro">
+  <div class="sec__head">
+    <span class="sec__num">Parte 1.6 · Diagnóstico</span>
+    <h2>Por que autoestima existe — e por que ela não é um tanque</h2>
+  </div>
+
+  <p class="lead">Quase todo mundo trata autoestima como um tanque de gasolina: está baixo, então é só encher. Foi assim que apareceram os mantras, os elogios vazios e os programas escolares de "você é especial". Mark Leary, hoje na Universidade Duke, propôs em 1995 uma explicação diferente — e ela reorganiza tudo.</p>
+
+  <div class="box box--ciencia">
+    <span class="box__kicker">Teoria do sociômetro · Leary, Universidade Duke</span>
+    <p>A autoestima <strong>não é um tanque a encher: é um medidor a ler</strong>. Ela evoluiu como um monitor interno do quanto você está sendo aceito e valorizado pelas pessoas que importam. Segundo essa teoria, as pessoas não são motivadas a manter a autoestima em si — elas buscam <em>valor relacional</em> e aceitação social, e usam a autoestima como indicador de como estão nesse quesito. Sinais de que você está sendo desvalorizado derrubam o medidor e disparam comportamentos para recuperar a aceitação.</p>
+  </div>
+
+  <p>Pare um segundo no que isso significa para o seu ano. Você não teve "uma crise de autoestima" do nada. <strong>O seu medidor leu, corretamente, uma sequência de sinais de rejeição e desvalorização:</strong> um familiar te traiu, você não conseguiu honrar um compromisso com seu avô, você sentiu que havia desonrado a sua família diante dela mesma. Se autoestima é um sensor de aceitação, o sensor fez exatamente o que foi construído para fazer. <em>Ele não estava quebrado — ele estava funcionando.</em></p>
+
+  <figure>
+    <div class="figbox">
+      <svg viewBox="0 0 760 300" role="img" aria-label="Comparação entre duas metáforas: à esquerda, autoestima como tanque a ser enchido por elogios, que vaza; à direita, autoestima como medidor que lê sinais de aceitação e rejeição vindos dos vínculos.">
+        <defs>
+          <marker id="ar13" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="var(--barro)"/>
+          </marker>
+          <marker id="ar14" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="var(--verde)"/>
+          </marker>
+        </defs>
+
+        <text x="30" y="28" class="d-barroF" style="font-family:var(--mono);font-size:10.5px">A METÁFORA ERRADA — TANQUE</text>
+        <rect x="88" y="86" width="118" height="140" rx="10" class="d-surface"/>
+        <rect x="88" y="86" width="118" height="140" rx="10" class="d-barro"/>
+        <rect x="98" y="176" width="98" height="40" rx="5" class="d-barroF" opacity=".35"/>
+        <text x="147" y="146" text-anchor="middle" class="d-textS">autoestima</text>
+        <path d="M147,46 L147,80" class="d-barro" marker-end="url(#ar13)"/>
+        <text x="147" y="40" text-anchor="middle" class="d-mut">ELOGIO · MANTRA</text>
+        <path d="M206,206 L246,222" class="d-barro d-dash" marker-end="url(#ar13)"/>
+        <text x="252" y="228" class="d-barroF" style="font-family:var(--sans);font-size:12px;font-weight:650">vaza</text>
+        <text x="147" y="256" text-anchor="middle" class="d-textS">Encher por fora não segura.</text>
+        <text x="147" y="274" text-anchor="middle" class="d-textS">Sempre volta a baixar.</text>
+
+        <line x1="380" y1="20" x2="380" y2="284" class="d-stroke d-dash"/>
+
+        <text x="416" y="28" class="d-verdeF" style="font-family:var(--mono);font-size:10.5px">A METÁFORA CERTA — MEDIDOR</text>
+        <circle cx="560" cy="150" r="62" class="d-surface"/>
+        <circle cx="560" cy="150" r="62" class="d-verde"/>
+        <path d="M512,150 A48,48 0 0,1 608,150" class="d-stroke"/>
+        <line x1="560" y1="150" x2="527" y2="119" class="d-verde"/>
+        <circle cx="560" cy="150" r="5" class="d-verdeF"/>
+        <text x="508" y="170" class="d-mut">BAIXO</text>
+        <text x="588" y="170" class="d-mut">ALTO</text>
+        <text x="560" y="196" text-anchor="middle" class="d-textS">o que ele mede</text>
+
+        <rect x="416" y="228" width="288" height="46" rx="8" class="d-surface"/>
+        <rect x="416" y="228" width="288" height="46" rx="8" class="d-stroke"/>
+        <text x="560" y="248" text-anchor="middle" class="d-textS">"Eu ainda sou aceito e valorizado</text>
+        <text x="560" y="264" text-anchor="middle" class="d-textS">pelos meus?"</text>
+        <path d="M560,226 L560,206" class="d-verde" marker-end="url(#ar14)"/>
+        <text x="416" y="62" class="d-textS">O ponteiro não mente. Se ele caiu,</text>
+        <text x="416" y="80" class="d-textS">alguma coisa aconteceu nos seus vínculos —</text>
+        <text x="416" y="98" class="d-textS">e é ali que se conserta.</text>
+      </svg>
+    </div>
+    <figcaption>Se autoestima fosse um tanque, elogio resolveria. Como ela é um medidor de aceitação, tentar "enchê-la" por fora é como bater no painel do carro para o combustível subir: o ponteiro é sintoma, o tanque é outro lugar.</figcaption>
+  </figure>
+
+  <h3>As três consequências práticas</h3>
+
+  <div class="grid grid--2">
+    <div class="box box--acao" style="margin:0">
+      <span class="box__kicker">1 · Elogio não conserta</span>
+      <p>Por isso mantra falha (<a href="#mitos">2.8</a>) e por isso um mês bom não sustenta. Você está tentando mexer no ponteiro em vez de mexer no que ele mede.</p>
+    </div>
+    <div class="box box--acao" style="margin:0">
+      <span class="box__kicker">2 · Vínculo é intervenção, não luxo</span>
+      <p>Contar para uma pessoa segura, restituir a dívida, reconciliar o que dá — isso não é "trabalhar sentimentos". É agir <em>na variável que o medidor lê</em> (<a href="#comunidade">5.3</a>).</p>
+    </div>
+    <div class="box box--acao" style="margin:0">
+      <span class="box__kicker">3 · Esconder é o pior movimento</span>
+      <p>A vergonha manda se isolar. Mas isolamento reduz aceitação real — o medidor cai mais. É a única receita garantida de piora (<a href="#vergonha">3.3</a>).</p>
+    </div>
+    <div class="box box--biblia" style="margin:0">
+      <span class="box__kicker">O que a Bíblia acrescenta aqui</span>
+      <p>Se o medidor lê aceitação, então existe uma aceitação que <em>não pode ser retirada</em>: a de Deus (<a href="#valor">3.1</a>). Não é que o sociômetro deixe de existir — é que ele ganha uma fonte que não oscila com o mês nem com a opinião de ninguém.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="dimensoes">
+  <div class="sec__head">
+    <span class="sec__num">Parte 1.7 · Diagnóstico</span>
+    <h2>O mapa da sua vida inteira — não só do trabalho</h2>
+  </div>
+
+  <p class="lead">Você disse com todas as letras: é para tudo na sua vida, não só para a meta. Então você precisa de um mapa que cubra tudo. Existem dois, ambos com décadas de pesquisa, e juntos eles formam o esqueleto do resto deste manual.</p>
+
+  <div class="box box--ciencia">
+    <span class="box__kicker">As 6 dimensões · Carol Ryff, Universidade de Wisconsin-Madison</span>
+    <p>Em 1989, Ryff argumentou que bem-estar não é apenas "sentir-se bem" e propôs seis dimensões de funcionamento psicológico positivo, com uma escala validada em vários idiomas: <strong>autoaceitação, relações positivas com os outros, autonomia, domínio do ambiente, propósito na vida e crescimento pessoal.</strong> Repare que "estar feliz" não está na lista — porque felicidade é resultado, não estrutura.</p>
+  </div>
+
+  <div class="box box--ciencia">
+    <span class="box__kicker">As 3 necessidades · Deci &amp; Ryan, Universidade de Rochester</span>
+    <p>A Teoria da Autodeterminação identifica três necessidades psicológicas básicas cuja satisfação sustenta motivação e bem-estar em qualquer área: <strong>autonomia</strong> (eu escolhi isto), <strong>competência</strong> (eu sou capaz nisto) e <strong>vínculo</strong> (eu pertenço a alguém). Quando as três estão atendidas, a motivação é interna e dura; quando faltam, você depende de pressão externa — e pressão externa cansa.</p>
+  </div>
+
+  <figure>
+    <div class="figbox">
+      <svg viewBox="0 0 760 400" role="img" aria-label="Radar de seis eixos com as dimensões de bem-estar de Ryff: autoaceitação, relações positivas, autonomia, domínio do ambiente, propósito e crescimento. Uma área menor mostra um perfil típico de quem apoia o valor apenas no desempenho.">
+        <!-- anéis -->
+        <polygon points="380,80 484,140 484,260 380,320 276,260 276,140" class="d-stroke" opacity=".5"/>
+        <polygon points="380,120 449,160 449,240 380,280 311,240 311,160" class="d-stroke" opacity=".4"/>
+        <polygon points="380,160 415,180 415,220 380,240 345,220 345,180" class="d-stroke" opacity=".3"/>
+        <!-- eixos -->
+        <line x1="380" y1="200" x2="380" y2="80" class="d-stroke" opacity=".5"/>
+        <line x1="380" y1="200" x2="484" y2="140" class="d-stroke" opacity=".5"/>
+        <line x1="380" y1="200" x2="484" y2="260" class="d-stroke" opacity=".5"/>
+        <line x1="380" y1="200" x2="380" y2="320" class="d-stroke" opacity=".5"/>
+        <line x1="380" y1="200" x2="276" y2="260" class="d-stroke" opacity=".5"/>
+        <line x1="380" y1="200" x2="276" y2="140" class="d-stroke" opacity=".5"/>
+        <!-- perfil -->
+        <polygon points="380,168 449,160 466,250 380,272 328,232 328,168" fill="var(--barro)" opacity=".16"/>
+        <polygon points="380,168 449,160 466,250 380,272 328,232 328,168" class="d-barro"/>
+        <!-- rótulos -->
+        <text x="380" y="66" text-anchor="middle" class="d-text d-b">Autoaceitação</text>
+        <text x="380" y="50" text-anchor="middle" class="d-mut">"EU ME ACEITO COMO SOU"</text>
+        <text x="502" y="132" class="d-text d-b">Relações positivas</text>
+        <text x="502" y="148" class="d-mut">VÍNCULOS DE CONFIANÇA</text>
+        <text x="502" y="256" class="d-text d-b">Autonomia</text>
+        <text x="502" y="272" class="d-mut">EU DECIDO POR MIM</text>
+        <text x="380" y="342" text-anchor="middle" class="d-text d-b">Domínio do ambiente</text>
+        <text x="380" y="358" text-anchor="middle" class="d-mut">DOU CONTA DA MINHA VIDA</text>
+        <text x="258" y="256" text-anchor="end" class="d-text d-b">Propósito</text>
+        <text x="258" y="272" text-anchor="end" class="d-mut">ISTO AQUI TEM SENTIDO</text>
+        <text x="258" y="132" text-anchor="end" class="d-text d-b">Crescimento</text>
+        <text x="258" y="148" text-anchor="end" class="d-mut">EU AINDA ESTOU VIRANDO ALGO</text>
+
+        <line x1="34" y1="386" x2="70" y2="386" class="d-barro"/>
+        <text x="78" y="390" class="d-textS">Perfil típico de quem apoia o valor só no desempenho: domínio e crescimento razoáveis, autoaceitação baixa.</text>
+      </svg>
+    </div>
+    <figcaption>As seis dimensões de Ryff. O perfil desenhado é o padrão de quem trabalha muito e se aceita pouco — o eixo que desaba primeiro é a autoaceitação, e é justamente o único que não se conserta produzindo mais.</figcaption>
+  </figure>
+
+  <div class="scroller">
+    <table>
+      <thead><tr><th>Dimensão</th><th>A pergunta que ela faz</th><th>Como ela está no seu caso</th><th>Onde tratar</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Autoaceitação</strong></td><td>Eu aceito quem eu sou, inclusive o que já fiz?</td><td>É o eixo mais ferido: a aposta e a dívida viraram veredito sobre a pessoa.</td><td><a href="#valor">3.1</a> · <a href="#neff">2.4</a></td></tr>
+        <tr><td><strong>Relações positivas</strong></td><td>Tenho vínculos de confiança e reciprocidade?</td><td>Abalado pela traição e pelo isolamento que a vergonha impôs.</td><td><a href="#comunidade">5.3</a> · <a href="#relacoes">2.12</a></td></tr>
+        <tr><td><strong>Autonomia</strong></td><td>Minhas decisões partem de mim ou da plateia?</td><td>A plateia imaginária (família, gestor) está governando.</td><td><a href="#ansiedade">3.10</a> · <a href="#autoesquecimento">3.11</a></td></tr>
+        <tr><td><strong>Domínio do ambiente</strong></td><td>Eu dou conta da vida prática que tenho?</td><td>Melhor do que você acha: você trabalhou o ano inteiro em meio a tudo isso.</td><td><a href="#mecanismos">5.1</a> · <a href="#restituicao">3.4</a></td></tr>
+        <tr><td><strong>Propósito</strong></td><td>Isto que eu faço aponta para algo maior?</td><td>Provavelmente terceirizado para a meta — e meta não aguenta ser propósito.</td><td><a href="#coerencia">2.17</a> · <a href="#areas">7.0</a></td></tr>
+        <tr><td><strong>Crescimento</strong></td><td>Eu ainda estou me tornando alguém?</td><td>Preservado — você está aqui, estudando isso.</td><td><a href="#mentalidade">2.5</a> · <a href="#biblioteca">10</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <span class="callout__title">Por que este mapa importa mais que qualquer técnica</span>
+    <p>Quando a vida inteira é avaliada por <strong>um</strong> eixo — desempenho — qualquer tropeço nesse eixo derruba a casa toda. Quando ela é avaliada por seis, um mês ruim no trabalho continua sendo um mês ruim no trabalho: um sexto de um eixo. <strong>Diversificar de onde vem o seu senso de valer é a versão psicológica de não colocar todo o dinheiro num ativo só.</strong> É essa a estrutura da <a href="#areas">Parte 7.0</a> e do <a href="#diagnostico">autodiagnóstico</a>.</p>
+  </div>
+</section>
+
+<section class="sec" id="escassez">
+  <div class="sec__head">
+    <span class="sec__num">Parte 1.8 · Diagnóstico</span>
+    <h2>Por que aquele ano te deixou mais lento — e não foi burrice</h2>
+  </div>
+
+  <p class="lead">Tem uma parte da sua história que você provavelmente interpretou como falha de caráter: no ano da dívida, você rendeu menos, decidiu pior e — inclusive — tomou a decisão de apostar. Existe um achado publicado na <em>Science</em> que explica isso sem precisar recorrer a "eu sou fraco".</p>
+
+  <div class="box box--ciencia">
+    <span class="box__kicker">Estudo · Mani, Mullainathan, Shafir &amp; Zhao (2013), <em>Science</em> · Harvard, Princeton, Warwick</span>
+    <p>Os pesquisadores induziram experimentalmente pensamentos sobre finanças e mediram desempenho cognitivo. Entre participantes com pouco dinheiro, ser levado a pensar num problema financeiro grande <strong>derrubou o desempenho cognitivo de forma equivalente a cerca de 13 pontos de QI — ou a uma noite inteira sem dormir</strong>. O mesmo não ocorreu entre os participantes com folga financeira. Num segundo estudo, com agricultores indianos, <em>a mesma pessoa</em> teve desempenho pior antes da colheita, quando estava sem dinheiro, do que depois dela.</p>
+  </div>
+
+  <p>O conceito que os autores usam é <strong>largura de banda mental</strong>. A preocupação com a dívida não fica parada num canto da cabeça esperando você resolver: ela roda em segundo plano, o tempo todo, consumindo atenção, memória de trabalho e autocontrole. O que sobra para o resto da vida é o que restou da banda.</p>
+
+  <figure>
+    <div class="figbox">
+      <svg viewBox="0 0 760 260" role="img" aria-label="Duas barras de capacidade mental: numa vida sem dívida, quase toda a banda está disponível; com a dívida rodando em segundo plano, a maior parte da banda é consumida e sobra pouco para trabalho, relações e autocontrole.">
+        <text x="30" y="30" class="d-mut">SUA CAPACIDADE MENTAL, NUM ANO NORMAL</text>
+        <rect x="30" y="44" width="700" height="46" rx="8" class="d-surface"/>
+        <rect x="30" y="44" width="700" height="46" rx="8" class="d-verde"/>
+        <rect x="30" y="44" width="92" height="46" rx="8" fill="var(--muted)" opacity=".25"/>
+        <text x="76" y="72" text-anchor="middle" class="d-mut">ROTINA</text>
+        <text x="430" y="72" text-anchor="middle" class="d-textS">disponível para trabalho, relações, decisões, autocontrole</text>
+
+        <text x="30" y="140" class="d-barroF" style="font-family:var(--mono);font-size:10.5px">SUA CAPACIDADE MENTAL, NO ANO DA DÍVIDA E DO LUTO</text>
+        <rect x="30" y="154" width="700" height="46" rx="8" class="d-surface"/>
+        <rect x="30" y="154" width="700" height="46" rx="8" class="d-barro"/>
+        <rect x="30" y="154" width="92" height="46" rx="8" fill="var(--muted)" opacity=".25"/>
+        <text x="76" y="182" text-anchor="middle" class="d-mut">ROTINA</text>
+        <rect x="122" y="154" width="416" height="46" fill="var(--barro)" opacity=".22"/>
+        <text x="330" y="176" text-anchor="middle" class="d-barroF" style="font-family:var(--sans);font-size:12.5px;font-weight:650">dívida · luto · doença do pai · traição · vergonha</text>
+        <text x="330" y="193" text-anchor="middle" class="d-mut">RODANDO EM SEGUNDO PLANO, O DIA INTEIRO</text>
+        <text x="634" y="182" text-anchor="middle" class="d-textS">o que sobrou</text>
+
+        <text x="30" y="234" class="d-textS">A conclusão que você tirou foi "eu piorei como pessoa". A conclusão que o dado sustenta é: <tspan class="d-b">a banda estava ocupada.</tspan></text>
+        <text x="30" y="252" class="d-textS">É a mesma pessoa, com menos capacidade disponível — como um computador com cinquenta abas abertas.</text>
+      </svg>
+    </div>
+    <figcaption>Escassez não deixa ninguém burro: ela ocupa a banda. O efeito é reversível — e é por isso que quitar a dívida (<a href="#restituicao">3.4</a>) não é só uma questão moral, é liberação de capacidade cognitiva.</figcaption>
+  </figure>
+
+  <div class="grid grid--2">
+    <div class="box box--acao" style="margin:0">
+      <span class="box__kicker">O que isso muda no julgamento sobre você</span>
+      <p>As decisões ruins daquele ano — inclusive a aposta — foram tomadas por alguém operando com banda reduzida, sob dor e pressão. Isso <strong>não anula a responsabilidade</strong>, e a restituição continua devida. Mas destrói a conclusão de que "eu sou o tipo de pessoa que faz isso". Você é o tipo de pessoa que, sob escassez extrema, fez isso — como praticamente qualquer um faria.</p>
+    </div>
+    <div class="box box--acao" style="margin:0">
+      <span class="box__kicker">O que isso muda na prática</span>
+      <p>Enquanto a banda estiver ocupada, <strong>reduza o número de frentes abertas</strong>. Menos decisões simultâneas, mais coisas automatizadas (plano se-então, <a href="#woop">2.6</a>), menos metas paralelas. E trate cada fonte de preocupação encerrada — a dívida quitada, a conversa feita — como um ganho de desempenho, não só de paz.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ══════════════════════════ PARTE 2 ══════════════════════════ -->
 <section class="sec" id="beck">
   <div class="sec__head">
@@ -1286,6 +1705,7 @@ details > :last-child{ margin-bottom: 16px; }
   <div class="box box--acao">
     <span class="box__kicker">O outro Roosevelt · Theodore Roosevelt, 1910, Sorbonne</span>
     <p>O discurso <em>Cidadania numa República</em>, conhecido como "O Homem na Arena": o crédito não pertence a quem aponta onde o forte tropeçou, mas a quem está de fato na arena, com o rosto sujo de poeira, suor e sangue — que erra muitas vezes, porque não há esforço sem erro, e que, no pior dos casos, ao menos falha <em>ousando muito</em>. É retórica, não ciência. Mas é a melhor descrição de uma coisa que você precisa ouvir: <strong>você está na arena</strong>. As suas 4 ondas não batidas são poeira de arena, não veredito de tribunal.</p>
+    <p style="margin-bottom:0"><strong>E aqui o círculo se fecha de um jeito que nem você sabia:</strong> o livro que você baixou, <em>A Coragem de Ser Imperfeito</em>, chama-se <em>Daring Greatly</em> no original — tirado literalmente da última linha desse discurso ("falha <em>ousando muito</em>"). Você tentou lembrar do "estudo de Rosevelt" e, sem perceber, já tinha o livro dele na mão (<a href="#brown">2.13</a>, <a href="#biblioteca-brown">10</a>).</p>
   </div>
 
   <h3>Onde a "lei da atração" quebra</h3>
@@ -1358,6 +1778,7 @@ details > :last-child{ margin-bottom: 16px; }
     <p><strong>A alegação:</strong> suprimir o pensamento ruim faz ele ir embora.</p>
     <p><strong>A evidência:</strong> supressão deliberada de pensamentos tende a produzir <em>efeito rebote</em> — o pensamento volta com mais frequência. Além disso, sufocar a expressão emocional está associado a pior regulação e a mais custo fisiológico, enquanto <strong>reavaliar</strong> a situação funciona melhor (linha de pesquisa de James Gross, Stanford).</p>
     <p><strong>No lugar:</strong> nomear e reavaliar. "Estou com medo de não bater" (nomear) → "e o que eu tenho evidência de que controlo?" (reavaliar). O objetivo não é sentir-se bem: é ver com precisão.</p>
+    <p style="margin-bottom:0"><strong>E atenção a uma confusão frequente:</strong> "não suprimir" não significa despejar a reclamação em todo mundo o dia inteiro — isso alimenta a ruminação. Significa <em>endereçar</em>. A Bíblia tem inclusive um formato para isso, o lamento, e cerca de um terço dos Salmos usa esse formato (<a href="#lamento">3.17</a>). Reclamar para Deus e reenquadrar com um amigo funciona; reclamar em círculo, sem destinatário e sem virada, não.</p>
   </div>
 
   <div class="box box--mito">
@@ -1411,6 +1832,377 @@ details > :last-child{ margin-bottom: 16px; }
   <div class="callout">
     <span class="callout__title">Regra de checagem</span>
     <p>Antes de acreditar num pensamento pesado sobre você, pergunte: <strong>eu dormi? eu comi? eu me mexi hoje?</strong> Se a resposta for não para dois desses, adie o veredito sobre a sua vida. Cabeça cansada não é fonte confiável — e ela nunca avisa que está cansada, ela só apresenta conclusões.</p>
+  </div>
+</section>
+
+<section class="sec" id="voz">
+  <div class="sec__head">
+    <span class="sec__num">Parte 2.10 · A lógica científica</span>
+    <h2>A voz na sua cabeça — e o truque de uma palavra que a acalma</h2>
+  </div>
+
+  <p class="lead">Todo mundo tem uma conversa interna rodando. Quando ela vira remoer — o mesmo pensamento em loop, sem sair do lugar —, Ethan Kross, da Universidade de Michigan, chama de <em>chatter</em>. E ele descobriu uma intervenção quase absurda de simples.</p>
+
+  <div class="box box--ciencia">
+    <span class="box__kicker">Estudo · Kross e colaboradores, Universidade de Michigan</span>
+    <p>Participantes reviveram memórias dolorosas usando a primeira pessoa ("por que <em>eu</em> estou me sentindo assim?") ou usando o próprio nome e a segunda pessoa ("por que <em>você</em>, Samuel, está se sentindo assim?"). Essa mudança mínima de linguagem — chamada <strong>autofala distanciada</strong> — reduziu a reatividade emocional, e a diferença apareceu no cérebro: menos ativação em regiões de processamento autorreferencial no exame de ressonância funcional. O efeito se manteve em experiências de diferentes intensidades emocionais.</p>
+  </div>
+
+  <p>Por que funciona: falar consigo na primeira pessoa te coloca <em>dentro</em> da experiência, imerso. Usar o próprio nome te coloca na posição de quem <em>olha</em> a experiência — a mesma posição de onde você consegue aconselhar um amigo com clareza. É a razão de você ter conselhos ótimos para os outros e nenhum para si: com os outros, você já está distanciado por padrão.</p>
+
+  <div class="box box--acao">
+    <span class="box__kicker">Como usar hoje — em três formatos</span>
+    <dl>
+      <dt>No momento da ansiedade</dt>
+      <dd>Em vez de "eu não vou dar conta", diga (em pensamento ou em voz baixa): <em>"Samuel, o que você está com medo de que aconteça? E o que você controla agora?"</em></dd>
+      <dt>Depois de um erro</dt>
+      <dd><em>"O que o Samuel precisa ouvir agora?"</em> — a mesma pergunta do protocolo de 60 segundos (<a href="#neff">2.4</a>), agora com a alavanca linguística.</dd>
+      <dt>No diário</dt>
+      <dd>Escreva o parágrafo difícil na terceira pessoa. Você vai reparar que o tom fica automaticamente mais justo — e mais preciso.</dd>
+    </dl>
+  </div>
+
+  <div class="box box--biblia">
+    <span class="box__kicker">O paralelo é literal</span>
+    <p>Esta é uma das convergências mais impressionantes deste manual. Nos Salmos 42 e 43, o salmista faz exatamente isso, três mil anos antes: em vez de <em>ouvir</em> a própria alma, ele <strong>fala com ela</strong> — "por que você está assim tão triste, ó minha alma?". Não é primeira pessoa imersa; é o eu se dirigindo a si como a um outro. O método tem nome bíblico e nome científico, e é a mesma manobra (<a href="#alma">3.16</a>).</p>
+  </div>
+</section>
+
+<section class="sec" id="expectativa">
+  <div class="sec__head">
+    <span class="sec__num">Parte 2.11 · A lógica científica</span>
+    <h2>A equação da felicidade — e por que o mês bom te deixou pior</h2>
+  </div>
+
+  <p class="lead">Existe uma explicação matemática para o que você descreveu: bater a meta um mês e cair no seguinte doeu mais do que se você nunca tivesse batido. Robb Rutledge e colegas, na University College London, modelaram isso com dados de dezenas de milhares de pessoas.</p>
+
+  <div class="box box--ciencia">
+    <span class="box__kicker">Estudo · Rutledge e colaboradores, University College London</span>
+    <p>O bem-estar momentâneo não depende principalmente de como as coisas estão, e sim de <strong>como elas estão em relação ao que você esperava</strong>. O componente que mais pesa na equação é o <em>erro de previsão de recompensa</em>: a diferença entre o resultado obtido e o resultado antecipado. Consequência direta e contraintuitiva: <strong>expectativas mais baixas aumentam a satisfação com o mesmo resultado</strong> — e expectativas altas transformam um bom resultado em decepção.</p>
+  </div>
+
+  <p>Aplicado ao seu mês: depois de bater, sua expectativa subiu. No mês seguinte, o <em>mesmo</em> desempenho de sempre passou a ser lido como queda, porque a régua interna tinha se movido. Não foi você que piorou — foi a referência que mudou de lugar. É o mesmo mecanismo que faz um aumento de salário parar de dar alegria em três meses.</p>
+
+  <figure>
+    <div class="figbox">
+      <svg viewBox="0 0 760 250" role="img" aria-label="A satisfação depende da diferença entre resultado e expectativa: mesmo resultado gera alegria quando a expectativa é baixa e frustração quando a expectativa é alta.">
+        <text x="30" y="30" class="d-mut">O MESMO RESULTADO, DUAS EXPECTATIVAS</text>
+
+        <rect x="30" y="48" width="330" height="150" rx="10" class="d-surface"/>
+        <rect x="30" y="48" width="330" height="150" rx="10" class="d-verde"/>
+        <text x="52" y="76" class="d-textS">Expectativa: <tspan class="d-b">"vai ser difícil"</tspan></text>
+        <line x1="52" y1="96" x2="180" y2="96" class="d-stroke d-dash"/>
+        <text x="188" y="100" class="d-mut">EXPECTATIVA</text>
+        <line x1="52" y1="132" x2="240" y2="132" class="d-verde"/>
+        <text x="248" y="136" class="d-mut">RESULTADO</text>
+        <text x="52" y="170" class="d-verdeF" style="font-family:var(--sans);font-size:13px;font-weight:650">Resultado &gt; expectativa → alívio, alegria</text>
+        <text x="52" y="188" class="d-mut">O MESMO NÚMERO NO CRM</text>
+
+        <rect x="400" y="48" width="330" height="150" rx="10" class="d-surface"/>
+        <rect x="400" y="48" width="330" height="150" rx="10" class="d-barro"/>
+        <text x="422" y="76" class="d-textS">Expectativa: <tspan class="d-b">"tenho que repetir o mês passado"</tspan></text>
+        <line x1="422" y1="96" x2="640" y2="96" class="d-stroke d-dash"/>
+        <text x="648" y="100" class="d-mut">EXPECTATIVA</text>
+        <line x1="422" y1="132" x2="610" y2="132" class="d-barro"/>
+        <text x="618" y="136" class="d-mut">RESULTADO</text>
+        <text x="422" y="170" class="d-barroF" style="font-family:var(--sans);font-size:13px;font-weight:650">Resultado &lt; expectativa → frustração</text>
+        <text x="422" y="188" class="d-mut">O MESMO NÚMERO NO CRM</text>
+
+        <text x="380" y="226" text-anchor="middle" class="d-textS">A satisfação não mora no resultado. Ela mora na <tspan class="d-b">distância entre o resultado e a régua</tspan>.</text>
+      </svg>
+    </div>
+    <figcaption>A equação da felicidade momentânea. Isso não é desculpa para não querer mais — é a razão de você precisar avaliar o dia pelas "3 do dia" (processo) e não pelo placar: processo é uma régua que você define, placar é uma régua que se move sozinha.</figcaption>
+  </figure>
+
+  <h3>O outro lado: o estresse não é necessariamente o inimigo</h3>
+
+  <div class="box box--ciencia">
+    <span class="box__kicker">Estudo · Alia Crum e Kelly McGonigal, Universidade de Stanford</span>
+    <p>A pesquisa sobre <strong>mentalidade sobre o estresse</strong> mostra que aquilo em que você acredita a respeito do estresse altera a sua resposta a ele. Pessoas orientadas a ver a ativação do corpo como <em>preparação para o desafio</em> — coração acelerado significa mais sangue para o cérebro, respiração curta significa mais oxigênio — apresentaram perfis fisiológicos e de desempenho diferentes de quem via a mesma ativação como sinal de que algo ia dar errado. <em>Nota honesta:</em> os tamanhos de efeito variam entre estudos e a literatura ainda debate a robustez; use como reinterpretação útil, não como técnica milagrosa.</p>
+  </div>
+
+  <div class="box box--acao">
+    <span class="box__kicker">A tradução para antes de discar</span>
+    <p>Quando o coração acelerar antes de uma ligação difícil, o rótulo que você coloca importa. "Estou nervoso, sinal de que vou travar" e "meu corpo está me preparando" descrevem a <em>mesma</em> sensação física. A segunda leitura não é mentira nem pensamento positivo forçado: é uma descrição igualmente verdadeira, e mais útil.</p>
+  </div>
+</section>
+
+<section class="sec" id="relacoes">
+  <div class="sec__head">
+    <span class="sec__num">Parte 2.12 · A lógica científica</span>
+    <h2>O que dura: 85 anos de dados sobre o que faz uma vida boa</h2>
+  </div>
+
+  <p class="lead">Se existe um estudo que merece o título de mais longo já feito sobre vida adulta, é este. Começou em 1938, em Harvard, acompanhando 724 pessoas — e depois seus filhos — com exames, entrevistas, prontuários e escaneamentos cerebrais, década após década. A pergunta era simples: o que, afinal, faz uma vida boa?</p>
+
+  <div class="box box--ciencia">
+    <span class="box__kicker">Estudo · Harvard Study of Adult Development · dirigido hoje por Robert Waldinger</span>
+    <p>O achado mais consistente em 85 anos: <strong>a qualidade dos relacionamentos é o maior preditor isolado de felicidade e de saúde a longo prazo</strong>. Não foi renda, nem colesterol na meia-idade, nem status profissional. As pessoas mais satisfeitas com seus relacionamentos aos 50 anos foram as mais saudáveis aos 80. Solidão e isolamento social aparecem com risco comparável ao de fatores como tabagismo.</p>
+  </div>
+
+  <p>Encaixe isso com a Parte 1.6: se autoestima é um medidor de aceitação (Leary) e se o que mais sustenta uma vida boa é a qualidade dos vínculos (Waldinger), então <strong>a sua Parte 5.3 — comunidade e confissão — não é o capítulo bonitinho do fim. É o capítulo central.</strong> É a única intervenção que aparece simultaneamente como causa de bem-estar e como conserto do medidor.</p>
+
+  <div class="grid grid--2">
+    <div class="box box--acao" style="margin:0">
+      <span class="box__kicker">O que a pesquisa sugere fazer</span>
+      <ul style="margin-bottom:0">
+        <li><strong>Condicionamento social:</strong> relação é como músculo — atrofia sem uso. Uma mensagem, uma ligação, um café por semana.</li>
+        <li><strong>Reparar o que dá para reparar</strong>, em vez de esperar o tempo resolver.</li>
+        <li><strong>Priorizar poucos vínculos profundos</strong> em vez de muitos rasos.</li>
+        <li><strong>Aparecer nas horas ruins dos outros</strong> — é o que constrói o tipo de vínculo que aparece na sua.</li>
+      </ul>
+    </div>
+    <div class="box box--biblia" style="margin:0">
+      <span class="box__kicker">A Bíblia diz o mesmo, sem os dados</span>
+      <p>"Não é bom que o homem esteja só" (Gn 2.18) aparece na primeira vez em que algo é chamado de <em>não bom</em> na Bíblia — antes de qualquer erro humano. "Melhor é serem dois do que um... se um cair, o amigo pode ajudá-lo a levantar-se" (Ec 4.9-10). Oitenta e cinco anos de coorte prospectiva chegaram ao mesmo lugar por medição.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="brown">
+  <div class="sec__head">
+    <span class="sec__num">Parte 2.13 · A lógica científica</span>
+    <h2>Vergonha, vulnerabilidade e compaixão — a ciência do que você está sentindo</h2>
+  </div>
+
+  <p class="lead">Esta seção junta três linhas de pesquisa que descrevem, do lado científico, exatamente a ferida da Parte 3.3. E uma delas é do livro que você já baixou.</p>
+
+  <div class="box box--ciencia">
+    <span class="box__kicker">Brené Brown · Universidade de Houston · <em>A Coragem de Ser Imperfeito</em></span>
+    <p>Duas décadas de pesquisa qualitativa sobre vergonha, vulnerabilidade e coragem. Duas ideias centrais: <strong>vulnerabilidade não é fraqueza</strong> — é a disposição de se expor sem garantia de resultado, e é a fonte de conexão, criatividade e coragem; e <strong>vergonha não sobrevive quando é dita em voz alta</strong> para alguém que responde com empatia. Brown descreve a resiliência à vergonha como reconhecer o gatilho, checar a realidade da história que você está contando, falar sobre ela e pedir o que precisa.</p>
+    <p><strong>Detalhe que fecha um círculo deste manual:</strong> o título original do livro é <em>Daring Greatly</em> — tirado literalmente do discurso "O Homem na Arena", de Theodore Roosevelt, o mesmo que você tentou lembrar na sua primeira pergunta (<a href="#pigmaliao">2.7</a>). A frase completa é: quem falha, ao menos falha <em>ousando muito</em>. Você já tem esse livro na mão, e ele foi escrito para exatamente o lugar em que você está.</p>
+  </div>
+
+  <div class="box box--ciencia">
+    <span class="box__kicker">June Tangney &amp; Ronda Dearing · a base empírica de culpa vs vergonha</span>
+    <p>Décadas de estudos mostram que as duas emoções levam a comportamentos opostos. <strong>Culpa</strong> ("fiz algo ruim") associa-se a empatia, reparação e mudança de comportamento. <strong>Vergonha</strong> ("eu sou ruim") associa-se a esconder, culpar os outros, raiva defensiva, e a mais — não menos — repetição do comportamento problemático. A distinção que a Parte 3.3 apresenta pela Bíblia é, portanto, também um dos achados mais replicados da psicologia das emoções morais.</p>
+  </div>
+
+  <div class="box box--ciencia">
+    <span class="box__kicker">Paul Gilbert · Universidade de Derby, Reino Unido · Terapia Focada na Compaixão</span>
+    <p>Gilbert propõe três sistemas de regulação emocional: o de <strong>ameaça</strong> (proteger, detectar perigo — produz ansiedade, raiva, vergonha), o de <strong>impulso</strong> (buscar, conquistar, competir — produz excitação e vazio quando desregulado) e o de <strong>acalmia</strong> (segurança, vínculo, cuidado — produz contentamento). Quem cresce sob crítica ou vergonha costuma ter os dois primeiros hipertrofiados e o terceiro atrofiado — e por isso alterna entre correr atrás de resultado e se punir, sem nunca descansar. A terapia treina o sistema de acalmia deliberadamente.</p>
+  </div>
+
+  <figure>
+    <div class="figbox">
+      <svg viewBox="0 0 760 300" role="img" aria-label="Três círculos representando os sistemas de regulação emocional: ameaça e impulso desenvolvidos e grandes, acalmia pequena e subdesenvolvida, com indicação de que a acalmia é a que precisa ser treinada.">
+        <circle cx="180" cy="140" r="86" class="d-surface"/>
+        <circle cx="180" cy="140" r="86" class="d-barro"/>
+        <text x="180" y="132" text-anchor="middle" class="d-text d-b">AMEAÇA</text>
+        <text x="180" y="154" text-anchor="middle" class="d-textS">proteger, detectar perigo</text>
+        <text x="180" y="176" text-anchor="middle" class="d-mut">ANSIEDADE · VERGONHA</text>
+        <text x="180" y="252" text-anchor="middle" class="d-barroF" style="font-family:var(--sans);font-size:12.5px;font-weight:650">hipertrofiado no seu ano</text>
+
+        <circle cx="400" cy="140" r="76" class="d-surface"/>
+        <circle cx="400" cy="140" r="76" class="d-brass"/>
+        <text x="400" y="132" text-anchor="middle" class="d-text d-b">IMPULSO</text>
+        <text x="400" y="154" text-anchor="middle" class="d-textS">buscar, conquistar</text>
+        <text x="400" y="176" text-anchor="middle" class="d-mut">META · PLACAR · BET</text>
+        <text x="400" y="252" text-anchor="middle" class="d-brassF" style="font-family:var(--sans);font-size:12.5px;font-weight:650">ligado o tempo todo</text>
+
+        <circle cx="620" cy="140" r="42" class="d-surface"/>
+        <circle cx="620" cy="140" r="42" class="d-verde"/>
+        <text x="620" y="136" text-anchor="middle" class="d-text d-b">ACALMIA</text>
+        <text x="620" y="154" text-anchor="middle" class="d-mut">VÍNCULO · CUIDADO</text>
+        <text x="620" y="252" text-anchor="middle" class="d-verdeF" style="font-family:var(--sans);font-size:12.5px;font-weight:650">atrofiado — é o que treinar</text>
+
+        <text x="30" y="30" class="d-mut">OS TRÊS SISTEMAS, DESENHADOS NO TAMANHO EM QUE COSTUMAM ESTAR</text>
+        <text x="380" y="288" text-anchor="middle" class="d-textS">Autocompaixão, descanso, oração e vínculo não são moleza: são o treino do terceiro círculo.</text>
+      </svg>
+    </div>
+    <figcaption>O modelo de Gilbert desenhado em proporção. Note que o problema não é o sistema de impulso ser grande — é o de acalmia ser pequeno, o que deixa você sem nenhum lugar para descansar entre um esforço e o seguinte.</figcaption>
+  </figure>
+</section>
+
+<section class="sec" id="habito">
+  <div class="sec__head">
+    <span class="sec__num">Parte 2.14 · A lógica científica</span>
+    <h2>Como hábito se forma de verdade — e por que 21 dias é mentira</h2>
+  </div>
+
+  <p class="lead">Você perguntou quais devem ser os seus hábitos. Antes da lista, o mecanismo — porque quase tudo que circula sobre hábito é folclore, e seguir folclore é a razão número um de as pessoas desistirem na segunda semana.</p>
+
+  <div class="grid grid--2">
+    <div class="box box--ciencia" style="margin:0">
+      <span class="box__kicker">Wendy Wood · Universidade do Sul da Califórnia</span>
+      <p>Cerca de <strong>43% do comportamento diário</strong> é executado no automático, disparado pelo contexto, e não por decisão consciente. A consequência é radical: hábito é mais uma questão de <strong>ambiente e fricção</strong> do que de motivação. Mudar onde a coisa está — o celular fora do quarto, o tênis ao lado da cama, o app de aposta desinstalado — muda mais comportamento do que qualquer decisão tomada na segunda de manhã.</p>
+    </div>
+    <div class="box box--ciencia" style="margin:0">
+      <span class="box__kicker">BJ Fogg · Universidade de Stanford</span>
+      <p>Comportamento acontece quando motivação, capacidade e um <strong>gatilho</strong> coincidem. Como motivação oscila, a alavanca confiável é <em>facilitar</em>: torne o comportamento tão pequeno que ele sobreviva aos dias ruins, e ancore-o num gatilho que já existe ("depois de escovar os dentes, eu…"). É a base da regra do tamanho do <a href="#motor">motor</a>.</p>
+    </div>
+    <div class="box box--ciencia" style="margin:0">
+      <span class="box__kicker">Katy Milkman · Wharton, Universidade da Pensilvânia</span>
+      <p>Dois achados úteis: o <strong>efeito do recomeço</strong> — marcos temporais (começo de mês, aniversário, segunda-feira) aumentam a chance de iniciar mudança, porque criam uma linha entre o "eu velho" e o "eu novo"; e o <strong>agrupamento de tentação</strong> — permitir-se algo que você adora <em>apenas</em> enquanto faz o que você evita. Comece o plano de 30 dias num marco. Use-o de propósito.</p>
+    </div>
+    <div class="box box--mito" style="margin:0">
+      <span class="box__kicker">O mito dos 21 dias</span>
+      <p>Não existe base para isso. No estudo de Phillippa Lally, na University College London, o tempo médio para um comportamento se tornar automático foi de <strong>cerca de 66 dias — variando de 18 a mais de 250</strong>, conforme a pessoa e a complexidade. E um achado que interessa muito a você: <strong>falhar um dia isolado não prejudicou a formação do hábito.</strong> A regra "nunca duas vezes seguidas" tem respaldo.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="callout__title">O resumo operacional</span>
+    <p><strong>Pequeno o bastante para o dia ruim · ancorado num gatilho que já existe · com o ambiente arrumado a favor · começado num marco · e imune a um tropeço isolado.</strong> Se um hábito seu falhou este ano, provavelmente ele violou três desses cinco. Isso é engenharia, não força de vontade.</p>
+  </div>
+</section>
+
+<section class="sec" id="dopamina">
+  <div class="sec__head">
+    <span class="sec__num">Parte 2.15 · A lógica científica</span>
+    <h2>Dopamina e a bet — por que a barreira vence a força de vontade</h2>
+  </div>
+
+  <p class="lead">A Parte 3.5 tratou da aposta pelo lado bíblico e pelo lado prático. Aqui está o mecanismo neurobiológico, porque entendê-lo tira a última gota de vergonha e coloca no lugar uma estratégia.</p>
+
+  <div class="box box--ciencia">
+    <span class="box__kicker">Anna Lembke · Escola de Medicina de Stanford · <em>Nação Dopamina</em></span>
+    <p>Prazer e dor são processados em regiões sobrepostas do cérebro e funcionam como uma <strong>balança que busca o equilíbrio</strong>. Toda vez que você inclina o prato do prazer, o cérebro compensa inclinando o da dor — e a compensação dura mais que o prazer original. Com repetição, o ponto de equilíbrio se desloca: você passa a precisar do estímulo apenas para se sentir normal, e o estado basal fica pior do que antes de começar. Lembke defende que a intervenção primária não é força de vontade, e sim <strong>autoamarração</strong>: colocar barreiras físicas, temporais e categóricas entre você e o estímulo.</p>
+  </div>
+
+  <p>Junte com o esquema de <strong>razão variável</strong> já descrito na Parte 3.5 — recompensa imprevisível, o padrão mais resistente à extinção que existe — e você tem o retrato completo: a bet ataca por dois flancos ao mesmo tempo. Nenhuma quantidade de "eu prometi que não faria mais" compete com isso. <strong>Barreira compete.</strong></p>
+
+  <div class="box box--acao">
+    <span class="box__kicker">Autoamarração — as três categorias</span>
+    <dl>
+      <dt>Física</dt>
+      <dd>Apps desinstalados, contas encerradas, sites bloqueados no navegador e no roteador, bloqueio de transações junto ao banco.</dd>
+      <dt>Temporal</dt>
+      <dd>Regras de tempo decididas antes, não no momento: "nada de celular na primeira hora do dia e na última da noite" — os dois horários em que a vontade mais aparece.</dd>
+      <dt>Categórica</dt>
+      <dd>Regra de tudo ou nada, que é mais fácil de manter do que a moderação: "eu não aposto" em vez de "eu aposto pouco". Categoria não exige negociação; quantidade exige, todas as vezes.</dd>
+    </dl>
+    <p style="margin-top:12px;margin-bottom:0">Lembke também descreve que um período de abstinência costuma ser necessário para a balança voltar ao lugar, e que os primeiros dias tendem a ser os piores — o que é <em>esperado</em>, não sinal de que não vai dar certo.</p>
+  </div>
+
+  <div class="callout callout--alerta">
+    <span class="callout__title">Lembrete</span>
+    <p>Se você já apostou para recuperar perdas, mentiu sobre o valor, sentiu inquietação ao tentar parar ou apostou dinheiro que faria falta, isso tem nome clínico, é tratável e merece ajuda profissional — hoje, não depois (<a href="#ajuda">5.5</a>).</p>
+  </div>
+</section>
+
+<section class="sec" id="reach">
+  <div class="sec__head">
+    <span class="sec__num">Parte 2.16 · A lógica científica</span>
+    <h2>Perdão como método — cinco passos com evidência</h2>
+  </div>
+
+  <p class="lead">A Parte 5.4 disse que perdão é decisão antes de sentimento. Everett Worthington, da Virginia Commonwealth University, transformou isso em um protocolo testável — e tem uma história pessoal que dá peso ao método: ele o desenvolveu e depois teve que aplicá-lo ao assassinato da própria mãe.</p>
+
+  <div class="box box--ciencia">
+    <span class="box__kicker">Modelo REACH · Worthington · Virginia Commonwealth University</span>
+    <p>Worthington distingue <strong>perdão decisional</strong> (a escolha de abrir mão da vingança e mudar o comportamento em relação à pessoa) de <strong>perdão emocional</strong> (a substituição gradual do rancor por emoções mais neutras ou positivas). O primeiro pode ser feito hoje; o segundo leva tempo. Metanálises de intervenções estruturadas de perdão mostram redução de raiva, ansiedade e sintomas depressivos, com o benefício ficando principalmente com quem perdoa.</p>
+  </div>
+
+  <ol class="steps">
+    <li><h4>R — Recall (recordar a ofensa)</h4><p>Sem minimizar e sem se afundar. Escreva o que aconteceu, de forma factual, como um relatório. Minimizar impede o perdão porque não há o que perdoar; ruminar impede porque mantém a ferida aberta.</p></li>
+    <li><h4>E — Empathize (tentar empatizar)</h4><p>Não é justificar. É perguntar o que poderia levar uma pessoa a fazer aquilo — medo, ganância, dor, imaturidade. O objetivo é reduzir o monstro a um ser humano falho, porque monstros não podem ser perdoados, pessoas podem.</p></li>
+    <li><h4>A — Altruistic gift (oferecer como presente)</h4><p>Lembre de uma vez em que <em>você</em> foi perdoado e do alívio que sentiu. O perdão passa a ser algo que você dá, não algo que o outro arrancou de você — e isso devolve o poder para as suas mãos.</p></li>
+    <li><h4>C — Commit (registrar o compromisso)</h4><p>Escreva a decisão, com data. Conte para alguém. Sem registro, o compromisso se dissolve na próxima lembrança ruim.</p></li>
+    <li><h4>H — Hold (sustentar quando a raiva voltar)</h4><p>E ela vai voltar. Voltar a sentir raiva <strong>não</strong> significa que o perdão foi desfeito — significa que a memória foi ativada. Releia o compromisso escrito e siga.</p></li>
+  </ol>
+
+  <div class="box box--biblia">
+    <span class="box__kicker">Onde isso encontra a Bíblia</span>
+    <p>A distinção entre decisão e emoção resolve uma angústia comum de quem tem fé: "eu disse que perdoei, mas ainda dói — então eu menti?". Não. Você fez o perdão decisional; o emocional está em andamento. Perdão bíblico também é primariamente uma decisão de não cobrar (Ef 4.32; Cl 3.13), e o mandamento não exige que a dor evapore no mesmo dia. E vale a distinção da <a href="#perdao">5.4</a>: perdoar não é obrigatoriamente reconciliar — reconciliação exige duas pessoas e mudança de comportamento.</p>
+  </div>
+</section>
+
+<section class="sec" id="coerencia">
+  <div class="sec__head">
+    <span class="sec__num">Parte 2.17 · A lógica científica</span>
+    <h2>Dar sentido ao caos — por que um ano ruim precisa virar narrativa</h2>
+  </div>
+
+  <p class="lead">Você escreveu uma frase que resume esta seção inteira: "tudo dava errado e não sabia o porquê". A ausência de <em>porquê</em> não é um detalhe — ela é, por si só, um fator de adoecimento. E existe pesquisa sobre exatamente isso.</p>
+
+  <div class="box box--ciencia">
+    <span class="box__kicker">Senso de coerência · Aaron Antonovsky · Universidade Ben-Gurion, Israel</span>
+    <p>Antonovsky estudou sobreviventes de campos de concentração e fez uma pergunta invertida: em vez de "o que adoece as pessoas?", perguntou <strong>"o que mantém algumas pessoas saudáveis mesmo sob estresse extremo?"</strong>. A resposta que ele formulou foi o <em>senso de coerência</em>, com três componentes: <strong>compreensibilidade</strong> (o que me acontece faz algum sentido), <strong>manejabilidade</strong> (eu tenho recursos para lidar) e <strong>significância</strong> (vale a pena me engajar nisso). Quanto mais forte esse senso, melhor a saúde mental sob adversidade.</p>
+  </div>
+
+  <p>Olhe o que este manual fez com você até aqui, à luz desses três componentes. A Parte 1.3 nomeou cada evento do seu ano — isso é <strong>compreensibilidade</strong>. As Partes 5 e 6 te deram protocolos e um plano — isso é <strong>manejabilidade</strong>. A Parte 3 colocou o seu valor num lugar que não depende do resultado — isso é <strong>significância</strong>. Não foi acidente: é a arquitetura.</p>
+
+  <div class="box box--acao">
+    <span class="box__kicker">O exercício — escrever a narrativa do ano</span>
+    <p>Uma vez, com calma, escreva o seu ano em três parágrafos: <strong>(1)</strong> o que aconteceu, em ordem, sem julgamento — só fatos e datas; <strong>(2)</strong> o que aquilo te custou e como você reagiu, incluindo o que você não faria de novo; <strong>(3)</strong> o que você aprendeu e quem você quer ser depois disso. Não é positividade forçada: o parágrafo 2 pode ser duro. O objetivo é transformar um borrão de dor em uma <em>história com começo, meio e continuação</em> — e histórias podem ter capítulos seguintes, borrões não.</p>
+    <p style="margin-bottom:0">Viktor Frankl, que sobreviveu a Auschwitz, formulou a versão clássica dessa ideia: quando não podemos mudar a situação, somos desafiados a mudar a nós mesmos, e quem tem um <em>porquê</em> suporta quase qualquer <em>como</em>.</p>
+  </div>
+</section>
+
+<section class="sec" id="zdp">
+  <div class="sec__head">
+    <span class="sec__num">Parte 2.18 · A lógica científica</span>
+    <h2>O tamanho certo do desafio</h2>
+  </div>
+
+  <p class="lead">A regra do tamanho do <a href="#motor">motor</a> — "se você não faria hoje, está grande demais" — tem duas fundamentações clássicas, vindas de tradições bem distantes uma da outra.</p>
+
+  <div class="grid grid--2">
+    <div class="box box--ciencia" style="margin:0">
+      <span class="box__kicker">Lev Vygotsky · psicologia soviética, anos 1930</span>
+      <p>A <strong>zona de desenvolvimento proximal</strong> é a faixa entre o que você já consegue fazer sozinho e o que você só conseguiria com ajuda. É <em>nessa faixa</em> que o aprendizado acontece. Abaixo dela, você repete o que já sabe e não desenvolve nada. Acima dela, você trava e desiste. Aplicado ao seu trabalho: treinar "bater a meta" está acima da zona; treinar "a abertura dos primeiros 15 segundos" está dentro dela.</p>
+    </div>
+    <div class="box box--ciencia" style="margin:0">
+      <span class="box__kicker">Mihaly Csikszentmihalyi · Universidade de Chicago</span>
+      <p>O estado de <strong>fluxo</strong> aparece quando a dificuldade da tarefa e a sua habilidade estão equilibradas, com objetivo claro e retorno imediato. Desafio alto demais para a habilidade produz ansiedade; habilidade alta demais para o desafio produz tédio. A ansiedade que você sente diante da meta é, em parte, um problema de calibragem: você está encarando o número final em vez da próxima habilidade.</p>
+    </div>
+  </div>
+
+  <figure>
+    <div class="figbox">
+      <svg viewBox="0 0 760 300" role="img" aria-label="Gráfico de habilidade por desafio: a faixa diagonal do meio é a zona de aprendizado e fluxo; acima dela está a ansiedade e abaixo o tédio.">
+        <line x1="90" y1="40" x2="90" y2="250" class="d-stroke"/>
+        <line x1="90" y1="250" x2="700" y2="250" class="d-stroke"/>
+        <text x="90" y="30" text-anchor="middle" class="d-mut">DESAFIO</text>
+        <text x="700" y="274" text-anchor="end" class="d-mut">HABILIDADE</text>
+
+        <polygon points="90,250 700,40 700,90 140,250" fill="var(--verde)" opacity=".16"/>
+        <line x1="90" y1="250" x2="700" y2="40" class="d-verde"/>
+        <line x1="140" y1="250" x2="700" y2="90" class="d-verde d-dash"/>
+
+        <text x="230" y="90" class="d-barroF" style="font-family:var(--sans);font-size:13.5px;font-weight:650">ANSIEDADE</text>
+        <text x="230" y="112" class="d-textS">"bater a meta do mês"</text>
+        <text x="230" y="130" class="d-mut">DESAFIO ACIMA DA HABILIDADE</text>
+
+        <text x="500" y="216" class="d-mut" style="font-size:13.5px;font-weight:650">TÉDIO</text>
+        <text x="500" y="238" class="d-textS">"fazer 60 ligações no automático"</text>
+
+        <text x="392" y="164" class="d-verdeF" style="font-family:var(--sans);font-size:13.5px;font-weight:650">ZONA DE APRENDIZADO</text>
+        <text x="392" y="186" class="d-textS">"treinar a abertura de 15 segundos esta semana"</text>
+      </svg>
+    </div>
+    <figcaption>A faixa verde é onde habilidade e autoeficácia crescem. Quase toda a sua ansiedade profissional mora acima dela — e a solução não é diminuir a ambição, é escolher um alvo de treino do tamanho certo dentro dela.</figcaption>
+  </figure>
+</section>
+
+<section class="sec" id="bemestar">
+  <div class="sec__head">
+    <span class="sec__num">Parte 2.19 · A lógica científica</span>
+    <h2>Construir bem-estar não é a mesma coisa que tirar o sintoma</h2>
+  </div>
+
+  <p class="lead">Encerrando a parte científica com o achado que justifica a existência deste manual: tirar a dor não produz florescimento. São dois trabalhos diferentes, e o segundo precisa ser feito de propósito.</p>
+
+  <div class="box box--ciencia">
+    <span class="box__kicker">Terapia do Bem-Estar · Giovanni Fava · Universidade de Bolonha, Itália</span>
+    <p>Fava observou que pacientes tratados com sucesso para depressão e ansiedade frequentemente ficavam com <strong>sintomas residuais</strong> — e que esses resíduos previam recaída. Sua resposta foi construir uma psicoterapia breve voltada não a reduzir sofrimento, mas a <em>aumentar bem-estar</em>, estruturada justamente sobre as seis dimensões de Ryff (<a href="#dimensoes">1.7</a>). Ensaios clínicos apontaram valor da abordagem como estratégia de <strong>prevenção de recaída</strong> em transtornos do humor e de ansiedade.</p>
+  </div>
+
+  <div class="grid grid--2">
+    <div class="box box--ciencia" style="margin:0">
+      <span class="box__kicker">Martin Seligman · Universidade da Pensilvânia</span>
+      <p>O modelo <strong>PERMA</strong> descreve cinco elementos do florescimento: emoção positiva, engajamento, relacionamentos, significado e realização. A tese que interessa aqui: ausência de depressão não é florescimento, do mesmo jeito que ausência de dívida não é riqueza.</p>
+    </div>
+    <div class="box box--ciencia" style="margin:0">
+      <span class="box__kicker">Laurie Santos · Universidade de Yale</span>
+      <p>O curso "A Ciência do Bem-Estar" virou a disciplina mais procurada da história de Yale. A mensagem central é desconfortável: <strong>somos péssimos em prever o que vai nos fazer bem</strong>. Superestimamos salário, status e conquistas; subestimamos sono, vínculo, gratidão e ajudar outras pessoas. Bater a meta vai te dar menos alegria e por menos tempo do que você imagina — e isso é dado, não pessimismo.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="callout__title">A implicação para o seu plano</span>
+    <p>Se você apenas parar de se sentir mal, terá feito metade do serviço — e a metade que recai. Por isso a <a href="#trinta">Parte 6.2</a> não é só "pare de ruminar": ela tem construção de evidência, vínculo, propósito e cuidado do corpo. E por isso a <a href="#areas">Parte 7.0</a> existe: <strong>florescimento se constrói por área, deliberadamente, e não sobra do trabalho.</strong></p>
   </div>
 </section>
 
@@ -1586,7 +2378,12 @@ details > :last-child{ margin-bottom: 16px; }
 
   <div class="box box--acao">
     <span class="box__kicker">Como aplicar hoje</span>
-    <p>Pegue cada peso do seu ano e classifique: <strong>isso é culpa ou vergonha?</strong> Se for culpa, escreva ao lado a ação de reparação — específica, com prazo. Se for vergonha, escreva ao lado a frase que ela está afirmando sobre você ("eu sou um vergonha para a família") e trate como o pensamento automático que é: uma hipótese, não um fato. Culpa vai para a agenda. Vergonha vai para o registro de pensamento (<a href="#mecanismos">5.1</a>).</p>
+    <p>Pegue cada peso do seu ano e classifique: <strong>isso é culpa ou vergonha?</strong> Se for culpa, escreva ao lado a ação de reparação — específica, com prazo. Se for vergonha, escreva ao lado a frase que ela está afirmando sobre você ("eu sou uma vergonha para a família") e trate como o pensamento automático que é: uma hipótese, não um fato. Culpa vai para a agenda. Vergonha vai para o registro de pensamento (<a href="#mecanismos">5.1</a>).</p>
+  </div>
+
+  <div class="box box--ciencia">
+    <span class="box__kicker">Isto não é só teologia — é um dos achados mais replicados da psicologia</span>
+    <p>June Tangney e Ronda Dearing mediram as duas emoções por décadas e encontraram exatamente o mesmo padrão do diagrama acima: <strong>culpa</strong> prevê empatia, reparação e mudança de comportamento; <strong>vergonha</strong> prevê esconder, culpar os outros, raiva defensiva e <em>mais</em> repetição do comportamento problemático. Paul Gilbert, na Universidade de Derby, mostra por quê: a vergonha ativa o sistema de ameaça, que prepara para fuga ou defesa — nenhum dos dois compatível com reparar. Ver <a href="#brown">2.13</a> para o modelo completo.</p>
   </div>
 </section>
 
@@ -1901,6 +2698,355 @@ details > :last-child{ margin-bottom: 16px; }
   </div>
 </section>
 
+<section class="sec" id="autoesquecimento">
+  <div class="sec__head">
+    <span class="sec__num">Parte 3.11 · Fundamento bíblico</span>
+    <h2>A liberdade de não pensar em si mesmo</h2>
+  </div>
+
+  <p class="lead">Se você ler uma única seção bíblica deste manual, que seja esta. Ela é a resposta mais profunda que existe à sua pergunta — e ela não é "aumente sua autoestima". É algo bem mais radical.</p>
+
+  <p>Paulo estava sendo julgado por uma igreja inteira. Havia gente dizendo que ele não era apóstolo de verdade, que falava mal, que não tinha porte. A resposta dele é uma das frases mais estranhas do Novo Testamento:</p>
+
+  <div class="verso">
+    <p>"Pouco me importa ser julgado por vocês ou por qualquer tribunal humano; de fato, nem eu julgo a mim mesmo. Embora em nada minha consciência me acuse, nem por isso justifico a mim mesmo; o Senhor é quem me julga."</p>
+    <cite>1 Coríntios 4.3-4 · NVI</cite>
+  </div>
+
+  <p>Leia devagar a parte do meio: <strong>"nem eu julgo a mim mesmo"</strong>. Paulo não está dizendo que se acha ótimo. Ele está dizendo que <em>saiu do tribunal</em> — inclusive do tribunal em que ele mesmo era o juiz. Ele não precisa mais do veredito de ninguém, nem do próprio.</p>
+
+  <div class="box box--biblia">
+    <span class="box__kicker">Timothy Keller · <em>A Liberdade de Se Esquecer de Si Mesmo</em></span>
+    <p>Keller comenta essa passagem observando que existem duas valas na estrada: <strong>autoestima baixa</strong> ("eu não presto") e <strong>autoestima alta</strong> ("eu sou ótimo"). As duas parecem opostas, mas têm a mesma estrutura: nas duas, você está o tempo todo pensando em si e esperando um veredito. O que o evangelho oferece não é um veredito melhor — é o fim da necessidade de veredito, porque ele já foi dado por quem tinha autoridade para dar. Keller chama isso de <strong>humildade do evangelho</strong>: parar de conectar cada experiência e cada conversa a si mesmo. Não é pensar menos <em>de</em> si; é pensar menos <em>em</em> si.</p>
+  </div>
+
+  <figure>
+    <div class="figbox">
+      <svg viewBox="0 0 760 280" role="img" aria-label="Três posições: autoestima baixa e autoestima alta, ambas dentro do tribunal esperando veredito, e a terceira posição fora do tribunal, com o veredito já dado.">
+        <rect x="30" y="52" width="330" height="164" rx="12" class="d-surface"/>
+        <rect x="30" y="52" width="330" height="164" rx="12" class="d-stroke d-dash"/>
+        <text x="195" y="42" text-anchor="middle" class="d-mut">DENTRO DO TRIBUNAL — ESPERANDO VEREDITO</text>
+
+        <rect x="52" y="76" width="140" height="118" rx="9" class="d-surface"/>
+        <rect x="52" y="76" width="140" height="118" rx="9" class="d-barro"/>
+        <text x="122" y="104" text-anchor="middle" class="d-text d-b">Autoestima</text>
+        <text x="122" y="122" text-anchor="middle" class="d-text d-b">baixa</text>
+        <text x="122" y="150" text-anchor="middle" class="d-textS">"eu não presto"</text>
+        <text x="122" y="176" text-anchor="middle" class="d-mut">PENSA MUITO EM SI</text>
+
+        <rect x="204" y="76" width="140" height="118" rx="9" class="d-surface"/>
+        <rect x="204" y="76" width="140" height="118" rx="9" class="d-brass"/>
+        <text x="274" y="104" text-anchor="middle" class="d-text d-b">Autoestima</text>
+        <text x="274" y="122" text-anchor="middle" class="d-text d-b">alta</text>
+        <text x="274" y="150" text-anchor="middle" class="d-textS">"eu sou ótimo"</text>
+        <text x="274" y="176" text-anchor="middle" class="d-mut">PENSA MUITO EM SI</text>
+
+        <text x="195" y="242" text-anchor="middle" class="d-textS">Parecem opostos. Têm a mesma estrutura:</text>
+        <text x="195" y="260" text-anchor="middle" class="d-textS">o eu no banco dos réus, todos os dias.</text>
+
+        <rect x="400" y="52" width="330" height="164" rx="12" class="d-surface"/>
+        <rect x="400" y="52" width="330" height="164" rx="12" class="d-verde"/>
+        <text x="565" y="42" text-anchor="middle" class="d-verdeF" style="font-family:var(--mono);font-size:10.5px">FORA DO TRIBUNAL — VEREDITO JÁ DADO</text>
+        <text x="565" y="96" text-anchor="middle" class="d-text d-b">Autoesquecimento</text>
+        <text x="565" y="126" text-anchor="middle" class="d-textS">"nem eu julgo a mim mesmo"</text>
+        <text x="565" y="150" text-anchor="middle" class="d-textS">O elogio não infla. A crítica não destrói.</text>
+        <text x="565" y="174" text-anchor="middle" class="d-textS">Sobra atenção para o trabalho e para o outro.</text>
+        <text x="565" y="242" text-anchor="middle" class="d-textS">Não é pensar menos <tspan class="d-b">de</tspan> si.</text>
+        <text x="565" y="260" text-anchor="middle" class="d-textS">É pensar menos <tspan class="d-b">em</tspan> si.</text>
+      </svg>
+    </div>
+    <figcaption>As duas caixas da esquerda são o mesmo jogo com placares diferentes. A da direita é sair do jogo — e é a única posição em que um mês ruim não é uma sentença, porque a sentença já foi proferida por outra instância.</figcaption>
+  </figure>
+
+  <p>Encaixe isso com a ciência que você já leu. Leary (<a href="#sociometro">1.6</a>) diz que a autoestima é um medidor de aceitação. Crocker (<a href="#contingente">1.2</a>) diz que apoiá-la em desempenho gera instabilidade. Baumeister (<a href="#baumeister">2.3</a>) diz que tentar elevá-la diretamente não funciona. <strong>Os três descrevem o problema com precisão e nenhum deles pode oferecer a saída</strong> — porque a saída exige uma instância externa que emita um veredito definitivo, e isso não é uma categoria científica. É exatamente o que 1 Coríntios 4 oferece.</p>
+
+  <div class="callout">
+    <span class="callout__title">O teste prático</span>
+    <p>Você vai saber que está saindo do tribunal quando: um elogio te agradar sem te inflar; uma crítica te informar sem te destruir; e você conseguir passar um dia inteiro sem calcular o quanto vale. <strong>Não é o fim do desejo de fazer bem feito</strong> — é o fim de precisar do resultado para saber quem você é.</p>
+  </div>
+</section>
+
+<section class="sec" id="jose">
+  <div class="sec__head">
+    <span class="sec__num">Parte 3.12 · Fundamento bíblico</span>
+    <h2>José: traído pela própria família</h2>
+  </div>
+
+  <p class="lead">Você contou que um familiar te traiu. A Bíblia tem uma narrativa inteira sobre exatamente isso — e ela é longa de propósito, porque a restauração levou décadas, não um capítulo.</p>
+
+  <p>José foi vendido como escravo pelos próprios irmãos. Depois foi acusado falsamente e preso. Passou anos esquecido numa cela por alguém que prometeu lembrar dele e não lembrou. Quando finalmente reencontra os irmãos, ele tem todo o poder do Egito nas mãos e poderia destruí-los. O que ele diz é isto:</p>
+
+  <div class="verso">
+    <p>"Vocês planejaram o mal contra mim, mas Deus o tornou em bem, para que hoje fosse preservada a vida de muitos."</p>
+    <cite>Gênesis 50.20 · NVI</cite>
+  </div>
+
+  <p>Repare em quatro coisas que esse versículo <strong>não</strong> faz, e que a versão barata da fé costuma fazer:</p>
+
+  <div class="grid grid--2">
+    <div class="box box--biblia" style="margin:0">
+      <span class="box__kicker">Não nega o mal</span>
+      <p>"Vocês planejaram o mal contra mim." O texto chama o que foi feito pelo nome. Não há "estava tudo nos planos" nem "eles não tiveram culpa". <strong>Perdoar não é reclassificar a traição como coisa boa.</strong></p>
+    </div>
+    <div class="box box--biblia" style="margin:0">
+      <span class="box__kicker">Não apaga a dor</span>
+      <p>Poucos versículos antes, José chora tanto que os egípcios ouvem do outro lado da casa. Ele chora várias vezes ao longo da história. <strong>Reconciliação com lágrimas continua sendo reconciliação.</strong></p>
+    </div>
+    <div class="box box--biblia" style="margin:0">
+      <span class="box__kicker">Não foi rápido</span>
+      <p>Entre a cova e essa frase se passam mais de vinte anos. Se você está cobrando de si mesmo por não ter superado em um ano, está usando um relógio que a Bíblia não usa.</p>
+    </div>
+    <div class="box box--biblia" style="margin:0">
+      <span class="box__kicker">Não abriu mão do discernimento</span>
+      <p>José testa os irmãos antes de se revelar — ele quer saber se mudaram. <strong>Perdoar não obriga a confiar de novo imediatamente.</strong> Confiança se reconstrói com comportamento, ao longo do tempo.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="callout__title">O que isso te diz</span>
+    <p>A traição que você sofreu <strong>não é um veredito sobre você</strong>. Ela é um fato sobre a escolha de outra pessoa. José não passou vinte anos se perguntando "o que há de errado comigo para meus irmãos terem feito isso?" — e essa é exatamente a pergunta que a vergonha te faz. A pergunta certa não é "por que eu mereci?", é "o que eu faço agora com o que me fizeram?". O <a href="#reach">modelo REACH</a> é uma resposta possível; o tempo é a outra metade dela.</p>
+  </div>
+</section>
+
+<section class="sec" id="prodigo">
+  <div class="sec__head">
+    <span class="sec__num">Parte 3.13 · Fundamento bíblico</span>
+    <h2>O filho pródigo — a honra devolvida em público</h2>
+  </div>
+
+  <p class="lead">"Desonrei minha família porque apostei e perdi dinheiro." Existe uma parábola escrita literalmente sobre um filho que pega dinheiro da família, gasta de forma vergonhosa e volta destruído. E o detalhe mais importante dela quase sempre passa despercebido.</p>
+
+  <p>O filho ensaia um discurso: "já não sou digno de ser chamado seu filho; trata-me como um dos teus empregados". É a lógica da vergonha em estado puro — <em>eu perdi o direito de pertencer, então vou negociar uma posição inferior</em>. Talvez você reconheça essa frase; ela é muito parecida com o que a vergonha te faz sentir diante da sua família.</p>
+
+  <p>O pai não deixa ele terminar o discurso. E aqui estão os quatro gestos, cada um deliberado e cada um público:</p>
+
+  <ol class="steps">
+    <li><h4>O pai corre</h4><p>Num contexto do Oriente Médio antigo, um homem idoso e respeitado <strong>não corria</strong> — para correr era preciso levantar a túnica, o que era indigno. Ao correr, o pai assume publicamente uma vergonha que não era dele, para chegar ao filho antes que a aldeia chegasse. <strong>Ele absorve a humilhação em vez de repassá-la.</strong></p></li>
+    <li><h4>A melhor túnica</h4><p>Não uma túnica: <em>a melhor</em>, a do próprio pai. Roupa era declaração de status. Vestir o filho com ela é dizer para todos os presentes: este aqui tem a minha posição.</p></li>
+    <li><h4>O anel</h4><p>O anel de sinete era instrumento de autoridade — quem o portava assinava em nome da casa. Devolver o anel a quem torrou o patrimônio é devolver <strong>confiança e responsabilidade</strong>, não só afeto.</p></li>
+    <li><h4>As sandálias e a festa</h4><p>Escravos andavam descalços; filhos, calçados. E a festa é o ponto decisivo: a restauração não é um perdão sussurrado em particular. É um <strong>anúncio público de que a honra foi recolocada.</strong></p></li>
+  </ol>
+
+  <figure>
+    <div class="figbox">
+      <svg viewBox="0 0 760 260" role="img" aria-label="Sequência da restauração da honra na parábola: o filho volta em vergonha, o pai corre e absorve a vergonha, e então vêm túnica, anel, sandálias e festa, resultando em honra restaurada publicamente.">
+        <defs>
+          <marker id="ar15" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="var(--brass)"/>
+          </marker>
+        </defs>
+        <rect x="24" y="90" width="150" height="76" rx="9" class="d-surface"/><rect x="24" y="90" width="150" height="76" rx="9" class="d-barro"/>
+        <text x="99" y="118" text-anchor="middle" class="d-textS">Volta em vergonha</text>
+        <text x="99" y="140" text-anchor="middle" class="d-mut">"NÃO SOU DIGNO"</text>
+
+        <rect x="206" y="90" width="164" height="76" rx="9" class="d-surface"/><rect x="206" y="90" width="164" height="76" rx="9" class="d-brass"/>
+        <text x="288" y="112" text-anchor="middle" class="d-textS">O pai corre</text>
+        <text x="288" y="134" text-anchor="middle" class="d-textS">e absorve a vergonha</text>
+        <text x="288" y="154" text-anchor="middle" class="d-mut">ANTES DE QUALQUER PALAVRA</text>
+
+        <rect x="402" y="90" width="164" height="76" rx="9" class="d-surface"/><rect x="402" y="90" width="164" height="76" rx="9" class="d-stroke"/>
+        <text x="484" y="112" text-anchor="middle" class="d-textS">Túnica · anel</text>
+        <text x="484" y="132" text-anchor="middle" class="d-textS">sandálias · festa</text>
+        <text x="484" y="152" text-anchor="middle" class="d-mut">SINAIS PÚBLICOS</text>
+
+        <rect x="598" y="90" width="138" height="76" rx="9" class="d-surface"/><rect x="598" y="90" width="138" height="76" rx="9" class="d-verde"/>
+        <text x="667" y="118" text-anchor="middle" class="d-textS">Honra restaurada</text>
+        <text x="667" y="140" text-anchor="middle" class="d-mut">DIANTE DE TODOS</text>
+
+        <line x1="178" y1="128" x2="202" y2="128" class="d-brass" marker-end="url(#ar15)"/>
+        <line x1="374" y1="128" x2="398" y2="128" class="d-brass" marker-end="url(#ar15)"/>
+        <line x1="570" y1="128" x2="594" y2="128" class="d-brass" marker-end="url(#ar15)"/>
+
+        <text x="24" y="44" class="d-mut">A SEQUÊNCIA — E REPARE ONDE ELA COMEÇA</text>
+        <text x="24" y="216" class="d-textS">O filho nunca chega a terminar o discurso de auto-humilhação. A restauração começa <tspan class="d-b">antes</tspan> de ele provar qualquer coisa,</text>
+        <text x="24" y="236" class="d-textS">e termina em público — porque vergonha adquirida em público precisa de honra devolvida em público.</text>
+      </svg>
+    </div>
+    <figcaption>A ordem importa: honra restaurada primeiro, comportamento depois. Se fosse o contrário — prove-se e então você volta a ser filho — seria o sistema do desempenho, e não o da graça (<a href="#graca">3.2</a>).</figcaption>
+  </figure>
+
+  <div class="callout">
+    <span class="callout__title">A aplicação direta ao seu caso</span>
+    <p>Duas coisas. <strong>Primeira:</strong> a sua posição na família não depende de você quitar a dívida — do mesmo jeito que a do filho não dependia de devolver o dinheiro. A restituição (<a href="#restituicao">3.4</a>) é resposta ao amor, não pedágio para recebê-lo. <strong>Segunda:</strong> como a vergonha que você sente é pública — "desonrei minha família" —, parte da cura precisa ser pública também. Uma conversa real com quem você acha que decepcionou vale mais do que dez anos de penitência silenciosa. É esse o sentido do passo 3 da restituição.</p>
+  </div>
+</section>
+
+<section class="sec" id="elias">
+  <div class="sec__head">
+    <span class="sec__num">Parte 3.14 · Fundamento bíblico</span>
+    <h2>Elias: comida e sono antes de teologia</h2>
+  </div>
+
+  <p class="lead">Esta é a passagem que eu colocaria emoldurada em cima da cama de qualquer pessoa esgotada. Ela é a base bíblica de tudo o que a <a href="#corpo">Parte 2.9</a> diz sobre o corpo.</p>
+
+  <p>Em 1 Reis 19, Elias acaba de viver o maior dia da carreira dele — e desaba. Foge para o deserto, senta debaixo de um arbusto e pede para morrer: "já basta, Senhor, tira a minha vida". É um homem em colapso completo, logo depois de uma vitória. Se você já se sentiu vazio depois de um mês bom, conhece essa cena.</p>
+
+  <p>O que acontece a seguir é surpreendente pelo que <em>não</em> acontece. Não há repreensão. Não há "onde está a sua fé?". Não há lição de teologia. Um anjo o toca e diz para comer. Ele come e volta a dormir. O anjo o toca outra vez e diz para comer de novo, "pois a viagem é longa demais para você". <strong>Duas refeições e dois sonos antes de qualquer conversa.</strong></p>
+
+  <div class="verso">
+    <p>"Depois, deitou-se debaixo da árvore e dormiu. De repente um anjo tocou nele e disse: 'Levante-se e coma'."</p>
+    <cite>1 Reis 19.5 · NVI</cite>
+  </div>
+
+  <p>Só muito depois, já alimentado e descansado, vem a conversa — e mesmo ela é feita de perguntas, não de sermão. E Deus não aparece no vento forte, nem no terremoto, nem no fogo, mas num <em>sussurro suave</em>. O cuidado é físico antes de ser espiritual, e silencioso antes de ser espetacular.</p>
+
+  <div class="grid grid--2">
+    <div class="box box--biblia" style="margin:0">
+      <span class="box__kicker">O que isso corrige</span>
+      <p>A ideia de que cansaço, desânimo e vontade de sumir são primeiro um problema espiritual. Às vezes são. Muitas vezes são <strong>sono, comida e descanso</strong> — e tratar como pecado o que é exaustão só acrescenta culpa a quem já não tem energia.</p>
+    </div>
+    <div class="box box--acao" style="margin:0">
+      <span class="box__kicker">A regra prática</span>
+      <p>Antes de aceitar qualquer veredito pesado sobre a sua vida, aplique o protocolo de Elias: <strong>você comeu? você dormiu? faz quanto tempo que você não para de verdade?</strong> Se a resposta for ruim, o veredito fica adiado. Cabeça exausta não emite julgamento confiável — e nunca avisa que está exausta (<a href="#corpo">2.9</a>).</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="honra">
+  <div class="sec__head">
+    <span class="sec__num">Parte 3.15 · Fundamento bíblico</span>
+    <h2>A Bíblia nasceu numa cultura de honra e vergonha — por isso ela te entende</h2>
+  </div>
+
+  <p class="lead">Aqui está uma chave de leitura que muda a Bíblia inteira, e que explica por que as palavras "honra" e "vergonha" apareceram tanto na sua própria mensagem sem que você tenha planejado.</p>
+
+  <p>Antropólogos e estudiosos bíblicos — David deSilva entre os mais citados — descrevem que o mundo do Antigo e do Novo Testamento operava numa <strong>cultura de honra e vergonha</strong>: o bem mais valioso não era dinheiro nem liberdade individual, era a posição diante do grupo. O que você era dependia de como o seu grupo te enxergava. Perder a face era perder tudo.</p>
+
+  <div class="box box--ciencia">
+    <span class="box__kicker">Três grandes eixos culturais · Jayson Georges, <em>The 3D Gospel</em></span>
+    <p>Culturas tendem a organizar o problema humano em torno de um de três eixos: <strong>culpa e inocência</strong> (predominante no Ocidente anglo-saxão — a pergunta é "isso é certo ou errado?"), <strong>honra e vergonha</strong> (predominante no Oriente Médio, na Ásia, na África e em boa parte da América Latina — a pergunta é "como isso me deixa diante dos meus?") e <strong>medo e poder</strong> (a pergunta é "quem me protege?"). A teologia ocidental moderna enfatizou quase só o primeiro eixo, mas a Bíblia fala fluentemente os três.</p>
+  </div>
+
+  <p><strong>O Brasil é, em boa medida, uma cultura de honra e vergonha</strong> — família, "o que os outros vão pensar", nome sujo, dar orgulho aos pais. Não é coincidência que a sua dor tenha se expressado como <em>"desonrei minha família"</em> e não como "violei um princípio ético". Você não é dramático: você está lendo a sua vida no eixo em que a sua cultura opera. E é justamente esse o eixo em que a Bíblia é mais eloquente.</p>
+
+  <div class="scroller">
+    <table>
+      <thead><tr><th>Eixo</th><th>O problema</th><th>A solução bíblica</th><th>Textos</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Culpa / inocência</strong></td><td>Eu fiz o errado e sou culpado</td><td>Perdão jurídico: a dívida é paga, a sentença é anulada</td><td>Rm 3.23-26 · Rm 8.1 · 1Jo 1.9</td></tr>
+        <tr><td><strong>Honra / vergonha</strong></td><td>Eu perdi meu lugar diante dos meus</td><td>Adoção e restauração pública de honra: nome novo, posição devolvida</td><td>Lc 15 · Rm 8.15-17 · Hb 12.2 · Sl 34.5</td></tr>
+        <tr><td><strong>Medo / poder</strong></td><td>Estou exposto e sem proteção</td><td>Libertação e presença: alguém maior está com você</td><td>Cl 1.13 · Sl 23 · Is 41.10</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="box box--biblia">
+    <span class="box__kicker">O versículo que junta tudo · Hebreus 12.2</span>
+    <p>Jesus "suportou a cruz, <strong>desprezando a vergonha</strong>". A crucificação era, antes de ser um método de execução, um <em>espetáculo de desonra pública</em> — nu, exposto, fora da cidade. O texto está dizendo que ele atravessou deliberadamente a máquina de vergonha da sua cultura. E o Salmo 34.5 completa: "os que contemplam o Senhor são radiantes de alegria; seu rosto jamais se cobrirá de vergonha".</p>
+    <p style="margin-bottom:0"><strong>A tradução para você:</strong> a vergonha que você carrega não precisa ser negada nem minimizada para ser resolvida. Ela foi assumida por outro, publicamente — e é por isso que a sua vergonha não precisa mais de plateia para ser desfeita.</p>
+  </div>
+</section>
+
+<section class="sec" id="alma">
+  <div class="sec__head">
+    <span class="sec__num">Parte 3.16 · Fundamento bíblico</span>
+    <h2>Falar com a própria alma em vez de se ouvir</h2>
+  </div>
+
+  <p class="lead">A Parte 2.10 mostrou o achado de Kross: mudar de "eu" para o próprio nome reduz a reatividade emocional. Três mil anos antes, um salmista já operava assim — e um pregador galês do século 20 transformou isso num método.</p>
+
+  <div class="verso">
+    <p>"Por que você está assim tão triste, ó minha alma? Por que está assim tão perturbada dentro de mim? Ponha a sua esperança em Deus! Pois ainda o louvarei; ele é o meu Salvador e o meu Deus."</p>
+    <cite>Salmos 42.5 · NVI</cite>
+  </div>
+
+  <div class="box box--biblia">
+    <span class="box__kicker">Martyn Lloyd-Jones · <em>Depressão Espiritual</em></span>
+    <p>Comentando esse salmo, Lloyd-Jones faz a observação que virou clássica: <strong>a maior parte da infelicidade da vida vem de você estar se <em>ouvindo</em> em vez de estar <em>falando</em> consigo mesmo.</strong> A sua cabeça começa a falar de manhã e despeja o problema de ontem, o medo de hoje e a acusação antiga — e você fica ali, sentado, escutando. O salmista faz o contrário: ele se interpela, se questiona, e então se prega a verdade. "Ponha a sua esperança em Deus" é uma ordem que ele dá a si mesmo.</p>
+  </div>
+
+  <p>Repare também que ele <strong>não nega o que sente</strong>. Ele começa reconhecendo: você está triste, você está perturbada. Não há "pare de reclamar" nem "seja positivo". Há o reconhecimento do estado, seguido da recolocação da esperança. É a mesma ordem do protocolo de autocompaixão (<a href="#neff">2.4</a>) e do registro de pensamento (<a href="#mecanismos">5.1</a>): primeiro nomear, depois reenquadrar.</p>
+
+  <div class="box box--acao">
+    <span class="box__kicker">O método, em quatro movimentos</span>
+    <ol style="margin-bottom:0">
+      <li><strong>Perceba que você está ouvindo.</strong> "Isso que está rodando na minha cabeça agora — quem está falando?"</li>
+      <li><strong>Interpele.</strong> Use o próprio nome: <em>"Samuel, por que você está assim tão triste?"</em></li>
+      <li><strong>Reconheça sem censura.</strong> Nomeie o que é verdade sobre o seu estado. O salmista não mente sobre si.</li>
+      <li><strong>Fale a verdade que você conhece.</strong> Não uma frase animadora — uma verdade verificável ou uma promessa: a evidência do seu Diário de Provas, ou a âncora da sua declaração de identidade (<a href="#identidade">5.2</a>).</li>
+    </ol>
+  </div>
+
+  <div class="callout">
+    <span class="callout__title">Por que isto é diferente de mantra</span>
+    <p>Mantra é você repetindo uma afirmação sobre si que a sua mente pode refutar (<a href="#mitos">2.8</a>). Isto aqui é um <strong>diálogo</strong>: uma parte de você faz perguntas e a outra responde com verdade. A pergunta é o que impede a virada de ser uma imposição — e é a pergunta, e não a afirmação, que a pesquisa de Kross mostrou funcionar.</p>
+  </div>
+</section>
+
+<section class="sec" id="lamento">
+  <div class="sec__head">
+    <span class="sec__num">Parte 3.17 · Fundamento bíblico</span>
+    <h2>Você tem permissão de reclamar — e existe um formato para isso</h2>
+  </div>
+
+  <p class="lead">Você me perguntou se devia "parar de reclamar". Esta é a resposta bíblica, e ela provavelmente contraria o que já te disseram na igreja: <strong>cerca de um terço dos Salmos é lamento</strong>. Reclamação é um gênero literário inspirado. Existe um livro inteiro chamado Lamentações.</p>
+
+  <p>O que a Bíblia condena é a murmuração no deserto: reclamar <em>sobre</em> Deus, para os outros, sem nunca falar com ele. O que ela consagra é o lamento: <strong>levar a reclamação para o próprio Deus, sem filtro.</strong> Repare no tamanho da diferença.</p>
+
+  <div class="scroller">
+    <table>
+      <thead><tr><th></th><th>Murmuração</th><th>Lamento</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Para quem</strong></td><td>Para os outros, sobre Deus</td><td>Para Deus, sobre a situação</td></tr>
+        <tr><td><strong>O que produz</strong></td><td>Amargura que contamina o grupo</td><td>Intimidade e alívio</td></tr>
+        <tr><td><strong>Postura</strong></td><td>Desistência disfarçada</td><td>Fé que ainda espera resposta</td></tr>
+        <tr><td><strong>Exemplo</strong></td><td>Israel no deserto (Nm 14)</td><td>Salmos 13, 22, 42, 88 · Jó · Lamentações</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>Veja como é cru o que está escrito na Bíblia. Salmo 13: "Até quando, Senhor? Para sempre te esquecerás de mim?". Salmo 22, que Jesus cita na cruz: "Meu Deus, meu Deus, por que me abandonaste?". O Salmo 88 é ainda mais duro — <strong>ele termina no escuro</strong>, sem virada, com a palavra "trevas" no último versículo. Deus incluiu na Bíblia um salmo que não tem final feliz. Isso é permissão explícita.</p>
+
+  <div class="box box--acao">
+    <span class="box__kicker">A estrutura do lamento — use como oração quando não souber orar</span>
+    <dl>
+      <dt>1 · O chamado</dt><dd>Dirija-se a Deus pelo nome. Só isso já muda o destinatário da sua reclamação.</dd>
+      <dt>2 · A queixa</dt><dd>Diga exatamente o que está errado, sem suavizar. "Meu avô morreu antes de eu pagar. Eu perdi dinheiro numa aposta. Eu estou com medo de não bater a meta."</dd>
+      <dt>3 · O pedido</dt><dd>Peça o que você quer de verdade, não o que parece espiritual.</dd>
+      <dt>4 · A confiança</dt><dd>Uma frase sobre quem Deus é — não sobre o que vai acontecer. É por isso que o lamento não vira desespero.</dd>
+      <dt>5 · O voto (opcional)</dt><dd>"Ainda o louvarei." No Salmo 88 esse passo não aparece, e o salmo continua sendo Escritura. <strong>Se hoje você não conseguir chegar no passo 5, pare no 4.</strong></dd>
+    </dl>
+  </div>
+
+  <div class="callout">
+    <span class="callout__title">A resposta direta à sua pergunta</span>
+    <p>Não, você não precisa "parar de reclamar e ser positivo mesmo não estando". Do lado científico, suprimir emoção sai caro e produz efeito rebote (<a href="#mitos">2.8</a>). Do lado bíblico, você tem um gênero literário inteiro autorizando o oposto. <strong>O que você precisa não é calar a queixa — é endereçá-la corretamente</strong>, e depois não parar nela. Lamento é uma porta, não uma casa.</p>
+  </div>
+</section>
+
+<section class="sec" id="palavras">
+  <div class="sec__head">
+    <span class="sec__num">Parte 3.18 · Fundamento bíblico</span>
+    <h2>Quatro palavras que mudam a leitura de tudo</h2>
+  </div>
+
+  <p class="lead">Traduções são boas, mas algumas palavras hebraicas e gregas carregam imagens que se perdem no caminho. Estas quatro reorganizam o que você leu até aqui.</p>
+
+  <div class="grid grid--2">
+    <div class="box box--biblia" style="margin:0">
+      <span class="box__kicker">כָּבוֹד · kavod · "honra"</span>
+      <p>A raiz significa literalmente <strong>peso</strong>. Honrar alguém é atribuir peso a essa pessoa; desonrar é tratá-la como leve, descartável. Isso muda o quinto mandamento: honrar pai e mãe não é ter uma ficha limpa diante deles — é <em>dar peso</em> a eles nas suas decisões. <strong>Um neto que procura a família e restitui uma dívida está dando peso ao avô.</strong> Isso é kavod, mesmo com a falha no meio da história.</p>
+    </div>
+    <div class="box box--biblia" style="margin:0">
+      <span class="box__kicker">בּוֹשׁ · bosh · "vergonha"</span>
+      <p>Carrega a ideia de <strong>ficar exposto, decepcionado em público, sem ter para onde ir</strong>. Por isso a promessa bíblica não é "você nunca vai errar", e sim "você não será envergonhado" — ou seja, você não ficará exposto sem cobertura. "Os que nele confiam jamais serão envergonhados" (Rm 10.11) é uma promessa de <em>cobertura</em>, não de perfeição.</p>
+    </div>
+    <div class="box box--biblia" style="margin:0">
+      <span class="box__kicker">צֶלֶם · tselem · "imagem"</span>
+      <p>Usada em Gn 1.27, é a mesma palavra empregada para a <strong>estátua que um rei erguia numa província</strong> para marcar presença e domínio. Ser feito à imagem de Deus, nesse pano de fundo, é ser colocado no mundo como representante — alguém com função e dignidade atribuídas de fora. <strong>Estátua de rei não perde valor porque teve um ano ruim.</strong></p>
+    </div>
+    <div class="box box--biblia" style="margin:0">
+      <span class="box__kicker">חֶסֶד · chesed · "amor leal"</span>
+      <p>Talvez a palavra mais importante do Antigo Testamento e a mais difícil de traduzir: <strong>amor que se mantém por compromisso, não por mérito do outro</strong>. Não é sentimento, é lealdade de aliança. É o chesed que faz Lamentações 3.22-23 dizer que as misericórdias "se renovam a cada manhã" — inclusive na manhã seguinte ao seu pior dia.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="callout__title">Como as quatro se juntam no seu caso</span>
+    <p>Você é <em>tselem</em> — colocado no mundo com valor atribuído, não conquistado. A sua <em>bosh</em> — a exposição pública diante da família — foi coberta por outro (<a href="#honra">3.15</a>). O <em>chesed</em> é a razão de você poder recomeçar amanhã sem ter que reconquistar nada. E o <em>kavod</em> é o que você devolve ao seu avô quando faz a conversa e paga a primeira parcela: <strong>peso, não perfeição.</strong></p>
+  </div>
+</section>
+
 <!-- ══════════════════════════ PARTE 4 ══════════════════════════ -->
 <section class="sec" id="ponte">
   <div class="sec__head">
@@ -2006,8 +3152,44 @@ details > :last-child{ margin-bottom: 16px; }
         <tr>
           <td><strong>Perdão</strong></td>
           <td>Perdoem como foram perdoados (Ef 4.32)</td>
-          <td>Intervenções de perdão reduzem raiva e sintomas depressivos em metanálises</td>
-          <td>Decisão primeiro; o sentimento vem em meses, não em dias.</td>
+          <td>Intervenções de perdão reduzem raiva e sintomas depressivos em metanálises (Worthington)</td>
+          <td>Decisão primeiro; o sentimento vem em meses, não em dias. Use o <a href="#reach">REACH</a>.</td>
+        </tr>
+        <tr>
+          <td><strong>Falar consigo</strong></td>
+          <td>"Por que você está assim tão triste, ó minha alma?" (Sl 42.5)</td>
+          <td>Autofala distanciada — usar o próprio nome — reduz reatividade emocional (Kross, Michigan)</td>
+          <td>Interpele-se pelo nome em vez de ficar ouvindo a cabeça (<a href="#alma">3.16</a>).</td>
+        </tr>
+        <tr>
+          <td><strong>Reclamar</strong></td>
+          <td>Um terço dos Salmos é lamento; Lamentações é um livro inteiro</td>
+          <td>Supressão emocional produz efeito rebote e custo fisiológico (Gross, Stanford)</td>
+          <td>Não cale a queixa — endereça. Estrutura do lamento em <a href="#lamento">3.17</a>.</td>
+        </tr>
+        <tr>
+          <td><strong>Vergonha</strong></td>
+          <td>A cruz como assunção pública da vergonha (Hb 12.2); honra restaurada (Lc 15)</td>
+          <td>Vergonha prediz esconder e repetir; culpa prediz reparar (Tangney). Vergonha não sobrevive ao ser dita (Brown)</td>
+          <td>Diga em voz alta a uma pessoa segura; restitua em público o que foi público.</td>
+        </tr>
+        <tr>
+          <td><strong>Corpo</strong></td>
+          <td>Elias recebe comida e sono antes de teologia (1Rs 19)</td>
+          <td>Privação de sono aumenta reatividade; exercício reduz sintomas de ansiedade e depressão</td>
+          <td>Antes de aceitar um veredito pesado: comeu? dormiu? parou?</td>
+        </tr>
+        <tr>
+          <td><strong>Sentido</strong></td>
+          <td>"Vocês planejaram o mal, mas Deus o tornou em bem" (Gn 50.20)</td>
+          <td>Senso de coerência protege sob estresse extremo (Antonovsky, Ben-Gurion)</td>
+          <td>Escreva o seu ano como narrativa em três parágrafos (<a href="#coerencia">2.17</a>).</td>
+        </tr>
+        <tr>
+          <td><strong>Identidade</strong></td>
+          <td>"Nem eu julgo a mim mesmo" (1Co 4.3)</td>
+          <td>Autoestima contingente é instável (Crocker); elevá-la diretamente não funciona (Baumeister)</td>
+          <td>Sair do tribunal, em vez de tentar ganhar a causa (<a href="#autoesquecimento">3.11</a>).</td>
         </tr>
       </tbody>
     </table>
@@ -2046,6 +3228,32 @@ details > :last-child{ margin-bottom: 16px; }
   <div class="callout">
     <span class="callout__title">A divisão de trabalho que eu recomendo para você</span>
     <p><strong>Use a Bíblia para responder "quem eu sou e quanto eu valho".</strong> Essa pergunta é de fundação, e a ciência não a responde. <strong>Use a ciência para responder "o que eu faço na terça-feira às 14h".</strong> Essa pergunta é de método, e a Bíblia não pretende respondê-la. Quase todo o seu sofrimento deste ano veio de pedir a resposta de fundação para o seu desempenho — que é a única das três fontes que não tinha como responder.</p>
+  </div>
+</section>
+
+<section class="sec" id="vanderweele">
+  <div class="sec__head">
+    <span class="sec__num">Parte 4.3 · A ponte</span>
+    <h2>Quando a ciência resolve medir a fé</h2>
+  </div>
+
+  <p class="lead">Existe um lugar em que as duas colunas deste manual se encontram literalmente na mesma planilha: um programa de pesquisa em Harvard que trata participação religiosa como variável e mede desfechos de saúde ao longo de décadas.</p>
+
+  <div class="box box--ciencia">
+    <span class="box__kicker">Tyler VanderWeele · Programa de Florescimento Humano e Escola de Saúde Pública T. H. Chan · Harvard</span>
+    <p>Em coortes prospectivas de longa duração, com controle extenso de fatores de confusão, a <strong>frequência a serviços religiosos</strong> apareceu associada a desfechos como menor mortalidade, menor incidência de depressão, taxas mais baixas de suicídio, mais senso de propósito, mais virtudes de caráter e relações sociais mais próximas. Os resultados foram publicados em revistas como <em>JAMA Psychiatry</em>, <em>JAMA Internal Medicine</em> e <em>International Journal of Epidemiology</em>.</p>
+  </div>
+
+  <div class="callout callout--alerta">
+    <span class="callout__title">A honestidade que precisa vir junto</span>
+    <p>Três ressalvas, e elas importam. <strong>Primeira:</strong> são estudos observacionais — mostram associação robusta, não provam causalidade, ainda que o desenho prospectivo e o controle de confundidores tornem a associação difícil de explicar só por seleção. <strong>Segunda:</strong> o que é medido é <em>frequência a serviços</em>, algo que mistura fé, comunidade, ritmo semanal e rede de apoio; a pesquisa não consegue isolar "Deus" como variável. <strong>Terceira, e a mais importante:</strong> nada disso é argumento para você crer. Fé buscada como suplemento de saúde não é fé — é utilidade. A Bíblia nunca se apresenta como estratégia de bem-estar; ela se apresenta como verdade sobre a realidade, e o bem-estar é subproduto.</p>
+  </div>
+
+  <p>Então por que incluir? Porque responde a uma pergunta legítima sua: <em>isso tudo é só conforto psicológico?</em> A resposta é que, seja qual for a sua conclusão sobre Deus, <strong>os efeitos práticos de viver dentro de uma comunidade de fé são mensuráveis e substanciais</strong> — e coincidem exatamente com o que Leary (aceitação), Waldinger (vínculos), Antonovsky (sentido) e Neff (autocompaixão) identificaram por outros caminhos. Não é coincidência: uma comunidade de fé entrega, num pacote só, quase todos os fatores que a psicologia identificou isoladamente.</p>
+
+  <div class="box box--acao">
+    <span class="box__kicker">O que fazer com isso</span>
+    <p>Se você já tem uma comunidade, <strong>trate a presença nela como parte do protocolo</strong>, com o mesmo peso do sono e do Diário de Provas — e não como algo que sobra do fim de semana. Se você se afastou por vergonha, este é o dado que desmonta a lógica do afastamento: <strong>o momento em que você mais precisa da comunidade é exatamente o momento em que a vergonha manda sair dela.</strong></p>
   </div>
 </section>
 
@@ -2353,6 +3561,38 @@ details > :last-child{ margin-bottom: 16px; }
   </div>
 </section>
 
+<section class="sec" id="diagnostico">
+  <div class="sec__head">
+    <span class="sec__num">Parte 5.6 · Como construir</span>
+    <h2>Autodiagnóstico — sair do achismo</h2>
+  </div>
+
+  <p class="lead">"Acho que melhorei" e "acho que piorei" são as duas frases que mais te enganaram este ano. Aqui estão quatro instrumentos para trocar o achismo por número. Responda hoje, salve, e refaça em <strong>30 e 90 dias</strong>. A comparação com você mesmo é a única régua honesta.</p>
+
+  <div class="callout callout--alerta">
+    <span class="callout__title">Antes de começar</span>
+    <p>Isto é <strong>autoconhecimento e acompanhamento, não diagnóstico</strong>. Nenhum resultado aqui diz que você tem ou não tem alguma condição — só um profissional avalia isso. Se um resultado te assustar, leve-o para um psicólogo em vez de tirar conclusões sozinho. E responda pensando em <em>como você tem estado nas últimas duas semanas</em>, não no seu pior dia nem no melhor.</p>
+  </div>
+
+  <p class="tag" style="display:block;margin-bottom:14px">Suas respostas e o histórico ficam salvos apenas neste navegador, no seu aparelho. Nada é enviado para lugar nenhum.</p>
+
+  <div id="quizzes"></div>
+
+  <div class="box box--acao">
+    <span class="box__kicker">Como ler os resultados juntos</span>
+    <dl>
+      <dt>Autoestima baixa + autocompaixão baixa</dt>
+      <dd>O caminho mais curto é a autocompaixão, não a autoestima — porque ela sobe com prática deliberada e não depende do mês (<a href="#neff">2.4</a>, <a href="#mecanismos">mecanismo 4</a>).</dd>
+      <dt>Contingências concentradas em desempenho e aprovação</dt>
+      <dd>Este é o padrão que explica a oscilação inteira da Parte 1.2. Trabalho de fundação: <a href="#valor">3.1</a>, <a href="#autoesquecimento">3.11</a> e escrita de valores (<a href="#mecanismos">mecanismo 5</a>).</dd>
+      <dt>Uma ou duas dimensões de Ryff muito abaixo das outras</dt>
+      <dd>Não tente subir as seis. Escolha <strong>uma</strong> e trabalhe nela por um mês na <a href="#areas">Parte 7.0</a>.</dd>
+      <dt>Tudo baixo, e faz semanas</dt>
+      <dd>Não é hora de protocolo, é hora de ajuda profissional (<a href="#ajuda">5.5</a>). Isso não é desistir do plano — é usar a ferramenta certa.</dd>
+    </dl>
+  </div>
+</section>
+
 <!-- ══════════════════════════ PARTE 6 ══════════════════════════ -->
 <section class="sec" id="rotina">
   <div class="sec__head">
@@ -2471,6 +3711,8 @@ details > :last-child{ margin-bottom: 16px; }
 
   <h3>Semana 1 — Base</h3>
   <ul class="check">
+    <li><label><input type="checkbox" id="s1z"><span><strong>Dia 1:</strong> fazer o <a href="#diagnostico">autodiagnóstico</a> completo e salvar as quatro medições</span></label></li>
+    <li><label><input type="checkbox" id="s1y"><span><strong>Dia 1:</strong> pontuar a <a href="#areas">roda das áreas</a> e escolher <strong>uma</strong> área para o mês</span></label></li>
     <li><label><input type="checkbox" id="s1a"><span>Definir e cumprir <strong>um</strong> microcompromisso diário (o mesmo, os 7 dias)</span></label></li>
     <li><label><input type="checkbox" id="s1b"><span>Diário de Provas: 3 linhas toda noite, inclusive nos dias ruins</span></label></li>
     <li><label><input type="checkbox" id="s1c"><span>Horário fixo para dormir; celular fora do quarto</span></label></li>
@@ -2508,6 +3750,9 @@ details > :last-child{ margin-bottom: 16px; }
     <li><label><input type="checkbox" id="s4e"><span>Ler os 30 dias do Diário de Provas de uma vez só, do começo ao fim</span></label></li>
     <li><label><input type="checkbox" id="s4f"><span>Revisar a linha de evidência da declaração de identidade com números novos</span></label></li>
     <li><label><input type="checkbox" id="s4g"><span>Decidir o que continua no mês 2 (mínimo: Diário, microcompromisso, WOOP)</span></label></li>
+    <li><label><input type="checkbox" id="s4h"><span><strong>Dia 30:</strong> refazer o <a href="#diagnostico">autodiagnóstico</a> e a roda das áreas — e comparar com o dia 1</span></label></li>
+    <li><label><input type="checkbox" id="s4i"><span>Escrever a <a href="#coerencia">narrativa do ano</a> em três parágrafos</span></label></li>
+    <li><label><input type="checkbox" id="s4j"><span>Escolher a área do mês 2 e o livro do mês (<a href="#biblioteca">Parte 10</a>)</span></label></li>
   </ul>
 
   <div class="callout">
@@ -2557,9 +3802,141 @@ details > :last-child{ margin-bottom: 16px; }
 </section>
 
 <!-- ══════════════════════════ PARTE 7 ══════════════════════════ -->
+<section class="sec" id="areas">
+  <div class="sec__head">
+    <span class="sec__num">Parte 7.0 · Aplicação</span>
+    <h2>As áreas da sua vida — o trabalho é uma delas, não todas</h2>
+  </div>
+
+  <p class="lead">Esta é a parte que você pediu com mais insistência: não é só sobre o G4, é sobre você. E aqui está o problema estrutural que precisa ser resolvido — <strong>quando uma vida inteira é avaliada por um único eixo, esse eixo carrega um peso que ele não aguenta.</strong> Meta não foi feita para sustentar identidade. Nenhum número foi.</p>
+
+  <p>A solução não é diminuir a importância do trabalho. É <em>distribuir a base</em>. Se o seu senso de valer se apoia em oito pontos em vez de um, um mês ruim no trabalho passa a ser o que sempre foi: um mês ruim no trabalho.</p>
+
+  <figure>
+    <div class="figbox">
+      <svg viewBox="0 0 760 320" role="img" aria-label="Comparação entre uma estrutura apoiada num único pilar, o trabalho, que desaba quando ele falha, e outra apoiada em oito áreas da vida, que continua de pé mesmo com uma delas abalada.">
+        <text x="30" y="28" class="d-barroF" style="font-family:var(--mono);font-size:10.5px">APOIADO EM UM PONTO SÓ</text>
+        <rect x="42" y="52" width="266" height="34" rx="6" class="d-surface"/>
+        <rect x="42" y="52" width="266" height="34" rx="6" class="d-barro"/>
+        <text x="175" y="74" text-anchor="middle" class="d-textS">QUANTO EU VALHO</text>
+        <rect x="152" y="98" width="46" height="130" rx="5" class="d-surface"/>
+        <rect x="152" y="98" width="46" height="130" rx="5" class="d-barro"/>
+        <text x="175" y="170" text-anchor="middle" class="d-textS" transform="rotate(-90 175 170)">TRABALHO</text>
+        <line x1="42" y1="240" x2="308" y2="240" class="d-stroke"/>
+        <path d="M198,150 L232,150" class="d-barro d-dash"/>
+        <text x="240" y="154" class="d-barroF" style="font-family:var(--sans);font-size:12px;font-weight:650">rachou?</text>
+        <text x="175" y="272" text-anchor="middle" class="d-textS">Um mês ruim derruba a casa.</text>
+        <text x="175" y="292" text-anchor="middle" class="d-mut">É ONDE VOCÊ ESTAVA</text>
+
+        <line x1="380" y1="20" x2="380" y2="300" class="d-stroke d-dash"/>
+
+        <text x="452" y="28" class="d-verdeF" style="font-family:var(--mono);font-size:10.5px">APOIADO EM OITO</text>
+        <rect x="452" y="52" width="278" height="34" rx="6" class="d-surface"/>
+        <rect x="452" y="52" width="278" height="34" rx="6" class="d-verde"/>
+        <text x="591" y="74" text-anchor="middle" class="d-textS">QUANTO EU VALHO</text>
+        <g class="d-verde">
+          <rect x="458" y="98" width="26" height="130" rx="4" class="d-surface"/><rect x="458" y="98" width="26" height="130" rx="4" class="d-verde"/>
+          <rect x="492" y="98" width="26" height="130" rx="4" class="d-surface"/><rect x="492" y="98" width="26" height="130" rx="4" class="d-verde"/>
+          <rect x="526" y="98" width="26" height="130" rx="4" class="d-surface"/><rect x="526" y="98" width="26" height="130" rx="4" class="d-verde"/>
+          <rect x="560" y="98" width="26" height="130" rx="4" class="d-surface"/><rect x="560" y="98" width="26" height="130" rx="4" class="d-barro"/>
+          <rect x="594" y="98" width="26" height="130" rx="4" class="d-surface"/><rect x="594" y="98" width="26" height="130" rx="4" class="d-verde"/>
+          <rect x="628" y="98" width="26" height="130" rx="4" class="d-surface"/><rect x="628" y="98" width="26" height="130" rx="4" class="d-verde"/>
+          <rect x="662" y="98" width="26" height="130" rx="4" class="d-surface"/><rect x="662" y="98" width="26" height="130" rx="4" class="d-verde"/>
+          <rect x="696" y="98" width="26" height="130" rx="4" class="d-surface"/><rect x="696" y="98" width="26" height="130" rx="4" class="d-verde"/>
+        </g>
+        <text x="573" y="248" text-anchor="middle" class="d-barroF" style="font-family:var(--mono);font-size:10px">TRABALHO</text>
+        <line x1="452" y1="240" x2="730" y2="240" class="d-stroke"/>
+        <text x="591" y="272" text-anchor="middle" class="d-textS">Um pilar abalado, a casa continua de pé.</text>
+        <text x="591" y="292" text-anchor="middle" class="d-mut">É PARA ONDE VOCÊ VAI</text>
+      </svg>
+    </div>
+    <figcaption>Não é sobre se importar menos com o trabalho — é sobre parar de exigir dele algo que ele não pode dar. A engenharia é a mesma de uma construção: mais pontos de apoio, menos carga em cada um.</figcaption>
+  </figure>
+
+  <h3>As oito áreas, uma a uma</h3>
+  <p>Para cada área: como os três pilares aparecem ali, o sintoma de quando falta, a prática mínima da semana, o texto bíblico e o achado científico correspondente.</p>
+
+  <div class="scroller">
+    <table>
+      <thead><tr><th>Área</th><th>O que sustenta você aqui</th><th>Sintoma de que falta</th><th>Prática mínima da semana</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Fé</strong></td>
+          <td>É a única área que pode sustentar as outras sete, porque o valor vem de fora do seu desempenho (<a href="#valor">3.1</a>).</td>
+          <td>Deus vira cobrador, não pai. Você ora só para pedir resultado e evita orar quando erra.</td>
+          <td>Oração honesta de 5 minutos por dia, incluindo lamento (<a href="#lamento">3.17</a>). Presença na comunidade, mesmo envergonhado (<a href="#vanderweele">4.3</a>).</td>
+        </tr>
+        <tr>
+          <td><strong>Família</strong></td>
+          <td>É onde o seu sociômetro foi calibrado (<a href="#sociometro">1.6</a>) — e onde a ferida deste ano é mais funda.</td>
+          <td>Você evita assunto, encurta visita, responde monossílabo. Vergonha administrando distância.</td>
+          <td>Uma conversa real por semana. A conversa da dívida (<a href="#restituicao">3.4</a>) é a mais importante de todas.</td>
+        </tr>
+        <tr>
+          <td><strong>Amizades</strong></td>
+          <td>O maior preditor isolado de saúde e felicidade a longo prazo (<a href="#relacoes">2.12</a>).</td>
+          <td>Você tem contatos, não confidentes. Ninguém sabe da bet nem da dívida.</td>
+          <td>Uma mensagem ou ligação a alguém que você não fala há tempo. Uma pessoa que sabe de tudo (<a href="#comunidade">5.3</a>).</td>
+        </tr>
+        <tr>
+          <td><strong>Relacionamento</strong></td>
+          <td>Vulnerabilidade é o que produz intimidade — e é justamente o que a vergonha proíbe (<a href="#brown">2.13</a>).</td>
+          <td>Você se mostra só na versão que está indo bem. Ou evita se envolver por achar que "não está pronto".</td>
+          <td>Dizer uma coisa verdadeira que você normalmente esconderia. Uma por semana basta.</td>
+        </tr>
+        <tr>
+          <td><strong>Dinheiro</strong></td>
+          <td>Dívida consome banda cognitiva e piora todas as outras áreas (<a href="#escassez">1.8</a>).</td>
+          <td>Você evita olhar o extrato. Faz conta de cabeça para não ver o número real.</td>
+          <td>Olhar os números uma vez por semana, sem julgamento. Pagar a parcela da restituição. Zero aposta.</td>
+        </tr>
+        <tr>
+          <td><strong>Corpo</strong></td>
+          <td>É a base logística de tudo: cabeça cansada produz veredito catastrófico de graça (<a href="#corpo">2.9</a>, <a href="#elias">3.14</a>).</td>
+          <td>Dorme mal, come mal, não se move — e interpreta o cansaço resultante como falha de caráter.</td>
+          <td>Horário fixo de dormir, 3 sessões de movimento, celular fora do quarto.</td>
+        </tr>
+        <tr>
+          <td><strong>Trabalho</strong></td>
+          <td>Autoeficácia por habilidade, treinada deliberadamente (<a href="#bandura">2.2</a>, <a href="#sdr">7.1</a>).</td>
+          <td>Avalia o dia pelo placar em vez do processo. O "não" do lead vira julgamento sobre a pessoa.</td>
+          <td>As 3 do dia. Uma habilidade em prática deliberada. Fim de dia com o CRM fechado.</td>
+        </tr>
+        <tr>
+          <td><strong>Propósito e serviço</strong></td>
+          <td>Sentido protege sob estresse extremo (<a href="#coerencia">2.17</a>) e tira o foco de si (<a href="#autoesquecimento">3.11</a>).</td>
+          <td>Tudo vira sobre você — o dia inteiro, o tempo todo. Nenhuma energia dirigida a outra pessoa.</td>
+          <td>Uma ação por semana que serve alguém e não te devolve nada. É o antídoto mais rápido para a ruminação.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>A roda das áreas</h3>
+  <p>Dê uma nota de 0 a 10 para cada área — <strong>não é o quanto ela está boa, é o quanto você está satisfeito com o que tem feito nela</strong>. Depois escolha <em>uma</em> para trabalhar por um mês. Uma só.</p>
+
+  <div class="roda">
+    <div class="roda__row"><span>Fé</span><input type="range" id="roda-fe" min="0" max="10" step="1" value="5"><output>5</output></div>
+    <div class="roda__row"><span>Família</span><input type="range" id="roda-familia" min="0" max="10" step="1" value="5"><output>5</output></div>
+    <div class="roda__row"><span>Amizades</span><input type="range" id="roda-amizades" min="0" max="10" step="1" value="5"><output>5</output></div>
+    <div class="roda__row"><span>Relacionamento</span><input type="range" id="roda-amor" min="0" max="10" step="1" value="5"><output>5</output></div>
+    <div class="roda__row"><span>Dinheiro</span><input type="range" id="roda-dinheiro" min="0" max="10" step="1" value="5"><output>5</output></div>
+    <div class="roda__row"><span>Corpo</span><input type="range" id="roda-corpo" min="0" max="10" step="1" value="5"><output>5</output></div>
+    <div class="roda__row"><span>Trabalho</span><input type="range" id="roda-trabalho" min="0" max="10" step="1" value="5"><output>5</output></div>
+    <div class="roda__row"><span>Propósito</span><input type="range" id="roda-proposito" min="0" max="10" step="1" value="5"><output>5</output></div>
+  </div>
+  <p class="tag">As notas ficam salvas neste navegador. Refaça junto com o <a href="#diagnostico">autodiagnóstico</a>, a cada 30 dias.</p>
+
+  <div class="callout">
+    <span class="callout__title">A regra de ouro desta parte</span>
+    <p><strong>Uma área por mês.</strong> Tentar levantar oito ao mesmo tempo é a receita infalível de não levantar nenhuma — e de acrescentar mais uma prova de fracasso à sua coleção. Escolha a nota mais baixa que também seja a mais possível de mexer, e trate as outras sete em modo de manutenção. Em oito meses você terá passado por todas, com evidência real em cada uma.</p>
+    <p style="margin-bottom:0">E repare no que acontece quando você faz isso: <strong>a meta do mês deixa de ser o assunto da sua vida e volta a ser o assunto do seu trabalho.</strong> Era isso que você estava procurando quando escreveu que queria ser inabalável.</p>
+  </div>
+</section>
+
 <section class="sec" id="sdr">
   <div class="sec__head">
-    <span class="sec__num">Parte 7 · Aplicação</span>
+    <span class="sec__num">Parte 7.1 · Aplicação</span>
     <h2>No trabalho: como isso vira meta batida</h2>
   </div>
 
@@ -2691,7 +4068,40 @@ details > :last-child{ margin-bottom: 16px; }
     <li><strong>Gross, J. J. (2002).</strong> <em>Emotion Regulation: Affective, Cognitive, and Social Consequences.</em> Psychophysiology, 39, 281–291. Universidade de Stanford. (Supressão vs. reavaliação.)</li>
     <li><strong>Ranehill, E., Dreber, A., Johannesson, M., Leiberg, S., Sul, S., &amp; Weber, R. A. (2015).</strong> <em>Assessing the Robustness of Power Posing.</em> Psychological Science, 26(5), 653–656. (Falha de replicação.)</li>
     <li><strong>Emmons, R. A., &amp; McCullough, M. E. (2003).</strong> <em>Counting Blessings Versus Burdens.</em> Journal of Personality and Social Psychology, 84(2), 377–389. (Gratidão em ensaio controlado.)</li>
-    <li><strong>Roosevelt, T. (1910).</strong> <em>Citizenship in a Republic</em> ("O Homem na Arena"), discurso na Sorbonne, Paris. — retórica, não pesquisa.</li>
+    <li><strong>Roosevelt, T. (1910).</strong> <em>Citizenship in a Republic</em> ("O Homem na Arena"), discurso na Sorbonne, Paris. — retórica, não pesquisa. Origem do título <em>Daring Greatly</em>, de Brené Brown.</li>
+  </ul>
+
+  <h3>Acrescentados na segunda edição</h3>
+  <ul>
+    <li><strong>Leary, M. R., &amp; Baumeister, R. F. (2000).</strong> <em>The Nature and Function of Self-Esteem: Sociometer Theory.</em> Advances in Experimental Social Psychology, 32, 1–62. Universidade Duke. Ver também Leary (2005), <em>Sociometer Theory and the Pursuit of Relational Value</em>, European Review of Social Psychology, 16, 75–111.</li>
+    <li><strong>Ryff, C. D. (1989).</strong> <em>Happiness Is Everything, or Is It? Explorations on the Meaning of Psychological Well-Being.</em> Journal of Personality and Social Psychology, 57(6), 1069–1081. Universidade de Wisconsin-Madison. — <a href="https://ppc.sas.upenn.edu/resources/questionnaires-researchers/psychological-well-being-scales">Escalas</a></li>
+    <li><strong>Deci, E. L., &amp; Ryan, R. M. (2000).</strong> <em>The "What" and "Why" of Goal Pursuits: Human Needs and the Self-Determination of Behavior.</em> Psychological Inquiry, 11(4), 227–268. Universidade de Rochester.</li>
+    <li><strong>Mani, A., Mullainathan, S., Shafir, E., &amp; Zhao, J. (2013).</strong> <em>Poverty Impedes Cognitive Function.</em> Science, 341(6149), 976–980. Harvard, Princeton e Warwick. — <a href="https://pubmed.ncbi.nlm.nih.gov/23990553/">PubMed</a></li>
+    <li><strong>Kross, E., Bruehlman-Senecal, E., Park, J., et al. (2014).</strong> <em>Self-Talk as a Regulatory Mechanism: How You Do It Matters.</em> Journal of Personality and Social Psychology, 106(2), 304–324. Universidade de Michigan. Ver também Orvell et al. (2021), Clinical Psychological Science.</li>
+    <li><strong>Rutledge, R. B., Skandali, N., Dayan, P., &amp; Dolan, R. J. (2014).</strong> <em>A Computational and Neural Model of Momentary Subjective Well-Being.</em> PNAS, 111(33), 12252–12257. University College London.</li>
+    <li><strong>Crum, A. J., Salovey, P., &amp; Achor, S. (2013).</strong> <em>Rethinking Stress: The Role of Mindsets in Determining the Stress Response.</em> Journal of Personality and Social Psychology, 104(4), 716–733. Universidade de Stanford e Universidade Yale.</li>
+    <li><strong>Waldinger, R., &amp; Schulz, M. (2023).</strong> <em>The Good Life.</em> Simon &amp; Schuster — livro do Harvard Study of Adult Development, em curso desde 1938. — <a href="https://news.harvard.edu/gazette/story/2017/04/over-nearly-80-years-harvard-study-has-been-showing-how-to-live-a-healthy-and-happy-life/">Harvard Gazette</a></li>
+    <li><strong>Brown, B. (2012).</strong> <em>Daring Greatly</em> [<em>A Coragem de Ser Imperfeito</em>]. Gotham Books. Universidade de Houston.</li>
+    <li><strong>Tangney, J. P., &amp; Dearing, R. L. (2002).</strong> <em>Shame and Guilt.</em> Guilford Press. Universidade George Mason.</li>
+    <li><strong>Gilbert, P. (2009).</strong> <em>The Compassionate Mind.</em> Constable. Universidade de Derby, Reino Unido — Terapia Focada na Compaixão.</li>
+    <li><strong>Wood, W., &amp; Rünger, D. (2016).</strong> <em>Psychology of Habit.</em> Annual Review of Psychology, 67, 289–314. Universidade do Sul da Califórnia.</li>
+    <li><strong>Lally, P., van Jaarsveld, C. H. M., Potts, H. W. W., &amp; Wardle, J. (2010).</strong> <em>How Are Habits Formed: Modelling Habit Formation in the Real World.</em> European Journal of Social Psychology, 40(6), 998–1009. University College London — a origem do dado dos ~66 dias.</li>
+    <li><strong>Fogg, B. J. (2019).</strong> <em>Tiny Habits.</em> Houghton Mifflin. Universidade de Stanford.</li>
+    <li><strong>Milkman, K. (2021).</strong> <em>How to Change.</em> Portfolio. Wharton, Universidade da Pensilvânia. Ver também Dai, Milkman &amp; Riis (2014), <em>The Fresh Start Effect</em>, Management Science.</li>
+    <li><strong>Lembke, A. (2021).</strong> <em>Dopamine Nation</em> [<em>Nação Dopamina</em>]. Dutton. Escola de Medicina de Stanford.</li>
+    <li><strong>Worthington, E. L. (2006).</strong> <em>Forgiveness and Reconciliation: Theory and Application.</em> Routledge. Virginia Commonwealth University — modelo REACH.</li>
+    <li><strong>Antonovsky, A. (1987).</strong> <em>Unraveling the Mystery of Health: How People Manage Stress and Stay Well.</em> Jossey-Bass. Universidade Ben-Gurion do Neguev, Israel.</li>
+    <li><strong>Vygotsky, L. S. (1978).</strong> <em>Mind in Society.</em> Harvard University Press (originais dos anos 1930) — zona de desenvolvimento proximal.</li>
+    <li><strong>Csikszentmihalyi, M. (1990).</strong> <em>Flow: The Psychology of Optimal Experience.</em> Harper &amp; Row. Universidade de Chicago.</li>
+    <li><strong>Fava, G. A., Rafanelli, C., Cazzaro, M., Conti, S., &amp; Grandi, S. (1998).</strong> <em>Well-Being Therapy: A Novel Psychotherapeutic Approach for Residual Symptoms of Affective Disorders.</em> Psychological Medicine, 28(2), 475–480. Universidade de Bolonha, Itália. — <a href="https://pubmed.ncbi.nlm.nih.gov/9572104/">PubMed</a></li>
+    <li><strong>VanderWeele, T. J. (2017).</strong> <em>Religious Communities and Human Flourishing.</em> Current Directions in Psychological Science, 26(5), 476–481. Programa de Florescimento Humano, Harvard. Ver também Chen &amp; VanderWeele (2018), American Journal of Epidemiology. — <a href="https://hfh.fas.harvard.edu/research-themes/religion">Programa</a></li>
+    <li><strong>Hutz, C. S., &amp; Zanon, C. (2011).</strong> <em>Revisão da adaptação, validação e normatização da Escala de Autoestima de Rosenberg.</em> Avaliação Psicológica, 10(1), 41–49. <strong>Universidade Federal do Rio Grande do Sul</strong> — a adaptação brasileira usada no autodiagnóstico. — <a href="https://pepsic.bvsalud.org/scielo.php?script=sci_arttext&pid=S1677-04712011000100005">PePSIC</a></li>
+    <li><strong>Raes, F., Pommier, E., Neff, K. D., &amp; Van Gucht, D. (2011).</strong> <em>Construction and Factorial Validation of a Short Form of the Self-Compassion Scale.</em> Clinical Psychology &amp; Psychotherapy, 18(3), 250–255.</li>
+    <li><strong>Killingsworth, M. A., &amp; Gilbert, D. T. (2010).</strong> <em>A Wandering Mind Is an Unhappy Mind.</em> Science, 330(6006), 932. Universidade Harvard.</li>
+    <li><strong>Keller, T. (2012).</strong> <em>The Freedom of Self-Forgetfulness.</em> 10Publishing — exposição de 1 Coríntios 3.21–4.7.</li>
+    <li><strong>deSilva, D. A. (2000).</strong> <em>Honor, Patronage, Kinship &amp; Purity.</em> InterVarsity Press. Ashland Theological Seminary.</li>
+    <li><strong>Georges, J. (2017).</strong> <em>The 3D Gospel: Ministry in Guilt, Shame, and Fear Cultures.</em> Time Press.</li>
+    <li><strong>Lloyd-Jones, D. M. (1965).</strong> <em>Spiritual Depression: Its Causes and Cure</em> [<em>Depressão Espiritual</em>]. Eerdmans — o capítulo sobre o Salmo 42.</li>
   </ul>
 
   <h3>Índice de versículos por tema</h3>
@@ -2713,6 +4123,11 @@ details > :last-child{ margin-bottom: 16px; }
         <tr><td>Em luto</td><td>Sl 34.18 · Sl 147.3 · Mt 5.4 · Ap 21.4</td></tr>
         <tr><td>Precisando de coragem</td><td>Js 1.9 · Is 41.10 · Sl 27.1 · 2Tm 1.7</td></tr>
         <tr><td>Cansado de perseverar</td><td>Rm 5.3-5 · Tg 1.2-4 · Gl 6.9 · Hb 12.1-3</td></tr>
+        <tr><td>Traído por quem era próximo</td><td>Gn 37-50, esp. 50.20 · Sl 55.12-14 · Lc 22.47-48</td></tr>
+        <tr><td>Sentindo que desonrou a família</td><td>Lc 15.11-32 · Hb 12.2 · Sl 34.5 · Rm 10.11</td></tr>
+        <tr><td>Exausto, sem forças para nada</td><td>1Rs 19.1-18 · Mt 11.28-30 · Sl 23</td></tr>
+        <tr><td>Com vontade de reclamar</td><td>Sl 13 · Sl 22 · Sl 88 · Lamentações 3.19-24 · Jó 3</td></tr>
+        <tr><td>Preso ao que os outros pensam</td><td>1Co 4.3-4 · Gl 1.10 · Pv 29.25</td></tr>
       </tbody>
     </table>
   </div>
@@ -2858,7 +4273,56 @@ details > :last-child{ margin-bottom: 16px; }
   </details>
 
   <details>
-    <summary>Ficha 6 · Checklist diário (30 dias)</summary>
+    <summary>Ficha 6 · Perdão — o percurso REACH</summary>
+    <p>Uma ficha por pessoa a perdoar. Preencha ao longo de dias, não de uma vez (<a href="#reach">2.16</a>).</p>
+    <div class="box" style="margin:0">
+      <dl>
+        <dt>R — O que aconteceu (fatos, sem minimizar e sem afundar)</dt><dd>_______________________________________________</dd>
+        <dt>E — O que pode ter levado essa pessoa a agir assim (não é justificar)</dt><dd>_______________________________________________</dd>
+        <dt>A — Uma vez em que eu fui perdoado e o que senti</dt><dd>_______________________________________________</dd>
+        <dt>C — Minha decisão, com data</dt><dd>Em __/__/____ eu decidi abrir mão do direito de cobrar de ______________.</dd>
+        <dt>H — O que eu leio quando a raiva voltar</dt><dd>_______________________________________________</dd>
+        <dt>Limites que permanecem (perdoar ≠ reconciliar)</dt><dd>_______________________________________________</dd>
+      </dl>
+    </div>
+  </details>
+
+  <details>
+    <summary>Ficha 7 · Lamento estruturado — para quando não souber orar</summary>
+    <p>O formato dos salmos de lamento (<a href="#lamento">3.17</a>). Se hoje você não conseguir chegar ao passo 5, pare no 4 — o Salmo 88 também para.</p>
+    <div class="box box--biblia" style="margin:0">
+      <dl>
+        <dt>1 · Chamado — a quem eu estou falando</dt><dd>_______________________________________________</dd>
+        <dt>2 · Queixa — o que está errado, sem suavizar</dt><dd>_______________________________________________</dd>
+        <dt>3 · Pedido — o que eu quero de verdade</dt><dd>_______________________________________________</dd>
+        <dt>4 · Confiança — uma coisa que eu sei sobre quem Deus é</dt><dd>_______________________________________________</dd>
+        <dt>5 · Voto — o que eu ainda farei (opcional hoje)</dt><dd>_______________________________________________</dd>
+      </dl>
+    </div>
+  </details>
+
+  <details>
+    <summary>Ficha 8 · Roda das áreas — versão em papel</summary>
+    <p>Nota de 0 a 10 para o quanto você está satisfeito com <em>o que tem feito</em> em cada área. Depois escolha <strong>uma</strong> para o mês (<a href="#areas">7.0</a>).</p>
+    <div class="scroller">
+      <table>
+        <thead><tr><th>Área</th><th>Nota hoje</th><th>Nota em 30 dias</th><th>A prática mínima que eu escolhi</th></tr></thead>
+        <tbody>
+          <tr><td>Fé</td><td class="num">___</td><td class="num">___</td><td></td></tr>
+          <tr><td>Família</td><td class="num">___</td><td class="num">___</td><td></td></tr>
+          <tr><td>Amizades</td><td class="num">___</td><td class="num">___</td><td></td></tr>
+          <tr><td>Relacionamento</td><td class="num">___</td><td class="num">___</td><td></td></tr>
+          <tr><td>Dinheiro</td><td class="num">___</td><td class="num">___</td><td></td></tr>
+          <tr><td>Corpo</td><td class="num">___</td><td class="num">___</td><td></td></tr>
+          <tr><td>Trabalho</td><td class="num">___</td><td class="num">___</td><td></td></tr>
+          <tr><td>Propósito e serviço</td><td class="num">___</td><td class="num">___</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </details>
+
+  <details>
+    <summary>Ficha 9 · Checklist diário (30 dias)</summary>
     <ul class="check">
       <li><label><input type="checkbox" id="d1"><span>Manhã: 6 respirações + declaração de identidade + "as 3 do dia"</span></label></li>
       <li><label><input type="checkbox" id="d2"><span>Microcompromisso do dia cumprido</span></label></li>
@@ -2878,6 +4342,308 @@ details > :last-child{ margin-bottom: 16px; }
     <span class="callout__title">A última coisa</span>
     <p>Você escreveu que se sentiu "diminuído, com um vazio e uma dor enorme". Nada neste manual apaga o ano que você teve — e não deveria apagar, porque foi real e foi pesado. O que ele muda é a <strong>conclusão</strong> que você tirou daquilo. A conclusão que ficou foi "eu não presto". A conclusão que os fatos sustentam é: um cara de vinte e poucos anos atravessou luto, doença na família, traição, dívida e vergonha ao mesmo tempo — e continuou trabalhando, bateu 6 de 10 metas no meio disso, e agora está procurando entender para reconstruir.</p>
     <p style="margin-bottom:0">Essas duas frases descrevem o mesmo ano. Só uma delas é verdade. <strong>Ainda que o justo caia sete vezes, tornará a erguer-se.</strong></p>
+  </div>
+</section>
+
+<!-- ══════════════════════════ PARTE 10 ══════════════════════════ -->
+<section class="sec" id="biblioteca">
+  <div class="sec__head">
+    <span class="sec__num">Parte 10 · Biblioteca</span>
+    <h2>Os livros — o que ler, por onde começar e para qual dor serve</h2>
+  </div>
+
+  <p class="lead">Você pediu os melhores livros do mundo sobre esses assuntos. Aqui estão, com o formato que importa: <strong>a tese em uma frase, as ideias que você usa na prática, o capítulo por onde começar e para qual dor cada um serve.</strong> Você ganha o miolo mesmo sem ler tudo — e sabe quais valem comprar.</p>
+
+  <div class="box box--acao">
+    <span class="box__kicker">Se for ler só três este ano</span>
+    <p><strong>1.</strong> <em>A Coragem de Ser Imperfeito</em> — você já tem, e ele é o mais direto para a sua ferida principal. <strong>2.</strong> <em>Autocompaixão</em>, de Kristin Neff — é o mecanismo que a pesquisa mostra ser mais estável. <strong>3.</strong> <em>A Liberdade de Se Esquecer de Si Mesmo</em>, de Timothy Keller — tem 40 páginas e resolve, do lado da fé, o problema que os outros dois descrevem.</p>
+  </div>
+
+  <h3 id="biblioteca-brown">O livro que você já tem — guia de leitura</h3>
+
+  <div class="livro livro--ponte">
+    <h4>A Coragem de Ser Imperfeito</h4>
+    <span class="livro__autor">Brené Brown · Universidade de Houston · orig. <em>Daring Greatly</em> (2012)</span>
+    <p class="livro__tese">Vulnerabilidade — se expor sem garantia de resultado — não é fraqueza: é a origem da coragem, da conexão e de tudo o que dá sentido. E a vergonha, que faz você se esconder, não sobrevive quando é dita em voz alta para alguém que responde com empatia.</p>
+    <dl>
+      <dt>Por que este é o seu livro</dt>
+      <dd>O ano que você descreveu é um ano de vergonha, não só de problemas. Vergonha é o tema central de duas décadas de pesquisa da autora, e ela escreve para exatamente o lugar em que você está.</dd>
+      <dt>O detalhe que fecha um círculo</dt>
+      <dd>O título original, <em>Daring Greatly</em>, sai literalmente do discurso "O Homem na Arena", de Theodore Roosevelt — o "estudo de Rosevelt" que você tentou lembrar na sua primeira pergunta (<a href="#pigmaliao">2.7</a>). O livro inteiro é uma expansão daquela frase: quem falha, ao menos falha <strong>ousando muito</strong>.</dd>
+      <dt>As ideias que você usa amanhã</dt>
+      <dd>
+        <ul>
+          <li><strong>Vergonha × culpa:</strong> a distinção da <a href="#vergonha">Parte 3.3</a> vem daqui, com dados. Culpa é adaptativa; vergonha, não.</li>
+          <li><strong>Resiliência à vergonha:</strong> reconhecer o gatilho, checar a história que você está contando, falar sobre ela, pedir o que precisa. É um protocolo, não um sentimento.</li>
+          <li><strong>"A arena":</strong> só quem está exposto ao fracasso está de fato jogando. As suas 4 ondas perdidas são prova de participação, não de incompetência.</li>
+          <li><strong>Escassez e "nunca suficiente":</strong> a cultura que faz você medir a vida pelo que falta. É a raiz do "bati 6 e só enxergo os 4".</li>
+          <li><strong>Blindagens contra a vulnerabilidade:</strong> perfeccionismo, anestesia e pessimismo antecipado — os três aparecem na sua história.</li>
+        </ul>
+      </dd>
+      <dt>Por onde começar</dt>
+      <dd>Capítulo 3, sobre vergonha, e depois o capítulo 4, sobre as blindagens. Se estiver sem paciência para o começo, pule a introdução e volte depois.</dd>
+      <dt>Para qual dor</dt>
+      <dd>Vergonha · medo do julgamento da família · perfeccionismo · dificuldade de se abrir.</dd>
+    </dl>
+  </div>
+
+  <h3 id="biblioteca-ciencia">Essenciais científicos</h3>
+
+  <div class="livro livro--ciencia">
+    <h4>Autocompaixão</h4>
+    <span class="livro__autor">Kristin Neff · Universidade do Texas em Austin</span>
+    <p class="livro__tese">A alternativa à autoestima: em vez de tentar se avaliar bem, parar de se avaliar — e se tratar como você trataria um amigo, especialmente quando erra.</p>
+    <dl>
+      <dt>As ideias que você usa</dt>
+      <dd><ul>
+        <li>Os três componentes: bondade consigo, humanidade comum, atenção plena.</li>
+        <li>Autocompaixão prevê valor pessoal <strong>mais estável</strong> que autoestima e é menos dependente de aparência e sucesso.</li>
+        <li>Não amolece: quem se trata com compaixão assume mais responsabilidade, porque não precisa se defender de si.</li>
+        <li>A pausa da autocompaixão — o protocolo de 60 segundos da <a href="#neff">Parte 2.4</a>.</li>
+      </ul></dd>
+      <dt>Por onde começar</dt><dd>Capítulos 3 a 5, e faça os exercícios em vez de só ler.</dd>
+      <dt>Para qual dor</dt><dd>Autocrítica destrutiva · se punir depois de errar · oscilação com resultado.</dd>
+    </dl>
+  </div>
+
+  <div class="livro livro--ciencia">
+    <h4>Chatter — a voz na sua cabeça</h4>
+    <span class="livro__autor">Ethan Kross · Universidade de Michigan</span>
+    <p class="livro__tese">O diálogo interno é a maior ferramenta e o maior sabotador que você tem; a diferença entre os dois está em <em>como</em> você fala consigo.</p>
+    <dl>
+      <dt>As ideias que você usa</dt>
+      <dd><ul>
+        <li><strong>Autofala distanciada:</strong> use o próprio nome. Muda a fisiologia e o cérebro (<a href="#voz">2.10</a>).</li>
+        <li><strong>Zoom out temporal:</strong> "isso vai importar daqui a um ano?" — reduz a intensidade sem negar o problema.</li>
+        <li><strong>Desabafo mal feito piora:</strong> falar do problema repetidamente sem reenquadrá-lo alimenta a ruminação. Peça a quem te ouve que também te ajude a olhar de outro ângulo.</li>
+        <li>Natureza, ordem no ambiente e rituais reduzem o barulho mental — e não é firula.</li>
+      </ul></dd>
+      <dt>Por onde começar</dt><dd>O capítulo sobre distanciamento; é o que tem aplicação imediata.</dd>
+      <dt>Para qual dor</dt><dd>Remoer · ansiedade antecipatória · não conseguir desligar depois do trabalho.</dd>
+    </dl>
+  </div>
+
+  <div class="livro livro--ciencia">
+    <h4>Mindset: a nova psicologia do sucesso</h4>
+    <span class="livro__autor">Carol Dweck · Universidade de Stanford</span>
+    <p class="livro__tese">Acreditar que capacidade é fixa ou desenvolvível muda como você lê a dificuldade — e, portanto, se você continua tentando.</p>
+    <dl>
+      <dt>As ideias que você usa</dt>
+      <dd><ul>
+        <li>Erro como diagnóstico do método, não sentença sobre a pessoa.</li>
+        <li>Elogiar (inclusive a si) pelo processo, não pelo talento.</li>
+        <li>O "ainda": não é "eu não consigo", é "eu não consigo <em>ainda</em>".</li>
+      </ul></dd>
+      <dt>Nota honesta</dt><dd>Intervenções de mentalidade em larga escala mostram efeitos pequenos e desiguais. O valor está no hábito de interpretação, não numa promessa de transformação.</dd>
+      <dt>Para qual dor</dt><dd>"Eu não nasci pra isso" · desistir depois de uma sequência ruim.</dd>
+    </dl>
+  </div>
+
+  <div class="livro livro--ciencia">
+    <h4>Nação Dopamina</h4>
+    <span class="livro__autor">Anna Lembke · Escola de Medicina de Stanford</span>
+    <p class="livro__tese">Prazer e dor dividem a mesma balança no cérebro; buscar prazer em excesso desloca o ponto de equilíbrio e você passa a precisar do estímulo só para se sentir normal.</p>
+    <dl>
+      <dt>As ideias que você usa</dt>
+      <dd><ul>
+        <li><strong>Autoamarração</strong> — barreiras físicas, temporais e categóricas valem mais que força de vontade (<a href="#dopamina">2.15</a>).</li>
+        <li>Um período de abstinência costuma ser necessário para a balança voltar; os primeiros dias são os piores, e isso é esperado.</li>
+        <li>Honestidade radical com uma pessoa é parte do tratamento, não acessório.</li>
+      </ul></dd>
+      <dt>Para qual dor</dt><dd><strong>Apostas</strong> · celular · qualquer coisa que você usa para não sentir.</dd>
+    </dl>
+  </div>
+
+  <div class="livro livro--ciencia">
+    <h4>Hábitos Atômicos</h4>
+    <span class="livro__autor">James Clear · autor e divulgador (não é pesquisa original)</span>
+    <p class="livro__tese">Sistemas vencem metas: você não sobe ao nível dos seus objetivos, você cai ao nível dos seus sistemas.</p>
+    <dl>
+      <dt>As ideias que você usa</dt>
+      <dd><ul>
+        <li><strong>Hábitos de identidade:</strong> cada ação é um voto no tipo de pessoa que você quer ser. Conversa direto com a <a href="#identidade">declaração de identidade</a>.</li>
+        <li>Torne óbvio, atraente, fácil e satisfatório — e o inverso para o que você quer eliminar.</li>
+        <li>Empilhamento de hábitos: ancore o novo num que já existe.</li>
+        <li>"Nunca duas vezes seguidas."</li>
+      </ul></dd>
+      <dt>Nota honesta</dt><dd>É síntese de divulgação, não ciência primária. Para o rigor, leia Wendy Wood; para a aplicação, Clear é mais prático.</dd>
+      <dt>Para qual dor</dt><dd>Começar e largar · rotina que não gruda.</dd>
+    </dl>
+  </div>
+
+  <div class="livro livro--ciencia">
+    <h4>Sentir-se Bem</h4>
+    <span class="livro__autor">David Burns · a partir do trabalho de Aaron Beck, Universidade da Pensilvânia</span>
+    <p class="livro__tese">O manual popular da TCC: identificar os pensamentos automáticos, nomear a distorção e responder com precisão.</p>
+    <dl>
+      <dt>As ideias que você usa</dt>
+      <dd><ul>
+        <li>As dez distorções cognitivas — a tabela da <a href="#beck">Parte 2.1</a> vem daqui.</li>
+        <li>O registro de pensamento em colunas, que é o mecanismo 3 do seu protocolo.</li>
+        <li>Técnica da dupla coluna e do "e se?" levado até o fim.</li>
+      </ul></dd>
+      <dt>Para qual dor</dt><dd>Autocrítica · catastrofização · humor que despenca depois de um "não".</dd>
+    </dl>
+  </div>
+
+  <div class="livro livro--ciencia">
+    <h4>A Armadilha da Felicidade</h4>
+    <span class="livro__autor">Russ Harris · a partir da ACT, de Steven Hayes</span>
+    <p class="livro__tese">Tentar controlar e eliminar pensamentos e emoções ruins é a armadilha; o caminho é aceitá-los e agir na direção dos seus valores mesmo com eles presentes.</p>
+    <dl>
+      <dt>As ideias que você usa</dt>
+      <dd><ul>
+        <li><strong>Desfusão:</strong> "estou tendo o pensamento de que não vou bater a meta" em vez de "não vou bater a meta". Cria distância sem discutir com a mente.</li>
+        <li><strong>Ação guiada por valores:</strong> você age pelo que importa, não pelo que sente — a versão terapêutica do "ação antes do sentimento".</li>
+        <li>Aceitação não é resignação: é parar de gastar energia lutando contra o que já está aqui.</li>
+      </ul></dd>
+      <dt>Para qual dor</dt><dd>Ansiedade que não vai embora · brigar com os próprios pensamentos e perder.</dd>
+    </dl>
+  </div>
+
+  <div class="livro livro--ciencia">
+    <h4>Em Busca de Sentido</h4>
+    <span class="livro__autor">Viktor Frankl · psiquiatra, sobrevivente de Auschwitz</span>
+    <p class="livro__tese">Quando não se pode mudar a situação, resta mudar a si mesmo — e quem tem um <em>porquê</em> suporta quase qualquer <em>como</em>.</p>
+    <dl>
+      <dt>As ideias que você usa</dt>
+      <dd><ul>
+        <li>A última das liberdades humanas: escolher a atitude diante do que aconteceu.</li>
+        <li>Sentido não é encontrado por introspecção, e sim por <strong>ação, vínculo e postura diante do sofrimento inevitável</strong>.</li>
+        <li>Sofrimento com sentido deixa de ser sofrimento no mesmo grau.</li>
+      </ul></dd>
+      <dt>Para qual dor</dt><dd>Luto · "por que tudo isso aconteceu comigo" · vazio depois da crise.</dd>
+    </dl>
+  </div>
+
+  <details>
+    <summary>Mais nove títulos científicos, em formato curto</summary>
+    <dl style="margin-top:6px">
+      <dt>Uma Boa Vida — Robert Waldinger &amp; Marc Schulz (Harvard)</dt>
+      <dd>O livro do estudo de 85 anos. Tese: a qualidade dos relacionamentos é o maior preditor de saúde e felicidade. Leia se você acha que vínculo é o que sobra do tempo.</dd>
+      <dt>Good Habits, Bad Habits — Wendy Wood (USC)</dt>
+      <dd>A ciência séria do hábito: contexto e fricção acima de motivação. Leia se já leu Clear e quer o rigor por trás.</dd>
+      <dt>Rethinking Positive Thinking — Gabriele Oettingen (NYU)</dt>
+      <dd>Por que fantasiar o sucesso reduz o esforço, e o método WOOP no lugar. Leia se ainda restar alguma dúvida sobre "visualizar a meta".</dd>
+      <dt>How to Change — Katy Milkman (Wharton)</dt>
+      <dd>Efeito do recomeço, agrupamento de tentação, compromisso público. Muito prático para montar o seu plano de 30 dias.</dd>
+      <dt>Garra — Angela Duckworth (Penn)</dt>
+      <dd>Paixão e persistência de longo prazo. Nota honesta: a crítica acadêmica mostra que garra prevê pouco além da conscienciosidade. Use como princípio, não como lei.</dd>
+      <dt>Potencial Oculto — Adam Grant (Wharton)</dt>
+      <dd>O ponto de partida importa menos que a distância percorrida. Bom antídoto contra comparação com o melhor SDR da equipe.</dd>
+      <dt>O Corpo Guarda as Marcas — Bessel van der Kolk</dt>
+      <dd>Como trauma se inscreve no corpo. Leia se o seu ano deixou marcas físicas — sono, sobressalto, aperto no peito.</dd>
+      <dt>Felicidade Autêntica / Florescer — Martin Seligman (Penn)</dt>
+      <dd>O modelo PERMA. Tese central: ausência de sofrimento não é florescimento.</dd>
+      <dt>Os Seis Pilares da Autoestima — Nathaniel Branden</dt>
+      <dd><strong>Nota honesta:</strong> é o clássico mais citado do tema e tem intuições boas (viver conscientemente, integridade pessoal), mas a base empírica é fraca e parte das afirmações não sobreviveu à revisão de Baumeister. Leia sabendo disso.</dd>
+    </dl>
+  </details>
+
+  <h3 id="biblioteca-biblia">Essenciais bíblicos</h3>
+
+  <div class="livro">
+    <h4>A Liberdade de Se Esquecer de Si Mesmo</h4>
+    <span class="livro__autor">Timothy Keller · 40 páginas</span>
+    <p class="livro__tese">O evangelho não oferece autoestima alta nem baixa: oferece um ego que não precisa mais de veredito, porque o veredito já foi dado.</p>
+    <dl>
+      <dt>Por que é o mais importante da lista</dt>
+      <dd>É a resposta mais direta e mais profunda ao problema exato deste manual. Custa uma hora de leitura e reorganiza tudo (<a href="#autoesquecimento">3.11</a>).</dd>
+      <dt>As ideias que você usa</dt>
+      <dd><ul>
+        <li>As duas valas — autoestima alta e baixa — têm a mesma estrutura: o eu no tribunal.</li>
+        <li>Humildade do evangelho é <strong>pensar menos em si</strong>, não pensar menos de si.</li>
+        <li>Quem já tem o veredito consegue receber crítica sem desabar e elogio sem inflar.</li>
+      </ul></dd>
+      <dt>Para qual dor</dt><dd>Valor amarrado ao desempenho · medo de julgamento · comparação constante.</dd>
+    </dl>
+  </div>
+
+  <div class="livro">
+    <h4>Depressão Espiritual: suas causas e cura</h4>
+    <span class="livro__autor">D. Martyn Lloyd-Jones · médico antes de ser pregador</span>
+    <p class="livro__tese">Boa parte da infelicidade vem de você estar se <em>ouvindo</em> em vez de estar <em>falando</em> consigo mesmo.</p>
+    <dl>
+      <dt>As ideias que você usa</dt>
+      <dd><ul>
+        <li>O método do Salmo 42: interpelar a própria alma em vez de escutá-la passivamente (<a href="#alma">3.16</a>).</li>
+        <li>A distinção entre causas espirituais, físicas e temperamentais do desânimo — ele era médico e não confundia as três.</li>
+        <li>Capítulos sobre o peso do passado e sobre o "e se" do futuro.</li>
+      </ul></dd>
+      <dt>Por onde começar</dt><dd>O primeiro capítulo, sobre o Salmo 42. Se ler só ele, já valeu.</dd>
+      <dt>Para qual dor</dt><dd>Desânimo persistente · culpa pelo passado · voz interna acusadora.</dd>
+    </dl>
+  </div>
+
+  <div class="livro">
+    <h4>Vida do Amado</h4>
+    <span class="livro__autor">Henri Nouwen · padre e psicólogo, ensinou em Harvard e Yale</span>
+    <p class="livro__tese">A grande mentira que a vergonha conta é que você tem que merecer ser amado; a verdade é que "amado" é o seu nome antes de qualquer coisa que você faça.</p>
+    <dl>
+      <dt>As ideias que você usa</dt>
+      <dd><ul>
+        <li>As quatro palavras: você é <strong>tomado, abençoado, partido e dado</strong> — inclusive a parte de estar partido tem lugar.</li>
+        <li>O mundo diz "você é o que faz, o que tem e o que os outros dizem". As três são areia.</li>
+        <li>Escrito para um amigo não religioso — é acessível mesmo em dia de pouca fé.</li>
+      </ul></dd>
+      <dt>Para qual dor</dt><dd>Sentir-se indigno · achar que precisa provar valor para ser aceito.</dd>
+    </dl>
+  </div>
+
+  <div class="livro">
+    <h4>O Evangelho Maltrapilho</h4>
+    <span class="livro__autor">Brennan Manning</span>
+    <p class="livro__tese">A graça é para quem está quebrado, cansado e envergonhado — não para quem já se arrumou.</p>
+    <dl>
+      <dt>As ideias que você usa</dt>
+      <dd><ul>
+        <li>O impostor: a versão apresentável de você que você mostra e que impede a intimidade real.</li>
+        <li>Aceitar ser aceito exatamente como você está hoje — não depois de consertado.</li>
+        <li>O autor escreve como alguém que caiu feio, várias vezes. Não é teoria.</li>
+      </ul></dd>
+      <dt>Para qual dor</dt><dd>Vergonha diante de Deus · achar que estragou tudo · recaída.</dd>
+    </dl>
+  </div>
+
+  <details>
+    <summary>Mais cinco títulos bíblicos, em formato curto</summary>
+    <dl style="margin-top:6px">
+      <dt>Quando Gente é Grande e Deus é Pequeno — Edward Welch</dt>
+      <dd>Sobre o "temor do homem": quando a opinião das pessoas governa suas decisões. É o tratamento bíblico para o que a psicologia chama de medo do julgamento alheio. <strong>Muito direto para o seu caso da plateia.</strong></dd>
+      <dt>A Busca de Significado — Robert McGee</dt>
+      <dd>Nomeia a equação falsa: "meu valor = meu desempenho + a opinião dos outros". É literalmente a fórmula da Parte 1.2, escrita de dentro da fé.</dd>
+      <dt>Vida em Comunhão — Dietrich Bonhoeffer</dt>
+      <dd>Por que a confissão a um irmão quebra o isolamento do pecado e da vergonha. Curto e denso. Base da <a href="#comunidade">Parte 5.3</a>.</dd>
+      <dt>Renovação do Coração — Dallas Willard</dt>
+      <dd>Transformação como processo treinável, não evento emocional. A ponte entre "renove a mente" e prática concreta.</dd>
+      <dt>A Alma da Vergonha — Curt Thompson</dt>
+      <dd>Psiquiatra que junta neurobiologia interpessoal e teologia para tratar vergonha. <strong>Se você fosse ler só um livro de ponte entre os dois lados, seria este.</strong></dd>
+    </dl>
+  </details>
+
+  <h3 id="biblioteca-dor">Índice por dor — o que ler para o que você está sentindo</h3>
+
+  <div class="scroller">
+    <table>
+      <thead><tr><th>Se o que dói é…</th><th>Leia</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Vergonha</strong> — "eu sou um erro"</td><td>Brown, <em>A Coragem de Ser Imperfeito</em> · Thompson, <em>A Alma da Vergonha</em> · Manning, <em>O Evangelho Maltrapilho</em></td></tr>
+        <tr><td><strong>Autocrítica</strong> — a voz que te destrói</td><td>Neff, <em>Autocompaixão</em> · Burns, <em>Sentir-se Bem</em> · Lloyd-Jones, <em>Depressão Espiritual</em></td></tr>
+        <tr><td><strong>Ansiedade</strong> — a cabeça acelerada</td><td>Harris, <em>A Armadilha da Felicidade</em> · Kross, <em>Chatter</em></td></tr>
+        <tr><td><strong>Luto</strong></td><td>Frankl, <em>Em Busca de Sentido</em> · C. S. Lewis, <em>Um Luto Observado</em></td></tr>
+        <tr><td><strong>Aposta e compulsão</strong></td><td>Lembke, <em>Nação Dopamina</em> · Clear, <em>Hábitos Atômicos</em> (parte de ambiente)</td></tr>
+        <tr><td><strong>Dinheiro e dívida</strong></td><td>Mullainathan &amp; Shafir, <em>Scarcity</em> · Housel, <em>A Psicologia Financeira</em></td></tr>
+        <tr><td><strong>Medo do que os outros pensam</strong></td><td>Welch, <em>Quando Gente é Grande e Deus é Pequeno</em> · Keller, <em>A Liberdade de Se Esquecer de Si Mesmo</em></td></tr>
+        <tr><td><strong>Solidão e vínculos rasos</strong></td><td>Waldinger, <em>Uma Boa Vida</em> · Bonhoeffer, <em>Vida em Comunhão</em></td></tr>
+        <tr><td><strong>Não conseguir manter rotina</strong></td><td>Clear, <em>Hábitos Atômicos</em> · Wood, <em>Good Habits, Bad Habits</em> · Milkman, <em>How to Change</em></td></tr>
+        <tr><td><strong>Falta de propósito</strong></td><td>Frankl, <em>Em Busca de Sentido</em> · Nouwen, <em>Vida do Amado</em> · Seligman, <em>Florescer</em></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <span class="callout__title">Como ler para valer</span>
+    <p>Um livro por mês, não cinco ao mesmo tempo. <strong>Leia com caneta</strong> e, ao terminar cada capítulo, escreva uma frase: <em>"o que eu vou fazer diferente por causa disto?"</em>. Se não houver resposta, o capítulo foi entretenimento — e tudo bem, mas não conte como formação. E cuidado com a armadilha mais comum: <strong>ler sobre mudar é agradável e dá a sensação de progresso, enquanto mudar é desconfortável.</strong> Leitura sem as ações da <a href="#trinta">Parte 6.2</a> vira coleção de ideias bonitas.</p>
   </div>
 </section>
 
@@ -2953,6 +4719,37 @@ details > :last-child{ margin-bottom: 16px; }
     targets.forEach(function(t){ io.observe(t); });
   }
 
+  /* ---- busca no índice ---- */
+  var search = document.getElementById("tocSearch");
+  var tocList = document.getElementById("toc");
+  var tocEmpty = document.getElementById("tocEmpty");
+  var items = Array.prototype.slice.call(tocList.querySelectorAll("li"));
+
+  function normalize(s){
+    return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  }
+  items.forEach(function(li){ li.dataset.q = normalize(li.textContent); });
+
+  search.addEventListener("input", function(){
+    var q = normalize(search.value.trim());
+    if(!q){
+      items.forEach(function(li){ li.hidden = false; });
+      tocEmpty.hidden = true;
+      return;
+    }
+    var found = 0;
+    items.forEach(function(li){
+      if(li.classList.contains("toc__group")){ li.hidden = true; return; }
+      var hit = li.dataset.q.indexOf(q) !== -1;
+      li.hidden = !hit;
+      if(hit) found++;
+    });
+    tocEmpty.hidden = found > 0;
+  });
+  search.addEventListener("keydown", function(e){
+    if(e.key === "Escape"){ search.value = ""; search.dispatchEvent(new Event("input")); }
+  });
+
   /* ---- índice móvel ---- */
   var rail = document.getElementById("rail");
   var toggle = document.getElementById("railToggle");
@@ -2970,6 +4767,303 @@ details > :last-child{ margin-bottom: 16px; }
   /* ---- topo ---- */
   document.getElementById("topBtn").addEventListener("click", function(){
     window.scrollTo({top:0, behavior:"smooth"});
+  });
+
+  /* ============================================================
+     AUTODIAGNÓSTICO
+     ============================================================ */
+  var L4 = ["Discordo totalmente","Discordo","Concordo","Concordo totalmente"];
+  var L5 = ["Quase nunca","Raramente","Às vezes","Frequentemente","Quase sempre"];
+  var L7 = ["1 · nada","2","3","4 · mais ou menos","5","6","7 · muitíssimo"];
+  var L6 = ["1 · discordo muito","2","3","4","5","6 · concordo muito"];
+
+  var QUIZZES = [
+    {
+      id: "rosenberg",
+      titulo: "1 · Autoestima — Escala de Rosenberg",
+      fonte: "Rosenberg (1965) · adaptação brasileira de Hutz (2000), revisada por Hutz &amp; Zanon (UFRGS, 2011)",
+      intro: "Dez afirmações. Responda o quanto cada uma combina com você nas últimas duas semanas. Pontuação de 10 a 40.",
+      escala: L4, min: 1,
+      tipo: "soma", faixaMin: 10, faixaMax: 40,
+      itens: [
+        ["Eu sinto que sou uma pessoa de valor, pelo menos tanto quanto as outras pessoas.", 1],
+        ["Eu acho que tenho várias boas qualidades.", 1],
+        ["Levando tudo em conta, eu penso que sou um fracasso.", -1],
+        ["Eu acho que sou capaz de fazer as coisas tão bem quanto a maioria das pessoas.", 1],
+        ["Eu sinto que não tenho muito do que me orgulhar.", -1],
+        ["Eu tenho uma atitude positiva em relação a mim mesmo.", 1],
+        ["No conjunto, eu estou satisfeito comigo.", 1],
+        ["Eu gostaria de ter mais respeito por mim mesmo.", -1],
+        ["Às vezes eu me sinto inútil.", -1],
+        ["Às vezes eu acho que não presto para nada.", -1]
+      ],
+      bandas: [
+        [10, 25, "Baixa", "Faixa baixa. Isso não é um defeito de caráter — é o retrato de um período. Duas coisas a fazer: comece pela autocompaixão em vez de tentar 'aumentar a autoestima' diretamente (Baumeister mostrou que isso não funciona), e leve este número para um psicólogo se ele estiver acompanhado de tristeza persistente."],
+        [26, 32, "Média", "Faixa média — a mais comum. Aqui o trabalho útil não é subir o número, é <strong>tirá-lo da dependência do resultado</strong>. Compare com o seu perfil de contingências abaixo: se o valor está apoiado em desempenho, esse número vai continuar oscilando por conta própria."],
+        [33, 40, "Alta", "Faixa alta. Vale uma checagem honesta: autoestima alta apoiada em desempenho recente é frágil, e a pesquisa mostra que ela pode conviver com defensividade. O teste real não é o número de hoje — é o que ele faz no mês em que você não bate a meta."]
+      ],
+      nota: "As faixas são orientativas, não normas clínicas. O que mais importa não é o número de hoje, é a sua própria linha ao longo dos meses."
+    },
+    {
+      id: "autocompaixao",
+      titulo: "2 · Autocompaixão — versão curta de Neff",
+      fonte: "Neff &amp; Raes, Self-Compassion Scale — Short Form (Universidade do Texas em Austin) · tradução livre",
+      intro: "Doze afirmações sobre como você se trata quando as coisas dão errado. A pontuação é a média, de 1,00 a 5,00.",
+      escala: L5, min: 1,
+      tipo: "media", faixaMin: 1, faixaMax: 5, casas: 2,
+      itens: [
+        ["Quando eu falho em algo importante para mim, eu me consumo em sentimentos de inadequação.", -1],
+        ["Eu tento ser compreensivo e paciente com as partes da minha personalidade de que não gosto.", 1],
+        ["Quando algo doloroso acontece, eu tento ter uma visão equilibrada da situação.", 1],
+        ["Quando me sinto por baixo, eu tendo a achar que a maioria das pessoas é mais feliz do que eu.", -1],
+        ["Eu tento ver meus fracassos como parte da condição humana.", 1],
+        ["Quando estou passando por um momento difícil, eu me dou o cuidado de que preciso.", 1],
+        ["Quando algo me incomoda, eu tento manter o equilíbrio emocional.", 1],
+        ["Quando eu falho em algo importante, eu tendo a me sentir sozinho no meu fracasso.", -1],
+        ["Quando me sinto por baixo, eu tendo a ficar fixado em tudo o que está errado.", -1],
+        ["Quando me sinto inadequado, eu lembro que a maioria das pessoas também se sente assim.", 1],
+        ["Eu sou reprovador e crítico com os meus próprios defeitos e limitações.", -1],
+        ["Eu sou intolerante e impaciente com as partes da minha personalidade de que não gosto.", -1]
+      ],
+      bandas: [
+        [1, 2.5, "Baixa", "Faixa baixa: você se trata com dureza quando erra. Esta é a boa notícia deste manual inteiro — é o indicador que mais responde a treino explícito e o que a pesquisa mostra ser <strong>mais estável do que a autoestima</strong> ao longo do tempo. O protocolo de 60 segundos é o exercício direto disso."],
+        [2.5, 3.5, "Moderada", "Faixa moderada. Você consegue se tratar bem em alguns contextos e não em outros — geralmente falha justamente onde mais importa (trabalho, família). Repare em quais das doze frases você marcou alto: elas apontam o subsistema a treinar."],
+        [3.5, 5, "Alta", "Faixa alta. Isso é um ativo real e protege você em meses ruins. Mantenha o treino: autocompaixão não é traço fixo, é prática — e ela cai justamente quando a vida aperta, que é quando ela mais serve."]
+      ],
+      nota: "Três subsistemas: bondade consigo, humanidade comum e atenção plena — cada um com o seu oposto. Notas baixas costumam vir de um subsistema específico, não dos três."
+    },
+    {
+      id: "contingencias",
+      titulo: "3 · Em que o seu valor está apoiado",
+      fonte: "Inspirado no modelo de Contingências do Valor Pessoal, de Crocker &amp; Wolfe (Universidade de Michigan) · versão reduzida, não validada",
+      intro: "Este é o instrumento que mais fala com o seu caso. Não há pontuação boa ou ruim: o que interessa é o <em>perfil</em>. Para cada domínio, o quanto o seu senso de valer depende dele?",
+      escala: L7, min: 1,
+      tipo: "perfil",
+      itens: [
+        ["Meu senso de valor depende de eu <strong>ter bom desempenho</strong> no trabalho ou nos estudos.", 1, "Desempenho", "externa"],
+        ["Meu senso de valor depende da <strong>aprovação das pessoas</strong> ao meu redor.", 1, "Aprovação", "externa"],
+        ["Meu senso de valor depende de eu <strong>superar os outros</strong> ou estar à frente deles.", 1, "Competição", "externa"],
+        ["Meu senso de valor depende da minha <strong>aparência</strong> e de como eu apareço.", 1, "Aparência", "externa"],
+        ["Meu senso de valor depende do <strong>apoio da minha família</strong> e do que ela pensa de mim.", 1, "Família", "mista"],
+        ["Meu senso de valor depende de eu <strong>agir de acordo com os meus princípios</strong>.", 1, "Virtude", "interna"],
+        ["Meu senso de valor depende de eu saber que sou <strong>amado por Deus</strong>.", 1, "Fé", "interna"]
+      ],
+      nota: "Crocker mostrou que domínios externos são, ao mesmo tempo, fonte de motivação e ponto de fragilidade: quanto mais o valor se apoia neles, mais ele balança com os acontecimentos."
+    },
+    {
+      id: "ryff",
+      titulo: "4 · As seis dimensões do bem-estar",
+      fonte: "Inspirado no modelo de seis fatores de Carol Ryff (Universidade de Wisconsin-Madison) · versão curta, não validada",
+      intro: "Doze afirmações, duas por dimensão. A saída é um perfil — serve para escolher <strong>uma</strong> área para trabalhar por mês, não para tirar média.",
+      escala: L6, min: 1,
+      tipo: "perfil",
+      itens: [
+        ["Eu gosto da maior parte dos aspectos da minha personalidade.", 1, "Autoaceitação"],
+        ["Quando olho para a minha história, fico satisfeito com como as coisas foram.", 1, "Autoaceitação"],
+        ["Eu tenho pessoas com quem posso falar dos meus problemas de verdade.", 1, "Relações"],
+        ["As pessoas me descreveriam como alguém disposto a dar tempo aos outros.", 1, "Relações"],
+        ["Eu confio nas minhas opiniões mesmo quando elas contrariam o consenso.", 1, "Autonomia"],
+        ["Minhas decisões geralmente partem de mim, não da pressão dos outros.", 1, "Autonomia"],
+        ["Eu dou conta das responsabilidades da minha vida do dia a dia.", 1, "Domínio"],
+        ["Eu consigo construir um ambiente e uma rotina que funcionam para mim.", 1, "Domínio"],
+        ["Eu tenho uma direção e um senso de propósito na vida.", 1, "Propósito"],
+        ["O que eu faço no dia a dia aponta para algo que eu considero importante.", 1, "Propósito"],
+        ["Eu me vejo como alguém que continua crescendo e aprendendo.", 1, "Crescimento"],
+        ["Eu me sinto desafiado a me tornar uma pessoa melhor com o tempo.", 1, "Crescimento"]
+      ],
+      nota: "A dimensão mais baixa costuma ser a que mais responde a atenção deliberada — e quase nunca é a que você viria tentar consertar por instinto."
+    }
+  ];
+
+  var quizRoot = document.getElementById("quizzes");
+  if(quizRoot){ QUIZZES.forEach(renderQuiz); }
+
+  function store(key, val){
+    try{
+      if(val === undefined) return JSON.parse(localStorage.getItem("inabalavel:" + key) || "null");
+      localStorage.setItem("inabalavel:" + key, JSON.stringify(val));
+    }catch(e){ return null; }
+  }
+
+  function renderQuiz(q){
+    var det = document.createElement("details");
+    det.className = "quiz";
+    var html = '<summary>' + q.titulo + '</summary>';
+    html += '<span class="quiz__meta">' + q.fonte + '</span>';
+    html += '<p class="quiz__intro">' + q.intro + '</p>';
+
+    q.itens.forEach(function(item, i){
+      html += '<div class="q"><span class="q__text"><b>' + (i+1) + '</b>' + item[0] + '</span><div class="q__opts">';
+      q.escala.forEach(function(rot, j){
+        var val = q.min + j;
+        var id = q.id + "-" + i + "-" + val;
+        html += '<label for="' + id + '"><input type="radio" id="' + id + '" name="' + q.id + '-' + i + '" value="' + val + '"><span>' + rot + '</span></label>';
+      });
+      html += '</div></div>';
+    });
+
+    html += '<div class="quiz__actions">'
+          + '<button class="btn btn--solid" data-act="calc">Calcular</button>'
+          + '<button class="btn" data-act="save" hidden>Salvar esta medição</button>'
+          + '<button class="btn" data-act="clear">Limpar</button>'
+          + '</div>';
+    html += '<div class="quiz__out" data-out hidden></div>';
+    html += '<div class="quiz__out" data-hist></div>';
+    html += '<p class="tag">' + q.nota + '</p>';
+    det.innerHTML = html;
+    quizRoot.appendChild(det);
+
+    var out = det.querySelector("[data-out]");
+    var histBox = det.querySelector("[data-hist]");
+    var saveBtn = det.querySelector('[data-act="save"]');
+    var ultimo = null;
+
+    det.querySelector('[data-act="calc"]').addEventListener("click", function(){
+      var vals = [];
+      var faltando = 0;
+      q.itens.forEach(function(item, i){
+        var sel = det.querySelector('input[name="' + q.id + '-' + i + '"]:checked');
+        if(!sel){ faltando++; vals.push(null); return; }
+        var v = parseInt(sel.value, 10);
+        if(item[1] === -1){ v = (q.min + q.escala.length - 1) + q.min - v; }
+        vals.push(v);
+      });
+      if(faltando){
+        out.hidden = false;
+        out.innerHTML = '<div class="callout callout--alerta" style="margin:0"><span class="callout__title">Faltam respostas</span><p style="margin:0">Ainda faltam ' + faltando + ' de ' + q.itens.length + '. Responda todas para o resultado fazer sentido.</p></div>';
+        saveBtn.hidden = true;
+        return;
+      }
+      out.hidden = false;
+      if(q.tipo === "perfil"){
+        out.innerHTML = renderPerfil(q, vals);
+        ultimo = null;
+        saveBtn.hidden = true;
+      }else{
+        var soma = vals.reduce(function(a,b){ return a+b; }, 0);
+        var score = q.tipo === "media" ? soma / vals.length : soma;
+        ultimo = score;
+        out.innerHTML = renderScore(q, score);
+        saveBtn.hidden = false;
+      }
+    });
+
+    saveBtn.addEventListener("click", function(){
+      if(ultimo === null) return;
+      var hist = store("hist:" + q.id) || [];
+      hist.push({ d: new Date().toISOString().slice(0,10), v: Math.round(ultimo * 100) / 100 });
+      store("hist:" + q.id, hist);
+      drawHist();
+      saveBtn.textContent = "Medição salva ✓";
+      setTimeout(function(){ saveBtn.textContent = "Salvar esta medição"; }, 2200);
+    });
+
+    det.querySelector('[data-act="clear"]').addEventListener("click", function(){
+      det.querySelectorAll('input[type="radio"]').forEach(function(r){ r.checked = false; });
+      out.hidden = true; out.innerHTML = ""; saveBtn.hidden = true; ultimo = null;
+    });
+
+    function drawHist(){
+      var hist = store("hist:" + q.id) || [];
+      if(!hist.length){ histBox.innerHTML = ""; return; }
+      var rows = hist.map(function(h){
+        return '<tr><td class="num">' + h.d.split("-").reverse().join("/") + '</td><td class="num">' + fmt(q, h.v) + '</td></tr>';
+      }).join("");
+      var chart = hist.length > 1 ? sparkline(q, hist) : '<p class="tag">Salve outra medição em 30 dias para ver a sua linha.</p>';
+      histBox.innerHTML = '<span class="quiz__meta">Seu histórico</span>' + chart
+        + '<div class="scroller" style="margin-top:10px"><table><thead><tr><th>Data</th><th>Pontuação</th></tr></thead><tbody>' + rows + '</tbody></table></div>';
+    }
+    drawHist();
+  }
+
+  function fmt(q, v){ return q.casas ? v.toFixed(q.casas).replace(".", ",") : String(Math.round(v)); }
+
+  function renderScore(q, score){
+    var banda = null;
+    q.bandas.forEach(function(b){ if(score >= b[0] && score <= b[1] && !banda) banda = b; });
+    if(!banda) banda = q.bandas[q.bandas.length - 1];
+    var pct = ((score - q.faixaMin) / (q.faixaMax - q.faixaMin)) * 100;
+    return '<div class="quiz__score">' + fmt(q, score) + '<small>de ' + fmt(q, q.faixaMax) + '</small></div>'
+      + '<div class="bar"><i style="width:' + pct.toFixed(1) + '%"></i></div>'
+      + '<span class="quiz__band">' + banda[2] + '</span>'
+      + '<p style="margin-bottom:0">' + banda[3] + '</p>';
+  }
+
+  function renderPerfil(q, vals){
+    var grupos = {};
+    var ordem = [];
+    q.itens.forEach(function(item, i){
+      var nome = item[2];
+      if(!grupos[nome]){ grupos[nome] = { soma:0, n:0, tipo: item[3] || "" }; ordem.push(nome); }
+      grupos[nome].soma += vals[i];
+      grupos[nome].n++;
+    });
+    var max = q.min + q.escala.length - 1;
+    var linhas = ordem.map(function(nome){
+      var g = grupos[nome];
+      var m = g.soma / g.n;
+      var pct = ((m - q.min) / (max - q.min)) * 100;
+      var marca = g.tipo === "externa" ? " · externa" : (g.tipo === "interna" ? " · interna" : (g.tipo ? " · mista" : ""));
+      return '<div class="profile__row"><span>' + nome + '<em>' + marca + '</em></span>'
+        + '<div class="bar"><i style="width:' + pct.toFixed(1) + '%"></i></div>'
+        + '<em>' + m.toFixed(1).replace(".", ",") + '</em></div>';
+    }).join("");
+
+    var leitura = "";
+    if(q.id === "contingencias"){
+      var ext = 0, extN = 0, intr = 0, intN = 0;
+      ordem.forEach(function(nome){
+        var g = grupos[nome], m = g.soma / g.n;
+        if(g.tipo === "externa"){ ext += m; extN++; }
+        if(g.tipo === "interna"){ intr += m; intN++; }
+      });
+      var mExt = extN ? ext/extN : 0, mInt = intN ? intr/intN : 0;
+      if(mExt > mInt + 0.8){
+        leitura = '<p><strong>O seu valor está apoiado principalmente em domínios externos.</strong> É exatamente o padrão que a Parte 1.2 descreve: motiva muito e balança muito. Não se trata de deixar de querer desempenho ou aprovação — trata-se de <em>acrescentar</em> peso aos domínios que não dependem do mês. É o trabalho das seções <a href="#valor">3.1</a>, <a href="#autoesquecimento">3.11</a> e da escrita de valores.</p>';
+      }else if(mInt > mExt + 0.8){
+        leitura = '<p><strong>O seu valor está apoiado principalmente em domínios internos.</strong> Essa é a base mais estável que existe. Vale checar se ela está sendo <em>vivida</em> ou só declarada: nos dias em que você não bate a meta, qual das colunas realmente fala mais alto?</p>';
+      }else{
+        leitura = '<p><strong>Perfil equilibrado entre fontes internas e externas.</strong> Repare, ainda assim, na barra mais longa da lista — ela é a que vai doer mais quando aquele domínio for mal, e é ali que vale colocar atenção preventiva.</p>';
+      }
+    }else{
+      var menor = ordem[0], menorV = 99;
+      ordem.forEach(function(nome){ var m = grupos[nome].soma / grupos[nome].n; if(m < menorV){ menorV = m; menor = nome; } });
+      leitura = '<p>A sua dimensão mais baixa é <strong>' + menor + '</strong>. Não tente subir as seis: escolha essa e trabalhe nela por um mês na <a href="#areas">Parte 7.0</a>. Refaça em 30 dias e veja se a barra se mexeu.</p>';
+    }
+    return '<div class="profile">' + linhas + '</div>' + leitura;
+  }
+
+  function sparkline(q, hist){
+    var W = 700, H = 160, pad = 34;
+    var lo = q.faixaMin !== undefined ? q.faixaMin : Math.min.apply(null, hist.map(function(h){ return h.v; }));
+    var hi = q.faixaMax !== undefined ? q.faixaMax : Math.max.apply(null, hist.map(function(h){ return h.v; }));
+    var pts = hist.map(function(h, i){
+      var x = pad + (i / Math.max(1, hist.length - 1)) * (W - pad * 2);
+      var y = H - pad - ((h.v - lo) / (hi - lo)) * (H - pad * 2);
+      return [x, y];
+    });
+    var poly = pts.map(function(p){ return p[0].toFixed(1) + "," + p[1].toFixed(1); }).join(" ");
+    var dots = pts.map(function(p){ return '<circle cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="4" class="d-brassF"/>'; }).join("");
+    var labels = hist.map(function(h, i){
+      return '<text x="' + pts[i][0].toFixed(1) + '" y="' + (H - 10) + '" text-anchor="middle" class="d-mut">' + h.d.slice(8,10) + "/" + h.d.slice(5,7) + '</text>';
+    }).join("");
+    return '<figure style="margin:0"><div class="figbox" style="padding:14px">'
+      + '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Evolução das suas medições ao longo do tempo">'
+      + '<line x1="' + pad + '" y1="' + (H - pad) + '" x2="' + (W - pad) + '" y2="' + (H - pad) + '" class="d-stroke"/>'
+      + '<text x="6" y="' + (pad + 4) + '" class="d-mut">' + fmt(q, hi) + '</text>'
+      + '<text x="6" y="' + (H - pad + 4) + '" class="d-mut">' + fmt(q, lo) + '</text>'
+      + '<polyline points="' + poly + '" class="d-brass"/>' + dots + labels
+      + '</svg></div></figure>';
+  }
+
+  /* ---- roda das áreas ---- */
+  Array.prototype.forEach.call(document.querySelectorAll(".roda__row input[type=range]"), function(r){
+    var o = r.parentElement.querySelector("output");
+    var key = "roda:" + r.id;
+    var saved = store(key);
+    if(saved !== null && saved !== undefined) r.value = saved;
+    o.textContent = r.value;
+    r.addEventListener("input", function(){ o.textContent = r.value; store(key, r.value); });
   });
 
   /* ---- checkboxes persistentes ---- */
