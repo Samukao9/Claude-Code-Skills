@@ -239,6 +239,9 @@ li::marker{ color: var(--muted); }
 .box--acao .box__kicker{ color: var(--brass); }
 
 .box dl{ margin: 0; display: grid; gap: 4px 16px; }
+/* itens de grid têm min-width:auto e não encolhem abaixo do conteúdo:
+   sem isto, uma tabela larga dentro de um dd empurra a página inteira */
+.box dl > *, .livro dl > *{ min-width: 0; }
 .box dt{
   font-family: var(--mono); font-size: 10.5px; letter-spacing:.1em; text-transform: uppercase;
   color: var(--muted); margin-top: 12px;
@@ -271,7 +274,7 @@ li::marker{ color: var(--muted); }
 .pillar .tag{ display:block; margin-bottom: 8px; }
 
 /* Tabelas */
-.scroller{ overflow-x: auto; margin: 0 0 24px; border: 1px solid var(--line); border-radius: 10px; background: var(--card); }
+.scroller{ overflow-x: auto; max-width: 100%; margin: 0 0 24px; border: 1px solid var(--line); border-radius: 10px; background: var(--card); }
 table{ border-collapse: collapse; width: 100%; font-size: 15px; min-width: 620px; }
 th,td{ text-align: left; padding: 12px 15px; border-bottom: 1px solid var(--line-soft); vertical-align: top; }
 thead th{
@@ -1623,6 +1626,16 @@ details > :last-child{ margin-bottom: 16px; }
     </dl>
     <p style="margin-top:12px">Sessenta segundos. É o que separa um "não" que vira dado de um "não" que vira identidade.</p>
   </div>
+
+  <div class="box box--ciencia">
+    <span class="box__kicker">A correção que impede o mal-entendido — compaixão feroz</span>
+    <p>Em 2021 Neff publicou um segundo livro justamente porque muita gente entendeu autocompaixão como amolecimento. Ela separa em duas metades, e as duas são compaixão:</p>
+    <ul>
+      <li><strong>Terna</strong> — a metade que acolhe: confortar, acalmar, validar. "Está tudo bem sentir isso."</li>
+      <li><strong>Feroz</strong> — a metade que age, em três domínios: <strong>proteger</strong> (dizer não, pôr limite, sair de onde te machuca), <strong>prover</strong> (dar a si o que de fato precisa — descanso, dinheiro organizado, ajuda profissional) e <strong>motivar</strong> (cobrar mudança de comportamento com firmeza, e sem desprezo).</li>
+    </ul>
+    <p style="margin-bottom:0"><strong>Aplicado a você:</strong> desinstalar os apps de aposta e marcar a conversa da dívida <em>é</em> autocompaixão — a metade feroz. Isso encerra de vez o medo de que se tratar bem seja se acomodar. A terna cuida do ferido; a feroz tira o ferido da linha de tiro.</p>
+  </div>
 </section>
 
 <section class="sec" id="mentalidade">
@@ -1971,6 +1984,7 @@ details > :last-child{ margin-bottom: 16px; }
     <span class="box__kicker">Brené Brown · Universidade de Houston · <em>A Coragem de Ser Imperfeito</em></span>
     <p>Duas décadas de pesquisa qualitativa sobre vergonha, vulnerabilidade e coragem. Duas ideias centrais: <strong>vulnerabilidade não é fraqueza</strong> — é a disposição de se expor sem garantia de resultado, e é a fonte de conexão, criatividade e coragem; e <strong>vergonha não sobrevive quando é dita em voz alta</strong> para alguém que responde com empatia. Brown descreve a resiliência à vergonha como reconhecer o gatilho, checar a realidade da história que você está contando, falar sobre ela e pedir o que precisa.</p>
     <p><strong>Detalhe que fecha um círculo deste manual:</strong> o título original do livro é <em>Daring Greatly</em> — tirado literalmente do discurso "O Homem na Arena", de Theodore Roosevelt, o mesmo que você tentou lembrar na sua primeira pergunta (<a href="#pigmaliao">2.7</a>). A frase completa é: quem falha, ao menos falha <em>ousando muito</em>. Você já tem esse livro na mão, e ele foi escrito para exatamente o lugar em que você está.</p>
+    <p style="margin-bottom:0"><strong>As três armaduras que ela descreve</strong> — e as três aparecem na sua história: <em>alegria premonitória</em> (não se permitir sentir a coisa boa, para não sofrer se ela passar — é por isso que o mês em que você bateu veio com medo em vez de alegria), <em>perfeccionismo</em> (que pergunta "o que vão pensar de mim?", enquanto excelência pergunta "como faço melhor?") e <em>anestesia</em> — com o achado mais desconfortável: <strong>não dá para anestesiar seletivamente</strong>. Ao apagar a dor, você apaga junto a alegria. A bet foi anestesia, e a conta veio nas duas moedas. Os três modelos estão condensados na <a href="#biblioteca-brown">Parte 10</a>.</p>
   </div>
 
   <div class="box box--ciencia">
@@ -2681,6 +2695,12 @@ details > :last-child{ margin-bottom: 16px; }
 
   <p>Boa parte do seu peso não vem da meta em si — vem da <strong>plateia</strong> que você imagina assistindo: seu gestor, seus colegas, sua família, você mesmo como juiz. Esse texto troca a plateia. E o efeito prático é enorme: uma plateia que já te aceita muda completamente o custo emocional de tentar. Você continua querendo bater a meta — só para de precisar dela para ser aceito.</p>
 
+  <div class="box box--biblia">
+    <span class="box__kicker">Isso tem nome bíblico — "temor do homem"</span>
+    <p>"O receio de que os homens inspira é uma armadilha, mas quem confia no Senhor está seguro" (Pv 29.25). Edward Welch descreve três formas em que esse temor aparece, e é provável que você reconheça as três: <strong>medo da rejeição</strong> (por isso você não conta o que aconteceu), <strong>medo da exposição</strong> (a vergonha de ser visto como realmente é) e <strong>medo de não corresponder</strong> ao padrão que você imagina que os outros têm de você — e que muitas vezes eles nem têm.</p>
+    <p style="margin-bottom:0">O diagnóstico incômodo dele: a raiz não é insegurança, é que <em>as pessoas ocuparam um lugar que não é delas</em>. Você passou a precisar delas do jeito que só se pode precisar de Deus — para receber valor e veredito. E ninguém aguenta ser deus de ninguém: é por isso que a relação com a família fica pesada dos dois lados. O tratamento não é deixar de se importar com as pessoas; é <strong>passar a amá-las em vez de precisar delas</strong> (<a href="#biblioteca-biblia">Parte 10</a>).</p>
+  </div>
+
   <div class="grid grid--2">
     <div class="box box--biblia" style="margin:0">
       <span class="box__kicker">Provérbios 16.3</span>
@@ -3365,6 +3385,8 @@ details > :last-child{ margin-bottom: 16px; }
       <dd>Quando bater um pensamento pesado, preencha: <strong>(1)</strong> situação, <strong>(2)</strong> pensamento automático + o quanto acredito nele de 0 a 100, <strong>(3)</strong> evidências a favor, <strong>(4)</strong> evidências contra, <strong>(5)</strong> versão mais precisa + o quanto acredito agora. O modelo está pronto na <a href="#ferramentas">Parte 9</a>.</dd>
       <dt>Erro comum</dt>
       <dd>Substituir o pensamento negativo por um positivo ("vou arrasar!"). Não é isso. O alvo é o pensamento <em>mais preciso</em>, que costuma ser algo como: "esse mês está difícil, faltam 12 dias e eu controlo a minha atividade".</dd>
+      <dt>A versão de bolso — para usar no meio de uma conversa</dt>
+      <dd>Registro de pensamento leva alguns minutos e exige papel. Existe uma versão de uma frase, de Brené Brown, para quando você está no meio do conflito e não dá para sair e escrever: <strong>"A história que eu estou contando a mim mesmo é que…"</strong>. Ela separa o fato da interpretação numa frase só, e é honesta — você não acusa o outro, você declara o que está acontecendo dentro de você. <em>Exemplo real para a sua vida:</em> "A história que eu estou contando a mim mesmo é que vocês me olham como o cara que perdeu dinheiro na bet." Dito assim, para alguém da família, isso vira conversa. Guardado por um ano, vira identidade (<a href="#biblioteca-brown">Parte 10</a>).</dd>
     </dl>
   </div>
 
@@ -4081,7 +4103,12 @@ details > :last-child{ margin-bottom: 16px; }
     <li><strong>Rutledge, R. B., Skandali, N., Dayan, P., &amp; Dolan, R. J. (2014).</strong> <em>A Computational and Neural Model of Momentary Subjective Well-Being.</em> PNAS, 111(33), 12252–12257. University College London.</li>
     <li><strong>Crum, A. J., Salovey, P., &amp; Achor, S. (2013).</strong> <em>Rethinking Stress: The Role of Mindsets in Determining the Stress Response.</em> Journal of Personality and Social Psychology, 104(4), 716–733. Universidade de Stanford e Universidade Yale.</li>
     <li><strong>Waldinger, R., &amp; Schulz, M. (2023).</strong> <em>The Good Life.</em> Simon &amp; Schuster — livro do Harvard Study of Adult Development, em curso desde 1938. — <a href="https://news.harvard.edu/gazette/story/2017/04/over-nearly-80-years-harvard-study-has-been-showing-how-to-live-a-healthy-and-happy-life/">Harvard Gazette</a></li>
-    <li><strong>Brown, B. (2012).</strong> <em>Daring Greatly</em> [<em>A Coragem de Ser Imperfeito</em>]. Gotham Books. Universidade de Houston.</li>
+    <li><strong>Brown, B. (2010, 2012, 2015).</strong> <em>The Gifts of Imperfection</em> [<em>A Arte da Imperfeição</em>], <em>Daring Greatly</em> [<em>A Coragem de Ser Imperfeito</em>] e <em>Rising Strong</em> [<em>Mais Forte do que Nunca</em>]. Universidade de Houston · edições brasileiras pela Sextante.</li>
+    <li><strong>Neff, K. (2021).</strong> <em>Fierce Self-Compassion.</em> Harper Wave. Universidade do Texas em Austin — a distinção entre compaixão terna e feroz. — <a href="https://ggsc.berkeley.edu/what_we_do/event/fierce_self_compassion_integrating_yin_and_yang_self_compassion_to_heal_and">Greater Good, Berkeley</a></li>
+    <li><strong>Branden, N. (1994).</strong> <em>The Six Pillars of Self-Esteem</em> [<em>Os Seis Pilares da Autoestima</em>]. Bantam. — clássico do tema, com base empírica fraca; ver a ressalva na Parte 10.</li>
+    <li><strong>Welch, E. T. (1997).</strong> <em>When People Are Big and God Is Small</em> [<em>Quando Gente é Grande e Deus é Pequeno</em>]. P&amp;R Publishing.</li>
+    <li><strong>McGee, R. S. (1985).</strong> <em>The Search for Significance</em> [<em>A Busca de Significado</em>]. Rapha.</li>
+    <li><strong>Nouwen, H. (1992).</strong> <em>Life of the Beloved</em> [<em>Vida do Amado</em>]. Crossroad.</li>
     <li><strong>Tangney, J. P., &amp; Dearing, R. L. (2002).</strong> <em>Shame and Guilt.</em> Guilford Press. Universidade George Mason.</li>
     <li><strong>Gilbert, P. (2009).</strong> <em>The Compassionate Mind.</em> Constable. Universidade de Derby, Reino Unido — Terapia Focada na Compaixão.</li>
     <li><strong>Wood, W., &amp; Rünger, D. (2016).</strong> <em>Psychology of Habit.</em> Annual Review of Psychology, 67, 289–314. Universidade do Sul da Califórnia.</li>
@@ -4352,57 +4379,187 @@ details > :last-child{ margin-bottom: 16px; }
     <h2>Os livros — o que ler, por onde começar e para qual dor serve</h2>
   </div>
 
-  <p class="lead">Você pediu os melhores livros do mundo sobre esses assuntos. Aqui estão, com o formato que importa: <strong>a tese em uma frase, as ideias que você usa na prática, o capítulo por onde começar e para qual dor cada um serve.</strong> Você ganha o miolo mesmo sem ler tudo — e sabe quais valem comprar.</p>
+  <p class="lead">Você pediu os melhores livros do mundo sobre esses assuntos — e pediu que o <em>conteúdo</em> deles entrasse aqui, não só o nome. É o que esta parte faz: para cada obra essencial, <strong>o modelo central inteiro, com suas partes nomeadas e explicadas, aplicado ao seu caso</strong>. Você sai daqui podendo usar o método mesmo que nunca compre o livro — e sabendo exatamente quais valem comprar.</p>
 
   <div class="box box--acao">
     <span class="box__kicker">Se for ler só três este ano</span>
-    <p><strong>1.</strong> <em>A Coragem de Ser Imperfeito</em> — você já tem, e ele é o mais direto para a sua ferida principal. <strong>2.</strong> <em>Autocompaixão</em>, de Kristin Neff — é o mecanismo que a pesquisa mostra ser mais estável. <strong>3.</strong> <em>A Liberdade de Se Esquecer de Si Mesmo</em>, de Timothy Keller — tem 40 páginas e resolve, do lado da fé, o problema que os outros dois descrevem.</p>
+    <p><strong>1.</strong> <em>A Coragem de Ser Imperfeito</em> — você já tem, e é o mais direto para a sua ferida principal. <strong>2.</strong> <em>Autocompaixão</em>, de Kristin Neff — é o mecanismo que a pesquisa mostra ser o mais estável. <strong>3.</strong> <em>A Liberdade de Se Esquecer de Si Mesmo</em>, de Timothy Keller — tem 40 páginas e resolve, do lado da fé, o problema que os outros dois descrevem.</p>
+    <p style="margin-bottom:0">Os três se encaixam numa sequência: Brown mostra <em>o que</em> está te derrubando (vergonha), Neff dá <em>o que fazer</em> no momento em que ela chega, e Keller responde <em>por que você não precisa mais do veredito</em> que a vergonha exige.</p>
   </div>
 
-  <h3 id="biblioteca-brown">O livro que você já tem — guia de leitura</h3>
+  <h3>O mapa — qual livro resolve qual problema</h3>
+  <div class="scroller">
+    <table>
+      <thead><tr><th>Camada do problema</th><th>Pergunta que ela faz</th><th>Livro que responde</th><th>Seção do manual</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Fundação</strong></td><td>De onde vem o meu valor?</td><td>Keller · Nouwen · McGee</td><td><a href="#valor">3.1</a> · <a href="#autoesquecimento">3.11</a></td></tr>
+        <tr><td><strong>Ferida</strong></td><td>O que exatamente está me derrubando?</td><td>Brown · Thompson · Manning</td><td><a href="#vergonha">3.3</a> · <a href="#brown">2.13</a></td></tr>
+        <tr><td><strong>Momento</strong></td><td>O que eu faço quando a dor chega?</td><td>Neff · Kross · Harris</td><td><a href="#neff">2.4</a> · <a href="#voz">2.10</a></td></tr>
+        <tr><td><strong>Pensamento</strong></td><td>Como eu paro de acreditar em tudo que penso?</td><td>Burns · Lloyd-Jones</td><td><a href="#beck">2.1</a> · <a href="#alma">3.16</a></td></tr>
+        <tr><td><strong>Ação</strong></td><td>Como eu faço isso virar rotina?</td><td>Clear · Wood · Fogg · Branden</td><td><a href="#habito">2.14</a> · <a href="#mecanismos">5.1</a></td></tr>
+        <tr><td><strong>Compulsão</strong></td><td>Como eu paro com a bet de verdade?</td><td>Lembke</td><td><a href="#dopamina">2.15</a> · <a href="#aposta">3.5</a></td></tr>
+        <tr><td><strong>Plateia</strong></td><td>Como eu me solto do que os outros pensam?</td><td>Welch · Keller</td><td><a href="#ansiedade">3.10</a></td></tr>
+        <tr><td><strong>Sentido</strong></td><td>O que eu faço com o que já aconteceu?</td><td>Frankl · Brown (<em>Mais Forte do que Nunca</em>)</td><td><a href="#coerencia">2.17</a> · <a href="#jose">3.12</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 id="biblioteca-brown">A autora que você já começou a ler — o sistema completo</h3>
+
+  <p>Você baixou <em>A Coragem de Ser Imperfeito</em>. O que talvez você não saiba é que ele é o <strong>segundo de uma trilogia</strong> que forma um sistema só, e os outros dois resolvem partes da sua história que esse não cobre. Aqui está o sistema inteiro, condensado.</p>
 
   <div class="livro livro--ponte">
-    <h4>A Coragem de Ser Imperfeito</h4>
-    <span class="livro__autor">Brené Brown · Universidade de Houston · orig. <em>Daring Greatly</em> (2012)</span>
-    <p class="livro__tese">Vulnerabilidade — se expor sem garantia de resultado — não é fraqueza: é a origem da coragem, da conexão e de tudo o que dá sentido. E a vergonha, que faz você se esconder, não sobrevive quando é dita em voz alta para alguém que responde com empatia.</p>
+    <h4>A Arte da Imperfeição <span class="tag">livro 1 · o diagnóstico</span></h4>
+    <span class="livro__autor">Brené Brown · orig. <em>The Gifts of Imperfection</em> (2010) · Sextante</span>
+    <p class="livro__tese">Viver de coração inteiro é acordar e pensar: não importa o quanto ficou por fazer, <strong>eu já sou suficiente</strong>. E é deitar sabendo que sim, você é imperfeito e vulnerável — e que isso não muda o fato de você ser digno de amor e pertencimento.</p>
     <dl>
-      <dt>Por que este é o seu livro</dt>
-      <dd>O ano que você descreveu é um ano de vergonha, não só de problemas. Vergonha é o tema central de duas décadas de pesquisa da autora, e ela escreve para exatamente o lugar em que você está.</dd>
-      <dt>O detalhe que fecha um círculo</dt>
-      <dd>O título original, <em>Daring Greatly</em>, sai literalmente do discurso "O Homem na Arena", de Theodore Roosevelt — o "estudo de Rosevelt" que você tentou lembrar na sua primeira pergunta (<a href="#pigmaliao">2.7</a>). O livro inteiro é uma expansão daquela frase: quem falha, ao menos falha <strong>ousando muito</strong>.</dd>
-      <dt>As ideias que você usa amanhã</dt>
+      <dt>O modelo — os dez marcos, cada um com o que você precisa soltar</dt>
       <dd>
-        <ul>
-          <li><strong>Vergonha × culpa:</strong> a distinção da <a href="#vergonha">Parte 3.3</a> vem daqui, com dados. Culpa é adaptativa; vergonha, não.</li>
-          <li><strong>Resiliência à vergonha:</strong> reconhecer o gatilho, checar a história que você está contando, falar sobre ela, pedir o que precisa. É um protocolo, não um sentimento.</li>
-          <li><strong>"A arena":</strong> só quem está exposto ao fracasso está de fato jogando. As suas 4 ondas perdidas são prova de participação, não de incompetência.</li>
-          <li><strong>Escassez e "nunca suficiente":</strong> a cultura que faz você medir a vida pelo que falta. É a raiz do "bati 6 e só enxergo os 4".</li>
-          <li><strong>Blindagens contra a vulnerabilidade:</strong> perfeccionismo, anestesia e pessimismo antecipado — os três aparecem na sua história.</li>
+        <div class="scroller" style="margin:8px 0 0">
+          <table>
+            <thead><tr><th>Cultivar</th><th>Soltar</th><th>No seu caso</th></tr></thead>
+            <tbody>
+              <tr><td>Autenticidade</td><td>O que os outros vão pensar</td><td>A plateia imaginária da família e do gestor</td></tr>
+              <tr><td>Autocompaixão</td><td>Perfeccionismo</td><td>Cobrar de si o que não cobraria de um colega</td></tr>
+              <tr><td>Espírito resiliente</td><td>Anestesia e impotência</td><td>A bet como anestesia; o "não adianta"</td></tr>
+              <tr><td>Gratidão e alegria</td><td>Escassez e medo do escuro</td><td>Bater 6 e enxergar só os 4</td></tr>
+              <tr><td>Intuição e fé</td><td>A necessidade de certeza</td><td>Precisar saber, hoje, se vai bater a meta</td></tr>
+              <tr><td>Criatividade</td><td>Comparação</td><td>Medir-se pelo melhor SDR da equipe</td></tr>
+              <tr><td><strong>Descanso e brincadeira</strong></td><td><strong>Exaustão como status e produtividade como valor pessoal</strong></td><td><strong>É literalmente o seu problema, com nome</strong></td></tr>
+              <tr><td>Calma e quietude</td><td>Ansiedade como estilo de vida</td><td>Acordar já calculando o dia 30</td></tr>
+              <tr><td>Trabalho com sentido</td><td>Autodúvida e o "eu deveria"</td><td>"Eu já devia ter superado isso"</td></tr>
+              <tr><td>Riso, música e dança</td><td>Ser descolado e estar sempre no controle</td><td>Não deixar ninguém ver que você não está bem</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </dd>
+      <dt>A linha que resume o livro</dt>
+      <dd>Repare no marco 7. Ele nomeia com precisão cirúrgica o que este manual inteiro vem tentando desmontar: <strong>produtividade como valor pessoal</strong>. Você não inventou esse problema — ele tem nome, tem pesquisa e tem tratamento.</dd>
+      <dt>Para qual dor</dt><dd>Perfeccionismo · exaustão · sensação de nunca ser suficiente.</dd>
+    </dl>
+  </div>
+
+  <div class="livro livro--ponte">
+    <h4>A Coragem de Ser Imperfeito <span class="tag">livro 2 · a exposição</span></h4>
+    <span class="livro__autor">Brené Brown · Universidade de Houston · orig. <em>Daring Greatly</em> (2012) · Sextante, 208 p.</span>
+    <p class="livro__tese">Vulnerabilidade — se expor sem garantia de resultado — não é fraqueza. É a medida mais exata de coragem, e é a única porta para conexão, criatividade e mudança.</p>
+    <dl>
+      <dt>O detalhe que fecha um círculo deste manual</dt>
+      <dd>O título original, <em>Daring Greatly</em>, sai literalmente da última linha do discurso "O Homem na Arena", de Theodore Roosevelt — o "estudo de Rosevelt" da sua primeira pergunta (<a href="#pigmaliao">2.7</a>). Você tentou lembrar do discurso e já tinha o livro dele na mão.</dd>
+
+      <dt>Modelo 1 — resiliência à vergonha, em quatro movimentos</dt>
+      <dd>
+        <ol style="margin:6px 0 0">
+          <li><strong>Reconhecer a vergonha e identificar o gatilho.</strong> Onde ela bate no corpo? O que a disparou? Nomear já reduz a intensidade.</li>
+          <li><strong>Praticar a crítica da realidade.</strong> A história que a vergonha conta é verdade ou é uma expectativa impossível que você absorveu de algum lugar?</li>
+          <li><strong>Buscar contato.</strong> Contar para alguém que tenha conquistado o direito de ouvir. Empatia é o antídoto — vergonha não sobrevive a ser dita em voz alta e acolhida.</li>
+          <li><strong>Falar da vergonha.</strong> Usar a palavra, pedir o que você precisa. Vergonha odeia palavras, precisa de silêncio para crescer.</li>
+        </ol>
+        <p style="margin:10px 0 0"><strong>Aplicado a você:</strong> o passo 3 é o que está faltando. Você fez o 1 sozinho ao me escrever. Sem o 3, o ciclo não fecha.</p>
+      </dd>
+
+      <dt>Modelo 2 — as três armaduras contra a vulnerabilidade</dt>
+      <dd>
+        <ul style="margin:6px 0 0">
+          <li><strong>Alegria premonitória</strong> — não se permitir sentir a coisa boa, para não sofrer se ela for embora. É por isso que o mês em que você bateu a meta veio junto com medo, e não com alegria. O antídoto que ela propõe é gratidão praticada, não sorte.</li>
+          <li><strong>Perfeccionismo</strong> — não é buscar excelência: é uma armadura de vinte quilos que você carrega achando que protege. Excelência pergunta "como faço isso melhor?"; perfeccionismo pergunta "o que vão pensar de mim?".</li>
+          <li><strong>Anestesia</strong> — qualquer coisa que tira a borda da dor. A descoberta desconfortável da pesquisa: <strong>não dá para anestesiar seletivamente</strong>. Ao apagar a dor, você apaga junto a alegria e o sentido. A bet foi anestesia; a conta veio nas duas moedas.</li>
         </ul>
       </dd>
-      <dt>Por onde começar</dt>
-      <dd>Capítulo 3, sobre vergonha, e depois o capítulo 4, sobre as blindagens. Se estiver sem paciência para o começo, pule a introdução e volte depois.</dd>
-      <dt>Para qual dor</dt>
-      <dd>Vergonha · medo do julgamento da família · perfeccionismo · dificuldade de se abrir.</dd>
+
+      <dt>Modelo 3 — a cultura da escassez</dt>
+      <dd>A sensação de "nunca suficiente" que faz você somar o que falta em vez do que há. O oposto de escassez não é abundância: é <strong>suficiência</strong> — e suficiência é uma decisão, não um resultado.</dd>
+
+      <dt>Por onde começar</dt><dd>Capítulo 3 (vergonha) e depois o capítulo 4 (armaduras). Pule a introdução se estiver sem paciência.</dd>
+      <dt>Para qual dor</dt><dd>Vergonha · medo do julgamento da família · perfeccionismo · não conseguir se abrir.</dd>
+    </dl>
+  </div>
+
+  <div class="livro livro--ponte">
+    <h4>Mais Forte do que Nunca <span class="tag">livro 3 · a recuperação</span></h4>
+    <span class="livro__autor">Brené Brown · orig. <em>Rising Strong</em> (2015) · Sextante, 272 p.</span>
+    <p class="livro__tese">Coragem sem queda não existe. A pergunta não é se você vai cair — é se você sabe o que fazer no chão. E existe um processo, em três tempos.</p>
+    <dl>
+      <dt>O modelo — os três tempos de levantar</dt>
+      <dd>
+        <ol style="margin:6px 0 0">
+          <li><strong>O acerto de contas</strong> — reconhecer que você foi fisgado. Perceber a emoção e ficar curioso sobre ela, em vez de sair correndo. Sinais no corpo vêm antes da consciência: aperto no peito, mandíbula travada, vontade de sumir.</li>
+          <li><strong>O confronto</strong> — a parte mais suja e a mais importante. Você escreve o que Brown chama de <em>primeiro rascunho ruim</em>: a história bruta que a sua cabeça está contando sobre o que aconteceu, sem filtro, com todo o exagero e toda a acusação. Depois, você a confronta com os fatos.</li>
+          <li><strong>A revolução</strong> — quando a nova leitura deixa de ser um insight e vira o seu jeito padrão de operar. É a diferença entre entender uma coisa e mudar por causa dela.</li>
+        </ol>
+      </dd>
+
+      <dt>A ferramenta mais útil do livro — e provavelmente da parte inteira</dt>
+      <dd>
+        <p style="margin:0 0 8px">Uma frase, usada em voz alta, no meio do conflito ou da dor:</p>
+        <p style="font-family:var(--serif);font-size:19px;line-height:1.45;margin:0 0 8px"><strong>"A história que eu estou contando a mim mesmo é que…"</strong></p>
+        <p style="margin:0">Ela funciona porque separa, numa frase só, o <em>fato</em> da <em>interpretação</em> — que é exatamente o que o registro de pensamento (<a href="#mecanismos">mecanismo 3</a>) faz por escrito, só que rápido o bastante para caber numa conversa real. E ela é honesta: você não acusa o outro, você declara o que está acontecendo dentro de você.</p>
+        <p style="margin:10px 0 0"><strong>Traduzido para a sua vida:</strong> "A história que eu estou contando a mim mesmo é que a minha família me olha como o cara que perdeu dinheiro na bet." Dito assim, em voz alta, para alguém da família — vira uma conversa. Guardado por um ano, vira identidade.</p>
+      </dd>
+      <dt>Para qual dor</dt><dd>Depois da queda · conflito familiar · remoer · não conseguir virar a página.</dd>
     </dl>
   </div>
 
   <h3 id="biblioteca-ciencia">Essenciais científicos</h3>
 
   <div class="livro livro--ciencia">
-    <h4>Autocompaixão</h4>
-    <span class="livro__autor">Kristin Neff · Universidade do Texas em Austin</span>
+    <h4>Autocompaixão &amp; Autocompaixão Radical</h4>
+    <span class="livro__autor">Kristin Neff · Universidade do Texas em Austin · <em>Self-Compassion</em> (2011) e <em>Fierce Self-Compassion</em> (2021)</span>
     <p class="livro__tese">A alternativa à autoestima: em vez de tentar se avaliar bem, parar de se avaliar — e se tratar como você trataria um amigo, especialmente quando erra.</p>
     <dl>
-      <dt>As ideias que você usa</dt>
-      <dd><ul>
-        <li>Os três componentes: bondade consigo, humanidade comum, atenção plena.</li>
-        <li>Autocompaixão prevê valor pessoal <strong>mais estável</strong> que autoestima e é menos dependente de aparência e sucesso.</li>
-        <li>Não amolece: quem se trata com compaixão assume mais responsabilidade, porque não precisa se defender de si.</li>
-        <li>A pausa da autocompaixão — o protocolo de 60 segundos da <a href="#neff">Parte 2.4</a>.</li>
-      </ul></dd>
-      <dt>Por onde começar</dt><dd>Capítulos 3 a 5, e faça os exercícios em vez de só ler.</dd>
-      <dt>Para qual dor</dt><dd>Autocrítica destrutiva · se punir depois de errar · oscilação com resultado.</dd>
+      <dt>Modelo 1 — os três componentes, e os três opostos</dt>
+      <dd>
+        <div class="scroller" style="margin:8px 0 0">
+          <table>
+            <thead><tr><th>Componente</th><th>O que é</th><th>O oposto, que você provavelmente faz</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Bondade consigo</strong></td><td>Falar consigo como falaria com um amigo na mesma situação</td><td><strong>Autojulgamento</strong> — usar crueldade como método de correção</td></tr>
+              <tr><td><strong>Humanidade comum</strong></td><td>Lembrar que errar e sofrer fazem parte de ser humano</td><td><strong>Isolamento</strong> — "só eu sou assim", que é estatisticamente falso</td></tr>
+              <tr><td><strong>Atenção plena</strong></td><td>Olhar a dor de frente, do tamanho real</td><td><strong>Superidentificação</strong> — virar a dor, em vez de senti-la</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </dd>
+
+      <dt>Modelo 2 — a correção que impede o mal-entendido: compaixão feroz</dt>
+      <dd>
+        <p style="margin:0 0 8px">O livro de 2021 existe porque muita gente entendeu autocompaixão como amolecimento. Neff separa em duas metades, e as duas são necessárias:</p>
+        <ul style="margin:0">
+          <li><strong>Compaixão terna</strong> — a metade que <em>acolhe</em>: confortar, acalmar, validar. É o "está tudo bem sentir isso".</li>
+          <li><strong>Compaixão feroz</strong> — a metade que <em>age</em>, com três domínios: <strong>proteger</strong> (dizer não, pôr limite, sair de onde te machuca), <strong>prover</strong> (dar a si o que você de fato precisa, inclusive dinheiro, descanso e ajuda profissional) e <strong>motivar</strong> (cobrar mudança de comportamento, com firmeza e sem desprezo).</li>
+        </ul>
+        <p style="margin:10px 0 0"><strong>Aplicado a você:</strong> desinstalar os aplicativos de aposta e ter a conversa da dívida <em>é</em> autocompaixão — a metade feroz. Isso desmonta de vez o medo de que se tratar bem seja se acomodar. A compaixão terna cuida do ferido; a feroz tira o ferido da linha de tiro.</p>
+      </dd>
+
+      <dt>A prática de três frases — para o momento do erro</dt>
+      <dd>Mão no peito, e três frases: <em>"Isto é um momento de sofrimento"</em> (atenção plena) · <em>"Sofrimento faz parte da vida; não sou só eu"</em> (humanidade comum) · <em>"Que eu possa ser gentil comigo agora"</em> (bondade). É a versão original do protocolo de 60 segundos da <a href="#neff">Parte 2.4</a>.</dd>
+
+      <dt>Por onde começar</dt><dd>Capítulos 3 a 5, fazendo os exercícios. Se você resiste à ideia por achar que é moleza, comece direto pelo livro de 2021.</dd>
+      <dt>Para qual dor</dt><dd>Autocrítica destrutiva · se punir depois de errar · oscilação com resultado · dificuldade de pôr limites.</dd>
+    </dl>
+  </div>
+
+  <div class="livro livro--ciencia">
+    <h4>Os Seis Pilares da Autoestima</h4>
+    <span class="livro__autor">Nathaniel Branden · <em>The Six Pillars of Self-Esteem</em> (1994)</span>
+    <p class="livro__tese">Autoestima não é um sentimento a ser cultivado, e sim a <strong>reputação que você constrói consigo mesmo</strong> — consequência de seis práticas diárias, não de afirmações.</p>
+    <dl>
+      <dt>O modelo — as seis práticas</dt>
+      <dd>
+        <ol style="margin:6px 0 0">
+          <li><strong>Viver conscientemente</strong> — olhar os fatos da sua vida, inclusive os desconfortáveis, em vez de desviar. É olhar o extrato, o número real da dívida, o CRM.</li>
+          <li><strong>Autoaceitação</strong> — parar de brigar com a existência do que já é verdade sobre você. Aceitar não é aprovar: é reconhecer para poder mudar.</li>
+          <li><strong>Autorresponsabilidade</strong> — assumir que ninguém vem consertar. Não é culpa: é autoria.</li>
+          <li><strong>Autoafirmação</strong> — dizer o que você pensa, quer e precisa, em vez de se apagar para ser aceito.</li>
+          <li><strong>Viver com propósito</strong> — metas próprias, com plano e acompanhamento — não a meta que a empresa te deu.</li>
+          <li><strong>Integridade pessoal</strong> — alinhar o que você diz e o que você faz. É o pilar que mais fala com você: <strong>a dívida não paga e a aposta escondida foram rupturas de integridade, e é isso que dói, mais do que o dinheiro.</strong></li>
+        </ol>
+      </dd>
+      <dt>Por que ele entra mesmo com ressalva</dt>
+      <dd>É o clássico mais citado do tema e a intuição central é excelente: autoestima como <em>subproduto de prática</em>, não como sentimento a injetar — que é exatamente a direção causal que Baumeister confirmaria décadas depois (<a href="#baumeister">2.3</a>). O pilar 6 é a base conceitual do "banco de integridade" (<a href="#mecanismos">mecanismo 2</a>).</dd>
+      <dt>Nota honesta</dt>
+      <dd>A base empírica do livro é fraca para os padrões atuais e parte das afirmações sobre os efeitos da autoestima não sobreviveu à revisão de 2003. Leia pelas práticas, não pelas promessas.</dd>
+      <dt>Para qual dor</dt><dd>Sensação de estar se traindo · falta de rumo próprio · autorrespeito baixo.</dd>
     </dl>
   </div>
 
@@ -4544,18 +4701,78 @@ details > :last-child{ margin-bottom: 16px; }
 
   <div class="livro">
     <h4>A Liberdade de Se Esquecer de Si Mesmo</h4>
-    <span class="livro__autor">Timothy Keller · 40 páginas</span>
-    <p class="livro__tese">O evangelho não oferece autoestima alta nem baixa: oferece um ego que não precisa mais de veredito, porque o veredito já foi dado.</p>
+    <span class="livro__autor">Timothy Keller · orig. <em>The Freedom of Self-Forgetfulness</em> · exposição de 1Co 3.21–4.7 · 40 páginas</span>
+    <p class="livro__tese">O evangelho não oferece autoestima alta nem baixa: oferece um ego que não precisa mais de veredito, porque o veredito já foi dado por quem tinha autoridade para dá-lo.</p>
     <dl>
-      <dt>Por que é o mais importante da lista</dt>
-      <dd>É a resposta mais direta e mais profunda ao problema exato deste manual. Custa uma hora de leitura e reorganiza tudo (<a href="#autoesquecimento">3.11</a>).</dd>
-      <dt>As ideias que você usa</dt>
-      <dd><ul>
-        <li>As duas valas — autoestima alta e baixa — têm a mesma estrutura: o eu no tribunal.</li>
-        <li>Humildade do evangelho é <strong>pensar menos em si</strong>, não pensar menos de si.</li>
-        <li>Quem já tem o veredito consegue receber crítica sem desabar e elogio sem inflar.</li>
+      <dt>O modelo — os três estados do ego</dt>
+      <dd>
+        <div class="scroller" style="margin:8px 0 0">
+          <table>
+            <thead><tr><th>Estado</th><th>Como opera</th><th>O que acontece com a crítica</th><th>O que acontece com o elogio</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Ego inflado</strong></td><td>"Eu sou ótimo" — comparação constante para cima</td><td>Destrói, e por isso é evitada ou revidada</td><td>Vicia; é preciso doses cada vez maiores</td></tr>
+              <tr><td><strong>Ego esvaziado</strong></td><td>"Eu não presto" — comparação constante para baixo</td><td>Confirma o que já se sabia</td><td>É desqualificado antes de entrar</td></tr>
+              <tr><td><strong>Ego transformado</strong></td><td>Não se avalia — está ocupado com outra coisa</td><td>Informa, sem ameaçar a identidade</td><td>Alegra, sem inflar</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin:10px 0 0">A observação decisiva: <strong>as duas primeiras colunas são o mesmo estado</strong>. Nas duas, o eu está no centro do palco, esperando nota. A diferença é só o placar do dia.</p>
+      </dd>
+      <dt>As três características do ego que Keller descreve</dt>
+      <dd><ul style="margin:6px 0 0">
+        <li><strong>Vazio</strong> — sempre precisando ser preenchido por fora.</li>
+        <li><strong>Doloroso</strong> — só se nota quando dói, como um dente ou um joelho.</li>
+        <li><strong>Ocupadíssimo</strong> — calculando o tempo inteiro como você está indo, comparado a quem.</li>
       </ul></dd>
+      <dt>A virada — o veredito antes da atuação</dt>
+      <dd>No tribunal do desempenho, a sequência é: <em>atuação → veredito</em>. Você produz e, se produzir bem, recebe a nota. No evangelho, a sequência se inverte: <strong>o veredito vem primeiro, e a atuação sai dele</strong>. É a diferença entre trabalhar <em>para</em> a aprovação e trabalhar <em>a partir</em> dela — e é a única configuração em que uma meta perdida não abala a identidade.</dd>
+      <dt>Por que é o mais importante da lista</dt>
+      <dd>É a resposta mais direta ao problema exato deste manual, e custa uma hora de leitura (<a href="#autoesquecimento">3.11</a>).</dd>
       <dt>Para qual dor</dt><dd>Valor amarrado ao desempenho · medo de julgamento · comparação constante.</dd>
+    </dl>
+  </div>
+
+  <div class="livro">
+    <h4>Quando Gente é Grande e Deus é Pequeno</h4>
+    <span class="livro__autor">Edward T. Welch · orig. <em>When People Are Big and God Is Small</em> · aconselhamento bíblico</span>
+    <p class="livro__tese">O que a Bíblia chama de "temor do homem" é a coisa mais comum e menos diagnosticada que existe: <strong>quando a opinião das pessoas fica grande, Deus fica pequeno — e você vira refém da plateia.</strong></p>
+    <dl>
+      <dt>O modelo — os três sintomas do temor do homem</dt>
+      <dd><ol style="margin:6px 0 0">
+        <li><strong>Você teme a rejeição</strong> — e por isso não diz o que pensa, não pede o que precisa e não conta o que aconteceu.</li>
+        <li><strong>Você teme a exposição</strong> — a vergonha de ser visto como realmente é. Foi o que te fez esconder a dívida e a aposta.</li>
+        <li><strong>Você teme não corresponder</strong> — vive tentando alcançar o padrão que imagina que os outros têm de você, e que muitas vezes eles nem têm.</li>
+      </ol></dd>
+      <dt>O diagnóstico que incomoda</dt>
+      <dd>Welch argumenta que a raiz do temor do homem não é insegurança — é que <em>as pessoas ocuparam um lugar que não é delas</em>. Você "precisa" delas do jeito que só se pode precisar de Deus: para receber valor, veredito e identidade. E ninguém aguenta ser deus de ninguém — por isso a relação com a família ficou pesada.</dd>
+      <dt>O tratamento em duas frentes</dt>
+      <dd><strong>Aumentar Deus</strong> (temor no sentido bíblico: reverência, não pavor) e, ao mesmo tempo, <strong>passar a amar as pessoas em vez de precisar delas</strong>. A pergunta muda de "o que eles acham de mim?" para "o que eu posso oferecer a eles?" — e essa é a mesma manobra do autoesquecimento de Keller, por outra porta.</dd>
+      <dt>Para qual dor</dt><dd><strong>A plateia</strong> · medo do que a família pensa · não conseguir dizer não · esconder o que aconteceu.</dd>
+    </dl>
+  </div>
+
+  <div class="livro">
+    <h4>A Busca de Significado</h4>
+    <span class="livro__autor">Robert S. McGee · orig. <em>The Search for Significance</em></span>
+    <p class="livro__tese">Existe uma equação falsa que quase todo mundo carrega sem perceber: <strong>meu valor = meu desempenho + a opinião dos outros.</strong> O livro inteiro é sobre desmontá-la.</p>
+    <dl>
+      <dt>O modelo — as quatro mentiras e as quatro verdades</dt>
+      <dd>
+        <div class="scroller" style="margin:8px 0 0">
+          <table>
+            <thead><tr><th>A mentira</th><th>Como ela soa em você</th><th>A verdade que a substitui</th></tr></thead>
+            <tbody>
+              <tr><td>Preciso atingir certos padrões para me sentir bem comigo</td><td>"Se eu bater a meta, eu presto"</td><td>Justificação: você já foi declarado aceitável, e isso não depende de placar</td></tr>
+              <tr><td>Preciso da aprovação de certas pessoas para me aceitar</td><td>"Preciso que minha família me veja de novo com orgulho"</td><td>Reconciliação: você foi aceito por Deus, e isso não é revogável por opinião humana</td></tr>
+              <tr><td>Quem falha é indigno e merece punição</td><td>"Eu apostei, então mereço me sentir assim"</td><td>Propiciação: a punição já foi absorvida; consequência não é o mesmo que condenação</td></tr>
+              <tr><td>Eu sou o que sou, não posso mudar</td><td>"Eu sou o cara que estraga as coisas"</td><td>Regeneração: você é uma nova criação, com capacidade real de mudança</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </dd>
+      <dt>Por que ele entra na lista</dt>
+      <dd>Porque é a <a href="#contingente">Parte 1.2</a> escrita de dentro da fé, cinquenta anos antes de você precisar dela. A "equação falsa" de McGee e as "contingências do valor pessoal" de Crocker descrevem o mesmo fenômeno, com vocabulários diferentes.</dd>
+      <dt>Para qual dor</dt><dd>Valor amarrado a desempenho e aprovação · autopunição depois do erro.</dd>
     </dl>
   </div>
 
@@ -4577,16 +4794,27 @@ details > :last-child{ margin-bottom: 16px; }
 
   <div class="livro">
     <h4>Vida do Amado</h4>
-    <span class="livro__autor">Henri Nouwen · padre e psicólogo, ensinou em Harvard e Yale</span>
-    <p class="livro__tese">A grande mentira que a vergonha conta é que você tem que merecer ser amado; a verdade é que "amado" é o seu nome antes de qualquer coisa que você faça.</p>
+    <span class="livro__autor">Henri Nouwen · padre e psicólogo; ensinou em Notre Dame, Yale e Harvard antes de ir viver numa comunidade de pessoas com deficiência</span>
+    <p class="livro__tese">A grande mentira é que você precisa merecer ser amado. A verdade é que "amado" é o seu nome <em>antes</em> de qualquer coisa que você faça — e a vida espiritual inteira consiste em tornar essa verdade carne.</p>
     <dl>
-      <dt>As ideias que você usa</dt>
-      <dd><ul>
-        <li>As quatro palavras: você é <strong>tomado, abençoado, partido e dado</strong> — inclusive a parte de estar partido tem lugar.</li>
-        <li>O mundo diz "você é o que faz, o que tem e o que os outros dizem". As três são areia.</li>
-        <li>Escrito para um amigo não religioso — é acessível mesmo em dia de pouca fé.</li>
-      </ul></dd>
-      <dt>Para qual dor</dt><dd>Sentir-se indigno · achar que precisa provar valor para ser aceito.</dd>
+      <dt>Modelo 1 — as três armadilhas da identidade</dt>
+      <dd>Nouwen resume o que o mundo oferece como fonte de valor em três frases, e as três são areia:
+        <ul style="margin:6px 0 0">
+          <li><strong>"Eu sou o que eu faço."</strong> → um mês ruim te destrói. É onde você está.</li>
+          <li><strong>"Eu sou o que eu tenho."</strong> → a dívida e a perda na bet viram sentença sobre a pessoa.</li>
+          <li><strong>"Eu sou o que os outros dizem de mim."</strong> → a família vira tribunal permanente.</li>
+        </ul>
+      </dd>
+      <dt>Modelo 2 — as quatro palavras da vida do amado</dt>
+      <dd><ol style="margin:6px 0 0">
+        <li><strong>Tomado / escolhido</strong> — você foi escolhido antes de render qualquer coisa.</li>
+        <li><strong>Abençoado</strong> — existem palavras ditas sobre você que não dependem do seu desempenho. Nouwen insiste que você precisa <em>procurar ativamente</em> essas palavras e se afastar das vozes que só sabem maldizer.</li>
+        <li><strong>Partido</strong> — e aqui está o ponto raro: o quebrantamento não é o erro do roteiro, ele <em>faz parte</em>. Duas orientações: não coloque o seu quebrantamento debaixo da maldição ("isso prova que eu não presto"), e deixe que ele seja vivido em vez de anestesiado.</li>
+        <li><strong>Dado</strong> — sua vida só se completa quando é entregue a alguém. É o mesmo movimento do serviço na <a href="#areas">Parte 7.0</a>.</li>
+      </ol></dd>
+      <dt>Sobre a leitura</dt>
+      <dd>Foi escrito para um amigo secular que perguntou como falar de vida espiritual sem linguagem de igreja. É curto, acessível e funciona em dia de pouca fé.</dd>
+      <dt>Para qual dor</dt><dd>Sentir-se indigno · achar que precisa provar valor · não saber o que fazer com o que está quebrado.</dd>
     </dl>
   </div>
 
@@ -4606,12 +4834,8 @@ details > :last-child{ margin-bottom: 16px; }
   </div>
 
   <details>
-    <summary>Mais cinco títulos bíblicos, em formato curto</summary>
+    <summary>Mais três títulos bíblicos, em formato curto</summary>
     <dl style="margin-top:6px">
-      <dt>Quando Gente é Grande e Deus é Pequeno — Edward Welch</dt>
-      <dd>Sobre o "temor do homem": quando a opinião das pessoas governa suas decisões. É o tratamento bíblico para o que a psicologia chama de medo do julgamento alheio. <strong>Muito direto para o seu caso da plateia.</strong></dd>
-      <dt>A Busca de Significado — Robert McGee</dt>
-      <dd>Nomeia a equação falsa: "meu valor = meu desempenho + a opinião dos outros". É literalmente a fórmula da Parte 1.2, escrita de dentro da fé.</dd>
       <dt>Vida em Comunhão — Dietrich Bonhoeffer</dt>
       <dd>Por que a confissão a um irmão quebra o isolamento do pecado e da vergonha. Curto e denso. Base da <a href="#comunidade">Parte 5.3</a>.</dd>
       <dt>Renovação do Coração — Dallas Willard</dt>
@@ -4637,6 +4861,29 @@ details > :last-child{ margin-bottom: 16px; }
         <tr><td><strong>Solidão e vínculos rasos</strong></td><td>Waldinger, <em>Uma Boa Vida</em> · Bonhoeffer, <em>Vida em Comunhão</em></td></tr>
         <tr><td><strong>Não conseguir manter rotina</strong></td><td>Clear, <em>Hábitos Atômicos</em> · Wood, <em>Good Habits, Bad Habits</em> · Milkman, <em>How to Change</em></td></tr>
         <tr><td><strong>Falta de propósito</strong></td><td>Frankl, <em>Em Busca de Sentido</em> · Nouwen, <em>Vida do Amado</em> · Seligman, <em>Florescer</em></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Plano de leitura de 12 meses</h3>
+  <p>Um livro por mês, casado com a área da vida que você escolher na <a href="#areas">Parte 7.0</a>. A ordem não é aleatória: ela vai da ferida para a fundação, da fundação para o método e do método para o sentido.</p>
+
+  <div class="scroller">
+    <table>
+      <thead><tr><th>Mês</th><th>Livro</th><th>Por que agora</th><th>Área que combina</th></tr></thead>
+      <tbody>
+        <tr><td class="num">1</td><td>Brown · <em>A Coragem de Ser Imperfeito</em></td><td>Você já tem. Nomeia a ferida principal antes de qualquer coisa.</td><td>Família</td></tr>
+        <tr><td class="num">2</td><td>Keller · <em>A Liberdade de Se Esquecer de Si Mesmo</em></td><td>40 páginas que trocam a fundação. Quanto antes, melhor.</td><td>Fé</td></tr>
+        <tr><td class="num">3</td><td>Neff · <em>Autocompaixão</em></td><td>Agora que a ferida tem nome, você precisa do que fazer no momento em que ela dói.</td><td>Corpo</td></tr>
+        <tr><td class="num">4</td><td>Lembke · <em>Nação Dopamina</em></td><td>Enquanto a barreira contra a bet ainda está fresca — é quando ela mais precisa de reforço.</td><td>Dinheiro</td></tr>
+        <tr><td class="num">5</td><td>Clear · <em>Hábitos Atômicos</em></td><td>Você já viveu 4 meses de protocolo; é hora de transformar isso em sistema.</td><td>Trabalho</td></tr>
+        <tr><td class="num">6</td><td>Welch · <em>Quando Gente é Grande e Deus é Pequeno</em></td><td>A plateia é a última coisa a soltar, e exige base já construída.</td><td>Amizades</td></tr>
+        <tr><td class="num">7</td><td>Brown · <em>Mais Forte do que Nunca</em></td><td>Para o primeiro tombo depois de tudo isso — e ele vai vir.</td><td>Relacionamento</td></tr>
+        <tr><td class="num">8</td><td>Kross · <em>Chatter</em></td><td>Refinar a voz interna com técnica, já com o hábito de registro instalado.</td><td>Corpo</td></tr>
+        <tr><td class="num">9</td><td>Nouwen · <em>Vida do Amado</em></td><td>Meio do caminho: reancorar a identidade antes que ela volte para o placar.</td><td>Fé</td></tr>
+        <tr><td class="num">10</td><td>Waldinger · <em>Uma Boa Vida</em></td><td>Quando o trabalho já estiver estável, a evidência de onde a vida boa realmente mora.</td><td>Família e amizades</td></tr>
+        <tr><td class="num">11</td><td>Frankl · <em>Em Busca de Sentido</em></td><td>Perto do aniversário do ano difícil. É o livro para reler o que passou.</td><td>Propósito</td></tr>
+        <tr><td class="num">12</td><td>Branden · <em>Os Seis Pilares</em> ou Thompson · <em>A Alma da Vergonha</em></td><td>Fechamento: prática diária ou aprofundamento da ferida, conforme o que ainda estiver aberto.</td><td>Sua escolha</td></tr>
       </tbody>
     </table>
   </div>
