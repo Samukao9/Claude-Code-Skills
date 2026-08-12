@@ -4,92 +4,98 @@
 /* ============================================================
    TOKENS — tema claro completo em :root
    ============================================================ */
+/* Paleta CLARA — leitura diurna.
+   Sem branco puro (evita ofuscamento em sessão longa) e sem preto puro.
+   Todo token que carrega texto corrido fica em contraste >= 7:1 (nível AAA). */
 :root{
-  --bg:#EBEEF1;
-  --surface:#FFFFFF;
-  --surface-2:#F4F6F8;
-  --surface-3:#E4E9ED;
-  --ink:#131A1F;
-  --ink-2:#374651;
-  --muted:#657783;
-  --line:#D2DAE0;
-  --line-strong:#AEBCC5;
+  --bg:#EFEEEA;
+  --surface:#FAF9F6;
+  --surface-2:#F3F2EE;
+  --surface-3:#E5E3DD;
+  --ink:#1A1D20;
+  --ink-2:#3A4045;
+  --muted:#5C6268;
+  --line:#D8D5CE;
+  --line-strong:#B4B0A7;
 
-  --accent:#1C5A69;
-  --accent-2:#12414C;
-  --accent-tint:#E2EDF0;
+  --accent:#1C595D;
+  --accent-2:#14464A;
+  --accent-tint:#E2ECEB;
 
-  --sci:#28558A;
-  --sci-tint:#E4EBF5;
-  --bib:#8A5F14;
-  --bib-tint:#F5EDDD;
-  --act:#1F6559;
-  --act-tint:#E0EFEB;
-  --warn:#98402F;
-  --warn-tint:#F7E7E3;
-  --good:#2C6849;
+  --sci:#284E82;
+  --sci-tint:#E5E9F1;
+  --bib:#6E4E12;
+  --bib-tint:#F2ECDD;
+  --act:#1C5A4C;
+  --act-tint:#E1EDE8;
+  --warn:#853A2A;
+  --warn-tint:#F5E6E1;
+  --good:#265C42;
 
-  --shadow:0 1px 2px rgba(19,26,31,.06), 0 6px 20px rgba(19,26,31,.05);
+  --shadow:0 1px 2px rgba(26,29,32,.06), 0 6px 20px rgba(26,29,32,.05);
 
   --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
   --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
 }
 
+/* Paleta ESCURA — leitura noturna.
+   Sem preto puro (evita halação em volta das letras) e sem branco puro.
+   Acentos deslocados para o lado quente do espectro: menos azul à noite. */
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#0C1216;
-    --surface:#141C21;
-    --surface-2:#1A242A;
-    --surface-3:#222E35;
-    --ink:#E2E9EC;
-    --ink-2:#B6C3CB;
-    --muted:#8797A2;
-    --line:#26333A;
-    --line-strong:#3B4C56;
+    --bg:#14171A;
+    --surface:#1B1F22;
+    --surface-2:#21262A;
+    --surface-3:#2A3034;
+    --ink:#E3E1DC;
+    --ink-2:#BDBAB3;
+    --muted:#98948D;
+    --line:#2D3236;
+    --line-strong:#464C51;
 
-    --accent:#63B3C2;
-    --accent-2:#8FCDD8;
-    --accent-tint:#132A31;
+    --accent:#86BEB6;
+    --accent-2:#A3CFC7;
+    --accent-tint:#172523;
 
-    --sci:#84B2E4;
-    --sci-tint:#141F2D;
-    --bib:#D9A94F;
-    --bib-tint:#291F0F;
-    --act:#5CBFAC;
-    --act-tint:#0F2723;
-    --warn:#E28C74;
-    --warn-tint:#2A1712;
-    --good:#6DC195;
+    --sci:#93B6D9;
+    --sci-tint:#171E26;
+    --bib:#D8AE64;
+    --bib-tint:#251E11;
+    --act:#77C1AA;
+    --act-tint:#142520;
+    --warn:#E59B82;
+    --warn-tint:#261610;
+    --good:#7CC49F;
 
     --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.28);
   }
 }
 
 :root[data-theme="dark"]{
-  --bg:#0C1216;
-  --surface:#141C21;
-  --surface-2:#1A242A;
-  --surface-3:#222E35;
-  --ink:#E2E9EC;
-  --ink-2:#B6C3CB;
-  --muted:#8797A2;
-  --line:#26333A;
-  --line-strong:#3B4C56;
+  --bg:#14171A;
+  --surface:#1B1F22;
+  --surface-2:#21262A;
+  --surface-3:#2A3034;
+  --ink:#E3E1DC;
+  --ink-2:#BDBAB3;
+  --muted:#98948D;
+  --line:#2D3236;
+  --line-strong:#464C51;
 
-  --accent:#63B3C2;
-  --accent-2:#8FCDD8;
-  --accent-tint:#132A31;
+  --accent:#86BEB6;
+  --accent-2:#A3CFC7;
+  --accent-tint:#172523;
 
-  --sci:#84B2E4;
-  --sci-tint:#141F2D;
-  --bib:#D9A94F;
-  --bib-tint:#291F0F;
-  --act:#5CBFAC;
-  --act-tint:#0F2723;
-  --warn:#E28C74;
-  --warn-tint:#2A1712;
-  --good:#6DC195;
+  --sci:#93B6D9;
+  --sci-tint:#171E26;
+  --bib:#D8AE64;
+  --bib-tint:#251E11;
+  --act:#77C1AA;
+  --act-tint:#142520;
+  --warn:#E59B82;
+  --warn-tint:#261610;
+  --good:#7CC49F;
 
   --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.28);
 }
@@ -183,6 +189,50 @@ html{scroll-behavior:smooth;scroll-padding-top:1.5rem;}
   padding-bottom:1.1rem;
   border-bottom:1px solid var(--line);
 }
+/* ---- seletor de tema ---- */
+.theme{
+  display:flex;gap:0;margin:0 0 1.3rem;
+  border:1px solid var(--line-strong);
+  background:var(--surface-2);
+}
+.theme button{
+  flex:1;
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+  padding:.42rem .2rem;
+  background:transparent;
+  color:var(--muted);
+  border:0;
+  border-right:1px solid var(--line);
+  cursor:pointer;
+  line-height:1.5;
+}
+.theme button:last-child{border-right:0;}
+.theme button:hover{color:var(--ink);}
+.theme button[aria-pressed="true"]{
+  background:var(--accent);
+  color:var(--surface);
+  font-weight:700;
+}
+.theme-note{
+  font-family:var(--sans);
+  font-size:10.5px;
+  line-height:1.5;
+  color:var(--muted);
+  margin:-1rem 0 1.35rem;
+}
+.rail .theme-note a{
+  display:inline;
+  padding:0;
+  border-left:0;
+  color:var(--accent);
+  text-decoration:underline;
+  text-underline-offset:2px;
+}
+.rail .theme-note a:hover{background:transparent;color:var(--accent-2);}
+
 .rail nav{display:flex;flex-direction:column;gap:.1rem;}
 .rail-group{
   font-family:var(--mono);
@@ -547,10 +597,19 @@ footer.end{
 <aside class="rail">
   <div class="rail-brand">INABALÁVEL</div>
   <div class="rail-sub">Manual de reconstrução</div>
+
+  <div class="theme" role="group" aria-label="Modo de cor">
+    <button type="button" data-theme-set="light" aria-pressed="false">Claro</button>
+    <button type="button" data-theme-set="dark" aria-pressed="false">Escuro</button>
+    <button type="button" data-theme-set="auto" aria-pressed="true">Auto</button>
+  </div>
+  <p class="theme-note">Claro para o dia, escuro para a noite. <a href="#cores">Por que estas cores</a></p>
+
   <nav>
     <div class="rail-group">Início</div>
     <a href="#carta">Carta de abertura</a>
     <a href="#usar">Como usar isto</a>
+    <a href="#cores">Por que estas cores</a>
 
     <div class="rail-group">I · O mapa</div>
     <a href="#pilares">Os três pilares</a>
@@ -713,6 +772,81 @@ footer.end{
         <tr><td><span style="color:var(--warn);font-weight:600">Vermelho</span></td><td>Armadilha — algo que parece ajudar e piora</td></tr>
       </tbody>
     </table>
+  </div>
+</section>
+
+<section id="cores" class="wrap">
+  <h3 class="sec">Por que estas cores — e o modo claro/escuro</h3>
+
+  <p>Você pediu as cores ideais para concentração e estudo. Fui atrás da evidência, e o resultado é meio decepcionante de um jeito útil: <strong>a cor (matiz) quase não importa. O que importa é contraste, luminância e nível de excitação.</strong></p>
+
+  <h4 class="sub">Primeiro, o mito mais famoso da área</h4>
+
+  <div class="study">
+    <p>Existe um estudo célebre — Mehta &amp; Zhu, publicado na <em>Science</em> em 2009 — dizendo que <strong>vermelho</strong> melhora tarefas de detalhe e <strong>azul</strong> melhora tarefas criativas. É a fonte de praticamente todo post de "cores para produtividade" que circula por aí.</p>
+    <p style="margin-bottom:0">Em 2014, Steele tentou replicar, usando <em>os mesmos anagramas, as mesmas instruções e as mesmas cores</em>, com mais do que o triplo de participantes e poder estatístico suficiente para detectar o efeito. <strong>Não encontrou efeito nenhum.</strong> Ou seja: a base da crença mais difundida sobre cor e desempenho cognitivo não se sustentou.</p>
+    <span class="src">Mehta &amp; Zhu (2009), Science, 323 · Steele (2014), Psychonomic Bulletin &amp; Review, falha de replicação</span>
+  </div>
+
+  <p>Então não fiz o que a maioria dos sites faz. Não existe uma "cor da concentração". O que existe, e é bem estabelecido, é outra coisa.</p>
+
+  <h4 class="sub">O que realmente tem evidência</h4>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>Achado</th><th>O que foi aplicado aqui</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Vantagem da polaridade positiva.</strong> Texto escuro sobre fundo claro produz pupila menor, imagem mais nítida na retina e melhor desempenho de leitura e revisão. Testado em 169 participantes, vale para jovens e mais velhos <em>(Piepenbrock, Mayr &amp; Buchner)</em></td>
+          <td>O <strong>modo claro é o padrão para estudar de dia</strong>. Se você quer ler com máxima precisão e vai ficar horas, use o claro</td>
+        </tr>
+        <tr>
+          <td><strong>Contraste é o que carrega legibilidade.</strong> Os padrões de acessibilidade pedem 4,5:1 para texto corrido e 7:1 para o nível mais alto</td>
+          <td>Todo token que carrega texto neste site foi calculado e fica <strong>acima de 7:1</strong>. O texto principal está em 16:1 no claro e 12,7:1 no escuro</td>
+        </tr>
+        <tr>
+          <td><strong>Branco puro cansa.</strong> Em sessão longa, #FFFFFF vira fonte de ofuscamento; e preto puro com branco puro provoca halação — o brilho "vaza" em volta das letras</td>
+          <td>Não uso branco puro nem preto puro em lugar nenhum. O fundo claro é um off-white levemente quente; o escuro é um cinza-grafite, não preto</td>
+        </tr>
+        <tr>
+          <td><strong>Luz azul à noite</strong> suprime melatonina e atrasa o sono — por cerca do dobro do tempo em relação à luz verde</td>
+          <td>O modo escuro tem os acentos deslocados para o lado <strong>quente</strong> do espectro (âmbar, verde-água), com menos azul. Não substitui parar de olhar tela antes de dormir, mas ajuda</td>
+        </tr>
+        <tr>
+          <td><strong>Saturação e brilho governam excitação.</strong> Quanto mais saturada a cor, maior a ativação relatada <em>(Valdez &amp; Mehrabian)</em></td>
+          <td>Toda a paleta é <strong>dessaturada de propósito</strong>. No seu caso isso não é estética: você está lidando com ansiedade e preocupação, e cor saturada empurra excitação para cima justamente onde você não precisa</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="key">Resumindo o que a evidência autoriza dizer: <strong>não existe cor mágica para raciocínio lógico.</strong> O que melhora concentração de verdade é texto legível, contraste alto, ausência de ofuscamento e um ambiente visual de baixa excitação — mais sono e menos notificação ajudam muito mais que qualquer matiz.</div>
+
+  <h4 class="sub">Como escolher o modo, na prática</h4>
+
+  <div class="grid2">
+    <div class="card t-act">
+      <span class="card-label">Use claro quando</span>
+      <ul style="margin-bottom:0">
+        <li>For dia, ou o ambiente estiver bem iluminado</li>
+        <li>For sessão longa de leitura ou estudo — é onde a vantagem de polaridade positiva aparece</li>
+        <li>Precisar de precisão: preencher escalas, revisar seus números</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="card-label">Use escuro quando</span>
+      <ul style="margin-bottom:0">
+        <li>For noite ou o quarto estiver escuro — aí a tela clara vira lanterna e o escuro é mais confortável</li>
+        <li>Estiver lendo antes de dormir (ainda assim, prefira não ler na cama)</li>
+        <li>Sentir cansaço ou ardência nos olhos</li>
+      </ul>
+    </div>
+  </div>
+
+  <p style="margin-top:1.4rem">No canto superior esquerdo há três botões: <strong>Claro</strong>, <strong>Escuro</strong> e <strong>Auto</strong>. Auto segue a configuração do seu celular ou computador. A escolha fica salva no aparelho — na próxima vez que você abrir, o site lembra.</p>
+
+  <div class="callout">
+    <p style="margin-bottom:0"><strong>Uma nota de coerência.</strong> Este site tem uma parte inteira sobre não acreditar em coisa que soa boa mas não tem evidência (<a href="#energia">Parte IV</a>). Seria incoerente eu escolher as cores por "vermelho ativa o raciocínio" e você descobrir depois que aquilo não replicou. Por isso as cores daqui foram escolhidas pelo que se sustenta — contraste, luminância e excitação — e não pelo que rende título bonito.</p>
   </div>
 </section>
 
@@ -3993,6 +4127,42 @@ footer.end{
 <script>
 (function(){
   "use strict";
+
+  /* ---------- Seletor de tema (claro / escuro / automático) ---------- */
+  (function(){
+    var KEY = "inabalavel-tema";
+    var root = document.documentElement;
+    var btns = document.querySelectorAll("[data-theme-set]");
+    if (!btns.length) return;
+
+    function stored(){
+      try { return localStorage.getItem(KEY); } catch (e) { return null; }
+    }
+    function persist(v){
+      try {
+        if (v === "auto") localStorage.removeItem(KEY);
+        else localStorage.setItem(KEY, v);
+      } catch (e) { /* modo privado: aplica só nesta sessão */ }
+    }
+    function apply(mode){
+      if (mode === "light" || mode === "dark") root.setAttribute("data-theme", mode);
+      else root.removeAttribute("data-theme");
+      Array.prototype.forEach.call(btns, function(b){
+        b.setAttribute("aria-pressed", String(b.dataset.themeSet === mode));
+      });
+    }
+
+    var initial = stored();
+    apply(initial === "light" || initial === "dark" ? initial : "auto");
+
+    Array.prototype.forEach.call(btns, function(b){
+      b.addEventListener("click", function(){
+        var mode = b.dataset.themeSet;
+        persist(mode);
+        apply(mode);
+      });
+    });
+  })();
 
   /* ---------- Escala de Autoestima de Rosenberg ---------- */
   var RSE_OPTS = [
