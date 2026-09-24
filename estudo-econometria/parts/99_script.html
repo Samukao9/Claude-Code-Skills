@@ -9,7 +9,9 @@
   window.__fixMath = function () {
     $$('mjx-container:not([display="true"])').forEach(function (m) {
       m.classList.remove('wide-inline');
-      var p = m.parentElement; if (!p) return;
+      var p = m.parentElement;
+      while (p && getComputedStyle(p).display.indexOf('inline') === 0) p = p.parentElement;
+      if (!p) return;
       if (m.getBoundingClientRect().width > p.clientWidth - 2) m.classList.add('wide-inline');
     });
   };
@@ -299,5 +301,41 @@
       '</ol>';
   });
   newT2();
+
+  /* ---------- gerador tipo Lista 3 (Q4, Q5, Q7) ---------- */
+  var TC = { 6: 2.447, 8: 2.306, 10: 2.228, 13: 2.160, 16: 2.120, 18: 2.101, 20: 2.086, 23: 2.069, 28: 2.048, 30: 2.042 };
+  var T3 = null, T3ids = ['t3s2', 't3ep', 't3t', 't3lo', 't3hi'];
+  function newT3() {
+    var df = pick([6, 8, 10, 13, 16, 18, 20, 23, 28, 30]), n = df + 2;
+    var sqr = pick([12, 18, 24, 30, 36, 40, 48, 60, 80]), sqt = pick([10, 16, 20, 25, 40, 50, 64, 80, 100]);
+    var s2 = sqr / df, ep = Math.sqrt(s2 / sqt), h0 = pick([0, 0, 0, 1, 0.5]);
+    var b1 = Math.round((h0 + ep * pick([0.8, 1.4, 1.9, 2.3, 2.7, 3.4, 4.1])) * 100) / 100;
+    var c = TC[df], t = (b1 - h0) / ep;
+    T3 = { n: n, df: df, sqr: sqr, sqt: sqt, s2: s2, ep: ep, h0: h0, b1: b1, c: c, t: t, lo: b1 - c * ep, hi: b1 + c * ep };
+    chips($('#t3given'), ['n = ' + n, 'SQR = ' + fmt(sqr), 'SQTₓ = ' + fmt(sqt), 'β̂₁ = ' + fmt(b1, 2), 'H₀: β₁ = ' + fmt(h0) + ' (bilateral, 5%)', 't₀,₀₂₅;' + df + ' = ' + c.toFixed(3).replace('.', ',')]);
+    $('#t3tl').textContent = 't para H₀: β₁ = ' + fmt(h0);
+    clearFields(T3ids, '#t3out');
+  }
+  $('#t3new').addEventListener('click', newT3);
+  $('#t3check').addEventListener('click', function () {
+    var t = T3, ok = 0;
+    ok += checkField('t3s2', t.s2, 'Divida SQR por n − 2 = ' + t.df + '.');
+    ok += checkField('t3ep', t.ep, 'Raiz de σ̂²/SQTₓ (não pare na variância).');
+    ok += checkField('t3t', t.t, '(β̂₁ − valor de H₀) ÷ ep.');
+    ok += checkField('t3lo', t.lo, 'β̂₁ − t crítico × ep.');
+    ok += checkField('t3hi', t.hi, 'β̂₁ + t crítico × ep.');
+    $('#t3out').innerHTML = '<p class="score">' + ok + ' de 5 certos' + (ok === 5 ? '. Perfeito: clique em “Novo exercício”.' : '.') + '</p>';
+  });
+  $('#t3show').addEventListener('click', function () {
+    var t = T3, rej = Math.abs(t.t) > t.c;
+    $('#t3out').innerHTML = '<ol class="steps">' +
+      '<li><div>Graus de liberdade: n − 2 = ' + t.n + ' − 2 = ' + t.df + '.</div></li>' +
+      '<li><div>σ̂² = SQR/(n − 2) = ' + fmt(t.sqr) + ' / ' + t.df + ' = <strong>' + fmt(t.s2) + '</strong></div></li>' +
+      '<li><div>Vâr(β̂₁) = σ̂²/SQTₓ = ' + fmt(t.s2) + ' / ' + fmt(t.sqt) + ' = ' + fmt(t.s2 / t.sqt, 5) + '; ep = √' + fmt(t.s2 / t.sqt, 5) + ' = <strong>' + fmt(t.ep) + '</strong></div></li>' +
+      '<li><div>t = (' + fmt(t.b1, 2) + ' − ' + fmt(t.h0) + ') / ' + fmt(t.ep) + ' = <strong>' + fmt(t.t, 3) + '</strong>. Como |t| ' + (rej ? '&gt;' : '≤') + ' ' + t.c.toFixed(3).replace('.', ',') + ', <strong>' + (rej ? 'rejeitamos' : 'não rejeitamos') + '</strong> H₀: β₁ = ' + fmt(t.h0) + ' a 5%.</div></li>' +
+      '<li><div>IC 95% = ' + fmt(t.b1, 2) + ' ± ' + t.c.toFixed(3).replace('.', ',') + ' × ' + fmt(t.ep) + ' = [<strong>' + fmt(t.lo) + '</strong>; <strong>' + fmt(t.hi) + '</strong>]. O valor ' + fmt(t.h0) + (rej ? ' está fora do intervalo' : ' está dentro do intervalo') + ': mesma conclusão do teste (dualidade).</div></li>' +
+      '</ol>';
+  });
+  newT3();
 })();
 </script>

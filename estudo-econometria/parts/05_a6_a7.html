@@ -19,23 +19,87 @@
   <div class="mathblock">\[t=\frac{\overbrace{\hat\beta_1-\beta_{1,0}}^{\text{discrepância em relação a }H_0}}{\underbrace{ep(\hat\beta_1)}_{\text{incerteza estimada}}}\]</div>
   <p>Quantos erros-padrão a estimativa está distante do valor de \(H_0\). \(|t|\) grande indica discrepância grande em unidades de erro-padrão. O mesmo vale para \(\hat\beta_0\) com \(ep(\hat\beta_0)\).</p>
 
+  <div class="box prova"><span class="lbl">Roteiro do teste t em 6 passos (use sempre)</span>
+    <ol>
+      <li><strong>Escreva as hipóteses:</strong> \(H_0:\beta_1=\beta_{1,0}\) e \(H_A\) (bilateral \(\neq\), ou unilateral &gt; / &lt; decidida antes).</li>
+      <li><strong>Graus de liberdade:</strong> n − 2 na regressão simples.</li>
+      <li><strong>Estatística:</strong> \(t=(\hat\beta_1-\beta_{1,0})/ep(\hat\beta_1)\), com todas as substituições.</li>
+      <li><strong>Valor crítico:</strong> bilateral a 5% → \(t_{0,025;\,n-2}\); unilateral a 5% → \(t_{0,05;\,n-2}\).</li>
+      <li><strong>Decisão:</strong> bilateral: rejeite se \(|t|&gt;\) crítico. Unilateral à direita: rejeite se \(t&gt;\) crítico; à esquerda: se \(t\lt-\)crítico. Ou compare p-valor com α.</li>
+      <li><strong>Conclusão em palavras:</strong> “rejeitamos” ou “não rejeitamos” \(H_0\) a 5%, e o que isso diz sobre a associação, sem causalidade automática e nunca “aceitamos”.</li>
+    </ol>
+  </div>
+
   <h3>3. Exemplo numérico (os 5 indivíduos)</h3>
   <p>\(\hat\beta_1=1{,}15\), \(ep(\hat\beta_1)=0{,}189\), n = 5. Testando \(H_0:\beta_1=0\) contra \(H_A:\beta_1\neq0\):</p>
   <div class="mathblock">\[t=\frac{1{,}15-0}{0{,}189}\approx6{,}08\]</div>
   <p>Sob normalidade e homocedasticidade, são n − 2 = 3 graus de liberdade e o valor crítico bilateral de 5% é \(t_{0{,}025;3}=3{,}182\). Como <strong>6,08 &gt; 3,182, rejeitamos \(H_0:\beta_1=0\)</strong>.</p>
   <figure><div class="scroll">FIG:tdist</div><figcaption>Distribuição t com 3 graus de liberdade. As caudas vermelhas somam 5%; o t observado (6,08) cai na região de rejeição.</figcaption></figure>
 
+  <details class="sol"><summary>Tabela de valores críticos da t (consulta)</summary><div class="in">
+    <p>Valor c tal que \(P(T&gt;c)\) é a área indicada numa cauda. Para teste <strong>bilateral</strong> a 5%, use a coluna 0,025; para <strong>unilateral</strong> a 5%, a coluna 0,05. <span class="muted">(Tabela padrão calculada por nós; na prova o professor fornece os valores de que você precisa, como nas listas.)</span></p>
+    <div class="tbl"><table>
+      <thead><tr><th class="r">g.l. (n − 2)</th><th class="r">0,05 (uni 5% · bi 10%)</th><th class="r">0,025 (bi 5%)</th><th class="r">0,005 (bi 1%)</th></tr></thead>
+      <tbody>
+        <tr><td class="r">1</td><td class="r">6,314</td><td class="r">12,706</td><td class="r">63,657</td></tr>
+        <tr><td class="r">2</td><td class="r">2,920</td><td class="r">4,303</td><td class="r">9,925</td></tr>
+        <tr><td class="r">3</td><td class="r">2,353</td><td class="r">3,182</td><td class="r">5,841</td></tr>
+        <tr><td class="r">4</td><td class="r">2,132</td><td class="r">2,776</td><td class="r">4,604</td></tr>
+        <tr><td class="r">5</td><td class="r">2,015</td><td class="r">2,571</td><td class="r">4,032</td></tr>
+        <tr><td class="r">6</td><td class="r">1,943</td><td class="r">2,447</td><td class="r">3,707</td></tr>
+        <tr><td class="r">7</td><td class="r">1,895</td><td class="r">2,365</td><td class="r">3,499</td></tr>
+        <tr><td class="r">8</td><td class="r">1,860</td><td class="r">2,306</td><td class="r">3,355</td></tr>
+        <tr><td class="r">9</td><td class="r">1,833</td><td class="r">2,262</td><td class="r">3,250</td></tr>
+        <tr><td class="r">10</td><td class="r">1,812</td><td class="r">2,228</td><td class="r">3,169</td></tr>
+        <tr><td class="r">11</td><td class="r">1,796</td><td class="r">2,201</td><td class="r">3,106</td></tr>
+        <tr><td class="r">12</td><td class="r">1,782</td><td class="r">2,179</td><td class="r">3,055</td></tr>
+        <tr><td class="r">13</td><td class="r">1,771</td><td class="r">2,160</td><td class="r">3,012</td></tr>
+        <tr><td class="r">14</td><td class="r">1,761</td><td class="r">2,145</td><td class="r">2,977</td></tr>
+        <tr><td class="r">15</td><td class="r">1,753</td><td class="r">2,131</td><td class="r">2,947</td></tr>
+        <tr><td class="r">16</td><td class="r">1,746</td><td class="r">2,120</td><td class="r">2,921</td></tr>
+        <tr><td class="r">17</td><td class="r">1,740</td><td class="r">2,110</td><td class="r">2,898</td></tr>
+        <tr><td class="r">18</td><td class="r">1,734</td><td class="r">2,101</td><td class="r">2,878</td></tr>
+        <tr><td class="r">19</td><td class="r">1,729</td><td class="r">2,093</td><td class="r">2,861</td></tr>
+        <tr><td class="r">20</td><td class="r">1,725</td><td class="r">2,086</td><td class="r">2,845</td></tr>
+        <tr><td class="r">21</td><td class="r">1,721</td><td class="r">2,080</td><td class="r">2,831</td></tr>
+        <tr><td class="r">22</td><td class="r">1,717</td><td class="r">2,074</td><td class="r">2,819</td></tr>
+        <tr><td class="r">23</td><td class="r">1,714</td><td class="r">2,069</td><td class="r">2,807</td></tr>
+        <tr><td class="r">24</td><td class="r">1,711</td><td class="r">2,064</td><td class="r">2,797</td></tr>
+        <tr><td class="r">25</td><td class="r">1,708</td><td class="r">2,060</td><td class="r">2,787</td></tr>
+        <tr><td class="r">26</td><td class="r">1,706</td><td class="r">2,056</td><td class="r">2,779</td></tr>
+        <tr><td class="r">27</td><td class="r">1,703</td><td class="r">2,052</td><td class="r">2,771</td></tr>
+        <tr><td class="r">28</td><td class="r">1,701</td><td class="r">2,048</td><td class="r">2,763</td></tr>
+        <tr><td class="r">29</td><td class="r">1,699</td><td class="r">2,045</td><td class="r">2,756</td></tr>
+        <tr><td class="r">30</td><td class="r">1,697</td><td class="r">2,042</td><td class="r">2,750</td></tr>
+        <tr><td class="r">40</td><td class="r">1,684</td><td class="r">2,021</td><td class="r">2,704</td></tr>
+        <tr><td class="r">60</td><td class="r">1,671</td><td class="r">2,000</td><td class="r">2,660</td></tr>
+        <tr><td class="r">120</td><td class="r">1,658</td><td class="r">1,980</td><td class="r">2,617</td></tr>
+        <tr><td class="r">∞ (normal)</td><td class="r">1,645</td><td class="r">1,960</td><td class="r">2,576</td></tr>
+      </tbody>
+    </table></div>
+    <p>Repare na coluna 0,025: 12,706 com 1 g.l., 3,182 com 3, 2,228 com 10, 2,042 com 30 e 1,96 no limite. É a t convergindo para a normal: com poucos graus de liberdade, as caudas são mais gordas e é preciso um t maior para rejeitar.</p>
+  </div></details>
+
   <h3>4. p-valor</h3>
   <div class="box def"><span class="lbl">Definição</span><p>A probabilidade de observar uma estatística t tão extrema quanto a observada, ou mais, <strong>supondo que \(H_0\) é verdadeira</strong>.</p></div>
   <p>p-valor pequeno: seria muito improvável ver esses dados se \(H_0\) fosse verdadeira. p-valor grande: os dados são compatíveis com \(H_0\). No exemplo, com t ≈ 6,08 e 3 g.l., <strong>p ≈ 0,009</strong>: evidência forte contra \(H_0\).</p>
   <div class="box trap"><span class="lbl">As três interpretações erradas mais cobradas</span>
     <ul>
-      <li>O p-valor <strong>não</strong> é a probabilidade de \(H_0\) ser verdadeira. Ele é calculado supondo \(H_0\) verdadeira: tem a forma P(dados extremos | H₀), não P(H₀ | dados) (Lista 02, Q2-I).</li>
+      <li>O p-valor <strong>não</strong> é a probabilidade de \(H_0\) ser verdadeira. Ele é calculado supondo \(H_0\) verdadeira: tem a forma P(dados extremos | H₀), não P(H₀ | dados) (Lista 3, Q2-I).</li>
       <li>“Não rejeitar \(H_0\)” ≠ “aceitar \(H_0\)”: os dados só não trouxeram evidência forte o suficiente.</li>
       <li>O p-valor não mede o tamanho do efeito.</li>
     </ul>
   </div>
   <p><strong>Regra de decisão:</strong> fixe α <em>antes</em> de olhar os dados (5% ou 1% são comuns). Se p &lt; α, rejeite \(H_0\) (estatisticamente significativo). Se p ≥ α, não rejeite.</p>
+
+  <h4>Como achar o p-valor só com a tabela</h4>
+  <p>Na prova não há software. Faça como na Lista 3, Q5: encaixe o seu |t| entre dois valores críticos da linha dos seus graus de liberdade.</p>
+  <ol class="steps">
+    <li><div>Nos 5 indivíduos, t = 6,08 com 3 g.l. Na tabela: \(t_{0,005;3}=5{,}841\) e \(t_{0,0025;3}=7{,}453\).</div></li>
+    <li><div>Como \(5{,}841\lt6{,}08\lt7{,}453\), a área numa cauda está entre 0,0025 e 0,005.</div></li>
+    <li><div>Bilateral: dobre. \(0{,}005\lt p\lt0{,}01\). Confere com o p ≈ 0,009 do slide.</div></li>
+    <li><div>Unilateral (\(H_A:\beta_1&gt;0\), com t positivo): o p-valor é uma cauda só, cerca de 0,0045, a metade do bilateral.</div></li>
+  </ol>
 
   <h3>5. Erros tipo I e tipo II</h3>
   <div class="tbl"><table>
@@ -47,6 +111,17 @@
   </table></div>
   <p>O erro tipo I é controlado pelo α que escolhemos. O erro tipo II depende do tamanho da amostra e da magnitude da associação. No exemplo: tipo I seria concluir que o coeficiente da escolaridade é diferente de zero quando \(\beta_1=0\); tipo II seria não detectar uma associação que existe. O poder depende do tamanho da associação, da variância do erro, da dispersão de X, de n e de α.</p>
 
+  <div class="tbl"><table>
+    <thead><tr><th>Se aumentar…</th><th>O poder…</th><th>Por quê</th></tr></thead>
+    <tbody>
+      <tr><td>o tamanho verdadeiro da associação \(|\beta_1-\beta_{1,0}|\)</td><td>sobe</td><td>a distribuição de \(\hat\beta_1\) fica mais longe da região de não rejeição</td></tr>
+      <tr><td>n ou \(SQT_x\)</td><td>sobe</td><td>ep menor: a distribuição fica mais concentrada</td></tr>
+      <tr><td>a variância do erro \(\sigma^2\)</td><td>cai</td><td>ep maior</td></tr>
+      <tr><td>o nível α (ex.: de 1% para 5%)</td><td>sobe</td><td>a região de rejeição aumenta, mas o erro tipo I também</td></tr>
+    </tbody>
+  </table></div>
+  <p>Há uma troca: com n fixo, diminuir α (menos erro tipo I) aumenta o erro tipo II. O jeito de reduzir os dois ao mesmo tempo é ganhar precisão (mais dados, mais variação em X). A conta completa do poder, com a curva de poder, está na <a href="#l3q8">Lista 3, Q8</a>.</p>
+
   <h3>6. Intervalo de confiança</h3>
   <div class="mathblock">\[IC=\hat\beta_1\pm t_{\alpha/2,\;n-2}\times ep(\hat\beta_1)\]</div>
   <p>No exemplo: \(1{,}15\pm3{,}182\times0{,}189\approx1{,}15\pm0{,}60\), ou seja, <strong>IC 95% ≈ [0,55; 1,75]</strong>. Quanto mais estreito, mais precisa a estimativa.</p>
@@ -54,6 +129,27 @@
   <div class="box def"><span class="lbl">Dualidade IC ↔ teste</span>
     <p>Um IC de 95% contém exatamente os valores de \(\beta_{1,0}\) que <strong>não</strong> seriam rejeitados por um teste bilateral a 5%, se ambos usam o mesmo erro-padrão e a mesma distribuição. Regra prática: <strong>se 0 não está no IC de 95%, rejeitamos \(H_0:\beta_1=0\) a 5%</strong>. No exemplo, 0 ∉ [0,55; 1,75], a mesma conclusão do teste t.</p>
   </div>
+
+  <h3>Exemplo completo: todos os testes com os 5 indivíduos</h3>
+  <p>Mesmos números da Aula 5: \(\hat\beta_1=1{,}15\), \(ep(\hat\beta_1)=0{,}189\), \(\hat\beta_0=0{,}6\), \(ep(\hat\beta_0)\approx2{,}33\), 3 g.l. <span class="muted">(Os testes além de \(H_0:\beta_1=0\) são contas nossas.)</span></p>
+  <div class="tbl"><table>
+    <thead><tr><th>Pergunta</th><th>Hipóteses</th><th>Estatística</th><th>Crítico</th><th>Decisão</th></tr></thead>
+    <tbody>
+      <tr><td>Há associação linear?</td><td>\(H_0:\beta_1=0\) × \(H_A:\beta_1\neq0\)</td><td>\(1{,}15/0{,}189\approx6{,}08\)</td><td>3,182</td><td>rejeita (p ≈ 0,009)</td></tr>
+      <tr><td>O retorno é R$ 1 por ano?</td><td>\(H_0:\beta_1=1\) × \(H_A:\beta_1\neq1\)</td><td>\((1{,}15-1)/0{,}189\approx0{,}79\)</td><td>3,182</td><td>não rejeita</td></tr>
+      <tr><td>A associação é positiva? (direção fixada antes)</td><td>\(H_0:\beta_1\le0\) × \(H_A:\beta_1&gt;0\)</td><td>6,08</td><td>2,353</td><td>rejeita (p ≈ 0,0045)</td></tr>
+      <tr><td>O intercepto é zero?</td><td>\(H_0:\beta_0=0\) × \(H_A:\beta_0\neq0\)</td><td>\(0{,}6/2{,}33\approx0{,}26\)</td><td>3,182</td><td>não rejeita</td></tr>
+    </tbody>
+  </table></div>
+  <div class="tbl"><table>
+    <thead><tr><th>Confiança</th><th class="r">Crítico (3 g.l.)</th><th class="r">Margem \(=c\times0{,}189\)</th><th>Intervalo</th></tr></thead>
+    <tbody>
+      <tr><td>90%</td><td class="r">2,353</td><td class="r">0,445</td><td>[0,705; 1,595]</td></tr>
+      <tr><td>95%</td><td class="r">3,182</td><td class="r">0,601</td><td>[0,55; 1,75]</td></tr>
+      <tr><td>99%</td><td class="r">5,841</td><td class="r">1,104</td><td>[0,046; 2,254]</td></tr>
+    </tbody>
+  </table></div>
+  <p>Mais confiança exige um intervalo mais largo. Os três excluem 0 (coerente com p ≈ 0,009 &lt; 0,01) e o de 95% contém 1 (coerente com não rejeitar \(\beta_1=1\)).</p>
 
   <h3>7. Unilateral × bilateral</h3>
   <p>Bilateral (\(H_A:\beta_1\neq0\)) é o mais comum; o p-valor considera as duas caudas. Unilateral (\(H_A:\beta_1&gt;0\)) considera uma cauda só e deve ser usado com forte justificativa teórica <strong>prévia</strong>. Escolher a direção depois de ver os dados é prática questionável.</p>
@@ -86,10 +182,16 @@
   <p>Teste robusto: \(t_{rob}=(\hat\beta_1-\beta_{1,0})/ep_{rob}(\hat\beta_1)\xrightarrow{d}N(0,1)\); IC robusto aproximado \(\hat\beta_1\pm z_{1-\alpha/2}\,ep_{rob}\). A inferência robusta é <strong>assintótica</strong>.</p>
   <div class="box trap"><span class="lbl">O que “robusto” não significa</span>
     <ul>
-      <li>Robusto <strong>não é necessariamente maior</strong> que o convencional: pode ser maior ou menor (Lista 02, Q9).</li>
-      <li>Robusto <strong>não corrige</strong> variável omitida, simultaneidade, forma funcional errada, erro de medida ou dependência entre observações (Lista 02, Q3-III).</li>
+      <li>Robusto <strong>não é necessariamente maior</strong> que o convencional: pode ser maior ou menor (Lista 3, Q9).</li>
+      <li>Robusto <strong>não corrige</strong> variável omitida, simultaneidade, forma funcional errada, erro de medida ou dependência entre observações (Lista 3, Q3-III).</li>
     </ul>
   </div>
+  <div class="box ok"><span class="lbl">Erro robusto nos 5 indivíduos (conta nossa)</span>
+    <p>Com \(d=(-4,-2,0,2,4)\) e resíduos \(\hat u=(0{,}2;\ -0{,}1;\ 0{,}6;\ -1{,}7;\ 1{,}0)\) da Aula 3, as contribuições \(d_i^2\hat u_i^2\) são 0,64; 0,04; 0; 11,56; 16, soma 28,24.</p>
+    <div class="mathblock">\[\widehat{Var}_{HC0}(\hat\beta_1)=\frac{28{,}24}{40^2}=0{,}01765,\qquad ep_{HC0}\approx0{,}133\qquad(\text{convencional: }0{,}189)\]</div>
+    <p>Com a correção de graus de liberdade <strong>HC1</strong>, que multiplica a variância HC0 por \(n/(n-2)=5/3\): \(ep_{HC1}\approx0{,}172\). Aqui o robusto saiu menor que o convencional, e as três versões rejeitam \(H_0:\beta_1=0\). Com n = 5, porém, nenhuma aproximação assintótica merece muita confiança. Em amostras pequenas os resíduos tendem a <strong>subestimar</strong> a variância dos erros (é o mesmo “encolhimento” do Laboratório 3 da Aula 5), e é por isso que existem HC1, HC2 e HC3.</p>
+  </div>
+
   <p><strong>Fluxo de trabalho defensável:</strong> formule a média condicional pela pergunta econômica; estime e examine resíduos; reporte erros robustos quando a heterocedasticidade for plausível; use testes de heterocedasticidade como diagnóstico, não como pré-requisito; use MQP só com justificativa para os pesos. Não é preciso rejeitar homocedasticidade antes de usar erros robustos.</p>
 
   <h3>10. Apêndice: de onde vem a t de Student</h3>
@@ -105,6 +207,17 @@
   </ol>
   <p><strong>Caudas mais gordas:</strong> às vezes \(\hat\sigma\) sai menor que σ por acaso, e dividir por um número pequeno infla t. Por isso a t é mais espalhada que a Normal com n pequeno; com n grande, converge para a Normal (e a regra de bolso |t| &gt; 2 funciona). Sem normalidade, sob condições regulares, \((\hat\beta_1-\beta_1)/se(\hat\beta_1)\xrightarrow{d}N(0,1)\) pelo TCL.</p>
   <p><strong>Testes de heterocedasticidade:</strong> Breusch–Pagan regride \(\hat u_i^2=\delta_0+\delta_1X_i+v_i\) e testa \(\delta_1=0\), com \(LM=nR^2_{aux}\xrightarrow{d}\chi^2_1\). White usa também \(X_i^2\) e testa \(\delta_1=\delta_2=0\); a rejeição pode refletir forma funcional errada. <strong>MQP:</strong> se \(Var(u\mid X)=\sigma^2h(X)\), dividir o modelo por \(\sqrt{h(X)}\) deixa o erro homocedástico; observações com menor variância recebem mais peso.</p>
+
+  <div class="box ok"><span class="lbl">Breusch–Pagan e MQP com números (exemplo nosso)</span>
+    <p><strong>BP:</strong> com n = 100, a regressão auxiliar \(\hat u_i^2=\delta_0+\delta_1X_i+v_i\) deu \(R^2_{aux}=0{,}08\). Então \(LM=nR^2_{aux}=100\times0{,}08=8\). O valor crítico da \(\chi^2_1\) a 5% é 3,84. Como 8 &gt; 3,84, rejeitamos a homocedasticidade (p ≈ 0,005).</p>
+    <p><strong>MQP com \(h(X)=X\):</strong> se \(Var(u\mid X)=\sigma^2X\), divida tudo por \(\sqrt X\):</p>
+    <div class="mathblock">\[\frac{Y}{\sqrt X}=\beta_0\frac{1}{\sqrt X}+\beta_1\sqrt X+\frac{u}{\sqrt X},\qquad Var\!\left(\frac{u}{\sqrt X}\,\middle|\,X\right)=\frac{\sigma^2X}{X}=\sigma^2\]</div>
+    <p>O erro transformado é homocedástico e o MQO nessa equação (sem intercepto próprio: \(1/\sqrt X\) faz o papel da constante) é o MQP. Observações com X grande, que são mais ruidosas, recebem peso menor.</p>
+  </div>
+  <div class="box def"><span class="lbl">Precisamos testar antes de usar erros robustos?</span>
+    <p><strong>Não.</strong> Usar erros-padrão robustos não exige rejeitar a homocedasticidade antes. Testar é útil para compreender os dados, investigar a especificação, motivar uma transformação e construir pesos para MQP. Mas o pré-teste tem limites: baixa potência em amostras pequenas, depende da regressão auxiliar escolhida, e não rejeitar não comprova \(H_0\).</p>
+  </div>
+  <p class="small">Detalhe do slide sobre RLS.6: a independência entre as observações vem da <strong>amostragem aleatória</strong> (RLS.2), não da normalidade.</p>
 
   <h3>11. E se u não for normal?</h3>
   <p>Nem sempre RLS.6 é razoável. Exemplos da aula: y com poucos valores possíveis, como uma <strong>contagem de eventos</strong>, ou uma <strong>variável censurada</strong>, como uma duração observada só até o fim do acompanhamento. Às vezes uma transformação, como o log, reduz a assimetria e aproxima o erro da normal.</p>
@@ -138,8 +251,85 @@
   <p>Se a função de variância estiver bem especificada, o MQP pode ser mais eficiente; se estiver mal especificada, o ganho pode sumir. Erros-padrão robustos depois da ponderação dão proteção adicional. <strong>Síntese:</strong> erros robustos protegem a inferência; MQP tenta também recuperar eficiência; nenhum dos dois corrige uma média condicional mal especificada.</p>
   <p><strong>Teaser:</strong> sob normalidade, qualquer combinação linear de \(\hat\beta_0\) e \(\hat\beta_1\) também é normal (em grandes amostras, aproximadamente), e qualquer subconjunto de coeficientes tem distribuição normal conjunta. Com dois coeficientes isso faz pouca diferença, mas é a base do <strong>teste F</strong>, para testar vários coeficientes ao mesmo tempo, na regressão múltipla.</p>
 
+  <h3>Unidades na inferência</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Grandeza</th><th>Unidade</th><th>Exemplo (5 indivíduos)</th></tr></thead>
+    <tbody>
+      <tr><td>\(\hat\beta_1\), \(\beta_{1,0}\), \(ep(\hat\beta_1)\)</td><td>unid. y / unid. x</td><td>1,15 e 0,189 (R$/h) por ano</td></tr>
+      <tr><td>Estatística t</td><td>nenhuma (R$ ÷ R$)</td><td>6,08</td></tr>
+      <tr><td>Limites do IC</td><td>a de \(\beta_1\)</td><td>[0,55; 1,75] (R$/h) por ano</td></tr>
+      <tr><td>p-valor, α, poder, erro tipo II</td><td>probabilidades (0 a 1)</td><td>p ≈ 0,009</td></tr>
+      <tr><td>Estatística LM de Breusch–Pagan</td><td>nenhuma</td><td>—</td></tr>
+    </tbody>
+  </table></div>
+  <p>Consequência prática: se você mudar a unidade de y ou de x (Aula 4), \(\hat\beta_1\) e o ep mudam na mesma proporção, e o t, o p-valor e a decisão <strong>não mudam</strong>.</p>
+
+  <h3>14. Encerramento (slide final da Aula 6)</h3>
+  <ul>
+    <li>Testes comparam a estimativa com um valor hipotético na escala do seu erro-padrão.</li>
+    <li>p-valores medem a compatibilidade dos dados com \(H_0\); não medem a magnitude da associação nem a probabilidade de \(H_0\).</li>
+    <li>Intervalos de confiança apresentam uma faixa de valores compatíveis com os dados e com o procedimento adotado.</li>
+    <li>A distribuição t é exata sob normalidade e homocedasticidade; a inferência robusta é, em geral, assintótica.</li>
+    <li>Erros-padrão robustos protegem contra heterocedasticidade, não contra endogeneidade ou especificação incorreta.</li>
+  </ul>
+
+  <div class="box trap"><span class="lbl">Pegadinhas da Aula 6</span>
+    <ul>
+      <li>Usar n em vez de n − 2 graus de liberdade.</li>
+      <li>Testar \(H_0:\beta_1=1\) calculando \(\hat\beta_1/ep\) (esqueceu de subtrair 1).</li>
+      <li>Usar o crítico bilateral num teste unilateral, ou vice-versa.</li>
+      <li>Esquecer de dobrar a área de uma cauda no p-valor bilateral.</li>
+      <li>Escrever “aceitamos \(H_0\)”, ou “há 95% de probabilidade de \(\beta_1\) estar neste IC”.</li>
+      <li>Achar que p pequeno significa efeito grande, ou que robusto é sempre maior.</li>
+      <li>Achar que heterocedasticidade causa viés, ou que erro robusto corrige variável omitida.</li>
+    </ul>
+  </div>
+
+  <h3>Exercícios extras resolvidos (tipo prova)</h3>
+  <p class="small muted">Criados por nós no formato da Lista 3.</p>
+  <details class="sol"><summary>F1 · β̂₁ = 2,4, ep = 0,8, n = 22 (t₀,₀₂₅;₂₀ = 2,086): teste β₁ = 0 e IC 95%</summary><div class="in">
+    <p>\(t=2{,}4/0{,}8=3&gt;2{,}086\): rejeita. IC \(=2{,}4\pm2{,}086\times0{,}8=2{,}4\pm1{,}669=[0{,}731;\ 4{,}069]\), que exclui 0.</p>
+  </div></details>
+  <details class="sol"><summary>F2 · β̂₁ = −0,45, ep = 0,30, n = 32 (t₀,₀₂₅;₃₀ = 2,042)</summary><div class="in">
+    <p>\(t=-0{,}45/0{,}30=-1{,}5\); \(|{-1{,}5}|\lt2{,}042\): não rejeita \(H_0:\beta_1=0\). IC \(=-0{,}45\pm0{,}613=[-1{,}063;\ 0{,}163]\), que contém 0. Não rejeitar não prova que \(\beta_1=0\).</p>
+  </div></details>
+  <details class="sol"><summary>F3 · H₀: β₁ = 1 com β̂₁ = 1,32, ep = 0,12, n = 15 (t₀,₀₂₅;₁₃ = 2,160)</summary><div class="in">
+    <p>\(t=(1{,}32-1)/0{,}12\approx2{,}67&gt;2{,}160\): rejeita \(\beta_1=1\). IC \(=1{,}32\pm0{,}259=[1{,}061;\ 1{,}579]\), que exclui 1 (dualidade).</p>
+  </div></details>
+  <details class="sol"><summary>F4 · Unilateral à esquerda: H_A: β₁ &lt; 0, β̂₁ = −0,9, ep = 0,5, n = 22</summary><div class="in">
+    <p>\(t=-1{,}8\). Unilateral a 5% (\(t_{0,05;20}=1{,}725\)): rejeita se \(t\lt-1{,}725\); como \(-1{,}8\lt-1{,}725\), rejeita. Bilateral (2,086): \(|{-1{,}8}|\lt2{,}086\), não rejeitaria. Mesma lógica da Lista 3, Q6, do lado negativo.</p>
+  </div></details>
+  <details class="sol"><summary>F5 · Intervalo para o p-valor: t = 2,9 com 10 g.l.</summary><div class="in">
+    <p>Na tabela: \(t_{0,01;10}=2{,}764\lt2{,}9\lt t_{0,005;10}=3{,}169\). Uma cauda entre 0,005 e 0,01; bilateral: \(0{,}01\lt p\lt0{,}02\) (exato ≈ 0,016).</p>
+  </div></details>
+  <details class="sol"><summary>F6 · Poder: β̂₁ ~ N(β₁; 0,5²), β₁ verdadeiro = 1,5, crítico 1,96</summary><div class="in">
+    <p>Região de não rejeição: \([-0{,}98;\ 0{,}98]\). \(z_{sup}=(0{,}98-1{,}5)/0{,}5=-1{,}04\), \(z_{inf}=(-0{,}98-1{,}5)/0{,}5=-4{,}96\). Erro tipo II ≈ 0,1492; poder ≈ 0,8508. São os mesmos números da Lista 3, Q8, porque só importa a razão \(\beta_1/ep=3\).</p>
+  </div></details>
+  <details class="sol"><summary>F7 · Convencional × HC0 com n = 3: d = (−1, 0, 1), û = (0,5; −1; 0,5)</summary><div class="in">
+    <p>\(SQT_x=2\), SQR = 0,25 + 1 + 0,25 = 1,5, \(\hat\sigma^2=1{,}5/1=1{,}5\), \(ep_{hom}=\sqrt{1{,}5/2}\approx0{,}866\). HC0: \(\sum d_i^2\hat u_i^2=0{,}25+0+0{,}25=0{,}5\), \(ep_{HC0}=\sqrt{0{,}5/4}\approx0{,}354\). O maior resíduo está em \(d=0\), que não pesa na inclinação, então o robusto sai bem menor.</p>
+  </div></details>
+  <details class="sol"><summary>F8 · Lendo um output: Estimate 0,541, Std. Error 0,053, n = 526</summary><div class="in">
+    <p>t value \(=0{,}541/0{,}053\approx10{,}2\). Com 524 g.l. a t é praticamente a normal: IC ≈ \(0{,}541\pm1{,}96\times0{,}053=[0{,}437;\ 0{,}645]\). O Pr(&gt;|t|) seria minúsculo. Frase: “um ano a mais de educação está associado a US$ 0,54 a mais por hora (EP = 0,053)”.</p>
+  </div></details>
+  <details class="sol"><summary>F9 · Significância × importância: n = 1.000.000, β̂₁ = 0,002 R$/h por ano, ep = 0,0005</summary><div class="in">
+    <p>\(t=4\): estatisticamente significativo. Mas R$ 0,002 por hora por ano de estudo é economicamente irrelevante. Com amostras enormes, quase tudo fica “significativo”: reporte a magnitude na unidade relevante, com o IC.</p>
+  </div></details>
+
+  <div class="box prova"><span class="lbl">Checklist da Aula 6: eu consigo…</span>
+    <ul>
+      <li>montar \(H_0\) e \(H_A\) (bilateral e unilateral) e escolher o valor crítico certo;</li>
+      <li>calcular t para \(\beta_{1,0}=0\) e para \(\beta_{1,0}\neq0\), com n − 2 g.l.;</li>
+      <li>delimitar o p-valor com a tabela e dizer o que ele é e o que não é;</li>
+      <li>construir o IC e decidir o teste só pelo intervalo (dualidade);</li>
+      <li>calcular erro tipo II e poder, e dizer o que aumenta o poder;</li>
+      <li>calcular os erros-padrão convencional e HC0 e explicar por que o robusto pode ser menor;</li>
+      <li>dizer o que RLS.6 acrescenta e quando a t é exata ou só aproximada;</li>
+      <li>descrever Breusch–Pagan, White e MQP e saber que não é preciso testar antes de usar robusto.</li>
+    </ul>
+  </div>
+
   <div class="quiz" data-answer="d">
-    <div class="qh">Lista 02 · Questão 2</div>
+    <div class="qh">Lista 3 · Questão 2</div>
     <ol class="afirm">
       <li>I. Um p-valor de 0,03 significa que a probabilidade de \(H_0\) ser verdadeira é 3%.</li>
       <li>II. Não rejeitar \(H_0\) significa que os dados não trouxeram evidência suficiente contra ela no nível adotado.</li>
@@ -149,7 +339,7 @@
     <div class="fb" hidden>II e III. I confunde P(dados extremos | H₀) com P(H₀ | dados).</div>
   </div>
   <div class="quiz" data-answer="d">
-    <div class="qh">Lista 02 · Questão 3</div>
+    <div class="qh">Lista 3 · Questão 3</div>
     <ol class="afirm">
       <li>I. Sob RLS.6, a normalidade implica média condicional zero e homocedasticidade, mas não substitui linearidade, amostragem aleatória e variação em X.</li>
       <li>II. Se \(E(u\mid X)=0\), a heterocedasticidade torna o MQO necessariamente viesado.</li>
@@ -164,6 +354,42 @@
     <div class="opts"><button data-k="a">a) t = 3 &gt; 2,086: rejeitar \(H_0\)</button><button data-k="b">b) t = 3: aceitar \(H_0\)</button><button data-k="c">c) t = 0,27: não rejeitar \(H_0\)</button><button data-k="d">d) t = 3: não rejeitar \(H_0\)</button></div>
     <div class="fb" hidden>\(t=0{,}90/0{,}30=3\), que supera 2,086: rejeita \(H_0\). E nunca diga “aceitar”.</div>
   </div>
+  <div class="quiz" data-answer="c">
+    <div class="qh">Aula 6</div>
+    <p>Teste unilateral a 5% com 20 g.l. Qual valor crítico usar?</p>
+    <div class="opts"><button data-k="a">a) 2,086</button><button data-k="b">b) 1,96</button><button data-k="c">c) 1,725</button><button data-k="d">d) 2,845</button></div>
+    <div class="fb" hidden>c. Unilateral a 5% usa a coluna 0,05 da tabela (1,725). 2,086 é o bilateral a 5%; 2,845, o bilateral a 1%.</div>
+  </div>
+  <div class="quiz" data-answer="b">
+    <div class="qh">Aula 6</div>
+    <p>t = 2,4 com 16 g.l.; \(t_{0,025;16}=2{,}120\) e \(t_{0,010;16}=2{,}583\). O p-valor bilateral está entre:</p>
+    <div class="opts"><button data-k="a">a) 0,005 e 0,01</button><button data-k="b">b) 0,02 e 0,05</button><button data-k="c">c) 0,05 e 0,10</button><button data-k="d">d) 0,010 e 0,025, sem dobrar</button></div>
+    <div class="fb" hidden>b. Uma cauda entre 0,010 e 0,025; dobrando, entre 0,02 e 0,05.</div>
+  </div>
+  <div class="quiz" data-answer="a">
+    <div class="qh">Aula 6 · IC</div>
+    <p>O IC de 95% de \(\beta_1\) é [0,20; 1,40]. A 5%, bilateral:</p>
+    <div class="opts"><button data-k="a">a) rejeita \(\beta_1=0\) e não rejeita \(\beta_1=1\)</button><button data-k="b">b) rejeita \(\beta_1=1\)</button><button data-k="c">c) aceita \(\beta_1=0{,}8\)</button><button data-k="d">d) não dá para saber sem o t</button></div>
+    <div class="fb" hidden>a. Dualidade: fora do IC → rejeita; dentro → não rejeita. E nunca “aceita”.</div>
+  </div>
+  <div class="quiz" data-answer="d">
+    <div class="qh">Aula 6 · Poder</div>
+    <p>Qual mudança <strong>não</strong> aumenta o poder do teste de \(H_0:\beta_1=0\)?</p>
+    <div class="opts"><button data-k="a">a) aumentar n</button><button data-k="b">b) aumentar a dispersão de X</button><button data-k="c">c) passar α de 1% para 5%</button><button data-k="d">d) aumentar a variância do erro</button></div>
+    <div class="fb" hidden>d. Mais ruído aumenta o ep e reduz o poder.</div>
+  </div>
+  <div class="quiz" data-answer="c">
+    <div class="qh">Aula 6 · Unidades</div>
+    <p>Y passa de reais para milhares de reais. O que acontece com o t de \(H_0:\beta_1=0\)?</p>
+    <div class="opts"><button data-k="a">a) é dividido por 1.000</button><button data-k="b">b) é multiplicado por 1.000</button><button data-k="c">c) não muda</button><button data-k="d">d) vira o p-valor</button></div>
+    <div class="fb" hidden>c. \(\hat\beta_1\) e ep são divididos por 1.000; a razão fica igual.</div>
+  </div>
+  <div class="quiz" data-answer="b">
+    <div class="qh">Aula 6 · Breusch–Pagan</div>
+    <p>n = 200 e \(R^2_{aux}=0{,}01\). Com crítico 3,84, o teste BP:</p>
+    <div class="opts"><button data-k="a">a) rejeita a homocedasticidade (LM = 20)</button><button data-k="b">b) não rejeita (LM = 2)</button><button data-k="c">c) prova que há homocedasticidade</button><button data-k="d">d) exige erro robusto</button></div>
+    <div class="fb" hidden>b. LM = 200 × 0,01 = 2 &lt; 3,84: não rejeita, o que não prova homocedasticidade (c é falsa).</div>
+  </div>
   <div class="done-row"><button class="btn done-btn" data-done="aula6" aria-pressed="false">Marcar como concluído</button></div>
 </section>
 
@@ -171,7 +397,7 @@
 <section class="mod" id="dummies" data-title="Aula 7">
   <div class="eyebrow">Aula de 18/09 · Variáveis dummy e informação qualitativa <span class="tag warn">Confirme se cai na P1</span></div>
   <h2>Dummies e regressão pela origem</h2>
-  <div class="box trap"><span class="lbl">Atenção ao escopo</span><p>Nenhuma lista cobre esta aula, e a Lista 02 diz “Aulas 5 e 6”. Estude depois de dominar as Aulas 3 a 6, ou pergunte ao professor se ela entra na P1.</p></div>
+  <div class="box trap"><span class="lbl">Atenção ao escopo</span><p>Nenhuma lista cobre esta aula, e a Lista 3 diz “Aulas 5 e 6”. Estude depois de dominar as Aulas 3 a 6, ou pergunte ao professor se ela entra na P1.</p></div>
 
   <h3>1. A variável dummy</h3>
   <p>Muitas variáveis econômicas são qualitativas: sexo, sindicalização, participação num programa. Para colocá-las no modelo sem tratá-las como intensidade, usamos:</p>
@@ -222,5 +448,17 @@
     <li>Pela origem, \(\sum x_i\hat u_i=0\), mas em geral \(\sum\hat u_i\neq0\); e o R reporta um \(R^2\) não centrado, que não se compara com o usual.</li>
   </ul>
   <p><strong>Modelo de probabilidade linear:</strong> se Y é binária, \(P(Y=1\mid X)=\beta_0+\beta_1X\), e \(\beta_1\) é mudança em pontos percentuais. É simples, mas pode prever fora de [0, 1] e o erro é heterocedástico: use erros-padrão robustos.</p>
+  <details class="sol"><summary>Exercício extra · \(\hat y=10+3D+0{,}5x+0{,}2\,(x\cdot D)\): as duas retas e a diferença em x = 10</summary><div class="in">
+    <p>D = 0: \(\hat y=10+0{,}5x\). D = 1: \(\hat y=(10+3)+(0{,}5+0{,}2)x=13+0{,}7x\). Diferença entre grupos: \(3+0{,}2x\); em x = 10, \(3+2=5\). O 3 sozinho é a diferença só em x = 0. <span class="muted">(Exemplo nosso.)</span></p>
+  </div></details>
+  <div class="box prova"><span class="lbl">Checklist da aula de dummies: eu consigo…</span>
+    <ul>
+      <li>interpretar \(\beta_0\) e \(\beta_1\) de uma dummy como médias e diferença de médias;</li>
+      <li>evitar a armadilha da dummy (G − 1 categorias com intercepto);</li>
+      <li>ler diferenças de intercepto e de inclinação num modelo com interação;</li>
+      <li>calcular \(\hat\beta_1=\sum x_iy_i/\sum x_i^2\) pela origem e dizer quando a restrição é perigosa;</li>
+      <li>usar n − 1 no \(\hat\sigma^2\) da regressão pela origem.</li>
+    </ul>
+  </div>
   <div class="done-row"><button class="btn done-btn" data-done="dummies" aria-pressed="false">Marcar como concluído</button></div>
 </section>

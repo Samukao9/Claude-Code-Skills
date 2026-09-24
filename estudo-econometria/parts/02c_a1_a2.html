@@ -117,6 +117,17 @@
     <div class="opts"><button data-k="a">(A) somente I</button><button data-k="b">(B) somente I e II</button><button data-k="c">(C) somente I e III</button><button data-k="d">(D) somente II e III</button><button data-k="e">(E) I, II e III</button></div>
     <div class="fb" hidden>I e II. O valor do estimador varia de amostra para amostra: o parâmetro é fixo, a estimativa é uma realização do estimador.</div>
   </div>
+  <div class="box prova"><span class="lbl">Checklist da Aula 1: eu consigo…</span>
+    <ul>
+      <li>dizer se uma pergunta é de descrição, causalidade ou previsão;</li>
+      <li>explicar por que previsão não exige causalidade (exemplo do guarda-chuva);</li>
+      <li>diferenciar modelo econômico de modelo econométrico e dizer o que vai no erro u;</li>
+      <li>distinguir identificação de inferência e dizer por que mais dados não resolvem identificação;</li>
+      <li>explicar ceteris paribus e o experimento ideal (fertilizante);</li>
+      <li>reconhecer corte transversal, série temporal, painel e cortes empilhados;</li>
+      <li>decompor a diferença de médias em efeito sobre os tratados + viés de seleção.</li>
+    </ul>
+  </div>
   <div class="done-row"><button class="btn done-btn" data-done="aula1" aria-pressed="false">Marcar como concluído</button></div>
 </section>
 
@@ -322,6 +333,25 @@
     </ol>
     <div class="opts"><button data-k="a">(A) somente I</button><button data-k="b">(B) somente I e II</button><button data-k="c">(C) somente I e III</button><button data-k="d">(D) somente II e III</button><button data-k="e">(E) I, II e III</button></div>
     <div class="fb" hidden>II e III. O TCL fala da média amostral padronizada, não de cada observação. III é a LEI.</div>
+  </div>
+  <h3>Exercícios extras resolvidos</h3>
+  <p class="small muted">Criados por nós no formato da Lista 1.</p>
+  <details class="sol"><summary>G1 · X vale 0, 1, 2 com probabilidades 0,2; 0,5; 0,3. Calcule E(X), Var(X), dp e Var(3X + 2).</summary><div class="in">
+    <p>\(E(X)=0(0{,}2)+1(0{,}5)+2(0{,}3)=1{,}1\). \(E(X^2)=0+1(0{,}5)+4(0{,}3)=1{,}7\). \(Var(X)=1{,}7-1{,}1^2=0{,}49\), dp = 0,7. \(Var(3X+2)=9\times0{,}49=4{,}41\): o +2 não muda a variância.</p>
+  </div></details>
+  <details class="sol"><summary>G2 · E(X) = 2, E(Y) = 3, E(XY) = 7,5, Var(X) = 1, Var(Y) = 4. Calcule Cov, Corr, Var(X + Y) e Var(X − Y).</summary><div class="in">
+    <p>\(Cov=E(XY)-E(X)E(Y)=7{,}5-6=1{,}5\). \(Corr=1{,}5/(1\times2)=0{,}75\). \(Var(X+Y)=1+4+2(1{,}5)=8\); \(Var(X-Y)=1+4-2(1{,}5)=2\).</p>
+  </div></details>
+  <div class="box prova"><span class="lbl">Checklist da Aula 2: eu consigo…</span>
+    <ul>
+      <li>usar as propriedades do somatório e as identidades P1 a P4;</li>
+      <li>calcular probabilidades com FMP (soma) e FDP (área);</li>
+      <li>tirar marginal e condicional de uma tabela conjunta e usar Bayes;</li>
+      <li>calcular E, Var, Cov e Corr, inclusive de combinações lineares;</li>
+      <li>usar a LEI e explicar independência ⇒ independência na média ⇒ Cov = 0 (e que as voltas são falsas);</li>
+      <li>mostrar que \(E(\hat\mu)=\mu\) e \(Var(\hat\mu)=\sigma^2/N\);</li>
+      <li>fazer um teste z e um IC para a média; enunciar LGN e TCL.</li>
+    </ul>
   </div>
   <div class="done-row"><button class="btn done-btn" data-done="aula2" aria-pressed="false">Marcar como concluído</button></div>
 </section>

@@ -158,7 +158,7 @@ b.append(f'<text class="an resc" x="{f(P.X(-5.3))}" y="{f(P.Y(0.06))}" text-anch
 b.append(f'<text class="an resc" x="{f(P.X(4.6))}" y="{f(P.Y(0.06))}" text-anchor="middle">rejeita (2,5%)</text>')
 save("tdist", svg(560,280,'\n'.join(b),"Distribuição t com 3 graus de liberdade e regiões de rejeição"))
 
-# ---------- H: poder (Lista 02 Q8) ----------
+# ---------- H: poder (Lista 3 Q8) ----------
 P=Plot(560,280, 30,540,20,230, -0.8,1.4,0,2.2)
 b=[P.axes([-0.392,0,0.392,0.6,1.0],[],"valores de β̂₁ (erro-padrão 0,20)","",xfmt=lambda v: (f"{v:g}").replace('.',','),grid=False)]
 # type II area under H1 between -0.392 and 0.392
@@ -265,3 +265,88 @@ b.append(f'<text class="an resc" x="{f(P.X(13.2))}" y="{f(P.Y(1.1))}">restriçã
 b.append(f'<text class="an fitc" x="{f(P.X(15.5))}" y="{f(P.Y(3.8))}">xy = 50</text>')
 save("lagrange", svg(520,320,'\n'.join(b),"Curva xy igual a 50 tangente à restrição 2x mais 4y igual a 40"))
 print("v2 figs ok")
+
+# ======================= v3: Aula 5, Aula 6 e Lista 3 =======================
+def tpdf(t,v): return math.exp(math.lgamma((v+1)/2)-math.lgamma(v/2))/math.sqrt(v*math.pi)*(1+t*t/v)**(-(v+1)/2)
+def nb(v,d=3):
+    s=f"{v:.{d}f}".rstrip('0').rstrip('.'); return s.replace('.',',')
+
+# ---------- enumeração: distribuição amostral exata de β̂1 ----------
+P=Plot(560,300, 58,540,24,250, 1.4,5.1,0,0.6)
+b=[P.axes([2,2.5,3,3.5,4,4.5],[0,0.25,0.5],"valores possíveis de β̂₁ nas 8 amostras","probabilidade",xfmt=lambda v: nb(v,1),yfmt=lambda v: nb(v,2))]
+for v,p in [(2,.25),(3,.5),(4,.25)]:
+    b.append(f'<rect class="barA" x="{f(P.X(v-0.17))}" y="{f(P.Y(p))}" width="{f(P.X(0.34)-P.X(0))}" height="{f(P.Y(0)-P.Y(p))}"/>')
+for v,p in [(2.5,.25),(3.5,.5),(4.5,.25)]:
+    b.append(f'<rect class="barB" x="{f(P.X(v-0.17))}" y="{f(P.Y(p))}" width="{f(P.X(0.34)-P.X(0))}" height="{f(P.Y(0)-P.Y(p))}"/>')
+b.append(f'<line class="true" x1="{f(P.X(3))}" y1="{f(P.T-6)}" x2="{f(P.X(3))}" y2="{f(P.B)}"/>')
+b.append(f'<text class="an fitc" x="{f(P.X(3)-6)}" y="{f(P.T+4)}" text-anchor="end">E(β̂₁) = 3 = β₁ (sem viés)</text>')
+b.append(f'<text class="an resc" x="{f(P.X(3.5)-8)}" y="{f(P.T+4)}">com E(u|x) ≠ 0: centro 3,5</text>')
+b.append(f'<line class="true" x1="{f(P.X(3.5))}" y1="{f(P.T+10)}" x2="{f(P.X(3.5))}" y2="{f(P.Y(0.5))}"/>')
+save("enum", svg(560,300,'\n'.join(b),"Distribuição amostral exata do estimador nas 8 amostras possíveis"))
+
+# ---------- Lista 3 Q5: t com 16 g.l. ----------
+P=Plot(560,330, 30,540,26,200, -4.2,4.2,0,0.42)
+b=[P.axes([-2.667,0,2.667],[],"","",xfmt=lambda v: nb(v,3),grid=False)]
+for side in (-1,1):
+    xs_=[side*(2.667+i*(4.2-2.667)/60) for i in range(61)]
+    pts=[f"{f(P.X(side*2.667))},{f(P.B)}"]+[f"{f(P.X(x))},{f(P.Y(tpdf(x,16)))}" for x in xs_]+[f"{f(P.X(side*4.2))},{f(P.B)}"]
+    b.append(f'<polygon class="rej" points="{" ".join(pts)}"/>')
+b.append(f'<polyline class="fit" points="{" ".join(f"{f(P.X(x/50))},{f(P.Y(tpdf(x/50,16)))}" for x in range(-210,211))}"/>')
+b.append(f'<line class="obs" x1="{f(P.X(2.667))}" y1="{f(P.Y(0.2))}" x2="{f(P.X(2.667))}" y2="{f(P.B)}"/>')
+b.append(f'<text class="an resc" x="{f(P.X(2.667))}" y="{f(P.Y(0.2)-8)}" text-anchor="middle">t = 2,67</text>')
+b.append(f'<text class="an" x="{f(P.X(-1.9))}" y="{f(P.Y(0.3))}" text-anchor="middle">p-valor = soma das</text>')
+b.append(f'<text class="an" x="{f(P.X(-1.9))}" y="{f(P.Y(0.3)+17)}" text-anchor="middle">duas caudas vermelhas</text>')
+# régua de zoom entre 2,0 e 3,0
+Z=Plot(0,0, 60,520,0,0, 2.0,3.0,0,1); yz=280
+b.append(f'<text class="lb" x="30" y="{yz-26}">zoom da cauda direita (16 g.l.):</text>')
+b.append(f'<line class="ax" x1="{f(Z.X(2.0))}" y1="{yz}" x2="{f(Z.X(3.0))}" y2="{yz}"/>')
+for v,lab,area,up in [(2.12,"2,120","2,5%",True),(2.583,"2,583","1%",False),(2.921,"2,921","0,5%",True)]:
+    b.append(f'<line class="ax" x1="{f(Z.X(v))}" y1="{yz-7}" x2="{f(Z.X(v))}" y2="{yz+7}"/>')
+    b.append(f'<text class="tk" x="{f(Z.X(v))}" y="{yz+22}" text-anchor="middle">{lab}</text>')
+    b.append(f'<text class="an" x="{f(Z.X(v))}" y="{yz-12}" text-anchor="middle">{area}</text>')
+b.append(f'<circle class="shot" cx="{f(Z.X(2.667))}" cy="{yz}" r="6"/>')
+b.append(f'<text class="an resc" x="{f(Z.X(2.667))}" y="{yz+22}" text-anchor="middle">2,67</text>')
+b.append(f'<text class="tk" x="{f(Z.X(3.0))}" y="{yz+40}" text-anchor="end">(% = área numa cauda além do valor)</text>')
+save("tq5", svg(560,330,'\n'.join(b),"Distribuição t com 16 graus de liberdade, estatística 2,67 e valores críticos"))
+
+# ---------- Lista 3 Q6: unilateral × bilateral (28 g.l.) ----------
+def tpanel(x0,title,crit,two):
+    P=Plot(0,0, x0+14,x0+266,34,190, -4,4,0,0.42)
+    o=[f'<line class="ax" x1="{f(P.L)}" y1="{f(P.B)}" x2="{f(P.R)}" y2="{f(P.B)}"/>']
+    sides=(-1,1) if two else (1,)
+    for sd in sides:
+        xs_=[sd*(crit+i*(4-crit)/50) for i in range(51)]
+        pts=[f"{f(P.X(sd*crit))},{f(P.B)}"]+[f"{f(P.X(x))},{f(P.Y(tpdf(x,28)))}" for x in xs_]+[f"{f(P.X(sd*4))},{f(P.B)}"]
+        o.append(f'<polygon class="rej" points="{" ".join(pts)}"/>')
+        o.append(f'<text class="tk" x="{f(P.X(sd*crit))}" y="{f(P.B+15)}" text-anchor="middle">{nb(sd*crit,3)}</text>')
+    o.append(f'<polyline class="fit" points="{" ".join(f"{f(P.X(x/40))},{f(P.Y(tpdf(x/40,28)))}" for x in range(-160,161))}"/>')
+    o.append(f'<line class="obs" x1="{f(P.X(1.85))}" y1="{f(P.Y(0.3))}" x2="{f(P.X(1.85))}" y2="{f(P.B)}"/>')
+    o.append(f'<text class="an resc" x="{f(P.X(1.85))}" y="{f(P.Y(0.3)-6)}" text-anchor="middle">t = 1,85</text>')
+    o.append(f'<text class="an" x="{f((P.L+P.R)/2)}" y="20" text-anchor="middle">{title}</text>')
+    o.append(f'<text class="tk" x="{f(P.X(0))}" y="{f(P.B+15)}" text-anchor="middle">0</text>')
+    return '\n'.join(o)
+save("unibi", svg(580,212, tpanel(0,"Unilateral: 5% na cauda direita → rejeita",1.701,False)+tpanel(300,"Bilateral: 2,5% em cada cauda → não rejeita",2.048,True),"Comparação entre regiões de rejeição unilateral e bilateral"))
+
+# ---------- intervalos de confiança (Q7 e Q10) ----------
+def ciline(P,y,lo,hi,c,lab,cls="fit"):
+    o=[f'<line class="{cls}" x1="{f(P.X(lo))}" y1="{y}" x2="{f(P.X(hi))}" y2="{y}"/>']
+    for v in (lo,hi): o.append(f'<line class="{cls}" x1="{f(P.X(v))}" y1="{y-7}" x2="{f(P.X(v))}" y2="{y+7}"/>')
+    o.append(f'<circle class="pt" cx="{f(P.X(c))}" cy="{y}" r="5"/>')
+    o.append(f'<text class="an" x="{f(P.X(lo))}" y="{y-12}">{lab}</text>')
+    return '\n'.join(o)
+P=Plot(560,170, 30,540,20,130, -0.3,1.5,0,1)
+b=[P.axes([0,0.203,0.72,1,1.237],[],"valores de β₁","",xfmt=lambda v: nb(v,3),grid=False)]
+b.append(ciline(P,78,0.203,1.237,0.72,"IC 95% = [0,203; 1,237], centro β̂₁ = 0,72"))
+for v,txt,cls in [(0,"0 está fora → rejeita H₀: β₁ = 0","resc"),(1,"1 está dentro → não rejeita H₀: β₁ = 1","fitc")]:
+    b.append(f'<line class="true" x1="{f(P.X(v))}" y1="74" x2="{f(P.X(v))}" y2="{f(P.B)}"/>')
+b.append(f'<text class="an resc" x="{f(P.X(0)-4)}" y="112" text-anchor="end">rejeita β₁ = 0</text>')
+b.append(f'<text class="an fitc" x="{f(P.X(1)+6)}" y="112">não rejeita β₁ = 1</text>')
+save("icq7", svg(560,170,'\n'.join(b),"Intervalo de confiança da Questão 7 com os valores 0 e 1"))
+
+P=Plot(560,190, 30,540,20,150, -0.6,1.8,0,1)
+b=[P.axes([-0.4,0,0.2,0.6,1,1.6],[],"valores de β₁","",xfmt=lambda v: nb(v,2),grid=False)]
+b.append(ciline(P,60,-0.4,1.6,0.6,"Estudo A: SQTₓ = 16, ep = 0,50 → [−0,40; 1,60]","cB"))
+b.append(ciline(P,118,0.2,1.0,0.6,"Estudo B: SQTₓ = 100, ep = 0,20 → [0,20; 1,00]"))
+b.append(f'<line class="obs" x1="{f(P.X(0))}" y1="30" x2="{f(P.X(0))}" y2="{f(P.B)}"/>')
+save("icq10", svg(560,190,'\n'.join(b),"Intervalos de confiança dos estudos A e B da Questão 10"))
+print("v3 figs ok")

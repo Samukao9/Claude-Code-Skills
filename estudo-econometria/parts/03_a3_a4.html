@@ -203,6 +203,24 @@
     <div class="opts"><button data-k="a">(A) somente I</button><button data-k="b">(B) somente I e II</button><button data-k="c">(C) somente I e III</button><button data-k="d">(D) somente II e III</button><button data-k="e">(E) I, II e III</button></div>
     <div class="fb" hidden>II e III. \(R^2\) alto indica bom ajuste linear na amostra, não identificação causal.</div>
   </div>
+  <h3>Exercício extra: uma regressão completa, do zero ao teste</h3>
+  <details class="sol"><summary>x = (1, 2, 3, 4, 5) e y = (3, 5, 4, 8, 10): calcule tudo (conta nossa)</summary><div class="in">
+    <p><strong>Médias:</strong> \(\bar x=3\), \(\bar y=6\). <strong>Desvios:</strong> \(x_i-\bar x=(-2,-1,0,1,2)\), \(y_i-\bar y=(-3,-1,-2,2,4)\). Produtos: 6, 1, 0, 2, 8, soma 17. Quadrados de x: soma 10.</p>
+    <p>\(\hat\beta_1=17/10=1{,}7\); \(\hat\beta_0=6-1{,}7(3)=0{,}9\). FRA: \(\hat y=0{,}9+1{,}7x\).</p>
+    <p>Ajustados: 2,6; 4,3; 6,0; 7,7; 9,4. Resíduos: 0,4; 0,7; −2,0; 0,3; 0,6 (somam 0, e \(\sum x_i\hat u_i=0{,}4+1{,}4-6+1{,}2+3=0\)).</p>
+    <p>SQT = 9 + 1 + 4 + 4 + 16 = 34; SQR = 0,16 + 0,49 + 4 + 0,09 + 0,36 = 5,1; SQE = 28,9; \(R^2=28{,}9/34=0{,}85\).</p>
+    <p>Indo até a Aula 6: \(\hat\sigma^2=5{,}1/3=1{,}7\), \(ep(\hat\beta_1)=\sqrt{1{,}7/10}\approx0{,}412\), \(t\approx4{,}12&gt;3{,}182\): rejeita \(H_0:\beta_1=0\). Confira tudo na <a href="#calc">calculadora</a>.</p>
+  </div></details>
+  <div class="box prova"><span class="lbl">Checklist da Aula 3: eu consigo…</span>
+    <ul>
+      <li>escrever o modelo populacional e explicar o que está em u e o que é \(E(U\mid X)=0\);</li>
+      <li>derivar as duas CPOs e chegar em \(\hat\beta_0\) e \(\hat\beta_1\) sem olhar;</li>
+      <li>fazer a tabela de desvios e calcular a reta, os ajustados e os resíduos;</li>
+      <li>verificar \(\sum\hat u_i=0\) e \(\sum x_i\hat u_i=0\) e dizer por que isso não prova exogeneidade;</li>
+      <li>calcular SQT, SQE, SQR e \(R^2\), e dizer o que o \(R^2\) não mede;</li>
+      <li>interpretar intercepto e inclinação nas unidades, com “está associado a”.</li>
+    </ul>
+  </div>
   <div class="done-row"><button class="btn done-btn" data-done="aula3" aria-pressed="false">Marcar como concluído</button></div>
 </section>
 
@@ -383,6 +401,27 @@
     </ol>
     <div class="opts"><button data-k="a">(A) somente I</button><button data-k="b">(B) somente I e II</button><button data-k="c">(C) somente I e III</button><button data-k="d">(D) somente II e III</button><button data-k="e">(E) I, II e III</button></div>
     <div class="fb" hidden>I e II. Com \(\beta_2&gt;0\) a segunda derivada \(2\beta_2\) é positiva: a função é <strong>convexa</strong>.</div>
+  </div>
+  <h3>Exercícios extras resolvidos</h3>
+  <p class="small muted">Criados por nós no formato da Lista 1.</p>
+  <details class="sol"><summary>I1 · \(\hat y=200+15x\) com y em R$ e x em horas. Reescreva com y em R$ mil e x em minutos.</summary><div class="in">
+    <p>\(\tilde y=y/1000\) (b = 1/1000) e \(\tilde x=60x\) (c = 60). \(\tilde\beta_1=\frac{b}{c}\hat\beta_1=\frac{15}{1000\times60}=0{,}00025\) (R$ mil por minuto) e \(\tilde\beta_0=b\,\hat\beta_0=0{,}2\) (R$ mil). O \(R^2\) não muda. Conferência: 1 hora = 60 min → \(0{,}00025\times60=0{,}015\) mil = R$ 15 ✓.</p>
+  </div></details>
+  <details class="sol"><summary>I2 · Log–nível com β̂₁ = 0,12: efeito de Δx = 3, aproximado e exato</summary><div class="in">
+    <p>Aproximado: \(100\times0{,}12\times3=36\%\). Exato: \(100(e^{0{,}36}-1)\approx43{,}3\%\). Para mudanças grandes, a aproximação subestima bastante.</p>
+  </div></details>
+  <details class="sol"><summary>I3 · Log–log com elasticidade 1,5: x sobe 10%</summary><div class="in">
+    <p>Aproximado: \(1{,}5\times10\%=15\%\). Exato: \(100[(1{,}10)^{1{,}5}-1]\approx15{,}4\%\).</p>
+  </div></details>
+  <div class="box prova"><span class="lbl">Checklist da Aula 4: eu consigo…</span>
+    <ul>
+      <li>aplicar as regras de escala (\(\tilde\beta_1=\frac bc\hat\beta_1\)) e dizer o que não muda (\(R^2\), t);</li>
+      <li>interpretar as quatro formas funcionais, aproximado e exato;</li>
+      <li>dizer se um modelo é linear nos parâmetros;</li>
+      <li>derivar um quadrático, achar o ponto de retorno e dizer se é máximo ou mínimo;</li>
+      <li>comparar efeito marginal (local) com mudança discreta;</li>
+      <li>interpretar uma interação \(\beta_1+\beta_3X_2\).</li>
+    </ul>
   </div>
   <div class="done-row"><button class="btn done-btn" data-done="aula4" aria-pressed="false">Marcar como concluído</button></div>
 </section>

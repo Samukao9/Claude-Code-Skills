@@ -203,6 +203,8 @@ svg.fig.wide{min-width:560px}
 .fig .bandf{fill:color-mix(in srgb,var(--marker) 16%,transparent);stroke:none}
 .fig .rej{fill:color-mix(in srgb,var(--red) 28%,transparent);stroke:none}
 .fig .obs{stroke:var(--red);stroke-width:2.4}
+.fig .barA{fill:color-mix(in srgb,var(--marker) 45%,transparent);stroke:var(--marker);stroke-width:1.5}
+.fig .barB{fill:color-mix(in srgb,var(--red) 22%,transparent);stroke:var(--red);stroke-width:1.5;stroke-dasharray:4 3}
 
 /* passo a passo */
 ol.steps{list-style:none;counter-reset:s;padding:0;margin:12px 0}
@@ -324,6 +326,7 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
       <a class="btn" href="#formulas">As 2 fórmulas</a>
       <a class="btn" href="#lista2">Lista 2: Ex. 1 e 4</a>
       <a class="btn" href="#aula5">Aula 5</a>
+      <a class="btn" href="#lista3">Lista 3</a>
     </div>
   </div>
   <div class="countdown" aria-live="polite">
@@ -365,7 +368,7 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
   <h3>Listas resolvidas</h3>
   <ol>
     <li><a href="#lista2" data-mod="lista2"><span class="n">L2</span><span>Lista 2 numérica: Ex. 1 e 4 <b class="star">★</b></span></a></li>
-    <li><a href="#lista02" data-mod="lista02"><span class="n">L02</span><span>Lista 02: propriedades e inferência <b class="star">★</b></span></a></li>
+    <li><a href="#lista3" data-mod="lista3"><span class="n">L3</span><span>Lista 3: propriedades e inferência <b class="star">★</b></span></a></li>
     <li><a href="#lista1" data-mod="lista1"><span class="n">L1</span><span>Lista 1: as 60 questões</span></a></li>
     <li><a href="#praticas" data-mod="praticas"><span class="n">R</span><span>Exercícios das práticas em R</span></a></li>
   </ol>
@@ -384,7 +387,7 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
 <section class="mod" id="inicio" data-title="Comece aqui">
   <div class="eyebrow">Antes de tudo</div>
   <h2>Comece aqui</h2>
-  <p>Este guia foi montado a partir de todo o material que você enviou: a apresentação do curso, as Aulas 1 a 6, a aula de dummies, as três práticas em R, a Lista 1, a Lista 2 numérica e a Lista 02 de propriedades, os três gabaritos e as fotos da lousa. Onde uma explicação precisou ficar mais simples, ela continua dizendo exatamente o que o material diz.</p>
+  <p>Este guia foi montado a partir de todo o material que você enviou: a apresentação do curso, as Aulas 1 a 6, a aula de dummies, as três práticas em R, a Lista 1, a Lista 2 numérica e a Lista 3 de propriedades, os três gabaritos e as fotos da lousa. Onde uma explicação precisou ficar mais simples, ela continua dizendo exatamente o que o material diz.</p>
   <p>Há também quatro módulos de <strong>Matemática de apoio</strong> (log, derivadas, integrais e λ), que você pediu, e um <a href="#dicionario">dicionário com todas as fórmulas</a>, o que cada uma significa e a sua unidade de medida. Tudo que não está nos seus PDFs vem marcado com <span class="tag">Matemática de apoio</span> ou <span class="tag warn">Fora do material da P1</span>.</p>
 
   <h3>Como usar</h3>
@@ -402,7 +405,7 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
     <tbody>
       <tr><td>Lista 1 (60 questões)</td><td>Aulas 1 a 4</td><td>Alto</td></tr>
       <tr><td>Lista 2 “exercícios numéricos” (5 exercícios)</td><td>Aulas 1 a 4</td><td><span class="tag hot">Máximo</span> Ex. 1 e 4</td></tr>
-      <tr><td>Lista 02 “propriedades estatísticas e inferência” (10 questões)</td><td>Aulas 5 e 6</td><td><span class="tag hot">Máximo</span></td></tr>
+      <tr><td><strong>Lista 3</strong> (arquivo lista_03; dentro do PDF o título é “Lista 02”) “propriedades estatísticas e inferência” (10 questões)</td><td>Aulas 5 e 6</td><td><span class="tag hot">Máximo</span></td></tr>
       <tr><td>Aula de dummies e regressão pela origem</td><td>“Aula 7”</td><td><span class="tag warn">Confirme</span> nenhuma lista cobre</td></tr>
     </tbody>
   </table></div>
@@ -411,8 +414,9 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
   <div class="box prova"><span class="lbl">Suas prioridades</span>
     <ol>
       <li>As duas fórmulas: \(\hat\beta_0=\bar y-\hat\beta_1\bar x\) e \(\hat\beta_1\).</li>
-      <li>Aula 5: viés do estimador, variância do estimador e propriedades do estimador.</li>
+      <li>Aula 5: viés do estimador, variância do estimador e propriedades do estimador. Aula 6: teste t, p-valor, IC, poder e erro robusto.</li>
       <li>Lista 2, exercícios 1 (aluguel × área) e 4 (lucro quadrático). O professor resolveu os dois na lousa.</li>
+      <li>Lista 3 (propriedades e inferência, Aulas 5 e 6): as 10 questões, com Q4, Q5, Q6, Q8 e Q9 em destaque.</li>
     </ol>
   </div>
 
@@ -423,7 +427,7 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
     <div class="day"><div class="d">Sex 25/09</div><div>Aula 3 inteira (derivação do MQO e exemplo dos 5 indivíduos) → <a href="#calc">calculadora</a> → Lista 2, Ex. 1, 2 e 3.</div></div>
     <div class="day"><div class="d">Sáb 26/09</div><div>Aula 4 → Lista 2, Ex. 4 e 5 → Lista 1, questões 31 a 60. Se sobrar tempo: <a href="#mat-lambda">λ</a> e exercícios das práticas.</div></div>
     <div class="day"><div class="d">Dom 27/09</div><div><strong>Aula 5 inteira</strong>, incluindo as demonstrações do apêndice. Refaça à mão a prova de \(E(\hat\beta_1)=\beta_1\) e de \(Var(\hat\beta_1)=\sigma^2/SQT_x\).</div></div>
-    <div class="day"><div class="d">Seg 28/09</div><div>Aula 6 → Lista 02 inteira (questões 1 a 10) → Lista 1, questões 1 a 30.</div></div>
+    <div class="day"><div class="d">Seg 28/09</div><div>Aula 6 → Lista 3 inteira (questões 1 a 10) → Lista 1, questões 1 a 30.</div></div>
     <div class="day"><div class="d">Ter 29/09</div><div>Refaça Lista 2, Ex. 1 e 4, sem olhar. Use os geradores de treino. Revise o <a href="#dicionario">dicionário de fórmulas</a>. Faça o <a href="#simulado">simulado</a>. Dummies, se o professor confirmar.</div></div>
     <div class="day exam"><div class="d">Qua 30/09<small>P1</small></div><div>Só a <a href="#cola">cola de véspera</a> e os cartões de fórmulas. Nada de conteúdo novo.</div></div>
   </div>
@@ -670,7 +674,7 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
     <li><strong>Estimador</strong> (\(\hat\theta=g(Z_1,\dots,Z_n)\), \(\hat\beta_1\)): a <em>regra</em> aplicada à amostra. Como a amostra é sorteada, o estimador é <strong>aleatório</strong>.</li>
     <li><strong>Estimativa</strong> (\(\hat\theta=2{,}4\), \(\hat\beta_1=1{,}15\)): o <em>número</em> que a regra deu na amostra que você tem.</li>
   </ul>
-  <div class="box prova"><span class="lbl">Cai na prova</span><p>Essa distinção aparece na Lista 1 (Q5), na Lista 02 (Q1) e é a base da Aula 5 inteira. “As propriedades estatísticas pertencem ao estimador; a estimativa é apenas uma realização de sua distribuição amostral.”</p></div>
+  <div class="box prova"><span class="lbl">Cai na prova</span><p>Essa distinção aparece na Lista 1 (Q5), na Lista 3 (Q1) e é a base da Aula 5 inteira. “As propriedades estatísticas pertencem ao estimador; a estimativa é apenas uma realização de sua distribuição amostral.”</p></div>
 
   <div class="quiz" data-answer="b">
     <div class="qh">Teste rápido</div>
@@ -1178,7 +1182,7 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
   <p>Logo \(Cov(X,Y)=E[XY]-E[X]E[Y]=0-0=0\). Ainda assim, conhecer X determina Y completamente: covariância zero não é independência.</p>
 
   <h3>9. E a Normal?</h3>
-  <p>A densidade normal \(f(x)=\frac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)\) não tem antiderivada escrita com funções elementares. Por isso usamos <strong>tabelas</strong> da FDA normal padrão \(\Phi(z)\). A Lista 02, Q8, dá \(\Phi(-1{,}04)=0{,}1492\) pronto, que é uma área calculada numericamente.</p>
+  <p>A densidade normal \(f(x)=\frac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)\) não tem antiderivada escrita com funções elementares. Por isso usamos <strong>tabelas</strong> da FDA normal padrão \(\Phi(z)\). A Lista 3, Q8, dá \(\Phi(-1{,}04)=0{,}1492\) pronto, que é uma área calculada numericamente.</p>
 
   <h3>Exercícios</h3>
   <details class="sol"><summary>10 exercícios de integral (com respostas)</summary><div class="in">
@@ -1435,6 +1439,17 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
     <div class="opts"><button data-k="a">(A) somente I</button><button data-k="b">(B) somente I e II</button><button data-k="c">(C) somente I e III</button><button data-k="d">(D) somente II e III</button><button data-k="e">(E) I, II e III</button></div>
     <div class="fb" hidden>I e II. O valor do estimador varia de amostra para amostra: o parâmetro é fixo, a estimativa é uma realização do estimador.</div>
   </div>
+  <div class="box prova"><span class="lbl">Checklist da Aula 1: eu consigo…</span>
+    <ul>
+      <li>dizer se uma pergunta é de descrição, causalidade ou previsão;</li>
+      <li>explicar por que previsão não exige causalidade (exemplo do guarda-chuva);</li>
+      <li>diferenciar modelo econômico de modelo econométrico e dizer o que vai no erro u;</li>
+      <li>distinguir identificação de inferência e dizer por que mais dados não resolvem identificação;</li>
+      <li>explicar ceteris paribus e o experimento ideal (fertilizante);</li>
+      <li>reconhecer corte transversal, série temporal, painel e cortes empilhados;</li>
+      <li>decompor a diferença de médias em efeito sobre os tratados + viés de seleção.</li>
+    </ul>
+  </div>
   <div class="done-row"><button class="btn done-btn" data-done="aula1" aria-pressed="false">Marcar como concluído</button></div>
 </section>
 
@@ -1640,6 +1655,25 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
     </ol>
     <div class="opts"><button data-k="a">(A) somente I</button><button data-k="b">(B) somente I e II</button><button data-k="c">(C) somente I e III</button><button data-k="d">(D) somente II e III</button><button data-k="e">(E) I, II e III</button></div>
     <div class="fb" hidden>II e III. O TCL fala da média amostral padronizada, não de cada observação. III é a LEI.</div>
+  </div>
+  <h3>Exercícios extras resolvidos</h3>
+  <p class="small muted">Criados por nós no formato da Lista 1.</p>
+  <details class="sol"><summary>G1 · X vale 0, 1, 2 com probabilidades 0,2; 0,5; 0,3. Calcule E(X), Var(X), dp e Var(3X + 2).</summary><div class="in">
+    <p>\(E(X)=0(0{,}2)+1(0{,}5)+2(0{,}3)=1{,}1\). \(E(X^2)=0+1(0{,}5)+4(0{,}3)=1{,}7\). \(Var(X)=1{,}7-1{,}1^2=0{,}49\), dp = 0,7. \(Var(3X+2)=9\times0{,}49=4{,}41\): o +2 não muda a variância.</p>
+  </div></details>
+  <details class="sol"><summary>G2 · E(X) = 2, E(Y) = 3, E(XY) = 7,5, Var(X) = 1, Var(Y) = 4. Calcule Cov, Corr, Var(X + Y) e Var(X − Y).</summary><div class="in">
+    <p>\(Cov=E(XY)-E(X)E(Y)=7{,}5-6=1{,}5\). \(Corr=1{,}5/(1\times2)=0{,}75\). \(Var(X+Y)=1+4+2(1{,}5)=8\); \(Var(X-Y)=1+4-2(1{,}5)=2\).</p>
+  </div></details>
+  <div class="box prova"><span class="lbl">Checklist da Aula 2: eu consigo…</span>
+    <ul>
+      <li>usar as propriedades do somatório e as identidades P1 a P4;</li>
+      <li>calcular probabilidades com FMP (soma) e FDP (área);</li>
+      <li>tirar marginal e condicional de uma tabela conjunta e usar Bayes;</li>
+      <li>calcular E, Var, Cov e Corr, inclusive de combinações lineares;</li>
+      <li>usar a LEI e explicar independência ⇒ independência na média ⇒ Cov = 0 (e que as voltas são falsas);</li>
+      <li>mostrar que \(E(\hat\mu)=\mu\) e \(Var(\hat\mu)=\sigma^2/N\);</li>
+      <li>fazer um teste z e um IC para a média; enunciar LGN e TCL.</li>
+    </ul>
   </div>
   <div class="done-row"><button class="btn done-btn" data-done="aula2" aria-pressed="false">Marcar como concluído</button></div>
 </section>
@@ -1963,6 +1997,24 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
     <div class="opts"><button data-k="a">(A) somente I</button><button data-k="b">(B) somente I e II</button><button data-k="c">(C) somente I e III</button><button data-k="d">(D) somente II e III</button><button data-k="e">(E) I, II e III</button></div>
     <div class="fb" hidden>II e III. \(R^2\) alto indica bom ajuste linear na amostra, não identificação causal.</div>
   </div>
+  <h3>Exercício extra: uma regressão completa, do zero ao teste</h3>
+  <details class="sol"><summary>x = (1, 2, 3, 4, 5) e y = (3, 5, 4, 8, 10): calcule tudo (conta nossa)</summary><div class="in">
+    <p><strong>Médias:</strong> \(\bar x=3\), \(\bar y=6\). <strong>Desvios:</strong> \(x_i-\bar x=(-2,-1,0,1,2)\), \(y_i-\bar y=(-3,-1,-2,2,4)\). Produtos: 6, 1, 0, 2, 8, soma 17. Quadrados de x: soma 10.</p>
+    <p>\(\hat\beta_1=17/10=1{,}7\); \(\hat\beta_0=6-1{,}7(3)=0{,}9\). FRA: \(\hat y=0{,}9+1{,}7x\).</p>
+    <p>Ajustados: 2,6; 4,3; 6,0; 7,7; 9,4. Resíduos: 0,4; 0,7; −2,0; 0,3; 0,6 (somam 0, e \(\sum x_i\hat u_i=0{,}4+1{,}4-6+1{,}2+3=0\)).</p>
+    <p>SQT = 9 + 1 + 4 + 4 + 16 = 34; SQR = 0,16 + 0,49 + 4 + 0,09 + 0,36 = 5,1; SQE = 28,9; \(R^2=28{,}9/34=0{,}85\).</p>
+    <p>Indo até a Aula 6: \(\hat\sigma^2=5{,}1/3=1{,}7\), \(ep(\hat\beta_1)=\sqrt{1{,}7/10}\approx0{,}412\), \(t\approx4{,}12&gt;3{,}182\): rejeita \(H_0:\beta_1=0\). Confira tudo na <a href="#calc">calculadora</a>.</p>
+  </div></details>
+  <div class="box prova"><span class="lbl">Checklist da Aula 3: eu consigo…</span>
+    <ul>
+      <li>escrever o modelo populacional e explicar o que está em u e o que é \(E(U\mid X)=0\);</li>
+      <li>derivar as duas CPOs e chegar em \(\hat\beta_0\) e \(\hat\beta_1\) sem olhar;</li>
+      <li>fazer a tabela de desvios e calcular a reta, os ajustados e os resíduos;</li>
+      <li>verificar \(\sum\hat u_i=0\) e \(\sum x_i\hat u_i=0\) e dizer por que isso não prova exogeneidade;</li>
+      <li>calcular SQT, SQE, SQR e \(R^2\), e dizer o que o \(R^2\) não mede;</li>
+      <li>interpretar intercepto e inclinação nas unidades, com “está associado a”.</li>
+    </ul>
+  </div>
   <div class="done-row"><button class="btn done-btn" data-done="aula3" aria-pressed="false">Marcar como concluído</button></div>
 </section>
 
@@ -2158,6 +2210,27 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
     <div class="opts"><button data-k="a">(A) somente I</button><button data-k="b">(B) somente I e II</button><button data-k="c">(C) somente I e III</button><button data-k="d">(D) somente II e III</button><button data-k="e">(E) I, II e III</button></div>
     <div class="fb" hidden>I e II. Com \(\beta_2&gt;0\) a segunda derivada \(2\beta_2\) é positiva: a função é <strong>convexa</strong>.</div>
   </div>
+  <h3>Exercícios extras resolvidos</h3>
+  <p class="small muted">Criados por nós no formato da Lista 1.</p>
+  <details class="sol"><summary>I1 · \(\hat y=200+15x\) com y em R$ e x em horas. Reescreva com y em R$ mil e x em minutos.</summary><div class="in">
+    <p>\(\tilde y=y/1000\) (b = 1/1000) e \(\tilde x=60x\) (c = 60). \(\tilde\beta_1=\frac{b}{c}\hat\beta_1=\frac{15}{1000\times60}=0{,}00025\) (R$ mil por minuto) e \(\tilde\beta_0=b\,\hat\beta_0=0{,}2\) (R$ mil). O \(R^2\) não muda. Conferência: 1 hora = 60 min → \(0{,}00025\times60=0{,}015\) mil = R$ 15 ✓.</p>
+  </div></details>
+  <details class="sol"><summary>I2 · Log–nível com β̂₁ = 0,12: efeito de Δx = 3, aproximado e exato</summary><div class="in">
+    <p>Aproximado: \(100\times0{,}12\times3=36\%\). Exato: \(100(e^{0{,}36}-1)\approx43{,}3\%\). Para mudanças grandes, a aproximação subestima bastante.</p>
+  </div></details>
+  <details class="sol"><summary>I3 · Log–log com elasticidade 1,5: x sobe 10%</summary><div class="in">
+    <p>Aproximado: \(1{,}5\times10\%=15\%\). Exato: \(100[(1{,}10)^{1{,}5}-1]\approx15{,}4\%\).</p>
+  </div></details>
+  <div class="box prova"><span class="lbl">Checklist da Aula 4: eu consigo…</span>
+    <ul>
+      <li>aplicar as regras de escala (\(\tilde\beta_1=\frac bc\hat\beta_1\)) e dizer o que não muda (\(R^2\), t);</li>
+      <li>interpretar as quatro formas funcionais, aproximado e exato;</li>
+      <li>dizer se um modelo é linear nos parâmetros;</li>
+      <li>derivar um quadrático, achar o ponto de retorno e dizer se é máximo ou mínimo;</li>
+      <li>comparar efeito marginal (local) com mudança discreta;</li>
+      <li>interpretar uma interação \(\beta_1+\beta_3X_2\).</li>
+    </ul>
+  </div>
   <div class="done-row"><button class="btn done-btn" data-done="aula4" aria-pressed="false">Marcar como concluído</button></div>
 </section>
 
@@ -2335,8 +2408,72 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
     <li>Sempre é possível obter uma amostra “ruim”, com estimativa longe de \(\beta_1\), e nunca saberemos com certeza se é o caso da nossa.</li>
     <li>Em amostras repetidas, os erros positivos e negativos se anulam <strong>em média</strong>. Isso não garante que uma estimativa particular esteja perto de \(\beta_1\).</li>
   </ul>
-  <div class="box trap"><span class="lbl">Não viés não é precisão (Lista 02, Q1)</span>
+  <div class="box trap"><span class="lbl">Não viés não é precisão (Lista 3, Q1)</span>
     <p>“Se \(\hat\beta_1\) é não viesado, então toda amostra produz uma estimativa próxima de \(\beta_1\)” é <strong>falso</strong>. A distância típica entre \(\hat\beta_1\) e \(\beta_1\) depende da <strong>variância</strong> da distribuição amostral.</p>
+  </div>
+
+  <h3>Laboratório 1: a distribuição amostral inteira, com números</h3>
+  <p>Até aqui tudo foi fórmula. Agora vamos <strong>ver</strong> a distribuição amostral de \(\hat\beta_1\) sem simulação nenhuma: num exemplo pequeno dá para listar <strong>todas</strong> as amostras possíveis. <span class="muted">(Exemplo construído por nós para ilustrar os teoremas do slide.)</span></p>
+  <div class="box def"><span class="lbl">O mecanismo (a “população”)</span>
+    <p>\(y_i=2+3x_i+u_i\), ou seja, \(\beta_0=2\) e \(\beta_1=3\). Os x são fixos: \(x=(1,2,3)\), então \(\bar x=2\), \(d=(-1,0,1)\) e \(SQT_x=2\). Cada erro \(u_i\) vale −1 ou +1 com probabilidade 1/2, independentemente dos outros. Assim \(E(u_i\mid x)=0\) (RLS.4), \(Var(u_i\mid x)=1=\sigma^2\) (RLS.5) e os erros são independentes (RLS.2).</p>
+    <p>Com 3 erros de dois valores cada, existem \(2^3=8\) amostras possíveis, todas com a mesma probabilidade 1/8.</p>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th class="r">Amostra</th><th class="r">\((u_1,u_2,u_3)\)</th><th class="r">\(y=(y_1,y_2,y_3)\)</th><th class="r">\(\hat\beta_1\)</th><th class="r">\(\hat\beta_0\)</th><th class="r">SQR</th></tr></thead>
+    <tbody>
+      <tr><td class="r">1</td><td class="r">(−1, −1, −1)</td><td class="r">(4, 7, 10)</td><td class="r">3</td><td class="r">1</td><td class="r">0</td></tr>
+      <tr><td class="r">2</td><td class="r">(−1, −1, +1)</td><td class="r">(4, 7, 12)</td><td class="r">4</td><td class="r">−0,333</td><td class="r">0,667</td></tr>
+      <tr><td class="r">3</td><td class="r">(−1, +1, −1)</td><td class="r">(4, 9, 10)</td><td class="r">3</td><td class="r">1,667</td><td class="r">2,667</td></tr>
+      <tr><td class="r">4</td><td class="r">(−1, +1, +1)</td><td class="r">(4, 9, 12)</td><td class="r">4</td><td class="r">0,333</td><td class="r">0,667</td></tr>
+      <tr><td class="r">5</td><td class="r">(+1, −1, −1)</td><td class="r">(6, 7, 10)</td><td class="r">2</td><td class="r">3,667</td><td class="r">0,667</td></tr>
+      <tr><td class="r">6</td><td class="r">(+1, −1, +1)</td><td class="r">(6, 7, 12)</td><td class="r">3</td><td class="r">2,333</td><td class="r">2,667</td></tr>
+      <tr><td class="r">7</td><td class="r">(+1, +1, −1)</td><td class="r">(6, 9, 10)</td><td class="r">2</td><td class="r">4,333</td><td class="r">0,667</td></tr>
+      <tr><td class="r">8</td><td class="r">(+1, +1, +1)</td><td class="r">(6, 9, 12)</td><td class="r">3</td><td class="r">3</td><td class="r">0</td></tr>
+      <tr><td class="r"><strong>Média</strong></td><td></td><td></td><td class="r"><strong>3</strong></td><td class="r"><strong>2</strong></td><td class="r"><strong>1</strong></td></tr>
+    </tbody>
+  </table></div>
+  <p><strong>Leia a tabela.</strong> Nenhuma amostra “sabe” que \(\beta_1=3\): três delas dão 3, mas as outras dão 2 ou 4. Mesmo assim, a <strong>média</strong> das oito estimativas é exatamente 3 e a de \(\hat\beta_0\) é exatamente 2. Isso é o teorema da ausência de viés, \(E(\hat\beta_1)=\beta_1\) e \(E(\hat\beta_0)=\beta_0\), visto a olho nu.</p>
+  <p><strong>Conferindo com a equação-chave.</strong> Com \(d=(-1,0,1)\) e \(SQT_x=2\):</p>
+  <div class="mathblock">\[\hat\beta_1=\beta_1+\frac{1}{SQT_x}\sum_id_iu_i=3+\frac{-u_1+0\cdot u_2+u_3}{2}\]</div>
+  <p>Se \(u_1=u_3\), o erro de estimação é 0 e \(\hat\beta_1=3\); se \(u_1=-1\) e \(u_3=+1\), dá \(3+1=4\); se \(u_1=+1\) e \(u_3=-1\), dá 2. E \(u_2\) <strong>não entra</strong>: a observação com \(x_i=\bar x\) tem peso \(d_i=0\) e não informa nada sobre a inclinação.</p>
+  <figure><div class="scroll"><svg class="fig" viewBox="0 0 560 300" role="img" aria-label="Distribuição amostral exata do estimador nas 8 amostras possíveis" xmlns="http://www.w3.org/2000/svg">
+<line class="g" x1="58" y1="250" x2="540" y2="250"/>
+<line class="g" x1="58" y1="155.8" x2="540" y2="155.8"/>
+<line class="g" x1="58" y1="61.7" x2="540" y2="61.7"/>
+<line class="g" x1="136.2" y1="24" x2="136.2" y2="250"/>
+<line class="g" x1="201.3" y1="24" x2="201.3" y2="250"/>
+<line class="g" x1="266.4" y1="24" x2="266.4" y2="250"/>
+<line class="g" x1="331.6" y1="24" x2="331.6" y2="250"/>
+<line class="g" x1="396.7" y1="24" x2="396.7" y2="250"/>
+<line class="g" x1="461.8" y1="24" x2="461.8" y2="250"/>
+<line class="ax" x1="58" y1="250" x2="540" y2="250"/>
+<line class="ax" x1="58" y1="24" x2="58" y2="250"/>
+<text class="tk" x="136.2" y="266" text-anchor="middle">2</text>
+<text class="tk" x="201.3" y="266" text-anchor="middle">2,5</text>
+<text class="tk" x="266.4" y="266" text-anchor="middle">3</text>
+<text class="tk" x="331.6" y="266" text-anchor="middle">3,5</text>
+<text class="tk" x="396.7" y="266" text-anchor="middle">4</text>
+<text class="tk" x="461.8" y="266" text-anchor="middle">4,5</text>
+<text class="tk" x="51" y="254" text-anchor="end">0</text>
+<text class="tk" x="51" y="159.8" text-anchor="end">0,25</text>
+<text class="tk" x="51" y="65.7" text-anchor="end">0,5</text>
+<text class="lb" x="299" y="294" text-anchor="middle">valores possíveis de β̂₁ nas 8 amostras</text>
+<text class="lb" x="12" y="137" text-anchor="middle" transform="rotate(-90 12 137)">probabilidade</text>
+<rect class="barA" x="114" y="155.8" width="44.3" height="94.2"/>
+<rect class="barA" x="244.3" y="61.7" width="44.3" height="188.3"/>
+<rect class="barA" x="374.6" y="155.8" width="44.3" height="94.2"/>
+<rect class="barB" x="179.2" y="155.8" width="44.3" height="94.2"/>
+<rect class="barB" x="309.4" y="61.7" width="44.3" height="188.3"/>
+<rect class="barB" x="439.7" y="155.8" width="44.3" height="94.2"/>
+<line class="true" x1="266.4" y1="18" x2="266.4" y2="250"/>
+<text class="an fitc" x="260.4" y="28" text-anchor="end">E(β̂₁) = 3 = β₁ (sem viés)</text>
+<text class="an resc" x="323.6" y="28">com E(u|x) ≠ 0: centro 3,5</text>
+<line class="true" x1="331.6" y1="34" x2="331.6" y2="61.7"/>
+</svg></div><figcaption>Barras azuis: a distribuição amostral exata de \(\hat\beta_1\) (2, 3 e 4 com probabilidades 1/4, 1/2 e 1/4), centrada em β₁ = 3. Barras vermelhas tracejadas: o que acontece quando RLS.4 falha (caso abaixo), com o centro deslocado para 3,5.</figcaption></figure>
+  <div class="box trap"><span class="lbl">E se RLS.4 falhar? O viés com números</span>
+    <p>Troque o erro por \(u_i=0{,}5(x_i-2)+e_i\), com \(e_i=\pm1\). Agora \(E(u_i\mid x_i)=0{,}5(x_i-2)\neq0\): o erro “carrega” informação sobre x. Pela equação-chave,</p>
+    <div class="mathblock">\[\hat\beta_1=3+\frac{\sum_id_i\,[0{,}5\,d_i+e_i]}{2}=3+\frac{0{,}5\cdot SQT_x}{2}+\frac{\sum_id_ie_i}{2}=3{,}5+\frac{-e_1+e_3}{2}\]</div>
+    <p>As estimativas passam a ser 2,5, 3,5 e 4,5, com média <strong>3,5</strong>. O viés é \(E(\hat\beta_1)-\beta_1=0{,}5\), e ele vem inteiro do termo \(E(u\mid x)\neq0\). É o que a prova formal diz: sem RLS.4, a esperança de \(\sum d_iu_i\) não zera.</p>
   </div>
 
   <h3>6. Variância: a hipótese RLS.5</h3>
@@ -2454,6 +2591,20 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
   </ol>
   <div class="box def"><span class="lbl">Não confunda</span><p>\(SQT_x=\sum(x_i-\bar x)^2\) é a variação total <strong>de X</strong>. O SQT do \(R^2\) (Aula 3) é a variação total <strong>de Y</strong>. Os nomes são parecidos, mas medem variáveis diferentes.</p></div>
 
+  <h3>Laboratório 2: a variância com números</h3>
+  <p>Volte à tabela do Laboratório 1. As oito estimativas de \(\hat\beta_1\) são 3, 4, 3, 4, 2, 3, 2, 3, com média 3. Os desvios ao quadrado em relação à média são 0, 1, 0, 1, 1, 0, 1, 0:</p>
+  <div class="mathblock">\[Var(\hat\beta_1)=\frac{0+1+0+1+1+0+1+0}{8}=\frac48=0{,}5\qquad\text{e a fórmula dá}\qquad\frac{\sigma^2}{SQT_x}=\frac{1}{2}=0{,}5\ ✓\]</div>
+  <p>O intercepto também confere: a variância das oito estimativas de \(\hat\beta_0\) é \(7/3\approx2{,}333\), exatamente \(\sigma^2\frac{\sum x_i^2}{n\,SQT_x}=1\cdot\frac{1+4+9}{3\cdot2}=\frac{14}{6}=\frac73\).</p>
+  <div class="box trap"><span class="lbl">Por que a RLS.5 importa: o mesmo laboratório com heterocedasticidade</span>
+    <p>Agora deixe o terceiro erro mais barulhento: \(u_3=\pm3\) (variância 9), com \(u_1,u_2=\pm1\) (variância 1). As oito estimativas viram 1, 1, 2, 2, 4, 4, 5, 5.</p>
+    <ul>
+      <li><strong>O centro não muda:</strong> a média continua 3. Heterocedasticidade <strong>não causa viés</strong>.</li>
+      <li><strong>A variância verdadeira</strong> é 2,5, que é o que dá a fórmula geral do slide da Aula 6: \(\dfrac{\sum_id_i^2\sigma_i^2}{SQT_x^2}=\dfrac{1\cdot1+0\cdot1+1\cdot9}{2^2}=\dfrac{10}{4}=2{,}5\).</li>
+      <li><strong>A fórmula homocedástica erra:</strong> usando a variância média dos erros, \(\bar\sigma^2=(1+1+9)/3=11/3\), ela daria \(\frac{11/3}{2}\approx1{,}83\), bem menor que 2,5. O erro pesa mais justamente onde \(d_i^2\) é grande (a ponta \(x=3\)), e a fórmula simples não enxerga isso.</li>
+    </ul>
+    <p>É exatamente a mensagem do slide: sem RLS.5 a variância existe, mas “cada termo do somatório precisa entrar com seu próprio peso”.</p>
+  </div>
+
   <h3>8. O que afeta a precisão do estimador</h3>
   <div class="tbl"><table>
     <thead><tr><th>Se…</th><th>Então…</th><th>Por quê</th></tr></thead>
@@ -2484,7 +2635,7 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
 </svg></div>
     <figcaption>Duas distribuições não viesadas (centradas em β₁ = 0,8) com precisões diferentes, e uma viesada (centrada em 1,64, o caso de variável omitida da prática).</figcaption></figure>
   <p><strong>Na prática em R:</strong> com o mesmo n = 100 e o mesmo ruído, x sorteado entre 12 e 16 gera estimativas bem mais espalhadas que x entre 8 e 20. No intervalo estreito, uma pequena mudança na inclinação pode ser compensada pelo intercepto sem mudar muito as previsões; no amplo, inclinações diferentes produzem previsões bem distintas.</p>
-  <div class="box ok"><span class="lbl">Com números (Lista 02, Q4 e Q10)</span>
+  <div class="box ok"><span class="lbl">Com números (Lista 3, Q4 e Q10)</span>
     <ul>
       <li>n = 10, SQR = 40, \(SQT_x=20\): \(\hat\sigma^2=40/8=5\), \(\widehat{Var}=5/20=0{,}25\), ep = 0,50.</li>
       <li>\(SQT_x\) de 20 para 80: \(\widehat{Var}=5/80=0{,}0625\), ep = 0,25. <strong>Quadruplicar \(SQT_x\) corta o erro-padrão pela metade.</strong></li>
@@ -2532,6 +2683,19 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
     <p>O ajuste n − 2 significa que perdemos 2 graus de liberdade pelos parâmetros estimados. ∎</p>
   </div></details>
 
+  <h3>Laboratório 3: por que n − 2, com números</h3>
+  <p>No Laboratório 1, n = 3 e \(\sigma^2=1\). A média da coluna SQR nas oito amostras é</p>
+  <div class="mathblock">\[E(SQR)=\frac{0+0{,}667+2{,}667+0{,}667+0{,}667+2{,}667+0{,}667+0}{8}=\frac{8}{8}=1=(n-2)\,\sigma^2\ ✓\]</div>
+  <div class="tbl"><table>
+    <thead><tr><th>Divisor</th><th class="r">Média do estimador</th><th>Diagnóstico</th></tr></thead>
+    <tbody>
+      <tr><td>\(SQR/n=SQR/3\)</td><td class="r">0,333</td><td>subestima \(\sigma^2=1\) (viesado para baixo)</td></tr>
+      <tr><td>\(SQR/(n-1)=SQR/2\)</td><td class="r">0,5</td><td>ainda subestima</td></tr>
+      <tr><td>\(SQR/(n-2)=SQR/1\)</td><td class="r"><strong>1</strong></td><td><strong>não viesado</strong></td></tr>
+    </tbody>
+  </table></div>
+  <p><strong>Por que os resíduos “encolhem”?</strong> Olhe as amostras 1 e 8: os erros não são zero (todos −1 ou todos +1), mas os resíduos são todos zero. A reta estimada se deslocou para absorver os erros. Como o MQO escolhe dois números (\(\hat\beta_0\) e \(\hat\beta_1\)) para ficar o mais perto possível dos pontos, os resíduos são sistematicamente menores que os erros. As duas CPOs (\(\sum\hat u_i=0\) e \(\sum x_i\hat u_i=0\)) tiram 2 graus de liberdade, e dividir por n − 2 compensa exatamente isso.</p>
+
   <h3>12. Erros-padrão</h3>
   <p>Trocando \(\sigma^2\) por \(\hat\sigma^2\), obtemos as variâncias estimadas e, tirando a raiz, os erros-padrão:</p>
   <div class="mathblock">\[\widehat{Var}(\hat\beta_1)=\frac{\hat\sigma^2}{SQT_x},\quad ep(\hat\beta_1)=\frac{\hat\sigma}{\sqrt{SQT_x}}\qquad\qquad \widehat{Var}(\hat\beta_0)=\frac{\hat\sigma^2\,\frac1n\sum x_i^2}{SQT_x},\quad ep(\hat\beta_0)=\frac{\hat\sigma\sqrt{\sum x_i^2}}{\sqrt{n\,SQT_x}}\]</div>
@@ -2544,10 +2708,45 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
     </ol>
   </div>
 
+  <h3>Unidades de medida da Aula 5</h3>
+  <p>Conferir unidades é o jeito mais rápido de achar erro de fórmula. Com y em R$/hora e x em anos de estudo (os 5 indivíduos):</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Grandeza</th><th>Unidade geral</th><th>Nos 5 indivíduos</th></tr></thead>
+    <tbody>
+      <tr><td>\(\beta_1,\ \hat\beta_1\)</td><td>unid. y / unid. x</td><td>1,15 (R$/h) por ano</td></tr>
+      <tr><td>\(\sigma^2,\ \hat\sigma^2\), SQR</td><td>(unid. y)²</td><td>\(\hat\sigma^2=1{,}433\) (R$/h)²</td></tr>
+      <tr><td>\(\sigma,\ \hat\sigma\)</td><td>unid. y</td><td>\(\hat\sigma=1{,}197\) R$/h</td></tr>
+      <tr><td>\(SQT_x\)</td><td>(unid. x)²</td><td>40 anos²</td></tr>
+      <tr><td>\(Var(\hat\beta_1)=\sigma^2/SQT_x\)</td><td>(unid. y / unid. x)²</td><td>0,0358 ((R$/h)/ano)²</td></tr>
+      <tr><td>\(dp(\hat\beta_1),\ ep(\hat\beta_1)\)</td><td>unid. y / unid. x (a de \(\hat\beta_1\))</td><td>0,189 (R$/h) por ano</td></tr>
+      <tr><td>\(Var(\hat\beta_0)\)</td><td>(unid. y)²</td><td>5,45 (R$/h)²</td></tr>
+      <tr><td>\(ep(\hat\beta_0)\)</td><td>unid. y</td><td>2,33 R$/h</td></tr>
+    </tbody>
+  </table></div>
+  <p><strong>Checagem dimensional:</strong> \(\dfrac{\sigma^2}{SQT_x}\to\dfrac{(R\$/h)^2}{anos^2}=\left(\dfrac{R\$/h}{ano}\right)^2\), que é a unidade de \(\hat\beta_1\) ao quadrado. Por isso o ep pode ser comparado diretamente com \(\hat\beta_1\) no teste t, e o t não tem unidade.</p>
+
   <h3>13. Eficiência e o Teorema de Gauss–Markov</h3>
   <div class="box def"><span class="lbl">Eficiência</span><p>Eficiência é uma <strong>comparação</strong>: dentro de uma classe de estimadores não viesados, é mais eficiente o que tem menor variância.</p></div>
   <div class="box def"><span class="lbl">Teorema de Gauss–Markov</span><p>Sob RLS.1 a RLS.5, o MQO tem a menor variância entre os estimadores <strong>lineares e não viesados</strong>: é <strong>BLUE</strong> (Best Linear Unbiased Estimator, o melhor estimador linear não viesado).</p></div>
   <p><strong>Precisão × eficiência:</strong> precisão descreve a dispersão de <em>um</em> estimador (\(SQT_x\) maior e \(\sigma^2\) menor aumentam a precisão). Eficiência compara <em>estimadores</em> do mesmo parâmetro, sob o mesmo mecanismo gerador.</p>
+
+  <div class="box ok"><span class="lbl">Gauss–Markov com números</span>
+    <p>Tome \(x=(0,1,2,3)\), com \(\bar x=1{,}5\) e \(SQT_x=5\). Um estimador <strong>linear</strong> é qualquer soma ponderada \(\tilde\beta_1=\sum_ic_iy_i\). Substituindo \(y_i=\beta_0+\beta_1x_i+u_i\): \(E(\tilde\beta_1)=\beta_0\sum c_i+\beta_1\sum c_ix_i\). Ele é <strong>não viesado</strong> para quaisquer \(\beta_0,\beta_1\) se e só se \(\sum c_i=0\) e \(\sum c_ix_i=1\). E, com erros homocedásticos e independentes, \(Var(\tilde\beta_1)=\sigma^2\sum c_i^2\).</p>
+    <div class="tbl"><table>
+      <thead><tr><th>Estimador</th><th>Pesos \(c_i\)</th><th class="r">\(\sum c_i\)</th><th class="r">\(\sum c_ix_i\)</th><th class="r">Variância</th></tr></thead>
+      <tbody>
+        <tr><td>MQO</td><td>\(d_i/SQT_x=(-0{,}3;\ -0{,}1;\ 0{,}1;\ 0{,}3)\)</td><td class="r">0</td><td class="r">1</td><td class="r">\(0{,}20\,\sigma^2\)</td></tr>
+        <tr><td>“Inclinação das pontas” \(\frac{y_4-y_1}{x_4-x_1}\)</td><td>\((-\tfrac13;\ 0;\ 0;\ \tfrac13)\)</td><td class="r">0</td><td class="r">1</td><td class="r">\(0{,}222\,\sigma^2\)</td></tr>
+        <tr><td>“Razão das médias” \(\bar y/\bar x\)</td><td>\(\tfrac{1}{n\bar x}=(\tfrac16;\ \tfrac16;\ \tfrac16;\ \tfrac16)\)</td><td class="r">0,667</td><td class="r">1</td><td class="r">viesado se \(\beta_0\neq0\)</td></tr>
+      </tbody>
+    </table></div>
+    <p>A inclinação das pontas também é linear e não viesada, mas joga fora as observações do meio e tem variância maior (0,222σ² &gt; 0,20σ²). A razão das médias nem entra na disputa: \(E(\bar y/\bar x)=\beta_1+\beta_0/\bar x\). Gauss–Markov garante que <strong>nenhum</strong> estimador linear não viesado fica abaixo de \(0{,}20\,\sigma^2\) aqui. <span class="muted">(Exemplo nosso.)</span></p>
+  </div>
+  <details class="sol"><summary>Complemento: a prova de Gauss–Markov na regressão simples (usa o multiplicador de Lagrange)</summary><div class="in">
+    <p>Não está nos slides, mas amarra a Aula 5 ao módulo de λ. Queremos o estimador linear não viesado de menor variância, isto é, minimizar \(\sum c_i^2\) sujeito a \(\sum c_i=0\) e \(\sum c_ix_i=1\):</p>
+    <div class="mathblock">\[\mathcal L=\sum_ic_i^2-\lambda_1\sum_ic_i-\lambda_2\Big(\sum_ic_ix_i-1\Big),\qquad\frac{\partial\mathcal L}{\partial c_i}=2c_i-\lambda_1-\lambda_2x_i=0\]</div>
+    <p>Então \(c_i=(\lambda_1+\lambda_2x_i)/2\): os pesos ótimos são uma reta em \(x_i\). A restrição \(\sum c_i=0\) dá \(\lambda_1=-\lambda_2\bar x\), logo \(c_i=\frac{\lambda_2}{2}(x_i-\bar x)\). A restrição \(\sum c_ix_i=1\) dá \(\frac{\lambda_2}{2}SQT_x=1\). Resultado: \(c_i=\dfrac{x_i-\bar x}{SQT_x}\), exatamente os pesos do MQO. ∎</p>
+  </div></details>
 
   <h3>14. O papel específico da homocedasticidade</h3>
   <p>Se \(E(u\mid X)=0\), mas \(Var(u\mid X)\) varia com X:</p>
@@ -2574,16 +2773,52 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
   <div class="mathblock">\[\hat\beta_1=\beta_1+\frac{n^{-1}\sum_i(X_i-\bar X)u_i}{n^{-1}\sum_i(X_i-\bar X)^2}\ \xrightarrow{p}\ \beta_1+\frac{Cov(X,U)}{Var(X)}\]</div>
   <p>Sob amostragem aleatória, momentos finitos e \(Var(X)&gt;0\), pela LGN. Se \(E(u\mid X)=0\), então \(Cov(X,u)=0\) e o segundo termo some. <strong>Leitura econômica:</strong> consistência depende de o regressor não carregar informação sistemática sobre os fatores não observados.</p>
 
+  <div class="box ok"><span class="lbl">Consistência com números</span>
+    <p>Com amostragem aleatória, \(SQT_x\approx(n-1)\,Var(X)\). Suponha \(\sigma^2=4\) e \(Var(X)=2\) <span class="muted">(números nossos)</span>:</p>
+    <div class="tbl"><table>
+      <thead><tr><th class="r">n</th><th class="r">\(SQT_x\approx\)</th><th class="r">\(Var(\hat\beta_1)\approx\frac{4}{(n-1)\cdot2}\)</th><th class="r">\(dp(\hat\beta_1)\)</th></tr></thead>
+      <tbody>
+        <tr><td class="r">10</td><td class="r">18</td><td class="r">0,222</td><td class="r">0,471</td></tr>
+        <tr><td class="r">100</td><td class="r">198</td><td class="r">0,0202</td><td class="r">0,142</td></tr>
+        <tr><td class="r">1.000</td><td class="r">1.998</td><td class="r">0,0020</td><td class="r">0,045</td></tr>
+        <tr><td class="r">10.000</td><td class="r">19.998</td><td class="r">0,0002</td><td class="r">0,014</td></tr>
+      </tbody>
+    </table></div>
+    <p>Com o centro certo (\(E(\hat\beta_1)=\beta_1\)) e a dispersão indo a zero, a distribuição “colapsa” em cima de \(\beta_1\): isso é a consistência. O dp cai como \(1/\sqrt n\): 100 vezes mais dados dão um dp 10 vezes menor. Com variável omitida, a dispersão cai do mesmo jeito, mas o centro está em 1,64: a distribuição colapsa <strong>no lugar errado</strong>.</p>
+  </div>
+
   <h3>16. Quando o MQO fica viesado (prática 4–5)</h3>
   <h4>Variável omitida</h4>
   <p>O verdadeiro mecanismo é \(Y_i=2+0{,}8X_i+1{,}2Z_i+\varepsilon_i\) com \(Z_i=0{,}7X_i+v_i\), mas o pesquisador estima só Y sobre X. Z vai para o erro; como Z afeta Y e está correlacionado com X, \(E(u\mid X)\neq0\).</p>
   <div class="mathblock">\[E(\hat\alpha_1)=0{,}8+1{,}2\times0{,}7=1{,}64\]</div>
   <p>A regressão simples atribui a X a sua associação própria com Y e também a parcela transmitida por Z. Com n = 2.000 a dispersão cai, mas o estimador se concentra em 1,64, e não em 0,8. <strong>Mais observações não corrigem endogeneidade.</strong> Quanto mais forte a relação entre X e a variável omitida (0,2 → 0,7 → 1,2), maior o viés.</p>
   <p>Outro exemplo (exercício 4 da prática): se \(u=0{,}04\,educ+\text{ruído}\), então \(E(u\mid educ)=0{,}04\,educ\neq0\) e a média das estimativas fica perto de \(0{,}08+0{,}04=0{,}12\).</p>
+  <details class="sol"><summary>De onde vem o 1,64: a fórmula do viés de variável omitida</summary><div class="in">
+    <p>Use o resultado de consistência do slide, \(\text{plim}\,\hat\beta_1=\beta_1+\frac{Cov(X,u)}{Var(X)}\). Na regressão só em X, o erro é tudo o que ficou de fora: \(u=1{,}2Z+\varepsilon=1{,}2(0{,}7X+v)+\varepsilon\). Como \(v\) e \(\varepsilon\) não se correlacionam com X:</p>
+    <div class="mathblock">\[Cov(X,u)=1{,}2\cdot0{,}7\cdot Var(X)\quad\Longrightarrow\quad\text{plim}\,\hat\alpha_1=0{,}8+\frac{1{,}2\cdot0{,}7\,Var(X)}{Var(X)}=0{,}8+1{,}2\times0{,}7=1{,}64\]</div>
+    <p>Em geral, se a verdade é \(Y=\beta_0+\beta_1X+\beta_2Z+\varepsilon\) e \(\delta=Cov(X,Z)/Var(X)\) é a inclinação de Z sobre X: \(\text{plim}\,\hat\beta_1=\beta_1+\beta_2\,\delta\). O viés é “efeito de Z em Y” × “relação de Z com X”. <span class="muted">(Generalização nossa da conta do slide.)</span></p>
+    <div class="tbl"><table>
+      <thead><tr><th>Sinal do viés \(\beta_2\delta\)</th><th>\(Cov(X,Z)&gt;0\)</th><th>\(Cov(X,Z)\lt0\)</th></tr></thead>
+      <tbody>
+        <tr><td>\(\beta_2&gt;0\)</td><td>positivo: superestima</td><td>negativo: subestima</td></tr>
+        <tr><td>\(\beta_2\lt0\)</td><td>negativo: subestima</td><td>positivo: superestima</td></tr>
+      </tbody>
+    </table></div>
+    <p><strong>Exemplo clássico:</strong> salário × educação omitindo habilidade. Habilidade aumenta o salário (\(\beta_2&gt;0\)) e anda junto com educação (\(Cov&gt;0\)): a regressão simples tende a <strong>superestimar</strong> o retorno da educação.</p>
+  </div></details>
   <h4>Erro de medida no regressor</h4>
   <p>Se observamos \(X^{obs}=X^*+r\) (erro clássico, independente de \(X^*\) e do erro da equação), a inclinação converge para</p>
   <div class="mathblock">\[\text{plim}\,\hat\beta_1=\beta_1\,\frac{Var(X^*)}{Var(X^*)+Var(r)}\]</div>
   <p>Quanto maior o erro de medida, mais a inclinação se aproxima de zero: é o <strong>viés de atenuação</strong>.</p>
+  <details class="sol"><summary>De onde vem a fórmula da atenuação (4 linhas)</summary><div class="in">
+    <ol class="steps">
+      <li><div>A verdade usa \(X^*\): \(Y=\beta_0+\beta_1X^*+\varepsilon\). Só observamos \(X=X^*+r\), então \(X^*=X-r\).</div></li>
+      <li><div>Substituindo: \(Y=\beta_0+\beta_1X+\underbrace{(\varepsilon-\beta_1r)}_{u}\). O erro da regressão agora contém \(-\beta_1r\).</div></li>
+      <li><div>Como r está dentro de X e também de u: \(Cov(X,u)=Cov(X^*+r,\ \varepsilon-\beta_1r)=-\beta_1Var(r)\), e \(Var(X)=Var(X^*)+Var(r)\).</div></li>
+      <li><div>Pelo slide de consistência: \(\text{plim}\,\hat\beta_1=\beta_1-\dfrac{\beta_1Var(r)}{Var(X^*)+Var(r)}=\beta_1\dfrac{Var(X^*)}{Var(X^*)+Var(r)}\). O fator fica entre 0 e 1: a estimativa encolhe em direção a zero.</div></li>
+    </ol>
+    <p>Na prática (Ex. 7): \(\beta_1=2\), \(Var(X^*)=1\) e erro com desvio 1: \(2\times\frac{1}{1+1}=1\), metade do verdadeiro.</p>
+  </div></details>
   <h4>Forma funcional errada</h4>
   <p>Se a verdade é \(Y=4+2X-0{,}25X^2+u\) e estimamos uma reta, os resíduos ficam com padrão curvo: o erro do modelo linear contém estrutura previsível a partir de X. A reta ainda é a melhor aproximação linear, mas sua inclinação não representa um efeito marginal constante.</p>
   <div class="tbl"><table>
@@ -2596,6 +2831,69 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
     </tbody>
   </table></div>
 
+  <h3>O mapa completo: qual hipótese garante qual resultado</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Resultado</th><th>Precisa de</th><th>Não precisa de</th></tr></thead>
+    <tbody>
+      <tr><td>\(\hat\beta_1\) existe (denominador ≠ 0)</td><td>RLS.3</td><td>todas as outras</td></tr>
+      <tr><td>Propriedades algébricas (\(\sum\hat u_i=0\), \(\sum x_i\hat u_i=0\), reta passa pelas médias)</td><td>só o MQO com intercepto</td><td>nenhuma hipótese estatística</td></tr>
+      <tr><td>Não viés: \(E(\hat\beta_j)=\beta_j\)</td><td>RLS.1–RLS.4</td><td>RLS.5, RLS.6</td></tr>
+      <tr><td>\(Var(\hat\beta_1)=\sigma^2/SQT_x\) e \(Var(\hat\beta_0)\) do slide</td><td>RLS.1–RLS.5</td><td>RLS.6</td></tr>
+      <tr><td>\(\hat\sigma^2=SQR/(n-2)\) não viesado</td><td>RLS.1–RLS.5</td><td>RLS.6</td></tr>
+      <tr><td>Gauss–Markov: MQO é BLUE</td><td>RLS.1–RLS.5</td><td>RLS.6</td></tr>
+      <tr><td>Consistência: \(\text{plim}\,\hat\beta_1=\beta_1\)</td><td>RLS.1–RLS.3, \(Cov(X,u)=0\) (implicada por RLS.4) e momentos finitos</td><td>RLS.5, RLS.6</td></tr>
+      <tr><td>t exata com n − 2 g.l. (Aula 6)</td><td>RLS.1–RLS.6</td><td>—</td></tr>
+      <tr><td>t aproximadamente normal em amostra grande (Aula 6)</td><td>RLS.1–RLS.4, TCL; erro robusto se houver heterocedasticidade</td><td>RLS.6</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Exercícios extras resolvidos (tipo prova)</h3>
+  <p class="small muted">Criados por nós no formato das listas, para treinar cada resultado da Aula 5.</p>
+  <details class="sol"><summary>E1 · Variâncias com σ² conhecido: x = (2, 4, 6, 8) e σ² = 5</summary><div class="in">
+    <p>\(\bar x=5\), desvios (−3, −1, 1, 3), \(SQT_x=9+1+1+9=20\), \(\sum x_i^2=4+16+36+64=120\).</p>
+    <p>\(Var(\hat\beta_1)=5/20=0{,}25\) e \(dp(\hat\beta_1)=0{,}5\). \(Var(\hat\beta_0)=\sigma^2\frac{\sum x_i^2/n}{SQT_x}=5\cdot\frac{120/4}{20}=7{,}5\) e \(dp(\hat\beta_0)=\sqrt{7{,}5}\approx2{,}739\).</p>
+  </div></details>
+  <details class="sol"><summary>E2 · Quem é mais preciso? A com SQTₓ = 8, B com SQTₓ = 800, mesmo σ² = 16</summary><div class="in">
+    <p>A: \(dp=\sqrt{16/8}\approx1{,}414\). B: \(dp=\sqrt{16/800}\approx0{,}141\). \(SQT_x\) 100 vezes maior dá dp \(\sqrt{100}=10\) vezes menor. Os dois são não viesados; B é muito mais preciso.</p>
+  </div></details>
+  <details class="sol"><summary>E3 · Da SQR ao t: n = 12, SQR = 50, SQTₓ = 125, β̂₁ = 1,1</summary><div class="in">
+    <p>\(\hat\sigma^2=50/(12-2)=5\); \(\widehat{Var}(\hat\beta_1)=5/125=0{,}04\); \(ep=0{,}2\); \(t=1{,}1/0{,}2=5{,}5\) para \(H_0:\beta_1=0\) (com 10 g.l., o crítico de 5% é 2,228: rejeita).</p>
+  </div></details>
+  <details class="sol"><summary>E4 · Mostre que, se x̄ = 0, então Var(β̂₀) = σ²/n. Interprete.</summary><div class="in">
+    <p>Pela identidade P2, \(\sum x_i^2=SQT_x+n\bar x^2=SQT_x\). Então \(Var(\hat\beta_0)=\sigma^2\frac{SQT_x}{n\,SQT_x}=\frac{\sigma^2}{n}\). Faz sentido: com \(\bar x=0\), \(\hat\beta_0=\bar y-\hat\beta_1\cdot0=\bar y\), e a variância de uma média é \(\sigma^2/n\) (Aula 2).</p>
+  </div></details>
+  <details class="sol"><summary>E5 · V ou F: “medir x em outra unidade (x → 2x) corta o dp de β̂₁ à metade, então o teste fica mais significativo”</summary><div class="in">
+    <p><strong>Falso na conclusão.</strong> \(SQT_x\) quadruplica, então \(dp(\hat\beta_1)\) cai à metade. Mas \(\hat\beta_1\) também cai à metade (Aula 4: \(\tilde x=cx\Rightarrow\tilde\beta_1=\hat\beta_1/c\)). O t é a razão dos dois e não muda. Mudar a unidade não cria informação.</p>
+  </div></details>
+  <details class="sol"><summary>E6 · Variável omitida: salário = β₀ + 0,10·educ + 0,05·hab + ε, com hab = 5 + 0,6·educ + v</summary><div class="in">
+    <p>Regressão só em educ: \(\text{plim}\,\hat\beta_1=0{,}10+0{,}05\times0{,}6=0{,}13\). Viés de +0,03 (30% acima do verdadeiro), positivo porque \(\beta_2&gt;0\) e educ e habilidade andam juntas. Aumentar n não resolve.</p>
+  </div></details>
+  <details class="sol"><summary>E7 · Atenuação: β₁ = 2, Var(X*) = 4, Var(r) = 1</summary><div class="in">
+    <p>\(\text{plim}\,\hat\beta_1=2\cdot\frac{4}{4+1}=1{,}6\). A estimativa encolhe 20% em direção a zero.</p>
+  </div></details>
+  <details class="sol"><summary>E8 · Laboratório à mão: x = (1, 2, 3) e erros ±2 com probabilidade 1/2</summary><div class="in">
+    <p>\(\sigma^2=4\), \(SQT_x=2\): \(Var(\hat\beta_1)=4/2=2\), dp ≈ 1,414. Pela equação-chave, \(\hat\beta_1=\beta_1+(-u_1+u_3)/2\in\{\beta_1-2,\ \beta_1,\ \beta_1+2\}\) com probabilidades 1/4, 1/2, 1/4: média \(\beta_1\) e variância \(\frac14\cdot(-2)^2+\frac12\cdot0^2+\frac14\cdot2^2=2\) ✓. E \(E(SQR)=(n-2)\sigma^2=4\).</p>
+  </div></details>
+  <details class="sol"><summary>E9 · Consistência: β₁ = 0,5, Cov(X, U) = 0,3, Var(X) = 1,5</summary><div class="in">
+    <p>\(\text{plim}\,\hat\beta_1=0{,}5+0{,}3/1{,}5=0{,}7\). O MQO é inconsistente: com n enorme ele se concentra em 0,7, não em 0,5.</p>
+  </div></details>
+
+  <div class="box prova"><span class="lbl">Checklist da Aula 5: eu consigo…</span>
+    <ul>
+      <li>diferenciar parâmetro, estimador e estimativa, e dizer de quem são as propriedades;</li>
+      <li>enunciar RLS.1 a RLS.5 e o papel de cada uma;</li>
+      <li>chegar em \(\hat\beta_1=\beta_1+\frac{1}{SQT_x}\sum d_iu_i\) a partir da fórmula do MQO;</li>
+      <li>provar \(E(\hat\beta_1)=\beta_1\) dizendo onde entra cada hipótese (e que RLS.5 não entra);</li>
+      <li>derivar \(Var(\hat\beta_1)=\sigma^2/SQT_x\) e \(Var(\hat\beta_0)\) com as 3 dicas;</li>
+      <li>provar que \(E(SQR)=(n-2)\sigma^2\) pelos 3 termos;</li>
+      <li>calcular \(\hat\sigma^2\), \(\widehat{Var}\) e ep a partir de SQR, n e \(SQT_x\);</li>
+      <li>explicar o efeito de \(\sigma^2\), \(SQT_x\) e n na precisão;</li>
+      <li>enunciar Gauss–Markov e dizer o que muda com heterocedasticidade;</li>
+      <li>distinguir não viés de consistência e usar \(\text{plim}=\beta_1+Cov(X,U)/Var(X)\);</li>
+      <li>calcular o viés de variável omitida e a atenuação.</li>
+    </ul>
+  </div>
+
   <h3>17. Encerramento</h3>
   <ul>
     <li>\(\hat\beta_1\) é uma variável aleatória; a estimativa observada é uma realização de sua distribuição amostral.</li>
@@ -2607,7 +2905,7 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
 
   <h3>Teste a Aula 5</h3>
   <div class="quiz" data-answer="c">
-    <div class="qh">Lista 02 · Questão 1</div>
+    <div class="qh">Lista 3 · Questão 1</div>
     <ol class="afirm">
       <li>I. A estimativa \(\hat\beta_1=1{,}4\) é uma realização do estimador \(\hat\beta_1\), enquanto \(\beta_1\) é um parâmetro fixo e desconhecido.</li>
       <li>II. Se \(\hat\beta_1\) é não viesado, então toda amostra produz uma estimativa próxima de \(\beta_1\).</li>
@@ -2650,7 +2948,43 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
     <div class="qh">Aula 5</div>
     <p>Com \(E(u\mid X)=0\) e heterocedasticidade, o MQO é:</p>
     <div class="opts"><button data-k="a">a) Viesado e inconsistente</button><button data-k="b">b) Viesado, mas consistente</button><button data-k="c">c) Não viesado e BLUE</button><button data-k="d">d) Não viesado e consistente, mas sem garantia de ser BLUE</button></div>
-    <div class="fb" hidden>d. É também a afirmativa II (falsa) da Lista 02, Q3: heterocedasticidade não causa viés.</div>
+    <div class="fb" hidden>d. É também a afirmativa II (falsa) da Lista 3, Q3: heterocedasticidade não causa viés.</div>
+  </div>
+  <div class="quiz" data-answer="b">
+    <div class="qh">Aula 5 · Laboratório</div>
+    <p>No Laboratório 1 (x = 1, 2, 3), a observação com x = 2 tem que peso na inclinação \(\hat\beta_1\)?</p>
+    <div class="opts"><button data-k="a">a) O maior de todos</button><button data-k="b">b) Zero, porque \(d_2=x_2-\bar x=0\)</button><button data-k="c">c) 1/3</button><button data-k="d">d) Depende de \(u_2\)</button></div>
+    <div class="fb" hidden>b. Na equação-chave \(\hat\beta_1=\beta_1+\sum d_iu_i/SQT_x\), o peso é \(d_i\). Pontos na média de x não ajudam a medir a inclinação.</div>
+  </div>
+  <div class="quiz" data-answer="c">
+    <div class="qh">Aula 5</div>
+    <p>Se \(\bar x=0\), quanto vale \(Var(\hat\beta_0)\)?</p>
+    <div class="opts"><button data-k="a">a) \(\sigma^2/SQT_x\)</button><button data-k="b">b) 0</button><button data-k="c">c) \(\sigma^2/n\)</button><button data-k="d">d) \(\sigma^2\)</button></div>
+    <div class="fb" hidden>c. Com \(\bar x=0\), \(\sum x_i^2=SQT_x\) e \(\hat\beta_0=\bar y\), a média de n observações.</div>
+  </div>
+  <div class="quiz" data-answer="a">
+    <div class="qh">Aula 5 · Variável omitida</div>
+    <p>Omitimos habilidade, que aumenta o salário e é positivamente correlacionada com educação. O \(\hat\beta_1\) da educação tende a:</p>
+    <div class="opts"><button data-k="a">a) superestimar o verdadeiro</button><button data-k="b">b) subestimar o verdadeiro</button><button data-k="c">c) ficar não viesado</button><button data-k="d">d) ficar não viesado só com n grande</button></div>
+    <div class="fb" hidden>a. Viés \(=\beta_2\delta\), com \(\beta_2&gt;0\) e \(\delta&gt;0\): positivo.</div>
+  </div>
+  <div class="quiz" data-answer="d">
+    <div class="qh">Aula 5 · Erro de medida</div>
+    <p>Com erro clássico de medida em X, a inclinação do MQO converge para:</p>
+    <div class="opts"><button data-k="a">a) o valor verdadeiro</button><button data-k="b">b) um valor maior em módulo</button><button data-k="c">c) zero, sempre</button><button data-k="d">d) o verdadeiro vezes \(Var(X^*)/[Var(X^*)+Var(r)]\), mais perto de zero</button></div>
+    <div class="fb" hidden>d. É o viés de atenuação: o fator está entre 0 e 1.</div>
+  </div>
+  <div class="quiz" data-answer="b">
+    <div class="qh">Aula 5 · Gauss–Markov</div>
+    <p>Um estimador linear \(\sum c_iy_i\) da inclinação é não viesado para quaisquer \(\beta_0,\beta_1\) quando:</p>
+    <div class="opts"><button data-k="a">a) \(\sum c_i=1\)</button><button data-k="b">b) \(\sum c_i=0\) e \(\sum c_ix_i=1\)</button><button data-k="c">c) \(\sum c_i^2\) é mínimo</button><button data-k="d">d) os erros são normais</button></div>
+    <div class="fb" hidden>b. \(E(\sum c_iy_i)=\beta_0\sum c_i+\beta_1\sum c_ix_i\). O mínimo de \(\sum c_i^2\) (item c) é o que torna o MQO o <em>melhor</em> deles.</div>
+  </div>
+  <div class="quiz" data-answer="c">
+    <div class="qh">Aula 5 · n − 2</div>
+    <p>No Laboratório 3, a média de SQR/n nas 8 amostras foi 0,333, com \(\sigma^2=1\). Isso mostra que SQR/n:</p>
+    <div class="opts"><button data-k="a">a) é não viesado</button><button data-k="b">b) superestima \(\sigma^2\)</button><button data-k="c">c) subestima \(\sigma^2\), porque os resíduos são “encolhidos” pelas duas CPOs</button><button data-k="d">d) é consistente só com n = 3</button></div>
+    <div class="fb" hidden>c. \(E(SQR)=(n-2)\sigma^2\), então só SQR/(n − 2) acerta em média.</div>
   </div>
   <div class="done-row"><button class="btn done-btn" data-done="aula5" aria-pressed="false">Marcar como concluído</button></div>
 </section>
@@ -2676,6 +3010,17 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
   <div class="mathblock">\[t=\frac{\overbrace{\hat\beta_1-\beta_{1,0}}^{\text{discrepância em relação a }H_0}}{\underbrace{ep(\hat\beta_1)}_{\text{incerteza estimada}}}\]</div>
   <p>Quantos erros-padrão a estimativa está distante do valor de \(H_0\). \(|t|\) grande indica discrepância grande em unidades de erro-padrão. O mesmo vale para \(\hat\beta_0\) com \(ep(\hat\beta_0)\).</p>
 
+  <div class="box prova"><span class="lbl">Roteiro do teste t em 6 passos (use sempre)</span>
+    <ol>
+      <li><strong>Escreva as hipóteses:</strong> \(H_0:\beta_1=\beta_{1,0}\) e \(H_A\) (bilateral \(\neq\), ou unilateral &gt; / &lt; decidida antes).</li>
+      <li><strong>Graus de liberdade:</strong> n − 2 na regressão simples.</li>
+      <li><strong>Estatística:</strong> \(t=(\hat\beta_1-\beta_{1,0})/ep(\hat\beta_1)\), com todas as substituições.</li>
+      <li><strong>Valor crítico:</strong> bilateral a 5% → \(t_{0,025;\,n-2}\); unilateral a 5% → \(t_{0,05;\,n-2}\).</li>
+      <li><strong>Decisão:</strong> bilateral: rejeite se \(|t|&gt;\) crítico. Unilateral à direita: rejeite se \(t&gt;\) crítico; à esquerda: se \(t\lt-\)crítico. Ou compare p-valor com α.</li>
+      <li><strong>Conclusão em palavras:</strong> “rejeitamos” ou “não rejeitamos” \(H_0\) a 5%, e o que isso diz sobre a associação, sem causalidade automática e nunca “aceitamos”.</li>
+    </ol>
+  </div>
+
   <h3>3. Exemplo numérico (os 5 indivíduos)</h3>
   <p>\(\hat\beta_1=1{,}15\), \(ep(\hat\beta_1)=0{,}189\), n = 5. Testando \(H_0:\beta_1=0\) contra \(H_A:\beta_1\neq0\):</p>
   <div class="mathblock">\[t=\frac{1{,}15-0}{0{,}189}\approx6{,}08\]</div>
@@ -2700,17 +3045,70 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
 <text class="an resc" x="441.4" y="198.5" text-anchor="middle">rejeita (2,5%)</text>
 </svg></div><figcaption>Distribuição t com 3 graus de liberdade. As caudas vermelhas somam 5%; o t observado (6,08) cai na região de rejeição.</figcaption></figure>
 
+  <details class="sol"><summary>Tabela de valores críticos da t (consulta)</summary><div class="in">
+    <p>Valor c tal que \(P(T&gt;c)\) é a área indicada numa cauda. Para teste <strong>bilateral</strong> a 5%, use a coluna 0,025; para <strong>unilateral</strong> a 5%, a coluna 0,05. <span class="muted">(Tabela padrão calculada por nós; na prova o professor fornece os valores de que você precisa, como nas listas.)</span></p>
+    <div class="tbl"><table>
+      <thead><tr><th class="r">g.l. (n − 2)</th><th class="r">0,05 (uni 5% · bi 10%)</th><th class="r">0,025 (bi 5%)</th><th class="r">0,005 (bi 1%)</th></tr></thead>
+      <tbody>
+        <tr><td class="r">1</td><td class="r">6,314</td><td class="r">12,706</td><td class="r">63,657</td></tr>
+        <tr><td class="r">2</td><td class="r">2,920</td><td class="r">4,303</td><td class="r">9,925</td></tr>
+        <tr><td class="r">3</td><td class="r">2,353</td><td class="r">3,182</td><td class="r">5,841</td></tr>
+        <tr><td class="r">4</td><td class="r">2,132</td><td class="r">2,776</td><td class="r">4,604</td></tr>
+        <tr><td class="r">5</td><td class="r">2,015</td><td class="r">2,571</td><td class="r">4,032</td></tr>
+        <tr><td class="r">6</td><td class="r">1,943</td><td class="r">2,447</td><td class="r">3,707</td></tr>
+        <tr><td class="r">7</td><td class="r">1,895</td><td class="r">2,365</td><td class="r">3,499</td></tr>
+        <tr><td class="r">8</td><td class="r">1,860</td><td class="r">2,306</td><td class="r">3,355</td></tr>
+        <tr><td class="r">9</td><td class="r">1,833</td><td class="r">2,262</td><td class="r">3,250</td></tr>
+        <tr><td class="r">10</td><td class="r">1,812</td><td class="r">2,228</td><td class="r">3,169</td></tr>
+        <tr><td class="r">11</td><td class="r">1,796</td><td class="r">2,201</td><td class="r">3,106</td></tr>
+        <tr><td class="r">12</td><td class="r">1,782</td><td class="r">2,179</td><td class="r">3,055</td></tr>
+        <tr><td class="r">13</td><td class="r">1,771</td><td class="r">2,160</td><td class="r">3,012</td></tr>
+        <tr><td class="r">14</td><td class="r">1,761</td><td class="r">2,145</td><td class="r">2,977</td></tr>
+        <tr><td class="r">15</td><td class="r">1,753</td><td class="r">2,131</td><td class="r">2,947</td></tr>
+        <tr><td class="r">16</td><td class="r">1,746</td><td class="r">2,120</td><td class="r">2,921</td></tr>
+        <tr><td class="r">17</td><td class="r">1,740</td><td class="r">2,110</td><td class="r">2,898</td></tr>
+        <tr><td class="r">18</td><td class="r">1,734</td><td class="r">2,101</td><td class="r">2,878</td></tr>
+        <tr><td class="r">19</td><td class="r">1,729</td><td class="r">2,093</td><td class="r">2,861</td></tr>
+        <tr><td class="r">20</td><td class="r">1,725</td><td class="r">2,086</td><td class="r">2,845</td></tr>
+        <tr><td class="r">21</td><td class="r">1,721</td><td class="r">2,080</td><td class="r">2,831</td></tr>
+        <tr><td class="r">22</td><td class="r">1,717</td><td class="r">2,074</td><td class="r">2,819</td></tr>
+        <tr><td class="r">23</td><td class="r">1,714</td><td class="r">2,069</td><td class="r">2,807</td></tr>
+        <tr><td class="r">24</td><td class="r">1,711</td><td class="r">2,064</td><td class="r">2,797</td></tr>
+        <tr><td class="r">25</td><td class="r">1,708</td><td class="r">2,060</td><td class="r">2,787</td></tr>
+        <tr><td class="r">26</td><td class="r">1,706</td><td class="r">2,056</td><td class="r">2,779</td></tr>
+        <tr><td class="r">27</td><td class="r">1,703</td><td class="r">2,052</td><td class="r">2,771</td></tr>
+        <tr><td class="r">28</td><td class="r">1,701</td><td class="r">2,048</td><td class="r">2,763</td></tr>
+        <tr><td class="r">29</td><td class="r">1,699</td><td class="r">2,045</td><td class="r">2,756</td></tr>
+        <tr><td class="r">30</td><td class="r">1,697</td><td class="r">2,042</td><td class="r">2,750</td></tr>
+        <tr><td class="r">40</td><td class="r">1,684</td><td class="r">2,021</td><td class="r">2,704</td></tr>
+        <tr><td class="r">60</td><td class="r">1,671</td><td class="r">2,000</td><td class="r">2,660</td></tr>
+        <tr><td class="r">120</td><td class="r">1,658</td><td class="r">1,980</td><td class="r">2,617</td></tr>
+        <tr><td class="r">∞ (normal)</td><td class="r">1,645</td><td class="r">1,960</td><td class="r">2,576</td></tr>
+      </tbody>
+    </table></div>
+    <p>Repare na coluna 0,025: 12,706 com 1 g.l., 3,182 com 3, 2,228 com 10, 2,042 com 30 e 1,96 no limite. É a t convergindo para a normal: com poucos graus de liberdade, as caudas são mais gordas e é preciso um t maior para rejeitar.</p>
+  </div></details>
+
   <h3>4. p-valor</h3>
   <div class="box def"><span class="lbl">Definição</span><p>A probabilidade de observar uma estatística t tão extrema quanto a observada, ou mais, <strong>supondo que \(H_0\) é verdadeira</strong>.</p></div>
   <p>p-valor pequeno: seria muito improvável ver esses dados se \(H_0\) fosse verdadeira. p-valor grande: os dados são compatíveis com \(H_0\). No exemplo, com t ≈ 6,08 e 3 g.l., <strong>p ≈ 0,009</strong>: evidência forte contra \(H_0\).</p>
   <div class="box trap"><span class="lbl">As três interpretações erradas mais cobradas</span>
     <ul>
-      <li>O p-valor <strong>não</strong> é a probabilidade de \(H_0\) ser verdadeira. Ele é calculado supondo \(H_0\) verdadeira: tem a forma P(dados extremos | H₀), não P(H₀ | dados) (Lista 02, Q2-I).</li>
+      <li>O p-valor <strong>não</strong> é a probabilidade de \(H_0\) ser verdadeira. Ele é calculado supondo \(H_0\) verdadeira: tem a forma P(dados extremos | H₀), não P(H₀ | dados) (Lista 3, Q2-I).</li>
       <li>“Não rejeitar \(H_0\)” ≠ “aceitar \(H_0\)”: os dados só não trouxeram evidência forte o suficiente.</li>
       <li>O p-valor não mede o tamanho do efeito.</li>
     </ul>
   </div>
   <p><strong>Regra de decisão:</strong> fixe α <em>antes</em> de olhar os dados (5% ou 1% são comuns). Se p &lt; α, rejeite \(H_0\) (estatisticamente significativo). Se p ≥ α, não rejeite.</p>
+
+  <h4>Como achar o p-valor só com a tabela</h4>
+  <p>Na prova não há software. Faça como na Lista 3, Q5: encaixe o seu |t| entre dois valores críticos da linha dos seus graus de liberdade.</p>
+  <ol class="steps">
+    <li><div>Nos 5 indivíduos, t = 6,08 com 3 g.l. Na tabela: \(t_{0,005;3}=5{,}841\) e \(t_{0,0025;3}=7{,}453\).</div></li>
+    <li><div>Como \(5{,}841\lt6{,}08\lt7{,}453\), a área numa cauda está entre 0,0025 e 0,005.</div></li>
+    <li><div>Bilateral: dobre. \(0{,}005\lt p\lt0{,}01\). Confere com o p ≈ 0,009 do slide.</div></li>
+    <li><div>Unilateral (\(H_A:\beta_1&gt;0\), com t positivo): o p-valor é uma cauda só, cerca de 0,0045, a metade do bilateral.</div></li>
+  </ol>
 
   <h3>5. Erros tipo I e tipo II</h3>
   <div class="tbl"><table>
@@ -2722,6 +3120,17 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
   </table></div>
   <p>O erro tipo I é controlado pelo α que escolhemos. O erro tipo II depende do tamanho da amostra e da magnitude da associação. No exemplo: tipo I seria concluir que o coeficiente da escolaridade é diferente de zero quando \(\beta_1=0\); tipo II seria não detectar uma associação que existe. O poder depende do tamanho da associação, da variância do erro, da dispersão de X, de n e de α.</p>
 
+  <div class="tbl"><table>
+    <thead><tr><th>Se aumentar…</th><th>O poder…</th><th>Por quê</th></tr></thead>
+    <tbody>
+      <tr><td>o tamanho verdadeiro da associação \(|\beta_1-\beta_{1,0}|\)</td><td>sobe</td><td>a distribuição de \(\hat\beta_1\) fica mais longe da região de não rejeição</td></tr>
+      <tr><td>n ou \(SQT_x\)</td><td>sobe</td><td>ep menor: a distribuição fica mais concentrada</td></tr>
+      <tr><td>a variância do erro \(\sigma^2\)</td><td>cai</td><td>ep maior</td></tr>
+      <tr><td>o nível α (ex.: de 1% para 5%)</td><td>sobe</td><td>a região de rejeição aumenta, mas o erro tipo I também</td></tr>
+    </tbody>
+  </table></div>
+  <p>Há uma troca: com n fixo, diminuir α (menos erro tipo I) aumenta o erro tipo II. O jeito de reduzir os dois ao mesmo tempo é ganhar precisão (mais dados, mais variação em X). A conta completa do poder, com a curva de poder, está na <a href="#l3q8">Lista 3, Q8</a>.</p>
+
   <h3>6. Intervalo de confiança</h3>
   <div class="mathblock">\[IC=\hat\beta_1\pm t_{\alpha/2,\;n-2}\times ep(\hat\beta_1)\]</div>
   <p>No exemplo: \(1{,}15\pm3{,}182\times0{,}189\approx1{,}15\pm0{,}60\), ou seja, <strong>IC 95% ≈ [0,55; 1,75]</strong>. Quanto mais estreito, mais precisa a estimativa.</p>
@@ -2729,6 +3138,27 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
   <div class="box def"><span class="lbl">Dualidade IC ↔ teste</span>
     <p>Um IC de 95% contém exatamente os valores de \(\beta_{1,0}\) que <strong>não</strong> seriam rejeitados por um teste bilateral a 5%, se ambos usam o mesmo erro-padrão e a mesma distribuição. Regra prática: <strong>se 0 não está no IC de 95%, rejeitamos \(H_0:\beta_1=0\) a 5%</strong>. No exemplo, 0 ∉ [0,55; 1,75], a mesma conclusão do teste t.</p>
   </div>
+
+  <h3>Exemplo completo: todos os testes com os 5 indivíduos</h3>
+  <p>Mesmos números da Aula 5: \(\hat\beta_1=1{,}15\), \(ep(\hat\beta_1)=0{,}189\), \(\hat\beta_0=0{,}6\), \(ep(\hat\beta_0)\approx2{,}33\), 3 g.l. <span class="muted">(Os testes além de \(H_0:\beta_1=0\) são contas nossas.)</span></p>
+  <div class="tbl"><table>
+    <thead><tr><th>Pergunta</th><th>Hipóteses</th><th>Estatística</th><th>Crítico</th><th>Decisão</th></tr></thead>
+    <tbody>
+      <tr><td>Há associação linear?</td><td>\(H_0:\beta_1=0\) × \(H_A:\beta_1\neq0\)</td><td>\(1{,}15/0{,}189\approx6{,}08\)</td><td>3,182</td><td>rejeita (p ≈ 0,009)</td></tr>
+      <tr><td>O retorno é R$ 1 por ano?</td><td>\(H_0:\beta_1=1\) × \(H_A:\beta_1\neq1\)</td><td>\((1{,}15-1)/0{,}189\approx0{,}79\)</td><td>3,182</td><td>não rejeita</td></tr>
+      <tr><td>A associação é positiva? (direção fixada antes)</td><td>\(H_0:\beta_1\le0\) × \(H_A:\beta_1&gt;0\)</td><td>6,08</td><td>2,353</td><td>rejeita (p ≈ 0,0045)</td></tr>
+      <tr><td>O intercepto é zero?</td><td>\(H_0:\beta_0=0\) × \(H_A:\beta_0\neq0\)</td><td>\(0{,}6/2{,}33\approx0{,}26\)</td><td>3,182</td><td>não rejeita</td></tr>
+    </tbody>
+  </table></div>
+  <div class="tbl"><table>
+    <thead><tr><th>Confiança</th><th class="r">Crítico (3 g.l.)</th><th class="r">Margem \(=c\times0{,}189\)</th><th>Intervalo</th></tr></thead>
+    <tbody>
+      <tr><td>90%</td><td class="r">2,353</td><td class="r">0,445</td><td>[0,705; 1,595]</td></tr>
+      <tr><td>95%</td><td class="r">3,182</td><td class="r">0,601</td><td>[0,55; 1,75]</td></tr>
+      <tr><td>99%</td><td class="r">5,841</td><td class="r">1,104</td><td>[0,046; 2,254]</td></tr>
+    </tbody>
+  </table></div>
+  <p>Mais confiança exige um intervalo mais largo. Os três excluem 0 (coerente com p ≈ 0,009 &lt; 0,01) e o de 95% contém 1 (coerente com não rejeitar \(\beta_1=1\)).</p>
 
   <h3>7. Unilateral × bilateral</h3>
   <p>Bilateral (\(H_A:\beta_1\neq0\)) é o mais comum; o p-valor considera as duas caudas. Unilateral (\(H_A:\beta_1&gt;0\)) considera uma cauda só e deve ser usado com forte justificativa teórica <strong>prévia</strong>. Escolher a direção depois de ver os dados é prática questionável.</p>
@@ -2761,10 +3191,16 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
   <p>Teste robusto: \(t_{rob}=(\hat\beta_1-\beta_{1,0})/ep_{rob}(\hat\beta_1)\xrightarrow{d}N(0,1)\); IC robusto aproximado \(\hat\beta_1\pm z_{1-\alpha/2}\,ep_{rob}\). A inferência robusta é <strong>assintótica</strong>.</p>
   <div class="box trap"><span class="lbl">O que “robusto” não significa</span>
     <ul>
-      <li>Robusto <strong>não é necessariamente maior</strong> que o convencional: pode ser maior ou menor (Lista 02, Q9).</li>
-      <li>Robusto <strong>não corrige</strong> variável omitida, simultaneidade, forma funcional errada, erro de medida ou dependência entre observações (Lista 02, Q3-III).</li>
+      <li>Robusto <strong>não é necessariamente maior</strong> que o convencional: pode ser maior ou menor (Lista 3, Q9).</li>
+      <li>Robusto <strong>não corrige</strong> variável omitida, simultaneidade, forma funcional errada, erro de medida ou dependência entre observações (Lista 3, Q3-III).</li>
     </ul>
   </div>
+  <div class="box ok"><span class="lbl">Erro robusto nos 5 indivíduos (conta nossa)</span>
+    <p>Com \(d=(-4,-2,0,2,4)\) e resíduos \(\hat u=(0{,}2;\ -0{,}1;\ 0{,}6;\ -1{,}7;\ 1{,}0)\) da Aula 3, as contribuições \(d_i^2\hat u_i^2\) são 0,64; 0,04; 0; 11,56; 16, soma 28,24.</p>
+    <div class="mathblock">\[\widehat{Var}_{HC0}(\hat\beta_1)=\frac{28{,}24}{40^2}=0{,}01765,\qquad ep_{HC0}\approx0{,}133\qquad(\text{convencional: }0{,}189)\]</div>
+    <p>Com a correção de graus de liberdade <strong>HC1</strong>, que multiplica a variância HC0 por \(n/(n-2)=5/3\): \(ep_{HC1}\approx0{,}172\). Aqui o robusto saiu menor que o convencional, e as três versões rejeitam \(H_0:\beta_1=0\). Com n = 5, porém, nenhuma aproximação assintótica merece muita confiança. Em amostras pequenas os resíduos tendem a <strong>subestimar</strong> a variância dos erros (é o mesmo “encolhimento” do Laboratório 3 da Aula 5), e é por isso que existem HC1, HC2 e HC3.</p>
+  </div>
+
   <p><strong>Fluxo de trabalho defensável:</strong> formule a média condicional pela pergunta econômica; estime e examine resíduos; reporte erros robustos quando a heterocedasticidade for plausível; use testes de heterocedasticidade como diagnóstico, não como pré-requisito; use MQP só com justificativa para os pesos. Não é preciso rejeitar homocedasticidade antes de usar erros robustos.</p>
 
   <h3>10. Apêndice: de onde vem a t de Student</h3>
@@ -2780,6 +3216,17 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
   </ol>
   <p><strong>Caudas mais gordas:</strong> às vezes \(\hat\sigma\) sai menor que σ por acaso, e dividir por um número pequeno infla t. Por isso a t é mais espalhada que a Normal com n pequeno; com n grande, converge para a Normal (e a regra de bolso |t| &gt; 2 funciona). Sem normalidade, sob condições regulares, \((\hat\beta_1-\beta_1)/se(\hat\beta_1)\xrightarrow{d}N(0,1)\) pelo TCL.</p>
   <p><strong>Testes de heterocedasticidade:</strong> Breusch–Pagan regride \(\hat u_i^2=\delta_0+\delta_1X_i+v_i\) e testa \(\delta_1=0\), com \(LM=nR^2_{aux}\xrightarrow{d}\chi^2_1\). White usa também \(X_i^2\) e testa \(\delta_1=\delta_2=0\); a rejeição pode refletir forma funcional errada. <strong>MQP:</strong> se \(Var(u\mid X)=\sigma^2h(X)\), dividir o modelo por \(\sqrt{h(X)}\) deixa o erro homocedástico; observações com menor variância recebem mais peso.</p>
+
+  <div class="box ok"><span class="lbl">Breusch–Pagan e MQP com números (exemplo nosso)</span>
+    <p><strong>BP:</strong> com n = 100, a regressão auxiliar \(\hat u_i^2=\delta_0+\delta_1X_i+v_i\) deu \(R^2_{aux}=0{,}08\). Então \(LM=nR^2_{aux}=100\times0{,}08=8\). O valor crítico da \(\chi^2_1\) a 5% é 3,84. Como 8 &gt; 3,84, rejeitamos a homocedasticidade (p ≈ 0,005).</p>
+    <p><strong>MQP com \(h(X)=X\):</strong> se \(Var(u\mid X)=\sigma^2X\), divida tudo por \(\sqrt X\):</p>
+    <div class="mathblock">\[\frac{Y}{\sqrt X}=\beta_0\frac{1}{\sqrt X}+\beta_1\sqrt X+\frac{u}{\sqrt X},\qquad Var\!\left(\frac{u}{\sqrt X}\,\middle|\,X\right)=\frac{\sigma^2X}{X}=\sigma^2\]</div>
+    <p>O erro transformado é homocedástico e o MQO nessa equação (sem intercepto próprio: \(1/\sqrt X\) faz o papel da constante) é o MQP. Observações com X grande, que são mais ruidosas, recebem peso menor.</p>
+  </div>
+  <div class="box def"><span class="lbl">Precisamos testar antes de usar erros robustos?</span>
+    <p><strong>Não.</strong> Usar erros-padrão robustos não exige rejeitar a homocedasticidade antes. Testar é útil para compreender os dados, investigar a especificação, motivar uma transformação e construir pesos para MQP. Mas o pré-teste tem limites: baixa potência em amostras pequenas, depende da regressão auxiliar escolhida, e não rejeitar não comprova \(H_0\).</p>
+  </div>
+  <p class="small">Detalhe do slide sobre RLS.6: a independência entre as observações vem da <strong>amostragem aleatória</strong> (RLS.2), não da normalidade.</p>
 
   <h3>11. E se u não for normal?</h3>
   <p>Nem sempre RLS.6 é razoável. Exemplos da aula: y com poucos valores possíveis, como uma <strong>contagem de eventos</strong>, ou uma <strong>variável censurada</strong>, como uma duração observada só até o fim do acompanhamento. Às vezes uma transformação, como o log, reduz a assimetria e aproxima o erro da normal.</p>
@@ -2813,8 +3260,85 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
   <p>Se a função de variância estiver bem especificada, o MQP pode ser mais eficiente; se estiver mal especificada, o ganho pode sumir. Erros-padrão robustos depois da ponderação dão proteção adicional. <strong>Síntese:</strong> erros robustos protegem a inferência; MQP tenta também recuperar eficiência; nenhum dos dois corrige uma média condicional mal especificada.</p>
   <p><strong>Teaser:</strong> sob normalidade, qualquer combinação linear de \(\hat\beta_0\) e \(\hat\beta_1\) também é normal (em grandes amostras, aproximadamente), e qualquer subconjunto de coeficientes tem distribuição normal conjunta. Com dois coeficientes isso faz pouca diferença, mas é a base do <strong>teste F</strong>, para testar vários coeficientes ao mesmo tempo, na regressão múltipla.</p>
 
+  <h3>Unidades na inferência</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Grandeza</th><th>Unidade</th><th>Exemplo (5 indivíduos)</th></tr></thead>
+    <tbody>
+      <tr><td>\(\hat\beta_1\), \(\beta_{1,0}\), \(ep(\hat\beta_1)\)</td><td>unid. y / unid. x</td><td>1,15 e 0,189 (R$/h) por ano</td></tr>
+      <tr><td>Estatística t</td><td>nenhuma (R$ ÷ R$)</td><td>6,08</td></tr>
+      <tr><td>Limites do IC</td><td>a de \(\beta_1\)</td><td>[0,55; 1,75] (R$/h) por ano</td></tr>
+      <tr><td>p-valor, α, poder, erro tipo II</td><td>probabilidades (0 a 1)</td><td>p ≈ 0,009</td></tr>
+      <tr><td>Estatística LM de Breusch–Pagan</td><td>nenhuma</td><td>—</td></tr>
+    </tbody>
+  </table></div>
+  <p>Consequência prática: se você mudar a unidade de y ou de x (Aula 4), \(\hat\beta_1\) e o ep mudam na mesma proporção, e o t, o p-valor e a decisão <strong>não mudam</strong>.</p>
+
+  <h3>14. Encerramento (slide final da Aula 6)</h3>
+  <ul>
+    <li>Testes comparam a estimativa com um valor hipotético na escala do seu erro-padrão.</li>
+    <li>p-valores medem a compatibilidade dos dados com \(H_0\); não medem a magnitude da associação nem a probabilidade de \(H_0\).</li>
+    <li>Intervalos de confiança apresentam uma faixa de valores compatíveis com os dados e com o procedimento adotado.</li>
+    <li>A distribuição t é exata sob normalidade e homocedasticidade; a inferência robusta é, em geral, assintótica.</li>
+    <li>Erros-padrão robustos protegem contra heterocedasticidade, não contra endogeneidade ou especificação incorreta.</li>
+  </ul>
+
+  <div class="box trap"><span class="lbl">Pegadinhas da Aula 6</span>
+    <ul>
+      <li>Usar n em vez de n − 2 graus de liberdade.</li>
+      <li>Testar \(H_0:\beta_1=1\) calculando \(\hat\beta_1/ep\) (esqueceu de subtrair 1).</li>
+      <li>Usar o crítico bilateral num teste unilateral, ou vice-versa.</li>
+      <li>Esquecer de dobrar a área de uma cauda no p-valor bilateral.</li>
+      <li>Escrever “aceitamos \(H_0\)”, ou “há 95% de probabilidade de \(\beta_1\) estar neste IC”.</li>
+      <li>Achar que p pequeno significa efeito grande, ou que robusto é sempre maior.</li>
+      <li>Achar que heterocedasticidade causa viés, ou que erro robusto corrige variável omitida.</li>
+    </ul>
+  </div>
+
+  <h3>Exercícios extras resolvidos (tipo prova)</h3>
+  <p class="small muted">Criados por nós no formato da Lista 3.</p>
+  <details class="sol"><summary>F1 · β̂₁ = 2,4, ep = 0,8, n = 22 (t₀,₀₂₅;₂₀ = 2,086): teste β₁ = 0 e IC 95%</summary><div class="in">
+    <p>\(t=2{,}4/0{,}8=3&gt;2{,}086\): rejeita. IC \(=2{,}4\pm2{,}086\times0{,}8=2{,}4\pm1{,}669=[0{,}731;\ 4{,}069]\), que exclui 0.</p>
+  </div></details>
+  <details class="sol"><summary>F2 · β̂₁ = −0,45, ep = 0,30, n = 32 (t₀,₀₂₅;₃₀ = 2,042)</summary><div class="in">
+    <p>\(t=-0{,}45/0{,}30=-1{,}5\); \(|{-1{,}5}|\lt2{,}042\): não rejeita \(H_0:\beta_1=0\). IC \(=-0{,}45\pm0{,}613=[-1{,}063;\ 0{,}163]\), que contém 0. Não rejeitar não prova que \(\beta_1=0\).</p>
+  </div></details>
+  <details class="sol"><summary>F3 · H₀: β₁ = 1 com β̂₁ = 1,32, ep = 0,12, n = 15 (t₀,₀₂₅;₁₃ = 2,160)</summary><div class="in">
+    <p>\(t=(1{,}32-1)/0{,}12\approx2{,}67&gt;2{,}160\): rejeita \(\beta_1=1\). IC \(=1{,}32\pm0{,}259=[1{,}061;\ 1{,}579]\), que exclui 1 (dualidade).</p>
+  </div></details>
+  <details class="sol"><summary>F4 · Unilateral à esquerda: H_A: β₁ &lt; 0, β̂₁ = −0,9, ep = 0,5, n = 22</summary><div class="in">
+    <p>\(t=-1{,}8\). Unilateral a 5% (\(t_{0,05;20}=1{,}725\)): rejeita se \(t\lt-1{,}725\); como \(-1{,}8\lt-1{,}725\), rejeita. Bilateral (2,086): \(|{-1{,}8}|\lt2{,}086\), não rejeitaria. Mesma lógica da Lista 3, Q6, do lado negativo.</p>
+  </div></details>
+  <details class="sol"><summary>F5 · Intervalo para o p-valor: t = 2,9 com 10 g.l.</summary><div class="in">
+    <p>Na tabela: \(t_{0,01;10}=2{,}764\lt2{,}9\lt t_{0,005;10}=3{,}169\). Uma cauda entre 0,005 e 0,01; bilateral: \(0{,}01\lt p\lt0{,}02\) (exato ≈ 0,016).</p>
+  </div></details>
+  <details class="sol"><summary>F6 · Poder: β̂₁ ~ N(β₁; 0,5²), β₁ verdadeiro = 1,5, crítico 1,96</summary><div class="in">
+    <p>Região de não rejeição: \([-0{,}98;\ 0{,}98]\). \(z_{sup}=(0{,}98-1{,}5)/0{,}5=-1{,}04\), \(z_{inf}=(-0{,}98-1{,}5)/0{,}5=-4{,}96\). Erro tipo II ≈ 0,1492; poder ≈ 0,8508. São os mesmos números da Lista 3, Q8, porque só importa a razão \(\beta_1/ep=3\).</p>
+  </div></details>
+  <details class="sol"><summary>F7 · Convencional × HC0 com n = 3: d = (−1, 0, 1), û = (0,5; −1; 0,5)</summary><div class="in">
+    <p>\(SQT_x=2\), SQR = 0,25 + 1 + 0,25 = 1,5, \(\hat\sigma^2=1{,}5/1=1{,}5\), \(ep_{hom}=\sqrt{1{,}5/2}\approx0{,}866\). HC0: \(\sum d_i^2\hat u_i^2=0{,}25+0+0{,}25=0{,}5\), \(ep_{HC0}=\sqrt{0{,}5/4}\approx0{,}354\). O maior resíduo está em \(d=0\), que não pesa na inclinação, então o robusto sai bem menor.</p>
+  </div></details>
+  <details class="sol"><summary>F8 · Lendo um output: Estimate 0,541, Std. Error 0,053, n = 526</summary><div class="in">
+    <p>t value \(=0{,}541/0{,}053\approx10{,}2\). Com 524 g.l. a t é praticamente a normal: IC ≈ \(0{,}541\pm1{,}96\times0{,}053=[0{,}437;\ 0{,}645]\). O Pr(&gt;|t|) seria minúsculo. Frase: “um ano a mais de educação está associado a US$ 0,54 a mais por hora (EP = 0,053)”.</p>
+  </div></details>
+  <details class="sol"><summary>F9 · Significância × importância: n = 1.000.000, β̂₁ = 0,002 R$/h por ano, ep = 0,0005</summary><div class="in">
+    <p>\(t=4\): estatisticamente significativo. Mas R$ 0,002 por hora por ano de estudo é economicamente irrelevante. Com amostras enormes, quase tudo fica “significativo”: reporte a magnitude na unidade relevante, com o IC.</p>
+  </div></details>
+
+  <div class="box prova"><span class="lbl">Checklist da Aula 6: eu consigo…</span>
+    <ul>
+      <li>montar \(H_0\) e \(H_A\) (bilateral e unilateral) e escolher o valor crítico certo;</li>
+      <li>calcular t para \(\beta_{1,0}=0\) e para \(\beta_{1,0}\neq0\), com n − 2 g.l.;</li>
+      <li>delimitar o p-valor com a tabela e dizer o que ele é e o que não é;</li>
+      <li>construir o IC e decidir o teste só pelo intervalo (dualidade);</li>
+      <li>calcular erro tipo II e poder, e dizer o que aumenta o poder;</li>
+      <li>calcular os erros-padrão convencional e HC0 e explicar por que o robusto pode ser menor;</li>
+      <li>dizer o que RLS.6 acrescenta e quando a t é exata ou só aproximada;</li>
+      <li>descrever Breusch–Pagan, White e MQP e saber que não é preciso testar antes de usar robusto.</li>
+    </ul>
+  </div>
+
   <div class="quiz" data-answer="d">
-    <div class="qh">Lista 02 · Questão 2</div>
+    <div class="qh">Lista 3 · Questão 2</div>
     <ol class="afirm">
       <li>I. Um p-valor de 0,03 significa que a probabilidade de \(H_0\) ser verdadeira é 3%.</li>
       <li>II. Não rejeitar \(H_0\) significa que os dados não trouxeram evidência suficiente contra ela no nível adotado.</li>
@@ -2824,7 +3348,7 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
     <div class="fb" hidden>II e III. I confunde P(dados extremos | H₀) com P(H₀ | dados).</div>
   </div>
   <div class="quiz" data-answer="d">
-    <div class="qh">Lista 02 · Questão 3</div>
+    <div class="qh">Lista 3 · Questão 3</div>
     <ol class="afirm">
       <li>I. Sob RLS.6, a normalidade implica média condicional zero e homocedasticidade, mas não substitui linearidade, amostragem aleatória e variação em X.</li>
       <li>II. Se \(E(u\mid X)=0\), a heterocedasticidade torna o MQO necessariamente viesado.</li>
@@ -2839,6 +3363,42 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
     <div class="opts"><button data-k="a">a) t = 3 &gt; 2,086: rejeitar \(H_0\)</button><button data-k="b">b) t = 3: aceitar \(H_0\)</button><button data-k="c">c) t = 0,27: não rejeitar \(H_0\)</button><button data-k="d">d) t = 3: não rejeitar \(H_0\)</button></div>
     <div class="fb" hidden>\(t=0{,}90/0{,}30=3\), que supera 2,086: rejeita \(H_0\). E nunca diga “aceitar”.</div>
   </div>
+  <div class="quiz" data-answer="c">
+    <div class="qh">Aula 6</div>
+    <p>Teste unilateral a 5% com 20 g.l. Qual valor crítico usar?</p>
+    <div class="opts"><button data-k="a">a) 2,086</button><button data-k="b">b) 1,96</button><button data-k="c">c) 1,725</button><button data-k="d">d) 2,845</button></div>
+    <div class="fb" hidden>c. Unilateral a 5% usa a coluna 0,05 da tabela (1,725). 2,086 é o bilateral a 5%; 2,845, o bilateral a 1%.</div>
+  </div>
+  <div class="quiz" data-answer="b">
+    <div class="qh">Aula 6</div>
+    <p>t = 2,4 com 16 g.l.; \(t_{0,025;16}=2{,}120\) e \(t_{0,010;16}=2{,}583\). O p-valor bilateral está entre:</p>
+    <div class="opts"><button data-k="a">a) 0,005 e 0,01</button><button data-k="b">b) 0,02 e 0,05</button><button data-k="c">c) 0,05 e 0,10</button><button data-k="d">d) 0,010 e 0,025, sem dobrar</button></div>
+    <div class="fb" hidden>b. Uma cauda entre 0,010 e 0,025; dobrando, entre 0,02 e 0,05.</div>
+  </div>
+  <div class="quiz" data-answer="a">
+    <div class="qh">Aula 6 · IC</div>
+    <p>O IC de 95% de \(\beta_1\) é [0,20; 1,40]. A 5%, bilateral:</p>
+    <div class="opts"><button data-k="a">a) rejeita \(\beta_1=0\) e não rejeita \(\beta_1=1\)</button><button data-k="b">b) rejeita \(\beta_1=1\)</button><button data-k="c">c) aceita \(\beta_1=0{,}8\)</button><button data-k="d">d) não dá para saber sem o t</button></div>
+    <div class="fb" hidden>a. Dualidade: fora do IC → rejeita; dentro → não rejeita. E nunca “aceita”.</div>
+  </div>
+  <div class="quiz" data-answer="d">
+    <div class="qh">Aula 6 · Poder</div>
+    <p>Qual mudança <strong>não</strong> aumenta o poder do teste de \(H_0:\beta_1=0\)?</p>
+    <div class="opts"><button data-k="a">a) aumentar n</button><button data-k="b">b) aumentar a dispersão de X</button><button data-k="c">c) passar α de 1% para 5%</button><button data-k="d">d) aumentar a variância do erro</button></div>
+    <div class="fb" hidden>d. Mais ruído aumenta o ep e reduz o poder.</div>
+  </div>
+  <div class="quiz" data-answer="c">
+    <div class="qh">Aula 6 · Unidades</div>
+    <p>Y passa de reais para milhares de reais. O que acontece com o t de \(H_0:\beta_1=0\)?</p>
+    <div class="opts"><button data-k="a">a) é dividido por 1.000</button><button data-k="b">b) é multiplicado por 1.000</button><button data-k="c">c) não muda</button><button data-k="d">d) vira o p-valor</button></div>
+    <div class="fb" hidden>c. \(\hat\beta_1\) e ep são divididos por 1.000; a razão fica igual.</div>
+  </div>
+  <div class="quiz" data-answer="b">
+    <div class="qh">Aula 6 · Breusch–Pagan</div>
+    <p>n = 200 e \(R^2_{aux}=0{,}01\). Com crítico 3,84, o teste BP:</p>
+    <div class="opts"><button data-k="a">a) rejeita a homocedasticidade (LM = 20)</button><button data-k="b">b) não rejeita (LM = 2)</button><button data-k="c">c) prova que há homocedasticidade</button><button data-k="d">d) exige erro robusto</button></div>
+    <div class="fb" hidden>b. LM = 200 × 0,01 = 2 &lt; 3,84: não rejeita, o que não prova homocedasticidade (c é falsa).</div>
+  </div>
   <div class="done-row"><button class="btn done-btn" data-done="aula6" aria-pressed="false">Marcar como concluído</button></div>
 </section>
 
@@ -2846,7 +3406,7 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
 <section class="mod" id="dummies" data-title="Aula 7">
   <div class="eyebrow">Aula de 18/09 · Variáveis dummy e informação qualitativa <span class="tag warn">Confirme se cai na P1</span></div>
   <h2>Dummies e regressão pela origem</h2>
-  <div class="box trap"><span class="lbl">Atenção ao escopo</span><p>Nenhuma lista cobre esta aula, e a Lista 02 diz “Aulas 5 e 6”. Estude depois de dominar as Aulas 3 a 6, ou pergunte ao professor se ela entra na P1.</p></div>
+  <div class="box trap"><span class="lbl">Atenção ao escopo</span><p>Nenhuma lista cobre esta aula, e a Lista 3 diz “Aulas 5 e 6”. Estude depois de dominar as Aulas 3 a 6, ou pergunte ao professor se ela entra na P1.</p></div>
 
   <h3>1. A variável dummy</h3>
   <p>Muitas variáveis econômicas são qualitativas: sexo, sindicalização, participação num programa. Para colocá-las no modelo sem tratá-las como intensidade, usamos:</p>
@@ -2897,6 +3457,18 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
     <li>Pela origem, \(\sum x_i\hat u_i=0\), mas em geral \(\sum\hat u_i\neq0\); e o R reporta um \(R^2\) não centrado, que não se compara com o usual.</li>
   </ul>
   <p><strong>Modelo de probabilidade linear:</strong> se Y é binária, \(P(Y=1\mid X)=\beta_0+\beta_1X\), e \(\beta_1\) é mudança em pontos percentuais. É simples, mas pode prever fora de [0, 1] e o erro é heterocedástico: use erros-padrão robustos.</p>
+  <details class="sol"><summary>Exercício extra · \(\hat y=10+3D+0{,}5x+0{,}2\,(x\cdot D)\): as duas retas e a diferença em x = 10</summary><div class="in">
+    <p>D = 0: \(\hat y=10+0{,}5x\). D = 1: \(\hat y=(10+3)+(0{,}5+0{,}2)x=13+0{,}7x\). Diferença entre grupos: \(3+0{,}2x\); em x = 10, \(3+2=5\). O 3 sozinho é a diferença só em x = 0. <span class="muted">(Exemplo nosso.)</span></p>
+  </div></details>
+  <div class="box prova"><span class="lbl">Checklist da aula de dummies: eu consigo…</span>
+    <ul>
+      <li>interpretar \(\beta_0\) e \(\beta_1\) de uma dummy como médias e diferença de médias;</li>
+      <li>evitar a armadilha da dummy (G − 1 categorias com intercepto);</li>
+      <li>ler diferenças de intercepto e de inclinação num modelo com interação;</li>
+      <li>calcular \(\hat\beta_1=\sum x_iy_i/\sum x_i^2\) pela origem e dizer quando a restrição é perigosa;</li>
+      <li>usar n − 1 no \(\hat\sigma^2\) da regressão pela origem.</li>
+    </ul>
+  </div>
   <div class="done-row"><button class="btn done-btn" data-done="dummies" aria-pressed="false">Marcar como concluído</button></div>
 </section>
 
@@ -3262,90 +3834,322 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
 </section>
 
 
-<!-- ================= LISTA 02 (Aulas 5 e 6) ================= -->
-<section class="mod" id="lista02" data-title="Lista 02">
-  <div class="eyebrow">Lista 02 · Propriedades estatísticas e inferência · Aulas 5 e 6 <span class="tag hot">Viés e variância</span></div>
-  <h2>Lista 02: as 10 questões resolvidas</h2>
-  <div class="box prova"><span class="lbl">Orientações da própria lista</span>
+<!-- ================= LISTA 3 (arquivo lista_03; título interno "Lista 02") ================= -->
+<section class="mod" id="lista3" data-title="Lista 3">
+  <div class="eyebrow">Lista 3 · Propriedades estatísticas e inferência · Aulas 5 e 6 <span class="tag hot">Viés, variância e testes</span></div>
+  <h2>Lista 3: as 10 questões em nível máximo</h2>
+  <div class="box def"><span class="lbl">Por que “Lista 3” e “Lista 02”?</span>
+    <p>O arquivo que você enviou se chama <strong>lista_03.pdf</strong> (gabarito: gabarito_lista_03.pdf), mas o título impresso dentro do PDF é <strong>“Lista 02 — Propriedades estatísticas e inferência”</strong>. É a mesma lista. Neste guia ela se chama <strong>Lista 3</strong>, para não confundir com a <strong>Lista 2 numérica</strong> (aluguel × área e lucro quadrático, Aulas 1 a 4).</p>
+  </div>
+  <p>É a lista das <strong>Aulas 5 e 6</strong>: viés, variância e precisão do estimador, testes t, p-valor, intervalos de confiança, erros tipo I e II, poder e erro-padrão robusto. Cada questão abaixo traz o enunciado completo, a estratégia, a resolução passo a passo igual à do gabarito do professor, uma resposta-modelo para a prova e os erros que custam ponto. O que foi calculado por nós, e não está no gabarito, vem marcado como <em>conta nossa</em>.</p>
+
+  <div class="box trap"><span class="lbl">Orientações da própria lista (valem nota)</span>
     <ul>
-      <li>Apresente as fórmulas e todas as substituições.</li>
-      <li>Guarde casas decimais nos cálculos intermediários; arredonde só no final.</li>
-      <li>Use “rejeitar” ou “não rejeitar” a hipótese nula. Não use “aceitar”.</li>
-      <li>Não é necessário software. Fórmulas dadas: \(\hat\sigma^2=\frac{SQR}{n-2}\), \(\widehat{Var}(\hat\beta_1)=\frac{\hat\sigma^2}{SQT_x}\), \(SQT_x=\sum(X_i-\bar X)^2\).</li>
+      <li>Apresente as fórmulas e <strong>todas as substituições</strong> utilizadas.</li>
+      <li>Mantenha casas decimais nos cálculos intermediários e arredonde só os resultados finais.</li>
+      <li>Nas conclusões, use “<strong>rejeitar</strong>” ou “<strong>não rejeitar</strong>” \(H_0\). <strong>Nunca</strong> “aceitar”.</li>
+      <li>Não é necessário usar software.</li>
     </ul>
   </div>
 
-  <div class="exq"><div class="h"><b>Questão 1: propriedades estatísticas do MQO</b><span class="tag hot">★</span></div>
-    <p>I. A estimativa \(\hat\beta_1=1{,}4\) é uma realização do estimador \(\hat\beta_1\), enquanto \(\beta_1\) é um parâmetro fixo e desconhecido. II. Se \(\hat\beta_1\) é não viesado, toda amostra produz uma estimativa próxima de \(\beta_1\). III. Sob RLS.1–RLS.4, o MQO é não viesado, mas isso não garante variância pequena.</p>
-    <details class="sol"><summary>Ver resposta</summary><div class="in">
-      <p><strong>Alternativa (c): apenas I e III.</strong></p>
-      <p><strong>I, verdadeira:</strong> o estimador é função da amostra aleatória e varia entre amostras; 1,4 é uma estimativa, uma realização. <strong>II, falsa:</strong> não viés significa \(E(\hat\beta_1)=\beta_1\), o centro da distribuição amostral. Uma amostra pode dar estimativa distante, sobretudo com \(Var(\hat\beta_1)\) alta. O correto: em amostras repetidas, os desvios positivos e negativos se compensam em média. <strong>III, verdadeira:</strong> não viés trata do centro; precisão, da variância.</p>
-    </div></details>
+  <h3>O kit de fórmulas da Lista 3</h3>
+  <p>Modelo: \(Y_i=\beta_0+\beta_1X_i+u_i\), \(i=1,\dots,n\). A lista dá as três primeiras; as outras vêm das Aulas 5 e 6.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Fórmula</th><th>O que mede</th><th>Unidade</th><th>Aula</th></tr></thead>
+    <tbody>
+      <tr><td>\(\hat\sigma^2=\dfrac{SQR}{n-2}\)</td><td>Ruído: variância estimada do erro</td><td>(unid. de Y)²</td><td>5</td></tr>
+      <tr><td>\(SQT_x=\sum_i(X_i-\bar X)^2\)</td><td>Informação: quanto X varia na amostra</td><td>(unid. de X)²</td><td>3 e 5</td></tr>
+      <tr><td>\(\widehat{Var}(\hat\beta_1)=\dfrac{\hat\sigma^2}{SQT_x}\)</td><td>Variância estimada da inclinação</td><td>(unid. Y / unid. X)²</td><td>5</td></tr>
+      <tr><td>\(ep(\hat\beta_1)=\sqrt{\widehat{Var}(\hat\beta_1)}=\dfrac{\hat\sigma}{\sqrt{SQT_x}}\)</td><td>Erro-padrão: dispersão típica da estimativa</td><td>unid. Y / unid. X (a mesma de \(\hat\beta_1\))</td><td>5</td></tr>
+      <tr><td>\(t=\dfrac{\hat\beta_1-\beta_{1,0}}{ep(\hat\beta_1)}\)</td><td>Distância até \(H_0\) em erros-padrão</td><td>sem unidade</td><td>6</td></tr>
+      <tr><td>\(IC=\hat\beta_1\pm t_{\alpha/2;\,n-2}\cdot ep(\hat\beta_1)\)</td><td>Faixa de valores compatíveis com os dados</td><td>a de \(\hat\beta_1\)</td><td>6</td></tr>
+      <tr><td>Erro tipo II \(=P(\text{não rejeitar}\mid H_0\text{ falsa})\); poder \(=1-\)erro tipo II</td><td>Chance de não detectar / de detectar um efeito que existe</td><td>probabilidade</td><td>6</td></tr>
+      <tr><td>\(ep_{HC0}=\sqrt{\dfrac{\sum_i(x_i-\bar x)^2\hat u_i^2}{(SQT_x)^2}}\)</td><td>Erro-padrão robusto à heterocedasticidade</td><td>a de \(\hat\beta_1\)</td><td>6</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="tbl"><table>
+    <thead><tr><th>Questão</th><th>Tema</th><th>Onde está a teoria</th></tr></thead>
+    <tbody>
+      <tr><td>Q1</td><td>Parâmetro × estimador × estimativa; não viés × precisão</td><td><a href="#aula5">Aula 5</a>, seções 2, 4 e 5</td></tr>
+      <tr><td>Q2</td><td>p-valor, “não rejeitar”, dualidade IC ↔ teste</td><td><a href="#aula6">Aula 6</a>, seções 4 e 6</td></tr>
+      <tr><td>Q3</td><td>RLS.6, heterocedasticidade, erro robusto</td><td>Aula 5, seção 14; Aula 6, seções 9 e 10</td></tr>
+      <tr><td>Q4 ★</td><td>\(\hat\sigma^2\), \(Var(\hat\beta_1)\), ep: ruído × informação</td><td>Aula 5, seções 7, 8, 11 e 12</td></tr>
+      <tr><td>Q5 ★</td><td>Teste t de \(H_0:\beta_1=1\) e intervalo para o p-valor</td><td>Aula 6, seções 2 a 4</td></tr>
+      <tr><td>Q6 ★</td><td>Unilateral × bilateral</td><td>Aula 6, seção 7</td></tr>
+      <tr><td>Q7</td><td>IC e decisão só pelo intervalo</td><td>Aula 6, seção 6</td></tr>
+      <tr><td>Q8 ★</td><td>Erro tipo II e poder</td><td>Aula 6, seção 5; Aula 2</td></tr>
+      <tr><td>Q9 ★</td><td>Erro-padrão convencional × robusto (HC0)</td><td>Aula 6, seção 9</td></tr>
+      <tr><td>Q10</td><td>Dispersão de X, precisão e significância</td><td>Aula 5, seção 8</td></tr>
+    </tbody>
+  </table></div>
+
+  <!-- ================= Q1 ================= -->
+  <div class="exq" id="l3q1">
+    <div class="h"><b>Questão 1: propriedades estatísticas do MQO</b><span class="tag hot">★ viés</span></div>
+    <p>Avalie as afirmativas.</p>
+    <p>I. A estimativa \(\hat\beta_1=1{,}4\) é uma realização do estimador \(\hat\beta_1\), enquanto \(\beta_1\) é um parâmetro fixo e desconhecido da população.<br>
+    II. Se \(\hat\beta_1\) é não viesado, então toda amostra produz uma estimativa próxima de \(\beta_1\).<br>
+    III. Sob RLS.1–RLS.4, o estimador de MQO é não viesado, mas isso não garante que sua variância seja pequena.</p>
+    <p class="small">a) Apenas I · b) Apenas I e II · c) Apenas I e III · d) Apenas II e III · e) I, II e III</p>
+  </div>
+  <details class="sol"><summary>Ver resolução completa</summary><div class="in">
+    <p><strong>Como pensar:</strong> separe três objetos (parâmetro, estimador, estimativa) e duas propriedades (centro = viés; espalhamento = variância). Cada afirmativa mistura ou separa essas ideias.</p>
+    <ol class="steps">
+      <li><div><strong>I, verdadeira.</strong> \(\beta_1\) é uma característica fixa e desconhecida da população. O estimador \(\hat\beta_1\) é uma <em>função da amostra aleatória</em> e por isso varia de amostra para amostra: é uma variável aleatória. Depois de observar os dados, o número 1,4 é uma <strong>estimativa</strong>, uma realização do estimador.</div></li>
+      <li><div><strong>II, falsa.</strong> Não viés significa \(E(\hat\beta_1)=\beta_1\): descreve o <strong>centro</strong> da distribuição amostral, não a proximidade de cada estimativa. Uma amostra pode dar uma estimativa distante de \(\beta_1\), sobretudo quando \(Var(\hat\beta_1)\) é alta. Formulação correta: em amostras repetidas, os desvios positivos e negativos se compensam <em>em média</em>.</div></li>
+      <li><div><strong>III, verdadeira.</strong> RLS.1–RLS.4 garantem o não viés. Mas não viés trata do centro; precisão trata da variância, que depende de \(\sigma^2\) e de \(SQT_x\) (e da RLS.5 para ter a fórmula simples).</div></li>
+    </ol>
+    <p><strong>Resposta: alternativa (c), apenas I e III.</strong></p>
+    <p class="small">Ilustração com números: no <a href="#aula5">Laboratório 1 da Aula 5</a>, o estimador é não viesado (média 3 = \(\beta_1\)), mas metade das amostras dá 2 ou 4, longe de 3. Isso derruba a afirmativa II.</p>
+  </div></details>
+
+  <!-- ================= Q2 ================= -->
+  <div class="exq" id="l3q2">
+    <div class="h"><b>Questão 2: testes de hipóteses e intervalos de confiança</b></div>
+    <p>I. Um p-valor de 0,03 significa que a probabilidade de a hipótese nula ser verdadeira é de 3%.<br>
+    II. Não rejeitar \(H_0\) significa que os dados não forneceram evidência suficiente contra ela no nível de significância adotado.<br>
+    III. Um intervalo de 95% de confiança contém exatamente os valores de \(\beta_1\) que não seriam rejeitados por testes bilaterais a 5%, desde que sejam usados o mesmo erro-padrão e a mesma distribuição de referência.</p>
+    <p class="small">a) Apenas I · b) Apenas II · c) Apenas I e III · d) Apenas II e III · e) I, II e III</p>
+  </div>
+  <details class="sol"><summary>Ver resolução completa</summary><div class="in">
+    <ol class="steps">
+      <li><div><strong>I, falsa.</strong> O p-valor é calculado <em>supondo</em> \(H_0\) verdadeira. 0,03 quer dizer: se \(H_0\) fosse verdadeira, a probabilidade de uma estatística tão extrema quanto a observada, ou mais, seria 3%. Em símbolos, é \(P(\text{dados extremos}\mid H_0)\), e não \(P(H_0\mid\text{dados})\).</div></li>
+      <li><div><strong>II, verdadeira.</strong> Não rejeitar significa só que a evidência não foi forte o bastante no nível adotado. Não prova \(H_0\) e não permite “aceitá-la”.</div></li>
+      <li><div><strong>III, verdadeira.</strong> É a dualidade entre IC e teste bilateral: um valor \(\beta_{1,0}\) está dentro do IC de 95% exatamente quando \(|t|=|\hat\beta_1-\beta_{1,0}|/ep\) não passa do valor crítico. Por quê? \(|\hat\beta_1-\beta_{1,0}|\le t_{crit}\cdot ep\iff\hat\beta_1-t_{crit}\,ep\le\beta_{1,0}\le\hat\beta_1+t_{crit}\,ep\).</div></li>
+    </ol>
+    <p><strong>Resposta: alternativa (d), apenas II e III.</strong></p>
+  </div></details>
+
+  <!-- ================= Q3 ================= -->
+  <div class="exq" id="l3q3">
+    <div class="h"><b>Questão 3: normalidade, heterocedasticidade e inferência robusta</b></div>
+    <p>I. Sob RLS.6, a normalidade condicional dos erros implica média condicional zero e homocedasticidade, mas não substitui as hipóteses de linearidade nos parâmetros, amostragem aleatória e variação em X.<br>
+    II. Se \(E(u\mid X)=0\), a presença de heterocedasticidade torna os estimadores de MQO necessariamente viesados.<br>
+    III. Erros-padrão robustos podem corrigir a estimação da incerteza sob heterocedasticidade, mas não corrigem variável omitida, simultaneidade ou erro de medida.</p>
+    <p class="small">a) Apenas I · b) Apenas II · c) Apenas I e II · d) Apenas I e III · e) I, II e III</p>
+  </div>
+  <details class="sol"><summary>Ver resolução completa</summary><div class="in">
+    <ol class="steps">
+      <li><div><strong>I, verdadeira.</strong> RLS.6 diz \(u_i\mid X\sim N(0,\sigma^2)\). A média 0 dentro da normal é a RLS.4; a variância \(\sigma^2\) constante é a RLS.5. Mas nada nela fala de linearidade (RLS.1), amostragem (RLS.2) ou variação em X (RLS.3).</div></li>
+      <li><div><strong>II, falsa.</strong> Na prova do não viés (Aula 5) só entram RLS.1–RLS.4. A homocedasticidade nem aparece. Com \(E(u\mid X)=0\), heterocedasticidade <strong>não</strong> causa viés nem inconsistência. Ela invalida a fórmula homocedástica da variância e tira a garantia de eficiência (BLUE) de Gauss–Markov.</div></li>
+      <li><div><strong>III, verdadeira.</strong> O erro-padrão robusto conserta só a estimativa da incerteza. Variável omitida, simultaneidade, erro de medida e forma funcional errada são problemas da <em>média condicional</em> (o centro), que nenhum erro-padrão corrige.</div></li>
+    </ol>
+    <p><strong>Resposta: alternativa (d), apenas I e III.</strong></p>
+  </div></details>
+
+  <!-- ================= Q4 ================= -->
+  <div class="exq" id="l3q4">
+    <div class="h"><b>Questão 4: ruído, informação e precisão</b><span class="tag hot">★★★ variância do estimador</span></div>
+    <p>Uma regressão com intercepto foi estimada com n = 10 observações. Foram obtidos:</p>
+    <div class="given"><span>n = 10</span><span>SQR = 40</span><span>\(SQT_x=20\)</span></div>
+    <p>Calcule \(\hat\sigma^2\), \(\hat\sigma\), \(\widehat{Var}(\hat\beta_1)\) e \(ep(\hat\beta_1)\). Em seguida, refaça os cálculos e compare a precisão da inclinação quando: (i) \(SQT_x\) aumenta de 20 para 80, mantendo n = 10 e SQR = 40; e (ii) SQR aumenta de 40 para 80, mantendo n = 10 e \(SQT_x=20\). Explique separadamente os efeitos da dispersão de X e do ruído sobre a precisão de \(\hat\beta_1\).</p>
+  </div>
+  <h4>Estratégia</h4>
+  <p>A cadeia é sempre a mesma: <strong>SQR → \(\hat\sigma^2\) → \(\widehat{Var}(\hat\beta_1)\) → ep</strong>. SQR (ruído) entra no numerador; \(SQT_x\) (informação sobre a inclinação) entra no denominador. Primeiro descubra os graus de liberdade.</p>
+  <ol class="steps">
+    <li><div><strong>Graus de liberdade.</strong> A regressão simples estima dois parâmetros (\(\hat\beta_0\) e \(\hat\beta_1\)): \(n-2=10-2=8\).</div></li>
+    <li><div><strong>Variância do erro.</strong>
+      <div class="mathblock">\[\hat\sigma^2=\frac{SQR}{n-2}=\frac{40}{8}=\mathbf{5},\qquad \hat\sigma=\sqrt5\approx\mathbf{2{,}236}\]</div></div></li>
+    <li><div><strong>Variância e erro-padrão da inclinação.</strong>
+      <div class="mathblock">\[\widehat{Var}(\hat\beta_1)=\frac{\hat\sigma^2}{SQT_x}=\frac{5}{20}=\mathbf{0{,}25},\qquad ep(\hat\beta_1)=\sqrt{0{,}25}=\mathbf{0{,}50}\]</div></div></li>
+    <li><div><strong>(i) \(SQT_x=80\).</strong> SQR e n não mudam, então \(\hat\sigma^2\) continua 5:
+      <div class="mathblock">\[\widehat{Var}(\hat\beta_1)=\frac{5}{80}=0{,}0625,\qquad ep(\hat\beta_1)=\sqrt{0{,}0625}=0{,}25\]</div></div></li>
+    <li><div><strong>(ii) SQR = 80.</strong> Agora o ruído muda:
+      <div class="mathblock">\[\hat\sigma^2=\frac{80}{8}=10,\qquad\widehat{Var}(\hat\beta_1)=\frac{10}{20}=0{,}50,\qquad ep(\hat\beta_1)=\sqrt{0{,}50}\approx0{,}707\]</div></div></li>
+  </ol>
+  <div class="tbl"><table>
+    <thead><tr><th>Cenário</th><th class="r">\(\hat\sigma^2\)</th><th class="r">\(SQT_x\)</th><th class="r">\(\widehat{Var}(\hat\beta_1)\)</th><th class="r">ep</th><th>Precisão</th></tr></thead>
+    <tbody>
+      <tr><td>Base</td><td class="r">5</td><td class="r">20</td><td class="r">0,25</td><td class="r">0,50</td><td>referência</td></tr>
+      <tr><td>(i) X 4× mais disperso</td><td class="r">5</td><td class="r">80</td><td class="r">0,0625</td><td class="r">0,25</td><td>ep cai à metade: <strong>mais precisa</strong></td></tr>
+      <tr><td>(ii) ruído 2× maior</td><td class="r">10</td><td class="r">20</td><td class="r">0,50</td><td class="r">0,707</td><td>ep × \(\sqrt2\): <strong>menos precisa</strong></td></tr>
+    </tbody>
+  </table></div>
+  <div class="box def"><span class="lbl">Por que é assim (a intuição de cada efeito)</span>
+    <p><strong>Dispersão de X (informação).</strong> Com os X espalhados, inclinações diferentes produzem previsões muito diferentes nas pontas, e os dados conseguem distinguir uma da outra. Com X concentrado, uma pequena mudança na inclinação é “compensada” pelo intercepto sem alterar muito o ajuste. Como \(ep=\hat\sigma/\sqrt{SQT_x}\), quadruplicar \(SQT_x\) divide o ep por \(\sqrt4=2\) (e a variância por 4).</p>
+    <p><strong>Ruído (\(\sigma^2\)).</strong> Mais fatores não observados espalham os pontos em torno da reta e escondem a relação. Dobrar SQR dobra \(\hat\sigma^2\), dobra a variância e multiplica o ep por \(\sqrt2\approx1{,}414\).</p>
+    <p><strong>Unidades.</strong> A lista não dá unidades. Se Y fosse salário em R$ e X anos de estudo: \(\hat\sigma^2\) em R$², \(SQT_x\) em anos², \(\widehat{Var}(\hat\beta_1)\) em (R$/ano)² e o ep em R$ por ano, a mesma unidade de \(\hat\beta_1\).</p>
+  </div>
+  <div class="box ok"><span class="lbl">Resposta-modelo</span>
+    <p>Com \(n-2=8\): \(\hat\sigma^2=40/8=5\), \(\hat\sigma=\sqrt5\approx2{,}236\), \(\widehat{Var}(\hat\beta_1)=5/20=0{,}25\) e \(ep(\hat\beta_1)=0{,}50\). (i) Com \(SQT_x=80\): \(\widehat{Var}=5/80=0{,}0625\), ep = 0,25; quadruplicar a dispersão de X reduz o erro-padrão à metade, porque X mais disperso permite distinguir melhor inclinações diferentes. (ii) Com SQR = 80: \(\hat\sigma^2=10\), \(\widehat{Var}=0{,}50\), ep ≈ 0,707; dobrar o ruído dobra a variância e multiplica o ep por \(\sqrt2\). Maior \(SQT_x\) aumenta a precisão; maior \(\hat\sigma^2\) a reduz.</p>
+  </div>
+  <div class="box trap"><span class="lbl">Erros que custam ponto</span>
+    <ul>
+      <li>Dividir SQR por n (40/10 = 4) ou por n − 1 (40/9). Na regressão simples é <strong>n − 2</strong>.</li>
+      <li>Parar na variância e esquecer a raiz: ep = \(\sqrt{0{,}25}\) = 0,50, e não 0,25.</li>
+      <li>Dizer que quadruplicar \(SQT_x\) divide o <em>ep</em> por 4. Divide a <em>variância</em> por 4; o ep, por 2.</li>
+      <li>Confundir \(SQT_x\) (variação de X) com o SQT do \(R^2\) (variação de Y).</li>
+      <li>Em (ii), esquecer de recalcular \(\hat\sigma^2\) antes da variância.</li>
+    </ul>
+  </div>
+  <p class="small"><strong>E se n mudasse?</strong> (extensão, conta nossa) Com n = 20, SQR = 40 e \(SQT_x=20\): \(\hat\sigma^2=40/18\approx2{,}22\) e ep ≈ 0,333. Mais graus de liberdade com a mesma SQR significam menos ruído estimado por observação.</p>
+
+  <!-- ================= Q5 ================= -->
+  <div class="exq" id="l3q5">
+    <div class="h"><b>Questão 5: teste bilateral de uma hipótese não nula</b><span class="tag hot">★★ teste t</span></div>
+    <p>Um pesquisador estima a associação entre treinamento profissional e produtividade:</p>
+    <div class="given"><span>\(\hat\beta_1=1{,}80\)</span><span>\(ep(\hat\beta_1)=0{,}30\)</span><span>n = 18</span></div>
+    <p>Teste \(H_0:\beta_1=1\) contra \(H_A:\beta_1\neq1\) ao nível de 5%. Para delimitar o p-valor, use \(t_{0,025;16}=2{,}120\), \(t_{0,010;16}=2{,}583\) e \(t_{0,005;16}=2{,}921\). Determine um intervalo numérico para o p-valor bilateral e conclua sobre a associação entre treinamento e produtividade.</p>
+  </div>
+  <h4>Estratégia</h4>
+  <p>O valor de \(H_0\) <strong>não é zero</strong>: é 1. O numerador do t é \(\hat\beta_1-1\). Depois, compare \(|t|\) com o crítico de 5% e “encaixe” o t entre os valores da tabela para achar o intervalo do p-valor. Lembre que \(t_{0,010;16}\) é o valor que deixa 1% <strong>numa cauda</strong>.</p>
+  <ol class="steps">
+    <li><div><strong>Hipóteses e graus de liberdade.</strong> \(H_0:\beta_1=1\) × \(H_A:\beta_1\neq1\) (bilateral); \(n-2=16\) g.l.</div></li>
+    <li><div><strong>Estatística t.</strong>
+      <div class="mathblock">\[t=\frac{\hat\beta_1-\beta_{1,0}}{ep(\hat\beta_1)}=\frac{1{,}80-1}{0{,}30}=\frac{0{,}80}{0{,}30}\approx\mathbf{2{,}67}\]</div>
+      <p>A estimativa está 2,67 erros-padrão acima do valor proposto por \(H_0\).</p></div></li>
+    <li><div><strong>Decisão a 5%.</strong> Rejeita-se se \(|t|&gt;t_{0,025;16}=2{,}120\). Como \(2{,}67&gt;2{,}120\), <strong>rejeitamos \(H_0:\beta_1=1\)</strong>.</div></li>
+    <li><div><strong>Intervalo para o p-valor.</strong> O t cai entre dois valores da tabela: \(2{,}583\lt2{,}67\lt2{,}921\). Numa cauda, \(P(T&gt;2{,}583)=0{,}010\) e \(P(T&gt;2{,}921)=0{,}005\). Então \(P(T&gt;2{,}67)\) está entre 0,005 e 0,010. No teste <strong>bilateral</strong> somamos as duas caudas, ou seja, dobramos:
+      <div class="mathblock">\[0{,}01\lt\text{p-valor}\lt0{,}02\]</div>
+      <p>Todo o intervalo está abaixo de 0,05, o que confirma a rejeição.</p></div></li>
+  </ol>
+  <figure><div class="scroll"><svg class="fig" viewBox="0 0 560 330" role="img" aria-label="Distribuição t com 16 graus de liberdade, estatística 2,67 e valores críticos" xmlns="http://www.w3.org/2000/svg">
+<line class="ax" x1="30" y1="200" x2="540" y2="200"/>
+<line class="ax" x1="30" y1="26" x2="30" y2="200"/>
+<text class="tk" x="123.1" y="216" text-anchor="middle">-2,667</text>
+<text class="tk" x="285" y="216" text-anchor="middle">0</text>
+<text class="tk" x="446.9" y="216" text-anchor="middle">2,667</text>
+<text class="lb" x="285" y="324" text-anchor="middle"></text>
+<text class="lb" x="12" y="113" text-anchor="middle" transform="rotate(-90 12 113)"></text>
+<polygon class="rej" points="123.1,200 123.1,192.9 121.5,193.2 120,193.5 118.4,193.9 116.9,194.2 115.3,194.5 113.8,194.7 112.2,195 110.7,195.2 109.1,195.5 107.6,195.7 106,195.9 104.5,196.1 102.9,196.3 101.4,196.5 99.8,196.7 98.3,196.9 96.7,197 95.2,197.2 93.6,197.3 92.1,197.5 90.5,197.6 88.9,197.7 87.4,197.8 85.8,197.9 84.3,198.1 82.7,198.2 81.2,198.2 79.6,198.3 78.1,198.4 76.5,198.5 75,198.6 73.4,198.7 71.9,198.7 70.3,198.8 68.8,198.9 67.2,198.9 65.7,199 64.1,199 62.6,199.1 61,199.1 59.5,199.2 57.9,199.2 56.4,199.3 54.8,199.3 53.3,199.3 51.7,199.4 50.2,199.4 48.6,199.4 47.1,199.5 45.5,199.5 44,199.5 42.4,199.5 40.9,199.6 39.3,199.6 37.8,199.6 36.2,199.6 34.7,199.7 33.1,199.7 31.6,199.7 30,199.7 30,200"/>
+<polygon class="rej" points="446.9,200 446.9,192.9 448.5,193.2 450,193.5 451.6,193.9 453.1,194.2 454.7,194.5 456.2,194.7 457.8,195 459.3,195.2 460.9,195.5 462.4,195.7 464,195.9 465.5,196.1 467.1,196.3 468.6,196.5 470.2,196.7 471.7,196.9 473.3,197 474.8,197.2 476.4,197.3 477.9,197.5 479.5,197.6 481.1,197.7 482.6,197.8 484.2,197.9 485.7,198.1 487.3,198.2 488.8,198.2 490.4,198.3 491.9,198.4 493.5,198.5 495,198.6 496.6,198.7 498.1,198.7 499.7,198.8 501.2,198.9 502.8,198.9 504.3,199 505.9,199 507.4,199.1 509,199.1 510.5,199.2 512.1,199.2 513.6,199.3 515.2,199.3 516.7,199.3 518.3,199.4 519.8,199.4 521.4,199.4 522.9,199.5 524.5,199.5 526,199.5 527.6,199.5 529.1,199.6 530.7,199.6 532.2,199.6 533.8,199.6 535.3,199.7 536.9,199.7 538.4,199.7 540,199.7 540,200"/>
+<polyline class="fit" points="30,199.7 31.2,199.7 32.4,199.7 33.6,199.7 34.9,199.7 36.1,199.6 37.3,199.6 38.5,199.6 39.7,199.6 40.9,199.6 42.1,199.6 43.4,199.5 44.6,199.5 45.8,199.5 47,199.5 48.2,199.4 49.4,199.4 50.6,199.4 51.9,199.4 53.1,199.3 54.3,199.3 55.5,199.3 56.7,199.3 57.9,199.2 59.1,199.2 60.4,199.2 61.6,199.1 62.8,199.1 64,199 65.2,199 66.4,199 67.6,198.9 68.9,198.9 70.1,198.8 71.3,198.8 72.5,198.7 73.7,198.6 74.9,198.6 76.1,198.5 77.4,198.5 78.6,198.4 79.8,198.3 81,198.3 82.2,198.2 83.4,198.1 84.6,198 85.9,197.9 87.1,197.9 88.3,197.8 89.5,197.7 90.7,197.6 91.9,197.5 93.1,197.4 94.4,197.3 95.6,197.1 96.8,197 98,196.9 99.2,196.8 100.4,196.6 101.6,196.5 102.9,196.3 104.1,196.2 105.3,196 106.5,195.9 107.7,195.7 108.9,195.5 110.1,195.3 111.4,195.1 112.6,194.9 113.8,194.7 115,194.5 116.2,194.3 117.4,194.1 118.6,193.8 119.9,193.6 121.1,193.3 122.3,193 123.5,192.8 124.7,192.5 125.9,192.2 127.1,191.9 128.4,191.5 129.6,191.2 130.8,190.9 132,190.5 133.2,190.1 134.4,189.8 135.6,189.4 136.9,188.9 138.1,188.5 139.3,188.1 140.5,187.6 141.7,187.2 142.9,186.7 144.1,186.2 145.4,185.6 146.6,185.1 147.8,184.6 149,184 150.2,183.4 151.4,182.8 152.6,182.2 153.9,181.5 155.1,180.8 156.3,180.2 157.5,179.5 158.7,178.7 159.9,178 161.1,177.2 162.4,176.4 163.6,175.6 164.8,174.7 166,173.9 167.2,173 168.4,172.1 169.6,171.1 170.9,170.2 172.1,169.2 173.3,168.2 174.5,167.1 175.7,166.1 176.9,165 178.1,163.8 179.4,162.7 180.6,161.5 181.8,160.3 183,159.1 184.2,157.8 185.4,156.6 186.6,155.3 187.9,153.9 189.1,152.6 190.3,151.2 191.5,149.7 192.7,148.3 193.9,146.8 195.1,145.3 196.4,143.8 197.6,142.2 198.8,140.7 200,139.1 201.2,137.4 202.4,135.8 203.6,134.1 204.9,132.4 206.1,130.7 207.3,129 208.5,127.2 209.7,125.4 210.9,123.6 212.1,121.8 213.4,119.9 214.6,118.1 215.8,116.2 217,114.3 218.2,112.4 219.4,110.5 220.6,108.6 221.9,106.7 223.1,104.7 224.3,102.8 225.5,100.9 226.7,98.9 227.9,97 229.1,95 230.4,93.1 231.6,91.1 232.8,89.2 234,87.2 235.2,85.3 236.4,83.4 237.6,81.5 238.9,79.6 240.1,77.8 241.3,75.9 242.5,74.1 243.7,72.3 244.9,70.5 246.1,68.7 247.4,67 248.6,65.3 249.8,63.7 251,62 252.2,60.4 253.4,58.9 254.6,57.4 255.9,55.9 257.1,54.5 258.3,53.1 259.5,51.8 260.7,50.5 261.9,49.2 263.1,48.1 264.4,46.9 265.6,45.9 266.8,44.9 268,43.9 269.2,43 270.4,42.2 271.6,41.4 272.9,40.7 274.1,40.1 275.3,39.5 276.5,39 277.7,38.5 278.9,38.1 280.1,37.8 281.4,37.6 282.6,37.4 283.8,37.3 285,37.3 286.2,37.3 287.4,37.4 288.6,37.6 289.9,37.8 291.1,38.1 292.3,38.5 293.5,39 294.7,39.5 295.9,40.1 297.1,40.7 298.4,41.4 299.6,42.2 300.8,43 302,43.9 303.2,44.9 304.4,45.9 305.6,46.9 306.9,48.1 308.1,49.2 309.3,50.5 310.5,51.8 311.7,53.1 312.9,54.5 314.1,55.9 315.4,57.4 316.6,58.9 317.8,60.4 319,62 320.2,63.7 321.4,65.3 322.6,67 323.9,68.7 325.1,70.5 326.3,72.3 327.5,74.1 328.7,75.9 329.9,77.8 331.1,79.6 332.4,81.5 333.6,83.4 334.8,85.3 336,87.2 337.2,89.2 338.4,91.1 339.6,93.1 340.9,95 342.1,97 343.3,98.9 344.5,100.9 345.7,102.8 346.9,104.7 348.1,106.7 349.4,108.6 350.6,110.5 351.8,112.4 353,114.3 354.2,116.2 355.4,118.1 356.6,119.9 357.9,121.8 359.1,123.6 360.3,125.4 361.5,127.2 362.7,129 363.9,130.7 365.1,132.4 366.4,134.1 367.6,135.8 368.8,137.4 370,139.1 371.2,140.7 372.4,142.2 373.6,143.8 374.9,145.3 376.1,146.8 377.3,148.3 378.5,149.7 379.7,151.2 380.9,152.6 382.1,153.9 383.4,155.3 384.6,156.6 385.8,157.8 387,159.1 388.2,160.3 389.4,161.5 390.6,162.7 391.9,163.8 393.1,165 394.3,166.1 395.5,167.1 396.7,168.2 397.9,169.2 399.1,170.2 400.4,171.1 401.6,172.1 402.8,173 404,173.9 405.2,174.7 406.4,175.6 407.6,176.4 408.9,177.2 410.1,178 411.3,178.7 412.5,179.5 413.7,180.2 414.9,180.8 416.1,181.5 417.4,182.2 418.6,182.8 419.8,183.4 421,184 422.2,184.6 423.4,185.1 424.6,185.6 425.9,186.2 427.1,186.7 428.3,187.2 429.5,187.6 430.7,188.1 431.9,188.5 433.1,188.9 434.4,189.4 435.6,189.8 436.8,190.1 438,190.5 439.2,190.9 440.4,191.2 441.6,191.5 442.9,191.9 444.1,192.2 445.3,192.5 446.5,192.8 447.7,193 448.9,193.3 450.1,193.6 451.4,193.8 452.6,194.1 453.8,194.3 455,194.5 456.2,194.7 457.4,194.9 458.6,195.1 459.9,195.3 461.1,195.5 462.3,195.7 463.5,195.9 464.7,196 465.9,196.2 467.1,196.3 468.4,196.5 469.6,196.6 470.8,196.8 472,196.9 473.2,197 474.4,197.1 475.6,197.3 476.9,197.4 478.1,197.5 479.3,197.6 480.5,197.7 481.7,197.8 482.9,197.9 484.1,197.9 485.4,198 486.6,198.1 487.8,198.2 489,198.3 490.2,198.3 491.4,198.4 492.6,198.5 493.9,198.5 495.1,198.6 496.3,198.6 497.5,198.7 498.7,198.8 499.9,198.8 501.1,198.9 502.4,198.9 503.6,199 504.8,199 506,199 507.2,199.1 508.4,199.1 509.6,199.2 510.9,199.2 512.1,199.2 513.3,199.3 514.5,199.3 515.7,199.3 516.9,199.3 518.1,199.4 519.4,199.4 520.6,199.4 521.8,199.4 523,199.5 524.2,199.5 525.4,199.5 526.6,199.5 527.9,199.6 529.1,199.6 530.3,199.6 531.5,199.6 532.7,199.6 533.9,199.6 535.1,199.7 536.4,199.7 537.6,199.7 538.8,199.7 540,199.7"/>
+<line class="obs" x1="446.9" y1="117.1" x2="446.9" y2="200"/>
+<text class="an resc" x="446.9" y="109.1" text-anchor="middle">t = 2,67</text>
+<text class="an" x="169.6" y="75.7" text-anchor="middle">p-valor = soma das</text>
+<text class="an" x="169.6" y="92.7" text-anchor="middle">duas caudas vermelhas</text>
+<text class="lb" x="30" y="254">zoom da cauda direita (16 g.l.):</text>
+<line class="ax" x1="60" y1="280" x2="520" y2="280"/>
+<line class="ax" x1="115.2" y1="273" x2="115.2" y2="287"/>
+<text class="tk" x="115.2" y="302" text-anchor="middle">2,120</text>
+<text class="an" x="115.2" y="268" text-anchor="middle">2,5%</text>
+<line class="ax" x1="328.2" y1="273" x2="328.2" y2="287"/>
+<text class="tk" x="328.2" y="302" text-anchor="middle">2,583</text>
+<text class="an" x="328.2" y="268" text-anchor="middle">1%</text>
+<line class="ax" x1="483.7" y1="273" x2="483.7" y2="287"/>
+<text class="tk" x="483.7" y="302" text-anchor="middle">2,921</text>
+<text class="an" x="483.7" y="268" text-anchor="middle">0,5%</text>
+<circle class="shot" cx="366.8" cy="280" r="6"/>
+<text class="an resc" x="366.8" y="302" text-anchor="middle">2,67</text>
+<text class="tk" x="520" y="320" text-anchor="end">(% = área numa cauda além do valor)</text>
+</svg></div><figcaption>O p-valor bilateral é a área das duas caudas além de ±2,67. Como 2,67 fica entre 2,583 (1% numa cauda) e 2,921 (0,5% numa cauda), cada cauda tem entre 0,5% e 1%, e as duas juntas, entre 1% e 2%. O valor exato é cerca de 0,017 (conta nossa).</figcaption></figure>
+  <div class="tbl"><table>
+    <thead><tr><th>Valor crítico (16 g.l.)</th><th class="r">Área numa cauda</th><th class="r">Área nas duas caudas</th><th>Nosso t = 2,67 é…</th></tr></thead>
+    <tbody>
+      <tr><td>2,120</td><td class="r">0,025</td><td class="r">0,05</td><td>maior → p &lt; 0,05</td></tr>
+      <tr><td>2,583</td><td class="r">0,010</td><td class="r">0,02</td><td>maior → p &lt; 0,02</td></tr>
+      <tr><td>2,921</td><td class="r">0,005</td><td class="r">0,01</td><td>menor → p &gt; 0,01</td></tr>
+    </tbody>
+  </table></div>
+  <div class="box ok"><span class="lbl">Resposta-modelo</span>
+    <p>\(t=(1{,}80-1)/0{,}30=0{,}80/0{,}30\approx2{,}67\), com 18 − 2 = 16 g.l. No teste bilateral a 5%, rejeita-se se \(|t|&gt;2{,}120\); como 2,67 &gt; 2,120, rejeitamos \(H_0:\beta_1=1\). Como \(2{,}583\lt2{,}67\lt2{,}921\), numa cauda a probabilidade está entre 0,5% e 1%; no bilateral, \(0{,}01\lt p\lt0{,}02\), abaixo de 0,05. Os dados indicam que a associação populacional entre treinamento e produtividade difere de 1; como a estimativa é 1,80, a evidência aponta para uma associação maior que 1, sem que isso, sozinho, estabeleça causalidade.</p>
+  </div>
+  <div class="box trap"><span class="lbl">Erros que custam ponto</span>
+    <ul>
+      <li>Calcular \(1{,}80/0{,}30=6\), esquecendo que \(H_0\) é \(\beta_1=1\) e não 0.</li>
+      <li>Usar n = 18 graus de liberdade (são n − 2 = 16).</li>
+      <li>Esquecer de dobrar: responder “0,005 &lt; p &lt; 0,01” (isso é uma cauda só).</li>
+      <li>Concluir “\(\beta_1\) é 1,80” ou “treinamento <em>causa</em> produtividade”.</li>
+    </ul>
   </div>
 
-  <div class="exq"><div class="h"><b>Questão 2: testes e intervalos</b></div>
-    <p>I. p-valor de 0,03 = probabilidade de \(H_0\) ser verdadeira é 3%. II. Não rejeitar \(H_0\) = os dados não trouxeram evidência suficiente contra ela. III. O IC de 95% contém exatamente os valores não rejeitados por testes bilaterais a 5%, com o mesmo erro-padrão e a mesma distribuição.</p>
-    <details class="sol"><summary>Ver resposta</summary><div class="in">
-      <p><strong>Alternativa (d): apenas II e III.</strong> I é falsa: supondo \(H_0\) verdadeira, 3% é a probabilidade de uma estatística tão ou mais extrema. Em símbolos, P(dados extremos | H₀), e não P(H₀ | dados). II: não rejeitar não prova nem permite “aceitar” \(H_0\). III é a dualidade IC ↔ teste.</p>
-    </div></details>
+  <!-- ================= Q6 ================= -->
+  <div class="exq" id="l3q6">
+    <div class="h"><b>Questão 6: teste unilateral e teste bilateral</b><span class="tag hot">★★</span></div>
+    <p>Antes de observar os dados, um pesquisador estabelece que a tecnologia só seria economicamente interessante se sua associação com a produção fosse <strong>positiva</strong>. Ele obtém:</p>
+    <div class="given"><span>\(\hat\beta_1=0{,}37\)</span><span>\(ep(\hat\beta_1)=0{,}20\)</span><span>n = 30</span></div>
+    <p>Unilateral: \(H_0:\beta_1\le0\) × \(H_A:\beta_1&gt;0\), com \(t_{0,05;28}=1{,}701\). Bilateral: \(H_0:\beta_1=0\) × \(H_A:\beta_1\neq0\), com \(t_{0,025;28}=2{,}048\). Calcule t, decida nos dois testes, explique pelas regiões de rejeição por que as conclusões diferem e por que a alternativa unilateral deve ser definida antes dos resultados.</p>
+  </div>
+  <ol class="steps">
+    <li><div><strong>A estatística é a mesma nos dois testes</strong> (n − 2 = 28 g.l.):
+      <div class="mathblock">\[t=\frac{0{,}37-0}{0{,}20}=\mathbf{1{,}85}\]</div></div></li>
+    <li><div><strong>Unilateral.</strong> Toda a significância de 5% fica na cauda direita: rejeita se \(t&gt;1{,}701\). Como \(1{,}85&gt;1{,}701\), <strong>rejeitamos \(H_0:\beta_1\le0\)</strong>: há evidência de associação populacional positiva.</div></li>
+    <li><div><strong>Bilateral.</strong> Os 5% se dividem em 2,5% em cada cauda: rejeita se \(|t|&gt;2{,}048\). Como \(1{,}85\lt2{,}048\), <strong>não rejeitamos \(H_0:\beta_1=0\)</strong>.</div></li>
+  </ol>
+  <figure><div class="scroll"><svg class="fig" viewBox="0 0 580 212" role="img" aria-label="Comparação entre regiões de rejeição unilateral e bilateral" xmlns="http://www.w3.org/2000/svg">
+<line class="ax" x1="14" y1="190" x2="266" y2="190"/>
+<polygon class="rej" points="193.6,190 193.6,154.7 195,157.2 196.5,159.6 197.9,161.9 199.4,164 200.8,166 202.3,167.9 203.7,169.7 205.2,171.3 206.6,172.9 208.1,174.3 209.5,175.6 211,176.9 212.4,178 213.9,179.1 215.3,180.1 216.8,181 218.2,181.8 219.7,182.6 221.1,183.3 222.5,183.9 224,184.5 225.4,185 226.9,185.5 228.3,185.9 229.8,186.3 231.2,186.7 232.7,187 234.1,187.3 235.6,187.6 237,187.9 238.5,188.1 239.9,188.3 241.4,188.5 242.8,188.6 244.3,188.8 245.7,188.9 247.2,189 248.6,189.1 250.1,189.2 251.5,189.3 253,189.4 254.4,189.5 255.9,189.5 257.3,189.6 258.8,189.6 260.2,189.7 261.7,189.7 263.1,189.7 264.6,189.8 266,189.8 266,190"/>
+<text class="tk" x="193.6" y="205" text-anchor="middle">1,701</text>
+<polyline class="fit" points="14,189.8 14.8,189.8 15.6,189.8 16.4,189.7 17.2,189.7 17.9,189.7 18.7,189.7 19.5,189.7 20.3,189.6 21.1,189.6 21.9,189.6 22.7,189.6 23.4,189.5 24.2,189.5 25,189.5 25.8,189.4 26.6,189.4 27.4,189.4 28.2,189.3 29,189.3 29.8,189.2 30.5,189.2 31.3,189.1 32.1,189.1 32.9,189 33.7,189 34.5,188.9 35.3,188.8 36.1,188.7 36.8,188.7 37.6,188.6 38.4,188.5 39.2,188.4 40,188.3 40.8,188.2 41.6,188.1 42.3,188 43.1,187.8 43.9,187.7 44.7,187.6 45.5,187.4 46.3,187.3 47.1,187.1 47.9,186.9 48.7,186.7 49.4,186.5 50.2,186.3 51,186.1 51.8,185.9 52.6,185.7 53.4,185.4 54.2,185.2 54.9,184.9 55.7,184.6 56.5,184.3 57.3,184 58.1,183.6 58.9,183.3 59.7,182.9 60.5,182.5 61.2,182.1 62,181.7 62.8,181.2 63.6,180.7 64.4,180.3 65.2,179.7 66,179.2 66.8,178.6 67.6,178.1 68.3,177.4 69.1,176.8 69.9,176.1 70.7,175.5 71.5,174.7 72.3,174 73.1,173.2 73.8,172.4 74.6,171.5 75.4,170.7 76.2,169.8 77,168.8 77.8,167.8 78.6,166.8 79.4,165.8 80.2,164.7 80.9,163.6 81.7,162.4 82.5,161.2 83.3,160 84.1,158.7 84.9,157.4 85.7,156 86.4,154.7 87.2,153.2 88,151.8 88.8,150.2 89.6,148.7 90.4,147.1 91.2,145.5 92,143.8 92.8,142.1 93.5,140.4 94.3,138.6 95.1,136.8 95.9,134.9 96.7,133.1 97.5,131.1 98.3,129.2 99.1,127.2 99.8,125.2 100.6,123.2 101.4,121.1 102.2,119 103,116.9 103.8,114.8 104.6,112.6 105.3,110.5 106.1,108.3 106.9,106.1 107.7,103.9 108.5,101.7 109.3,99.5 110.1,97.3 110.9,95.1 111.7,92.9 112.4,90.7 113.2,88.5 114,86.3 114.8,84.2 115.6,82 116.4,79.9 117.2,77.9 117.9,75.8 118.7,73.8 119.5,71.8 120.3,69.9 121.1,68 121.9,66.1 122.7,64.3 123.5,62.6 124.2,60.9 125,59.3 125.8,57.7 126.6,56.2 127.4,54.8 128.2,53.4 129,52.1 129.8,50.9 130.6,49.8 131.3,48.8 132.1,47.8 132.9,46.9 133.7,46.1 134.5,45.4 135.3,44.8 136.1,44.3 136.8,43.9 137.6,43.6 138.4,43.3 139.2,43.2 140,43.1 140.8,43.2 141.6,43.3 142.4,43.6 143.1,43.9 143.9,44.3 144.7,44.8 145.5,45.4 146.3,46.1 147.1,46.9 147.9,47.8 148.7,48.8 149.4,49.8 150.2,50.9 151,52.1 151.8,53.4 152.6,54.8 153.4,56.2 154.2,57.7 155,59.3 155.8,60.9 156.5,62.6 157.3,64.3 158.1,66.1 158.9,68 159.7,69.9 160.5,71.8 161.3,73.8 162.1,75.8 162.8,77.9 163.6,79.9 164.4,82 165.2,84.2 166,86.3 166.8,88.5 167.6,90.7 168.4,92.9 169.1,95.1 169.9,97.3 170.7,99.5 171.5,101.7 172.3,103.9 173.1,106.1 173.9,108.3 174.6,110.5 175.4,112.6 176.2,114.8 177,116.9 177.8,119 178.6,121.1 179.4,123.2 180.2,125.2 180.9,127.2 181.7,129.2 182.5,131.1 183.3,133.1 184.1,134.9 184.9,136.8 185.7,138.6 186.5,140.4 187.2,142.1 188,143.8 188.8,145.5 189.6,147.1 190.4,148.7 191.2,150.2 192,151.8 192.8,153.2 193.6,154.7 194.3,156 195.1,157.4 195.9,158.7 196.7,160 197.5,161.2 198.3,162.4 199.1,163.6 199.9,164.7 200.6,165.8 201.4,166.8 202.2,167.8 203,168.8 203.8,169.8 204.6,170.7 205.4,171.5 206.1,172.4 206.9,173.2 207.7,174 208.5,174.7 209.3,175.5 210.1,176.1 210.9,176.8 211.7,177.4 212.4,178.1 213.2,178.6 214,179.2 214.8,179.7 215.6,180.3 216.4,180.7 217.2,181.2 218,181.7 218.8,182.1 219.5,182.5 220.3,182.9 221.1,183.3 221.9,183.6 222.7,184 223.5,184.3 224.3,184.6 225.1,184.9 225.8,185.2 226.6,185.4 227.4,185.7 228.2,185.9 229,186.1 229.8,186.3 230.6,186.5 231.4,186.7 232.1,186.9 232.9,187.1 233.7,187.3 234.5,187.4 235.3,187.6 236.1,187.7 236.9,187.8 237.6,188 238.4,188.1 239.2,188.2 240,188.3 240.8,188.4 241.6,188.5 242.4,188.6 243.2,188.7 243.9,188.7 244.7,188.8 245.5,188.9 246.3,189 247.1,189 247.9,189.1 248.7,189.1 249.5,189.2 250.2,189.2 251,189.3 251.8,189.3 252.6,189.4 253.4,189.4 254.2,189.4 255,189.5 255.8,189.5 256.6,189.5 257.3,189.6 258.1,189.6 258.9,189.6 259.7,189.6 260.5,189.7 261.3,189.7 262.1,189.7 262.9,189.7 263.6,189.7 264.4,189.8 265.2,189.8 266,189.8"/>
+<line class="obs" x1="198.3" y1="78.6" x2="198.3" y2="190"/>
+<text class="an resc" x="198.3" y="72.6" text-anchor="middle">t = 1,85</text>
+<text class="an" x="140" y="20" text-anchor="middle">Unilateral: 5% na cauda direita → rejeita</text>
+<text class="tk" x="140" y="205" text-anchor="middle">0</text><line class="ax" x1="314" y1="190" x2="566" y2="190"/>
+<polygon class="rej" points="375.5,190 375.5,170.6 374.3,172 373,173.2 371.8,174.4 370.6,175.6 369.3,176.6 368.1,177.6 366.9,178.6 365.6,179.4 364.4,180.2 363.2,181 362,181.7 360.7,182.4 359.5,183 358.3,183.5 357,184.1 355.8,184.6 354.6,185 353.4,185.4 352.1,185.8 350.9,186.2 349.7,186.5 348.4,186.8 347.2,187.1 346,187.3 344.7,187.6 343.5,187.8 342.3,188 341.1,188.2 339.8,188.3 338.6,188.5 337.4,188.6 336.1,188.7 334.9,188.9 333.7,189 332.4,189.1 331.2,189.1 330,189.2 328.8,189.3 327.5,189.4 326.3,189.4 325.1,189.5 323.8,189.5 322.6,189.6 321.4,189.6 320.1,189.7 318.9,189.7 317.7,189.7 316.5,189.7 315.2,189.8 314,189.8 314,190"/>
+<text class="tk" x="375.5" y="205" text-anchor="middle">-2,048</text>
+<polygon class="rej" points="504.5,190 504.5,170.6 505.7,172 507,173.2 508.2,174.4 509.4,175.6 510.7,176.6 511.9,177.6 513.1,178.6 514.4,179.4 515.6,180.2 516.8,181 518,181.7 519.3,182.4 520.5,183 521.7,183.5 523,184.1 524.2,184.6 525.4,185 526.6,185.4 527.9,185.8 529.1,186.2 530.3,186.5 531.6,186.8 532.8,187.1 534,187.3 535.3,187.6 536.5,187.8 537.7,188 538.9,188.2 540.2,188.3 541.4,188.5 542.6,188.6 543.9,188.7 545.1,188.9 546.3,189 547.6,189.1 548.8,189.1 550,189.2 551.2,189.3 552.5,189.4 553.7,189.4 554.9,189.5 556.2,189.5 557.4,189.6 558.6,189.6 559.9,189.7 561.1,189.7 562.3,189.7 563.5,189.7 564.8,189.8 566,189.8 566,190"/>
+<text class="tk" x="504.5" y="205" text-anchor="middle">2,048</text>
+<polyline class="fit" points="314,189.8 314.8,189.8 315.6,189.8 316.4,189.7 317.1,189.7 317.9,189.7 318.7,189.7 319.5,189.7 320.3,189.6 321.1,189.6 321.9,189.6 322.7,189.6 323.4,189.5 324.2,189.5 325,189.5 325.8,189.4 326.6,189.4 327.4,189.4 328.2,189.3 329,189.3 329.8,189.2 330.5,189.2 331.3,189.1 332.1,189.1 332.9,189 333.7,189 334.5,188.9 335.3,188.8 336.1,188.7 336.8,188.7 337.6,188.6 338.4,188.5 339.2,188.4 340,188.3 340.8,188.2 341.6,188.1 342.4,188 343.1,187.8 343.9,187.7 344.7,187.6 345.5,187.4 346.3,187.3 347.1,187.1 347.9,186.9 348.6,186.7 349.4,186.5 350.2,186.3 351,186.1 351.8,185.9 352.6,185.7 353.4,185.4 354.2,185.2 354.9,184.9 355.7,184.6 356.5,184.3 357.3,184 358.1,183.6 358.9,183.3 359.7,182.9 360.5,182.5 361.2,182.1 362,181.7 362.8,181.2 363.6,180.7 364.4,180.3 365.2,179.7 366,179.2 366.8,178.6 367.6,178.1 368.3,177.4 369.1,176.8 369.9,176.1 370.7,175.5 371.5,174.7 372.3,174 373.1,173.2 373.9,172.4 374.6,171.5 375.4,170.7 376.2,169.8 377,168.8 377.8,167.8 378.6,166.8 379.4,165.8 380.1,164.7 380.9,163.6 381.7,162.4 382.5,161.2 383.3,160 384.1,158.7 384.9,157.4 385.7,156 386.4,154.7 387.2,153.2 388,151.8 388.8,150.2 389.6,148.7 390.4,147.1 391.2,145.5 392,143.8 392.8,142.1 393.5,140.4 394.3,138.6 395.1,136.8 395.9,134.9 396.7,133.1 397.5,131.1 398.3,129.2 399.1,127.2 399.8,125.2 400.6,123.2 401.4,121.1 402.2,119 403,116.9 403.8,114.8 404.6,112.6 405.4,110.5 406.1,108.3 406.9,106.1 407.7,103.9 408.5,101.7 409.3,99.5 410.1,97.3 410.9,95.1 411.6,92.9 412.4,90.7 413.2,88.5 414,86.3 414.8,84.2 415.6,82 416.4,79.9 417.2,77.9 417.9,75.8 418.7,73.8 419.5,71.8 420.3,69.9 421.1,68 421.9,66.1 422.7,64.3 423.5,62.6 424.2,60.9 425,59.3 425.8,57.7 426.6,56.2 427.4,54.8 428.2,53.4 429,52.1 429.8,50.9 430.6,49.8 431.3,48.8 432.1,47.8 432.9,46.9 433.7,46.1 434.5,45.4 435.3,44.8 436.1,44.3 436.9,43.9 437.6,43.6 438.4,43.3 439.2,43.2 440,43.1 440.8,43.2 441.6,43.3 442.4,43.6 443.1,43.9 443.9,44.3 444.7,44.8 445.5,45.4 446.3,46.1 447.1,46.9 447.9,47.8 448.7,48.8 449.4,49.8 450.2,50.9 451,52.1 451.8,53.4 452.6,54.8 453.4,56.2 454.2,57.7 455,59.3 455.8,60.9 456.5,62.6 457.3,64.3 458.1,66.1 458.9,68 459.7,69.9 460.5,71.8 461.3,73.8 462.1,75.8 462.8,77.9 463.6,79.9 464.4,82 465.2,84.2 466,86.3 466.8,88.5 467.6,90.7 468.4,92.9 469.1,95.1 469.9,97.3 470.7,99.5 471.5,101.7 472.3,103.9 473.1,106.1 473.9,108.3 474.6,110.5 475.4,112.6 476.2,114.8 477,116.9 477.8,119 478.6,121.1 479.4,123.2 480.2,125.2 480.9,127.2 481.7,129.2 482.5,131.1 483.3,133.1 484.1,134.9 484.9,136.8 485.7,138.6 486.5,140.4 487.2,142.1 488,143.8 488.8,145.5 489.6,147.1 490.4,148.7 491.2,150.2 492,151.8 492.8,153.2 493.6,154.7 494.3,156 495.1,157.4 495.9,158.7 496.7,160 497.5,161.2 498.3,162.4 499.1,163.6 499.9,164.7 500.6,165.8 501.4,166.8 502.2,167.8 503,168.8 503.8,169.8 504.6,170.7 505.4,171.5 506.1,172.4 506.9,173.2 507.7,174 508.5,174.7 509.3,175.5 510.1,176.1 510.9,176.8 511.7,177.4 512.5,178.1 513.2,178.6 514,179.2 514.8,179.7 515.6,180.3 516.4,180.7 517.2,181.2 518,181.7 518.8,182.1 519.5,182.5 520.3,182.9 521.1,183.3 521.9,183.6 522.7,184 523.5,184.3 524.3,184.6 525,184.9 525.8,185.2 526.6,185.4 527.4,185.7 528.2,185.9 529,186.1 529.8,186.3 530.6,186.5 531.4,186.7 532.1,186.9 532.9,187.1 533.7,187.3 534.5,187.4 535.3,187.6 536.1,187.7 536.9,187.8 537.6,188 538.4,188.1 539.2,188.2 540,188.3 540.8,188.4 541.6,188.5 542.4,188.6 543.2,188.7 544,188.7 544.7,188.8 545.5,188.9 546.3,189 547.1,189 547.9,189.1 548.7,189.1 549.5,189.2 550.2,189.2 551,189.3 551.8,189.3 552.6,189.4 553.4,189.4 554.2,189.4 555,189.5 555.8,189.5 556.5,189.5 557.3,189.6 558.1,189.6 558.9,189.6 559.7,189.6 560.5,189.7 561.3,189.7 562.1,189.7 562.9,189.7 563.6,189.7 564.4,189.8 565.2,189.8 566,189.8"/>
+<line class="obs" x1="498.3" y1="78.6" x2="498.3" y2="190"/>
+<text class="an resc" x="498.3" y="72.6" text-anchor="middle">t = 1,85</text>
+<text class="an" x="440" y="20" text-anchor="middle">Bilateral: 2,5% em cada cauda → não rejeita</text>
+<text class="tk" x="440" y="205" text-anchor="middle">0</text>
+</svg></div><figcaption>Mesma curva t (28 g.l.) e mesmo t = 1,85. À esquerda, a região de rejeição (vermelho) começa em 1,701 e o t cai dentro dela. À direita, cada cauda tem só 2,5%, a fronteira sobe para 2,048 e o t fica fora.</figcaption></figure>
+  <div class="box def"><span class="lbl">Por que a direção tem que ser escolhida antes</span>
+    <p>Se o pesquisador olhasse o sinal da estimativa e só então escolhesse a cauda, ele estaria, na prática, rejeitando sempre que \(|t|&gt;1{,}701\): 5% de chance numa cauda mais 5% na outra, ou seja, um erro tipo I de cerca de <strong>10%</strong>, e não os 5% anunciados. Por isso o gabarito diz que escolher depois “aumentaria indevidamente a probabilidade de rejeição”.</p>
+    <p class="small">p-valores exatos (conta nossa): unilateral ≈ 0,037 (&lt; 0,05); bilateral ≈ 0,075 (&gt; 0,05). O bilateral é o dobro do unilateral.</p>
+  </div>
+  <div class="box ok"><span class="lbl">Resposta-modelo</span>
+    <p>\(t=0{,}37/0{,}20=1{,}85\) nos dois testes. Unilateral: rejeita-se se \(t&gt;1{,}701\); como 1,85 &gt; 1,701, rejeitamos \(H_0:\beta_1\le0\) e há evidência de associação positiva. Bilateral: rejeita-se se \(|t|&gt;2{,}048\); como 1,85 &lt; 2,048, não rejeitamos \(H_0:\beta_1=0\). As conclusões diferem porque o unilateral concentra os 5% numa só cauda, enquanto o bilateral os divide entre as duas. A direção deve ser fixada antes dos dados: escolhê-la depois de ver o sinal aumentaria indevidamente a probabilidade de rejeição.</p>
   </div>
 
-  <div class="exq"><div class="h"><b>Questão 3: normalidade, heterocedasticidade e inferência robusta</b></div>
-    <p>I. Sob RLS.6, a normalidade implica média condicional zero e homocedasticidade, mas não substitui linearidade, amostragem aleatória e variação em X. II. Se \(E(u\mid X)=0\), heterocedasticidade torna o MQO necessariamente viesado. III. Erros robustos corrigem a incerteza sob heterocedasticidade, mas não corrigem variável omitida, simultaneidade ou erro de medida.</p>
-    <details class="sol"><summary>Ver resposta</summary><div class="in">
-      <p><strong>Alternativa (d): apenas I e III.</strong> II é falsa: com \(E(u\mid X)=0\), heterocedasticidade não causa viés nem inconsistência; ela invalida a fórmula homocedástica da variância e tira a garantia de eficiência de Gauss–Markov.</p>
-    </div></details>
+  <!-- ================= Q7 ================= -->
+  <div class="exq" id="l3q7">
+    <div class="h"><b>Questão 7: intervalo de confiança e teste de hipótese</b></div>
+    <div class="given"><span>n = 25</span><span>\(\hat\beta_1=0{,}72\)</span><span>\(ep(\hat\beta_1)=0{,}25\)</span><span>\(t_{0,025;23}=2{,}069\)</span></div>
+    <p>Construa o IC de 95% para \(\beta_1\). Usando <strong>apenas o intervalo</strong>, decida sobre \(H_0:\beta_1=0\) e \(H_0:\beta_1=1\) (bilaterais, 5%). Mostre como as decisões ilustram a dualidade entre IC e teste bilateral.</p>
+  </div>
+  <ol class="steps">
+    <li><div><strong>Margem de erro:</strong> \(t_{0,025;23}\times ep=2{,}069\times0{,}25=0{,}51725\).</div></li>
+    <li><div><strong>Intervalo:</strong>
+      <div class="mathblock">\[IC_{95\%}=0{,}72\pm0{,}51725=[0{,}20275;\ 1{,}23725]\approx[\mathbf{0{,}203};\ \mathbf{1{,}237}]\]</div></div></li>
+    <li><div><strong>\(H_0:\beta_1=0\):</strong> 0 <strong>não</strong> pertence ao intervalo, então rejeitamos. <strong>\(H_0:\beta_1=1\):</strong> 1 pertence ao intervalo, então não rejeitamos.</div></li>
+    <li><div><strong>Conferência pelo t (dualidade):</strong> para 0, \(t=0{,}72/0{,}25=2{,}88&gt;2{,}069\), rejeita. Para 1, \(t=(0{,}72-1)/0{,}25=-1{,}12\) e \(|{-1{,}12}|\lt2{,}069\), não rejeita. Os dois caminhos dão a mesma resposta porque são a mesma desigualdade escrita de dois jeitos.</div></li>
+  </ol>
+  <figure><div class="scroll"><svg class="fig" viewBox="0 0 560 170" role="img" aria-label="Intervalo de confiança da Questão 7 com os valores 0 e 1" xmlns="http://www.w3.org/2000/svg">
+<line class="ax" x1="30" y1="130" x2="540" y2="130"/>
+<line class="ax" x1="30" y1="20" x2="30" y2="130"/>
+<text class="tk" x="115" y="146" text-anchor="middle">0</text>
+<text class="tk" x="172.5" y="146" text-anchor="middle">0,203</text>
+<text class="tk" x="319" y="146" text-anchor="middle">0,72</text>
+<text class="tk" x="398.3" y="146" text-anchor="middle">1</text>
+<text class="tk" x="465.5" y="146" text-anchor="middle">1,237</text>
+<text class="lb" x="285" y="164" text-anchor="middle">valores de β₁</text>
+<text class="lb" x="12" y="75" text-anchor="middle" transform="rotate(-90 12 75)"></text>
+<line class="fit" x1="172.5" y1="78" x2="465.5" y2="78"/>
+<line class="fit" x1="172.5" y1="71" x2="172.5" y2="85"/>
+<line class="fit" x1="465.5" y1="71" x2="465.5" y2="85"/>
+<circle class="pt" cx="319" cy="78" r="5"/>
+<text class="an" x="172.5" y="66">IC 95% = [0,203; 1,237], centro β̂₁ = 0,72</text>
+<line class="true" x1="115" y1="74" x2="115" y2="130"/>
+<line class="true" x1="398.3" y1="74" x2="398.3" y2="130"/>
+<text class="an resc" x="111" y="112" text-anchor="end">rejeita β₁ = 0</text>
+<text class="an fitc" x="404.3" y="112">não rejeita β₁ = 1</text>
+</svg></div><figcaption>O IC de 95% reúne os valores de \(\beta_1\) que o teste bilateral a 5% não rejeitaria: 0 fica de fora e 1 fica dentro.</figcaption></figure>
+  <div class="box ok"><span class="lbl">Resposta-modelo</span>
+    <p>Margem \(2{,}069(0{,}25)=0{,}51725\); \(IC_{95\%}=0{,}72\pm0{,}51725=[0{,}203;\ 1{,}237]\). Como 0 não pertence ao intervalo, rejeitamos \(H_0:\beta_1=0\) a 5%; como 1 pertence, não rejeitamos \(H_0:\beta_1=1\). O intervalo reúne exatamente os valores hipotéticos que o teste bilateral correspondente não rejeitaria. Os 95% referem-se à proporção de intervalos que conteriam o parâmetro em amostras repetidas, não à probabilidade de o parâmetro fixo estar neste intervalo.</p>
   </div>
 
-  <div class="exq"><div class="h"><b>Questão 4: ruído, informação e precisão</b><span class="tag hot">★ variância do estimador</span></div>
-    <p>Regressão com intercepto, n = 10, SQR = 40, \(SQT_x=20\). Calcule \(\hat\sigma^2\), \(\hat\sigma\), \(\widehat{Var}(\hat\beta_1)\) e \(ep(\hat\beta_1)\). Depois compare a precisão quando (i) \(SQT_x\) vai de 20 para 80, com n e SQR fixos; e (ii) SQR vai de 40 para 80, com n e \(SQT_x\) fixos. Explique separadamente os efeitos da dispersão de X e do ruído.</p>
-    <details class="sol"><summary>Ver resolução</summary><div class="in">
-      <ol class="steps">
-        <li><div><strong>Graus de liberdade:</strong> a regressão simples estima dois parâmetros, então n − 2 = 8.</div></li>
-        <li><div><strong>Caso base:</strong> \(\hat\sigma^2=40/8=5\), \(\hat\sigma=\sqrt5\approx2{,}236\), \(\widehat{Var}(\hat\beta_1)=5/20=0{,}25\), \(ep(\hat\beta_1)=\sqrt{0{,}25}=0{,}50\).</div></li>
-        <li><div><strong>(i) \(SQT_x=80\):</strong> \(\hat\sigma^2\) continua 5. \(\widehat{Var}=5/80=0{,}0625\) e \(ep=0{,}25\). Quadruplicar \(SQT_x\) corta o erro-padrão pela metade: valores de X mais dispersos permitem distinguir melhor inclinações diferentes.</div></li>
-        <li><div><strong>(ii) SQR = 80:</strong> \(\hat\sigma^2=80/8=10\), \(\widehat{Var}=10/20=0{,}50\), \(ep=\sqrt{0{,}5}\approx0{,}707\). Dobrar o ruído dobra a variância e multiplica o ep por \(\sqrt2\).</div></li>
-      </ol>
-      <p><strong>Conclusão:</strong> maior \(SQT_x\) aumenta a precisão; maior \(\hat\sigma^2\) a reduz.</p>
-    </div></details>
+  <!-- ================= Q8 ================= -->
+  <div class="exq" id="l3q8">
+    <div class="h"><b>Questão 8: erro tipo II e poder do teste</b><span class="tag hot">★★</span></div>
+    <p>Considere \(\hat\beta_1\sim N(\beta_1,\,0{,}20^2)\). Teste \(H_0:\beta_1=0\) × \(H_A:\beta_1\neq0\) a 5%, com crítico normal 1,96. Calcule a região de não rejeição em valores de \(\hat\beta_1\). Supondo \(\beta_1=0{,}60\), calcule o erro tipo II e o poder. Depois, refaça supondo que uma amostra maior reduza o erro-padrão para 0,10. Use \(\Phi(-1{,}04)=0{,}1492\), \(\Phi(-4{,}04)\approx0{,}00003\), \(\Phi(-4{,}96)\approx0\).</p>
   </div>
-
-  <div class="exq"><div class="h"><b>Questão 5: teste bilateral de uma hipótese não nula</b></div>
-    <p>\(\hat\beta_1=1{,}80\), \(ep=0{,}30\), n = 18. Teste \(H_0:\beta_1=1\) contra \(H_A:\beta_1\neq1\) a 5%. Use \(t_{0,025;16}=2{,}120\), \(t_{0,010;16}=2{,}583\), \(t_{0,005;16}=2{,}921\). Dê um intervalo para o p-valor bilateral e conclua.</p>
-    <details class="sol"><summary>Ver resolução</summary><div class="in">
-      <p>\(t=\dfrac{1{,}80-1}{0{,}30}=\dfrac{0{,}80}{0{,}30}\approx2{,}67\), com 18 − 2 = 16 g.l. Como \(2{,}67&gt;2{,}120\), <strong>rejeitamos \(H_0:\beta_1=1\)</strong>.</p>
-      <p>p-valor: \(2{,}583\lt2{,}67\lt2{,}921\). Numa cauda, a probabilidade está entre 0,5% e 1%; no teste bilateral, dobramos: <strong>0,01 &lt; p-valor &lt; 0,02</strong>, todo abaixo de 0,05.</p>
-      <p>Os dados indicam que a associação populacional entre treinamento e produtividade difere de 1; como a estimativa é 1,80, a evidência aponta para uma associação maior que 1, sem que isso, sozinho, estabeleça causalidade.</p>
-    </div></details>
-  </div>
-
-  <div class="exq"><div class="h"><b>Questão 6: unilateral × bilateral</b></div>
-    <p>Antes de ver os dados, o pesquisador decide que a tecnologia só interessa se a associação com a produção for positiva. \(\hat\beta_1=0{,}37\), \(ep=0{,}20\), n = 30. Unilateral \(H_0:\beta_1\le0\) × \(H_A:\beta_1&gt;0\) com \(t_{0,05;28}=1{,}701\); bilateral com \(t_{0,025;28}=2{,}048\).</p>
-    <details class="sol"><summary>Ver resolução</summary><div class="in">
-      <p>\(t=0{,}37/0{,}20=1{,}85\) nos dois testes.</p>
-      <ul>
-        <li><strong>Unilateral:</strong> rejeita se t &gt; 1,701. Como 1,85 &gt; 1,701, <strong>rejeitamos</strong> \(H_0:\beta_1\le0\): há evidência de associação positiva.</li>
-        <li><strong>Bilateral:</strong> rejeita se |t| &gt; 2,048. Como 1,85 &lt; 2,048, <strong>não rejeitamos</strong> \(H_0:\beta_1=0\).</li>
-      </ul>
-      <p>As conclusões diferem porque o unilateral concentra os 5% numa só cauda, enquanto o bilateral divide entre as duas. A direção tem que ser definida <strong>antes</strong> dos dados: escolhê-la depois de ver o sinal aumentaria indevidamente a chance de rejeitar.</p>
-    </div></details>
-  </div>
-
-  <div class="exq"><div class="h"><b>Questão 7: intervalo de confiança e teste</b></div>
-    <p>n = 25, \(\hat\beta_1=0{,}72\), \(ep=0{,}25\), \(t_{0,025;23}=2{,}069\). Construa o IC de 95% e, usando só o intervalo, decida sobre \(H_0:\beta_1=0\) e \(H_0:\beta_1=1\) (bilaterais, 5%).</p>
-    <details class="sol"><summary>Ver resolução</summary><div class="in">
-      <p>Margem: \(2{,}069\times0{,}25=0{,}51725\). \(IC_{95\%}=0{,}72\pm0{,}51725=[0{,}20275;\ 1{,}23725]\approx[0{,}203;\ 1{,}237]\).</p>
-      <p>0 <strong>não</strong> pertence ao intervalo: rejeitamos \(H_0:\beta_1=0\). 1 pertence: não rejeitamos \(H_0:\beta_1=1\). O intervalo reúne exatamente os valores que o teste bilateral não rejeitaria. Os 95% referem-se à proporção de intervalos que conteriam o parâmetro em amostras repetidas, não à probabilidade de o parâmetro fixo estar neste intervalo.</p>
-    </div></details>
-  </div>
-
-  <div class="exq"><div class="h"><b>Questão 8: erro tipo II e poder</b></div>
-    <p>\(\hat\beta_1\sim N(\beta_1,\,0{,}20^2)\). Teste \(H_0:\beta_1=0\) × \(H_A:\beta_1\neq0\) a 5% (crítico 1,96). Ache a região de não rejeição em valores de \(\hat\beta_1\). Se \(\beta_1=0{,}60\), calcule o erro tipo II e o poder. Refaça com ep = 0,10. Use \(\Phi(-1{,}04)=0{,}1492\), \(\Phi(-4{,}04)\approx0{,}00003\), \(\Phi(-4{,}96)\approx0\).</p>
-    <details class="sol"><summary>Ver resolução</summary><div class="in">
-      <p><strong>Região de não rejeição:</strong> \(-1{,}96(0{,}20)\le\hat\beta_1\le1{,}96(0{,}20)\), isto é, \([-0{,}392;\ 0{,}392]\).</p>
-      <p><strong>Erro tipo II</strong> = probabilidade de a estimativa cair aí quando \(\beta_1=0{,}60\). Padronizando: \(z_{inf}=\frac{-0{,}392-0{,}60}{0{,}20}=-4{,}96\) e \(z_{sup}=\frac{0{,}392-0{,}60}{0{,}20}=-1{,}04\).</p>
-      <div class="mathblock">\[\beta=\Phi(-1{,}04)-\Phi(-4{,}96)\approx0{,}1492-0=0{,}1492,\qquad \text{poder}=1-0{,}1492=0{,}8508\]</div>
-      <figure><div class="scroll"><svg class="fig" viewBox="0 0 560 280" role="img" aria-label="Região de não rejeição e probabilidade de erro tipo II" xmlns="http://www.w3.org/2000/svg">
+  <h4>Estratégia</h4>
+  <p>São duas curvas. A de \(H_0\) (centrada em 0) define <strong>onde</strong> fica a região de não rejeição. A verdadeira (centrada em 0,60) diz <strong>com que probabilidade</strong> a estimativa cai lá. Erro tipo II = probabilidade de cair na região de não rejeição quando \(H_0\) é falsa. \(\Phi(z)\) é a área à esquerda de z na normal padrão.</p>
+  <ol class="steps">
+    <li><div><strong>Região de não rejeição</strong> (sob \(H_0\), \(|\hat\beta_1/0{,}20|\le1{,}96\)):
+      <div class="mathblock">\[-1{,}96(0{,}20)\le\hat\beta_1\le1{,}96(0{,}20)\quad\Longrightarrow\quad-0{,}392\le\hat\beta_1\le0{,}392\]</div></div></li>
+    <li><div><strong>Padronize os limites pela distribuição verdadeira</strong> (média 0,60, dp 0,20):
+      <div class="mathblock">\[z_{inf}=\frac{-0{,}392-0{,}60}{0{,}20}=-4{,}96,\qquad z_{sup}=\frac{0{,}392-0{,}60}{0{,}20}=-1{,}04\]</div></div></li>
+    <li><div><strong>Erro tipo II</strong> = área entre os dois z:
+      <div class="mathblock">\[\beta=\Phi(-1{,}04)-\Phi(-4{,}96)\approx0{,}1492-0=\mathbf{0{,}1492},\qquad\text{poder}=1-0{,}1492=\mathbf{0{,}8508}\]</div>
+      <p>Em palavras: se o verdadeiro \(\beta_1\) for 0,60, o teste deixa de detectar isso em cerca de 15% das amostras e detecta em cerca de 85%.</p></div></li>
+    <li><div><strong>Com ep = 0,10:</strong> região \([-0{,}196;\ 0{,}196]\); \(z_{inf}=(-0{,}196-0{,}60)/0{,}10=-7{,}96\) e \(z_{sup}=(0{,}196-0{,}60)/0{,}10=-4{,}04\):
+      <div class="mathblock">\[\beta\approx\Phi(-4{,}04)-\Phi(-7{,}96)\approx\mathbf{0{,}00003},\qquad\text{poder}\approx\mathbf{0{,}99997}\]</div></div></li>
+  </ol>
+  <figure><div class="scroll"><svg class="fig" viewBox="0 0 560 280" role="img" aria-label="Região de não rejeição e probabilidade de erro tipo II" xmlns="http://www.w3.org/2000/svg">
 <line class="ax" x1="30" y1="230" x2="540" y2="230"/>
 <line class="ax" x1="30" y1="20" x2="30" y2="230"/>
 <text class="tk" x="124.6" y="246" text-anchor="middle">-0,392</text>
@@ -3363,31 +4167,134 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
 <text class="an cBt" x="203.9" y="34.3" text-anchor="end">sob H₀: β₁ = 0</text>
 <text class="an cAt" x="368.5" y="34.3">se β₁ = 0,6</text>
 <text class="an" x="220.1" y="222" text-anchor="middle">erro tipo II ≈ 0,149</text>
-</svg></div><figcaption>A área azul sob a curva de \(\beta_1=0{,}6\) dentro da região de não rejeição é o erro tipo II (≈ 0,149).</figcaption></figure>
-      <p><strong>Com ep = 0,10:</strong> região \([-0{,}196;\ 0{,}196]\); \(z_{inf}=-7{,}96\), \(z_{sup}=-4{,}04\); \(\beta\approx\Phi(-4{,}04)-\Phi(-7{,}96)\approx0{,}00003\) e poder ≈ 0,99997. Reduzir o erro-padrão concentra a distribuição e aumenta muito a chance de detectar uma associação que existe.</p>
-    </div></details>
+</svg></div><figcaption>A área azul sob a curva de \(\beta_1=0{,}6\) dentro da região de não rejeição (entre as linhas tracejadas) é o erro tipo II (≈ 0,149).</figcaption></figure>
+  <h4>A curva de poder (conta nossa, mesma fórmula)</h4>
+  <p>Repetindo o cálculo para outros valores verdadeiros: \(\text{poder}=\Phi\!\left(-1{,}96+\frac{\beta_1}{ep}\right)+\Phi\!\left(-1{,}96-\frac{\beta_1}{ep}\right)\).</p>
+  <div class="tbl"><table>
+    <thead><tr><th>\(\beta_1\) verdadeiro</th><th class="r">0</th><th class="r">0,2</th><th class="r">0,4</th><th class="r">0,6</th><th class="r">0,8</th><th class="r">1,0</th></tr></thead>
+    <tbody>
+      <tr><td>Poder com ep = 0,20</td><td class="r">0,05</td><td class="r">0,17</td><td class="r">0,52</td><td class="r">0,85</td><td class="r">0,98</td><td class="r">0,999</td></tr>
+      <tr><td>Poder com ep = 0,10</td><td class="r">0,05</td><td class="r">0,52</td><td class="r">0,98</td><td class="r">≈ 1</td><td class="r">≈ 1</td><td class="r">≈ 1</td></tr>
+    </tbody>
+  </table></div>
+  <p>Três lições: (1) quando \(\beta_1=0\), a “chance de rejeitar” é o próprio α = 5% (é o erro tipo I); (2) quanto maior o efeito verdadeiro, maior o poder; (3) reduzir o ep (mais n, mais \(SQT_x\), menos ruído) aumenta o poder para todo efeito.</p>
+  <div class="box ok"><span class="lbl">Resposta-modelo</span>
+    <p>Região de não rejeição: \(-1{,}96(0{,}20)\le\hat\beta_1\le1{,}96(0{,}20)\), isto é, \([-0{,}392;\ 0{,}392]\). Se \(\beta_1=0{,}60\): \(z_{inf}=(-0{,}392-0{,}60)/0{,}20=-4{,}96\) e \(z_{sup}=(0{,}392-0{,}60)/0{,}20=-1{,}04\); erro tipo II \(=\Phi(-1{,}04)-\Phi(-4{,}96)\approx0{,}1492\); poder \(\approx0{,}8508\). Com ep = 0,10: região \([-0{,}196;\ 0{,}196]\), \(z\) = −7,96 e −4,04, erro tipo II ≈ 0,00003 e poder ≈ 0,99997. Reduzir o erro-padrão concentra a distribuição amostral e aumenta muito a probabilidade de detectar uma associação que existe.</p>
+  </div>
+  <div class="box trap"><span class="lbl">Erros que custam ponto</span>
+    <ul>
+      <li>Padronizar os limites com a média de \(H_0\) (0) em vez da verdadeira (0,60).</li>
+      <li>Esquecer a cauda de baixo: o erro tipo II é \(\Phi(z_{sup})-\Phi(z_{inf})\), não só \(\Phi(z_{sup})\). Aqui a diferença é desprezível, mas a fórmula tem que aparecer.</li>
+      <li>Confundir o β do erro tipo II com o coeficiente \(\beta_1\).</li>
+      <li>Dizer que o poder é 1 − α. Poder é 1 − (erro tipo II).</li>
+    </ul>
   </div>
 
-  <div class="exq"><div class="h"><b>Questão 9: erro-padrão convencional × robusto</b></div>
-    <p>n = 5, \(\hat\beta_1=0{,}90\). Desvios \(x_i-\bar x\) = (−2, −1, 0, 1, 2) e resíduos \(\hat u_i\) = (1, −2, 2, −2, 1). Calcule \(SQT_x\), SQR, \(\hat\sigma^2\), \(ep_{hom}=\sqrt{\hat\sigma^2/SQT_x}\) e \(ep_{HC0}=\sqrt{\sum(x_i-\bar x)^2\hat u_i^2/(SQT_x)^2}\). Teste \(H_0:\beta_1=0\) com cada um (3,182 para o homocedástico; 1,96 para o robusto).</p>
-    <details class="sol"><summary>Ver resolução</summary><div class="in">
-      <p>\(SQT_x=4+1+0+1+4=10\). \(SQR=1+4+4+4+1=14\). \(\hat\sigma^2=14/3\approx4{,}667\). \(ep_{hom}=\sqrt{(14/3)/10}=\sqrt{14/30}\approx0{,}683\).</p>
-      <p>HC0: as contribuições \((x_i-\bar x)^2\hat u_i^2\) são 4, 4, 0, 4, 4, soma 16. \(ep_{HC0}=\sqrt{16/10^2}=\sqrt{0{,}16}=0{,}40\).</p>
-      <p>Homocedástico: \(t=0{,}90/0{,}683\approx1{,}32\lt3{,}182\), <strong>não rejeitamos</strong>. Robusto: \(t=0{,}90/0{,}40=2{,}25&gt;1{,}96\), a aproximação robusta <strong>rejeitaria</strong>.</p>
-      <p>Robusto não é necessariamente maior: a fórmula reorganiza a contribuição das observações segundo seus resíduos e sua posição em X. Mas n = 5 é pequeníssimo e HC0 com a normal é assintótico: essa rejeição deve ser lida com grande cautela.</p>
-    </div></details>
+  <!-- ================= Q9 ================= -->
+  <div class="exq" id="l3q9">
+    <div class="h"><b>Questão 9: erro-padrão convencional e erro-padrão robusto</b><span class="tag hot">★★</span></div>
+    <p>Regressão simples com intercepto, n = 5, \(\hat\beta_1=0{,}90\). Desvios de X e resíduos de MQO:</p>
+    <div class="tbl"><table>
+      <thead><tr><th class="r">i</th><th class="r">1</th><th class="r">2</th><th class="r">3</th><th class="r">4</th><th class="r">5</th></tr></thead>
+      <tbody>
+        <tr><td class="r">\(x_i-\bar x\)</td><td class="r">−2</td><td class="r">−1</td><td class="r">0</td><td class="r">1</td><td class="r">2</td></tr>
+        <tr><td class="r">\(\hat u_i\)</td><td class="r">1</td><td class="r">−2</td><td class="r">2</td><td class="r">−2</td><td class="r">1</td></tr>
+      </tbody>
+    </table></div>
+    <p>Calcule \(SQT_x\), SQR, \(\hat\sigma^2\) e \(ep_{hom}(\hat\beta_1)=\sqrt{\hat\sigma^2/SQT_x}\). Depois calcule \(ep_{HC0}(\hat\beta_1)=\sqrt{\sum_i(x_i-\bar x)^2\hat u_i^2/(SQT_x)^2}\). Teste \(H_0:\beta_1=0\) com cada um (homocedástico: \(t_{0,025;3}=3{,}182\); robusto assintótico: 1,96). Compare, explique por que “robusto” não significa necessariamente “maior” e discuta a limitação da aproximação robusta nesta amostra.</p>
+  </div>
+  <h4>Tabela de trabalho</h4>
+  <div class="tbl"><table>
+    <thead><tr><th class="r">i</th><th class="r">\(d_i=x_i-\bar x\)</th><th class="r">\(\hat u_i\)</th><th class="r">\(d_i^2\)</th><th class="r">\(\hat u_i^2\)</th><th class="r">\(d_i^2\hat u_i^2\)</th></tr></thead>
+    <tbody>
+      <tr><td class="r">1</td><td class="r">−2</td><td class="r">1</td><td class="r">4</td><td class="r">1</td><td class="r">4</td></tr>
+      <tr><td class="r">2</td><td class="r">−1</td><td class="r">−2</td><td class="r">1</td><td class="r">4</td><td class="r">4</td></tr>
+      <tr><td class="r">3</td><td class="r">0</td><td class="r">2</td><td class="r">0</td><td class="r">4</td><td class="r">0</td></tr>
+      <tr><td class="r">4</td><td class="r">1</td><td class="r">−2</td><td class="r">1</td><td class="r">4</td><td class="r">4</td></tr>
+      <tr><td class="r">5</td><td class="r">2</td><td class="r">1</td><td class="r">4</td><td class="r">1</td><td class="r">4</td></tr>
+      <tr><td class="r"><strong>Soma</strong></td><td class="r">0</td><td class="r">0</td><td class="r"><strong>10</strong> = \(SQT_x\)</td><td class="r"><strong>14</strong> = SQR</td><td class="r"><strong>16</strong></td></tr>
+    </tbody>
+  </table></div>
+  <ol class="steps">
+    <li><div><strong>Convencional (homocedástico).</strong> \(\hat\sigma^2=SQR/(n-2)=14/3\approx4{,}667\).
+      <div class="mathblock">\[ep_{hom}=\sqrt{\frac{14/3}{10}}=\sqrt{\frac{14}{30}}\approx\mathbf{0{,}683},\qquad t_{hom}=\frac{0{,}90}{0{,}683}\approx1{,}32\lt3{,}182\ \Rightarrow\ \text{não rejeitamos }H_0\]</div></div></li>
+    <li><div><strong>Robusto (HC0).</strong> As contribuições \(d_i^2\hat u_i^2\) são 4, 4, 0, 4, 4 (soma 16):
+      <div class="mathblock">\[ep_{HC0}=\sqrt{\frac{16}{10^2}}=\sqrt{0{,}16}=\mathbf{0{,}40},\qquad t_{rob}=\frac{0{,}90}{0{,}40}=2{,}25&gt;1{,}96\ \Rightarrow\ \text{a aproximação robusta rejeitaria}\]</div></div></li>
+  </ol>
+  <div class="box def"><span class="lbl">Por que o robusto saiu menor</span>
+    <p>O convencional supõe que todo erro tem a mesma variância e usa a média \(\hat\sigma^2\) para todos. O HC0 dá a cada observação o seu próprio \(\hat u_i^2\), <strong>ponderado por \(d_i^2\)</strong> (a distância de \(x_i\) até a média). Aqui os resíduos grandes (±2) estão perto do centro (\(d=0\) ou ±1) e os pequenos (±1) estão nas pontas (\(d=\pm2\)), que são justamente as que mais pesam na inclinação. Resultado: a incerteza sobre a inclinação é menor do que a fórmula homocedástica sugere. Robusto <strong>reorganiza</strong> as contribuições; não é uma “penalidade” somada ao erro-padrão.</p>
+  </div>
+  <div class="box trap"><span class="lbl">A limitação (o item “discuta”)</span>
+    <p>n = 5 é pequeníssimo. HC0 e a comparação com a normal (1,96) são resultados <strong>assintóticos</strong>, que valem para n grande. Em amostras pequenas, os resíduos tendem a subestimar a variância dos erros (por isso existem HC1, HC2 e HC3). A rejeição robusta deve ser lida com <strong>grande cautela</strong>.</p>
+    <p class="small"><strong>Para ver a fragilidade (conta nossa):</strong> a correção HC1 usual multiplica a variância HC0 por \(n/(n-2)=5/3\). Fica \(ep_{HC1}=\sqrt{0{,}16\times5/3}\approx0{,}516\) e \(t\approx1{,}74\lt1{,}96\): com uma correção de pequena amostra, a rejeição desaparece.</p>
+  </div>
+  <div class="box ok"><span class="lbl">Resposta-modelo</span>
+    <p>\(SQT_x=4+1+0+1+4=10\); \(SQR=1+4+4+4+1=14\); \(\hat\sigma^2=14/3\approx4{,}667\); \(ep_{hom}=\sqrt{14/30}\approx0{,}683\). HC0: contribuições 4, 4, 0, 4, 4, soma 16, \(ep_{HC0}=\sqrt{16/100}=0{,}40\). Homocedástico: \(t=0{,}90/0{,}683\approx1{,}32\lt3{,}182\), não rejeitamos \(H_0\). Robusto: \(t=0{,}90/0{,}40=2{,}25&gt;1{,}96\), a aproximação robusta rejeitaria. Robusto não é necessariamente maior: a fórmula reorganiza a contribuição das observações segundo seus resíduos e sua posição em X. Mas n = 5 é extremamente pequeno e HC0 com a normal é assintótico, então essa rejeição deve ser interpretada com grande cautela.</p>
   </div>
 
-  <div class="exq"><div class="h"><b>Questão 10: dispersão de X, precisão e significância</b></div>
-    <p>Dois estudos com \(\hat\beta_1=0{,}60\) e \(\hat\sigma^2=4\); \(SQT_{x,A}=16\) e \(SQT_{x,B}=100\). Usando valor crítico 2, calcule para cada um o ep, o t de \(H_0:\beta_1=0\) e o IC aproximado de 95%.</p>
-    <details class="sol"><summary>Ver resolução</summary><div class="in">
-      <p><strong>A:</strong> \(ep=\sqrt{4/16}=0{,}50\), \(t=1{,}20\), IC \(0{,}60\pm1=[-0{,}40;\ 1{,}60]\). |t| &lt; 2 e o IC contém zero: <strong>não rejeitamos</strong>.</p>
-      <p><strong>B:</strong> \(ep=\sqrt{4/100}=0{,}20\), \(t=3\), IC \(0{,}60\pm0{,}40=[0{,}20;\ 1{,}00]\). |t| &gt; 2 e o IC não contém zero: <strong>rejeitamos</strong>.</p>
-      <p>Mesma estimativa, mesmo ruído. A maior dispersão de X em B reduz a variância: \(SQT_x\uparrow\Rightarrow Var(\hat\beta_1)\downarrow\Rightarrow ep\downarrow\). A diferença de significância vem da precisão, não de uma associação maior.</p>
-    </div></details>
+  <!-- ================= Q10 ================= -->
+  <div class="exq" id="l3q10">
+    <div class="h"><b>Questão 10: dispersão de X, precisão e significância estatística</b></div>
+    <p>Dois estudos produzem \(\hat\beta_1=0{,}60\) e \(\hat\sigma^2=4\), mas \(SQT_{x,A}=16\) e \(SQT_{x,B}=100\). Com valor crítico 2, calcule para cada um \(ep(\hat\beta_1)\), a estatística do teste de \(H_0:\beta_1=0\) e o IC aproximado de 95%. Compare as decisões e explique numericamente por que maior dispersão de X dá mais precisão.</p>
   </div>
-  <div class="done-row"><button class="btn done-btn" data-done="lista02" aria-pressed="false">Marcar como concluído</button></div>
+  <div class="tbl"><table>
+    <thead><tr><th></th><th class="r">\(SQT_x\)</th><th class="r">\(ep=\sqrt{\hat\sigma^2/SQT_x}\)</th><th class="r">\(t=0{,}60/ep\)</th><th>IC ≈ \(0{,}60\pm2\,ep\)</th><th>Decisão</th></tr></thead>
+    <tbody>
+      <tr><td>Estudo A</td><td class="r">16</td><td class="r">\(\sqrt{4/16}=0{,}50\)</td><td class="r">1,20</td><td>\(0{,}60\pm1=[-0{,}40;\ 1{,}60]\)</td><td>|t| &lt; 2 e o IC contém 0: <strong>não rejeitamos</strong></td></tr>
+      <tr><td>Estudo B</td><td class="r">100</td><td class="r">\(\sqrt{4/100}=0{,}20\)</td><td class="r">3,00</td><td>\(0{,}60\pm0{,}40=[0{,}20;\ 1{,}00]\)</td><td>|t| &gt; 2 e o IC não contém 0: <strong>rejeitamos</strong></td></tr>
+    </tbody>
+  </table></div>
+  <figure><div class="scroll"><svg class="fig" viewBox="0 0 560 190" role="img" aria-label="Intervalos de confiança dos estudos A e B da Questão 10" xmlns="http://www.w3.org/2000/svg">
+<line class="ax" x1="30" y1="150" x2="540" y2="150"/>
+<line class="ax" x1="30" y1="20" x2="30" y2="150"/>
+<text class="tk" x="72.5" y="166" text-anchor="middle">-0,4</text>
+<text class="tk" x="157.5" y="166" text-anchor="middle">0</text>
+<text class="tk" x="200" y="166" text-anchor="middle">0,2</text>
+<text class="tk" x="285" y="166" text-anchor="middle">0,6</text>
+<text class="tk" x="370" y="166" text-anchor="middle">1</text>
+<text class="tk" x="497.5" y="166" text-anchor="middle">1,6</text>
+<text class="lb" x="285" y="184" text-anchor="middle">valores de β₁</text>
+<text class="lb" x="12" y="85" text-anchor="middle" transform="rotate(-90 12 85)"></text>
+<line class="cB" x1="72.5" y1="60" x2="497.5" y2="60"/>
+<line class="cB" x1="72.5" y1="53" x2="72.5" y2="67"/>
+<line class="cB" x1="497.5" y1="53" x2="497.5" y2="67"/>
+<circle class="pt" cx="285" cy="60" r="5"/>
+<text class="an" x="72.5" y="48">Estudo A: SQTₓ = 16, ep = 0,50 → [−0,40; 1,60]</text>
+<line class="fit" x1="200" y1="118" x2="370" y2="118"/>
+<line class="fit" x1="200" y1="111" x2="200" y2="125"/>
+<line class="fit" x1="370" y1="111" x2="370" y2="125"/>
+<circle class="pt" cx="285" cy="118" r="5"/>
+<text class="an" x="200" y="106">Estudo B: SQTₓ = 100, ep = 0,20 → [0,20; 1,00]</text>
+<line class="obs" x1="157.5" y1="30" x2="157.5" y2="150"/>
+</svg></div><figcaption>Mesma estimativa (0,60), mesmo ruído. O intervalo de A é 2,5 vezes mais largo que o de B e cruza o zero (linha vermelha).</figcaption></figure>
+  <p><strong>A explicação numérica:</strong> \(SQT_x\) de B é \(100/16=6{,}25\) vezes o de A. A variância de \(\hat\beta_1\) cai na mesma proporção (0,25 → 0,04) e o ep cai \(\sqrt{6{,}25}=2{,}5\) vezes (0,50 → 0,20). Por isso o t sobe 2,5 vezes (1,2 → 3) e o intervalo fica 2,5 vezes mais estreito. A cadeia é \(SQT_x\uparrow\Rightarrow Var(\hat\beta_1)\downarrow\Rightarrow ep\downarrow\Rightarrow|t|\uparrow\) e IC mais estreito.</p>
+  <div class="box ok"><span class="lbl">Resposta-modelo</span>
+    <p>A: \(ep=\sqrt{4/16}=0{,}50\), \(t=0{,}60/0{,}50=1{,}20\), IC \(0{,}60\pm2(0{,}50)=[-0{,}40;\ 1{,}60]\); como |t| &lt; 2 e o IC contém zero, não rejeitamos \(H_0\). B: \(ep=\sqrt{4/100}=0{,}20\), \(t=3\), IC \([0{,}20;\ 1{,}00]\); como |t| &gt; 2 e o IC não contém zero, rejeitamos \(H_0\). Mesma estimativa e mesmo ruído: a maior dispersão de X em B reduz a variância da inclinação (\(SQT_x\uparrow\Rightarrow Var(\hat\beta_1)\downarrow\Rightarrow ep\downarrow\)). A diferença de significância vem da precisão, não de uma associação estimada maior.</p>
+  </div>
+
+  <!-- ================= TREINO ================= -->
+  <h3>Treine com exercícios novos (tipo Q4, Q5 e Q7)</h3>
+  <p>Cada clique sorteia uma regressão nova. Calcule \(\hat\sigma^2\), o erro-padrão, o t do teste pedido e o IC de 95%. O valor crítico já vem no enunciado, como na prova.</p>
+  <div class="tool" id="trainer3">
+    <h4>Gerador tipo Lista 3: precisão, teste t e intervalo</h4>
+    <div class="given" id="t3given"></div>
+    <div class="fields">
+      <div class="field"><label for="t3s2">σ̂² = SQR/(n − 2)</label><input id="t3s2" inputmode="decimal" autocomplete="off"><div class="hint"></div></div>
+      <div class="field"><label for="t3ep">ep(β̂₁)</label><input id="t3ep" inputmode="decimal" autocomplete="off"><div class="hint"></div></div>
+      <div class="field"><label for="t3t" id="t3tl">t</label><input id="t3t" inputmode="decimal" autocomplete="off"><div class="hint"></div></div>
+      <div class="field"><label for="t3lo">IC 95%: limite inferior</label><input id="t3lo" inputmode="decimal" autocomplete="off"><div class="hint"></div></div>
+      <div class="field"><label for="t3hi">IC 95%: limite superior</label><input id="t3hi" inputmode="decimal" autocomplete="off"><div class="hint"></div></div>
+    </div>
+    <div class="row">
+      <button class="btn primary" id="t3check">Corrigir</button>
+      <button class="btn" id="t3show">Mostrar resolução</button>
+      <button class="btn" id="t3new">Novo exercício</button>
+    </div>
+    <div class="out" id="t3out"></div>
+  </div>
+  <div class="done-row"><button class="btn done-btn" data-done="lista3" aria-pressed="false">Marcar como concluído</button></div>
 </section>
+
 
 <!-- ================= LISTA 1 ================= -->
 <section class="mod" id="lista1" data-title="Lista 1">
@@ -3820,8 +4727,8 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
       <div class="fl"><span>Unidade</span>Sem unidade (0 a 1 com intercepto).</div>
       <div class="fl warn"><span>Cuidado</span>Não mede causalidade; não se compara Y com ln Y; não muda com unidades.</div>
     </div>
-    <div class="fentry" data-s="variância do erro estimada sigma chapeu variancia erro aulas 3 e 5; lista 02 q4 dispersão dos pontos em torno da reta (não viesada sob rls.1–5).">
-      <div class="fh"><b>Variância do erro estimada</b><span class="src">Aulas 3 e 5; Lista 02 Q4</span></div>
+    <div class="fentry" data-s="variância do erro estimada sigma chapeu variancia erro aulas 3 e 5; lista 3 q4 dispersão dos pontos em torno da reta (não viesada sob rls.1–5).">
+      <div class="fh"><b>Variância do erro estimada</b><span class="src">Aulas 3 e 5; Lista 3 Q4</span></div>
       <div class="mathblock">\[\hat\sigma^2=\frac{SQR}{n-2},\qquad\hat\sigma=\sqrt{\hat\sigma^2}\]</div>
       <div class="fl"><span>Significa</span>Dispersão dos pontos em torno da reta (não viesada sob RLS.1–5).</div>
       <div class="fl"><span>Unidade</span>\(\hat\sigma^2\) em unidade de y ao quadrado; \(\hat\sigma\) em unidade de y.</div>
@@ -3908,15 +4815,15 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
       <div class="fl"><span>Unidade</span>Unid. y / unid. x.</div>
       <div class="fl warn"><span>Cuidado</span>Base de todas as provas da aula.</div>
     </div>
-    <div class="fentry" data-s="ausência de viés nao viesado vies aula 5 ★; lista 02 q1 o centro da distribuição amostral é o parâmetro.">
-      <div class="fh"><b>Ausência de viés</b><span class="src">Aula 5 ★; Lista 02 Q1</span></div>
+    <div class="fentry" data-s="ausência de viés nao viesado vies aula 5 ★; lista 3 q1 o centro da distribuição amostral é o parâmetro.">
+      <div class="fh"><b>Ausência de viés</b><span class="src">Aula 5 ★; Lista 3 Q1</span></div>
       <div class="mathblock">\[E(\hat\beta_1)=\beta_1,\quad E(\hat\beta_0)=\beta_0\quad\text{(RLS.1–RLS.4)}\]</div>
       <div class="fl"><span>Significa</span>O centro da distribuição amostral é o parâmetro.</div>
       <div class="fl"><span>Unidade</span>—</div>
       <div class="fl warn"><span>Cuidado</span>Não diz que cada estimativa está perto; RLS.5 não é usada.</div>
     </div>
-    <div class="fentry" data-s="variância da inclinação variancia beta1 precisao aula 5 ★; lista 02 q4 e q10 precisão: cai com mais variação em x, sobe com mais ruído.">
-      <div class="fh"><b>Variância da inclinação</b><span class="src">Aula 5 ★; Lista 02 Q4 e Q10</span></div>
+    <div class="fentry" data-s="variância da inclinação variancia beta1 precisao aula 5 ★; lista 3 q4 e q10 precisão: cai com mais variação em x, sobe com mais ruído.">
+      <div class="fh"><b>Variância da inclinação</b><span class="src">Aula 5 ★; Lista 3 Q4 e Q10</span></div>
       <div class="mathblock">\[Var(\hat\beta_1\mid X)=\frac{\sigma^2}{SQT_x}\quad\text{(RLS.1–RLS.5)}\]</div>
       <div class="fl"><span>Significa</span>Precisão: cai com mais variação em x, sobe com mais ruído.</div>
       <div class="fl"><span>Unidade</span>(Unid. y / unid. x) ao quadrado.</div>
@@ -3935,8 +4842,8 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
       <div class="fl"><span>Unidade</span>Unidade de y ao quadrado.</div>
       <div class="fl warn"><span>Cuidado</span>Os 3 termos: (n−1)σ² − 2σ² + σ².</div>
     </div>
-    <div class="fentry" data-s="erros-padrão erro padrao ep aulas 5 e 6; lista 02 estimativas do desvio-padrão dos estimadores.">
-      <div class="fh"><b>Erros-padrão</b><span class="src">Aulas 5 e 6; Lista 02</span></div>
+    <div class="fentry" data-s="erros-padrão erro padrao ep aulas 5 e 6; lista 3 estimativas do desvio-padrão dos estimadores.">
+      <div class="fh"><b>Erros-padrão</b><span class="src">Aulas 5 e 6; Lista 3</span></div>
       <div class="mathblock">\[ep(\hat\beta_1)=\frac{\hat\sigma}{\sqrt{SQT_x}},\qquad ep(\hat\beta_0)=\frac{\hat\sigma\sqrt{\sum x_i^2}}{\sqrt{n\,SQT_x}}\]</div>
       <div class="fl"><span>Significa</span>Estimativas do desvio-padrão dos estimadores.</div>
       <div class="fl"><span>Unidade</span>A mesma do coeficiente correspondente.</div>
@@ -3965,35 +4872,35 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
   </div>
   <h3 class="dgroup">Inferência (Aula 6)</h3>
   <div class="dgrid">
-    <div class="fentry" data-s="estatística t t teste hipotese aula 6 ★; lista 02 distância até \(h_0\) em erros-padrão.">
-      <div class="fh"><b>Estatística t</b><span class="src">Aula 6 ★; Lista 02</span></div>
+    <div class="fentry" data-s="estatística t t teste hipotese aula 6 ★; lista 3 distância até \(h_0\) em erros-padrão.">
+      <div class="fh"><b>Estatística t</b><span class="src">Aula 6 ★; Lista 3</span></div>
       <div class="mathblock">\[t=\frac{\hat\beta_1-\beta_{1,0}}{ep(\hat\beta_1)}\sim t_{n-2}\]</div>
       <div class="fl"><span>Significa</span>Distância até \(H_0\) em erros-padrão.</div>
       <div class="fl"><span>Unidade</span>Sem unidade.</div>
       <div class="fl warn"><span>Cuidado</span>Nunca “aceitar” \(H_0\).</div>
     </div>
-    <div class="fentry" data-s="intervalo de confiança intervalo confianca ic aula 6; lista 02 q7 e q10 valores de \(\beta_1\) compatíveis com os dados.">
-      <div class="fh"><b>Intervalo de confiança</b><span class="src">Aula 6; Lista 02 Q7 e Q10</span></div>
+    <div class="fentry" data-s="intervalo de confiança intervalo confianca ic aula 6; lista 3 q7 e q10 valores de \(\beta_1\) compatíveis com os dados.">
+      <div class="fh"><b>Intervalo de confiança</b><span class="src">Aula 6; Lista 3 Q7 e Q10</span></div>
       <div class="mathblock">\[IC=\hat\beta_1\pm t_{\alpha/2,\,n-2}\cdot ep(\hat\beta_1)\]</div>
       <div class="fl"><span>Significa</span>Valores de \(\beta_1\) compatíveis com os dados.</div>
       <div class="fl"><span>Unidade</span>A mesma de \(\beta_1\).</div>
       <div class="fl warn"><span>Cuidado</span>0 fora do IC ⇔ rejeita \(H_0:\beta_1=0\).</div>
     </div>
-    <div class="fentry" data-s="p-valor p valor aulas 2 e 6; lista 02 q2 e q5 compatibilidade dos dados com \(h_0\).">
-      <div class="fh"><b>p-valor</b><span class="src">Aulas 2 e 6; Lista 02 Q2 e Q5</span></div>
+    <div class="fentry" data-s="p-valor p valor aulas 2 e 6; lista 3 q2 e q5 compatibilidade dos dados com \(h_0\).">
+      <div class="fh"><b>p-valor</b><span class="src">Aulas 2 e 6; Lista 3 Q2 e Q5</span></div>
       <div class="mathblock">\[p=P(\text{estatística tão ou mais extrema}\mid H_0)\]</div>
       <div class="fl"><span>Significa</span>Compatibilidade dos dados com \(H_0\).</div>
       <div class="fl"><span>Unidade</span>Probabilidade (0 a 1).</div>
       <div class="fl warn"><span>Cuidado</span>Não é a probabilidade de \(H_0\) ser verdadeira.</div>
     </div>
-    <div class="fentry" data-s="erros tipo i e ii e poder  aula 6; lista 02 q8 rejeitar h₀ verdadeira; não rejeitar h₀ falsa; detectar um efeito que existe.">
-      <div class="fh"><b>Erros tipo I e II e poder</b><span class="src">Aula 6; Lista 02 Q8</span></div>
+    <div class="fentry" data-s="erros tipo i e ii e poder  aula 6; lista 3 q8 rejeitar h₀ verdadeira; não rejeitar h₀ falsa; detectar um efeito que existe.">
+      <div class="fh"><b>Erros tipo I e II e poder</b><span class="src">Aula 6; Lista 3 Q8</span></div>
       <div class="mathblock">\[P(\text{tipo I})=\alpha,\quad P(\text{tipo II})=\beta,\quad\text{poder}=1-\beta\]</div>
       <div class="fl"><span>Significa</span>Rejeitar H₀ verdadeira; não rejeitar H₀ falsa; detectar um efeito que existe.</div>
       <div class="fl"><span>Unidade</span>Probabilidades.</div>
     </div>
-    <div class="fentry" data-s="erro-padrão robusto (hc0) robusto hc0 heterocedasticidade aula 6; lista 02 q9 variância válida sob heterocedasticidade.">
-      <div class="fh"><b>Erro-padrão robusto (HC0)</b><span class="src">Aula 6; Lista 02 Q9</span></div>
+    <div class="fentry" data-s="erro-padrão robusto (hc0) robusto hc0 heterocedasticidade aula 6; lista 3 q9 variância válida sob heterocedasticidade.">
+      <div class="fh"><b>Erro-padrão robusto (HC0)</b><span class="src">Aula 6; Lista 3 Q9</span></div>
       <div class="mathblock">\[\widehat{Var}_{HC0}(\hat\beta_1)=\frac{\sum_i(x_i-\bar x)^2\hat u_i^2}{SQT_x^2}\]</div>
       <div class="fl"><span>Significa</span>Variância válida sob heterocedasticidade.</div>
       <div class="fl"><span>Unidade</span>(Unid. y / unid. x) ao quadrado.</div>
@@ -4294,7 +5201,7 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
   <div class="quiz sim" data-answer="a"><div class="qh">33 · Aula 6</div>
     <p>O erro-padrão robusto pode ser <strong>menor</strong> que o convencional?</p>
     <div class="opts"><button data-k="a">a) Sim; robusto não significa necessariamente maior</button><button data-k="b">b) Não, é sempre maior</button><button data-k="c">c) Só se houver homocedasticidade</button><button data-k="d">d) Só com variável omitida</button></div>
-    <div class="fb" hidden>Lista 02, Q9: 0,40 (robusto) contra 0,683 (convencional).</div></div>
+    <div class="fb" hidden>Lista 3, Q9: 0,40 (robusto) contra 0,683 (convencional).</div></div>
   <div class="quiz sim" data-answer="c"><div class="qh">34 · Derivadas</div>
     <p>\(f(x)=5+4\sqrt x\). Quanto vale \(f'(4)\)?</p>
     <div class="opts"><button data-k="a">a) 4</button><button data-k="b">b) 2</button><button data-k="c">c) 1</button><button data-k="d">d) 0,5</button></div>
@@ -4318,7 +5225,7 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
   <div class="quiz sim" data-answer="b"><div class="qh">39 · Aula 5</div>
     <p>Duas pesquisas têm o mesmo \(\hat\sigma^2\), mas a B tem x muito mais disperso. Então:</p>
     <div class="opts"><button data-k="a">a) A é mais precisa</button><button data-k="b">b) B tem menor \(ep(\hat\beta_1)\)</button><button data-k="c">c) as duas têm o mesmo ep</button><button data-k="d">d) B é viesada</button></div>
-    <div class="fb" hidden>\(SQT_x\) maior ⇒ variância menor (Lista 02, Q10).</div></div>
+    <div class="fb" hidden>\(SQT_x\) maior ⇒ variância menor (Lista 3, Q10).</div></div>
   <div class="quiz sim" data-answer="d"><div class="qh">40 · Lagrange</div>
     <p>No ótimo de max \(xy\) s.a. \(2x+4y=40\), \(\lambda=2{,}5\). Isso significa que:</p>
     <div class="opts"><button data-k="a">a) x = 2,5</button><button data-k="b">b) a utilidade máxima é 2,5</button><button data-k="c">c) a restrição está errada</button><button data-k="d">d) com 1 real a mais de renda, a utilidade ótima sobe cerca de 2,5</button></div>
@@ -4407,7 +5314,9 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
   window.__fixMath = function () {
     $$('mjx-container:not([display="true"])').forEach(function (m) {
       m.classList.remove('wide-inline');
-      var p = m.parentElement; if (!p) return;
+      var p = m.parentElement;
+      while (p && getComputedStyle(p).display.indexOf('inline') === 0) p = p.parentElement;
+      if (!p) return;
       if (m.getBoundingClientRect().width > p.clientWidth - 2) m.classList.add('wide-inline');
     });
   };
@@ -4697,5 +5606,41 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
       '</ol>';
   });
   newT2();
+
+  /* ---------- gerador tipo Lista 3 (Q4, Q5, Q7) ---------- */
+  var TC = { 6: 2.447, 8: 2.306, 10: 2.228, 13: 2.160, 16: 2.120, 18: 2.101, 20: 2.086, 23: 2.069, 28: 2.048, 30: 2.042 };
+  var T3 = null, T3ids = ['t3s2', 't3ep', 't3t', 't3lo', 't3hi'];
+  function newT3() {
+    var df = pick([6, 8, 10, 13, 16, 18, 20, 23, 28, 30]), n = df + 2;
+    var sqr = pick([12, 18, 24, 30, 36, 40, 48, 60, 80]), sqt = pick([10, 16, 20, 25, 40, 50, 64, 80, 100]);
+    var s2 = sqr / df, ep = Math.sqrt(s2 / sqt), h0 = pick([0, 0, 0, 1, 0.5]);
+    var b1 = Math.round((h0 + ep * pick([0.8, 1.4, 1.9, 2.3, 2.7, 3.4, 4.1])) * 100) / 100;
+    var c = TC[df], t = (b1 - h0) / ep;
+    T3 = { n: n, df: df, sqr: sqr, sqt: sqt, s2: s2, ep: ep, h0: h0, b1: b1, c: c, t: t, lo: b1 - c * ep, hi: b1 + c * ep };
+    chips($('#t3given'), ['n = ' + n, 'SQR = ' + fmt(sqr), 'SQTₓ = ' + fmt(sqt), 'β̂₁ = ' + fmt(b1, 2), 'H₀: β₁ = ' + fmt(h0) + ' (bilateral, 5%)', 't₀,₀₂₅;' + df + ' = ' + c.toFixed(3).replace('.', ',')]);
+    $('#t3tl').textContent = 't para H₀: β₁ = ' + fmt(h0);
+    clearFields(T3ids, '#t3out');
+  }
+  $('#t3new').addEventListener('click', newT3);
+  $('#t3check').addEventListener('click', function () {
+    var t = T3, ok = 0;
+    ok += checkField('t3s2', t.s2, 'Divida SQR por n − 2 = ' + t.df + '.');
+    ok += checkField('t3ep', t.ep, 'Raiz de σ̂²/SQTₓ (não pare na variância).');
+    ok += checkField('t3t', t.t, '(β̂₁ − valor de H₀) ÷ ep.');
+    ok += checkField('t3lo', t.lo, 'β̂₁ − t crítico × ep.');
+    ok += checkField('t3hi', t.hi, 'β̂₁ + t crítico × ep.');
+    $('#t3out').innerHTML = '<p class="score">' + ok + ' de 5 certos' + (ok === 5 ? '. Perfeito: clique em “Novo exercício”.' : '.') + '</p>';
+  });
+  $('#t3show').addEventListener('click', function () {
+    var t = T3, rej = Math.abs(t.t) > t.c;
+    $('#t3out').innerHTML = '<ol class="steps">' +
+      '<li><div>Graus de liberdade: n − 2 = ' + t.n + ' − 2 = ' + t.df + '.</div></li>' +
+      '<li><div>σ̂² = SQR/(n − 2) = ' + fmt(t.sqr) + ' / ' + t.df + ' = <strong>' + fmt(t.s2) + '</strong></div></li>' +
+      '<li><div>Vâr(β̂₁) = σ̂²/SQTₓ = ' + fmt(t.s2) + ' / ' + fmt(t.sqt) + ' = ' + fmt(t.s2 / t.sqt, 5) + '; ep = √' + fmt(t.s2 / t.sqt, 5) + ' = <strong>' + fmt(t.ep) + '</strong></div></li>' +
+      '<li><div>t = (' + fmt(t.b1, 2) + ' − ' + fmt(t.h0) + ') / ' + fmt(t.ep) + ' = <strong>' + fmt(t.t, 3) + '</strong>. Como |t| ' + (rej ? '&gt;' : '≤') + ' ' + t.c.toFixed(3).replace('.', ',') + ', <strong>' + (rej ? 'rejeitamos' : 'não rejeitamos') + '</strong> H₀: β₁ = ' + fmt(t.h0) + ' a 5%.</div></li>' +
+      '<li><div>IC 95% = ' + fmt(t.b1, 2) + ' ± ' + t.c.toFixed(3).replace('.', ',') + ' × ' + fmt(t.ep) + ' = [<strong>' + fmt(t.lo) + '</strong>; <strong>' + fmt(t.hi) + '</strong>]. O valor ' + fmt(t.h0) + (rej ? ' está fora do intervalo' : ' está dentro do intervalo') + ': mesma conclusão do teste (dualidade).</div></li>' +
+      '</ol>';
+  });
+  newT3();
 })();
 </script>
