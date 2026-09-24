@@ -106,6 +106,38 @@
   <p><strong>Caudas mais gordas:</strong> às vezes \(\hat\sigma\) sai menor que σ por acaso, e dividir por um número pequeno infla t. Por isso a t é mais espalhada que a Normal com n pequeno; com n grande, converge para a Normal (e a regra de bolso |t| &gt; 2 funciona). Sem normalidade, sob condições regulares, \((\hat\beta_1-\beta_1)/se(\hat\beta_1)\xrightarrow{d}N(0,1)\) pelo TCL.</p>
   <p><strong>Testes de heterocedasticidade:</strong> Breusch–Pagan regride \(\hat u_i^2=\delta_0+\delta_1X_i+v_i\) e testa \(\delta_1=0\), com \(LM=nR^2_{aux}\xrightarrow{d}\chi^2_1\). White usa também \(X_i^2\) e testa \(\delta_1=\delta_2=0\); a rejeição pode refletir forma funcional errada. <strong>MQP:</strong> se \(Var(u\mid X)=\sigma^2h(X)\), dividir o modelo por \(\sqrt{h(X)}\) deixa o erro homocedástico; observações com menor variância recebem mais peso.</p>
 
+  <h3>11. E se u não for normal?</h3>
+  <p>Nem sempre RLS.6 é razoável. Exemplos da aula: y com poucos valores possíveis, como uma <strong>contagem de eventos</strong>, ou uma <strong>variável censurada</strong>, como uma duração observada só até o fim do acompanhamento. Às vezes uma transformação, como o log, reduz a assimetria e aproxima o erro da normal.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Resultado exato</th><th>Aproximação assintótica</th></tr></thead>
+    <tbody><tr>
+      <td>Em amostras pequenas, normalidade e homocedasticidade produzem uma distribuição t <strong>exata</strong> na regressão simples.</td>
+      <td>Em amostras grandes, sob amostragem adequada, momentos finitos e sem observações dominantes, o TCL deixa \(\hat\beta_j\) aproximadamente normal mesmo sem u normal. Com heterocedasticidade, usam-se erros-padrão robustos, não só uma amostra grande.</td>
+    </tr></tbody>
+  </table></div>
+  <p>A distribuição de referência depende das hipóteses: a regra mecânica “coeficiente dividido pelo erro-padrão” não basta. É preciso saber <em>qual</em> erro-padrão e <em>qual</em> aproximação justificam a comparação. Observações extremas, dependência e caudas muito pesadas prejudicam a aproximação.</p>
+
+  <h3>12. Diagnóstico pelos resíduos</h3>
+  <ul>
+    <li>Examine gráficos de \(\hat u_i\) ou \(\hat u_i^2\) contra \(X_i\) e \(\hat Y_i\).</li>
+    <li>Formato de <strong>funil</strong> sugere variância crescente ou decrescente.</li>
+    <li>Grupos com dispersões diferentes sugerem heterogeneidade entre categorias.</li>
+    <li>Poucas observações extremas podem criar uma impressão enganosa.</li>
+    <li>Curvatura na média dos resíduos pode indicar forma funcional inadequada, não só heterocedasticidade.</li>
+  </ul>
+  <p class="muted">Não encontrar padrão não prova homocedasticidade. O gráfico orienta a investigação, mas não substitui hipóteses nem testes formais. Testes de heterocedasticidade têm baixa potência em amostras pequenas, e não rejeitar não comprova \(H_0\).</p>
+
+  <h3>13. MQP factível e um aviso para o futuro</h3>
+  <p>Quando a forma da variância é desconhecida, uma estratégia de <strong>MQP factível</strong> é:</p>
+  <ol class="steps">
+    <li><div>Estimar o modelo original por MQO.</div></li>
+    <li><div>Modelar \(\hat u_i^2\) ou \(\log(\hat u_i^2)\) em função de \(X_i\).</div></li>
+    <li><div>Obter valores positivos \(\hat h_i\).</div></li>
+    <li><div>Reestimar o modelo com pesos \(1/\hat h_i\).</div></li>
+  </ol>
+  <p>Se a função de variância estiver bem especificada, o MQP pode ser mais eficiente; se estiver mal especificada, o ganho pode sumir. Erros-padrão robustos depois da ponderação dão proteção adicional. <strong>Síntese:</strong> erros robustos protegem a inferência; MQP tenta também recuperar eficiência; nenhum dos dois corrige uma média condicional mal especificada.</p>
+  <p><strong>Teaser:</strong> sob normalidade, qualquer combinação linear de \(\hat\beta_0\) e \(\hat\beta_1\) também é normal (em grandes amostras, aproximadamente), e qualquer subconjunto de coeficientes tem distribuição normal conjunta. Com dois coeficientes isso faz pouca diferença, mas é a base do <strong>teste F</strong>, para testar vários coeficientes ao mesmo tempo, na regressão múltipla.</p>
+
   <div class="quiz" data-answer="d">
     <div class="qh">Lista 02 · Questão 2</div>
     <ol class="afirm">
@@ -159,7 +191,7 @@
     <p>Variâncias: \(Var(\hat\beta_0)=\sigma^2\dfrac{n_1}{n\cdot(n_1n_0/n)}=\dfrac{\sigma^2}{n_0}\), a variância da média de um grupo com \(n_0\) observações.</p>
   </div></details>
   <p><strong>Não é necessariamente causal:</strong> a diferença pode refletir escolaridade, experiência, ocupação ou setor associados à sindicalização. Para ler \(\beta_1\) como efeito causal, é preciso justificar por que os grupos seriam comparáveis.</p>
-  <p><strong>Precisão:</strong> sob homocedasticidade, \(Var(\hat\beta_1\mid D)=\sigma^2\left(\frac{1}{n_1}+\frac{1}{n_0}\right)\). Com variâncias diferentes, \(Var(\bar Y_1-\bar Y_0\mid D)=\frac{\sigma_1^2}{n_1}+\frac{\sigma_0^2}{n_0}\). Grupos muito desbalanceados reduzem a precisão.</p>
+  <p><strong>Precisão:</strong> sob homocedasticidade, \(Var(\hat\beta_1\mid D)=\sigma^2\left(\frac{1}{n_1}+\frac{1}{n_0}\right)\). Com variâncias diferentes, \(Var(\bar Y_1-\bar Y_0\mid D)=\frac{\sigma_1^2}{n_1}+\frac{\sigma_0^2}{n_0}\). Grupos muito desbalanceados reduzem a precisão. Na prática, erros-padrão robustos (HC1, com correção por graus de liberdade) acomodam variâncias diferentes entre os grupos: <strong>os coeficientes não mudam; muda a incerteza estimada</strong>.</p>
 
   <h3>3. Armadilha da dummy e várias categorias</h3>
   <p>Com intercepto, não se pode incluir D e (1 − D) juntas: \(D_i+(1-D_i)=1\) é constante e gera <strong>colinearidade perfeita</strong>. Sem intercepto, as duas dummies podem entrar e os coeficientes viram as duas médias. Com intercepto e <strong>G categorias, usamos G − 1 dummies</strong>. Exemplo (agricultura como referência): \(Y=\beta_0+\beta_1D_{ind}+\beta_2D_{serv}+u\), com \(E(Y\mid agr)=\beta_0\), \(E(Y\mid ind)=\beta_0+\beta_1\), \(E(Y\mid serv)=\beta_0+\beta_2\).</p>
@@ -168,6 +200,7 @@
   <p>Sem interação, \(E(Y\mid X,D)=\beta_0+\beta_1X+\beta_2D\): retas paralelas, e \(\beta_2\) é a diferença de nível. Com interação:</p>
   <div class="mathblock">\[Y=\beta_0+\beta_1X+\beta_2D+\beta_3(XD)+u:\quad D=0:\ \beta_0+\beta_1X;\qquad D=1:\ (\beta_0+\beta_2)+(\beta_1+\beta_3)X\]</div>
   <p>\(\beta_2\) é a diferença de interceptos, \(\beta_3\) a diferença de inclinações, e a diferença entre grupos num dado X é \(\beta_2+\beta_3X\). \(\beta_2\) é a diferença só em X = 0; compare os grupos em valores relevantes de X.</p>
+  <p><strong>Centralização (prática em R):</strong> definindo \(educ^c=educ-12\) no modelo com interação, o coeficiente da dummy passa a ser a diferença prevista entre os grupos para <strong>12 anos de educação</strong>, e não para educ = 0 (valor pouco relevante). Centralizar muda a interpretação do intercepto e da dummy, mas não muda valores ajustados, inclinações nem a qualidade do ajuste. Trocar a categoria de referência também muda os coeficientes, mas não as médias previstas: com três setores, reconstrua as três médias nas duas parametrizações e elas coincidem.</p>
   <p><strong>Dummy em log:</strong> se \(\log Y=\beta_0+\beta_1D+u\), a diferença percentual é \(100[\exp(\beta_1)-1]\%\); a aproximação \(100\beta_1\%\) só é boa com \(|\beta_1|\) pequeno.</p>
   <details class="sol"><summary>Pratique: \(\widehat{\log(salario)}=1{,}80+0{,}09\,educ-0{,}18\,mulher+0{,}02\,(educ\times mulher)\)</summary><div class="in">
     <ol>

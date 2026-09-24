@@ -20,6 +20,12 @@
   <h3>3. Função de regressão populacional (FRP)</h3>
   <div class="mathblock">\[E[Y\mid X]=E[\beta_0+\beta_1X+U\mid X]=\beta_0+\beta_1X+\underbrace{E[U\mid X]}_{=0}=\beta_0+\beta_1X\]</div>
   <p>\(E[Y\mid X]\) é a média condicional e o melhor preditor de Y baseado em X sob perda quadrática. O modelo pode ser escrito como \(Y=E[Y\mid X]+U\): <strong>o observado é um componente sistemático (a média condicional) mais um erro</strong>. Para cada X existe uma distribuição inteira de Y, e a reta passa pela média de cada uma. A hipótese \(E(U\mid X)=0\) <em>não</em> exige variância constante.</p>
+  <div class="box ok"><span class="lbl">Exemplo do apêndice: tamanho da turma × desempenho</span>
+    <p>Com a razão alunos/professor (X) e a nota média da escola (Y), a curva de regressão tem <strong>inclinação negativa</strong>: turmas menores estão associadas a notas médias maiores. As escolas não caem em cima da curva. Na escola 1, Y está acima da média condicional (desempenho maior que o previsto, erro positivo). Na escola 2, abaixo (erro negativo). Essa inclinação, sozinha, não demonstra que reduzir o tamanho da turma <em>causaria</em> melhora.</p>
+  </div>
+  <h4>A CEF e a reta (prática em R da Aula 3)</h4>
+  <p>A CEF \(m(x)=E(Y\mid X=x)\) é uma <strong>função</strong>: recebe um valor de x e devolve a média de Y no grupo com esse valor. \(E(wage\mid educ=12)\) é o salário médio populacional de quem tem 12 anos de estudo. Na amostra, estimamos cada ponto dela pela média do grupo: \(\hat m(x)=\frac{1}{n_x}\sum_{i:X_i=x}Y_i\).</p>
+  <p>A CEF <strong>não precisa ser uma reta</strong>: pode subir, descer ou curvar. A regressão simples impõe a aproximação \(E(Y\mid X=x)\approx\beta_0+\beta_1x\). Por isso a reta de MQO não passa exatamente pelas médias de todos os grupos: ela é a <strong>melhor aproximação linear</strong> no sentido de mínimos quadrados. Grupos com poucas observações dão médias mais instáveis.</p>
 
   <h3>4. Estimando: valor ajustado e resíduo</h3>
   <p>Com uma amostra \(\{(x_i,y_i):i=1,\dots,n\}\), cada observação satisfaz \(y_i=\beta_0+\beta_1x_i+u_i\), mas não conhecemos os \(\beta\). Procuramos um par \(\{\hat\beta_0,\hat\beta_1\}\) que gere, para cada observação, um <strong>valor ajustado</strong> e um <strong>resíduo</strong>:</p>
@@ -107,6 +113,7 @@
   <p>Comece por \(y_i-\bar y=(\hat y_i-\bar y)+\hat u_i\). Elevando ao quadrado e somando:</p>
   <div class="mathblock">\[SQT=SQE+SQR+2\underbrace{\sum_{i=1}^{n}(\hat y_i-\bar y)\hat u_i}_{=0}\quad\Longrightarrow\quad SQT=SQE+SQR\]</div>
   <p>O termo cruzado some pela ortogonalidade entre valores ajustados e resíduos. Dividindo SQT por n − 1 obtemos a variância amostral de Y.</p>
+  <p><strong>Leitura da prática em R:</strong> variação total = <strong>sinal capturado</strong> (SQE, a parte da variação de Y capturada pela reta) + <strong>ruído residual</strong> (SQR, o que fica nos resíduos). Cuidado com a palavra “ruído”: a SQR contém tudo o que a regressão não capturou, como variação aleatória, variáveis omitidas, relações não lineares, erros de medida, observações atípicas e erros de especificação.</p>
 
   <h3>11. A variância do erro usa n − 2</h3>
   <div class="mathblock">\[\hat\sigma^2=\frac{SQR}{n-2}\]</div>
@@ -114,7 +121,9 @@
 
   <h3>12. \(R^2\): qualidade do ajuste</h3>
   <div class="mathblock">\[1=\frac{SQE}{SQT}+\frac{SQR}{SQT}\quad\Longrightarrow\quad R^2=\frac{SQE}{SQT}=1-\frac{SQR}{SQT}\]</div>
-  <p>É a fração da variação amostral de y contabilizada pelos valores ajustados. Com intercepto, \(0\le R^2\le1\). Exemplo: \(\widehat{salario}=963{,}191+18{,}501\cdot roe\), n = 209, \(R^2=0{,}0132\). Um ponto percentual a mais de retorno sobre o patrimônio está associado a US$ 18.501 a mais no salário anual ajustado, mas a reta contabiliza só 1,3% da variação dos salários dos executivos.</p>
+  <p>É a fração da variação amostral de y contabilizada pelos valores ajustados. Com intercepto, \(0\le R^2\le1\).</p>
+  <figure><div class="scroll">FIG:r2</div><figcaption>Mesma reta nos dois painéis. A diferença é só a dispersão dos pontos em torno dela.</figcaption></figure>
+  <p> Exemplo: \(\widehat{salario}=963{,}191+18{,}501\cdot roe\), n = 209, \(R^2=0{,}0132\). <strong>Unidades:</strong> o salário está em <em>milhares</em> de dólares e roe em pontos percentuais, então \(\hat\beta_1=18{,}501\) mil US$ por ponto percentual. Um ponto percentual a mais de retorno sobre o patrimônio está associado a 18,501 mil dólares (US$ 18.501) a mais no salário anual ajustado, mas a reta contabiliza só 1,3% da variação dos salários dos executivos. A maior parte da variação fica nos resíduos: outros fatores (tamanho da empresa, setor, experiência do executivo) também importam.</p>
   <div class="box trap"><span class="lbl">Cuidados com o \(R^2\)</span>
     <ul>
       <li>\(R^2\) baixo não torna o modelo necessariamente ruim.</li>
@@ -136,6 +145,14 @@
   <div class="mathblock">\[\hat\beta_1=\sum_{i}\omega_iy_i,\qquad \omega_i=\frac{x_i-\bar x}{\sum_j(x_j-\bar x)^2}\]</div>
   <p>O termo com \(\bar y\) some porque \(\sum\omega_i=0\). Observações com \(x_i&gt;\bar x\) recebem peso positivo; abaixo da média, negativo; em \(x_i=\bar x\), zero. Quanto mais longe da média, maior o peso. Se x varia pouco, o denominador é pequeno e a inclinação fica sensível aos valores de y.</p>
 
+  <h3>14. Amarrando os conceitos</h3>
+  <ol class="steps">
+    <li><div><strong>População:</strong> \(E(Y\mid X)=\beta_0+\beta_1X\), desconhecida.</div></li>
+    <li><div><strong>Amostra:</strong> os pares \((x_i,y_i)_{i=1}^n\).</div></li>
+    <li><div><strong>MQO:</strong> \(\min\sum_i\hat u_i^2\).</div></li>
+    <li><div><strong>Resultados:</strong> \(\hat Y\), \(\hat u\) e \(R^2\).</div></li>
+  </ol>
+  <p class="muted">A ponte da amostra para a população exige hipóteses probabilísticas (Aula 5); a ponte da associação para a causalidade exige hipóteses econômicas adicionais.</p>
   <div class="quiz" data-answer="a">
     <div class="qh">Lista 1 · Questão 31</div>
     <ol class="afirm">
@@ -244,6 +261,7 @@
   <p>Mesmos dados, com \(\ln(y)\) no lugar de y: ln(10) = 2,303, ln(12) = 2,485, ln(15) = 2,708, ln(15) = 2,708, ln(20) = 2,996. Pelo mesmo procedimento de MQO:</p>
   <div class="mathblock">\[\widehat{\ln(salario)}=1{,}674+0{,}080\times anosestudo\]</div>
   <p><strong>Aproximação:</strong> \(100\times0{,}080=8\%\) por ano de estudo. <strong>Exato:</strong> \(100(e^{0{,}080}-1)\approx8{,}33\%\). No modelo nível–nível eram R$ 1,15 por ano: uma mudança em unidades, não em percentual.</p>
+  <p>Na prática em R (Aulas 4–5), o salário simulado tem cauda longa à direita e o \(\ln(salario)\) fica mais simétrico. O log <em>frequentemente</em> reduz a assimetria, mas isso deve ser verificado nos dados, não tratado como automático.</p>
   <div class="box trap"><span class="lbl">Cuidados</span>
     <ul>
       <li>Log só existe para valores <strong>estritamente positivos</strong>. Lucro, que pode ser negativo, não entra em log direto.</li>
@@ -271,6 +289,7 @@
   <p>Modelos não lineares nos parâmetros podem minimizar \(\sum[y_i-f(x_i,\beta)]^2\), mas exigem métodos numéricos (mínimos quadrados não lineares).</p>
 
   <h3 id="derivadas">7. Derivadas do zero (para os Ex. 4 e 5 da Lista 2)</h3>
+  <p class="small"><strong>Resumo rápido.</strong> O curso completo (limite, todas as regras, máximos e mínimos, derivadas parciais e a derivação do MQO) está no módulo <a href="#mat-deriv">Derivadas</a>.</p>
   <p>A <strong>derivada</strong> de uma função num ponto é a inclinação da curva naquele ponto. Em econometria ela é o <strong>efeito marginal</strong>: quanto a média de Y muda para um aumento pequeno de X. Numa reta a derivada é sempre \(\beta_1\); numa curva, ela muda de ponto para ponto.</p>
   <div class="lousa">
     <div class="who">Na lousa do professor (mesma aula, 22:09)</div>

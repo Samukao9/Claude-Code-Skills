@@ -1,0 +1,540 @@
+
+<!-- ================= DICIONÁRIO DE FÓRMULAS ================= -->
+<section class="mod" id="dicionario" data-title="Dicionário">
+  <div class="eyebrow">Revisão · todas as fórmulas do curso</div>
+  <h2>Dicionário de fórmulas e unidades</h2>
+  <p>Cada fórmula do curso com o que ela significa em palavras, a sua <strong>unidade de medida</strong>, onde aparece e o erro mais comum. Digite no campo abaixo para filtrar (ex.: “variância”, “log”, “R2”, “Lista 2”).</p>
+  <div class="field"><label for="dictSearch">Buscar fórmula</label><input id="dictSearch" type="search" autocomplete="off" placeholder="ex.: erro padrão, elasticidade, Bayes"></div>
+  <p class="small muted" id="dictCount"></p>
+
+  <h3>Como pensar em unidades (análise dimensional)</h3>
+  <p>Toda fórmula carrega unidades. Conferir a unidade do resultado é uma forma rápida de achar erros. Exemplo com a Lista 2, Ex. 1 (área em m², aluguel em R$):</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Grandeza</th><th class="r">Valor</th><th>Unidade</th><th>Por quê</th></tr></thead>
+    <tbody>
+      <tr><td>\(\overline{area}\), \(s_{area}\)</td><td class="r">60; 10</td><td>m²</td><td>Média e desvio-padrão têm a unidade da variável</td></tr>
+      <tr><td>\(Var(area)\)</td><td class="r">100</td><td>(m²)²</td><td>Desvio ao quadrado</td></tr>
+      <tr><td>\(\overline{aluguel}\), \(s_{aluguel}\)</td><td class="r">2.000; 300</td><td>R$</td><td>—</td></tr>
+      <tr><td>\(Cov(area,aluguel)\)</td><td class="r">2.400</td><td>m² · R$</td><td>Produto de um desvio de área por um desvio de aluguel</td></tr>
+      <tr><td>\(Corr\)</td><td class="r">0,80</td><td>sem unidade</td><td>Cov ÷ (\(s_x s_y\)): m²·R$ ÷ (m²·R$)</td></tr>
+      <tr><td>\(\hat\beta_1=Cov/Var\)</td><td class="r">24</td><td>R$ por m²</td><td>(m²·R$) ÷ (m²)² = R$/m²</td></tr>
+      <tr><td>\(\hat\beta_0\), \(\hat y\), \(\hat u\)</td><td class="r">560; 2.240; 60</td><td>R$</td><td>Mesma unidade de y</td></tr>
+    </tbody>
+  </table></div>
+  <p>E com os 5 indivíduos da Aula 3 (anos de estudo × R$/hora):</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Grandeza</th><th class="r">Valor</th><th>Unidade</th></tr></thead>
+    <tbody>
+      <tr><td>\(SQT_x\)</td><td class="r">40</td><td>anos²</td></tr>
+      <tr><td>\(\hat\beta_1\)</td><td class="r">1,15</td><td>(R$/hora) por ano de estudo</td></tr>
+      <tr><td>SQR, \(\hat\sigma^2\)</td><td class="r">4,30; 1,433</td><td>(R$/hora)²</td></tr>
+      <tr><td>\(\hat\sigma\)</td><td class="r">1,197</td><td>R$/hora</td></tr>
+      <tr><td>\(\widehat{Var}(\hat\beta_1)\)</td><td class="r">0,0358</td><td>[(R$/hora) por ano]²</td></tr>
+      <tr><td>\(ep(\hat\beta_1)\)</td><td class="r">0,189</td><td>(R$/hora) por ano, a mesma de \(\hat\beta_1\)</td></tr>
+      <tr><td>t, \(R^2\)</td><td class="r">6,08; 0,925</td><td>sem unidade</td></tr>
+    </tbody>
+  </table></div>
+  <div class="box def"><span class="lbl">Por que as regras de escala da Aula 4 funcionam</span>
+    <p>\(\hat\beta_1\) tem unidade “y por x”. Se y passa de reais para milhares de reais, o mesmo efeito vira um número 1.000 vezes menor. Se x passa de anos para meses, “por mês” é 12 vezes menor que “por ano”. \(R^2\), t e elasticidades não têm unidade, então não mudam.</p>
+  </div>
+
+  <h3 class="dgroup">Estatística descritiva (Aula 2)</h3>
+  <div class="dgrid">
+    <div class="fentry" data-s="somatório soma sigma aula 2 (p1–p5) soma de todos os valores.">
+      <div class="fh"><b>Somatório</b><span class="src">Aula 2 (P1–P5)</span></div>
+      <div class="mathblock">\[\sum_{i=1}^{n}x_i=x_1+\dots+x_n\]</div>
+      <div class="fl"><span>Significa</span>Soma de todos os valores.</div>
+      <div class="fl"><span>Unidade</span>A mesma de x.</div>
+      <div class="fl warn"><span>Cuidado</span>\(\sum x_i^2\neq(\sum x_i)^2\) e \(\sum x_i/y_i\neq\sum x_i/\sum y_i\).</div>
+    </div>
+    <div class="fentry" data-s="média amostral media barra aulas 2 e 3 centro da amostra.">
+      <div class="fh"><b>Média amostral</b><span class="src">Aulas 2 e 3</span></div>
+      <div class="mathblock">\[\bar x=\frac1n\sum_{i=1}^{n}x_i\]</div>
+      <div class="fl"><span>Significa</span>Centro da amostra.</div>
+      <div class="fl"><span>Unidade</span>A mesma de x.</div>
+      <div class="fl warn"><span>Cuidado</span>A reta de MQO sempre passa por \((\bar x,\bar y)\).</div>
+    </div>
+    <div class="fentry" data-s="desvio em relação à média desvio aula 2 (p1) quanto cada observação se afasta da média. a soma é sempre zero.">
+      <div class="fh"><b>Desvio em relação à média</b><span class="src">Aula 2 (P1)</span></div>
+      <div class="mathblock">\[x_i-\bar x,\qquad\sum_i(x_i-\bar x)=0\]</div>
+      <div class="fl"><span>Significa</span>Quanto cada observação se afasta da média. A soma é sempre zero.</div>
+      <div class="fl"><span>Unidade</span>A mesma de x.</div>
+      <div class="fl warn"><span>Cuidado</span>Use a soma zero para conferir contas.</div>
+    </div>
+    <div class="fentry" data-s="soma dos quadrados totais de x sqtx variacao aulas 3 e 5 variação total de x: quanta informação a amostra tem para estimar a inclinação.">
+      <div class="fh"><b>Soma dos quadrados totais de x</b><span class="src">Aulas 3 e 5</span></div>
+      <div class="mathblock">\[SQT_x=\sum_i(x_i-\bar x)^2=\sum_ix_i^2-n\bar x^2\]</div>
+      <div class="fl"><span>Significa</span>Variação total de x: quanta informação a amostra tem para estimar a inclinação.</div>
+      <div class="fl"><span>Unidade</span>Unidade de x ao quadrado.</div>
+      <div class="fl warn"><span>Cuidado</span>Não confunda com SQT (variação de <em>y</em>). Tem que ser &gt; 0 (RLS.3).</div>
+    </div>
+    <div class="fentry" data-s="variância amostral variancia aula 2; lista 1 q6; lista 2 ex. 1 e 2 dispersão média ao quadrado em torno da média.">
+      <div class="fh"><b>Variância amostral</b><span class="src">Aula 2; Lista 1 Q6; Lista 2 Ex. 1 e 2</span></div>
+      <div class="mathblock">\[s_x^2=\widehat{Var}(x)=\frac{\sum_i(x_i-\bar x)^2}{n-1}\]</div>
+      <div class="fl"><span>Significa</span>Dispersão média ao quadrado em torno da média.</div>
+      <div class="fl"><span>Unidade</span>Unidade de x ao quadrado.</div>
+      <div class="fl warn"><span>Cuidado</span>Variância = desvio-padrão ao quadrado.</div>
+    </div>
+    <div class="fentry" data-s="desvio-padrão amostral desvio padrao dp aula 2; lista 2 ex. 1 quanto a variável tipicamente se afasta da média.">
+      <div class="fh"><b>Desvio-padrão amostral</b><span class="src">Aula 2; Lista 2 Ex. 1</span></div>
+      <div class="mathblock">\[s_x=\sqrt{s_x^2}\]</div>
+      <div class="fl"><span>Significa</span>Quanto a variável tipicamente se afasta da média.</div>
+      <div class="fl"><span>Unidade</span>A mesma de x.</div>
+      <div class="fl warn"><span>Cuidado</span>Na Lista 2 Ex. 1, \(s=10\Rightarrow Var=100\).</div>
+    </div>
+    <div class="fentry" data-s="covariância amostral covariancia aula 2; lista 2 ex. 1 e 2 se x e y andam juntos (+) ou em sentidos opostos (−).">
+      <div class="fh"><b>Covariância amostral</b><span class="src">Aula 2; Lista 2 Ex. 1 e 2</span></div>
+      <div class="mathblock">\[\widehat{Cov}(x,y)=\frac{\sum_i(x_i-\bar x)(y_i-\bar y)}{n-1}=\frac{\sum_ix_iy_i-n\bar x\bar y}{n-1}\]</div>
+      <div class="fl"><span>Significa</span>Se x e y andam juntos (+) ou em sentidos opostos (−).</div>
+      <div class="fl"><span>Unidade</span>Unidade de x vezes unidade de y.</div>
+      <div class="fl warn"><span>Cuidado</span>Depende das unidades; o sinal é o que importa para a direção.</div>
+    </div>
+    <div class="fentry" data-s="correlação correlacao aula 2; lista 2 ex. 1 associação linear padronizada.">
+      <div class="fh"><b>Correlação</b><span class="src">Aula 2; Lista 2 Ex. 1</span></div>
+      <div class="mathblock">\[Corr(x,y)=\frac{Cov(x,y)}{s_x\,s_y}\ \Rightarrow\ Cov=Corr\cdot s_x\cdot s_y\]</div>
+      <div class="fl"><span>Significa</span>Associação linear padronizada.</div>
+      <div class="fl"><span>Unidade</span>Sem unidade (entre −1 e 1).</div>
+      <div class="fl warn"><span>Cuidado</span>Correlação zero não é independência (\(Y=X^2\)).</div>
+    </div>
+  </div>
+  <h3 class="dgroup">Probabilidade (Aula 2)</h3>
+  <div class="dgrid">
+    <div class="fentry" data-s="esperança esperanca media populacional aula 2 média teórica (populacional), ponderada pelas probabilidades.">
+      <div class="fh"><b>Esperança</b><span class="src">Aula 2</span></div>
+      <div class="mathblock">\[E[X]=\sum_xx\,p(x)\quad\text{ou}\quad E[X]=\int x\,f(x)\,dx\]</div>
+      <div class="fl"><span>Significa</span>Média teórica (populacional), ponderada pelas probabilidades.</div>
+      <div class="fl"><span>Unidade</span>A mesma de X.</div>
+      <div class="fl warn"><span>Cuidado</span>Não precisa ser um valor possível (dado: 3,5).</div>
+    </div>
+    <div class="fentry" data-s="linearidade da esperança  aula 2; lista 1 q24 a esperança passa por somas e constantes.">
+      <div class="fh"><b>Linearidade da esperança</b><span class="src">Aula 2; Lista 1 Q24</span></div>
+      <div class="mathblock">\[E[aX+bY+c]=aE[X]+bE[Y]+c\]</div>
+      <div class="fl"><span>Significa</span>A esperança passa por somas e constantes.</div>
+      <div class="fl"><span>Unidade</span>A mesma de X.</div>
+    </div>
+    <div class="fentry" data-s="variância variancia populacional aula 2 dispersão teórica em torno da média.">
+      <div class="fh"><b>Variância</b><span class="src">Aula 2</span></div>
+      <div class="mathblock">\[Var(X)=E[(X-E[X])^2]=E[X^2]-(E[X])^2\]</div>
+      <div class="fl"><span>Significa</span>Dispersão teórica em torno da média.</div>
+      <div class="fl"><span>Unidade</span>Unidade de X ao quadrado.</div>
+      <div class="fl warn"><span>Cuidado</span>Desvio-padrão = raiz da variância.</div>
+    </div>
+    <div class="fentry" data-s="variância de transformações variancia combinacao linear aula 2; lista 1 q19 e q24 constante somada não espalha; fator multiplicativo entra ao quadrado.">
+      <div class="fh"><b>Variância de transformações</b><span class="src">Aula 2; Lista 1 Q19 e Q24</span></div>
+      <div class="mathblock">\[Var(a+bX)=b^2Var(X),\qquad Var(aX+bY+c)=a^2Var(X)+b^2Var(Y)+2ab\,Cov(X,Y)\]</div>
+      <div class="fl"><span>Significa</span>Constante somada não espalha; fator multiplicativo entra ao quadrado.</div>
+      <div class="fl"><span>Unidade</span>Unidade ao quadrado.</div>
+      <div class="fl warn"><span>Cuidado</span>Esquecer o termo \(2ab\,Cov\).</div>
+    </div>
+    <div class="fentry" data-s="covariância (definição e regras) covariancia aula 2; lista 1 q22, q24, q28 associação linear teórica; bilinear.">
+      <div class="fh"><b>Covariância (definição e regras)</b><span class="src">Aula 2; Lista 1 Q22, Q24, Q28</span></div>
+      <div class="mathblock">\[Cov(X,Y)=E[XY]-E[X]E[Y],\qquad Cov(aX+c,bY+d)=ab\,Cov(X,Y)\]</div>
+      <div class="fl"><span>Significa</span>Associação linear teórica; bilinear.</div>
+      <div class="fl"><span>Unidade</span>Unidade de X vezes unidade de Y.</div>
+      <div class="fl warn"><span>Cuidado</span>Somar constantes não muda covariância nem correlação.</div>
+    </div>
+    <div class="fentry" data-s="bernoulli binaria dummy proporcao aula 2; lista 1 q17 e q27 variável 0/1: a média é uma proporção.">
+      <div class="fh"><b>Bernoulli</b><span class="src">Aula 2; Lista 1 Q17 e Q27</span></div>
+      <div class="mathblock">\[E[D]=\pi,\qquad Var(D)=\pi(1-\pi)\]</div>
+      <div class="fl"><span>Significa</span>Variável 0/1: a média é uma proporção.</div>
+      <div class="fl"><span>Unidade</span>Sem unidade (proporção).</div>
+      <div class="fl warn"><span>Cuidado</span>Variância máxima em π = 0,5.</div>
+    </div>
+    <div class="fentry" data-s="probabilidade condicional e bayes condicional bayes aula 2 distribuição de y dentro do grupo x = x.">
+      <div class="fh"><b>Probabilidade condicional e Bayes</b><span class="src">Aula 2</span></div>
+      <div class="mathblock">\[p(y\mid x)=\frac{p(x,y)}{p(x)},\qquad p(y\mid x)=\frac{p(x\mid y)\,p(y)}{p(x)}\]</div>
+      <div class="fl"><span>Significa</span>Distribuição de Y dentro do grupo X = x.</div>
+      <div class="fl"><span>Unidade</span>Probabilidade (sem unidade).</div>
+      <div class="fl warn"><span>Cuidado</span>Independência: \(p(y\mid x)=p(y)\).</div>
+    </div>
+    <div class="fentry" data-s="lei das expectativas iteradas lei expectativas iteradas lei aulas 2 e 5; lista 1 q23 e q25 a média geral é a média das médias dos grupos, ponderada pelo tamanho de cada grupo.">
+      <div class="fh"><b>Lei das Expectativas Iteradas</b><span class="src">Aulas 2 e 5; Lista 1 Q23 e Q25</span></div>
+      <div class="mathblock">\[E[Y]=E\big[E[Y\mid X]\big]\]</div>
+      <div class="fl"><span>Significa</span>A média geral é a média das médias dos grupos, ponderada pelo tamanho de cada grupo.</div>
+      <div class="fl"><span>Unidade</span>A mesma de Y.</div>
+      <div class="fl warn"><span>Cuidado</span>É usada na prova de não viés da Aula 5.</div>
+    </div>
+    <div class="fentry" data-s="decomposição da variância  lista 1 q30 variação dentro dos grupos + variação entre as médias dos grupos.">
+      <div class="fh"><b>Decomposição da variância</b><span class="src">Lista 1 Q30</span></div>
+      <div class="mathblock">\[Var(Y)=E[Var(Y\mid X)]+Var[E(Y\mid X)]\]</div>
+      <div class="fl"><span>Significa</span>Variação dentro dos grupos + variação entre as médias dos grupos.</div>
+      <div class="fl"><span>Unidade</span>Unidade de Y ao quadrado.</div>
+    </div>
+    <div class="fentry" data-s="média amostral como estimador media amostral aula 2; lista 1 q26 não viesada; fica mais precisa com n maior.">
+      <div class="fh"><b>Média amostral como estimador</b><span class="src">Aula 2; Lista 1 Q26</span></div>
+      <div class="mathblock">\[E[\hat\mu]=\mu,\qquad Var(\hat\mu)=\frac{\sigma^2}{N},\qquad ep=\frac{\sigma}{\sqrt N}\]</div>
+      <div class="fl"><span>Significa</span>Não viesada; fica mais precisa com N maior.</div>
+      <div class="fl"><span>Unidade</span>\(\hat\mu\) e ep na unidade de Y; Var na unidade ao quadrado.</div>
+      <div class="fl warn"><span>Cuidado</span>Quadruplicar N corta o ep pela metade.</div>
+    </div>
+    <div class="fentry" data-s="estatística z e t da média teste z t aula 2 distância até \(\mu_0\) em unidades de erro-padrão.">
+      <div class="fh"><b>Estatística z e t da média</b><span class="src">Aula 2</span></div>
+      <div class="mathblock">\[Z=\frac{\hat\mu-\mu_0}{\sigma/\sqrt N},\qquad T=\frac{\hat\mu-\mu_0}{S/\sqrt N}\sim t_{N-1}\]</div>
+      <div class="fl"><span>Significa</span>Distância até \(\mu_0\) em unidades de erro-padrão.</div>
+      <div class="fl"><span>Unidade</span>Sem unidade.</div>
+      <div class="fl warn"><span>Cuidado</span>|Z| &gt; 1,96 rejeita a 5%.</div>
+    </div>
+    <div class="fentry" data-s="viés e erro quadrático médio  lista 1 q8; aula 5 viés: erro do centro. eqm: erro total médio.">
+      <div class="fh"><b>Viés e erro quadrático médio</b><span class="src">Lista 1 Q8; Aula 5</span></div>
+      <div class="mathblock">\[Vi\acute es=E[\hat\theta]-\theta,\qquad EQM=Var(\hat\theta)+Vi\acute es^2\]</div>
+      <div class="fl"><span>Significa</span>Viés: erro do centro. EQM: erro total médio.</div>
+      <div class="fl"><span>Unidade</span>Viés na unidade do parâmetro; EQM ao quadrado.</div>
+    </div>
+  </div>
+  <h3 class="dgroup">Regressão simples (Aula 3)</h3>
+  <div class="dgrid">
+    <div class="fentry" data-s="modelo populacional modelo aula 3; rls.1 y = parte sistemática + erro (outros fatores).">
+      <div class="fh"><b>Modelo populacional</b><span class="src">Aula 3; RLS.1</span></div>
+      <div class="mathblock">\[Y=\beta_0+\beta_1X+U\]</div>
+      <div class="fl"><span>Significa</span>Y = parte sistemática + erro (outros fatores).</div>
+      <div class="fl"><span>Unidade</span>\(\beta_0\) e U na unidade de Y; \(\beta_1\) em unid. Y / unid. X.</div>
+      <div class="fl warn"><span>Cuidado</span>U não é simples ruído: tem conteúdo econômico.</div>
+    </div>
+    <div class="fentry" data-s="média condicional zero e frp frp media condicional zero aulas 3 e 5 (rls.4) os fatores omitidos não se relacionam, em média, com x.">
+      <div class="fh"><b>Média condicional zero e FRP</b><span class="src">Aulas 3 e 5 (RLS.4)</span></div>
+      <div class="mathblock">\[E[U\mid X]=0\ \Rightarrow\ E[Y\mid X]=\beta_0+\beta_1X\]</div>
+      <div class="fl"><span>Significa</span>Os fatores omitidos não se relacionam, em média, com X.</div>
+      <div class="fl"><span>Unidade</span>—</div>
+      <div class="fl warn"><span>Cuidado</span>Não implica homocedasticidade nem independência.</div>
+    </div>
+    <div class="fentry" data-s="inclinação do mqo beta1 inclinacao mqo formula aula 3; listas 1 e 2 ★ variação média de ŷ por unidade a mais de x (associação).">
+      <div class="fh"><b>Inclinação do MQO</b><span class="src">Aula 3; Listas 1 e 2 ★</span></div>
+      <div class="mathblock">\[\hat\beta_1=\frac{\sum_i(x_i-\bar x)(y_i-\bar y)}{\sum_i(x_i-\bar x)^2}=\frac{\widehat{Cov}(x,y)}{\widehat{Var}(x)}\]</div>
+      <div class="fl"><span>Significa</span>Variação média de ŷ por unidade a mais de x (associação).</div>
+      <div class="fl"><span>Unidade</span>Unidade de y por unidade de x (ex.: R$ por m²).</div>
+      <div class="fl warn"><span>Cuidado</span>Calcule antes de \(\hat\beta_0\). Divisor n ou n − 1 cancela se for o mesmo.</div>
+    </div>
+    <div class="fentry" data-s="inclinação: outras formas  lista 2 ex. 1 e 2 as mesmas contas a partir de somas brutas ou de correlação e desvios-padrão.">
+      <div class="fh"><b>Inclinação: outras formas</b><span class="src">Lista 2 Ex. 1 e 2</span></div>
+      <div class="mathblock">\[\hat\beta_1=\frac{\sum x_iy_i-n\bar x\bar y}{\sum x_i^2-n\bar x^2}=Corr(x,y)\,\frac{s_y}{s_x}\]</div>
+      <div class="fl"><span>Significa</span>As mesmas contas a partir de somas brutas ou de correlação e desvios-padrão.</div>
+      <div class="fl"><span>Unidade</span>Unidade de y por unidade de x.</div>
+    </div>
+    <div class="fentry" data-s="intercepto do mqo beta0 intercepto formula aula 3; listas 1 e 2 ★ altura da reta em x = 0; garante que a reta passe por \((\bar x,\bar y)\).">
+      <div class="fh"><b>Intercepto do MQO</b><span class="src">Aula 3; Listas 1 e 2 ★</span></div>
+      <div class="mathblock">\[\hat\beta_0=\bar y-\hat\beta_1\bar x\]</div>
+      <div class="fl"><span>Significa</span>Altura da reta em x = 0; garante que a reta passe por \((\bar x,\bar y)\).</div>
+      <div class="fl"><span>Unidade</span>Unidade de y.</div>
+      <div class="fl warn"><span>Cuidado</span>Só tem leitura econômica se x = 0 fizer sentido.</div>
+    </div>
+    <div class="fentry" data-s="valor ajustado e resíduo residuo ajustado aula 3; lista 2 valor da reta para a observação i; distância do observado até a reta.">
+      <div class="fh"><b>Valor ajustado e resíduo</b><span class="src">Aula 3; Lista 2</span></div>
+      <div class="mathblock">\[\hat y_i=\hat\beta_0+\hat\beta_1x_i,\qquad \hat u_i=y_i-\hat y_i\]</div>
+      <div class="fl"><span>Significa</span>Valor da reta para a observação i; distância do observado até a reta.</div>
+      <div class="fl"><span>Unidade</span>Unidade de y.</div>
+      <div class="fl warn"><span>Cuidado</span>Resíduo = observado − ajustado. Resíduo ≠ erro.</div>
+    </div>
+    <div class="fentry" data-s="propriedades algébricas propriedades cpo aula 3; lista 1 q33, q37, q41 saem das cpos; valem em qualquer amostra.">
+      <div class="fh"><b>Propriedades algébricas</b><span class="src">Aula 3; Lista 1 Q33, Q37, Q41</span></div>
+      <div class="mathblock">\[\sum_i\hat u_i=0,\qquad\sum_ix_i\hat u_i=0,\qquad\bar{\hat y}=\bar y\]</div>
+      <div class="fl"><span>Significa</span>Saem das CPOs; valem em qualquer amostra.</div>
+      <div class="fl"><span>Unidade</span>—</div>
+      <div class="fl warn"><span>Cuidado</span>Ortogonalidade não é exogeneidade.</div>
+    </div>
+    <div class="fentry" data-s="sqt, sqe e sqr sqt sqe sqr aula 3; lista 2 ex. 3 variação total = sinal capturado pela reta + ruído residual.">
+      <div class="fh"><b>SQT, SQE e SQR</b><span class="src">Aula 3; Lista 2 Ex. 3</span></div>
+      <div class="mathblock">\[SQT=\sum(y_i-\bar y)^2,\quad SQE=\sum(\hat y_i-\bar y)^2,\quad SQR=\sum\hat u_i^2,\quad SQT=SQE+SQR\]</div>
+      <div class="fl"><span>Significa</span>Variação total = sinal capturado pela reta + ruído residual.</div>
+      <div class="fl"><span>Unidade</span>Unidade de y ao quadrado.</div>
+      <div class="fl warn"><span>Cuidado</span>O termo cruzado some pela ortogonalidade.</div>
+    </div>
+    <div class="fentry" data-s="coeficiente de determinação r2 r quadrado ajuste aula 3; listas 1 e 2 fração da variação amostral de y contabilizada pela reta.">
+      <div class="fh"><b>Coeficiente de determinação</b><span class="src">Aula 3; Listas 1 e 2</span></div>
+      <div class="mathblock">\[R^2=\frac{SQE}{SQT}=1-\frac{SQR}{SQT}\]</div>
+      <div class="fl"><span>Significa</span>Fração da variação amostral de y contabilizada pela reta.</div>
+      <div class="fl"><span>Unidade</span>Sem unidade (0 a 1 com intercepto).</div>
+      <div class="fl warn"><span>Cuidado</span>Não mede causalidade; não se compara Y com ln Y; não muda com unidades.</div>
+    </div>
+    <div class="fentry" data-s="variância do erro estimada sigma chapeu variancia erro aulas 3 e 5; lista 02 q4 dispersão dos pontos em torno da reta (não viesada sob rls.1–5).">
+      <div class="fh"><b>Variância do erro estimada</b><span class="src">Aulas 3 e 5; Lista 02 Q4</span></div>
+      <div class="mathblock">\[\hat\sigma^2=\frac{SQR}{n-2},\qquad\hat\sigma=\sqrt{\hat\sigma^2}\]</div>
+      <div class="fl"><span>Significa</span>Dispersão dos pontos em torno da reta (não viesada sob RLS.1–5).</div>
+      <div class="fl"><span>Unidade</span>\(\hat\sigma^2\) em unidade de y ao quadrado; \(\hat\sigma\) em unidade de y.</div>
+      <div class="fl warn"><span>Cuidado</span>n − 2 porque estimamos 2 parâmetros (pela origem: n − 1).</div>
+    </div>
+    <div class="fentry" data-s="inclinação como soma ponderada  prática aula 3; aula 5 cada y entra com peso que depende só de x.">
+      <div class="fh"><b>Inclinação como soma ponderada</b><span class="src">Prática Aula 3; Aula 5</span></div>
+      <div class="mathblock">\[\hat\beta_1=\sum_iw_iy_i,\quad w_i=\frac{x_i-\bar x}{SQT_x},\quad\sum w_i=0,\ \sum w_ix_i=1\]</div>
+      <div class="fl"><span>Significa</span>Cada y entra com peso que depende só de x.</div>
+      <div class="fl"><span>Unidade</span>\(w_i\) em 1/unidade de x.</div>
+    </div>
+  </div>
+  <h3 class="dgroup">Unidades e forma funcional (Aula 4)</h3>
+  <div class="dgrid">
+    <div class="fentry" data-s="mudança de escala escala unidade aula 4; lista 1 q42 e q44 trocar unidades muda os números, não a relação.">
+      <div class="fh"><b>Mudança de escala</b><span class="src">Aula 4; Lista 1 Q42 e Q44</span></div>
+      <div class="mathblock">\[\tilde y=by,\ \tilde x=cx\ \Rightarrow\ \tilde\beta_1=\frac bc\hat\beta_1,\quad\tilde\beta_0=b\hat\beta_0\]</div>
+      <div class="fl"><span>Significa</span>Trocar unidades muda os números, não a relação.</div>
+      <div class="fl"><span>Unidade</span>—</div>
+      <div class="fl warn"><span>Cuidado</span>\(R^2\) igual; escalar só x não muda \(\hat\beta_0\).</div>
+    </div>
+    <div class="fentry" data-s="transformação afim afim aula 4; lista 1 q51 e q59 escala muda inclinação; deslocamentos de origem mudam só o intercepto.">
+      <div class="fh"><b>Transformação afim</b><span class="src">Aula 4; Lista 1 Q51 e Q59</span></div>
+      <div class="mathblock">\[\tilde y=a+by,\ \tilde x=d+cx\ \Rightarrow\ \tilde\beta_1=\frac bc\hat\beta_1,\quad\tilde\beta_0=a+b\hat\beta_0-\frac bc\hat\beta_1d\]</div>
+      <div class="fl"><span>Significa</span>Escala muda inclinação; deslocamentos de origem mudam só o intercepto.</div>
+      <div class="fl"><span>Unidade</span>—</div>
+      <div class="fl warn"><span>Cuidado</span>Celsius → Fahrenheit é afim.</div>
+    </div>
+    <div class="fentry" data-s="log e variação percentual log percentual aula 4 diferença de logs ≈ variação proporcional.">
+      <div class="fh"><b>Log e variação percentual</b><span class="src">Aula 4</span></div>
+      <div class="mathblock">\[\Delta\ln x\approx\frac{\Delta x}{x},\qquad\Delta\ln x=\ln(1+g)\]</div>
+      <div class="fl"><span>Significa</span>Diferença de logs ≈ variação proporcional.</div>
+      <div class="fl"><span>Unidade</span>Sem unidade (proporção; × 100 = %).</div>
+      <div class="fl warn"><span>Cuidado</span>Boa só para variações pequenas.</div>
+    </div>
+    <div class="fentry" data-s="log–nível log nivel semielasticidade aula 4; lista 1 q52 e q60 +1 em x ⇒ cerca de \(100\beta_1\)% em y.">
+      <div class="fh"><b>Log–nível</b><span class="src">Aula 4; Lista 1 Q52 e Q60</span></div>
+      <div class="mathblock">\[\ln y=\beta_0+\beta_1x:\quad\%\Delta y\approx100\beta_1\Delta x,\quad\text{exato }100(e^{\beta_1\Delta x}-1)\%\]</div>
+      <div class="fl"><span>Significa</span>+1 em x ⇒ cerca de \(100\beta_1\)% em y.</div>
+      <div class="fl"><span>Unidade</span>\(\beta_1\) em proporção por unidade de x.</div>
+      <div class="fl warn"><span>Cuidado</span>A aproximação subestima para Δ grandes.</div>
+    </div>
+    <div class="fentry" data-s="nível–log nivel log aula 4; lista 1 q53 +1% em x ⇒ cerca de \(\beta_1/100\) unidades em y.">
+      <div class="fh"><b>Nível–log</b><span class="src">Aula 4; Lista 1 Q53</span></div>
+      <div class="mathblock">\[y=\beta_0+\beta_1\ln x:\quad\frac{dy}{dx}=\frac{\beta_1}{x},\quad+1\%\text{ em }x\Rightarrow\Delta y\approx\frac{\beta_1}{100}\]</div>
+      <div class="fl"><span>Significa</span>+1% em x ⇒ cerca de \(\beta_1/100\) unidades em y.</div>
+      <div class="fl"><span>Unidade</span>\(\beta_1\) na unidade de y.</div>
+      <div class="fl warn"><span>Cuidado</span>Exato: \(\beta_1\ln(1+g)\).</div>
+    </div>
+    <div class="fentry" data-s="log–log (elasticidade) log log elasticidade aula 4; lista 1 q54 +1% em x ⇒ cerca de \(\beta_1\)% em y.">
+      <div class="fh"><b>Log–log (elasticidade)</b><span class="src">Aula 4; Lista 1 Q54</span></div>
+      <div class="mathblock">\[\ln y=\beta_0+\beta_1\ln x:\quad\beta_1=\frac{d\ln y}{d\ln x},\quad\text{exato }100[(1+g)^{\beta_1}-1]\%\]</div>
+      <div class="fl"><span>Significa</span>+1% em x ⇒ cerca de \(\beta_1\)% em y.</div>
+      <div class="fl"><span>Unidade</span>Sem unidade (elasticidade).</div>
+      <div class="fl warn"><span>Cuidado</span>A aproximação superestima no exemplo 0,45.</div>
+    </div>
+    <div class="fentry" data-s="quadrático quadratico efeito marginal ponto retorno aula 4; lista 2 ex. 4 ★; lista 1 q55 efeito marginal que muda com x; ponto de retorno.">
+      <div class="fh"><b>Quadrático</b><span class="src">Aula 4; Lista 2 Ex. 4 ★; Lista 1 Q55</span></div>
+      <div class="mathblock">\[\frac{\partial E(Y\mid X)}{\partial X}=\beta_1+2\beta_2X,\qquad X^*=-\frac{\beta_1}{2\beta_2}\]</div>
+      <div class="fl"><span>Significa</span>Efeito marginal que muda com X; ponto de retorno.</div>
+      <div class="fl"><span>Unidade</span>Efeito em unid. y / unid. x; \(X^*\) em unidade de x.</div>
+      <div class="fl warn"><span>Cuidado</span>\(\beta_2&lt;0\) côncava (máximo); \(\beta_1\) é o efeito em X = 0.</div>
+    </div>
+    <div class="fentry" data-s="interação interacao aula 4; lista 1 q56 o efeito de \(x_1\) depende de \(x_2\).">
+      <div class="fh"><b>Interação</b><span class="src">Aula 4; Lista 1 Q56</span></div>
+      <div class="mathblock">\[\frac{\partial E(Y\mid X_1,X_2)}{\partial X_1}=\beta_1+\beta_3X_2\]</div>
+      <div class="fl"><span>Significa</span>O efeito de \(X_1\) depende de \(X_2\).</div>
+      <div class="fl"><span>Unidade</span>Unid. y / unid. \(X_1\).</div>
+      <div class="fl warn"><span>Cuidado</span>Mantenha \(X_1\) e \(X_2\) no modelo.</div>
+    </div>
+    <div class="fentry" data-s="retransformação do log  aula 4 (apêndice) exponenciar a previsão em log não dá a média de y.">
+      <div class="fh"><b>Retransformação do log</b><span class="src">Aula 4 (apêndice)</span></div>
+      <div class="mathblock">\[E[Y\mid X]\neq\exp(E[\ln Y\mid X]);\quad\text{erros normais: }E[Y\mid X=x]=e^{\beta_0+\beta_1x+\sigma^2/2}\]</div>
+      <div class="fl"><span>Significa</span>Exponenciar a previsão em log não dá a média de Y.</div>
+      <div class="fl"><span>Unidade</span>Unidade de y.</div>
+    </div>
+  </div>
+  <h3 class="dgroup">Propriedades do MQO (Aula 5)</h3>
+  <div class="dgrid">
+    <div class="fentry" data-s="equação-chave equacao chave aula 5 ★ estimativa = parâmetro + erro de estimação (combinação dos erros).">
+      <div class="fh"><b>Equação-chave</b><span class="src">Aula 5 ★</span></div>
+      <div class="mathblock">\[\hat\beta_1=\beta_1+\frac{1}{SQT_x}\sum_id_iu_i,\qquad d_i=x_i-\bar x\]</div>
+      <div class="fl"><span>Significa</span>Estimativa = parâmetro + erro de estimação (combinação dos erros).</div>
+      <div class="fl"><span>Unidade</span>Unid. y / unid. x.</div>
+      <div class="fl warn"><span>Cuidado</span>Base de todas as provas da aula.</div>
+    </div>
+    <div class="fentry" data-s="ausência de viés nao viesado vies aula 5 ★; lista 02 q1 o centro da distribuição amostral é o parâmetro.">
+      <div class="fh"><b>Ausência de viés</b><span class="src">Aula 5 ★; Lista 02 Q1</span></div>
+      <div class="mathblock">\[E(\hat\beta_1)=\beta_1,\quad E(\hat\beta_0)=\beta_0\quad\text{(RLS.1–RLS.4)}\]</div>
+      <div class="fl"><span>Significa</span>O centro da distribuição amostral é o parâmetro.</div>
+      <div class="fl"><span>Unidade</span>—</div>
+      <div class="fl warn"><span>Cuidado</span>Não diz que cada estimativa está perto; RLS.5 não é usada.</div>
+    </div>
+    <div class="fentry" data-s="variância da inclinação variancia beta1 precisao aula 5 ★; lista 02 q4 e q10 precisão: cai com mais variação em x, sobe com mais ruído.">
+      <div class="fh"><b>Variância da inclinação</b><span class="src">Aula 5 ★; Lista 02 Q4 e Q10</span></div>
+      <div class="mathblock">\[Var(\hat\beta_1\mid X)=\frac{\sigma^2}{SQT_x}\quad\text{(RLS.1–RLS.5)}\]</div>
+      <div class="fl"><span>Significa</span>Precisão: cai com mais variação em x, sobe com mais ruído.</div>
+      <div class="fl"><span>Unidade</span>(Unid. y / unid. x) ao quadrado.</div>
+      <div class="fl warn"><span>Cuidado</span>Precisa de RLS.2 e RLS.5.</div>
+    </div>
+    <div class="fentry" data-s="variância do intercepto  aula 5 (exercício) precisão do intercepto.">
+      <div class="fh"><b>Variância do intercepto</b><span class="src">Aula 5 (exercício)</span></div>
+      <div class="mathblock">\[Var(\hat\beta_0\mid X)=\frac{\sigma^2\,\frac1n\sum_ix_i^2}{SQT_x}\]</div>
+      <div class="fl"><span>Significa</span>Precisão do intercepto.</div>
+      <div class="fl"><span>Unidade</span>Unidade de y ao quadrado.</div>
+    </div>
+    <div class="fentry" data-s="não viés de σ̂² sigma n-2 aula 5 (apêndice) por que dividir por n − 2.">
+      <div class="fh"><b>Não viés de σ̂²</b><span class="src">Aula 5 (apêndice)</span></div>
+      <div class="mathblock">\[E\Big[\sum_i\hat u_i^2\Big]=(n-2)\sigma^2\ \Rightarrow\ E\left[\frac{SQR}{n-2}\right]=\sigma^2\]</div>
+      <div class="fl"><span>Significa</span>Por que dividir por n − 2.</div>
+      <div class="fl"><span>Unidade</span>Unidade de y ao quadrado.</div>
+      <div class="fl warn"><span>Cuidado</span>Os 3 termos: (n−1)σ² − 2σ² + σ².</div>
+    </div>
+    <div class="fentry" data-s="erros-padrão erro padrao ep aulas 5 e 6; lista 02 estimativas do desvio-padrão dos estimadores.">
+      <div class="fh"><b>Erros-padrão</b><span class="src">Aulas 5 e 6; Lista 02</span></div>
+      <div class="mathblock">\[ep(\hat\beta_1)=\frac{\hat\sigma}{\sqrt{SQT_x}},\qquad ep(\hat\beta_0)=\frac{\hat\sigma\sqrt{\sum x_i^2}}{\sqrt{n\,SQT_x}}\]</div>
+      <div class="fl"><span>Significa</span>Estimativas do desvio-padrão dos estimadores.</div>
+      <div class="fl"><span>Unidade</span>A mesma do coeficiente correspondente.</div>
+      <div class="fl warn"><span>Cuidado</span>ep = raiz da variância estimada.</div>
+    </div>
+    <div class="fentry" data-s="consistência consistencia plim aula 5 para onde o estimador vai com n muito grande.">
+      <div class="fh"><b>Consistência</b><span class="src">Aula 5</span></div>
+      <div class="mathblock">\[\text{plim}\,\hat\beta_1=\beta_1+\frac{Cov(X,U)}{Var(X)}\]</div>
+      <div class="fl"><span>Significa</span>Para onde o estimador vai com n muito grande.</div>
+      <div class="fl"><span>Unidade</span>Unid. y / unid. x.</div>
+      <div class="fl warn"><span>Cuidado</span>Consistente se Cov(X, U) = 0.</div>
+    </div>
+    <div class="fentry" data-s="viés de variável omitida (prática) variavel omitida vies prática 4–5 a regressão curta atribui a x o efeito que passa por z.">
+      <div class="fh"><b>Viés de variável omitida (prática)</b><span class="src">Prática 4–5</span></div>
+      <div class="mathblock">\[Y=2+0{,}8X+1{,}2Z+\varepsilon,\ Z=0{,}7X+v\ \Rightarrow\ E(\hat\alpha_1)=0{,}8+1{,}2\times0{,}7=1{,}64\]</div>
+      <div class="fl"><span>Significa</span>A regressão curta atribui a X o efeito que passa por Z.</div>
+      <div class="fl"><span>Unidade</span>Unid. y / unid. x.</div>
+      <div class="fl warn"><span>Cuidado</span>n maior não corrige.</div>
+    </div>
+    <div class="fentry" data-s="viés de atenuação  prática 4–5 erro de medida clássico em x empurra a inclinação para zero.">
+      <div class="fh"><b>Viés de atenuação</b><span class="src">Prática 4–5</span></div>
+      <div class="mathblock">\[\text{plim}\,\hat\beta_1=\beta_1\frac{Var(X^*)}{Var(X^*)+Var(r)}\]</div>
+      <div class="fl"><span>Significa</span>Erro de medida clássico em X empurra a inclinação para zero.</div>
+      <div class="fl"><span>Unidade</span>Unid. y / unid. x.</div>
+    </div>
+  </div>
+  <h3 class="dgroup">Inferência (Aula 6)</h3>
+  <div class="dgrid">
+    <div class="fentry" data-s="estatística t t teste hipotese aula 6 ★; lista 02 distância até \(h_0\) em erros-padrão.">
+      <div class="fh"><b>Estatística t</b><span class="src">Aula 6 ★; Lista 02</span></div>
+      <div class="mathblock">\[t=\frac{\hat\beta_1-\beta_{1,0}}{ep(\hat\beta_1)}\sim t_{n-2}\]</div>
+      <div class="fl"><span>Significa</span>Distância até \(H_0\) em erros-padrão.</div>
+      <div class="fl"><span>Unidade</span>Sem unidade.</div>
+      <div class="fl warn"><span>Cuidado</span>Nunca “aceitar” \(H_0\).</div>
+    </div>
+    <div class="fentry" data-s="intervalo de confiança intervalo confianca ic aula 6; lista 02 q7 e q10 valores de \(\beta_1\) compatíveis com os dados.">
+      <div class="fh"><b>Intervalo de confiança</b><span class="src">Aula 6; Lista 02 Q7 e Q10</span></div>
+      <div class="mathblock">\[IC=\hat\beta_1\pm t_{\alpha/2,\,n-2}\cdot ep(\hat\beta_1)\]</div>
+      <div class="fl"><span>Significa</span>Valores de \(\beta_1\) compatíveis com os dados.</div>
+      <div class="fl"><span>Unidade</span>A mesma de \(\beta_1\).</div>
+      <div class="fl warn"><span>Cuidado</span>0 fora do IC ⇔ rejeita \(H_0:\beta_1=0\).</div>
+    </div>
+    <div class="fentry" data-s="p-valor p valor aulas 2 e 6; lista 02 q2 e q5 compatibilidade dos dados com \(h_0\).">
+      <div class="fh"><b>p-valor</b><span class="src">Aulas 2 e 6; Lista 02 Q2 e Q5</span></div>
+      <div class="mathblock">\[p=P(\text{estatística tão ou mais extrema}\mid H_0)\]</div>
+      <div class="fl"><span>Significa</span>Compatibilidade dos dados com \(H_0\).</div>
+      <div class="fl"><span>Unidade</span>Probabilidade (0 a 1).</div>
+      <div class="fl warn"><span>Cuidado</span>Não é a probabilidade de \(H_0\) ser verdadeira.</div>
+    </div>
+    <div class="fentry" data-s="erros tipo i e ii e poder  aula 6; lista 02 q8 rejeitar h₀ verdadeira; não rejeitar h₀ falsa; detectar um efeito que existe.">
+      <div class="fh"><b>Erros tipo I e II e poder</b><span class="src">Aula 6; Lista 02 Q8</span></div>
+      <div class="mathblock">\[P(\text{tipo I})=\alpha,\quad P(\text{tipo II})=\beta,\quad\text{poder}=1-\beta\]</div>
+      <div class="fl"><span>Significa</span>Rejeitar H₀ verdadeira; não rejeitar H₀ falsa; detectar um efeito que existe.</div>
+      <div class="fl"><span>Unidade</span>Probabilidades.</div>
+    </div>
+    <div class="fentry" data-s="erro-padrão robusto (hc0) robusto hc0 heterocedasticidade aula 6; lista 02 q9 variância válida sob heterocedasticidade.">
+      <div class="fh"><b>Erro-padrão robusto (HC0)</b><span class="src">Aula 6; Lista 02 Q9</span></div>
+      <div class="mathblock">\[\widehat{Var}_{HC0}(\hat\beta_1)=\frac{\sum_i(x_i-\bar x)^2\hat u_i^2}{SQT_x^2}\]</div>
+      <div class="fl"><span>Significa</span>Variância válida sob heterocedasticidade.</div>
+      <div class="fl"><span>Unidade</span>(Unid. y / unid. x) ao quadrado.</div>
+      <div class="fl warn"><span>Cuidado</span>Pode ser maior ou menor; é assintótico.</div>
+    </div>
+    <div class="fentry" data-s="origem da distribuição t  aula 6 (apêndice; rls.6) trocar σ por \(\hat\sigma\) gera caudas mais gordas.">
+      <div class="fh"><b>Origem da distribuição t</b><span class="src">Aula 6 (apêndice; RLS.6)</span></div>
+      <div class="mathblock">\[Z=\frac{\hat\beta_1-\beta_1}{\sigma/\sqrt{SQT_x}}\sim N(0,1),\quad\frac{(n-2)\hat\sigma^2}{\sigma^2}\sim\chi^2_{n-2},\quad t_{n-2}=\frac{Z}{\sqrt{\chi^2_{n-2}/(n-2)}}\]</div>
+      <div class="fl"><span>Significa</span>Trocar σ por \(\hat\sigma\) gera caudas mais gordas.</div>
+      <div class="fl"><span>Unidade</span>Sem unidade.</div>
+    </div>
+    <div class="fentry" data-s="breusch–pagan breusch pagan aula 6 (apêndice) testa se a variância muda com x.">
+      <div class="fh"><b>Breusch–Pagan</b><span class="src">Aula 6 (apêndice)</span></div>
+      <div class="mathblock">\[\hat u_i^2=\delta_0+\delta_1X_i+v_i,\qquad LM=nR^2_{aux}\xrightarrow{d}\chi^2_1\]</div>
+      <div class="fl"><span>Significa</span>Testa se a variância muda com X.</div>
+      <div class="fl"><span>Unidade</span>Sem unidade.</div>
+      <div class="fl warn"><span>Cuidado</span>Não rejeitar não prova homocedasticidade.</div>
+    </div>
+  </div>
+  <h3 class="dgroup">Dummies e origem (Aula 7)</h3>
+  <div class="dgrid">
+    <div class="fentry" data-s="regressão com uma dummy dummy diferenca medias aula 7 média da referência e diferença de médias.">
+      <div class="fh"><b>Regressão com uma dummy</b><span class="src">Aula 7</span></div>
+      <div class="mathblock">\[\hat\beta_0=\bar y_0,\qquad\hat\beta_1=\bar y_1-\bar y_0\]</div>
+      <div class="fl"><span>Significa</span>Média da referência e diferença de médias.</div>
+      <div class="fl"><span>Unidade</span>Unidade de y.</div>
+      <div class="fl warn"><span>Cuidado</span>Diferença observada não é causal por si só.</div>
+    </div>
+    <div class="fentry" data-s="precisão da diferença  aula 7 grupos desbalanceados reduzem a precisão.">
+      <div class="fh"><b>Precisão da diferença</b><span class="src">Aula 7</span></div>
+      <div class="mathblock">\[Var(\hat\beta_1\mid D)=\sigma^2\left(\frac1{n_1}+\frac1{n_0}\right)\]</div>
+      <div class="fl"><span>Significa</span>Grupos desbalanceados reduzem a precisão.</div>
+      <div class="fl"><span>Unidade</span>Unidade de y ao quadrado.</div>
+    </div>
+    <div class="fentry" data-s="dummy em log dummy log aula 7 diferença percentual entre grupos.">
+      <div class="fh"><b>Dummy em log</b><span class="src">Aula 7</span></div>
+      <div class="mathblock">\[100[\exp(\beta_1)-1]\%\]</div>
+      <div class="fl"><span>Significa</span>Diferença percentual entre grupos.</div>
+      <div class="fl"><span>Unidade</span>Percentual.</div>
+      <div class="fl warn"><span>Cuidado</span>\(100\beta_1\)% só para \(\beta_1\) pequeno.</div>
+    </div>
+    <div class="fentry" data-s="regressão pela origem origem aula 7 reta forçada a passar por (0, 0).">
+      <div class="fh"><b>Regressão pela origem</b><span class="src">Aula 7</span></div>
+      <div class="mathblock">\[\hat\beta_1=\frac{\sum x_iy_i}{\sum x_i^2},\quad Var=\frac{\sigma^2}{\sum x_i^2},\quad Vi\acute es=\beta_0\frac{\sum x_i}{\sum x_i^2},\quad\hat\sigma^2=\frac{SQR}{n-1}\]</div>
+      <div class="fl"><span>Significa</span>Reta forçada a passar por (0, 0).</div>
+      <div class="fl"><span>Unidade</span>Unid. y / unid. x.</div>
+      <div class="fl warn"><span>Cuidado</span>Se \(\beta_0\neq0\), fica viesado; \(\sum\hat u_i\neq0\) em geral.</div>
+    </div>
+  </div>
+  <h3 class="dgroup">Matemática de apoio</h3>
+  <div class="dgrid">
+    <div class="fentry" data-s="derivadas básicas derivada regra módulo derivadas; lousa inclinação da curva num ponto (efeito marginal).">
+      <div class="fh"><b>Derivadas básicas</b><span class="src">Módulo Derivadas; lousa</span></div>
+      <div class="mathblock">\[(x^n)'=nx^{n-1},\quad(e^x)'=e^x,\quad(\ln x)'=\frac1x,\quad[f(g(x))]'=f'(g(x))\,g'(x)\]</div>
+      <div class="fl"><span>Significa</span>Inclinação da curva num ponto (efeito marginal).</div>
+      <div class="fl"><span>Unidade</span>Unid. y / unid. x.</div>
+      <div class="fl warn"><span>Cuidado</span>Constante deriva em zero.</div>
+    </div>
+    <div class="fentry" data-s="logaritmo log propriedades módulo log o log transforma produto em soma e potência em produto.">
+      <div class="fh"><b>Logaritmo</b><span class="src">Módulo Log</span></div>
+      <div class="mathblock">\[\ln(ab)=\ln a+\ln b,\quad\ln(a/b)=\ln a-\ln b,\quad\ln a^b=b\ln a\]</div>
+      <div class="fl"><span>Significa</span>O log transforma produto em soma e potência em produto.</div>
+      <div class="fl"><span>Unidade</span>—</div>
+      <div class="fl warn"><span>Cuidado</span>\(\ln(a+b)\neq\ln a+\ln b\); só para valores &gt; 0.</div>
+    </div>
+    <div class="fentry" data-s="integral definida  módulo integrais; aula 2 área sob a curva; na densidade, uma probabilidade.">
+      <div class="fh"><b>Integral definida</b><span class="src">Módulo Integrais; Aula 2</span></div>
+      <div class="mathblock">\[\int_a^bf(x)\,dx=F(b)-F(a),\quad F'=f\]</div>
+      <div class="fl"><span>Significa</span>Área sob a curva; na densidade, uma probabilidade.</div>
+      <div class="fl"><span>Unidade</span>Unid. f × unid. x.</div>
+    </div>
+    <div class="fentry" data-s="lagrangiano  módulo λ (fora do material) otimização com restrição; λ = preço sombra.">
+      <div class="fh"><b>Lagrangiano</b><span class="src">Módulo λ (fora do material)</span></div>
+      <div class="mathblock">\[\mathcal L=f(x,y)-\lambda[g(x,y)-c],\qquad\lambda=\frac{df^*}{dc}\]</div>
+      <div class="fl"><span>Significa</span>Otimização com restrição; λ = preço sombra.</div>
+      <div class="fl"><span>Unidade</span>Unid. f / unid. c.</div>
+    </div>
+  </div>
+  <h3>Cartões de revisão (unidades, hipóteses, conceitos)</h3>
+  <div class="flash-grid">
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Unidade</small>Unidade de \(\hat\beta_1\)</div><div class="face back">Unidade de y por unidade de x (ex.: R$ por m²)</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Unidade</small>Unidade de \(\hat\beta_0\)</div><div class="face back">A mesma de y</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Unidade</small>Unidade da variância</div><div class="face back">Unidade da variável ao quadrado</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Unidade</small>Unidade da covariância</div><div class="face back">Unidade de x vezes unidade de y</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Unidade</small>Correlação, \(R^2\), t, elasticidade</div><div class="face back">Sem unidade</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Unidade</small>SQT, SQE, SQR e \(\hat\sigma^2\)</div><div class="face back">Unidade de y ao quadrado</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Unidade</small>\(ep(\hat\beta_1)\)</div><div class="face back">A mesma de \(\hat\beta_1\) (y por x)</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Unidade</small>Coeficiente do log–nível</div><div class="face back">Proporção por unidade de x (× 100 = %)</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Aula 5</small>RLS.1</div><div class="face back">Linearidade nos parâmetros: \(y_i=\beta_0+\beta_1x_i+u_i\)</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Aula 5</small>RLS.2</div><div class="face back">Amostragem aleatória (pares iid)</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Aula 5</small>RLS.3</div><div class="face back">Variação em x: \(SQT_x&gt;0\)</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Aula 5</small>RLS.4</div><div class="face back">Média condicional zero: \(E[u\mid x]=0\). Sustenta o não viés</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Aula 5</small>RLS.5</div><div class="face back">Homocedasticidade: \(Var(u\mid x)=\sigma^2\). Dá a fórmula da variância e o BLUE</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Aula 6</small>RLS.6</div><div class="face back">\(u\mid X\sim N(0,\sigma^2)\): torna a t exata</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Aula 5</small>Não viesado × consistente</div><div class="face back">Não viesado: \(E(\hat\beta_1)=\beta_1\) com n fixo. Consistente: \(\text{plim}\,\hat\beta_1=\beta_1\) quando n → ∞</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Aula 5</small>Precisão × eficiência</div><div class="face back">Precisão: dispersão de um estimador. Eficiência: comparar estimadores (menor variância)</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Aula 5</small>BLUE</div><div class="face back">Best Linear Unbiased Estimator: menor variância entre lineares não viesados (Gauss–Markov)</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Prática 4–5</small>Variável omitida</div><div class="face back">Estima-se \(\beta_1+\) (efeito de Z em Y) × (inclinação de Z em X): 0,8 + 1,2 × 0,7 = 1,64</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Prática 4–5</small>Erro de medida em X</div><div class="face back">Atenuação: a inclinação vai para zero</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Aula 6</small>Erro tipo I × tipo II</div><div class="face back">I: rejeitar H₀ verdadeira (α). II: não rejeitar H₀ falsa (β)</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Aula 6</small>p-valor</div><div class="face back">P(estatística tão ou mais extrema | H₀). Não é P(H₀)</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Aula 6</small>Robusto</div><div class="face back">Corrige a incerteza sob heterocedasticidade; não corrige viés</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Log</small>\(\ln(ab)\) e \(\ln(a^b)\)</div><div class="face back">\(\ln a+\ln b\) e \(b\ln a\)</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Log</small>Exato no log–nível</div><div class="face back">\(100(e^{\beta_1\Delta x}-1)\%\)</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Derivada</small>Regra da cadeia</div><div class="face back">\([f(g(x))]'=f'(g(x))\cdot g'(x)\)</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Derivada</small>Máximo ou mínimo?</div><div class="face back">\(f'=0\); \(f''\lt0\) máximo, \(f''&gt;0\) mínimo</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Integral</small>Teorema Fundamental</div><div class="face back">\(\int_a^bf=F(b)-F(a)\), com \(F'=f\)</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>λ</small>Multiplicador de Lagrange</div><div class="face back">\(\lambda=df^*/dc\): quanto o ótimo muda se a restrição afrouxa 1 unidade</div></div></div>
+  </div>
+  <div class="quiz" data-answer="c"><div class="qh">Unidades</div>
+    <p>y é o salário mensal em reais e x são anos de experiência. A unidade de \(ep(\hat\beta_1)\) é:</p>
+    <div class="opts"><button data-k="a">a) reais</button><button data-k="b">b) anos</button><button data-k="c">c) reais por ano de experiência</button><button data-k="d">d) sem unidade</button></div>
+    <div class="fb" hidden>O erro-padrão tem a mesma unidade do coeficiente que ele mede. Por isso t = coeficiente ÷ ep não tem unidade.</div></div>
+  <div class="quiz" data-answer="a"><div class="qh">Unidades</div>
+    <p>Se x está em metros e y em reais, qual é a unidade de \(SQT_x\)?</p>
+    <div class="opts"><button data-k="a">a) metros ao quadrado</button><button data-k="b">b) reais ao quadrado</button><button data-k="c">c) reais por metro</button><button data-k="d">d) sem unidade</button></div>
+    <div class="fb" hidden>\(SQT_x=\sum(x_i-\bar x)^2\) soma desvios de x ao quadrado. SQT (sem o x) seria em reais ao quadrado.</div></div>
+  <div class="done-row"><button class="btn done-btn" data-done="dicionario" aria-pressed="false">Marcar como concluído</button></div>
+</section>

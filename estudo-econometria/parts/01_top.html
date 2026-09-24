@@ -3,14 +3,14 @@
   <button class="btn menu-btn" id="menuBtn" aria-controls="toc" aria-expanded="false">☰ Sumário</button>
   <span class="brand">Econometria I</span>
   <div class="grow"><div class="pbar" aria-hidden="true"><i id="pfill"></i></div></div>
-  <span class="ptext" id="ptext">0 de 16 módulos</span>
+  <span class="ptext" id="ptext">0 de 22 módulos</span>
   <a class="btn" href="#formulas">β̂ Fórmulas</a>
 </header>
 
 <div class="hero">
   <div>
     <h1>Econometria I, do zero absoluto <span class="hat">à P1</span></h1>
-    <p class="lead">Todo o conteúdo das suas aulas, listas, gabaritos e fotos da lousa, em ordem de aprendizado. Começa em “o que é uma variável” e termina nas demonstrações da Aula 5. Nada aqui vem de fora do seu material.</p>
+    <p class="lead">Todo o conteúdo das suas aulas, listas, gabaritos e fotos da lousa, em ordem de aprendizado, mais um curso de matemática de apoio (log, derivada, integral e λ). Começa em “o que é uma variável” e termina nas demonstrações da Aula 5. O que vai além do seu material está sempre marcado.</p>
     <div class="actions">
       <a class="btn primary" href="#zero">Começar do zero</a>
       <a class="btn" href="#formulas">As 2 fórmulas</a>
@@ -36,9 +36,16 @@
     <li><a href="#inicio" data-mod="inicio"><span class="n">00</span><span>Comece aqui: plano de 6 dias</span></a></li>
     <li><a href="#formulas" data-mod="formulas"><span class="n">★</span><span>As 2 fórmulas para decorar <b class="star">★</b></span></a></li>
   </ol>
-  <h3>Teoria em ordem</h3>
+  <h3>Base</h3>
   <ol>
     <li><a href="#zero" data-mod="zero"><span class="n">M0</span><span>Do zero: variável, média, Σ</span></a></li>
+    <li><a href="#mat-log" data-mod="mat-log"><span class="n">∫1</span><span>Funções, exponencial e log</span></a></li>
+    <li><a href="#mat-deriv" data-mod="mat-deriv"><span class="n">∫2</span><span>Derivadas do zero ao MQO</span></a></li>
+    <li><a href="#mat-int" data-mod="mat-int"><span class="n">∫3</span><span>Integrais e probabilidade</span></a></li>
+    <li><a href="#mat-lambda" data-mod="mat-lambda"><span class="n">∫4</span><span>λ: Lagrange e distribuições</span></a></li>
+  </ol>
+  <h3>Teoria em ordem</h3>
+  <ol>
     <li><a href="#aula1" data-mod="aula1"><span class="n">A1</span><span>Natureza da econometria</span></a></li>
     <li><a href="#aula2" data-mod="aula2"><span class="n">A2</span><span>Ferramentas de matemática e estatística</span></a></li>
     <li><a href="#aula3" data-mod="aula3"><span class="n">A3</span><span>Regressão simples e MQO</span></a></li>
@@ -52,9 +59,11 @@
     <li><a href="#lista2" data-mod="lista2"><span class="n">L2</span><span>Lista 2 numérica: Ex. 1 e 4 <b class="star">★</b></span></a></li>
     <li><a href="#lista02" data-mod="lista02"><span class="n">L02</span><span>Lista 02: propriedades e inferência <b class="star">★</b></span></a></li>
     <li><a href="#lista1" data-mod="lista1"><span class="n">L1</span><span>Lista 1: as 60 questões</span></a></li>
+    <li><a href="#praticas" data-mod="praticas"><span class="n">R</span><span>Exercícios das práticas em R</span></a></li>
   </ol>
   <h3>Treino e revisão</h3>
   <ol>
+    <li><a href="#dicionario" data-mod="dicionario"><span class="n">Σ</span><span>Dicionário de fórmulas e unidades</span></a></li>
     <li><a href="#calc" data-mod="calc"><span class="n">⚙</span><span>Calculadora de MQO passo a passo</span></a></li>
     <li><a href="#simulado" data-mod="simulado"><span class="n">?</span><span>Simulado final</span></a></li>
     <li><a href="#cola" data-mod="cola"><span class="n">✎</span><span>Cola de véspera e pegadinhas</span></a></li>
@@ -67,7 +76,8 @@
 <section class="mod" id="inicio" data-title="Comece aqui">
   <div class="eyebrow">Antes de tudo</div>
   <h2>Comece aqui</h2>
-  <p>Este guia foi montado a partir de 20 materiais seus: a apresentação do curso, as Aulas 1 a 6, a aula de dummies, as três práticas em R, a Lista 1, a Lista 2 numérica e a Lista 02 de propriedades, os três gabaritos e as fotos da lousa. Onde uma explicação precisou ficar mais simples, ela continua dizendo exatamente o que o material diz.</p>
+  <p>Este guia foi montado a partir de todo o material que você enviou: a apresentação do curso, as Aulas 1 a 6, a aula de dummies, as três práticas em R, a Lista 1, a Lista 2 numérica e a Lista 02 de propriedades, os três gabaritos e as fotos da lousa. Onde uma explicação precisou ficar mais simples, ela continua dizendo exatamente o que o material diz.</p>
+  <p>Há também quatro módulos de <strong>Matemática de apoio</strong> (log, derivadas, integrais e λ), que você pediu, e um <a href="#dicionario">dicionário com todas as fórmulas</a>, o que cada uma significa e a sua unidade de medida. Tudo que não está nos seus PDFs vem marcado com <span class="tag">Matemática de apoio</span> ou <span class="tag warn">Fora do material da P1</span>.</p>
 
   <h3>Como usar</h3>
   <ol class="steps">
@@ -100,12 +110,13 @@
 
   <h3>Plano de 6 dias</h3>
   <div class="plan">
-    <div class="day"><div class="d">Qui 24/09<small>hoje</small></div><div>Módulo 0 → <a href="#formulas">As 2 fórmulas</a> (decorar com os cartões) → Aula 1 → Aula 2.</div></div>
+    <div class="day"><div class="d">Qua 23/09<small>à noite</small></div><div>Módulo 0 → <a href="#formulas">As 2 fórmulas</a> (decore com os cartões).</div></div>
+    <div class="day"><div class="d">Qui 24/09</div><div><a href="#mat-log">Log</a> e <a href="#mat-deriv">derivadas</a> → Aula 1 → Aula 2 (com a parte de <a href="#mat-int">integrais</a>).</div></div>
     <div class="day"><div class="d">Sex 25/09</div><div>Aula 3 inteira (derivação do MQO e exemplo dos 5 indivíduos) → <a href="#calc">calculadora</a> → Lista 2, Ex. 1, 2 e 3.</div></div>
-    <div class="day"><div class="d">Sáb 26/09</div><div>Aula 4 com a parte de derivadas → Lista 2, Ex. 4 e 5 → Lista 1, questões 31 a 60.</div></div>
+    <div class="day"><div class="d">Sáb 26/09</div><div>Aula 4 → Lista 2, Ex. 4 e 5 → Lista 1, questões 31 a 60. Se sobrar tempo: <a href="#mat-lambda">λ</a> e exercícios das práticas.</div></div>
     <div class="day"><div class="d">Dom 27/09</div><div><strong>Aula 5 inteira</strong>, incluindo as demonstrações do apêndice. Refaça à mão a prova de \(E(\hat\beta_1)=\beta_1\) e de \(Var(\hat\beta_1)=\sigma^2/SQT_x\).</div></div>
     <div class="day"><div class="d">Seg 28/09</div><div>Aula 6 → Lista 02 inteira (questões 1 a 10) → Lista 1, questões 1 a 30.</div></div>
-    <div class="day"><div class="d">Ter 29/09</div><div>Refaça Lista 2, Ex. 1 e 4, sem olhar. Use os geradores de treino. Faça o <a href="#simulado">simulado</a>. Dummies, se o professor confirmar.</div></div>
+    <div class="day"><div class="d">Ter 29/09</div><div>Refaça Lista 2, Ex. 1 e 4, sem olhar. Use os geradores de treino. Revise o <a href="#dicionario">dicionário de fórmulas</a>. Faça o <a href="#simulado">simulado</a>. Dummies, se o professor confirmar.</div></div>
     <div class="day exam"><div class="d">Qua 30/09<small>P1</small></div><div>Só a <a href="#cola">cola de véspera</a> e os cartões de fórmulas. Nada de conteúdo novo.</div></div>
   </div>
 

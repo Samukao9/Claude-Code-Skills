@@ -186,3 +186,82 @@ def mini(x0,title,fn,xmin=0.2):
 body=mini(0,"Nível–nível",lambda x:1+0.8*x)+mini(145,"Log–nível",lambda x:0.8*math.exp(0.25*x))+mini(290,"Nível–log",lambda x:2+3.2*math.log(x),xmin=0.55)+mini(435,"Log–log (β₁<1)",lambda x:3*x**0.5)
 save("formas", svg(575,142,body,"Formato das quatro formas funcionais"))
 print(sorted(os.listdir(OUT)))
+
+# ================= v2: matemática de apoio e lacunas =================
+# ---------- tangente x secante: f(x)=x² ----------
+P=Plot(520,320, 58,500,18,270, 0,5,0,20)
+b=[P.axes([0,1,2,3,4,5],[0,5,10,15,20],"x","f(x) = x²")]
+pts=[f"{f(P.X(i/50))},{f(P.Y((i/50)**2))}" for i in range(0,224)]
+b.append(f'<polyline class="fit" points="{" ".join(pts)}"/>')
+# secant through (3,9),(4,16): slope 7
+x1,x2=1.9,4.4
+b.append(f'<line class="tgn" x1="{f(P.X(x1))}" y1="{f(P.Y(9+7*(x1-3)))}" x2="{f(P.X(x2))}" y2="{f(P.Y(9+7*(x2-3)))}"/>')
+# tangent at 3: slope 6
+b.append(f'<line class="tg" x1="{f(P.X(1.8))}" y1="{f(P.Y(9+6*(1.8-3)))}" x2="{f(P.X(4.6))}" y2="{f(P.Y(9+6*(4.6-3)))}"/>')
+for x in (3,4): b.append(f'<circle class="pt" cx="{f(P.X(x))}" cy="{f(P.Y(x*x))}" r="5"/>')
+b.append(f'<text class="an resc" x="{f(P.X(4.05))}" y="{f(P.Y(17.5))}">secante (3→4): inclinação 7</text>')
+b.append(f'<text class="an" x="{f(P.X(3.2))}" y="{f(P.Y(8.2))}" style="fill:var(--green)">tangente em x = 3: inclinação 6</text>')
+save("tangente", svg(520,320,'\n'.join(b),"Reta secante e reta tangente à parábola x ao quadrado"))
+
+# ---------- exponencial e ln ----------
+P=Plot(520,320, 58,500,18,270, -2,5,-2,5)
+b=[P.axes([-2,-1,0,1,2,3,4,5],[-2,-1,0,1,2,3,4,5],"x","y")]
+b.append(f'<line class="mean" x1="{f(P.X(-2))}" y1="{f(P.Y(-2))}" x2="{f(P.X(5))}" y2="{f(P.Y(5))}"/>')
+pts=[f"{f(P.X(x/100))},{f(P.Y(math.exp(x/100)))}" for x in range(-200,161)]
+b.append(f'<polyline class="fit" points="{" ".join(pts)}"/>')
+pts=[f"{f(P.X(x/100))},{f(P.Y(math.log(x/100)))}" for x in range(14,501)]
+b.append(f'<polyline class="cC" points="{" ".join(pts)}"/>')
+b.append(f'<circle class="pt" cx="{f(P.X(0))}" cy="{f(P.Y(1))}" r="4"/><circle class="pt" cx="{f(P.X(1))}" cy="{f(P.Y(0))}" r="4"/>')
+b.append(f'<text class="an fitc" x="{f(P.X(1.7))}" y="{f(P.Y(4.6))}">y = eˣ</text>')
+b.append(f'<text class="an resc" x="{f(P.X(3.6))}" y="{f(P.Y(1.7))}">y = ln x</text>')
+b.append(f'<text class="an" x="{f(P.X(3.3))}" y="{f(P.Y(3.9))}">y = x (espelho)</text>')
+b.append(f'<text class="an" x="{f(P.X(0.12))}" y="{f(P.Y(1.25))}">(0, 1)</text><text class="an" x="{f(P.X(1.1))}" y="{f(P.Y(-0.35))}">(1, 0)</text>')
+save("explog", svg(520,320,'\n'.join(b),"Gráficos da exponencial e do logaritmo natural, espelhados na reta y igual a x"))
+
+# ---------- soma de retângulos: ∫0^2 x dx ----------
+P=Plot(520,300, 58,500,18,250, 0,2.2,0,2.4)
+b=[P.axes([0,0.5,1,1.5,2],[0,0.5,1,1.5,2],"x","f(x) = x",xfmt=lambda v:(f"{v:g}").replace('.',','),yfmt=lambda v:(f"{v:g}").replace('.',','))]
+for k in range(4):
+    x0=k*0.5; h=x0+0.5
+    b.append(f'<rect class="bandf" x="{f(P.X(x0))}" y="{f(P.Y(h))}" width="{f(P.X(0.5)-P.X(0))}" height="{f(P.Y(0)-P.Y(h))}" style="stroke:var(--marker);stroke-width:1"/>')
+b.append(f'<polygon class="rej" points="{f(P.X(0))},{f(P.Y(0))} {f(P.X(2))},{f(P.Y(2))} {f(P.X(2))},{f(P.Y(0))}"/>')
+b.append(f'<line class="fit" x1="{f(P.X(0))}" y1="{f(P.Y(0))}" x2="{f(P.X(2.2))}" y2="{f(P.Y(2.2))}"/>')
+b.append(f'<text class="an" x="{f(P.X(0.1))}" y="{f(P.Y(2.15))}">4 retângulos pela direita: 2,5 · área exata (triângulo): 2</text>')
+save("riemann", svg(520,300,'\n'.join(b),"Área sob f de x igual a x aproximada por retângulos"))
+
+# ---------- Uniforme U(0,10) ----------
+P=Plot(520,260, 58,500,18,210, -1,11,0,0.14)
+b=[P.axes([0,2,5,10],[0,0.1],"x","f(x)",yfmt=lambda v:(f"{v:g}").replace('.',','),grid=False)]
+b.append(f'<rect class="rej" x="{f(P.X(2))}" y="{f(P.Y(0.1))}" width="{f(P.X(5)-P.X(2))}" height="{f(P.Y(0)-P.Y(0.1))}"/>')
+b.append(f'<polyline class="fit" points="{f(P.X(-1))},{f(P.Y(0))} {f(P.X(0))},{f(P.Y(0))} {f(P.X(0))},{f(P.Y(0.1))} {f(P.X(10))},{f(P.Y(0.1))} {f(P.X(10))},{f(P.Y(0))} {f(P.X(11))},{f(P.Y(0))}"/>')
+b.append(f'<text class="an" x="{f(P.X(3.5))}" y="{f(P.Y(0.05))}" text-anchor="middle">área = 3 × 0,1 = 0,3</text>')
+b.append(f'<text class="an fitc" x="{f(P.X(7.5))}" y="{f(P.Y(0.115))}" text-anchor="middle">f(x) = 1/10</text>')
+save("uniforme", svg(520,260,'\n'.join(b),"Densidade uniforme entre 0 e 10 com a área entre 2 e 5 destacada"))
+
+# ---------- R² alto x baixo ----------
+def r2panel(x0,title,spread,seed):
+    P=Plot(0,0, x0+20,x0+250,20,190, 0,10,0,12)
+    o=[f'<line class="ax" x1="{P.L}" y1="{P.B}" x2="{P.R}" y2="{P.B}"/>',f'<line class="ax" x1="{P.L}" y1="{P.T}" x2="{P.L}" y2="{P.B}"/>']
+    o.append(f'<line class="fit" x1="{f(P.X(0))}" y1="{f(P.Y(1.5))}" x2="{f(P.X(10))}" y2="{f(P.Y(9.5))}"/>')
+    random.seed(seed)
+    for k in range(30):
+        x=random.uniform(0.4,9.6); y=1.5+0.8*x+random.gauss(0,spread)
+        y=max(0.2,min(11.8,y))
+        o.append(f'<circle class="pt sm" cx="{f(P.X(x))}" cy="{f(P.Y(y))}" r="2.8"/>')
+    o.append(f'<text class="an" x="{f((P.L+P.R)/2)}" y="212" text-anchor="middle">{title}</text>')
+    return '\n'.join(o)
+save("r2", svg(560,222, r2panel(0,"R² ≈ 0,96: pontos colados na reta",0.45,11)+r2panel(290,"R² ≈ 0,20: pontos espalhados",3.2,12),"Mesma reta com R quadrado alto e baixo"))
+
+# ---------- Lagrange: max xy s.a. 2x+4y=40 ----------
+P=Plot(520,320, 58,500,18,270, 0,22,0,12)
+b=[P.axes([0,5,10,15,20],[0,2,4,6,8,10,12],"x","y")]
+b.append(f'<line class="tgn" x1="{f(P.X(0))}" y1="{f(P.Y(10))}" x2="{f(P.X(20))}" y2="{f(P.Y(0))}"/>')
+for U,cls in [(50,"fit"),(30,"cB"),(80,"cB")]:
+    pts=[f"{f(P.X(x/10))},{f(P.Y(U/(x/10)))}" for x in range(int(U/12*10)+1,221)]
+    b.append(f'<polyline class="{cls}" points="{" ".join(pts)}"/>')
+b.append(f'<circle class="pt" cx="{f(P.X(10))}" cy="{f(P.Y(5))}" r="5"/>')
+b.append(f'<text class="an" x="{f(P.X(10.6))}" y="{f(P.Y(5.6))}">ótimo (10, 5): xy = 50, λ = 2,5</text>')
+b.append(f'<text class="an resc" x="{f(P.X(13.2))}" y="{f(P.Y(1.1))}">restrição 2x + 4y = 40</text>')
+b.append(f'<text class="an fitc" x="{f(P.X(15.5))}" y="{f(P.Y(3.8))}">xy = 50</text>')
+save("lagrange", svg(520,320,'\n'.join(b),"Curva xy igual a 50 tangente à restrição 2x mais 4y igual a 40"))
+print("v2 figs ok")

@@ -1,0 +1,122 @@
+
+<!-- ================= MATEMÁTICA 3: INTEGRAIS ================= -->
+<section class="mod" id="mat-int" data-title="Integrais">
+  <div class="eyebrow"><span class="tag">Matemática de apoio</span> curso completo · usado na Aula 2 (variáveis contínuas)</div>
+  <h2>Integrais: área, antiderivada e probabilidade</h2>
+  <p>No seu material, a integral aparece na Aula 2: a probabilidade de uma variável contínua é uma <strong>área</strong> sob a densidade, \(P(a\lt X\le b)=\int_a^bf(x)dx\), e a esperança é \(E[X]=\int x\,f(x)dx\). Este módulo ensina integral do zero até essas aplicações. Substituição e integração por partes vão além do que a prova pede, mas estão aqui porque você pediu o curso completo.</p>
+
+  <h3>1. A ideia: somar área</h3>
+  <p>A integral \(\int_a^bf(x)\,dx\) é a <strong>área entre a curva e o eixo x</strong>, de a até b. Para calcular uma área curva, cortamos em retângulos finos, somamos e deixamos a largura ir a zero.</p>
+  <figure><div class="scroll">FIG:riemann</div><figcaption>\(\int_0^2x\,dx\): com 4 retângulos de largura 0,5 medidos pela direita, a soma dá 2,5; pela esquerda, 1,5. A área exata (o triângulo vermelho, base 2 e altura 2) é 2. Mais retângulos ⇒ soma mais perto de 2.</figcaption></figure>
+  <p>O símbolo ∫ é um “S” alongado, de <em>soma</em>. O dx lembra a largura infinitesimal dos retângulos. <strong>Unidade:</strong> a integral tem a unidade de f vezes a unidade de x (numa densidade, isso dá probabilidade, sem unidade).</p>
+
+  <h3>2. Antiderivada: desfazer a derivada</h3>
+  <p>Uma <strong>antiderivada</strong> (ou integral indefinida) de f é uma função F cuja derivada é f: \(F'(x)=f(x)\). Como a derivada de uma constante é zero, somamos “+ C”:</p>
+  <div class="mathblock">\[\int f(x)\,dx=F(x)+C\]</div>
+  <div class="tbl"><table>
+    <thead><tr><th>Regra</th><th>Fórmula</th><th>Confira derivando</th></tr></thead>
+    <tbody>
+      <tr><td>Constante</td><td>\(\int k\,dx=kx+C\)</td><td>\((kx)'=k\)</td></tr>
+      <tr><td>Potência (\(n\neq-1\))</td><td>\(\int x^n\,dx=\dfrac{x^{n+1}}{n+1}+C\)</td><td>\(\left(\frac{x^{n+1}}{n+1}\right)'=x^n\)</td></tr>
+      <tr><td>\(1/x\) (o caso n = −1)</td><td>\(\int\frac1x\,dx=\ln|x|+C\)</td><td>\((\ln x)'=\frac1x\)</td></tr>
+      <tr><td>Exponencial</td><td>\(\int e^x\,dx=e^x+C\); \(\int e^{ax}dx=\frac{e^{ax}}{a}+C\)</td><td>\((e^{ax}/a)'=e^{ax}\)</td></tr>
+      <tr><td>Constante vezes</td><td>\(\int k\,f\,dx=k\int f\,dx\)</td><td>—</td></tr>
+      <tr><td>Soma</td><td>\(\int(f+g)\,dx=\int f\,dx+\int g\,dx\)</td><td>—</td></tr>
+    </tbody>
+  </table></div>
+  <p>Exemplos: \(\int(3x^2+2)\,dx=x^3+2x+C\); \(\int\sqrt x\,dx=\int x^{1/2}dx=\frac{x^{3/2}}{3/2}=\frac23x^{3/2}+C\).</p>
+
+  <h3>3. Integral definida e o Teorema Fundamental do Cálculo</h3>
+  <div class="box def"><span class="lbl">Teorema Fundamental do Cálculo</span>
+    <div class="mathblock">\[\int_a^bf(x)\,dx=F(b)-F(a)=\Big[F(x)\Big]_a^b\]</div>
+    <p>Para achar a área, basta uma antiderivada: calcule em b, calcule em a e subtraia. O + C some na subtração.</p>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>Integral</th><th>Conta</th><th class="r">Resultado</th></tr></thead>
+    <tbody>
+      <tr><td>\(\int_0^2x\,dx\)</td><td>\(\left[\frac{x^2}{2}\right]_0^2=2-0\)</td><td class="r">2</td></tr>
+      <tr><td>\(\int_1^3(2x+1)\,dx\)</td><td>\([x^2+x]_1^3=(9+3)-(1+1)\)</td><td class="r">10</td></tr>
+      <tr><td>\(\int_0^13x^2\,dx\)</td><td>\([x^3]_0^1\)</td><td class="r">1</td></tr>
+      <tr><td>\(\int_1^e\frac1x\,dx\)</td><td>\(\ln e-\ln1\)</td><td class="r">1</td></tr>
+      <tr><td>\(\int_0^1e^x\,dx\)</td><td>\(e^1-e^0\)</td><td class="r">≈ 1,7183</td></tr>
+    </tbody>
+  </table></div>
+  <p><strong>Propriedades:</strong> \(\int_a^af=0\); \(\int_a^bf=-\int_b^af\); \(\int_a^cf=\int_a^bf+\int_b^cf\). Área abaixo do eixo x entra com sinal negativo.</p>
+
+  <h3>4. Técnica 1: substituição (a regra da cadeia ao contrário)</h3>
+  <ol class="steps">
+    <li><div>Escolha \(u=g(x)\), a “função de dentro”.</div></li>
+    <li><div>Calcule \(du=g'(x)\,dx\) e troque tudo para u.</div></li>
+    <li><div>Integre em u e volte para x (ou troque os limites da integral).</div></li>
+  </ol>
+  <p><strong>Exemplo 1:</strong> \(\int2x(x^2+1)^3dx\). Com \(u=x^2+1\), \(du=2x\,dx\): \(\int u^3du=\frac{u^4}{4}+C=\frac{(x^2+1)^4}{4}+C\).</p>
+  <p><strong>Exemplo 2:</strong> \(\int_0^12x\,e^{x^2}dx\). Com \(u=x^2\) (u vai de 0 a 1): \(\int_0^1e^udu=e-1\approx1{,}7183\).</p>
+  <p><strong>Exemplo 3:</strong> \(\int\frac{1}{x+1}dx=\ln|x+1|+C\) (com \(u=x+1\)).</p>
+
+  <h3>5. Técnica 2: por partes (a regra do produto ao contrário)</h3>
+  <div class="mathblock">\[\int u\,dv=uv-\int v\,du\]</div>
+  <p>Escolha u como a parte que fica mais simples ao derivar.</p>
+  <p><strong>Exemplo 1:</strong> \(\int xe^xdx\), com \(u=x\) (\(du=dx\)) e \(dv=e^xdx\) (\(v=e^x\)): \(xe^x-\int e^xdx=xe^x-e^x+C=e^x(x-1)+C\). Então \(\int_0^1xe^xdx=[e^x(x-1)]_0^1=0-(-1)=1\).</p>
+  <p><strong>Exemplo 2:</strong> \(\int\ln x\,dx\), com \(u=\ln x\) (\(du=dx/x\)) e \(dv=dx\) (\(v=x\)): \(x\ln x-\int x\cdot\frac1xdx=x\ln x-x+C\). Então \(\int_1^e\ln x\,dx=(e-e)-(0-1)=1\).</p>
+
+  <h3>6. A integral na probabilidade (Aula 2)</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Conceito</th><th>Variável discreta (soma)</th><th>Variável contínua (integral)</th></tr></thead>
+    <tbody>
+      <tr><td>Função de probabilidade</td><td>FMP \(p(x)=P(X=x)\)</td><td>FDP \(f(x)\): densidade, <em>não</em> é probabilidade</td></tr>
+      <tr><td>Soma total = 1</td><td>\(\sum_xp(x)=1\)</td><td>\(\int_{-\infty}^{\infty}f(x)dx=1\)</td></tr>
+      <tr><td>Probabilidade de um intervalo</td><td>\(\sum_{a\lt x\le b}p(x)\)</td><td>\(\int_a^bf(x)dx\) (área); \(P(X=x)=0\)</td></tr>
+      <tr><td>FDA \(F(x)=P(X\le x)\)</td><td>\(\sum_{x'\le x}p(x')\)</td><td>\(\int_{-\infty}^xf(t)dt\), e \(f(x)=F'(x)\)</td></tr>
+      <tr><td>Esperança</td><td>\(E[X]=\sum_xx\,p(x)\)</td><td>\(E[X]=\int x\,f(x)dx\)</td></tr>
+      <tr><td>Variância</td><td colspan="2">\(Var(X)=E[X^2]-(E[X])^2\), com \(E[X^2]=\sum x^2p(x)\) ou \(\int x^2f(x)dx\)</td></tr>
+    </tbody>
+  </table></div>
+  <p>A derivada e a integral fazem caminhos opostos: a <strong>FDA é a integral da FDP</strong> e a <strong>FDP é a derivada da FDA</strong>.</p>
+
+  <h3>7. Exemplo completo: a distribuição Uniforme</h3>
+  <p>\(X\sim U(a,b)\) tem densidade constante \(f(x)=\frac{1}{b-a}\) entre a e b (Aula 2). Com \(U(0,10)\), \(f(x)=0{,}1\).</p>
+  <figure><div class="scroll">FIG:uniforme</div><figcaption>\(P(2\lt X\le5)\) é a área do retângulo: base 3 × altura 0,1 = 0,3.</figcaption></figure>
+  <details class="sol"><summary>Derivação da média \(E[X]\) e da variância \(Var(X)\) da Uniforme</summary><div class="in">
+    <div class="mathblock">\[E[X]=\int_a^b\frac{x}{b-a}dx=\frac{1}{b-a}\left[\frac{x^2}{2}\right]_a^b=\frac{b^2-a^2}{2(b-a)}=\frac{(b-a)(b+a)}{2(b-a)}=\frac{a+b}{2}\]</div>
+    <div class="mathblock">\[E[X^2]=\int_a^b\frac{x^2}{b-a}dx=\frac{b^3-a^3}{3(b-a)}=\frac{a^2+ab+b^2}{3}\]</div>
+    <div class="mathblock">\[Var(X)=\frac{a^2+ab+b^2}{3}-\frac{(a+b)^2}{4}=\frac{4a^2+4ab+4b^2-3a^2-6ab-3b^2}{12}=\frac{(b-a)^2}{12}\]</div>
+    <p>Para U(0, 10): E = 5 e Var = 100/12 ≈ 8,33.</p>
+  </div></details>
+
+  <h3>8. O contraexemplo da Aula 2, provado com integral</h3>
+  <p>A Aula 2 afirma: se \(X\sim U(-1,1)\) e \(Y=X^2\), então X e Y são dependentes, mas \(Corr(X,Y)=0\). Com \(f(x)=\frac12\):</p>
+  <div class="mathblock">\[E[X]=\int_{-1}^1\frac x2dx=0,\qquad E[XY]=E[X^3]=\int_{-1}^1\frac{x^3}{2}dx=\left[\frac{x^4}{8}\right]_{-1}^{1}=0\]</div>
+  <p>Logo \(Cov(X,Y)=E[XY]-E[X]E[Y]=0-0=0\). Ainda assim, conhecer X determina Y completamente: covariância zero não é independência.</p>
+
+  <h3>9. E a Normal?</h3>
+  <p>A densidade normal \(f(x)=\frac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)\) não tem antiderivada escrita com funções elementares. Por isso usamos <strong>tabelas</strong> da FDA normal padrão \(\Phi(z)\). A Lista 02, Q8, dá \(\Phi(-1{,}04)=0{,}1492\) pronto, que é uma área calculada numericamente.</p>
+
+  <h3>Exercícios</h3>
+  <details class="sol"><summary>10 exercícios de integral (com respostas)</summary><div class="in">
+    <ol>
+      <li>\(\int(4x^3-2x)\,dx\) = <strong>\(x^4-x^2+C\)</strong></li>
+      <li>\(\int_0^3x^2\,dx\) = <strong>9</strong></li>
+      <li>\(\int_1^2\frac{1}{x}dx\) = <strong>\(\ln2\approx0{,}6931\)</strong></li>
+      <li>\(\int_0^1(e^x+1)\,dx\) = <strong>\(e\approx2{,}7183\)</strong></li>
+      <li>\(\int3(3x+2)^4dx\) = <strong>\(\frac{(3x+2)^5}{5}+C\)</strong> (substituição)</li>
+      <li>\(\int x\,e^{2x}dx\) = <strong>\(\frac{e^{2x}}{4}(2x-1)+C\)</strong> (por partes)</li>
+      <li>Confira que \(f(x)=2x\) em [0, 1] é densidade: \(\int_0^12x\,dx=[x^2]_0^1=\) <strong>1</strong> ✓</li>
+      <li>Com essa densidade, \(P(X\le0{,}5)=\int_0^{0,5}2x\,dx=\) <strong>0,25</strong></li>
+      <li>Com essa densidade, \(E[X]=\int_0^12x^2dx=\) <strong>2/3</strong> e \(Var=\frac12-\frac49=\) <strong>1/18</strong></li>
+      <li>\(U(0,10)\): \(P(X&gt;7)\) = <strong>0,3</strong>; \(E[X]\) = <strong>5</strong></li>
+    </ol>
+  </div></details>
+  <div class="quiz" data-answer="b"><div class="qh">Integrais</div>
+    <p>\(\int_0^2(3x^2+1)\,dx\) vale:</p>
+    <div class="opts"><button data-k="a">a) 13</button><button data-k="b">b) 10</button><button data-k="c">c) 8</button><button data-k="d">d) 12</button></div>
+    <div class="fb" hidden>\([x^3+x]_0^2=8+2=10\).</div></div>
+  <div class="quiz" data-answer="c"><div class="qh">Integrais</div>
+    <p>Para uma variável contínua, \(P(X=3)\) é:</p>
+    <div class="opts"><button data-k="a">a) \(f(3)\)</button><button data-k="b">b) \(F(3)\)</button><button data-k="c">c) 0</button><button data-k="d">d) 1</button></div>
+    <div class="fb" hidden>A área de um único ponto é zero (Aula 2). \(f(3)\) é densidade, não probabilidade; \(F(3)=P(X\le3)\).</div></div>
+  <div class="quiz" data-answer="a"><div class="qh">Integrais</div>
+    <p>Qual é a relação entre FDA e FDP de uma variável contínua?</p>
+    <div class="opts"><button data-k="a">a) A FDP é a derivada da FDA; a FDA é a integral da FDP</button><button data-k="b">b) São iguais</button><button data-k="c">c) A FDA é a derivada da FDP</button><button data-k="d">d) Não há relação</button></div>
+    <div class="fb" hidden>\(f(x)=F'(x)\) e \(F(x)=\int_{-\infty}^xf(t)dt\) (Aula 2, slide da FDP).</div></div>
+  <div class="done-row"><button class="btn done-btn" data-done="mat-int" aria-pressed="false">Marcar como concluído</button></div>
+</section>

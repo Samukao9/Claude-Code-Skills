@@ -213,9 +213,9 @@ ol.steps>li>div{min-width:0}
 
 /* resoluções */
 details.sol{border:1px solid var(--line);border-radius:10px;background:var(--card);margin:12px 0}
-details.sol>summary{cursor:pointer;list-style:none;padding:10px 14px;font-weight:600;color:var(--marker);display:flex;align-items:center;gap:8px}
+details.sol>summary{cursor:pointer;list-style:none;padding:10px 14px 10px 44px;position:relative;font-weight:600;color:var(--marker);display:block}
 details.sol>summary::-webkit-details-marker{display:none}
-details.sol>summary::before{content:"+";font-family:var(--f-mono);font-weight:700;width:20px;height:20px;display:grid;place-items:center;border-radius:5px;background:var(--marker-soft)}
+details.sol>summary::before{content:"+";position:absolute;left:14px;top:12px;font-family:var(--f-mono);font-weight:700;width:20px;height:20px;display:grid;place-items:center;border-radius:5px;background:var(--marker-soft)}
 details.sol[open]>summary::before{content:"−"}
 details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
 
@@ -263,6 +263,18 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
 .row{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
 .calc-io{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .out{margin-top:12px}
+
+/* dicionário */
+.dgrid{display:grid;grid-template-columns:1fr;gap:10px;margin:10px 0 18px}
+.fentry{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;min-width:0}
+.fentry .fh{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 10px;align-items:baseline}
+.fentry .fh b{font-family:var(--f-display);font-size:16.5px}
+.fentry .src{font-size:12px;color:var(--ink-3)}
+.fentry .fl{display:grid;grid-template-columns:84px minmax(0,1fr);gap:8px;font-size:14.5px;margin-top:4px}
+.fentry .fl span{font-size:11px;text-transform:uppercase;letter-spacing:.07em;font-weight:700;color:var(--ink-3);padding-top:3px}
+.fentry .fl.warn span{color:var(--red)}
+#dicionario .field{max-width:440px;margin:8px 0 4px}
+#dicionario .tbl table{min-width:540px}
 
 /* plano */
 .plan{display:grid;gap:10px;margin:12px 0}

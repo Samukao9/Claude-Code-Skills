@@ -134,6 +134,25 @@
   });
   updateScore();
 
+  /* ---------- busca no dicionário ---------- */
+  var ds = $('#dictSearch');
+  if (ds) {
+    var entries = $$('.fentry');
+    var strip = function (t) { return String(t || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); };
+    entries.forEach(function (e) { e.__t = strip(e.getAttribute('data-s')) + ' ' + strip($('.fh', e).textContent); });
+    var filt = function () {
+      var qv = strip(ds.value.trim()), n = 0;
+      entries.forEach(function (e) { var ok = !qv || e.__t.indexOf(qv) >= 0; e.hidden = !ok; if (ok) n++; });
+      $$('.dgroup').forEach(function (h) {
+        var g = h.nextElementSibling;
+        var any = $$('.fentry', g).some(function (e) { return !e.hidden; });
+        h.hidden = !any; g.hidden = !any;
+      });
+      $('#dictCount').textContent = n + ' de ' + entries.length + ' fórmulas';
+    };
+    ds.addEventListener('input', filt); filt();
+  }
+
   /* ---------- cartões ---------- */
   $$('.flash').forEach(function (c) {
     c.setAttribute('aria-label', 'Cartão de memorização: clique para virar');

@@ -213,9 +213,9 @@ ol.steps>li>div{min-width:0}
 
 /* resoluções */
 details.sol{border:1px solid var(--line);border-radius:10px;background:var(--card);margin:12px 0}
-details.sol>summary{cursor:pointer;list-style:none;padding:10px 14px;font-weight:600;color:var(--marker);display:flex;align-items:center;gap:8px}
+details.sol>summary{cursor:pointer;list-style:none;padding:10px 14px 10px 44px;position:relative;font-weight:600;color:var(--marker);display:block}
 details.sol>summary::-webkit-details-marker{display:none}
-details.sol>summary::before{content:"+";font-family:var(--f-mono);font-weight:700;width:20px;height:20px;display:grid;place-items:center;border-radius:5px;background:var(--marker-soft)}
+details.sol>summary::before{content:"+";position:absolute;left:14px;top:12px;font-family:var(--f-mono);font-weight:700;width:20px;height:20px;display:grid;place-items:center;border-radius:5px;background:var(--marker-soft)}
 details.sol[open]>summary::before{content:"−"}
 details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
 
@@ -264,6 +264,18 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
 .calc-io{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .out{margin-top:12px}
 
+/* dicionário */
+.dgrid{display:grid;grid-template-columns:1fr;gap:10px;margin:10px 0 18px}
+.fentry{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;min-width:0}
+.fentry .fh{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 10px;align-items:baseline}
+.fentry .fh b{font-family:var(--f-display);font-size:16.5px}
+.fentry .src{font-size:12px;color:var(--ink-3)}
+.fentry .fl{display:grid;grid-template-columns:84px minmax(0,1fr);gap:8px;font-size:14.5px;margin-top:4px}
+.fentry .fl span{font-size:11px;text-transform:uppercase;letter-spacing:.07em;font-weight:700;color:var(--ink-3);padding-top:3px}
+.fentry .fl.warn span{color:var(--red)}
+#dicionario .field{max-width:440px;margin:8px 0 4px}
+#dicionario .tbl table{min-width:540px}
+
 /* plano */
 .plan{display:grid;gap:10px;margin:12px 0}
 .day{display:grid;grid-template-columns:92px 1fr;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px}
@@ -299,14 +311,14 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
   <button class="btn menu-btn" id="menuBtn" aria-controls="toc" aria-expanded="false">☰ Sumário</button>
   <span class="brand">Econometria I</span>
   <div class="grow"><div class="pbar" aria-hidden="true"><i id="pfill"></i></div></div>
-  <span class="ptext" id="ptext">0 de 16 módulos</span>
+  <span class="ptext" id="ptext">0 de 22 módulos</span>
   <a class="btn" href="#formulas">β̂ Fórmulas</a>
 </header>
 
 <div class="hero">
   <div>
     <h1>Econometria I, do zero absoluto <span class="hat">à P1</span></h1>
-    <p class="lead">Todo o conteúdo das suas aulas, listas, gabaritos e fotos da lousa, em ordem de aprendizado. Começa em “o que é uma variável” e termina nas demonstrações da Aula 5. Nada aqui vem de fora do seu material.</p>
+    <p class="lead">Todo o conteúdo das suas aulas, listas, gabaritos e fotos da lousa, em ordem de aprendizado, mais um curso de matemática de apoio (log, derivada, integral e λ). Começa em “o que é uma variável” e termina nas demonstrações da Aula 5. O que vai além do seu material está sempre marcado.</p>
     <div class="actions">
       <a class="btn primary" href="#zero">Começar do zero</a>
       <a class="btn" href="#formulas">As 2 fórmulas</a>
@@ -332,9 +344,16 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
     <li><a href="#inicio" data-mod="inicio"><span class="n">00</span><span>Comece aqui: plano de 6 dias</span></a></li>
     <li><a href="#formulas" data-mod="formulas"><span class="n">★</span><span>As 2 fórmulas para decorar <b class="star">★</b></span></a></li>
   </ol>
-  <h3>Teoria em ordem</h3>
+  <h3>Base</h3>
   <ol>
     <li><a href="#zero" data-mod="zero"><span class="n">M0</span><span>Do zero: variável, média, Σ</span></a></li>
+    <li><a href="#mat-log" data-mod="mat-log"><span class="n">∫1</span><span>Funções, exponencial e log</span></a></li>
+    <li><a href="#mat-deriv" data-mod="mat-deriv"><span class="n">∫2</span><span>Derivadas do zero ao MQO</span></a></li>
+    <li><a href="#mat-int" data-mod="mat-int"><span class="n">∫3</span><span>Integrais e probabilidade</span></a></li>
+    <li><a href="#mat-lambda" data-mod="mat-lambda"><span class="n">∫4</span><span>λ: Lagrange e distribuições</span></a></li>
+  </ol>
+  <h3>Teoria em ordem</h3>
+  <ol>
     <li><a href="#aula1" data-mod="aula1"><span class="n">A1</span><span>Natureza da econometria</span></a></li>
     <li><a href="#aula2" data-mod="aula2"><span class="n">A2</span><span>Ferramentas de matemática e estatística</span></a></li>
     <li><a href="#aula3" data-mod="aula3"><span class="n">A3</span><span>Regressão simples e MQO</span></a></li>
@@ -348,9 +367,11 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
     <li><a href="#lista2" data-mod="lista2"><span class="n">L2</span><span>Lista 2 numérica: Ex. 1 e 4 <b class="star">★</b></span></a></li>
     <li><a href="#lista02" data-mod="lista02"><span class="n">L02</span><span>Lista 02: propriedades e inferência <b class="star">★</b></span></a></li>
     <li><a href="#lista1" data-mod="lista1"><span class="n">L1</span><span>Lista 1: as 60 questões</span></a></li>
+    <li><a href="#praticas" data-mod="praticas"><span class="n">R</span><span>Exercícios das práticas em R</span></a></li>
   </ol>
   <h3>Treino e revisão</h3>
   <ol>
+    <li><a href="#dicionario" data-mod="dicionario"><span class="n">Σ</span><span>Dicionário de fórmulas e unidades</span></a></li>
     <li><a href="#calc" data-mod="calc"><span class="n">⚙</span><span>Calculadora de MQO passo a passo</span></a></li>
     <li><a href="#simulado" data-mod="simulado"><span class="n">?</span><span>Simulado final</span></a></li>
     <li><a href="#cola" data-mod="cola"><span class="n">✎</span><span>Cola de véspera e pegadinhas</span></a></li>
@@ -363,7 +384,8 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
 <section class="mod" id="inicio" data-title="Comece aqui">
   <div class="eyebrow">Antes de tudo</div>
   <h2>Comece aqui</h2>
-  <p>Este guia foi montado a partir de 20 materiais seus: a apresentação do curso, as Aulas 1 a 6, a aula de dummies, as três práticas em R, a Lista 1, a Lista 2 numérica e a Lista 02 de propriedades, os três gabaritos e as fotos da lousa. Onde uma explicação precisou ficar mais simples, ela continua dizendo exatamente o que o material diz.</p>
+  <p>Este guia foi montado a partir de todo o material que você enviou: a apresentação do curso, as Aulas 1 a 6, a aula de dummies, as três práticas em R, a Lista 1, a Lista 2 numérica e a Lista 02 de propriedades, os três gabaritos e as fotos da lousa. Onde uma explicação precisou ficar mais simples, ela continua dizendo exatamente o que o material diz.</p>
+  <p>Há também quatro módulos de <strong>Matemática de apoio</strong> (log, derivadas, integrais e λ), que você pediu, e um <a href="#dicionario">dicionário com todas as fórmulas</a>, o que cada uma significa e a sua unidade de medida. Tudo que não está nos seus PDFs vem marcado com <span class="tag">Matemática de apoio</span> ou <span class="tag warn">Fora do material da P1</span>.</p>
 
   <h3>Como usar</h3>
   <ol class="steps">
@@ -396,12 +418,13 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
 
   <h3>Plano de 6 dias</h3>
   <div class="plan">
-    <div class="day"><div class="d">Qui 24/09<small>hoje</small></div><div>Módulo 0 → <a href="#formulas">As 2 fórmulas</a> (decorar com os cartões) → Aula 1 → Aula 2.</div></div>
+    <div class="day"><div class="d">Qua 23/09<small>à noite</small></div><div>Módulo 0 → <a href="#formulas">As 2 fórmulas</a> (decore com os cartões).</div></div>
+    <div class="day"><div class="d">Qui 24/09</div><div><a href="#mat-log">Log</a> e <a href="#mat-deriv">derivadas</a> → Aula 1 → Aula 2 (com a parte de <a href="#mat-int">integrais</a>).</div></div>
     <div class="day"><div class="d">Sex 25/09</div><div>Aula 3 inteira (derivação do MQO e exemplo dos 5 indivíduos) → <a href="#calc">calculadora</a> → Lista 2, Ex. 1, 2 e 3.</div></div>
-    <div class="day"><div class="d">Sáb 26/09</div><div>Aula 4 com a parte de derivadas → Lista 2, Ex. 4 e 5 → Lista 1, questões 31 a 60.</div></div>
+    <div class="day"><div class="d">Sáb 26/09</div><div>Aula 4 → Lista 2, Ex. 4 e 5 → Lista 1, questões 31 a 60. Se sobrar tempo: <a href="#mat-lambda">λ</a> e exercícios das práticas.</div></div>
     <div class="day"><div class="d">Dom 27/09</div><div><strong>Aula 5 inteira</strong>, incluindo as demonstrações do apêndice. Refaça à mão a prova de \(E(\hat\beta_1)=\beta_1\) e de \(Var(\hat\beta_1)=\sigma^2/SQT_x\).</div></div>
     <div class="day"><div class="d">Seg 28/09</div><div>Aula 6 → Lista 02 inteira (questões 1 a 10) → Lista 1, questões 1 a 30.</div></div>
-    <div class="day"><div class="d">Ter 29/09</div><div>Refaça Lista 2, Ex. 1 e 4, sem olhar. Use os geradores de treino. Faça o <a href="#simulado">simulado</a>. Dummies, se o professor confirmar.</div></div>
+    <div class="day"><div class="d">Ter 29/09</div><div>Refaça Lista 2, Ex. 1 e 4, sem olhar. Use os geradores de treino. Revise o <a href="#dicionario">dicionário de fórmulas</a>. Faça o <a href="#simulado">simulado</a>. Dummies, se o professor confirmar.</div></div>
     <div class="day exam"><div class="d">Qua 30/09<small>P1</small></div><div>Só a <a href="#cola">cola de véspera</a> e os cartões de fórmulas. Nada de conteúdo novo.</div></div>
   </div>
 
@@ -661,7 +684,636 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
     <div class="opts"><button data-k="a">a) 10</button><button data-k="b">b) 3,16</button><button data-k="c">c) 100</button><button data-k="d">d) 20</button></div>
     <div class="fb" hidden>Variância = desvio-padrão ao quadrado: \(10^2=100\). É o primeiro passo da Lista 2, Ex. 1.</div>
   </div>
+  <div class="box def"><span class="lbl">Próximo passo</span><p>Se potência, log, derivada ou integral estão enferrujados, siga para a <a href="#mat-log">Matemática de apoio</a>. Se estão em dia, vá direto para a <a href="#aula1">Aula 1</a>.</p></div>
   <div class="done-row"><button class="btn done-btn" data-done="zero" aria-pressed="false">Marcar como concluído</button></div>
+</section>
+
+
+
+<!-- ================= MATEMÁTICA 1: FUNÇÕES, EXPONENCIAL E LOG ================= -->
+<section class="mod" id="mat-log" data-title="Funções e log">
+  <div class="eyebrow"><span class="tag">Matemática de apoio</span> curso completo · base das Aulas 3 e 4</div>
+  <h2>Funções, potências, exponencial e logaritmo</h2>
+  <div class="box def"><span class="lbl">Por que este módulo existe</span>
+    <p>Você pediu para reaprender log, derivada, integral e λ do zero. As Aulas 3, 4 e 6 usam log e derivadas o tempo todo, e a Aula 2 usa integral. Estes módulos de apoio ensinam a matemática por trás. Onde o conteúdo vai além do que está nos seus PDFs, isso está marcado.</p>
+  </div>
+
+  <h3>1. Função</h3>
+  <p>Uma <strong>função</strong> é uma regra que recebe um número x e devolve um número y. Escrevemos \(y=f(x)\). A reta de MQO da Aula 3 é uma função: \(f(x)=0{,}6+1{,}15x\). Para 10 anos de estudo, \(f(10)=0{,}6+11{,}5=12{,}1\).</p>
+
+  <h3>2. Reta: intercepto e inclinação</h3>
+  <div class="mathblock">\[y=a+bx,\qquad b=\frac{\Delta y}{\Delta x}=\frac{y_2-y_1}{x_2-x_1}\]</div>
+  <p>A inclinação é “quanto y sobe para cada 1 de x”. Com os pontos (8; 9,8) e (10; 12,1) da reta do exemplo: \(b=\frac{12{,}1-9{,}8}{10-8}=\frac{2{,}3}{2}=1{,}15\). <strong>Unidade da inclinação:</strong> unidade de y por unidade de x (aqui, R$/hora por ano de estudo).</p>
+
+  <h3>3. Potências e raízes</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Regra</th><th>Exemplo</th></tr></thead>
+    <tbody>
+      <tr><td>\(x^a\cdot x^b=x^{a+b}\)</td><td>\(2^3\cdot2^2=2^5=32\)</td></tr>
+      <tr><td>\(x^a/x^b=x^{a-b}\)</td><td>\(x^5/x^2=x^3\)</td></tr>
+      <tr><td>\((x^a)^b=x^{ab}\)</td><td>\((x^2)^3=x^6\)</td></tr>
+      <tr><td>\(x^0=1\) (para \(x\neq0\))</td><td>\(12Q^0=12\) (lousa do Ex. 4)</td></tr>
+      <tr><td>\(x^{-n}=1/x^n\)</td><td>\(4^{-1}=0{,}25\); \(x^{-1/2}=1/\sqrt x\)</td></tr>
+      <tr><td>\(x^{1/2}=\sqrt x\)</td><td>\(9^{1/2}=3\)</td></tr>
+      <tr><td>\(x^{3/2}=x\sqrt x\)</td><td>\(9^{3/2}=9\times3=27\) (Lista 2, Ex. 5)</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>4. O número e e a exponencial</h3>
+  <p>O número <strong>e ≈ 2,71828</strong> é uma constante, como π. A função <strong>exponencial</strong> é \(e^x\), também escrita \(\exp(x)\).</p>
+  <ul>
+    <li>\(e^0=1\), \(e^1=e\approx2{,}718\), \(e^2\approx7{,}389\), \(e^{-1}\approx0{,}368\), \(e^{0,25}\approx1{,}284\) (Lista 1, Q57).</li>
+    <li>\(e^x\) é <strong>sempre positiva</strong> e cresce cada vez mais rápido.</li>
+    <li>Valem as regras de potência: \(e^a\cdot e^b=e^{a+b}\) e \(e^{a}/e^{b}=e^{a-b}\).</li>
+  </ul>
+
+  <h3>5. Logaritmo natural: a operação inversa</h3>
+  <div class="box def"><span class="lbl">Definição</span>
+    <div class="mathblock">\[\ln y=x\quad\Longleftrightarrow\quad e^x=y\]</div>
+    <p>O ln responde à pergunta: <strong>a que potência preciso elevar e para obter y?</strong> Como \(e^2\approx7{,}389\), temos \(\ln7{,}389\approx2\).</p>
+  </div>
+  <figure><div class="scroll"><svg class="fig" viewBox="0 0 520 320" role="img" aria-label="Gráficos da exponencial e do logaritmo natural, espelhados na reta y igual a x" xmlns="http://www.w3.org/2000/svg">
+<line class="g" x1="58" y1="270" x2="500" y2="270"/>
+<line class="g" x1="58" y1="234" x2="500" y2="234"/>
+<line class="g" x1="58" y1="198" x2="500" y2="198"/>
+<line class="g" x1="58" y1="162" x2="500" y2="162"/>
+<line class="g" x1="58" y1="126" x2="500" y2="126"/>
+<line class="g" x1="58" y1="90" x2="500" y2="90"/>
+<line class="g" x1="58" y1="54" x2="500" y2="54"/>
+<line class="g" x1="58" y1="18" x2="500" y2="18"/>
+<line class="g" x1="58" y1="18" x2="58" y2="270"/>
+<line class="g" x1="121.1" y1="18" x2="121.1" y2="270"/>
+<line class="g" x1="184.3" y1="18" x2="184.3" y2="270"/>
+<line class="g" x1="247.4" y1="18" x2="247.4" y2="270"/>
+<line class="g" x1="310.6" y1="18" x2="310.6" y2="270"/>
+<line class="g" x1="373.7" y1="18" x2="373.7" y2="270"/>
+<line class="g" x1="436.9" y1="18" x2="436.9" y2="270"/>
+<line class="g" x1="500" y1="18" x2="500" y2="270"/>
+<line class="ax" x1="58" y1="270" x2="500" y2="270"/>
+<line class="ax" x1="58" y1="18" x2="58" y2="270"/>
+<text class="tk" x="58" y="286" text-anchor="middle">-2</text>
+<text class="tk" x="121.1" y="286" text-anchor="middle">-1</text>
+<text class="tk" x="184.3" y="286" text-anchor="middle">0</text>
+<text class="tk" x="247.4" y="286" text-anchor="middle">1</text>
+<text class="tk" x="310.6" y="286" text-anchor="middle">2</text>
+<text class="tk" x="373.7" y="286" text-anchor="middle">3</text>
+<text class="tk" x="436.9" y="286" text-anchor="middle">4</text>
+<text class="tk" x="500" y="286" text-anchor="middle">5</text>
+<text class="tk" x="51" y="274" text-anchor="end">-2</text>
+<text class="tk" x="51" y="238" text-anchor="end">-1</text>
+<text class="tk" x="51" y="202" text-anchor="end">0</text>
+<text class="tk" x="51" y="166" text-anchor="end">1</text>
+<text class="tk" x="51" y="130" text-anchor="end">2</text>
+<text class="tk" x="51" y="94" text-anchor="end">3</text>
+<text class="tk" x="51" y="58" text-anchor="end">4</text>
+<text class="tk" x="51" y="22" text-anchor="end">5</text>
+<text class="lb" x="279" y="314" text-anchor="middle">x</text>
+<text class="lb" x="12" y="144" text-anchor="middle" transform="rotate(-90 12 144)">y</text>
+<line class="mean" x1="58" y1="270" x2="500" y2="18"/>
+<polyline class="fit" points="58,193.1 58.6,193.1 59.3,193 59.9,193 60.5,192.9 61.2,192.9 61.8,192.8 62.4,192.8 63.1,192.7 63.7,192.7 64.3,192.6 64.9,192.6 65.6,192.5 66.2,192.5 66.8,192.4 67.5,192.3 68.1,192.3 68.7,192.2 69.4,192.2 70,192.1 70.6,192 71.3,192 71.9,191.9 72.5,191.9 73.2,191.8 73.8,191.7 74.4,191.7 75,191.6 75.7,191.6 76.3,191.5 76.9,191.4 77.6,191.4 78.2,191.3 78.8,191.2 79.5,191.2 80.1,191.1 80.7,191 81.4,190.9 82,190.9 82.6,190.8 83.3,190.7 83.9,190.7 84.5,190.6 85.2,190.5 85.8,190.4 86.4,190.4 87,190.3 87.7,190.2 88.3,190.1 88.9,190 89.6,190 90.2,189.9 90.8,189.8 91.5,189.7 92.1,189.6 92.7,189.6 93.4,189.5 94,189.4 94.6,189.3 95.3,189.2 95.9,189.1 96.5,189 97.1,188.9 97.8,188.9 98.4,188.8 99,188.7 99.7,188.6 100.3,188.5 100.9,188.4 101.6,188.3 102.2,188.2 102.8,188.1 103.5,188 104.1,187.9 104.7,187.8 105.4,187.7 106,187.6 106.6,187.5 107.3,187.4 107.9,187.3 108.5,187.2 109.1,187 109.8,186.9 110.4,186.8 111,186.7 111.7,186.6 112.3,186.5 112.9,186.4 113.6,186.3 114.2,186.1 114.8,186 115.5,185.9 116.1,185.8 116.7,185.7 117.4,185.5 118,185.4 118.6,185.3 119.2,185.1 119.9,185 120.5,184.9 121.1,184.8 121.8,184.6 122.4,184.5 123,184.4 123.7,184.2 124.3,184.1 124.9,183.9 125.6,183.8 126.2,183.7 126.8,183.5 127.5,183.4 128.1,183.2 128.7,183.1 129.4,182.9 130,182.8 130.6,182.6 131.2,182.5 131.9,182.3 132.5,182.1 133.1,182 133.8,181.8 134.4,181.7 135,181.5 135.7,181.3 136.3,181.2 136.9,181 137.6,180.8 138.2,180.7 138.8,180.5 139.5,180.3 140.1,180.1 140.7,179.9 141.3,179.8 142,179.6 142.6,179.4 143.2,179.2 143.9,179 144.5,178.8 145.1,178.6 145.8,178.4 146.4,178.2 147,178 147.7,177.8 148.3,177.6 148.9,177.4 149.6,177.2 150.2,177 150.8,176.8 151.5,176.6 152.1,176.4 152.7,176.2 153.3,175.9 154,175.7 154.6,175.5 155.2,175.3 155.9,175 156.5,174.8 157.1,174.6 157.8,174.3 158.4,174.1 159,173.9 159.7,173.6 160.3,173.4 160.9,173.1 161.6,172.9 162.2,172.6 162.8,172.4 163.4,172.1 164.1,171.9 164.7,171.6 165.3,171.3 166,171.1 166.6,170.8 167.2,170.5 167.9,170.2 168.5,170 169.1,169.7 169.8,169.4 170.4,169.1 171,168.8 171.7,168.5 172.3,168.2 172.9,167.9 173.6,167.6 174.2,167.3 174.8,167 175.4,166.7 176.1,166.4 176.7,166.1 177.3,165.7 178,165.4 178.6,165.1 179.2,164.8 179.9,164.4 180.5,164.1 181.1,163.8 181.8,163.4 182.4,163.1 183,162.7 183.7,162.4 184.3,162 184.9,161.6 185.5,161.3 186.2,160.9 186.8,160.5 187.4,160.2 188.1,159.8 188.7,159.4 189.3,159 190,158.6 190.6,158.2 191.2,157.8 191.9,157.4 192.5,157 193.1,156.6 193.8,156.2 194.4,155.8 195,155.3 195.7,154.9 196.3,154.5 196.9,154 197.5,153.6 198.2,153.1 198.8,152.7 199.4,152.2 200.1,151.8 200.7,151.3 201.3,150.8 202,150.4 202.6,149.9 203.2,149.4 203.9,148.9 204.5,148.4 205.1,147.9 205.8,147.4 206.4,146.9 207,146.4 207.6,145.9 208.3,145.4 208.9,144.8 209.5,144.3 210.2,143.8 210.8,143.2 211.4,142.7 212.1,142.1 212.7,141.5 213.3,141 214,140.4 214.6,139.8 215.2,139.2 215.9,138.6 216.5,138 217.1,137.4 217.8,136.8 218.4,136.2 219,135.6 219.6,135 220.3,134.3 220.9,133.7 221.5,133.1 222.2,132.4 222.8,131.7 223.4,131.1 224.1,130.4 224.7,129.7 225.3,129 226,128.3 226.6,127.6 227.2,126.9 227.9,126.2 228.5,125.5 229.1,124.8 229.7,124 230.4,123.3 231,122.5 231.6,121.8 232.3,121 232.9,120.2 233.5,119.5 234.2,118.7 234.8,117.9 235.4,117.1 236.1,116.3 236.7,115.4 237.3,114.6 238,113.8 238.6,112.9 239.2,112.1 239.9,111.2 240.5,110.3 241.1,109.5 241.7,108.6 242.4,107.7 243,106.8 243.6,105.8 244.3,104.9 244.9,104 245.5,103 246.2,102.1 246.8,101.1 247.4,100.1 248.1,99.2 248.7,98.2 249.3,97.2 250,96.1 250.6,95.1 251.2,94.1 251.8,93 252.5,92 253.1,90.9 253.7,89.9 254.4,88.8 255,87.7 255.6,86.6 256.3,85.4 256.9,84.3 257.5,83.2 258.2,82 258.8,80.8 259.4,79.7 260.1,78.5 260.7,77.3 261.3,76.1 262,74.8 262.6,73.6 263.2,72.3 263.8,71.1 264.5,69.8 265.1,68.5 265.7,67.2 266.4,65.9 267,64.6 267.6,63.2 268.3,61.9 268.9,60.5 269.5,59.1 270.2,57.7 270.8,56.3 271.4,54.9 272.1,53.5 272.7,52 273.3,50.5 273.9,49.1 274.6,47.6 275.2,46.1 275.8,44.5 276.5,43 277.1,41.4 277.7,39.9 278.4,38.3 279,36.7 279.6,35 280.3,33.4 280.9,31.7 281.5,30.1 282.2,28.4 282.8,26.7 283.4,25 284.1,23.2 284.7,21.5 285.3,19.7"/>
+<polyline class="cC" points="193.1,268.8 193.8,266.3 194.4,264 195,261.8 195.7,259.7 196.3,257.8 196.9,255.9 197.5,254.2 198.2,252.5 198.8,250.9 199.4,249.4 200.1,247.9 200.7,246.5 201.3,245.1 202,243.8 202.6,242.6 203.2,241.3 203.9,240.2 204.5,239 205.1,237.9 205.8,236.8 206.4,235.8 207,234.8 207.6,233.8 208.3,232.8 208.9,231.9 209.5,231 210.2,230.1 210.8,229.2 211.4,228.4 212.1,227.6 212.7,226.7 213.3,226 214,225.2 214.6,224.4 215.2,223.7 215.9,223 216.5,222.2 217.1,221.5 217.8,220.9 218.4,220.2 219,219.5 219.6,218.9 220.3,218.2 220.9,217.6 221.5,217 222.2,216.4 222.8,215.8 223.4,215.2 224.1,214.6 224.7,214.1 225.3,213.5 226,213 226.6,212.4 227.2,211.9 227.9,211.4 228.5,210.8 229.1,210.3 229.7,209.8 230.4,209.3 231,208.8 231.6,208.4 232.3,207.9 232.9,207.4 233.5,206.9 234.2,206.5 234.8,206 235.4,205.6 236.1,205.1 236.7,204.7 237.3,204.3 238,203.9 238.6,203.4 239.2,203 239.9,202.6 240.5,202.2 241.1,201.8 241.7,201.4 242.4,201 243,200.6 243.6,200.2 244.3,199.8 244.9,199.5 245.5,199.1 246.2,198.7 246.8,198.4 247.4,198 248.1,197.6 248.7,197.3 249.3,196.9 250,196.6 250.6,196.2 251.2,195.9 251.8,195.6 252.5,195.2 253.1,194.9 253.7,194.6 254.4,194.2 255,193.9 255.6,193.6 256.3,193.3 256.9,193 257.5,192.7 258.2,192.3 258.8,192 259.4,191.7 260.1,191.4 260.7,191.1 261.3,190.8 262,190.5 262.6,190.3 263.2,190 263.8,189.7 264.5,189.4 265.1,189.1 265.7,188.8 266.4,188.6 267,188.3 267.6,188 268.3,187.7 268.9,187.5 269.5,187.2 270.2,186.9 270.8,186.7 271.4,186.4 272.1,186.1 272.7,185.9 273.3,185.6 273.9,185.4 274.6,185.1 275.2,184.9 275.8,184.6 276.5,184.4 277.1,184.1 277.7,183.9 278.4,183.6 279,183.4 279.6,183.2 280.3,182.9 280.9,182.7 281.5,182.5 282.2,182.2 282.8,182 283.4,181.8 284.1,181.5 284.7,181.3 285.3,181.1 285.9,180.9 286.6,180.6 287.2,180.4 287.8,180.2 288.5,180 289.1,179.8 289.7,179.5 290.4,179.3 291,179.1 291.6,178.9 292.3,178.7 292.9,178.5 293.5,178.3 294.2,178.1 294.8,177.9 295.4,177.6 296,177.4 296.7,177.2 297.3,177 297.9,176.8 298.6,176.6 299.2,176.4 299.8,176.2 300.5,176 301.1,175.9 301.7,175.7 302.4,175.5 303,175.3 303.6,175.1 304.3,174.9 304.9,174.7 305.5,174.5 306.2,174.3 306.8,174.1 307.4,174 308,173.8 308.7,173.6 309.3,173.4 309.9,173.2 310.6,173 311.2,172.9 311.8,172.7 312.5,172.5 313.1,172.3 313.7,172.2 314.4,172 315,171.8 315.6,171.6 316.3,171.5 316.9,171.3 317.5,171.1 318.1,170.9 318.8,170.8 319.4,170.6 320,170.4 320.7,170.3 321.3,170.1 321.9,169.9 322.6,169.8 323.2,169.6 323.8,169.5 324.5,169.3 325.1,169.1 325.7,169 326.4,168.8 327,168.6 327.6,168.5 328.3,168.3 328.9,168.2 329.5,168 330.1,167.9 330.8,167.7 331.4,167.5 332,167.4 332.7,167.2 333.3,167.1 333.9,166.9 334.6,166.8 335.2,166.6 335.8,166.5 336.5,166.3 337.1,166.2 337.7,166 338.4,165.9 339,165.7 339.6,165.6 340.2,165.4 340.9,165.3 341.5,165.2 342.1,165 342.8,164.9 343.4,164.7 344,164.6 344.7,164.4 345.3,164.3 345.9,164.2 346.6,164 347.2,163.9 347.8,163.7 348.5,163.6 349.1,163.5 349.7,163.3 350.4,163.2 351,163.1 351.6,162.9 352.2,162.8 352.9,162.6 353.5,162.5 354.1,162.4 354.8,162.2 355.4,162.1 356,162 356.7,161.8 357.3,161.7 357.9,161.6 358.6,161.5 359.2,161.3 359.8,161.2 360.5,161.1 361.1,160.9 361.7,160.8 362.3,160.7 363,160.6 363.6,160.4 364.2,160.3 364.9,160.2 365.5,160 366.1,159.9 366.8,159.8 367.4,159.7 368,159.5 368.7,159.4 369.3,159.3 369.9,159.2 370.6,159.1 371.2,158.9 371.8,158.8 372.5,158.7 373.1,158.6 373.7,158.4 374.3,158.3 375,158.2 375.6,158.1 376.2,158 376.9,157.9 377.5,157.7 378.1,157.6 378.8,157.5 379.4,157.4 380,157.3 380.7,157.2 381.3,157 381.9,156.9 382.6,156.8 383.2,156.7 383.8,156.6 384.4,156.5 385.1,156.4 385.7,156.2 386.3,156.1 387,156 387.6,155.9 388.2,155.8 388.9,155.7 389.5,155.6 390.1,155.5 390.8,155.3 391.4,155.2 392,155.1 392.7,155 393.3,154.9 393.9,154.8 394.6,154.7 395.2,154.6 395.8,154.5 396.4,154.4 397.1,154.3 397.7,154.2 398.3,154.1 399,153.9 399.6,153.8 400.2,153.7 400.9,153.6 401.5,153.5 402.1,153.4 402.8,153.3 403.4,153.2 404,153.1 404.7,153 405.3,152.9 405.9,152.8 406.5,152.7 407.2,152.6 407.8,152.5 408.4,152.4 409.1,152.3 409.7,152.2 410.3,152.1 411,152 411.6,151.9 412.2,151.8 412.9,151.7 413.5,151.6 414.1,151.5 414.8,151.4 415.4,151.3 416,151.2 416.7,151.1 417.3,151 417.9,150.9 418.5,150.8 419.2,150.7 419.8,150.6 420.4,150.5 421.1,150.4 421.7,150.3 422.3,150.2 423,150.1 423.6,150 424.2,149.9 424.9,149.8 425.5,149.8 426.1,149.7 426.8,149.6 427.4,149.5 428,149.4 428.6,149.3 429.3,149.2 429.9,149.1 430.5,149 431.2,148.9 431.8,148.8 432.4,148.7 433.1,148.6 433.7,148.5 434.3,148.5 435,148.4 435.6,148.3 436.2,148.2 436.9,148.1 437.5,148 438.1,147.9 438.8,147.8 439.4,147.7 440,147.6 440.6,147.6 441.3,147.5 441.9,147.4 442.5,147.3 443.2,147.2 443.8,147.1 444.4,147 445.1,146.9 445.7,146.9 446.3,146.8 447,146.7 447.6,146.6 448.2,146.5 448.9,146.4 449.5,146.3 450.1,146.3 450.7,146.2 451.4,146.1 452,146 452.6,145.9 453.3,145.8 453.9,145.7 454.5,145.7 455.2,145.6 455.8,145.5 456.4,145.4 457.1,145.3 457.7,145.2 458.3,145.2 459,145.1 459.6,145 460.2,144.9 460.9,144.8 461.5,144.7 462.1,144.7 462.7,144.6 463.4,144.5 464,144.4 464.6,144.3 465.3,144.3 465.9,144.2 466.5,144.1 467.2,144 467.8,143.9 468.4,143.9 469.1,143.8 469.7,143.7 470.3,143.6 471,143.5 471.6,143.5 472.2,143.4 472.8,143.3 473.5,143.2 474.1,143.1 474.7,143.1 475.4,143 476,142.9 476.6,142.8 477.3,142.8 477.9,142.7 478.5,142.6 479.2,142.5 479.8,142.4 480.4,142.4 481.1,142.3 481.7,142.2 482.3,142.1 483,142.1 483.6,142 484.2,141.9 484.8,141.8 485.5,141.8 486.1,141.7 486.7,141.6 487.4,141.5 488,141.5 488.6,141.4 489.3,141.3 489.9,141.2 490.5,141.2 491.2,141.1 491.8,141 492.4,140.9 493.1,140.9 493.7,140.8 494.3,140.7 494.9,140.6 495.6,140.6 496.2,140.5 496.8,140.4 497.5,140.3 498.1,140.3 498.7,140.2 499.4,140.1 500,140.1"/>
+<circle class="pt" cx="184.3" cy="162" r="4"/><circle class="pt" cx="247.4" cy="198" r="4"/>
+<text class="an fitc" x="291.6" y="32.4">y = eˣ</text>
+<text class="an resc" x="411.6" y="136.8">y = ln x</text>
+<text class="an" x="392.7" y="57.6">y = x (espelho)</text>
+<text class="an" x="191.9" y="153">(0, 1)</text><text class="an" x="253.7" y="210.6">(1, 0)</text>
+</svg></div><figcaption>\(e^x\) e \(\ln x\) são espelhos em relação à reta y = x, porque uma desfaz a outra. A exponencial passa por (0, 1); o log passa por (1, 0).</figcaption></figure>
+  <ul>
+    <li>\(\ln1=0\) (porque \(e^0=1\)) e \(\ln e=1\).</li>
+    <li>\(\ln x\lt0\) quando \(0\lt x\lt1\): \(\ln0{,}5\approx-0{,}6931\).</li>
+    <li><strong>Só existe para x &gt; 0.</strong> \(\ln0\) e o log de negativos não existem. Por isso a Aula 4 diz que lucro, que pode ser negativo, não entra em log diretamente (Lista 1, Q48-I).</li>
+    <li>Valores úteis: \(\ln2\approx0{,}6931\), \(\ln5\approx1{,}6094\), \(\ln10\approx2{,}3026\).</li>
+  </ul>
+
+  <h3>6. Propriedades do logaritmo</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Propriedade</th><th>Exemplo numérico</th></tr></thead>
+    <tbody>
+      <tr><td>\(\ln(ab)=\ln a+\ln b\)</td><td>\(\ln10=\ln2+\ln5=0{,}6931+1{,}6094=2{,}3026\)</td></tr>
+      <tr><td>\(\ln(a/b)=\ln a-\ln b\)</td><td>\(\ln12-\ln10=\ln1{,}2\approx0{,}1823\)</td></tr>
+      <tr><td>\(\ln(a^b)=b\ln a\)</td><td>\(\ln8=\ln2^3=3\ln2\approx2{,}0794\)</td></tr>
+      <tr><td>\(e^{\ln x}=x\) e \(\ln(e^x)=x\)</td><td>\(\ln(e^3)=3\)</td></tr>
+      <tr><td>Mudança de base: \(\log_{10}x=\dfrac{\ln x}{\ln10}\)</td><td>\(\log_{10}50=\frac{3{,}912}{2{,}3026}\approx1{,}699\)</td></tr>
+    </tbody>
+  </table></div>
+  <div class="box trap"><span class="lbl">O que NÃO vale</span>
+    <ul>
+      <li>\(\ln(a+b)\neq\ln a+\ln b\). O log transforma produto em soma, não soma em soma.</li>
+      <li>\((\ln a)^2\neq\ln(a^2)\). O certo é \(\ln(a^2)=2\ln a\).</li>
+      <li>\(\ln(a)/\ln(b)\neq\ln(a/b)\).</li>
+    </ul>
+  </div>
+
+  <h3>7. Por que o log vira percentual</h3>
+  <p>Se x passa de \(x_0\) para \(x_1=(1+g)x_0\), crescendo uma proporção g:</p>
+  <div class="mathblock">\[\Delta\ln x=\ln x_1-\ln x_0=\ln\frac{x_1}{x_0}=\ln(1+g)\approx g\quad\text{para g pequeno}\]</div>
+  <div class="tbl"><table>
+    <thead><tr><th class="r">g (proporção)</th><th class="r">variação %</th><th class="r">\(\ln(1+g)\)</th><th>Aproximação boa?</th></tr></thead>
+    <tbody>
+      <tr><td class="r">0,01</td><td class="r">1%</td><td class="r">0,00995</td><td>Excelente</td></tr>
+      <tr><td class="r">0,05</td><td class="r">5%</td><td class="r">0,04879</td><td>Boa</td></tr>
+      <tr><td class="r">0,10</td><td class="r">10%</td><td class="r">0,09531</td><td>Razoável</td></tr>
+      <tr><td class="r">0,20</td><td class="r">20%</td><td class="r">0,18232</td><td>Começa a errar</td></tr>
+      <tr><td class="r">0,50</td><td class="r">50%</td><td class="r">0,40547</td><td>Ruim</td></tr>
+    </tbody>
+  </table></div>
+  <p>Exemplo com os dados da Aula 3: o salário vai de 10 para 12, ou seja, +20%. \(\Delta\ln=\ln12-\ln10\approx0{,}1823\): a aproximação dá 18,2%, um pouco abaixo do verdadeiro. <strong>Caminho de volta (exato):</strong> se o log muda d, a variação percentual exata é \(100(e^{d}-1)\%\). Com d = 0,08: \(100(e^{0,08}-1)\approx8{,}33\%\) (Aula 4). A razão de fundo é a derivada: \(d\ln x/dx=1/x\), então \(d\ln x=dx/x\) (veja o módulo de derivadas).</p>
+
+  <h3>8. Aplicando às 4 formas funcionais (Aula 4)</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Modelo</th><th>Exemplo das listas</th><th>Aproximado</th><th>Exato</th></tr></thead>
+    <tbody>
+      <tr><td>Log–nível \(\ln y=\beta_0+\beta_1x\)</td><td>\(\beta_1=0{,}06\), +2 anos (Q52)</td><td>\(100\times0{,}06\times2=12\%\)</td><td>\(100(e^{0,12}-1)=12{,}75\%\)</td></tr>
+      <tr><td>Nível–log \(y=\beta_0+\beta_1\ln x\)</td><td>\(\beta_1=9\), renda +8% (Q53)</td><td>\(9\times0{,}08=0{,}72\)</td><td>\(9\ln1{,}08\approx0{,}69\)</td></tr>
+      <tr><td>Log–log \(\ln y=\beta_0+\beta_1\ln x\)</td><td>\(\beta_1=0{,}45\), renda +20% (Q54)</td><td>\(0{,}45\times20=9\%\)</td><td>\(100[(1{,}2)^{0,45}-1]\approx8{,}55\%\)</td></tr>
+    </tbody>
+  </table></div>
+  <p><strong>Por que o coeficiente do log–log é uma elasticidade:</strong> \(\beta_1=\dfrac{d\ln y}{d\ln x}=\dfrac{dy/y}{dx/x}\), a variação percentual de y dividida pela variação percentual de x. Elasticidade <strong>não tem unidade</strong>.</p>
+  <p><strong>Voltar do log para o nível:</strong> exponenciar a previsão de \(\ln y\) não dá a média de y: \(E[Y\mid X]\neq\exp(E[\ln Y\mid X])\). Sob erros normais e homocedásticos, \(E[Y\mid X=x]=\exp(\beta_0+\beta_1x+\sigma^2/2)\) (Aula 4, apêndice).</p>
+
+  <h3>Exercícios</h3>
+  <details class="sol"><summary>8 exercícios de log e exponencial (com respostas)</summary><div class="in">
+    <ol>
+      <li>\(\ln(e^3)\) = <strong>3</strong>.</li>
+      <li>\(\ln(20)-\ln(10)=\ln2\approx\) <strong>0,6931</strong>.</li>
+      <li>\(\ln(x^2)\) = <strong>\(2\ln x\)</strong> (para x &gt; 0).</li>
+      <li>Resolva \(e^x=5\): <strong>\(x=\ln5\approx1{,}6094\)</strong>.</li>
+      <li>Resolva \(\ln x=2\): <strong>\(x=e^2\approx7{,}389\)</strong>.</li>
+      <li>\(\ln100=2\ln10\approx\) <strong>4,6052</strong>.</li>
+      <li>Log–nível com \(\beta_1=0{,}10\): +1 em x dá cerca de <strong>10%</strong>; exato \(100(e^{0,1}-1)\approx\) <strong>10,52%</strong>.</li>
+      <li>\(\widehat{\ln y}=1{,}5+0{,}25x\): cada +1 em x multiplica \(\hat y\) por <strong>\(e^{0,25}\approx1{,}284\)</strong>, ou seja, +28,4% (Lista 1, Q57).</li>
+    </ol>
+  </div></details>
+  <div class="quiz" data-answer="c"><div class="qh">Log</div>
+    <p>Qual igualdade é verdadeira?</p>
+    <div class="opts"><button data-k="a">a) \(\ln(a+b)=\ln a+\ln b\)</button><button data-k="b">b) \(\ln(a^2)=(\ln a)^2\)</button><button data-k="c">c) \(\ln(ab)=\ln a+\ln b\)</button><button data-k="d">d) \(\ln0=1\)</button></div>
+    <div class="fb" hidden>O log transforma produto em soma. \(\ln(a^2)=2\ln a\), e \(\ln0\) não existe.</div></div>
+  <div class="quiz" data-answer="b"><div class="qh">Log</div>
+    <p>Num log–nível, \(\beta_1=0{,}40\). A variação percentual <strong>exata</strong> de y para +1 em x é:</p>
+    <div class="opts"><button data-k="a">a) 40%</button><button data-k="b">b) cerca de 49,2%</button><button data-k="c">c) 0,4%</button><button data-k="d">d) cerca de 33,6%</button></div>
+    <div class="fb" hidden>\(100(e^{0,4}-1)\approx49{,}2\%\). Com coeficiente grande, a aproximação 100β₁ (40%) erra bastante.</div></div>
+  <div class="quiz" data-answer="a"><div class="qh">Log</div>
+    <p>Por que o lucro de uma firma não pode entrar em log diretamente?</p>
+    <div class="opts"><button data-k="a">a) Porque pode ser zero ou negativo, e o ln só existe para valores positivos</button><button data-k="b">b) Porque o lucro é medido em reais</button><button data-k="c">c) Porque o log deixa a regressão não linear nos parâmetros</button><button data-k="d">d) Porque o R² fica errado</button></div>
+    <div class="fb" hidden>a (Aula 4). Aplicar log não quebra a linearidade nos parâmetros.</div></div>
+  <div class="done-row"><button class="btn done-btn" data-done="mat-log" aria-pressed="false">Marcar como concluído</button></div>
+</section>
+
+
+<!-- ================= MATEMÁTICA 2: DERIVADAS ================= -->
+<section class="mod" id="mat-deriv" data-title="Derivadas">
+  <div class="eyebrow"><span class="tag">Matemática de apoio</span> curso completo · base do MQO, da Aula 4 e da Lista 2</div>
+  <h2>Derivadas do zero ao MQO</h2>
+  <p>A derivada aparece em três lugares da P1: na <strong>derivação do MQO</strong> (as CPOs da Aula 3), nos <strong>efeitos marginais</strong> da Aula 4 (log, quadrático, interação) e nos <strong>Ex. 4 e 5 da Lista 2</strong>. Este módulo ensina tudo o que é preciso, e um pouco mais.</p>
+
+  <h3>1. A ideia: inclinação num ponto</h3>
+  <p>Numa reta, a inclinação é a mesma em todo lugar. Numa curva, ela muda de ponto para ponto. A <strong>derivada</strong> \(f'(x)\) é a inclinação da curva <em>exatamente</em> no ponto x: a taxa de variação instantânea.</p>
+  <p>Como medir a inclinação num ponto só? Pegue um segundo ponto próximo, calcule a inclinação da reta que liga os dois (a <strong>secante</strong>) e aproxime o segundo ponto do primeiro. Para \(f(x)=x^2\) em x = 3:</p>
+  <div class="tbl"><table>
+    <thead><tr><th class="r">h (distância)</th><th>Secante \(\dfrac{f(3+h)-f(3)}{h}\)</th><th class="r">Inclinação</th></tr></thead>
+    <tbody>
+      <tr><td class="r">1</td><td>\((16-9)/1\)</td><td class="r">7</td></tr>
+      <tr><td class="r">0,1</td><td>\((9{,}61-9)/0{,}1\)</td><td class="r">6,1</td></tr>
+      <tr><td class="r">0,01</td><td>\((9{,}0601-9)/0{,}01\)</td><td class="r">6,01</td></tr>
+      <tr><td class="r">0,001</td><td>—</td><td class="r">6,001</td></tr>
+    </tbody>
+  </table></div>
+  <p>As inclinações se aproximam de <strong>6</strong>: \(f'(3)=6\).</p>
+  <figure><div class="scroll"><svg class="fig" viewBox="0 0 520 320" role="img" aria-label="Reta secante e reta tangente à parábola x ao quadrado" xmlns="http://www.w3.org/2000/svg">
+<line class="g" x1="58" y1="270" x2="500" y2="270"/>
+<line class="g" x1="58" y1="207" x2="500" y2="207"/>
+<line class="g" x1="58" y1="144" x2="500" y2="144"/>
+<line class="g" x1="58" y1="81" x2="500" y2="81"/>
+<line class="g" x1="58" y1="18" x2="500" y2="18"/>
+<line class="g" x1="58" y1="18" x2="58" y2="270"/>
+<line class="g" x1="146.4" y1="18" x2="146.4" y2="270"/>
+<line class="g" x1="234.8" y1="18" x2="234.8" y2="270"/>
+<line class="g" x1="323.2" y1="18" x2="323.2" y2="270"/>
+<line class="g" x1="411.6" y1="18" x2="411.6" y2="270"/>
+<line class="g" x1="500" y1="18" x2="500" y2="270"/>
+<line class="ax" x1="58" y1="270" x2="500" y2="270"/>
+<line class="ax" x1="58" y1="18" x2="58" y2="270"/>
+<text class="tk" x="58" y="286" text-anchor="middle">0</text>
+<text class="tk" x="146.4" y="286" text-anchor="middle">1</text>
+<text class="tk" x="234.8" y="286" text-anchor="middle">2</text>
+<text class="tk" x="323.2" y="286" text-anchor="middle">3</text>
+<text class="tk" x="411.6" y="286" text-anchor="middle">4</text>
+<text class="tk" x="500" y="286" text-anchor="middle">5</text>
+<text class="tk" x="51" y="274" text-anchor="end">0</text>
+<text class="tk" x="51" y="211" text-anchor="end">5</text>
+<text class="tk" x="51" y="148" text-anchor="end">10</text>
+<text class="tk" x="51" y="85" text-anchor="end">15</text>
+<text class="tk" x="51" y="22" text-anchor="end">20</text>
+<text class="lb" x="279" y="314" text-anchor="middle">x</text>
+<text class="lb" x="12" y="144" text-anchor="middle" transform="rotate(-90 12 144)">f(x) = x²</text>
+<polyline class="fit" points="58,270 59.8,270 61.5,270 63.3,270 65.1,269.9 66.8,269.9 68.6,269.8 70.4,269.8 72.1,269.7 73.9,269.6 75.7,269.5 77.4,269.4 79.2,269.3 81,269.1 82.8,269 84.5,268.9 86.3,268.7 88.1,268.5 89.8,268.4 91.6,268.2 93.4,268 95.1,267.8 96.9,267.6 98.7,267.3 100.4,267.1 102.2,266.9 104,266.6 105.7,266.3 107.5,266 109.3,265.8 111,265.5 112.8,265.2 114.6,264.8 116.3,264.5 118.1,264.2 119.9,263.8 121.6,263.5 123.4,263.1 125.2,262.7 127,262.3 128.7,261.9 130.5,261.5 132.3,261.1 134,260.7 135.8,260.2 137.6,259.8 139.3,259.3 141.1,258.9 142.9,258.4 144.6,257.9 146.4,257.4 148.2,256.9 149.9,256.4 151.7,255.8 153.5,255.3 155.2,254.8 157,254.2 158.8,253.6 160.5,253 162.3,252.5 164.1,251.9 165.8,251.2 167.6,250.6 169.4,250 171.2,249.4 172.9,248.7 174.7,248 176.5,247.4 178.2,246.7 180,246 181.8,245.3 183.5,244.6 185.3,243.9 187.1,243.1 188.8,242.4 190.6,241.7 192.4,240.9 194.1,240.1 195.9,239.3 197.7,238.5 199.4,237.7 201.2,236.9 203,236.1 204.7,235.3 206.5,234.4 208.3,233.6 210,232.7 211.8,231.9 213.6,231 215.4,230.1 217.1,229.2 218.9,228.3 220.7,227.3 222.4,226.4 224.2,225.5 226,224.5 227.7,223.6 229.5,222.6 231.3,221.6 233,220.6 234.8,219.6 236.6,218.6 238.3,217.6 240.1,216.5 241.9,215.5 243.6,214.4 245.4,213.4 247.2,212.3 248.9,211.2 250.7,210.1 252.5,209 254.2,207.9 256,206.8 257.8,205.6 259.6,204.5 261.3,203.3 263.1,202.2 264.9,201 266.6,199.8 268.4,198.6 270.2,197.4 271.9,196.2 273.7,195 275.5,193.7 277.2,192.5 279,191.2 280.8,190 282.5,188.7 284.3,187.4 286.1,186.1 287.8,184.8 289.6,183.5 291.4,182.2 293.1,180.8 294.9,179.5 296.7,178.1 298.4,176.8 300.2,175.4 302,174 303.8,172.6 305.5,171.2 307.3,169.8 309.1,168.4 310.8,166.9 312.6,165.5 314.4,164 316.1,162.6 317.9,161.1 319.7,159.6 321.4,158.1 323.2,156.6 325,155.1 326.7,153.6 328.5,152 330.3,150.5 332,148.9 333.8,147.3 335.6,145.8 337.3,144.2 339.1,142.6 340.9,141 342.6,139.4 344.4,137.7 346.2,136.1 348,134.4 349.7,132.8 351.5,131.1 353.3,129.4 355,127.8 356.8,126.1 358.6,124.3 360.3,122.6 362.1,120.9 363.9,119.2 365.6,117.4 367.4,115.6 369.2,113.9 370.9,112.1 372.7,110.3 374.5,108.5 376.2,106.7 378,104.9 379.8,103.1 381.5,101.2 383.3,99.4 385.1,97.5 386.8,95.6 388.6,93.8 390.4,91.9 392.2,90 393.9,88.1 395.7,86.1 397.5,84.2 399.2,82.3 401,80.3 402.8,78.4 404.5,76.4 406.3,74.4 408.1,72.4 409.8,70.4 411.6,68.4 413.4,66.4 415.1,64.3 416.9,62.3 418.7,60.3 420.4,58.2 422.2,56.1 424,54 425.7,51.9 427.5,49.8 429.3,47.7 431,45.6 432.8,43.5 434.6,41.3 436.4,39.2 438.1,37 439.9,34.9 441.7,32.7 443.4,30.5 445.2,28.3 447,26.1 448.7,23.8 450.5,21.6 452.3,19.4"/>
+<line class="tgn" x1="226" y1="253.6" x2="447" y2="33.1"/>
+<line class="tg" x1="217.1" y1="247.3" x2="464.6" y2="35.6"/>
+<circle class="pt" cx="323.2" cy="156.6" r="5"/>
+<circle class="pt" cx="411.6" cy="68.4" r="5"/>
+<text class="an resc" x="416" y="49.5">secante (3→4): inclinação 7</text>
+<text class="an" x="340.9" y="166.7" style="fill:var(--green)">tangente em x = 3: inclinação 6</text>
+</svg></div><figcaption>A secante entre x = 3 e x = 4 tem inclinação 7. Conforme o segundo ponto se aproxima, ela vira a tangente em x = 3, com inclinação 6.</figcaption></figure>
+
+  <h3>2. Definição formal (limite)</h3>
+  <div class="mathblock">\[f'(x)=\lim_{h\to0}\frac{f(x+h)-f(x)}{h}\]</div>
+  <p>“Limite quando h tende a zero” quer dizer o valor de que a fração se aproxima quando h fica cada vez menor, sem nunca ser zero. Para \(f(x)=x^2\):</p>
+  <div class="mathblock">\[\frac{(x+h)^2-x^2}{h}=\frac{x^2+2xh+h^2-x^2}{h}=\frac{2xh+h^2}{h}=2x+h\ \xrightarrow{h\to0}\ 2x\]</div>
+  <p>Logo \(f'(x)=2x\), e em x = 3 dá 6, como a tabela mostrou. Na prática ninguém usa a definição: usamos as regras abaixo, que saem dela.</p>
+  <p><strong>Notações equivalentes:</strong> \(f'(x)\), \(\frac{dy}{dx}\), \(\frac{df}{dx}\). Com várias variáveis, \(\frac{\partial f}{\partial x}\) (derivada parcial). A segunda derivada é \(f''(x)\) ou \(\frac{d^2y}{dx^2}\). <strong>Unidade:</strong> a derivada tem a unidade de y dividida pela unidade de x.</p>
+
+  <h3>3. As regras</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Regra</th><th>Fórmula</th><th>Exemplo</th></tr></thead>
+    <tbody>
+      <tr><td>Constante</td><td>\((c)'=0\)</td><td>\((40)'=0\)</td></tr>
+      <tr><td>Potência</td><td>\((x^n)'=nx^{n-1}\)</td><td>\((x^5)'=5x^4\); \((x^{-1})'=-x^{-2}\); \((\sqrt x)'=\frac{1}{2\sqrt x}\)</td></tr>
+      <tr><td>Constante vezes função</td><td>\((c\,f)'=c\,f'\)</td><td>\((7x^3)'=21x^2\)</td></tr>
+      <tr><td>Soma e diferença</td><td>\((f\pm g)'=f'\pm g'\)</td><td>\((4+3x-2x^2)'=3-4x\)</td></tr>
+      <tr><td>Produto</td><td>\((fg)'=f'g+fg'\)</td><td>\((x^2\ln x)'=2x\ln x+x\)</td></tr>
+      <tr><td>Quociente</td><td>\(\left(\frac fg\right)'=\frac{f'g-fg'}{g^2}\)</td><td>\(\left(\frac{x}{1+x}\right)'=\frac{1}{(1+x)^2}\)</td></tr>
+      <tr><td>Cadeia (função de função)</td><td>\([f(g(x))]'=f'(g(x))\cdot g'(x)\)</td><td>\([(3x+1)^2]'=2(3x+1)\cdot3\)</td></tr>
+      <tr><td>Exponencial</td><td>\((e^x)'=e^x\); \((e^{g})'=e^{g}g'\)</td><td>\((e^{0,25x})'=0{,}25e^{0,25x}\)</td></tr>
+      <tr><td>Logaritmo</td><td>\((\ln x)'=\frac1x\); \((\ln g)'=\frac{g'}{g}\)</td><td>\((\ln(x^2+1))'=\frac{2x}{x^2+1}\)</td></tr>
+    </tbody>
+  </table></div>
+  <div class="lousa">
+    <div class="who">Na lousa do professor</div>
+    <div class="hand">
+      <span class="l">f(x) = xⁿ  →  f′(x) = n · xⁿ⁻¹</span>
+      <span class="l">f(x) = √x = x^(1/2)  →  f′(x) = ½ · x^(−1/2) = ½ · 1/√x</span>
+      <span class="l">f′(x) = 1 · 12Q⁰ − 2Q¹ = 12 − 2Q</span>
+    </div>
+  </div>
+  <details class="sol"><summary>Passo a passo das regras mais difíceis (produto, quociente, cadeia)</summary><div class="in">
+    <p><strong>Produto:</strong> \(f=x^2\), \(g=\ln x\). \(f'=2x\), \(g'=1/x\). Então \((x^2\ln x)'=2x\cdot\ln x+x^2\cdot\frac1x=2x\ln x+x\).</p>
+    <p><strong>Quociente:</strong> \(f=x\), \(g=1+x\), \(f'=1\), \(g'=1\). \(\frac{1\cdot(1+x)-x\cdot1}{(1+x)^2}=\frac{1}{(1+x)^2}\).</p>
+    <p><strong>Cadeia:</strong> “derive a de fora, mantenha a de dentro, multiplique pela derivada da de dentro”. Em \((3x+1)^2\), a de fora é \(u^2\) (derivada \(2u\)) e a de dentro é \(u=3x+1\) (derivada 3): resultado \(2(3x+1)\cdot3=6(3x+1)\).</p>
+    <p>A cadeia é exatamente o que o MQO usa: em \((y_i-b_0-b_1x_i)^2\), a de fora é \(u^2\) e a de dentro é \(u=y_i-b_0-b_1x_i\).</p>
+  </div></details>
+
+  <h3>4. Derivada = efeito marginal (leitura econômica)</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Modelo (Aula 4)</th><th>Derivada</th><th>Leitura</th></tr></thead>
+    <tbody>
+      <tr><td>\(y=\beta_0+\beta_1x\)</td><td>\(\frac{dy}{dx}=\beta_1\)</td><td>Efeito constante: \(\beta_1\) unidades de y por unidade de x</td></tr>
+      <tr><td>\(\ln y=\beta_0+\beta_1x\)</td><td>\(\frac{d\ln y}{dx}=\beta_1\), logo \(\frac{dy}{dx}=\beta_1y\)</td><td>Variação proporcional constante: \(100\beta_1\%\)</td></tr>
+      <tr><td>\(y=\beta_0+\beta_1\ln x\)</td><td>\(\frac{dy}{dx}=\frac{\beta_1}{x}\)</td><td>Efeito em unidades cai quando x cresce</td></tr>
+      <tr><td>\(\ln y=\beta_0+\beta_1\ln x\)</td><td>\(\frac{d\ln y}{d\ln x}=\beta_1\)</td><td>Elasticidade constante</td></tr>
+      <tr><td>\(y=\beta_0+\beta_1x+\beta_2x^2\)</td><td>\(\beta_1+2\beta_2x\)</td><td>Efeito muda com x</td></tr>
+      <tr><td>\(y=\beta_0+\beta_1x_1+\beta_2x_2+\beta_3x_1x_2\)</td><td>\(\frac{\partial y}{\partial x_1}=\beta_1+\beta_3x_2\)</td><td>Efeito de \(x_1\) depende de \(x_2\)</td></tr>
+    </tbody>
+  </table></div>
+  <p><strong>Elasticidade pela derivada:</strong> \(\varepsilon=\frac{dy}{dx}\cdot\frac{x}{y}\). Para \(y=Ax^{\beta}\): \(\frac{dy}{dx}=A\beta x^{\beta-1}\), e \(\varepsilon=A\beta x^{\beta-1}\cdot\frac{x}{Ax^\beta}=\beta\). É por isso que o log–log tem elasticidade constante.</p>
+
+  <h3>5. Aproximação linear, efeito marginal e mudança discreta</h3>
+  <div class="mathblock">\[f(x+\Delta)\approx f(x)+f'(x)\,\Delta\]</div>
+  <p>A derivada prevê bem mudanças <strong>pequenas</strong>. No Ex. 4, \(lucro(2)=60\) e \(lucro'(2)=8\): a aproximação diz \(lucro(3)\approx68\), mas o valor exato é 67. A diferença vem da curvatura. É exatamente o item (c) do Ex. 4: “o efeito marginal é local; a mudança discreta incorpora a curvatura”.</p>
+
+  <h3>6. Segunda derivada: concavidade</h3>
+  <ul>
+    <li>\(f''(x)\lt0\): <strong>côncava</strong> (“boca para baixo”). A inclinação diminui: efeito marginal decrescente.</li>
+    <li>\(f''(x)&gt;0\): <strong>convexa</strong> (“boca para cima”). A inclinação aumenta.</li>
+    <li>Exemplos: \(40+12Q-Q^2\) tem \(f''=-2\) (côncava, Ex. 4); \(12+6\sqrt t\) tem \(f''=-\frac{3}{2t^{3/2}}\lt0\) (côncava, Ex. 5); \(Y=\beta_0+\beta_1X+\beta_2X^2\) com \(\beta_2&gt;0\) tem \(f''=2\beta_2&gt;0\) (convexa, Lista 1, Q50-III).</li>
+  </ul>
+
+  <h3>7. Máximos e mínimos</h3>
+  <ol class="steps">
+    <li><div><strong>Condição de primeira ordem (CPO):</strong> no topo ou no fundo, a tangente é horizontal, então \(f'(x)=0\). Resolva para achar o candidato.</div></li>
+    <li><div><strong>Condição de segunda ordem (CSO):</strong> \(f''&lt;0\) ⇒ <strong>máximo</strong>; \(f''&gt;0\) ⇒ <strong>mínimo</strong>.</div></li>
+    <li><div>Calcule o valor da função no ponto encontrado.</div></li>
+  </ol>
+  <p><strong>Máximo:</strong> \(f(x)=-x^2+6x+1\). \(f'=-2x+6=0\Rightarrow x=3\); \(f''=-2\lt0\); \(f(3)=-9+18+1=10\). <strong>Mínimo:</strong> \(f(x)=x^2-4x+7\). \(f'=2x-4=0\Rightarrow x=2\); \(f''=2&gt;0\); \(f(2)=3\).</p>
+  <p>O ponto de retorno do quadrático é esta conta em geral: \(\beta_1+2\beta_2X=0\Rightarrow X^*=-\beta_1/(2\beta_2)\).</p>
+
+  <h3>8. Derivadas parciais</h3>
+  <p>Com mais de uma variável, a <strong>derivada parcial</strong> \(\partial f/\partial x\) deriva em relação a x tratando todas as outras como constantes.</p>
+  <p>\(f(x,y)=x^2y+3y\): \(\frac{\partial f}{\partial x}=2xy\) (y é constante) e \(\frac{\partial f}{\partial y}=x^2+3\) (x é constante). Na Lista 1, Q56: \(3+2X_1+5X_2-0{,}3X_1X_2\) tem \(\partial/\partial X_1=2-0{,}3X_2\).</p>
+
+  <h3>9. A aplicação central: derivando o MQO</h3>
+  <p>O MQO escolhe \(b_0\) e \(b_1\) para minimizar \(SQR(b_0,b_1)=\sum_i(y_i-b_0-b_1x_i)^2\). São duas variáveis, então usamos derivadas parciais e a regra da cadeia em cada termo:</p>
+  <div class="mathblock">\[\frac{\partial}{\partial b_0}(y_i-b_0-b_1x_i)^2=2(y_i-b_0-b_1x_i)\cdot(-1),\qquad \frac{\partial}{\partial b_1}(y_i-b_0-b_1x_i)^2=2(y_i-b_0-b_1x_i)\cdot(-x_i)\]</div>
+  <p>A derivada de uma soma é a soma das derivadas. Somando e igualando a zero, saem as CPOs (7) e (8) da Aula 3:</p>
+  <div class="mathblock">\[-2\sum_i(y_i-\hat\beta_0-\hat\beta_1x_i)=0,\qquad -2\sum_ix_i(y_i-\hat\beta_0-\hat\beta_1x_i)=0\]</div>
+  <p>Daí em diante é álgebra: veja a <a href="#aula3">Aula 3, seção 5</a>.</p>
+  <div class="box ok"><span class="lbl">Aquecimento que ajuda a entender</span>
+    <p>Qual número m minimiza \(\sum_i(y_i-m)^2\)? Derivando: \(-2\sum(y_i-m)=0\Rightarrow\sum y_i=nm\Rightarrow m=\bar y\). <strong>A média é o “MQO sem x”.</strong> Com x, o MQO faz a mesma coisa para uma reta inteira.</p>
+  </div>
+
+  <h3>Exercícios</h3>
+  <details class="sol"><summary>16 exercícios de derivadas (com respostas)</summary><div class="in">
+    <ol>
+      <li>\((7)'\) = <strong>0</strong></li>
+      <li>\((3x^4)'\) = <strong>\(12x^3\)</strong></li>
+      <li>\((5-2x+x^3)'\) = <strong>\(-2+3x^2\)</strong></li>
+      <li>\((1/x)'\) = <strong>\(-1/x^2\)</strong></li>
+      <li>\((\sqrt x)'\) em x = 4 = <strong>\(1/(2\cdot2)=0{,}25\)</strong></li>
+      <li>\((6\sqrt t)'\) = <strong>\(3/\sqrt t\)</strong> (Lista 2, Ex. 5)</li>
+      <li>\([(2x+1)^3]'\) = <strong>\(3(2x+1)^2\cdot2=6(2x+1)^2\)</strong></li>
+      <li>\((e^{3x})'\) = <strong>\(3e^{3x}\)</strong></li>
+      <li>\((\ln5x)'\) = <strong>\(1/x\)</strong> (porque \(\ln5x=\ln5+\ln x\))</li>
+      <li>\((xe^x)'\) = <strong>\(e^x+xe^x=e^x(1+x)\)</strong></li>
+      <li>\(\left(\frac{\ln x}{x}\right)'\) = <strong>\(\frac{1-\ln x}{x^2}\)</strong></li>
+      <li>Primeira e segunda derivadas de \(40+12Q-Q^2\) = <strong>\(12-2Q\) e \(-2\)</strong> (Lista 2, Ex. 4)</li>
+      <li>\((6+5X-0{,}4X^2)'\) = <strong>\(5-0{,}8X\)</strong>; retorno em <strong>6,25</strong> (Lista 1, Q55)</li>
+      <li>\(\partial/\partial x\) e \(\partial/\partial y\) de \(3+2x+5y-0{,}3xy\) = <strong>\(2-0{,}3y\) e \(5-0{,}3x\)</strong></li>
+      <li>\((\beta_0+\beta_1\ln x)'\) = <strong>\(\beta_1/x\)</strong> (nível–log)</li>
+      <li>Máximo de \(-2x^2+8x\): <strong>x = 2</strong>, valor <strong>8</strong> (\(f''=-4\lt0\))</li>
+    </ol>
+  </div></details>
+  <div class="quiz" data-answer="d"><div class="qh">Derivadas</div>
+    <p>A derivada de \(f(x)=4x^3-x+10\) é:</p>
+    <div class="opts"><button data-k="a">a) \(12x^2-x\)</button><button data-k="b">b) \(4x^2-1\)</button><button data-k="c">c) \(12x^2-1+10\)</button><button data-k="d">d) \(12x^2-1\)</button></div>
+    <div class="fb" hidden>Potência em cada termo: \(4\cdot3x^2=12x^2\), \(-x\to-1\), \(10\to0\).</div></div>
+  <div class="quiz" data-answer="a"><div class="qh">Derivadas</div>
+    <p>\(f(x)=-3x^2+18x\). Qual é o ponto de máximo e o valor máximo?</p>
+    <div class="opts"><button data-k="a">a) x = 3; f = 27</button><button data-k="b">b) x = 6; f = 0</button><button data-k="c">c) x = 3; f = 54</button><button data-k="d">d) x = −3; f = −81</button></div>
+    <div class="fb" hidden>\(f'=-6x+18=0\Rightarrow x=3\); \(f''=-6\lt0\) (máximo); \(f(3)=-27+54=27\).</div></div>
+  <div class="quiz" data-answer="b"><div class="qh">Derivadas</div>
+    <p>A derivada de \((y_i-b_0-b_1x_i)^2\) em relação a \(b_1\) é:</p>
+    <div class="opts"><button data-k="a">a) \(2(y_i-b_0-b_1x_i)\)</button><button data-k="b">b) \(-2x_i(y_i-b_0-b_1x_i)\)</button><button data-k="c">c) \(-2(y_i-b_0-b_1x_i)\)</button><button data-k="d">d) \(2x_i^2\)</button></div>
+    <div class="fb" hidden>Regra da cadeia: \(2(\dots)\) vezes a derivada de dentro em relação a \(b_1\), que é \(-x_i\). A opção c é a derivada em \(b_0\).</div></div>
+  <div class="quiz" data-answer="c"><div class="qh">Derivadas</div>
+    <p>Se \(f''(x)=-2\) em todo ponto, a função é:</p>
+    <div class="opts"><button data-k="a">a) convexa, com mínimo</button><button data-k="b">b) linear</button><button data-k="c">c) côncava, com efeito marginal decrescente</button><button data-k="d">d) crescente em todo ponto</button></div>
+    <div class="fb" hidden>Segunda derivada negativa ⇒ côncava. Nada garante que seja crescente em todo ponto: o Ex. 4 cresce até Q = 6 e depois cai.</div></div>
+  <div class="done-row"><button class="btn done-btn" data-done="mat-deriv" aria-pressed="false">Marcar como concluído</button></div>
+</section>
+
+
+<!-- ================= MATEMÁTICA 3: INTEGRAIS ================= -->
+<section class="mod" id="mat-int" data-title="Integrais">
+  <div class="eyebrow"><span class="tag">Matemática de apoio</span> curso completo · usado na Aula 2 (variáveis contínuas)</div>
+  <h2>Integrais: área, antiderivada e probabilidade</h2>
+  <p>No seu material, a integral aparece na Aula 2: a probabilidade de uma variável contínua é uma <strong>área</strong> sob a densidade, \(P(a\lt X\le b)=\int_a^bf(x)dx\), e a esperança é \(E[X]=\int x\,f(x)dx\). Este módulo ensina integral do zero até essas aplicações. Substituição e integração por partes vão além do que a prova pede, mas estão aqui porque você pediu o curso completo.</p>
+
+  <h3>1. A ideia: somar área</h3>
+  <p>A integral \(\int_a^bf(x)\,dx\) é a <strong>área entre a curva e o eixo x</strong>, de a até b. Para calcular uma área curva, cortamos em retângulos finos, somamos e deixamos a largura ir a zero.</p>
+  <figure><div class="scroll"><svg class="fig" viewBox="0 0 520 300" role="img" aria-label="Área sob f de x igual a x aproximada por retângulos" xmlns="http://www.w3.org/2000/svg">
+<line class="g" x1="58" y1="250" x2="500" y2="250"/>
+<line class="g" x1="58" y1="201.7" x2="500" y2="201.7"/>
+<line class="g" x1="58" y1="153.3" x2="500" y2="153.3"/>
+<line class="g" x1="58" y1="105" x2="500" y2="105"/>
+<line class="g" x1="58" y1="56.7" x2="500" y2="56.7"/>
+<line class="g" x1="58" y1="18" x2="58" y2="250"/>
+<line class="g" x1="158.5" y1="18" x2="158.5" y2="250"/>
+<line class="g" x1="258.9" y1="18" x2="258.9" y2="250"/>
+<line class="g" x1="359.4" y1="18" x2="359.4" y2="250"/>
+<line class="g" x1="459.8" y1="18" x2="459.8" y2="250"/>
+<line class="ax" x1="58" y1="250" x2="500" y2="250"/>
+<line class="ax" x1="58" y1="18" x2="58" y2="250"/>
+<text class="tk" x="58" y="266" text-anchor="middle">0</text>
+<text class="tk" x="158.5" y="266" text-anchor="middle">0,5</text>
+<text class="tk" x="258.9" y="266" text-anchor="middle">1</text>
+<text class="tk" x="359.4" y="266" text-anchor="middle">1,5</text>
+<text class="tk" x="459.8" y="266" text-anchor="middle">2</text>
+<text class="tk" x="51" y="254" text-anchor="end">0</text>
+<text class="tk" x="51" y="205.7" text-anchor="end">0,5</text>
+<text class="tk" x="51" y="157.3" text-anchor="end">1</text>
+<text class="tk" x="51" y="109" text-anchor="end">1,5</text>
+<text class="tk" x="51" y="60.7" text-anchor="end">2</text>
+<text class="lb" x="279" y="294" text-anchor="middle">x</text>
+<text class="lb" x="12" y="134" text-anchor="middle" transform="rotate(-90 12 134)">f(x) = x</text>
+<rect class="bandf" x="58" y="201.7" width="100.5" height="48.3" style="stroke:var(--marker);stroke-width:1"/>
+<rect class="bandf" x="158.5" y="153.3" width="100.5" height="96.7" style="stroke:var(--marker);stroke-width:1"/>
+<rect class="bandf" x="258.9" y="105" width="100.5" height="145" style="stroke:var(--marker);stroke-width:1"/>
+<rect class="bandf" x="359.4" y="56.7" width="100.5" height="193.3" style="stroke:var(--marker);stroke-width:1"/>
+<polygon class="rej" points="58,250 459.8,56.7 459.8,250"/>
+<line class="fit" x1="58" y1="250" x2="500" y2="37.3"/>
+<text class="an" x="78.1" y="42.2">4 retângulos pela direita: 2,5 · área exata (triângulo): 2</text>
+</svg></div><figcaption>\(\int_0^2x\,dx\): com 4 retângulos de largura 0,5 medidos pela direita, a soma dá 2,5; pela esquerda, 1,5. A área exata (o triângulo vermelho, base 2 e altura 2) é 2. Mais retângulos ⇒ soma mais perto de 2.</figcaption></figure>
+  <p>O símbolo ∫ é um “S” alongado, de <em>soma</em>. O dx lembra a largura infinitesimal dos retângulos. <strong>Unidade:</strong> a integral tem a unidade de f vezes a unidade de x (numa densidade, isso dá probabilidade, sem unidade).</p>
+
+  <h3>2. Antiderivada: desfazer a derivada</h3>
+  <p>Uma <strong>antiderivada</strong> (ou integral indefinida) de f é uma função F cuja derivada é f: \(F'(x)=f(x)\). Como a derivada de uma constante é zero, somamos “+ C”:</p>
+  <div class="mathblock">\[\int f(x)\,dx=F(x)+C\]</div>
+  <div class="tbl"><table>
+    <thead><tr><th>Regra</th><th>Fórmula</th><th>Confira derivando</th></tr></thead>
+    <tbody>
+      <tr><td>Constante</td><td>\(\int k\,dx=kx+C\)</td><td>\((kx)'=k\)</td></tr>
+      <tr><td>Potência (\(n\neq-1\))</td><td>\(\int x^n\,dx=\dfrac{x^{n+1}}{n+1}+C\)</td><td>\(\left(\frac{x^{n+1}}{n+1}\right)'=x^n\)</td></tr>
+      <tr><td>\(1/x\) (o caso n = −1)</td><td>\(\int\frac1x\,dx=\ln|x|+C\)</td><td>\((\ln x)'=\frac1x\)</td></tr>
+      <tr><td>Exponencial</td><td>\(\int e^x\,dx=e^x+C\); \(\int e^{ax}dx=\frac{e^{ax}}{a}+C\)</td><td>\((e^{ax}/a)'=e^{ax}\)</td></tr>
+      <tr><td>Constante vezes</td><td>\(\int k\,f\,dx=k\int f\,dx\)</td><td>—</td></tr>
+      <tr><td>Soma</td><td>\(\int(f+g)\,dx=\int f\,dx+\int g\,dx\)</td><td>—</td></tr>
+    </tbody>
+  </table></div>
+  <p>Exemplos: \(\int(3x^2+2)\,dx=x^3+2x+C\); \(\int\sqrt x\,dx=\int x^{1/2}dx=\frac{x^{3/2}}{3/2}=\frac23x^{3/2}+C\).</p>
+
+  <h3>3. Integral definida e o Teorema Fundamental do Cálculo</h3>
+  <div class="box def"><span class="lbl">Teorema Fundamental do Cálculo</span>
+    <div class="mathblock">\[\int_a^bf(x)\,dx=F(b)-F(a)=\Big[F(x)\Big]_a^b\]</div>
+    <p>Para achar a área, basta uma antiderivada: calcule em b, calcule em a e subtraia. O + C some na subtração.</p>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>Integral</th><th>Conta</th><th class="r">Resultado</th></tr></thead>
+    <tbody>
+      <tr><td>\(\int_0^2x\,dx\)</td><td>\(\left[\frac{x^2}{2}\right]_0^2=2-0\)</td><td class="r">2</td></tr>
+      <tr><td>\(\int_1^3(2x+1)\,dx\)</td><td>\([x^2+x]_1^3=(9+3)-(1+1)\)</td><td class="r">10</td></tr>
+      <tr><td>\(\int_0^13x^2\,dx\)</td><td>\([x^3]_0^1\)</td><td class="r">1</td></tr>
+      <tr><td>\(\int_1^e\frac1x\,dx\)</td><td>\(\ln e-\ln1\)</td><td class="r">1</td></tr>
+      <tr><td>\(\int_0^1e^x\,dx\)</td><td>\(e^1-e^0\)</td><td class="r">≈ 1,7183</td></tr>
+    </tbody>
+  </table></div>
+  <p><strong>Propriedades:</strong> \(\int_a^af=0\); \(\int_a^bf=-\int_b^af\); \(\int_a^cf=\int_a^bf+\int_b^cf\). Área abaixo do eixo x entra com sinal negativo.</p>
+
+  <h3>4. Técnica 1: substituição (a regra da cadeia ao contrário)</h3>
+  <ol class="steps">
+    <li><div>Escolha \(u=g(x)\), a “função de dentro”.</div></li>
+    <li><div>Calcule \(du=g'(x)\,dx\) e troque tudo para u.</div></li>
+    <li><div>Integre em u e volte para x (ou troque os limites da integral).</div></li>
+  </ol>
+  <p><strong>Exemplo 1:</strong> \(\int2x(x^2+1)^3dx\). Com \(u=x^2+1\), \(du=2x\,dx\): \(\int u^3du=\frac{u^4}{4}+C=\frac{(x^2+1)^4}{4}+C\).</p>
+  <p><strong>Exemplo 2:</strong> \(\int_0^12x\,e^{x^2}dx\). Com \(u=x^2\) (u vai de 0 a 1): \(\int_0^1e^udu=e-1\approx1{,}7183\).</p>
+  <p><strong>Exemplo 3:</strong> \(\int\frac{1}{x+1}dx=\ln|x+1|+C\) (com \(u=x+1\)).</p>
+
+  <h3>5. Técnica 2: por partes (a regra do produto ao contrário)</h3>
+  <div class="mathblock">\[\int u\,dv=uv-\int v\,du\]</div>
+  <p>Escolha u como a parte que fica mais simples ao derivar.</p>
+  <p><strong>Exemplo 1:</strong> \(\int xe^xdx\), com \(u=x\) (\(du=dx\)) e \(dv=e^xdx\) (\(v=e^x\)): \(xe^x-\int e^xdx=xe^x-e^x+C=e^x(x-1)+C\). Então \(\int_0^1xe^xdx=[e^x(x-1)]_0^1=0-(-1)=1\).</p>
+  <p><strong>Exemplo 2:</strong> \(\int\ln x\,dx\), com \(u=\ln x\) (\(du=dx/x\)) e \(dv=dx\) (\(v=x\)): \(x\ln x-\int x\cdot\frac1xdx=x\ln x-x+C\). Então \(\int_1^e\ln x\,dx=(e-e)-(0-1)=1\).</p>
+
+  <h3>6. A integral na probabilidade (Aula 2)</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Conceito</th><th>Variável discreta (soma)</th><th>Variável contínua (integral)</th></tr></thead>
+    <tbody>
+      <tr><td>Função de probabilidade</td><td>FMP \(p(x)=P(X=x)\)</td><td>FDP \(f(x)\): densidade, <em>não</em> é probabilidade</td></tr>
+      <tr><td>Soma total = 1</td><td>\(\sum_xp(x)=1\)</td><td>\(\int_{-\infty}^{\infty}f(x)dx=1\)</td></tr>
+      <tr><td>Probabilidade de um intervalo</td><td>\(\sum_{a\lt x\le b}p(x)\)</td><td>\(\int_a^bf(x)dx\) (área); \(P(X=x)=0\)</td></tr>
+      <tr><td>FDA \(F(x)=P(X\le x)\)</td><td>\(\sum_{x'\le x}p(x')\)</td><td>\(\int_{-\infty}^xf(t)dt\), e \(f(x)=F'(x)\)</td></tr>
+      <tr><td>Esperança</td><td>\(E[X]=\sum_xx\,p(x)\)</td><td>\(E[X]=\int x\,f(x)dx\)</td></tr>
+      <tr><td>Variância</td><td colspan="2">\(Var(X)=E[X^2]-(E[X])^2\), com \(E[X^2]=\sum x^2p(x)\) ou \(\int x^2f(x)dx\)</td></tr>
+    </tbody>
+  </table></div>
+  <p>A derivada e a integral fazem caminhos opostos: a <strong>FDA é a integral da FDP</strong> e a <strong>FDP é a derivada da FDA</strong>.</p>
+
+  <h3>7. Exemplo completo: a distribuição Uniforme</h3>
+  <p>\(X\sim U(a,b)\) tem densidade constante \(f(x)=\frac{1}{b-a}\) entre a e b (Aula 2). Com \(U(0,10)\), \(f(x)=0{,}1\).</p>
+  <figure><div class="scroll"><svg class="fig" viewBox="0 0 520 260" role="img" aria-label="Densidade uniforme entre 0 e 10 com a área entre 2 e 5 destacada" xmlns="http://www.w3.org/2000/svg">
+<line class="ax" x1="58" y1="210" x2="500" y2="210"/>
+<line class="ax" x1="58" y1="18" x2="58" y2="210"/>
+<text class="tk" x="94.8" y="226" text-anchor="middle">0</text>
+<text class="tk" x="168.5" y="226" text-anchor="middle">2</text>
+<text class="tk" x="279" y="226" text-anchor="middle">5</text>
+<text class="tk" x="463.2" y="226" text-anchor="middle">10</text>
+<text class="tk" x="51" y="214" text-anchor="end">0</text>
+<text class="tk" x="51" y="76.9" text-anchor="end">0,1</text>
+<text class="lb" x="279" y="254" text-anchor="middle">x</text>
+<text class="lb" x="12" y="114" text-anchor="middle" transform="rotate(-90 12 114)">f(x)</text>
+<rect class="rej" x="168.5" y="72.9" width="110.5" height="137.1"/>
+<polyline class="fit" points="58,210 94.8,210 94.8,72.9 463.2,72.9 463.2,210 500,210"/>
+<text class="an" x="223.8" y="141.4" text-anchor="middle">área = 3 × 0,1 = 0,3</text>
+<text class="an fitc" x="371.1" y="52.3" text-anchor="middle">f(x) = 1/10</text>
+</svg></div><figcaption>\(P(2\lt X\le5)\) é a área do retângulo: base 3 × altura 0,1 = 0,3.</figcaption></figure>
+  <details class="sol"><summary>Derivação da média \(E[X]\) e da variância \(Var(X)\) da Uniforme</summary><div class="in">
+    <div class="mathblock">\[E[X]=\int_a^b\frac{x}{b-a}dx=\frac{1}{b-a}\left[\frac{x^2}{2}\right]_a^b=\frac{b^2-a^2}{2(b-a)}=\frac{(b-a)(b+a)}{2(b-a)}=\frac{a+b}{2}\]</div>
+    <div class="mathblock">\[E[X^2]=\int_a^b\frac{x^2}{b-a}dx=\frac{b^3-a^3}{3(b-a)}=\frac{a^2+ab+b^2}{3}\]</div>
+    <div class="mathblock">\[Var(X)=\frac{a^2+ab+b^2}{3}-\frac{(a+b)^2}{4}=\frac{4a^2+4ab+4b^2-3a^2-6ab-3b^2}{12}=\frac{(b-a)^2}{12}\]</div>
+    <p>Para U(0, 10): E = 5 e Var = 100/12 ≈ 8,33.</p>
+  </div></details>
+
+  <h3>8. O contraexemplo da Aula 2, provado com integral</h3>
+  <p>A Aula 2 afirma: se \(X\sim U(-1,1)\) e \(Y=X^2\), então X e Y são dependentes, mas \(Corr(X,Y)=0\). Com \(f(x)=\frac12\):</p>
+  <div class="mathblock">\[E[X]=\int_{-1}^1\frac x2dx=0,\qquad E[XY]=E[X^3]=\int_{-1}^1\frac{x^3}{2}dx=\left[\frac{x^4}{8}\right]_{-1}^{1}=0\]</div>
+  <p>Logo \(Cov(X,Y)=E[XY]-E[X]E[Y]=0-0=0\). Ainda assim, conhecer X determina Y completamente: covariância zero não é independência.</p>
+
+  <h3>9. E a Normal?</h3>
+  <p>A densidade normal \(f(x)=\frac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)\) não tem antiderivada escrita com funções elementares. Por isso usamos <strong>tabelas</strong> da FDA normal padrão \(\Phi(z)\). A Lista 02, Q8, dá \(\Phi(-1{,}04)=0{,}1492\) pronto, que é uma área calculada numericamente.</p>
+
+  <h3>Exercícios</h3>
+  <details class="sol"><summary>10 exercícios de integral (com respostas)</summary><div class="in">
+    <ol>
+      <li>\(\int(4x^3-2x)\,dx\) = <strong>\(x^4-x^2+C\)</strong></li>
+      <li>\(\int_0^3x^2\,dx\) = <strong>9</strong></li>
+      <li>\(\int_1^2\frac{1}{x}dx\) = <strong>\(\ln2\approx0{,}6931\)</strong></li>
+      <li>\(\int_0^1(e^x+1)\,dx\) = <strong>\(e\approx2{,}7183\)</strong></li>
+      <li>\(\int3(3x+2)^4dx\) = <strong>\(\frac{(3x+2)^5}{5}+C\)</strong> (substituição)</li>
+      <li>\(\int x\,e^{2x}dx\) = <strong>\(\frac{e^{2x}}{4}(2x-1)+C\)</strong> (por partes)</li>
+      <li>Confira que \(f(x)=2x\) em [0, 1] é densidade: \(\int_0^12x\,dx=[x^2]_0^1=\) <strong>1</strong> ✓</li>
+      <li>Com essa densidade, \(P(X\le0{,}5)=\int_0^{0,5}2x\,dx=\) <strong>0,25</strong></li>
+      <li>Com essa densidade, \(E[X]=\int_0^12x^2dx=\) <strong>2/3</strong> e \(Var=\frac12-\frac49=\) <strong>1/18</strong></li>
+      <li>\(U(0,10)\): \(P(X&gt;7)\) = <strong>0,3</strong>; \(E[X]\) = <strong>5</strong></li>
+    </ol>
+  </div></details>
+  <div class="quiz" data-answer="b"><div class="qh">Integrais</div>
+    <p>\(\int_0^2(3x^2+1)\,dx\) vale:</p>
+    <div class="opts"><button data-k="a">a) 13</button><button data-k="b">b) 10</button><button data-k="c">c) 8</button><button data-k="d">d) 12</button></div>
+    <div class="fb" hidden>\([x^3+x]_0^2=8+2=10\).</div></div>
+  <div class="quiz" data-answer="c"><div class="qh">Integrais</div>
+    <p>Para uma variável contínua, \(P(X=3)\) é:</p>
+    <div class="opts"><button data-k="a">a) \(f(3)\)</button><button data-k="b">b) \(F(3)\)</button><button data-k="c">c) 0</button><button data-k="d">d) 1</button></div>
+    <div class="fb" hidden>A área de um único ponto é zero (Aula 2). \(f(3)\) é densidade, não probabilidade; \(F(3)=P(X\le3)\).</div></div>
+  <div class="quiz" data-answer="a"><div class="qh">Integrais</div>
+    <p>Qual é a relação entre FDA e FDP de uma variável contínua?</p>
+    <div class="opts"><button data-k="a">a) A FDP é a derivada da FDA; a FDA é a integral da FDP</button><button data-k="b">b) São iguais</button><button data-k="c">c) A FDA é a derivada da FDP</button><button data-k="d">d) Não há relação</button></div>
+    <div class="fb" hidden>\(f(x)=F'(x)\) e \(F(x)=\int_{-\infty}^xf(t)dt\) (Aula 2, slide da FDP).</div></div>
+  <div class="done-row"><button class="btn done-btn" data-done="mat-int" aria-pressed="false">Marcar como concluído</button></div>
+</section>
+
+
+<!-- ================= MATEMÁTICA 4: LAMBDA ================= -->
+<section class="mod" id="mat-lambda" data-title="Lambda">
+  <div class="eyebrow"><span class="tag">Matemática de apoio</span> <span class="tag warn">Fora do material da P1</span></div>
+  <h2>λ (lambda): Lagrange e parâmetro de distribuição</h2>
+  <div class="box trap"><span class="lbl">Leia antes</span>
+    <p>A letra grega λ (lambda) <strong>não aparece em nenhum dos materiais que você enviou (aulas, práticas, listas, gabaritos e lousa)</strong>. Como você pediu para cobrir tudo, aqui estão os dois usos mais comuns de λ em economia e estatística. Se o professor mencionou λ em aula, é quase certamente um destes.</p>
+  </div>
+
+  <h3>Parte A: λ como multiplicador de Lagrange</h3>
+  <p>É a ferramenta para <strong>otimizar com uma restrição</strong>: maximizar ou minimizar \(f(x,y)\) sabendo que \(g(x,y)=c\). O exemplo clássico é o consumidor que maximiza a utilidade gastando exatamente a sua renda.</p>
+  <ol class="steps">
+    <li><div><strong>Monte o Lagrangiano:</strong> \(\mathcal L(x,y,\lambda)=f(x,y)-\lambda\,[g(x,y)-c]\).</div></li>
+    <li><div><strong>CPOs:</strong> derive em relação a x, y e λ e iguale a zero. A derivada em λ devolve a própria restrição.
+      <div class="mathblock">\[\frac{\partial\mathcal L}{\partial x}=0,\qquad\frac{\partial\mathcal L}{\partial y}=0,\qquad\frac{\partial\mathcal L}{\partial\lambda}=-(g(x,y)-c)=0\]</div></div></li>
+    <li><div><strong>Resolva o sistema</strong> para x, y e λ.</div></li>
+  </ol>
+
+  <h4>Exemplo resolvido: max \(xy\) sujeito a \(2x+4y=40\)</h4>
+  <div class="mathblock">\[\mathcal L=xy-\lambda(2x+4y-40)\]</div>
+  <div class="mathblock">\[\frac{\partial\mathcal L}{\partial x}=y-2\lambda=0\Rightarrow y=2\lambda,\qquad \frac{\partial\mathcal L}{\partial y}=x-4\lambda=0\Rightarrow x=4\lambda\]</div>
+  <p>Substituindo na restrição: \(2(4\lambda)+4(2\lambda)=40\Rightarrow16\lambda=40\Rightarrow\boxed{\lambda=2{,}5}\), \(x=10\), \(y=5\) e \(f^*=xy=50\).</p>
+  <figure><div class="scroll"><svg class="fig" viewBox="0 0 520 320" role="img" aria-label="Curva xy igual a 50 tangente à restrição 2x mais 4y igual a 40" xmlns="http://www.w3.org/2000/svg">
+<line class="g" x1="58" y1="270" x2="500" y2="270"/>
+<line class="g" x1="58" y1="228" x2="500" y2="228"/>
+<line class="g" x1="58" y1="186" x2="500" y2="186"/>
+<line class="g" x1="58" y1="144" x2="500" y2="144"/>
+<line class="g" x1="58" y1="102" x2="500" y2="102"/>
+<line class="g" x1="58" y1="60" x2="500" y2="60"/>
+<line class="g" x1="58" y1="18" x2="500" y2="18"/>
+<line class="g" x1="58" y1="18" x2="58" y2="270"/>
+<line class="g" x1="158.5" y1="18" x2="158.5" y2="270"/>
+<line class="g" x1="258.9" y1="18" x2="258.9" y2="270"/>
+<line class="g" x1="359.4" y1="18" x2="359.4" y2="270"/>
+<line class="g" x1="459.8" y1="18" x2="459.8" y2="270"/>
+<line class="ax" x1="58" y1="270" x2="500" y2="270"/>
+<line class="ax" x1="58" y1="18" x2="58" y2="270"/>
+<text class="tk" x="58" y="286" text-anchor="middle">0</text>
+<text class="tk" x="158.5" y="286" text-anchor="middle">5</text>
+<text class="tk" x="258.9" y="286" text-anchor="middle">10</text>
+<text class="tk" x="359.4" y="286" text-anchor="middle">15</text>
+<text class="tk" x="459.8" y="286" text-anchor="middle">20</text>
+<text class="tk" x="51" y="274" text-anchor="end">0</text>
+<text class="tk" x="51" y="232" text-anchor="end">2</text>
+<text class="tk" x="51" y="190" text-anchor="end">4</text>
+<text class="tk" x="51" y="148" text-anchor="end">6</text>
+<text class="tk" x="51" y="106" text-anchor="end">8</text>
+<text class="tk" x="51" y="64" text-anchor="end">10</text>
+<text class="tk" x="51" y="22" text-anchor="end">12</text>
+<text class="lb" x="279" y="314" text-anchor="middle">x</text>
+<text class="lb" x="12" y="144" text-anchor="middle" transform="rotate(-90 12 144)">y</text>
+<line class="tgn" x1="58" y1="60" x2="459.8" y2="270"/>
+<polyline class="fit" points="142.4,20 144.4,25.8 146.4,31.4 148.4,36.7 150.4,41.7 152.4,46.6 154.4,51.2 156.4,55.7 158.5,60 160.5,64.1 162.5,68.1 164.5,71.9 166.5,75.6 168.5,79.1 170.5,82.5 172.5,85.8 174.5,89 176.5,92 178.5,95 180.6,97.9 182.6,100.6 184.6,103.3 186.6,105.9 188.6,108.5 190.6,110.9 192.6,113.3 194.6,115.6 196.6,117.8 198.6,120 200.6,122.1 202.7,124.2 204.7,126.2 206.7,128.1 208.7,130 210.7,131.8 212.7,133.6 214.7,135.4 216.7,137.1 218.7,138.8 220.7,140.4 222.7,142 224.8,143.5 226.8,145 228.8,146.5 230.8,147.9 232.8,149.3 234.8,150.7 236.8,152 238.8,153.3 240.8,154.6 242.8,155.9 244.8,157.1 246.9,158.3 248.9,159.5 250.9,160.6 252.9,161.8 254.9,162.9 256.9,163.9 258.9,165 260.9,166 262.9,167.1 264.9,168.1 266.9,169 269,170 271,170.9 273,171.9 275,172.8 277,173.7 279,174.5 281,175.4 283,176.2 285,177.1 287,177.9 289,178.7 291.1,179.5 293.1,180.3 295.1,181 297.1,181.8 299.1,182.5 301.1,183.2 303.1,183.9 305.1,184.6 307.1,185.3 309.1,186 311.1,186.7 313.2,187.3 315.2,188 317.2,188.6 319.2,189.2 321.2,189.8 323.2,190.5 325.2,191.1 327.2,191.6 329.2,192.2 331.2,192.8 333.2,193.4 335.3,193.9 337.3,194.5 339.3,195 341.3,195.5 343.3,196.1 345.3,196.6 347.3,197.1 349.3,197.6 351.3,198.1 353.3,198.6 355.3,199.1 357.4,199.5 359.4,200 361.4,200.5 363.4,200.9 365.4,201.4 367.4,201.8 369.4,202.3 371.4,202.7 373.4,203.1 375.4,203.5 377.4,204 379.5,204.4 381.5,204.8 383.5,205.2 385.5,205.6 387.5,206 389.5,206.4 391.5,206.7 393.5,207.1 395.5,207.5 397.5,207.9 399.5,208.2 401.6,208.6 403.6,209 405.6,209.3 407.6,209.7 409.6,210 411.6,210.3 413.6,210.7 415.6,211 417.6,211.3 419.6,211.7 421.6,212 423.7,212.3 425.7,212.6 427.7,212.9 429.7,213.2 431.7,213.5 433.7,213.9 435.7,214.1 437.7,214.4 439.7,214.7 441.7,215 443.7,215.3 445.8,215.6 447.8,215.9 449.8,216.2 451.8,216.4 453.8,216.7 455.8,217 457.8,217.2 459.8,217.5 461.8,217.8 463.8,218 465.8,218.3 467.9,218.5 469.9,218.8 471.9,219 473.9,219.3 475.9,219.5 477.9,219.8 479.9,220 481.9,220.2 483.9,220.5 485.9,220.7 487.9,220.9 490,221.2 492,221.4 494,221.6 496,221.8 498,222.1 500,222.3"/>
+<polyline class="cB" points="110.2,27.7 112.2,36.7 114.3,45 116.3,52.8 118.3,60 120.3,66.8 122.3,73.1 124.3,79.1 126.3,84.7 128.3,90 130.3,95 132.3,99.7 134.3,104.2 136.4,108.5 138.4,112.5 140.4,116.3 142.4,120 144.4,123.5 146.4,126.8 148.4,130 150.4,133 152.4,136 154.4,138.8 156.4,141.4 158.5,144 160.5,146.5 162.5,148.8 164.5,151.1 166.5,153.3 168.5,155.5 170.5,157.5 172.5,159.5 174.5,161.4 176.5,163.2 178.5,165 180.6,166.7 182.6,168.4 184.6,170 186.6,171.6 188.6,173.1 190.6,174.5 192.6,176 194.6,177.4 196.6,178.7 198.6,180 200.6,181.3 202.7,182.5 204.7,183.7 206.7,184.9 208.7,186 210.7,187.1 212.7,188.2 214.7,189.2 216.7,190.3 218.7,191.2 220.7,192.2 222.7,193.2 224.8,194.1 226.8,195 228.8,195.9 230.8,196.7 232.8,197.6 234.8,198.4 236.8,199.2 238.8,200 240.8,200.8 242.8,201.5 244.8,202.3 246.9,203 248.9,203.7 250.9,204.4 252.9,205.1 254.9,205.7 256.9,206.4 258.9,207 260.9,207.6 262.9,208.2 264.9,208.8 266.9,209.4 269,210 271,210.6 273,211.1 275,211.7 277,212.2 279,212.7 281,213.2 283,213.8 285,214.2 287,214.7 289,215.2 291.1,215.7 293.1,216.2 295.1,216.6 297.1,217.1 299.1,217.5 301.1,217.9 303.1,218.4 305.1,218.8 307.1,219.2 309.1,219.6 311.1,220 313.2,220.4 315.2,220.8 317.2,221.2 319.2,221.5 321.2,221.9 323.2,222.3 325.2,222.6 327.2,223 329.2,223.3 331.2,223.7 333.2,224 335.3,224.3 337.3,224.7 339.3,225 341.3,225.3 343.3,225.6 345.3,225.9 347.3,226.2 349.3,226.6 351.3,226.8 353.3,227.1 355.3,227.4 357.4,227.7 359.4,228 361.4,228.3 363.4,228.6 365.4,228.8 367.4,229.1 369.4,229.4 371.4,229.6 373.4,229.9 375.4,230.1 377.4,230.4 379.5,230.6 381.5,230.9 383.5,231.1 385.5,231.3 387.5,231.6 389.5,231.8 391.5,232 393.5,232.3 395.5,232.5 397.5,232.7 399.5,232.9 401.6,233.2 403.6,233.4 405.6,233.6 407.6,233.8 409.6,234 411.6,234.2 413.6,234.4 415.6,234.6 417.6,234.8 419.6,235 421.6,235.2 423.7,235.4 425.7,235.6 427.7,235.8 429.7,235.9 431.7,236.1 433.7,236.3 435.7,236.5 437.7,236.7 439.7,236.8 441.7,237 443.7,237.2 445.8,237.4 447.8,237.5 449.8,237.7 451.8,237.9 453.8,238 455.8,238.2 457.8,238.3 459.8,238.5 461.8,238.7 463.8,238.8 465.8,239 467.9,239.1 469.9,239.3 471.9,239.4 473.9,239.6 475.9,239.7 477.9,239.9 479.9,240 481.9,240.1 483.9,240.3 485.9,240.4 487.9,240.6 490,240.7 492,240.8 494,241 496,241.1 498,241.2 500,241.4"/>
+<polyline class="cB" points="192.6,19.3 194.6,22.9 196.6,26.5 198.6,30 200.6,33.4 202.7,36.7 204.7,39.9 206.7,43 208.7,46 210.7,48.9 212.7,51.8 214.7,54.6 216.7,57.3 218.7,60 220.7,62.6 222.7,65.1 224.8,67.6 226.8,70 228.8,72.4 230.8,74.7 232.8,76.9 234.8,79.1 236.8,81.2 238.8,83.3 240.8,85.4 242.8,87.4 244.8,89.4 246.9,91.3 248.9,93.2 250.9,95 252.9,96.8 254.9,98.6 256.9,100.3 258.9,102 260.9,103.7 262.9,105.3 264.9,106.9 266.9,108.5 269,110 271,111.5 273,113 275,114.4 277,115.9 279,117.3 281,118.6 283,120 285,121.3 287,122.6 289,123.9 291.1,125.2 293.1,126.4 295.1,127.6 297.1,128.8 299.1,130 301.1,131.2 303.1,132.3 305.1,133.4 307.1,134.5 309.1,135.6 311.1,136.7 313.2,137.7 315.2,138.8 317.2,139.8 319.2,140.8 321.2,141.8 323.2,142.7 325.2,143.7 327.2,144.6 329.2,145.6 331.2,146.5 333.2,147.4 335.3,148.3 337.3,149.1 339.3,150 341.3,150.9 343.3,151.7 345.3,152.5 347.3,153.3 349.3,154.1 351.3,154.9 353.3,155.7 355.3,156.5 357.4,157.2 359.4,158 361.4,158.7 363.4,159.5 365.4,160.2 367.4,160.9 369.4,161.6 371.4,162.3 373.4,163 375.4,163.7 377.4,164.3 379.5,165 381.5,165.7 383.5,166.3 385.5,166.9 387.5,167.6 389.5,168.2 391.5,168.8 393.5,169.4 395.5,170 397.5,170.6 399.5,171.2 401.6,171.8 403.6,172.3 405.6,172.9 407.6,173.4 409.6,174 411.6,174.5 413.6,175.1 415.6,175.6 417.6,176.1 419.6,176.7 421.6,177.2 423.7,177.7 425.7,178.2 427.7,178.7 429.7,179.2 431.7,179.7 433.7,180.2 435.7,180.6 437.7,181.1 439.7,181.6 441.7,182 443.7,182.5 445.8,183 447.8,183.4 449.8,183.8 451.8,184.3 453.8,184.7 455.8,185.2 457.8,185.6 459.8,186 461.8,186.4 463.8,186.8 465.8,187.2 467.9,187.6 469.9,188 471.9,188.4 473.9,188.8 475.9,189.2 477.9,189.6 479.9,190 481.9,190.4 483.9,190.8 485.9,191.1 487.9,191.5 490,191.9 492,192.2 494,192.6 496,192.9 498,193.3 500,193.6"/>
+<circle class="pt" cx="258.9" cy="165" r="5"/>
+<text class="an" x="271" y="152.4">ótimo (10, 5): xy = 50, λ = 2,5</text>
+<text class="an resc" x="323.2" y="246.9">restrição 2x + 4y = 40</text>
+<text class="an fitc" x="369.4" y="190.2">xy = 50</text>
+</svg></div><figcaption>No ótimo, a curva xy = 50 encosta (tangencia) a reta da restrição. Curvas mais altas (xy = 80) não alcançam a restrição; mais baixas (xy = 30) a cortam e dá para melhorar.</figcaption></figure>
+  <div class="box def"><span class="lbl">O que λ significa</span>
+    <p>λ é quanto o valor ótimo muda se a restrição “afrouxar” uma unidade: \(\lambda=\dfrac{df^*}{dc}\), o <strong>preço sombra</strong> da restrição. No exemplo, com renda 41 em vez de 40, a solução é \(x=41/4\), \(y=41/8\) e \(f^*=41^2/32\approx52{,}53\): cerca de 2,5 a mais, que é λ.</p>
+    <p><strong>Unidade de λ:</strong> unidade de f por unidade de c (utilidade por real, por exemplo).</p>
+  </div>
+  <p><strong>Condição de tangência:</strong> dividindo as duas primeiras CPOs, \(\frac{\partial f/\partial x}{\partial f/\partial y}=\frac{\partial g/\partial x}{\partial g/\partial y}\): aqui, \(y/x=2/4\), coerente com \(x=10\), \(y=5\).</p>
+  <p><strong>Exemplo de mínimo:</strong> min \(x^2+y^2\) s.a. \(x+y=10\). \(\mathcal L=x^2+y^2-\lambda(x+y-10)\): \(2x=\lambda\), \(2y=\lambda\), logo \(x=y=5\), \(\lambda=10\) e \(f^*=50\). Com c = 11: \(f^*=60{,}5\), cerca de 10 a mais.</p>
+
+  <h4>Ligação com o seu conteúdo: regressão pela origem é MQO com restrição</h4>
+  <p>A regressão pela origem (aula de dummies) impõe \(\beta_0=0\). Isso é minimizar a SQR sujeito a \(b_0=0\):</p>
+  <div class="mathblock">\[\mathcal L=\sum_i(y_i-b_0-b_1x_i)^2-\lambda\,b_0\]</div>
+  <div class="mathblock">\[\frac{\partial\mathcal L}{\partial b_1}=-2\sum_ix_i(y_i-b_0-b_1x_i)=0,\qquad \frac{\partial\mathcal L}{\partial\lambda}=-b_0=0,\qquad \frac{\partial\mathcal L}{\partial b_0}=-2\sum_i(y_i-b_0-b_1x_i)-\lambda=0\]</div>
+  <p>Com \(b_0=0\), a primeira dá \(\hat\beta_1=\sum x_iy_i/\sum x_i^2\), o mesmo resultado da aula. A terceira mostra que \(\lambda=-2\sum_i\hat u_i\): λ só é zero se os resíduos somarem zero, isto é, se a restrição não “custar” nada. Isso conecta com a aula: pela origem, em geral \(\sum\hat u_i\neq0\).</p>
+
+  <h3>Parte B: λ como parâmetro de uma distribuição</h3>
+  <h4>Poisson: contagens</h4>
+  <div class="mathblock">\[P(X=k)=\frac{e^{-\lambda}\lambda^k}{k!},\quad k=0,1,2,\dots\qquad E[X]=Var(X)=\lambda\]</div>
+  <p>Aqui λ é o número médio de eventos (por exemplo, 2 falhas de conexão por dia). Com λ = 2:</p>
+  <div class="tbl"><table>
+    <thead><tr><th class="r">k</th><th class="r">0</th><th class="r">1</th><th class="r">2</th><th class="r">3</th><th class="r">4</th></tr></thead>
+    <tbody><tr><td class="r">P(X = k)</td><td class="r">0,1353</td><td class="r">0,2707</td><td class="r">0,2707</td><td class="r">0,1804</td><td class="r">0,0902</td></tr></tbody>
+  </table></div>
+  <p>\(P(X\ge1)=1-0{,}1353=0{,}8647\). <strong>Ligação com a Aula 6:</strong> quando y é uma contagem com poucos valores possíveis, a hipótese de erro normal (RLS.6) não é razoável.</p>
+
+  <h4>Exponencial: durações</h4>
+  <div class="mathblock">\[f(x)=\lambda e^{-\lambda x}\ (x\ge0),\qquad F(x)=\int_0^x\lambda e^{-\lambda t}dt=1-e^{-\lambda x},\qquad E[X]=\frac1\lambda,\quad Var(X)=\frac{1}{\lambda^2}\]</div>
+  <p>λ é a taxa (eventos por unidade de tempo) e 1/λ é a duração média. Com λ = 0,5: média 2, \(P(X\le2)=1-e^{-1}\approx0{,}6321\) e \(P(X&gt;4)=e^{-2}\approx0{,}1353\).</p>
+  <details class="sol"><summary>Derivação de \(E[X]=1/\lambda\) (integral por partes)</summary><div class="in">
+    <p>\(E[X]=\int_0^\infty x\,\lambda e^{-\lambda x}dx\). Com \(u=x\) e \(dv=\lambda e^{-\lambda x}dx\), temos \(du=dx\) e \(v=-e^{-\lambda x}\):</p>
+    <div class="mathblock">\[E[X]=\Big[-xe^{-\lambda x}\Big]_0^\infty+\int_0^\infty e^{-\lambda x}dx=0+\Big[-\tfrac1\lambda e^{-\lambda x}\Big]_0^\infty=\frac1\lambda\]</div>
+  </div></details>
+  <p><strong>Ligação com a Aula 6:</strong> “uma variável censurada, como duração observada apenas até o fim do acompanhamento” também não combina com erro normal.</p>
+
+  <h4>λ como taxa de crescimento</h4>
+  <p>Em \(y=e^{\lambda t}\), a derivada é \(dy/dt=\lambda y\): λ é o crescimento proporcional instantâneo. É o mesmo papel do \(\beta_1\) no log–nível, onde \(d\ln y/dx=\beta_1\).</p>
+
+  <div class="quiz" data-answer="b"><div class="qh">Lagrange</div>
+    <p>No ótimo de um problema com restrição, λ = 3. Se a restrição aumentar 1 unidade, o valor ótimo:</p>
+    <div class="opts"><button data-k="a">a) cai cerca de 3</button><button data-k="b">b) sobe cerca de 3</button><button data-k="c">c) não muda</button><button data-k="d">d) triplica</button></div>
+    <div class="fb" hidden>λ = df*/dc: o preço sombra da restrição (convenção \(\mathcal L=f-\lambda(g-c)\)).</div></div>
+  <div class="quiz" data-answer="c"><div class="qh">Poisson</div>
+    <p>Numa Poisson com λ = 4, a média e a variância valem:</p>
+    <div class="opts"><button data-k="a">a) 4 e 16</button><button data-k="b">b) 2 e 4</button><button data-k="c">c) 4 e 4</button><button data-k="d">d) 0,25 e 0,0625</button></div>
+    <div class="fb" hidden>Na Poisson, E = Var = λ. A opção d seria a exponencial com λ = 4.</div></div>
+  <div class="done-row"><button class="btn done-btn" data-done="mat-lambda" aria-pressed="false">Marcar como concluído</button></div>
 </section>
 
 <!-- ================= AULA 1 ================= -->
@@ -824,6 +1476,15 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
     <li><strong>Contínua:</strong> probabilidades são áreas sob uma densidade, \(P(a\lt X\le b)=\int_a^b f(x)dx\), e \(P(X=x)=0\). Exemplo: tempo até o trabalho. \(P(X\le20)=0{,}20+0{,}58=0{,}78\).</li>
     <li><strong>FDA:</strong> \(F(x)=P(X\le x)\), não decrescente, vai de 0 a 1.</li>
   </ul>
+  <h4>Suporte, FMP, FDP e FDA em detalhe</h4>
+  <ul>
+    <li><strong>Suporte</strong> \(\mathcal X\): o conjunto de valores que X pode assumir. Meses empregado no ano: {0, 1, …, 12} (suporte finito, discreta). Renda: \(\mathbb R_+\) (contínua).</li>
+    <li>Letra maiúscula (X) é a variável aleatória; minúscula (x) é um valor realizado, um número.</li>
+    <li><strong>FMP</strong> (discreta): \(p(x)=P(X=x)\ge0\), \(\sum_xp(x)=1\) e \(F(x)=\sum_{x'\le x}p(x')\).</li>
+    <li><strong>FDP</strong> (contínua): \(f(x)\ge0\), \(\int f(x)dx=1\), \(f(x)=\frac{d}{dx}F(x)\) e \(F(x)=\int_{-\infty}^xf(t)dt\). É densidade, não probabilidade.</li>
+    <li><strong>FDA:</strong> não decrescente, com \(\lim_{x\to-\infty}F(x)=0\) e \(\lim_{x\to+\infty}F(x)=1\).</li>
+  </ul>
+  <p class="small muted">Integral e derivada estão explicadas do zero nos módulos <a href="#mat-deriv">Derivadas</a> e <a href="#mat-int">Integrais</a>.</p>
 
   <h3>Duas distribuições importantes</h3>
   <div class="tbl"><table>
@@ -833,6 +1494,7 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
       <td>Caracterizada pela média e variância. Se X é normal, \(aX+b\) também é. Terá papel central na aproximação de distribuições amostrais.</td>
     </tr></tbody>
   </table></div>
+  <div class="mathblock">\[\text{Normal: }f(x)=\frac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\frac12\frac{(x-\mu)^2}{\sigma^2}\right),\quad x\in\mathbb R\qquad\text{Uniforme }U(a,b):\ f(x)=\frac{1}{b-a},\ x\in(a,b)\]</div>
 
   <h3>Distribuição conjunta, marginal e condicional</h3>
   <p>A conjunta descreve X e Y juntos: \(p_{X,Y}(x,y)=P(X=x,Y=y)\). A condicional descreve Y na subpopulação em que X = x: \(p_{Y\mid X}(y\mid x)=p_{X,Y}(x,y)/p_X(x)\).</p>
@@ -845,6 +1507,13 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
     </tbody>
   </table></div>
   <p>\(P(Y=1\mid X=1)=0{,}45/0{,}50=0{,}90\) e \(P(Y=1\mid X=0)=0{,}40/0{,}50=0{,}80\). Como são diferentes, X e Y <strong>não são independentes</strong>. Independência exige \(p_{X,Y}(x,y)=p_X(x)p_Y(y)\) para todo par, ou seja, conhecer X não muda a distribuição de Y.</p>
+  <p><strong>Marginal a partir da conjunta:</strong> some a linha (ou a coluna): \(p(x)=\sum_yp(x,y)\). Ex.: \(P(X=1)=0{,}05+0{,}45=0{,}50\).</p>
+  <div class="box def"><span class="lbl">Regra de Bayes</span>
+    <div class="mathblock">\[p(y\mid x)=\frac{p(x\mid y)\,p(y)}{p(x)}\]</div>
+    <p>Com a tabela: qual a probabilidade de ter curso superior, dado que a pessoa está empregada? \(P(X=1\mid Y=1)=\frac{P(Y=1\mid X=1)P(X=1)}{P(Y=1)}=\frac{0{,}90\times0{,}50}{0{,}85}\approx0{,}529\). Conferindo direto: \(0{,}45/0{,}85\approx0{,}529\).</p>
+  </div>
+  <p><strong>Independência condicional</strong> \(Y\perp\!\!\!\perp X\mid W\): \(p(y\mid x,w)=p(y\mid w)\). Uma vez conhecido W, X não traz informação adicional sobre Y.</p>
+  <p><strong>Normal multivariada:</strong> parametrizada por um vetor de médias \(\mu\) e uma matriz de variância-covariância \(\Sigma\). Se (X, Y) têm distribuição conjunta normal: as marginais de X e de Y são normais, as condicionais X | Y e Y | X são normais, e qualquer combinação linear \(aX+bY+c\) é normal.</p>
 
   <h3>Esperança, variância, covariância e correlação</h3>
   <div class="mathblock">\[E[X]=\sum_x x\,p(x),\qquad E[a+bX]=a+bE[X]\]</div>
@@ -882,22 +1551,45 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
   <p>No modelo básico, a amostra é <strong>iid</strong>: independente (\(Y_i\perp\!\!\!\perp Y_j\)) e identicamente distribuída. O mecanismo de amostragem não pode excluir grupos relevantes: várias pessoas do mesmo domicílio provavelmente não são independentes, e só alunos do Mackenzie não representam todos os universitários.</p>
   <div class="mathblock">\[\hat\mu=\frac1N\sum_{i=1}^N Y_i,\qquad E[\hat\mu]=\mu,\qquad Var(\hat\mu)=\frac{\sigma^2}{N}\]</div>
   <p>A primeira igualdade diz que a média amostral é <strong>não viesada</strong>. A segunda, que sua dispersão cai quando N cresce, e por isso ela é <strong>consistente</strong> (\(\hat\mu\xrightarrow{p}\mu\)). Exemplo (Lista 1, Q26): média 80, variância 144. Com n = 16, 36 e 144, os erros-padrão são 3, 2 e 1. <strong>Quadruplicar n corta o erro-padrão pela metade</strong>, porque \(DP(\bar Y)\propto1/\sqrt n\).</p>
+  <details class="sol"><summary>De onde vem \(Var(\hat\mu)=\sigma^2/N\), e a média condicional amostral</summary><div class="in">
+    <div class="mathblock">\[Var(\hat\mu)=\frac{1}{N^2}\Big[\sum_iVar(Y_i)+2\sum_{i\lt j}Cov(Y_i,Y_j)\Big]=\frac{1}{N^2}\cdot N\sigma^2=\frac{\sigma^2}{N}\]</div>
+    <p>Com amostra iid, as covariâncias entre observações são zero. Como \(E[\hat\mu]=\mu\) e \(Var(\hat\mu)\to0\), a desigualdade de Chebyshev implica \(\hat\mu\xrightarrow{p}\mu\).</p>
+    <p><strong>Média condicional amostral:</strong> se X é discreta, estimamos \(\mu(x)=E[Y_i\mid X_i=x]\) pela média de Y no grupo com \(X_i=x\):</p>
+    <div class="mathblock">\[\hat\mu(x)=\frac{\sum_i1\{X_i=x\}Y_i}{\sum_i1\{X_i=x\}},\qquad E[\hat\mu(x)\mid N_x]=\mu(x),\qquad Var[\hat\mu(x)\mid N_x]=\frac{Var(Y_i\mid X_i=x)}{N_x}\]</div>
+    <p>\(N_x\) é o número de observações com \(X_i=x\). Grupos com poucas observações dão médias mais instáveis.</p>
+  </div></details>
 
   <h3>Testes e intervalos (versão da revisão)</h3>
+  <p>A pergunta que motiva a aula: numa amostra, a renda média deu R$ 30.000/ano. É razoável conjecturar que a média da população seja R$ 35.000? E R$ 50.000? Um teste de hipóteses mede <strong>quão compatível</strong> a média observada é com cada valor postulado.</p>
   <ol class="steps">
     <li><div>Hipótese nula \(H_0:\mu=\mu_0\) (por exemplo, renda média de R$ 35.000).</div></li>
-    <li><div>Estatística: com σ conhecido, \(Z=\dfrac{\hat\mu-\mu_0}{\sigma/\sqrt N}\sim N(0,1)\) sob \(H_0\). Com σ estimado por \(S\), \(T=\dfrac{\hat\mu-\mu_0}{S/\sqrt N}\sim t_{N-1}\) se a amostra é normal.</div></li>
-    <li><div><strong>p-valor:</strong> probabilidade, sob \(H_0\), de uma estatística tão ou mais extrema que a observada. <strong>Não</strong> é a probabilidade de \(H_0\) ser verdadeira.</div></li>
-    <li><div>Rejeite \(H_0\) se o p-valor for pequeno (α = 0,05 é convencional), ou se \(|Z|&gt;1{,}96\).</div></li>
+    <li><div>Estatística: com σ conhecido, \(Z=\dfrac{\hat\mu-\mu_0}{\sigma/\sqrt N}\sim N(0,1)\) sob \(H_0\): a distância entre \(\hat\mu\) e \(\mu_0\) <strong>medida em desvios-padrão</strong>. Com σ estimado por \(S\), onde \(S^2=\frac{1}{N-1}\sum_i(Y_i-\bar Y)^2\), fica \(T=\dfrac{\hat\mu-\mu_0}{S/\sqrt N}\sim t_{N-1}\) se a amostra é iid e normal. Para N grande, a t se aproxima da normal padrão.</div></li>
+    <li><div><strong>p-valor:</strong> probabilidade, sob \(H_0\), de uma estatística tão ou mais extrema que a observada. Um p-valor de 0,03 quer dizer: se \(H_0\) fosse verdadeira, só 3% das amostras dariam algo tão ou mais extremo. <strong>Não</strong> é a probabilidade de \(H_0\) ser verdadeira.</div></li>
+    <li><div>Rejeite \(H_0\) se o p-valor for pequeno (α = 0,05 é convencional), ou se \(|Z|&gt;1{,}96\): 95% da normal padrão fica entre −1,96 e 1,96.</div></li>
     <li><div><strong>IC de 95%:</strong> os valores de \(\mu_0\) que não seriam rejeitados, \(\hat\mu\pm1{,}96\,\sigma/\sqrt N\).</div></li>
   </ol>
-  <p><strong>Nível de significância</strong> é a probabilidade de rejeitar \(H_0\) verdadeira (erro tipo I). <strong>Poder</strong> é a probabilidade de rejeitar \(H_0\) quando ela é falsa (1 − erro tipo II). Significância estatística não é importância econômica.</p>
+  <div class="box ok"><span class="lbl">Exemplo com números (o desvio-padrão é nosso)</span>
+    <p>Suponha \(\sigma/\sqrt N=2.000\). Com \(\hat\mu=30.000\) e \(H_0:\mu=35.000\): \(Z=\frac{30.000-35.000}{2.000}=-2{,}5\). Como \(|{-2{,}5}|&gt;1{,}96\), <strong>rejeitamos</strong> \(H_0\). O IC de 95% é \(30.000\pm1{,}96\times2.000=[26.080;\ 33.920]\): 35.000 e 50.000 ficam fora, coerente com o teste.</p>
+    <p><strong>Unidades:</strong> numerador e denominador de Z estão em R$/ano, então Z é um número puro. O IC está em R$/ano.</p>
+  </div>
+  <p><strong>Como ler o IC:</strong> antes de sortear a amostra, o intervalo é aleatório, e o procedimento cobre o parâmetro verdadeiro em 95% das amostras repetidas. Depois de calculado, aquele intervalo específico contém ou não contém μ: não se diz “95% de probabilidade de μ estar nele”.</p>
+  <p><strong>Nível de significância</strong> é a probabilidade (fixada antes) de rejeitar \(H_0\) verdadeira (erro tipo I). <strong>Poder</strong> é a probabilidade de rejeitar \(H_0\) quando ela é falsa (1 − erro tipo II). Exemplo da aula: testamos \(H_0:\mu=35.000\), mas a média verdadeira é R$ 40.000. O poder é a chance de o teste detectar essa diferença.</p>
+  <p><strong>Significância estatística não é importância econômica.</strong> Com amostras muito grandes, diferenças pequenas viram “significativas”. Um p-valor pequeno diz que os dados são pouco compatíveis com \(H_0\), mas não mede o tamanho do efeito. A interpretação completa olha junto a estimativa pontual, o erro-padrão, o IC e a relevância econômica da magnitude.</p>
 
   <h3>LGN e TCL</h3>
   <ul>
+    <li><strong>Convergência em probabilidade</strong> \(X_N\xrightarrow{p}x\): a probabilidade de \(X_N\) ficar perto de x vai a 1 quando N cresce.</li>
+    <li><strong>Convergência em distribuição</strong> \(X_N\xrightarrow{d}X\): \(F_{X_N}(x)\to F_X(x)\) em todos os pontos de continuidade de \(F_X\). Descreve a aproximação entre distribuições; não exige que \(X_N\) fique perto de X em cada realização.</li>
     <li><strong>Lei dos Grandes Números:</strong> com amostra iid e variância finita, \(\hat\mu_N\xrightarrow{p}\mu\). A média amostral se aproxima da populacional com alta probabilidade.</li>
     <li><strong>Teorema Central do Limite:</strong> \(\dfrac{\sqrt N(\hat\mu-\mu)}{\sigma}\xrightarrow{d}N(0,1)\). É a <em>média padronizada</em> que fica aproximadamente normal, e não cada observação. Com \(S\) consistente, o resultado vale trocando σ por S (Slutsky).</li>
   </ul>
+  <p class="small">Ilustração do TCL citada na aula: o tabuleiro de Galton (1874), <a href="https://www.youtube.com/watch?v=EvHiee7gs9Y" target="_blank" rel="noopener">vídeo no YouTube</a>.</p>
+  <div class="quiz" data-answer="b">
+    <div class="qh">Aula 2 · Bayes</div>
+    <p>Na tabela curso superior × emprego, qual é \(P(X=0\mid Y=0)\), a chance de não ter superior dado que está desempregado?</p>
+    <div class="opts"><button data-k="a">a) 0,10</button><button data-k="b">b) cerca de 0,667</button><button data-k="c">c) 0,20</button><button data-k="d">d) 0,50</button></div>
+    <div class="fb" hidden>\(P(X=0,Y=0)/P(Y=0)=0{,}10/0{,}15\approx0{,}667\).</div>
+  </div>
 
   <div class="quiz" data-answer="b">
     <div class="qh">Lista 1 · Questão 16</div>
@@ -974,6 +1666,12 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
   <h3>3. Função de regressão populacional (FRP)</h3>
   <div class="mathblock">\[E[Y\mid X]=E[\beta_0+\beta_1X+U\mid X]=\beta_0+\beta_1X+\underbrace{E[U\mid X]}_{=0}=\beta_0+\beta_1X\]</div>
   <p>\(E[Y\mid X]\) é a média condicional e o melhor preditor de Y baseado em X sob perda quadrática. O modelo pode ser escrito como \(Y=E[Y\mid X]+U\): <strong>o observado é um componente sistemático (a média condicional) mais um erro</strong>. Para cada X existe uma distribuição inteira de Y, e a reta passa pela média de cada uma. A hipótese \(E(U\mid X)=0\) <em>não</em> exige variância constante.</p>
+  <div class="box ok"><span class="lbl">Exemplo do apêndice: tamanho da turma × desempenho</span>
+    <p>Com a razão alunos/professor (X) e a nota média da escola (Y), a curva de regressão tem <strong>inclinação negativa</strong>: turmas menores estão associadas a notas médias maiores. As escolas não caem em cima da curva. Na escola 1, Y está acima da média condicional (desempenho maior que o previsto, erro positivo). Na escola 2, abaixo (erro negativo). Essa inclinação, sozinha, não demonstra que reduzir o tamanho da turma <em>causaria</em> melhora.</p>
+  </div>
+  <h4>A CEF e a reta (prática em R da Aula 3)</h4>
+  <p>A CEF \(m(x)=E(Y\mid X=x)\) é uma <strong>função</strong>: recebe um valor de x e devolve a média de Y no grupo com esse valor. \(E(wage\mid educ=12)\) é o salário médio populacional de quem tem 12 anos de estudo. Na amostra, estimamos cada ponto dela pela média do grupo: \(\hat m(x)=\frac{1}{n_x}\sum_{i:X_i=x}Y_i\).</p>
+  <p>A CEF <strong>não precisa ser uma reta</strong>: pode subir, descer ou curvar. A regressão simples impõe a aproximação \(E(Y\mid X=x)\approx\beta_0+\beta_1x\). Por isso a reta de MQO não passa exatamente pelas médias de todos os grupos: ela é a <strong>melhor aproximação linear</strong> no sentido de mínimos quadrados. Grupos com poucas observações dão médias mais instáveis.</p>
 
   <h3>4. Estimando: valor ajustado e resíduo</h3>
   <p>Com uma amostra \(\{(x_i,y_i):i=1,\dots,n\}\), cada observação satisfaz \(y_i=\beta_0+\beta_1x_i+u_i\), mas não conhecemos os \(\beta\). Procuramos um par \(\{\hat\beta_0,\hat\beta_1\}\) que gere, para cada observação, um <strong>valor ajustado</strong> e um <strong>resíduo</strong>:</p>
@@ -1107,6 +1805,7 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
   <p>Comece por \(y_i-\bar y=(\hat y_i-\bar y)+\hat u_i\). Elevando ao quadrado e somando:</p>
   <div class="mathblock">\[SQT=SQE+SQR+2\underbrace{\sum_{i=1}^{n}(\hat y_i-\bar y)\hat u_i}_{=0}\quad\Longrightarrow\quad SQT=SQE+SQR\]</div>
   <p>O termo cruzado some pela ortogonalidade entre valores ajustados e resíduos. Dividindo SQT por n − 1 obtemos a variância amostral de Y.</p>
+  <p><strong>Leitura da prática em R:</strong> variação total = <strong>sinal capturado</strong> (SQE, a parte da variação de Y capturada pela reta) + <strong>ruído residual</strong> (SQR, o que fica nos resíduos). Cuidado com a palavra “ruído”: a SQR contém tudo o que a regressão não capturou, como variação aleatória, variáveis omitidas, relações não lineares, erros de medida, observações atípicas e erros de especificação.</p>
 
   <h3>11. A variância do erro usa n − 2</h3>
   <div class="mathblock">\[\hat\sigma^2=\frac{SQR}{n-2}\]</div>
@@ -1114,7 +1813,77 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
 
   <h3>12. \(R^2\): qualidade do ajuste</h3>
   <div class="mathblock">\[1=\frac{SQE}{SQT}+\frac{SQR}{SQT}\quad\Longrightarrow\quad R^2=\frac{SQE}{SQT}=1-\frac{SQR}{SQT}\]</div>
-  <p>É a fração da variação amostral de y contabilizada pelos valores ajustados. Com intercepto, \(0\le R^2\le1\). Exemplo: \(\widehat{salario}=963{,}191+18{,}501\cdot roe\), n = 209, \(R^2=0{,}0132\). Um ponto percentual a mais de retorno sobre o patrimônio está associado a US$ 18.501 a mais no salário anual ajustado, mas a reta contabiliza só 1,3% da variação dos salários dos executivos.</p>
+  <p>É a fração da variação amostral de y contabilizada pelos valores ajustados. Com intercepto, \(0\le R^2\le1\).</p>
+  <figure><div class="scroll"><svg class="fig" viewBox="0 0 560 222" role="img" aria-label="Mesma reta com R quadrado alto e baixo" xmlns="http://www.w3.org/2000/svg">
+<line class="ax" x1="20" y1="190" x2="250" y2="190"/>
+<line class="ax" x1="20" y1="20" x2="20" y2="190"/>
+<line class="fit" x1="20" y1="168.8" x2="250" y2="55.4"/>
+<circle class="pt sm" cx="124.9" cy="130.5" r="2.8"/>
+<circle class="pt sm" cx="127.7" cy="121" r="2.8"/>
+<circle class="pt sm" cx="136.7" cy="114.7" r="2.8"/>
+<circle class="pt sm" cx="137.5" cy="113" r="2.8"/>
+<circle class="pt sm" cx="162.5" cy="97.8" r="2.8"/>
+<circle class="pt sm" cx="93.4" cy="135.3" r="2.8"/>
+<circle class="pt sm" cx="48.4" cy="151.2" r="2.8"/>
+<circle class="pt sm" cx="38.1" cy="169" r="2.8"/>
+<circle class="pt sm" cx="237" cy="52.7" r="2.8"/>
+<circle class="pt sm" cx="159.5" cy="102.1" r="2.8"/>
+<circle class="pt sm" cx="62.5" cy="140" r="2.8"/>
+<circle class="pt sm" cx="41.8" cy="157.3" r="2.8"/>
+<circle class="pt sm" cx="69.4" cy="144.3" r="2.8"/>
+<circle class="pt sm" cx="127.4" cy="114.3" r="2.8"/>
+<circle class="pt sm" cx="122.4" cy="114.1" r="2.8"/>
+<circle class="pt sm" cx="164.7" cy="103.9" r="2.8"/>
+<circle class="pt sm" cx="135" cy="115.8" r="2.8"/>
+<circle class="pt sm" cx="88.1" cy="141.2" r="2.8"/>
+<circle class="pt sm" cx="240.3" cy="48" r="2.8"/>
+<circle class="pt sm" cx="179" cy="90.7" r="2.8"/>
+<circle class="pt sm" cx="95.9" cy="130.7" r="2.8"/>
+<circle class="pt sm" cx="44.1" cy="151.7" r="2.8"/>
+<circle class="pt sm" cx="191.3" cy="94.3" r="2.8"/>
+<circle class="pt sm" cx="111" cy="116.7" r="2.8"/>
+<circle class="pt sm" cx="231.9" cy="64.2" r="2.8"/>
+<circle class="pt sm" cx="73.6" cy="142.5" r="2.8"/>
+<circle class="pt sm" cx="221.8" cy="86.9" r="2.8"/>
+<circle class="pt sm" cx="113.3" cy="119.4" r="2.8"/>
+<circle class="pt sm" cx="44.7" cy="164.2" r="2.8"/>
+<circle class="pt sm" cx="86.3" cy="144.1" r="2.8"/>
+<text class="an" x="135" y="212" text-anchor="middle">R² ≈ 0,96: pontos colados na reta</text><line class="ax" x1="310" y1="190" x2="540" y2="190"/>
+<line class="ax" x1="310" y1="20" x2="310" y2="190"/>
+<line class="fit" x1="310" y1="168.8" x2="540" y2="55.4"/>
+<circle class="pt sm" cx="419.6" cy="151.6" r="2.8"/>
+<circle class="pt sm" cx="349.4" cy="187.2" r="2.8"/>
+<circle class="pt sm" cx="321.5" cy="187.2" r="2.8"/>
+<circle class="pt sm" cx="490.7" cy="54" r="2.8"/>
+<circle class="pt sm" cx="465.3" cy="138.8" r="2.8"/>
+<circle class="pt sm" cx="459.1" cy="129.7" r="2.8"/>
+<circle class="pt sm" cx="349.9" cy="174.2" r="2.8"/>
+<circle class="pt sm" cx="510.9" cy="59.8" r="2.8"/>
+<circle class="pt sm" cx="331.6" cy="150.6" r="2.8"/>
+<circle class="pt sm" cx="464.6" cy="108.8" r="2.8"/>
+<circle class="pt sm" cx="390.5" cy="187.2" r="2.8"/>
+<circle class="pt sm" cx="323.1" cy="113.1" r="2.8"/>
+<circle class="pt sm" cx="332.1" cy="111.3" r="2.8"/>
+<circle class="pt sm" cx="338.5" cy="182.2" r="2.8"/>
+<circle class="pt sm" cx="528.1" cy="40.4" r="2.8"/>
+<circle class="pt sm" cx="408.8" cy="127.4" r="2.8"/>
+<circle class="pt sm" cx="347.8" cy="174.3" r="2.8"/>
+<circle class="pt sm" cx="353.8" cy="88.8" r="2.8"/>
+<circle class="pt sm" cx="466.7" cy="65.2" r="2.8"/>
+<circle class="pt sm" cx="491.8" cy="70.4" r="2.8"/>
+<circle class="pt sm" cx="403.9" cy="175.7" r="2.8"/>
+<circle class="pt sm" cx="420.1" cy="84.7" r="2.8"/>
+<circle class="pt sm" cx="400.6" cy="52.5" r="2.8"/>
+<circle class="pt sm" cx="523.9" cy="49.4" r="2.8"/>
+<circle class="pt sm" cx="525.8" cy="84.4" r="2.8"/>
+<circle class="pt sm" cx="396" cy="162.8" r="2.8"/>
+<circle class="pt sm" cx="465.2" cy="102.5" r="2.8"/>
+<circle class="pt sm" cx="368.9" cy="159.5" r="2.8"/>
+<circle class="pt sm" cx="396.1" cy="187.2" r="2.8"/>
+<circle class="pt sm" cx="425" cy="118" r="2.8"/>
+<text class="an" x="425" y="212" text-anchor="middle">R² ≈ 0,20: pontos espalhados</text>
+</svg></div><figcaption>Mesma reta nos dois painéis. A diferença é só a dispersão dos pontos em torno dela.</figcaption></figure>
+  <p> Exemplo: \(\widehat{salario}=963{,}191+18{,}501\cdot roe\), n = 209, \(R^2=0{,}0132\). <strong>Unidades:</strong> o salário está em <em>milhares</em> de dólares e roe em pontos percentuais, então \(\hat\beta_1=18{,}501\) mil US$ por ponto percentual. Um ponto percentual a mais de retorno sobre o patrimônio está associado a 18,501 mil dólares (US$ 18.501) a mais no salário anual ajustado, mas a reta contabiliza só 1,3% da variação dos salários dos executivos. A maior parte da variação fica nos resíduos: outros fatores (tamanho da empresa, setor, experiência do executivo) também importam.</p>
   <div class="box trap"><span class="lbl">Cuidados com o \(R^2\)</span>
     <ul>
       <li>\(R^2\) baixo não torna o modelo necessariamente ruim.</li>
@@ -1136,6 +1905,14 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
   <div class="mathblock">\[\hat\beta_1=\sum_{i}\omega_iy_i,\qquad \omega_i=\frac{x_i-\bar x}{\sum_j(x_j-\bar x)^2}\]</div>
   <p>O termo com \(\bar y\) some porque \(\sum\omega_i=0\). Observações com \(x_i&gt;\bar x\) recebem peso positivo; abaixo da média, negativo; em \(x_i=\bar x\), zero. Quanto mais longe da média, maior o peso. Se x varia pouco, o denominador é pequeno e a inclinação fica sensível aos valores de y.</p>
 
+  <h3>14. Amarrando os conceitos</h3>
+  <ol class="steps">
+    <li><div><strong>População:</strong> \(E(Y\mid X)=\beta_0+\beta_1X\), desconhecida.</div></li>
+    <li><div><strong>Amostra:</strong> os pares \((x_i,y_i)_{i=1}^n\).</div></li>
+    <li><div><strong>MQO:</strong> \(\min\sum_i\hat u_i^2\).</div></li>
+    <li><div><strong>Resultados:</strong> \(\hat Y\), \(\hat u\) e \(R^2\).</div></li>
+  </ol>
+  <p class="muted">A ponte da amostra para a população exige hipóteses probabilísticas (Aula 5); a ponte da associação para a causalidade exige hipóteses econômicas adicionais.</p>
   <div class="quiz" data-answer="a">
     <div class="qh">Lista 1 · Questão 31</div>
     <ol class="afirm">
@@ -1258,6 +2035,7 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
   <p>Mesmos dados, com \(\ln(y)\) no lugar de y: ln(10) = 2,303, ln(12) = 2,485, ln(15) = 2,708, ln(15) = 2,708, ln(20) = 2,996. Pelo mesmo procedimento de MQO:</p>
   <div class="mathblock">\[\widehat{\ln(salario)}=1{,}674+0{,}080\times anosestudo\]</div>
   <p><strong>Aproximação:</strong> \(100\times0{,}080=8\%\) por ano de estudo. <strong>Exato:</strong> \(100(e^{0{,}080}-1)\approx8{,}33\%\). No modelo nível–nível eram R$ 1,15 por ano: uma mudança em unidades, não em percentual.</p>
+  <p>Na prática em R (Aulas 4–5), o salário simulado tem cauda longa à direita e o \(\ln(salario)\) fica mais simétrico. O log <em>frequentemente</em> reduz a assimetria, mas isso deve ser verificado nos dados, não tratado como automático.</p>
   <div class="box trap"><span class="lbl">Cuidados</span>
     <ul>
       <li>Log só existe para valores <strong>estritamente positivos</strong>. Lucro, que pode ser negativo, não entra em log direto.</li>
@@ -1285,6 +2063,7 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
   <p>Modelos não lineares nos parâmetros podem minimizar \(\sum[y_i-f(x_i,\beta)]^2\), mas exigem métodos numéricos (mínimos quadrados não lineares).</p>
 
   <h3 id="derivadas">7. Derivadas do zero (para os Ex. 4 e 5 da Lista 2)</h3>
+  <p class="small"><strong>Resumo rápido.</strong> O curso completo (limite, todas as regras, máximos e mínimos, derivadas parciais e a derivação do MQO) está no módulo <a href="#mat-deriv">Derivadas</a>.</p>
   <p>A <strong>derivada</strong> de uma função num ponto é a inclinação da curva naquele ponto. Em econometria ela é o <strong>efeito marginal</strong>: quanto a média de Y muda para um aumento pequeno de X. Numa reta a derivada é sempre \(\beta_1\); numa curva, ela muda de ponto para ponto.</p>
   <div class="lousa">
     <div class="who">Na lousa do professor (mesma aula, 22:09)</div>
@@ -2002,6 +2781,38 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
   <p><strong>Caudas mais gordas:</strong> às vezes \(\hat\sigma\) sai menor que σ por acaso, e dividir por um número pequeno infla t. Por isso a t é mais espalhada que a Normal com n pequeno; com n grande, converge para a Normal (e a regra de bolso |t| &gt; 2 funciona). Sem normalidade, sob condições regulares, \((\hat\beta_1-\beta_1)/se(\hat\beta_1)\xrightarrow{d}N(0,1)\) pelo TCL.</p>
   <p><strong>Testes de heterocedasticidade:</strong> Breusch–Pagan regride \(\hat u_i^2=\delta_0+\delta_1X_i+v_i\) e testa \(\delta_1=0\), com \(LM=nR^2_{aux}\xrightarrow{d}\chi^2_1\). White usa também \(X_i^2\) e testa \(\delta_1=\delta_2=0\); a rejeição pode refletir forma funcional errada. <strong>MQP:</strong> se \(Var(u\mid X)=\sigma^2h(X)\), dividir o modelo por \(\sqrt{h(X)}\) deixa o erro homocedástico; observações com menor variância recebem mais peso.</p>
 
+  <h3>11. E se u não for normal?</h3>
+  <p>Nem sempre RLS.6 é razoável. Exemplos da aula: y com poucos valores possíveis, como uma <strong>contagem de eventos</strong>, ou uma <strong>variável censurada</strong>, como uma duração observada só até o fim do acompanhamento. Às vezes uma transformação, como o log, reduz a assimetria e aproxima o erro da normal.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Resultado exato</th><th>Aproximação assintótica</th></tr></thead>
+    <tbody><tr>
+      <td>Em amostras pequenas, normalidade e homocedasticidade produzem uma distribuição t <strong>exata</strong> na regressão simples.</td>
+      <td>Em amostras grandes, sob amostragem adequada, momentos finitos e sem observações dominantes, o TCL deixa \(\hat\beta_j\) aproximadamente normal mesmo sem u normal. Com heterocedasticidade, usam-se erros-padrão robustos, não só uma amostra grande.</td>
+    </tr></tbody>
+  </table></div>
+  <p>A distribuição de referência depende das hipóteses: a regra mecânica “coeficiente dividido pelo erro-padrão” não basta. É preciso saber <em>qual</em> erro-padrão e <em>qual</em> aproximação justificam a comparação. Observações extremas, dependência e caudas muito pesadas prejudicam a aproximação.</p>
+
+  <h3>12. Diagnóstico pelos resíduos</h3>
+  <ul>
+    <li>Examine gráficos de \(\hat u_i\) ou \(\hat u_i^2\) contra \(X_i\) e \(\hat Y_i\).</li>
+    <li>Formato de <strong>funil</strong> sugere variância crescente ou decrescente.</li>
+    <li>Grupos com dispersões diferentes sugerem heterogeneidade entre categorias.</li>
+    <li>Poucas observações extremas podem criar uma impressão enganosa.</li>
+    <li>Curvatura na média dos resíduos pode indicar forma funcional inadequada, não só heterocedasticidade.</li>
+  </ul>
+  <p class="muted">Não encontrar padrão não prova homocedasticidade. O gráfico orienta a investigação, mas não substitui hipóteses nem testes formais. Testes de heterocedasticidade têm baixa potência em amostras pequenas, e não rejeitar não comprova \(H_0\).</p>
+
+  <h3>13. MQP factível e um aviso para o futuro</h3>
+  <p>Quando a forma da variância é desconhecida, uma estratégia de <strong>MQP factível</strong> é:</p>
+  <ol class="steps">
+    <li><div>Estimar o modelo original por MQO.</div></li>
+    <li><div>Modelar \(\hat u_i^2\) ou \(\log(\hat u_i^2)\) em função de \(X_i\).</div></li>
+    <li><div>Obter valores positivos \(\hat h_i\).</div></li>
+    <li><div>Reestimar o modelo com pesos \(1/\hat h_i\).</div></li>
+  </ol>
+  <p>Se a função de variância estiver bem especificada, o MQP pode ser mais eficiente; se estiver mal especificada, o ganho pode sumir. Erros-padrão robustos depois da ponderação dão proteção adicional. <strong>Síntese:</strong> erros robustos protegem a inferência; MQP tenta também recuperar eficiência; nenhum dos dois corrige uma média condicional mal especificada.</p>
+  <p><strong>Teaser:</strong> sob normalidade, qualquer combinação linear de \(\hat\beta_0\) e \(\hat\beta_1\) também é normal (em grandes amostras, aproximadamente), e qualquer subconjunto de coeficientes tem distribuição normal conjunta. Com dois coeficientes isso faz pouca diferença, mas é a base do <strong>teste F</strong>, para testar vários coeficientes ao mesmo tempo, na regressão múltipla.</p>
+
   <div class="quiz" data-answer="d">
     <div class="qh">Lista 02 · Questão 2</div>
     <ol class="afirm">
@@ -2055,7 +2866,7 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
     <p>Variâncias: \(Var(\hat\beta_0)=\sigma^2\dfrac{n_1}{n\cdot(n_1n_0/n)}=\dfrac{\sigma^2}{n_0}\), a variância da média de um grupo com \(n_0\) observações.</p>
   </div></details>
   <p><strong>Não é necessariamente causal:</strong> a diferença pode refletir escolaridade, experiência, ocupação ou setor associados à sindicalização. Para ler \(\beta_1\) como efeito causal, é preciso justificar por que os grupos seriam comparáveis.</p>
-  <p><strong>Precisão:</strong> sob homocedasticidade, \(Var(\hat\beta_1\mid D)=\sigma^2\left(\frac{1}{n_1}+\frac{1}{n_0}\right)\). Com variâncias diferentes, \(Var(\bar Y_1-\bar Y_0\mid D)=\frac{\sigma_1^2}{n_1}+\frac{\sigma_0^2}{n_0}\). Grupos muito desbalanceados reduzem a precisão.</p>
+  <p><strong>Precisão:</strong> sob homocedasticidade, \(Var(\hat\beta_1\mid D)=\sigma^2\left(\frac{1}{n_1}+\frac{1}{n_0}\right)\). Com variâncias diferentes, \(Var(\bar Y_1-\bar Y_0\mid D)=\frac{\sigma_1^2}{n_1}+\frac{\sigma_0^2}{n_0}\). Grupos muito desbalanceados reduzem a precisão. Na prática, erros-padrão robustos (HC1, com correção por graus de liberdade) acomodam variâncias diferentes entre os grupos: <strong>os coeficientes não mudam; muda a incerteza estimada</strong>.</p>
 
   <h3>3. Armadilha da dummy e várias categorias</h3>
   <p>Com intercepto, não se pode incluir D e (1 − D) juntas: \(D_i+(1-D_i)=1\) é constante e gera <strong>colinearidade perfeita</strong>. Sem intercepto, as duas dummies podem entrar e os coeficientes viram as duas médias. Com intercepto e <strong>G categorias, usamos G − 1 dummies</strong>. Exemplo (agricultura como referência): \(Y=\beta_0+\beta_1D_{ind}+\beta_2D_{serv}+u\), com \(E(Y\mid agr)=\beta_0\), \(E(Y\mid ind)=\beta_0+\beta_1\), \(E(Y\mid serv)=\beta_0+\beta_2\).</p>
@@ -2064,6 +2875,7 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
   <p>Sem interação, \(E(Y\mid X,D)=\beta_0+\beta_1X+\beta_2D\): retas paralelas, e \(\beta_2\) é a diferença de nível. Com interação:</p>
   <div class="mathblock">\[Y=\beta_0+\beta_1X+\beta_2D+\beta_3(XD)+u:\quad D=0:\ \beta_0+\beta_1X;\qquad D=1:\ (\beta_0+\beta_2)+(\beta_1+\beta_3)X\]</div>
   <p>\(\beta_2\) é a diferença de interceptos, \(\beta_3\) a diferença de inclinações, e a diferença entre grupos num dado X é \(\beta_2+\beta_3X\). \(\beta_2\) é a diferença só em X = 0; compare os grupos em valores relevantes de X.</p>
+  <p><strong>Centralização (prática em R):</strong> definindo \(educ^c=educ-12\) no modelo com interação, o coeficiente da dummy passa a ser a diferença prevista entre os grupos para <strong>12 anos de educação</strong>, e não para educ = 0 (valor pouco relevante). Centralizar muda a interpretação do intercepto e da dummy, mas não muda valores ajustados, inclinações nem a qualidade do ajuste. Trocar a categoria de referência também muda os coeficientes, mas não as médias previstas: com três setores, reconstrua as três médias nas duas parametrizações e elas coincidem.</p>
   <p><strong>Dummy em log:</strong> se \(\log Y=\beta_0+\beta_1D+u\), a diferença percentual é \(100[\exp(\beta_1)-1]\%\); a aproximação \(100\beta_1\%\) só é boa com \(|\beta_1|\) pequeno.</p>
   <details class="sol"><summary>Pratique: \(\widehat{\log(salario)}=1{,}80+0{,}09\,educ-0{,}18\,mulher+0{,}02\,(educ\times mulher)\)</summary><div class="in">
     <ol>
@@ -2666,6 +3478,643 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
 </section>
 
 
+<!-- ================= EXERCÍCIOS DAS PRÁTICAS EM R ================= -->
+<section class="mod" id="praticas" data-title="Práticas em R">
+  <div class="eyebrow">Práticas em R · Aula 3, Aulas 4–5 e Aula 7</div>
+  <h2>Exercícios das práticas em R</h2>
+  <p>As três práticas terminam com exercícios de “solução orientada”. Na prova não há software, mas as <strong>conclusões</strong> desses exercícios são exatamente o que cai nas afirmativas I, II e III. Onde dá para fazer a conta à mão, ela está aqui. Quando um número foi calculado por nós com os parâmetros verdadeiros da simulação, isso está indicado.</p>
+
+  <h3>Prática da Aula 3: regressão simples com dados reais (wage1, n = 526)</h3>
+  <p>Reta estimada: \(\widehat{wage}=-0{,}905+0{,}541\,educ\) (US$/hora), \(R^2\approx0{,}165\).</p>
+  <details class="sol"><summary>Ex. 1 · previsão e interpretação (10, 12 e 18 anos)</summary><div class="in">
+    <p>\(\widehat{wage}(10)\approx-0{,}905+5{,}41=4{,}51\); \(\widehat{wage}(12)\approx5{,}59\); \(\widehat{wage}(18)\approx8{,}83\). A diferença entre 18 e 10 anos é \(\hat\beta_1(18-10)=0{,}541\times8\approx4{,}33\) US$/hora. É uma <strong>diferença prevista</strong>, não necessariamente um efeito causal.</p>
+  </div></details>
+  <details class="sol"><summary>Ex. 2 · extrapolação (25 anos)</summary><div class="in">
+    <p>\(\widehat{wage}(25)\approx-0{,}905+13{,}53\approx12{,}62\). Mas 25 está <strong>fora do intervalo observado</strong> de educ: é uma extrapolação. Os dados não permitem verificar se a relação continua linear nessa região. Use o intervalo dos dados (menor e maior valor) para checar.</p>
+  </div></details>
+  <details class="sol"><summary>Ex. 3 e 4 · maior resíduo e propriedades do MQO</summary><div class="in">
+    <p><strong>Ex. 3:</strong> o trabalhador mais distante da reta é o de maior \(|\hat u_i|\).</p>
+    <p><strong>Ex. 4:</strong> verificar numericamente que a média dos resíduos é zero e que a correlação entre educ e os resíduos é zero. Os resultados podem não dar <em>exatamente</em> zero por arredondamento numérico, mas são zero por construção (CPOs).</p>
+  </div></details>
+  <details class="sol"><summary>Ex. 5 · associação × causalidade</summary><div class="in">
+    <p>Variáveis omitidas possíveis: <strong>habilidade, origem familiar, qualidade da escola, região</strong>. Se uma característica está relacionada tanto à educação quanto ao salário, parte da sua associação com o salário é atribuída indevidamente à educação na regressão simples.</p>
+  </div></details>
+  <p class="small"><strong>Apêndice da prática (simulação):</strong> em 1.000 amostras, as estimativas da inclinação se concentram em torno do parâmetro usado para gerar os dados, mas variam de uma amostra para outra. Essa variação é a incerteza amostral formalizada nas Aulas 5 e 6.</p>
+
+  <h3>Prática das Aulas 4 e 5: formas funcionais e propriedades do MQO</h3>
+  <p>Mecanismo simulado: \(\ln(salario_i)=6{,}5+0{,}08\,educ_i+u_i\), \(E(u\mid educ)=0\), \(\sigma=0{,}25\), educ sorteada entre 8 e 20.</p>
+  <details class="sol"><summary>Ex. 1 · escala e invariância (salário anual = 12 × mensal)</summary><div class="in">
+    <p>Coeficientes, valores ajustados e resíduos ficam <strong>multiplicados por 12</strong>; o \(R^2\) fica <strong>igual</strong>. É a regra “multiplicar Y por a multiplica \(\hat\beta_0\), \(\hat\beta_1\) e os resíduos por a”.</p>
+  </div></details>
+  <details class="sol"><summary>Ex. 2 · aproximação percentual para 4 anos</summary><div class="in">
+    <p>Com \(\hat\beta_1\approx0{,}08\): aproximada \(100\times0{,}08\times4=32\%\); exata \(100(e^{0,32}-1)\approx37{,}7\%\). A aproximação usa \(\Delta\ln Y\approx\Delta Y/Y\), que funciona melhor para variações pequenas.</p>
+  </div></details>
+  <details class="sol"><summary>Ex. 3 · não viés e precisão (n = 30 × n = 300)</summary><div class="in">
+    <p>As duas médias ficam perto de 0,08. A distribuição com n = 300 é menos dispersa: <strong>aumentar a amostra melhora a precisão, mas não é o que cria a ausência de viés</strong>.</p>
+  </div></details>
+  <details class="sol"><summary>Ex. 4 · violação de média condicional zero</summary><div class="in">
+    <p>Com \(u=0{,}04\,educ+\text{ruído}\), \(E(u\mid educ)=0{,}04\,educ\neq0\). A regressão atribui à educação o 0,08 e também a parcela sistemática 0,04 do erro: a média das estimativas fica perto de <strong>0,12</strong>.</p>
+  </div></details>
+  <details class="sol"><summary>Ex. 5 · efeito marginal do fertilizante</summary><div class="in">
+    <p>Mecanismo: \(producao=4+2f-0{,}25f^2+u\), com f entre 0 e 6. Efeito marginal \(2-0{,}5f\): em f = 0, 2, 4 e 6 vale 2; 1; 0; −1 (com os parâmetros verdadeiros; as estimativas ficam próximas). Ponto de retorno \(-\beta_1/(2\beta_2)=2/0{,}5=4\), <strong>dentro do suporte</strong> observado [0, 6]: pode receber interpretação empírica direta. O coeficiente de fertilizante sozinho (2) é o efeito marginal em f = 0.</p>
+  </div></details>
+  <details class="sol"><summary>Ex. 6 · intensidade do viés de variável omitida</summary><div class="in">
+    <p>Com \(Y=2+0{,}8X+1{,}2Z+\varepsilon\) e \(Z=\rho X+v\), a inclinação da regressão só em X fica centrada em \(0{,}8+1{,}2\rho\): para ρ = 0,2; 0,7; 1,2, dá cerca de 1,04; 1,64; 2,24 (conta nossa com os parâmetros verdadeiros). <strong>Quanto maior a relação entre X e a variável omitida relevante, maior o viés.</strong></p>
+  </div></details>
+  <details class="sol"><summary>Ex. 7 · erro de medida e atenuação</summary><div class="in">
+    <p>Com \(X^*\sim N(0,1)\), \(\beta_1=2\) e erro de medida com desvio d, \(\text{plim}\,\hat\beta_1=2\cdot\frac{1}{1+d^2}\): para d = 0; 0,25; 1; 3 dá cerca de 2; 1,88; 1; 0,2. Quanto maior o erro, maior o peso de Var(r) no denominador, e mais a inclinação se aproxima de zero.</p>
+  </div></details>
+  <details class="sol"><summary>Ex. 8 · informação de X e precisão</summary><div class="in">
+    <p>Com n = 100, ruído com desvio 2 e X uniforme no intervalo, \(SQT_x\approx(n-1)\frac{(b-a)^2}{12}\) e \(dp(\hat\beta_1)\approx2/\sqrt{SQT_x}\) (conta nossa):</p>
+    <div class="tbl"><table>
+      <thead><tr><th>Intervalo de X</th><th class="r">\(SQT_x\) médio (aprox.)</th><th class="r">dp de \(\hat\beta_1\) (aprox.)</th></tr></thead>
+      <tbody>
+        <tr><td>13 a 15</td><td class="r">33</td><td class="r">0,35</td></tr>
+        <tr><td>10 a 18</td><td class="r">528</td><td class="r">0,087</td></tr>
+        <tr><td>0 a 28</td><td class="r">6.468</td><td class="r">0,025</td></tr>
+      </tbody>
+    </table></div>
+    <p>Suportes mais amplos elevam \(SQT_x\) e reduzem a dispersão de \(\hat\beta_1\).</p>
+  </div></details>
+
+  <h3>Prática da Aula 7: regressão pela origem e dummies</h3>
+  <details class="sol"><summary>Ex. 1 · fórmula pela origem</summary><div class="in">
+    <p>Confira \(\hat\beta_1=\sum x_iy_i/\sum x_i^2\) e verifique \(\sum x_i\hat u_i=0\). A soma simples dos resíduos <strong>não</strong> é zero: só a soma ponderada por X é forçada a zero.</p>
+  </div></details>
+  <details class="sol"><summary>Ex. 2 · restrição incorreta e tamanho da amostra</summary><div class="in">
+    <p>Com \(Y=8+0{,}12X+u\), X uniforme entre 0 e 100, forçando a origem: o desvio-padrão cai com n = 50, 500 e 5.000, mas a média <strong>não</strong> converge para 0,12. O pseudoalvo é \(0{,}12+8\cdot\frac{E[X]}{E[X^2]}=0{,}12+8\cdot\frac{50}{3.333{,}3}\approx0{,}24\) (conta nossa). Mais dados não corrigem a restrição falsa.</p>
+  </div></details>
+  <details class="sol"><summary>Ex. 3 · trocar a referência da dummy</summary><div class="in">
+    <p>Com 1 para não sindicalizados, o novo intercepto é a média dos <strong>sindicalizados</strong> e a inclinação <strong>troca de sinal</strong>. As duas médias previstas e o tamanho da diferença continuam iguais.</p>
+  </div></details>
+  <details class="sol"><summary>Ex. 4 · categorias de referência (três setores)</summary><div class="in">
+    <p>Mudando a referência, os coeficientes mudam, mas as três médias reconstruídas coincidem nas duas parametrizações.</p>
+  </div></details>
+  <details class="sol"><summary>Ex. 5 · interação: diferença prevista em 8, 12 e 16 anos</summary><div class="in">
+    <p>A diferença entre grupos é \(\hat\beta_2+\hat\beta_3\,educ\). Com os valores verdadeiros da simulação (\(\beta_2=2{,}5\), \(\beta_3=0{,}18\)): 3,94; 4,66; 5,38. Não é constante porque o coeficiente da interação é diferente de zero.</p>
+  </div></details>
+
+  <h3>Se aparecer código R ou output na prova</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Comando / saída</th><th>O que faz</th></tr></thead>
+    <tbody>
+      <tr><td><code>lm(y ~ x, data = d)</code></td><td>Estima por MQO a regressão de y em x, com intercepto</td></tr>
+      <tr><td><code>lm(y ~ 0 + x)</code></td><td>Regressão pela origem (sem intercepto)</td></tr>
+      <tr><td><code>lm(log(y) ~ x)</code>, <code>I(x^2)</code></td><td>Log–nível; termo quadrático dentro da fórmula</td></tr>
+      <tr><td><code>coef()</code>, <code>fitted()</code>, <code>residuals()</code></td><td>Coeficientes, valores ajustados, resíduos</td></tr>
+      <tr><td><code>predict(m, newdata = ...)</code></td><td>Valores previstos para novos x</td></tr>
+      <tr><td>Estimate · Std. Error · t value · Pr(&gt;|t|)</td><td>\(\hat\beta\) · \(ep(\hat\beta)\) · Estimate/Std. Error · p-valor bilateral de \(H_0:\beta=0\)</td></tr>
+      <tr><td><code>glance()$r.squared</code></td><td>O \(R^2\)</td></tr>
+      <tr><td><code>vcovHC(m, type = "HC1")</code> + <code>coeftest()</code></td><td>Erros-padrão robustos à heterocedasticidade</td></tr>
+      <tr><td><code>factor()</code>, <code>relevel()</code></td><td>Tratar como categoria; escolher a categoria de referência</td></tr>
+      <tr><td><code>set.seed()</code>, <code>replicate()</code></td><td>Simulação reproduzível; repetir o experimento (amostras repetidas)</td></tr>
+    </tbody>
+  </table></div>
+  <div class="done-row"><button class="btn done-btn" data-done="praticas" aria-pressed="false">Marcar como concluído</button></div>
+</section>
+
+
+<!-- ================= DICIONÁRIO DE FÓRMULAS ================= -->
+<section class="mod" id="dicionario" data-title="Dicionário">
+  <div class="eyebrow">Revisão · todas as fórmulas do curso</div>
+  <h2>Dicionário de fórmulas e unidades</h2>
+  <p>Cada fórmula do curso com o que ela significa em palavras, a sua <strong>unidade de medida</strong>, onde aparece e o erro mais comum. Digite no campo abaixo para filtrar (ex.: “variância”, “log”, “R2”, “Lista 2”).</p>
+  <div class="field"><label for="dictSearch">Buscar fórmula</label><input id="dictSearch" type="search" autocomplete="off" placeholder="ex.: erro padrão, elasticidade, Bayes"></div>
+  <p class="small muted" id="dictCount"></p>
+
+  <h3>Como pensar em unidades (análise dimensional)</h3>
+  <p>Toda fórmula carrega unidades. Conferir a unidade do resultado é uma forma rápida de achar erros. Exemplo com a Lista 2, Ex. 1 (área em m², aluguel em R$):</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Grandeza</th><th class="r">Valor</th><th>Unidade</th><th>Por quê</th></tr></thead>
+    <tbody>
+      <tr><td>\(\overline{area}\), \(s_{area}\)</td><td class="r">60; 10</td><td>m²</td><td>Média e desvio-padrão têm a unidade da variável</td></tr>
+      <tr><td>\(Var(area)\)</td><td class="r">100</td><td>(m²)²</td><td>Desvio ao quadrado</td></tr>
+      <tr><td>\(\overline{aluguel}\), \(s_{aluguel}\)</td><td class="r">2.000; 300</td><td>R$</td><td>—</td></tr>
+      <tr><td>\(Cov(area,aluguel)\)</td><td class="r">2.400</td><td>m² · R$</td><td>Produto de um desvio de área por um desvio de aluguel</td></tr>
+      <tr><td>\(Corr\)</td><td class="r">0,80</td><td>sem unidade</td><td>Cov ÷ (\(s_x s_y\)): m²·R$ ÷ (m²·R$)</td></tr>
+      <tr><td>\(\hat\beta_1=Cov/Var\)</td><td class="r">24</td><td>R$ por m²</td><td>(m²·R$) ÷ (m²)² = R$/m²</td></tr>
+      <tr><td>\(\hat\beta_0\), \(\hat y\), \(\hat u\)</td><td class="r">560; 2.240; 60</td><td>R$</td><td>Mesma unidade de y</td></tr>
+    </tbody>
+  </table></div>
+  <p>E com os 5 indivíduos da Aula 3 (anos de estudo × R$/hora):</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Grandeza</th><th class="r">Valor</th><th>Unidade</th></tr></thead>
+    <tbody>
+      <tr><td>\(SQT_x\)</td><td class="r">40</td><td>anos²</td></tr>
+      <tr><td>\(\hat\beta_1\)</td><td class="r">1,15</td><td>(R$/hora) por ano de estudo</td></tr>
+      <tr><td>SQR, \(\hat\sigma^2\)</td><td class="r">4,30; 1,433</td><td>(R$/hora)²</td></tr>
+      <tr><td>\(\hat\sigma\)</td><td class="r">1,197</td><td>R$/hora</td></tr>
+      <tr><td>\(\widehat{Var}(\hat\beta_1)\)</td><td class="r">0,0358</td><td>[(R$/hora) por ano]²</td></tr>
+      <tr><td>\(ep(\hat\beta_1)\)</td><td class="r">0,189</td><td>(R$/hora) por ano, a mesma de \(\hat\beta_1\)</td></tr>
+      <tr><td>t, \(R^2\)</td><td class="r">6,08; 0,925</td><td>sem unidade</td></tr>
+    </tbody>
+  </table></div>
+  <div class="box def"><span class="lbl">Por que as regras de escala da Aula 4 funcionam</span>
+    <p>\(\hat\beta_1\) tem unidade “y por x”. Se y passa de reais para milhares de reais, o mesmo efeito vira um número 1.000 vezes menor. Se x passa de anos para meses, “por mês” é 12 vezes menor que “por ano”. \(R^2\), t e elasticidades não têm unidade, então não mudam.</p>
+  </div>
+
+  <h3 class="dgroup">Estatística descritiva (Aula 2)</h3>
+  <div class="dgrid">
+    <div class="fentry" data-s="somatório soma sigma aula 2 (p1–p5) soma de todos os valores.">
+      <div class="fh"><b>Somatório</b><span class="src">Aula 2 (P1–P5)</span></div>
+      <div class="mathblock">\[\sum_{i=1}^{n}x_i=x_1+\dots+x_n\]</div>
+      <div class="fl"><span>Significa</span>Soma de todos os valores.</div>
+      <div class="fl"><span>Unidade</span>A mesma de x.</div>
+      <div class="fl warn"><span>Cuidado</span>\(\sum x_i^2\neq(\sum x_i)^2\) e \(\sum x_i/y_i\neq\sum x_i/\sum y_i\).</div>
+    </div>
+    <div class="fentry" data-s="média amostral media barra aulas 2 e 3 centro da amostra.">
+      <div class="fh"><b>Média amostral</b><span class="src">Aulas 2 e 3</span></div>
+      <div class="mathblock">\[\bar x=\frac1n\sum_{i=1}^{n}x_i\]</div>
+      <div class="fl"><span>Significa</span>Centro da amostra.</div>
+      <div class="fl"><span>Unidade</span>A mesma de x.</div>
+      <div class="fl warn"><span>Cuidado</span>A reta de MQO sempre passa por \((\bar x,\bar y)\).</div>
+    </div>
+    <div class="fentry" data-s="desvio em relação à média desvio aula 2 (p1) quanto cada observação se afasta da média. a soma é sempre zero.">
+      <div class="fh"><b>Desvio em relação à média</b><span class="src">Aula 2 (P1)</span></div>
+      <div class="mathblock">\[x_i-\bar x,\qquad\sum_i(x_i-\bar x)=0\]</div>
+      <div class="fl"><span>Significa</span>Quanto cada observação se afasta da média. A soma é sempre zero.</div>
+      <div class="fl"><span>Unidade</span>A mesma de x.</div>
+      <div class="fl warn"><span>Cuidado</span>Use a soma zero para conferir contas.</div>
+    </div>
+    <div class="fentry" data-s="soma dos quadrados totais de x sqtx variacao aulas 3 e 5 variação total de x: quanta informação a amostra tem para estimar a inclinação.">
+      <div class="fh"><b>Soma dos quadrados totais de x</b><span class="src">Aulas 3 e 5</span></div>
+      <div class="mathblock">\[SQT_x=\sum_i(x_i-\bar x)^2=\sum_ix_i^2-n\bar x^2\]</div>
+      <div class="fl"><span>Significa</span>Variação total de x: quanta informação a amostra tem para estimar a inclinação.</div>
+      <div class="fl"><span>Unidade</span>Unidade de x ao quadrado.</div>
+      <div class="fl warn"><span>Cuidado</span>Não confunda com SQT (variação de <em>y</em>). Tem que ser &gt; 0 (RLS.3).</div>
+    </div>
+    <div class="fentry" data-s="variância amostral variancia aula 2; lista 1 q6; lista 2 ex. 1 e 2 dispersão média ao quadrado em torno da média.">
+      <div class="fh"><b>Variância amostral</b><span class="src">Aula 2; Lista 1 Q6; Lista 2 Ex. 1 e 2</span></div>
+      <div class="mathblock">\[s_x^2=\widehat{Var}(x)=\frac{\sum_i(x_i-\bar x)^2}{n-1}\]</div>
+      <div class="fl"><span>Significa</span>Dispersão média ao quadrado em torno da média.</div>
+      <div class="fl"><span>Unidade</span>Unidade de x ao quadrado.</div>
+      <div class="fl warn"><span>Cuidado</span>Variância = desvio-padrão ao quadrado.</div>
+    </div>
+    <div class="fentry" data-s="desvio-padrão amostral desvio padrao dp aula 2; lista 2 ex. 1 quanto a variável tipicamente se afasta da média.">
+      <div class="fh"><b>Desvio-padrão amostral</b><span class="src">Aula 2; Lista 2 Ex. 1</span></div>
+      <div class="mathblock">\[s_x=\sqrt{s_x^2}\]</div>
+      <div class="fl"><span>Significa</span>Quanto a variável tipicamente se afasta da média.</div>
+      <div class="fl"><span>Unidade</span>A mesma de x.</div>
+      <div class="fl warn"><span>Cuidado</span>Na Lista 2 Ex. 1, \(s=10\Rightarrow Var=100\).</div>
+    </div>
+    <div class="fentry" data-s="covariância amostral covariancia aula 2; lista 2 ex. 1 e 2 se x e y andam juntos (+) ou em sentidos opostos (−).">
+      <div class="fh"><b>Covariância amostral</b><span class="src">Aula 2; Lista 2 Ex. 1 e 2</span></div>
+      <div class="mathblock">\[\widehat{Cov}(x,y)=\frac{\sum_i(x_i-\bar x)(y_i-\bar y)}{n-1}=\frac{\sum_ix_iy_i-n\bar x\bar y}{n-1}\]</div>
+      <div class="fl"><span>Significa</span>Se x e y andam juntos (+) ou em sentidos opostos (−).</div>
+      <div class="fl"><span>Unidade</span>Unidade de x vezes unidade de y.</div>
+      <div class="fl warn"><span>Cuidado</span>Depende das unidades; o sinal é o que importa para a direção.</div>
+    </div>
+    <div class="fentry" data-s="correlação correlacao aula 2; lista 2 ex. 1 associação linear padronizada.">
+      <div class="fh"><b>Correlação</b><span class="src">Aula 2; Lista 2 Ex. 1</span></div>
+      <div class="mathblock">\[Corr(x,y)=\frac{Cov(x,y)}{s_x\,s_y}\ \Rightarrow\ Cov=Corr\cdot s_x\cdot s_y\]</div>
+      <div class="fl"><span>Significa</span>Associação linear padronizada.</div>
+      <div class="fl"><span>Unidade</span>Sem unidade (entre −1 e 1).</div>
+      <div class="fl warn"><span>Cuidado</span>Correlação zero não é independência (\(Y=X^2\)).</div>
+    </div>
+  </div>
+  <h3 class="dgroup">Probabilidade (Aula 2)</h3>
+  <div class="dgrid">
+    <div class="fentry" data-s="esperança esperanca media populacional aula 2 média teórica (populacional), ponderada pelas probabilidades.">
+      <div class="fh"><b>Esperança</b><span class="src">Aula 2</span></div>
+      <div class="mathblock">\[E[X]=\sum_xx\,p(x)\quad\text{ou}\quad E[X]=\int x\,f(x)\,dx\]</div>
+      <div class="fl"><span>Significa</span>Média teórica (populacional), ponderada pelas probabilidades.</div>
+      <div class="fl"><span>Unidade</span>A mesma de X.</div>
+      <div class="fl warn"><span>Cuidado</span>Não precisa ser um valor possível (dado: 3,5).</div>
+    </div>
+    <div class="fentry" data-s="linearidade da esperança  aula 2; lista 1 q24 a esperança passa por somas e constantes.">
+      <div class="fh"><b>Linearidade da esperança</b><span class="src">Aula 2; Lista 1 Q24</span></div>
+      <div class="mathblock">\[E[aX+bY+c]=aE[X]+bE[Y]+c\]</div>
+      <div class="fl"><span>Significa</span>A esperança passa por somas e constantes.</div>
+      <div class="fl"><span>Unidade</span>A mesma de X.</div>
+    </div>
+    <div class="fentry" data-s="variância variancia populacional aula 2 dispersão teórica em torno da média.">
+      <div class="fh"><b>Variância</b><span class="src">Aula 2</span></div>
+      <div class="mathblock">\[Var(X)=E[(X-E[X])^2]=E[X^2]-(E[X])^2\]</div>
+      <div class="fl"><span>Significa</span>Dispersão teórica em torno da média.</div>
+      <div class="fl"><span>Unidade</span>Unidade de X ao quadrado.</div>
+      <div class="fl warn"><span>Cuidado</span>Desvio-padrão = raiz da variância.</div>
+    </div>
+    <div class="fentry" data-s="variância de transformações variancia combinacao linear aula 2; lista 1 q19 e q24 constante somada não espalha; fator multiplicativo entra ao quadrado.">
+      <div class="fh"><b>Variância de transformações</b><span class="src">Aula 2; Lista 1 Q19 e Q24</span></div>
+      <div class="mathblock">\[Var(a+bX)=b^2Var(X),\qquad Var(aX+bY+c)=a^2Var(X)+b^2Var(Y)+2ab\,Cov(X,Y)\]</div>
+      <div class="fl"><span>Significa</span>Constante somada não espalha; fator multiplicativo entra ao quadrado.</div>
+      <div class="fl"><span>Unidade</span>Unidade ao quadrado.</div>
+      <div class="fl warn"><span>Cuidado</span>Esquecer o termo \(2ab\,Cov\).</div>
+    </div>
+    <div class="fentry" data-s="covariância (definição e regras) covariancia aula 2; lista 1 q22, q24, q28 associação linear teórica; bilinear.">
+      <div class="fh"><b>Covariância (definição e regras)</b><span class="src">Aula 2; Lista 1 Q22, Q24, Q28</span></div>
+      <div class="mathblock">\[Cov(X,Y)=E[XY]-E[X]E[Y],\qquad Cov(aX+c,bY+d)=ab\,Cov(X,Y)\]</div>
+      <div class="fl"><span>Significa</span>Associação linear teórica; bilinear.</div>
+      <div class="fl"><span>Unidade</span>Unidade de X vezes unidade de Y.</div>
+      <div class="fl warn"><span>Cuidado</span>Somar constantes não muda covariância nem correlação.</div>
+    </div>
+    <div class="fentry" data-s="bernoulli binaria dummy proporcao aula 2; lista 1 q17 e q27 variável 0/1: a média é uma proporção.">
+      <div class="fh"><b>Bernoulli</b><span class="src">Aula 2; Lista 1 Q17 e Q27</span></div>
+      <div class="mathblock">\[E[D]=\pi,\qquad Var(D)=\pi(1-\pi)\]</div>
+      <div class="fl"><span>Significa</span>Variável 0/1: a média é uma proporção.</div>
+      <div class="fl"><span>Unidade</span>Sem unidade (proporção).</div>
+      <div class="fl warn"><span>Cuidado</span>Variância máxima em π = 0,5.</div>
+    </div>
+    <div class="fentry" data-s="probabilidade condicional e bayes condicional bayes aula 2 distribuição de y dentro do grupo x = x.">
+      <div class="fh"><b>Probabilidade condicional e Bayes</b><span class="src">Aula 2</span></div>
+      <div class="mathblock">\[p(y\mid x)=\frac{p(x,y)}{p(x)},\qquad p(y\mid x)=\frac{p(x\mid y)\,p(y)}{p(x)}\]</div>
+      <div class="fl"><span>Significa</span>Distribuição de Y dentro do grupo X = x.</div>
+      <div class="fl"><span>Unidade</span>Probabilidade (sem unidade).</div>
+      <div class="fl warn"><span>Cuidado</span>Independência: \(p(y\mid x)=p(y)\).</div>
+    </div>
+    <div class="fentry" data-s="lei das expectativas iteradas lei expectativas iteradas lei aulas 2 e 5; lista 1 q23 e q25 a média geral é a média das médias dos grupos, ponderada pelo tamanho de cada grupo.">
+      <div class="fh"><b>Lei das Expectativas Iteradas</b><span class="src">Aulas 2 e 5; Lista 1 Q23 e Q25</span></div>
+      <div class="mathblock">\[E[Y]=E\big[E[Y\mid X]\big]\]</div>
+      <div class="fl"><span>Significa</span>A média geral é a média das médias dos grupos, ponderada pelo tamanho de cada grupo.</div>
+      <div class="fl"><span>Unidade</span>A mesma de Y.</div>
+      <div class="fl warn"><span>Cuidado</span>É usada na prova de não viés da Aula 5.</div>
+    </div>
+    <div class="fentry" data-s="decomposição da variância  lista 1 q30 variação dentro dos grupos + variação entre as médias dos grupos.">
+      <div class="fh"><b>Decomposição da variância</b><span class="src">Lista 1 Q30</span></div>
+      <div class="mathblock">\[Var(Y)=E[Var(Y\mid X)]+Var[E(Y\mid X)]\]</div>
+      <div class="fl"><span>Significa</span>Variação dentro dos grupos + variação entre as médias dos grupos.</div>
+      <div class="fl"><span>Unidade</span>Unidade de Y ao quadrado.</div>
+    </div>
+    <div class="fentry" data-s="média amostral como estimador media amostral aula 2; lista 1 q26 não viesada; fica mais precisa com n maior.">
+      <div class="fh"><b>Média amostral como estimador</b><span class="src">Aula 2; Lista 1 Q26</span></div>
+      <div class="mathblock">\[E[\hat\mu]=\mu,\qquad Var(\hat\mu)=\frac{\sigma^2}{N},\qquad ep=\frac{\sigma}{\sqrt N}\]</div>
+      <div class="fl"><span>Significa</span>Não viesada; fica mais precisa com N maior.</div>
+      <div class="fl"><span>Unidade</span>\(\hat\mu\) e ep na unidade de Y; Var na unidade ao quadrado.</div>
+      <div class="fl warn"><span>Cuidado</span>Quadruplicar N corta o ep pela metade.</div>
+    </div>
+    <div class="fentry" data-s="estatística z e t da média teste z t aula 2 distância até \(\mu_0\) em unidades de erro-padrão.">
+      <div class="fh"><b>Estatística z e t da média</b><span class="src">Aula 2</span></div>
+      <div class="mathblock">\[Z=\frac{\hat\mu-\mu_0}{\sigma/\sqrt N},\qquad T=\frac{\hat\mu-\mu_0}{S/\sqrt N}\sim t_{N-1}\]</div>
+      <div class="fl"><span>Significa</span>Distância até \(\mu_0\) em unidades de erro-padrão.</div>
+      <div class="fl"><span>Unidade</span>Sem unidade.</div>
+      <div class="fl warn"><span>Cuidado</span>|Z| &gt; 1,96 rejeita a 5%.</div>
+    </div>
+    <div class="fentry" data-s="viés e erro quadrático médio  lista 1 q8; aula 5 viés: erro do centro. eqm: erro total médio.">
+      <div class="fh"><b>Viés e erro quadrático médio</b><span class="src">Lista 1 Q8; Aula 5</span></div>
+      <div class="mathblock">\[Vi\acute es=E[\hat\theta]-\theta,\qquad EQM=Var(\hat\theta)+Vi\acute es^2\]</div>
+      <div class="fl"><span>Significa</span>Viés: erro do centro. EQM: erro total médio.</div>
+      <div class="fl"><span>Unidade</span>Viés na unidade do parâmetro; EQM ao quadrado.</div>
+    </div>
+  </div>
+  <h3 class="dgroup">Regressão simples (Aula 3)</h3>
+  <div class="dgrid">
+    <div class="fentry" data-s="modelo populacional modelo aula 3; rls.1 y = parte sistemática + erro (outros fatores).">
+      <div class="fh"><b>Modelo populacional</b><span class="src">Aula 3; RLS.1</span></div>
+      <div class="mathblock">\[Y=\beta_0+\beta_1X+U\]</div>
+      <div class="fl"><span>Significa</span>Y = parte sistemática + erro (outros fatores).</div>
+      <div class="fl"><span>Unidade</span>\(\beta_0\) e U na unidade de Y; \(\beta_1\) em unid. Y / unid. X.</div>
+      <div class="fl warn"><span>Cuidado</span>U não é simples ruído: tem conteúdo econômico.</div>
+    </div>
+    <div class="fentry" data-s="média condicional zero e frp frp media condicional zero aulas 3 e 5 (rls.4) os fatores omitidos não se relacionam, em média, com x.">
+      <div class="fh"><b>Média condicional zero e FRP</b><span class="src">Aulas 3 e 5 (RLS.4)</span></div>
+      <div class="mathblock">\[E[U\mid X]=0\ \Rightarrow\ E[Y\mid X]=\beta_0+\beta_1X\]</div>
+      <div class="fl"><span>Significa</span>Os fatores omitidos não se relacionam, em média, com X.</div>
+      <div class="fl"><span>Unidade</span>—</div>
+      <div class="fl warn"><span>Cuidado</span>Não implica homocedasticidade nem independência.</div>
+    </div>
+    <div class="fentry" data-s="inclinação do mqo beta1 inclinacao mqo formula aula 3; listas 1 e 2 ★ variação média de ŷ por unidade a mais de x (associação).">
+      <div class="fh"><b>Inclinação do MQO</b><span class="src">Aula 3; Listas 1 e 2 ★</span></div>
+      <div class="mathblock">\[\hat\beta_1=\frac{\sum_i(x_i-\bar x)(y_i-\bar y)}{\sum_i(x_i-\bar x)^2}=\frac{\widehat{Cov}(x,y)}{\widehat{Var}(x)}\]</div>
+      <div class="fl"><span>Significa</span>Variação média de ŷ por unidade a mais de x (associação).</div>
+      <div class="fl"><span>Unidade</span>Unidade de y por unidade de x (ex.: R$ por m²).</div>
+      <div class="fl warn"><span>Cuidado</span>Calcule antes de \(\hat\beta_0\). Divisor n ou n − 1 cancela se for o mesmo.</div>
+    </div>
+    <div class="fentry" data-s="inclinação: outras formas  lista 2 ex. 1 e 2 as mesmas contas a partir de somas brutas ou de correlação e desvios-padrão.">
+      <div class="fh"><b>Inclinação: outras formas</b><span class="src">Lista 2 Ex. 1 e 2</span></div>
+      <div class="mathblock">\[\hat\beta_1=\frac{\sum x_iy_i-n\bar x\bar y}{\sum x_i^2-n\bar x^2}=Corr(x,y)\,\frac{s_y}{s_x}\]</div>
+      <div class="fl"><span>Significa</span>As mesmas contas a partir de somas brutas ou de correlação e desvios-padrão.</div>
+      <div class="fl"><span>Unidade</span>Unidade de y por unidade de x.</div>
+    </div>
+    <div class="fentry" data-s="intercepto do mqo beta0 intercepto formula aula 3; listas 1 e 2 ★ altura da reta em x = 0; garante que a reta passe por \((\bar x,\bar y)\).">
+      <div class="fh"><b>Intercepto do MQO</b><span class="src">Aula 3; Listas 1 e 2 ★</span></div>
+      <div class="mathblock">\[\hat\beta_0=\bar y-\hat\beta_1\bar x\]</div>
+      <div class="fl"><span>Significa</span>Altura da reta em x = 0; garante que a reta passe por \((\bar x,\bar y)\).</div>
+      <div class="fl"><span>Unidade</span>Unidade de y.</div>
+      <div class="fl warn"><span>Cuidado</span>Só tem leitura econômica se x = 0 fizer sentido.</div>
+    </div>
+    <div class="fentry" data-s="valor ajustado e resíduo residuo ajustado aula 3; lista 2 valor da reta para a observação i; distância do observado até a reta.">
+      <div class="fh"><b>Valor ajustado e resíduo</b><span class="src">Aula 3; Lista 2</span></div>
+      <div class="mathblock">\[\hat y_i=\hat\beta_0+\hat\beta_1x_i,\qquad \hat u_i=y_i-\hat y_i\]</div>
+      <div class="fl"><span>Significa</span>Valor da reta para a observação i; distância do observado até a reta.</div>
+      <div class="fl"><span>Unidade</span>Unidade de y.</div>
+      <div class="fl warn"><span>Cuidado</span>Resíduo = observado − ajustado. Resíduo ≠ erro.</div>
+    </div>
+    <div class="fentry" data-s="propriedades algébricas propriedades cpo aula 3; lista 1 q33, q37, q41 saem das cpos; valem em qualquer amostra.">
+      <div class="fh"><b>Propriedades algébricas</b><span class="src">Aula 3; Lista 1 Q33, Q37, Q41</span></div>
+      <div class="mathblock">\[\sum_i\hat u_i=0,\qquad\sum_ix_i\hat u_i=0,\qquad\bar{\hat y}=\bar y\]</div>
+      <div class="fl"><span>Significa</span>Saem das CPOs; valem em qualquer amostra.</div>
+      <div class="fl"><span>Unidade</span>—</div>
+      <div class="fl warn"><span>Cuidado</span>Ortogonalidade não é exogeneidade.</div>
+    </div>
+    <div class="fentry" data-s="sqt, sqe e sqr sqt sqe sqr aula 3; lista 2 ex. 3 variação total = sinal capturado pela reta + ruído residual.">
+      <div class="fh"><b>SQT, SQE e SQR</b><span class="src">Aula 3; Lista 2 Ex. 3</span></div>
+      <div class="mathblock">\[SQT=\sum(y_i-\bar y)^2,\quad SQE=\sum(\hat y_i-\bar y)^2,\quad SQR=\sum\hat u_i^2,\quad SQT=SQE+SQR\]</div>
+      <div class="fl"><span>Significa</span>Variação total = sinal capturado pela reta + ruído residual.</div>
+      <div class="fl"><span>Unidade</span>Unidade de y ao quadrado.</div>
+      <div class="fl warn"><span>Cuidado</span>O termo cruzado some pela ortogonalidade.</div>
+    </div>
+    <div class="fentry" data-s="coeficiente de determinação r2 r quadrado ajuste aula 3; listas 1 e 2 fração da variação amostral de y contabilizada pela reta.">
+      <div class="fh"><b>Coeficiente de determinação</b><span class="src">Aula 3; Listas 1 e 2</span></div>
+      <div class="mathblock">\[R^2=\frac{SQE}{SQT}=1-\frac{SQR}{SQT}\]</div>
+      <div class="fl"><span>Significa</span>Fração da variação amostral de y contabilizada pela reta.</div>
+      <div class="fl"><span>Unidade</span>Sem unidade (0 a 1 com intercepto).</div>
+      <div class="fl warn"><span>Cuidado</span>Não mede causalidade; não se compara Y com ln Y; não muda com unidades.</div>
+    </div>
+    <div class="fentry" data-s="variância do erro estimada sigma chapeu variancia erro aulas 3 e 5; lista 02 q4 dispersão dos pontos em torno da reta (não viesada sob rls.1–5).">
+      <div class="fh"><b>Variância do erro estimada</b><span class="src">Aulas 3 e 5; Lista 02 Q4</span></div>
+      <div class="mathblock">\[\hat\sigma^2=\frac{SQR}{n-2},\qquad\hat\sigma=\sqrt{\hat\sigma^2}\]</div>
+      <div class="fl"><span>Significa</span>Dispersão dos pontos em torno da reta (não viesada sob RLS.1–5).</div>
+      <div class="fl"><span>Unidade</span>\(\hat\sigma^2\) em unidade de y ao quadrado; \(\hat\sigma\) em unidade de y.</div>
+      <div class="fl warn"><span>Cuidado</span>n − 2 porque estimamos 2 parâmetros (pela origem: n − 1).</div>
+    </div>
+    <div class="fentry" data-s="inclinação como soma ponderada  prática aula 3; aula 5 cada y entra com peso que depende só de x.">
+      <div class="fh"><b>Inclinação como soma ponderada</b><span class="src">Prática Aula 3; Aula 5</span></div>
+      <div class="mathblock">\[\hat\beta_1=\sum_iw_iy_i,\quad w_i=\frac{x_i-\bar x}{SQT_x},\quad\sum w_i=0,\ \sum w_ix_i=1\]</div>
+      <div class="fl"><span>Significa</span>Cada y entra com peso que depende só de x.</div>
+      <div class="fl"><span>Unidade</span>\(w_i\) em 1/unidade de x.</div>
+    </div>
+  </div>
+  <h3 class="dgroup">Unidades e forma funcional (Aula 4)</h3>
+  <div class="dgrid">
+    <div class="fentry" data-s="mudança de escala escala unidade aula 4; lista 1 q42 e q44 trocar unidades muda os números, não a relação.">
+      <div class="fh"><b>Mudança de escala</b><span class="src">Aula 4; Lista 1 Q42 e Q44</span></div>
+      <div class="mathblock">\[\tilde y=by,\ \tilde x=cx\ \Rightarrow\ \tilde\beta_1=\frac bc\hat\beta_1,\quad\tilde\beta_0=b\hat\beta_0\]</div>
+      <div class="fl"><span>Significa</span>Trocar unidades muda os números, não a relação.</div>
+      <div class="fl"><span>Unidade</span>—</div>
+      <div class="fl warn"><span>Cuidado</span>\(R^2\) igual; escalar só x não muda \(\hat\beta_0\).</div>
+    </div>
+    <div class="fentry" data-s="transformação afim afim aula 4; lista 1 q51 e q59 escala muda inclinação; deslocamentos de origem mudam só o intercepto.">
+      <div class="fh"><b>Transformação afim</b><span class="src">Aula 4; Lista 1 Q51 e Q59</span></div>
+      <div class="mathblock">\[\tilde y=a+by,\ \tilde x=d+cx\ \Rightarrow\ \tilde\beta_1=\frac bc\hat\beta_1,\quad\tilde\beta_0=a+b\hat\beta_0-\frac bc\hat\beta_1d\]</div>
+      <div class="fl"><span>Significa</span>Escala muda inclinação; deslocamentos de origem mudam só o intercepto.</div>
+      <div class="fl"><span>Unidade</span>—</div>
+      <div class="fl warn"><span>Cuidado</span>Celsius → Fahrenheit é afim.</div>
+    </div>
+    <div class="fentry" data-s="log e variação percentual log percentual aula 4 diferença de logs ≈ variação proporcional.">
+      <div class="fh"><b>Log e variação percentual</b><span class="src">Aula 4</span></div>
+      <div class="mathblock">\[\Delta\ln x\approx\frac{\Delta x}{x},\qquad\Delta\ln x=\ln(1+g)\]</div>
+      <div class="fl"><span>Significa</span>Diferença de logs ≈ variação proporcional.</div>
+      <div class="fl"><span>Unidade</span>Sem unidade (proporção; × 100 = %).</div>
+      <div class="fl warn"><span>Cuidado</span>Boa só para variações pequenas.</div>
+    </div>
+    <div class="fentry" data-s="log–nível log nivel semielasticidade aula 4; lista 1 q52 e q60 +1 em x ⇒ cerca de \(100\beta_1\)% em y.">
+      <div class="fh"><b>Log–nível</b><span class="src">Aula 4; Lista 1 Q52 e Q60</span></div>
+      <div class="mathblock">\[\ln y=\beta_0+\beta_1x:\quad\%\Delta y\approx100\beta_1\Delta x,\quad\text{exato }100(e^{\beta_1\Delta x}-1)\%\]</div>
+      <div class="fl"><span>Significa</span>+1 em x ⇒ cerca de \(100\beta_1\)% em y.</div>
+      <div class="fl"><span>Unidade</span>\(\beta_1\) em proporção por unidade de x.</div>
+      <div class="fl warn"><span>Cuidado</span>A aproximação subestima para Δ grandes.</div>
+    </div>
+    <div class="fentry" data-s="nível–log nivel log aula 4; lista 1 q53 +1% em x ⇒ cerca de \(\beta_1/100\) unidades em y.">
+      <div class="fh"><b>Nível–log</b><span class="src">Aula 4; Lista 1 Q53</span></div>
+      <div class="mathblock">\[y=\beta_0+\beta_1\ln x:\quad\frac{dy}{dx}=\frac{\beta_1}{x},\quad+1\%\text{ em }x\Rightarrow\Delta y\approx\frac{\beta_1}{100}\]</div>
+      <div class="fl"><span>Significa</span>+1% em x ⇒ cerca de \(\beta_1/100\) unidades em y.</div>
+      <div class="fl"><span>Unidade</span>\(\beta_1\) na unidade de y.</div>
+      <div class="fl warn"><span>Cuidado</span>Exato: \(\beta_1\ln(1+g)\).</div>
+    </div>
+    <div class="fentry" data-s="log–log (elasticidade) log log elasticidade aula 4; lista 1 q54 +1% em x ⇒ cerca de \(\beta_1\)% em y.">
+      <div class="fh"><b>Log–log (elasticidade)</b><span class="src">Aula 4; Lista 1 Q54</span></div>
+      <div class="mathblock">\[\ln y=\beta_0+\beta_1\ln x:\quad\beta_1=\frac{d\ln y}{d\ln x},\quad\text{exato }100[(1+g)^{\beta_1}-1]\%\]</div>
+      <div class="fl"><span>Significa</span>+1% em x ⇒ cerca de \(\beta_1\)% em y.</div>
+      <div class="fl"><span>Unidade</span>Sem unidade (elasticidade).</div>
+      <div class="fl warn"><span>Cuidado</span>A aproximação superestima no exemplo 0,45.</div>
+    </div>
+    <div class="fentry" data-s="quadrático quadratico efeito marginal ponto retorno aula 4; lista 2 ex. 4 ★; lista 1 q55 efeito marginal que muda com x; ponto de retorno.">
+      <div class="fh"><b>Quadrático</b><span class="src">Aula 4; Lista 2 Ex. 4 ★; Lista 1 Q55</span></div>
+      <div class="mathblock">\[\frac{\partial E(Y\mid X)}{\partial X}=\beta_1+2\beta_2X,\qquad X^*=-\frac{\beta_1}{2\beta_2}\]</div>
+      <div class="fl"><span>Significa</span>Efeito marginal que muda com X; ponto de retorno.</div>
+      <div class="fl"><span>Unidade</span>Efeito em unid. y / unid. x; \(X^*\) em unidade de x.</div>
+      <div class="fl warn"><span>Cuidado</span>\(\beta_2&lt;0\) côncava (máximo); \(\beta_1\) é o efeito em X = 0.</div>
+    </div>
+    <div class="fentry" data-s="interação interacao aula 4; lista 1 q56 o efeito de \(x_1\) depende de \(x_2\).">
+      <div class="fh"><b>Interação</b><span class="src">Aula 4; Lista 1 Q56</span></div>
+      <div class="mathblock">\[\frac{\partial E(Y\mid X_1,X_2)}{\partial X_1}=\beta_1+\beta_3X_2\]</div>
+      <div class="fl"><span>Significa</span>O efeito de \(X_1\) depende de \(X_2\).</div>
+      <div class="fl"><span>Unidade</span>Unid. y / unid. \(X_1\).</div>
+      <div class="fl warn"><span>Cuidado</span>Mantenha \(X_1\) e \(X_2\) no modelo.</div>
+    </div>
+    <div class="fentry" data-s="retransformação do log  aula 4 (apêndice) exponenciar a previsão em log não dá a média de y.">
+      <div class="fh"><b>Retransformação do log</b><span class="src">Aula 4 (apêndice)</span></div>
+      <div class="mathblock">\[E[Y\mid X]\neq\exp(E[\ln Y\mid X]);\quad\text{erros normais: }E[Y\mid X=x]=e^{\beta_0+\beta_1x+\sigma^2/2}\]</div>
+      <div class="fl"><span>Significa</span>Exponenciar a previsão em log não dá a média de Y.</div>
+      <div class="fl"><span>Unidade</span>Unidade de y.</div>
+    </div>
+  </div>
+  <h3 class="dgroup">Propriedades do MQO (Aula 5)</h3>
+  <div class="dgrid">
+    <div class="fentry" data-s="equação-chave equacao chave aula 5 ★ estimativa = parâmetro + erro de estimação (combinação dos erros).">
+      <div class="fh"><b>Equação-chave</b><span class="src">Aula 5 ★</span></div>
+      <div class="mathblock">\[\hat\beta_1=\beta_1+\frac{1}{SQT_x}\sum_id_iu_i,\qquad d_i=x_i-\bar x\]</div>
+      <div class="fl"><span>Significa</span>Estimativa = parâmetro + erro de estimação (combinação dos erros).</div>
+      <div class="fl"><span>Unidade</span>Unid. y / unid. x.</div>
+      <div class="fl warn"><span>Cuidado</span>Base de todas as provas da aula.</div>
+    </div>
+    <div class="fentry" data-s="ausência de viés nao viesado vies aula 5 ★; lista 02 q1 o centro da distribuição amostral é o parâmetro.">
+      <div class="fh"><b>Ausência de viés</b><span class="src">Aula 5 ★; Lista 02 Q1</span></div>
+      <div class="mathblock">\[E(\hat\beta_1)=\beta_1,\quad E(\hat\beta_0)=\beta_0\quad\text{(RLS.1–RLS.4)}\]</div>
+      <div class="fl"><span>Significa</span>O centro da distribuição amostral é o parâmetro.</div>
+      <div class="fl"><span>Unidade</span>—</div>
+      <div class="fl warn"><span>Cuidado</span>Não diz que cada estimativa está perto; RLS.5 não é usada.</div>
+    </div>
+    <div class="fentry" data-s="variância da inclinação variancia beta1 precisao aula 5 ★; lista 02 q4 e q10 precisão: cai com mais variação em x, sobe com mais ruído.">
+      <div class="fh"><b>Variância da inclinação</b><span class="src">Aula 5 ★; Lista 02 Q4 e Q10</span></div>
+      <div class="mathblock">\[Var(\hat\beta_1\mid X)=\frac{\sigma^2}{SQT_x}\quad\text{(RLS.1–RLS.5)}\]</div>
+      <div class="fl"><span>Significa</span>Precisão: cai com mais variação em x, sobe com mais ruído.</div>
+      <div class="fl"><span>Unidade</span>(Unid. y / unid. x) ao quadrado.</div>
+      <div class="fl warn"><span>Cuidado</span>Precisa de RLS.2 e RLS.5.</div>
+    </div>
+    <div class="fentry" data-s="variância do intercepto  aula 5 (exercício) precisão do intercepto.">
+      <div class="fh"><b>Variância do intercepto</b><span class="src">Aula 5 (exercício)</span></div>
+      <div class="mathblock">\[Var(\hat\beta_0\mid X)=\frac{\sigma^2\,\frac1n\sum_ix_i^2}{SQT_x}\]</div>
+      <div class="fl"><span>Significa</span>Precisão do intercepto.</div>
+      <div class="fl"><span>Unidade</span>Unidade de y ao quadrado.</div>
+    </div>
+    <div class="fentry" data-s="não viés de σ̂² sigma n-2 aula 5 (apêndice) por que dividir por n − 2.">
+      <div class="fh"><b>Não viés de σ̂²</b><span class="src">Aula 5 (apêndice)</span></div>
+      <div class="mathblock">\[E\Big[\sum_i\hat u_i^2\Big]=(n-2)\sigma^2\ \Rightarrow\ E\left[\frac{SQR}{n-2}\right]=\sigma^2\]</div>
+      <div class="fl"><span>Significa</span>Por que dividir por n − 2.</div>
+      <div class="fl"><span>Unidade</span>Unidade de y ao quadrado.</div>
+      <div class="fl warn"><span>Cuidado</span>Os 3 termos: (n−1)σ² − 2σ² + σ².</div>
+    </div>
+    <div class="fentry" data-s="erros-padrão erro padrao ep aulas 5 e 6; lista 02 estimativas do desvio-padrão dos estimadores.">
+      <div class="fh"><b>Erros-padrão</b><span class="src">Aulas 5 e 6; Lista 02</span></div>
+      <div class="mathblock">\[ep(\hat\beta_1)=\frac{\hat\sigma}{\sqrt{SQT_x}},\qquad ep(\hat\beta_0)=\frac{\hat\sigma\sqrt{\sum x_i^2}}{\sqrt{n\,SQT_x}}\]</div>
+      <div class="fl"><span>Significa</span>Estimativas do desvio-padrão dos estimadores.</div>
+      <div class="fl"><span>Unidade</span>A mesma do coeficiente correspondente.</div>
+      <div class="fl warn"><span>Cuidado</span>ep = raiz da variância estimada.</div>
+    </div>
+    <div class="fentry" data-s="consistência consistencia plim aula 5 para onde o estimador vai com n muito grande.">
+      <div class="fh"><b>Consistência</b><span class="src">Aula 5</span></div>
+      <div class="mathblock">\[\text{plim}\,\hat\beta_1=\beta_1+\frac{Cov(X,U)}{Var(X)}\]</div>
+      <div class="fl"><span>Significa</span>Para onde o estimador vai com n muito grande.</div>
+      <div class="fl"><span>Unidade</span>Unid. y / unid. x.</div>
+      <div class="fl warn"><span>Cuidado</span>Consistente se Cov(X, U) = 0.</div>
+    </div>
+    <div class="fentry" data-s="viés de variável omitida (prática) variavel omitida vies prática 4–5 a regressão curta atribui a x o efeito que passa por z.">
+      <div class="fh"><b>Viés de variável omitida (prática)</b><span class="src">Prática 4–5</span></div>
+      <div class="mathblock">\[Y=2+0{,}8X+1{,}2Z+\varepsilon,\ Z=0{,}7X+v\ \Rightarrow\ E(\hat\alpha_1)=0{,}8+1{,}2\times0{,}7=1{,}64\]</div>
+      <div class="fl"><span>Significa</span>A regressão curta atribui a X o efeito que passa por Z.</div>
+      <div class="fl"><span>Unidade</span>Unid. y / unid. x.</div>
+      <div class="fl warn"><span>Cuidado</span>n maior não corrige.</div>
+    </div>
+    <div class="fentry" data-s="viés de atenuação  prática 4–5 erro de medida clássico em x empurra a inclinação para zero.">
+      <div class="fh"><b>Viés de atenuação</b><span class="src">Prática 4–5</span></div>
+      <div class="mathblock">\[\text{plim}\,\hat\beta_1=\beta_1\frac{Var(X^*)}{Var(X^*)+Var(r)}\]</div>
+      <div class="fl"><span>Significa</span>Erro de medida clássico em X empurra a inclinação para zero.</div>
+      <div class="fl"><span>Unidade</span>Unid. y / unid. x.</div>
+    </div>
+  </div>
+  <h3 class="dgroup">Inferência (Aula 6)</h3>
+  <div class="dgrid">
+    <div class="fentry" data-s="estatística t t teste hipotese aula 6 ★; lista 02 distância até \(h_0\) em erros-padrão.">
+      <div class="fh"><b>Estatística t</b><span class="src">Aula 6 ★; Lista 02</span></div>
+      <div class="mathblock">\[t=\frac{\hat\beta_1-\beta_{1,0}}{ep(\hat\beta_1)}\sim t_{n-2}\]</div>
+      <div class="fl"><span>Significa</span>Distância até \(H_0\) em erros-padrão.</div>
+      <div class="fl"><span>Unidade</span>Sem unidade.</div>
+      <div class="fl warn"><span>Cuidado</span>Nunca “aceitar” \(H_0\).</div>
+    </div>
+    <div class="fentry" data-s="intervalo de confiança intervalo confianca ic aula 6; lista 02 q7 e q10 valores de \(\beta_1\) compatíveis com os dados.">
+      <div class="fh"><b>Intervalo de confiança</b><span class="src">Aula 6; Lista 02 Q7 e Q10</span></div>
+      <div class="mathblock">\[IC=\hat\beta_1\pm t_{\alpha/2,\,n-2}\cdot ep(\hat\beta_1)\]</div>
+      <div class="fl"><span>Significa</span>Valores de \(\beta_1\) compatíveis com os dados.</div>
+      <div class="fl"><span>Unidade</span>A mesma de \(\beta_1\).</div>
+      <div class="fl warn"><span>Cuidado</span>0 fora do IC ⇔ rejeita \(H_0:\beta_1=0\).</div>
+    </div>
+    <div class="fentry" data-s="p-valor p valor aulas 2 e 6; lista 02 q2 e q5 compatibilidade dos dados com \(h_0\).">
+      <div class="fh"><b>p-valor</b><span class="src">Aulas 2 e 6; Lista 02 Q2 e Q5</span></div>
+      <div class="mathblock">\[p=P(\text{estatística tão ou mais extrema}\mid H_0)\]</div>
+      <div class="fl"><span>Significa</span>Compatibilidade dos dados com \(H_0\).</div>
+      <div class="fl"><span>Unidade</span>Probabilidade (0 a 1).</div>
+      <div class="fl warn"><span>Cuidado</span>Não é a probabilidade de \(H_0\) ser verdadeira.</div>
+    </div>
+    <div class="fentry" data-s="erros tipo i e ii e poder  aula 6; lista 02 q8 rejeitar h₀ verdadeira; não rejeitar h₀ falsa; detectar um efeito que existe.">
+      <div class="fh"><b>Erros tipo I e II e poder</b><span class="src">Aula 6; Lista 02 Q8</span></div>
+      <div class="mathblock">\[P(\text{tipo I})=\alpha,\quad P(\text{tipo II})=\beta,\quad\text{poder}=1-\beta\]</div>
+      <div class="fl"><span>Significa</span>Rejeitar H₀ verdadeira; não rejeitar H₀ falsa; detectar um efeito que existe.</div>
+      <div class="fl"><span>Unidade</span>Probabilidades.</div>
+    </div>
+    <div class="fentry" data-s="erro-padrão robusto (hc0) robusto hc0 heterocedasticidade aula 6; lista 02 q9 variância válida sob heterocedasticidade.">
+      <div class="fh"><b>Erro-padrão robusto (HC0)</b><span class="src">Aula 6; Lista 02 Q9</span></div>
+      <div class="mathblock">\[\widehat{Var}_{HC0}(\hat\beta_1)=\frac{\sum_i(x_i-\bar x)^2\hat u_i^2}{SQT_x^2}\]</div>
+      <div class="fl"><span>Significa</span>Variância válida sob heterocedasticidade.</div>
+      <div class="fl"><span>Unidade</span>(Unid. y / unid. x) ao quadrado.</div>
+      <div class="fl warn"><span>Cuidado</span>Pode ser maior ou menor; é assintótico.</div>
+    </div>
+    <div class="fentry" data-s="origem da distribuição t  aula 6 (apêndice; rls.6) trocar σ por \(\hat\sigma\) gera caudas mais gordas.">
+      <div class="fh"><b>Origem da distribuição t</b><span class="src">Aula 6 (apêndice; RLS.6)</span></div>
+      <div class="mathblock">\[Z=\frac{\hat\beta_1-\beta_1}{\sigma/\sqrt{SQT_x}}\sim N(0,1),\quad\frac{(n-2)\hat\sigma^2}{\sigma^2}\sim\chi^2_{n-2},\quad t_{n-2}=\frac{Z}{\sqrt{\chi^2_{n-2}/(n-2)}}\]</div>
+      <div class="fl"><span>Significa</span>Trocar σ por \(\hat\sigma\) gera caudas mais gordas.</div>
+      <div class="fl"><span>Unidade</span>Sem unidade.</div>
+    </div>
+    <div class="fentry" data-s="breusch–pagan breusch pagan aula 6 (apêndice) testa se a variância muda com x.">
+      <div class="fh"><b>Breusch–Pagan</b><span class="src">Aula 6 (apêndice)</span></div>
+      <div class="mathblock">\[\hat u_i^2=\delta_0+\delta_1X_i+v_i,\qquad LM=nR^2_{aux}\xrightarrow{d}\chi^2_1\]</div>
+      <div class="fl"><span>Significa</span>Testa se a variância muda com X.</div>
+      <div class="fl"><span>Unidade</span>Sem unidade.</div>
+      <div class="fl warn"><span>Cuidado</span>Não rejeitar não prova homocedasticidade.</div>
+    </div>
+  </div>
+  <h3 class="dgroup">Dummies e origem (Aula 7)</h3>
+  <div class="dgrid">
+    <div class="fentry" data-s="regressão com uma dummy dummy diferenca medias aula 7 média da referência e diferença de médias.">
+      <div class="fh"><b>Regressão com uma dummy</b><span class="src">Aula 7</span></div>
+      <div class="mathblock">\[\hat\beta_0=\bar y_0,\qquad\hat\beta_1=\bar y_1-\bar y_0\]</div>
+      <div class="fl"><span>Significa</span>Média da referência e diferença de médias.</div>
+      <div class="fl"><span>Unidade</span>Unidade de y.</div>
+      <div class="fl warn"><span>Cuidado</span>Diferença observada não é causal por si só.</div>
+    </div>
+    <div class="fentry" data-s="precisão da diferença  aula 7 grupos desbalanceados reduzem a precisão.">
+      <div class="fh"><b>Precisão da diferença</b><span class="src">Aula 7</span></div>
+      <div class="mathblock">\[Var(\hat\beta_1\mid D)=\sigma^2\left(\frac1{n_1}+\frac1{n_0}\right)\]</div>
+      <div class="fl"><span>Significa</span>Grupos desbalanceados reduzem a precisão.</div>
+      <div class="fl"><span>Unidade</span>Unidade de y ao quadrado.</div>
+    </div>
+    <div class="fentry" data-s="dummy em log dummy log aula 7 diferença percentual entre grupos.">
+      <div class="fh"><b>Dummy em log</b><span class="src">Aula 7</span></div>
+      <div class="mathblock">\[100[\exp(\beta_1)-1]\%\]</div>
+      <div class="fl"><span>Significa</span>Diferença percentual entre grupos.</div>
+      <div class="fl"><span>Unidade</span>Percentual.</div>
+      <div class="fl warn"><span>Cuidado</span>\(100\beta_1\)% só para \(\beta_1\) pequeno.</div>
+    </div>
+    <div class="fentry" data-s="regressão pela origem origem aula 7 reta forçada a passar por (0, 0).">
+      <div class="fh"><b>Regressão pela origem</b><span class="src">Aula 7</span></div>
+      <div class="mathblock">\[\hat\beta_1=\frac{\sum x_iy_i}{\sum x_i^2},\quad Var=\frac{\sigma^2}{\sum x_i^2},\quad Vi\acute es=\beta_0\frac{\sum x_i}{\sum x_i^2},\quad\hat\sigma^2=\frac{SQR}{n-1}\]</div>
+      <div class="fl"><span>Significa</span>Reta forçada a passar por (0, 0).</div>
+      <div class="fl"><span>Unidade</span>Unid. y / unid. x.</div>
+      <div class="fl warn"><span>Cuidado</span>Se \(\beta_0\neq0\), fica viesado; \(\sum\hat u_i\neq0\) em geral.</div>
+    </div>
+  </div>
+  <h3 class="dgroup">Matemática de apoio</h3>
+  <div class="dgrid">
+    <div class="fentry" data-s="derivadas básicas derivada regra módulo derivadas; lousa inclinação da curva num ponto (efeito marginal).">
+      <div class="fh"><b>Derivadas básicas</b><span class="src">Módulo Derivadas; lousa</span></div>
+      <div class="mathblock">\[(x^n)'=nx^{n-1},\quad(e^x)'=e^x,\quad(\ln x)'=\frac1x,\quad[f(g(x))]'=f'(g(x))\,g'(x)\]</div>
+      <div class="fl"><span>Significa</span>Inclinação da curva num ponto (efeito marginal).</div>
+      <div class="fl"><span>Unidade</span>Unid. y / unid. x.</div>
+      <div class="fl warn"><span>Cuidado</span>Constante deriva em zero.</div>
+    </div>
+    <div class="fentry" data-s="logaritmo log propriedades módulo log o log transforma produto em soma e potência em produto.">
+      <div class="fh"><b>Logaritmo</b><span class="src">Módulo Log</span></div>
+      <div class="mathblock">\[\ln(ab)=\ln a+\ln b,\quad\ln(a/b)=\ln a-\ln b,\quad\ln a^b=b\ln a\]</div>
+      <div class="fl"><span>Significa</span>O log transforma produto em soma e potência em produto.</div>
+      <div class="fl"><span>Unidade</span>—</div>
+      <div class="fl warn"><span>Cuidado</span>\(\ln(a+b)\neq\ln a+\ln b\); só para valores &gt; 0.</div>
+    </div>
+    <div class="fentry" data-s="integral definida  módulo integrais; aula 2 área sob a curva; na densidade, uma probabilidade.">
+      <div class="fh"><b>Integral definida</b><span class="src">Módulo Integrais; Aula 2</span></div>
+      <div class="mathblock">\[\int_a^bf(x)\,dx=F(b)-F(a),\quad F'=f\]</div>
+      <div class="fl"><span>Significa</span>Área sob a curva; na densidade, uma probabilidade.</div>
+      <div class="fl"><span>Unidade</span>Unid. f × unid. x.</div>
+    </div>
+    <div class="fentry" data-s="lagrangiano  módulo λ (fora do material) otimização com restrição; λ = preço sombra.">
+      <div class="fh"><b>Lagrangiano</b><span class="src">Módulo λ (fora do material)</span></div>
+      <div class="mathblock">\[\mathcal L=f(x,y)-\lambda[g(x,y)-c],\qquad\lambda=\frac{df^*}{dc}\]</div>
+      <div class="fl"><span>Significa</span>Otimização com restrição; λ = preço sombra.</div>
+      <div class="fl"><span>Unidade</span>Unid. f / unid. c.</div>
+    </div>
+  </div>
+  <h3>Cartões de revisão (unidades, hipóteses, conceitos)</h3>
+  <div class="flash-grid">
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Unidade</small>Unidade de \(\hat\beta_1\)</div><div class="face back">Unidade de y por unidade de x (ex.: R$ por m²)</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Unidade</small>Unidade de \(\hat\beta_0\)</div><div class="face back">A mesma de y</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Unidade</small>Unidade da variância</div><div class="face back">Unidade da variável ao quadrado</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Unidade</small>Unidade da covariância</div><div class="face back">Unidade de x vezes unidade de y</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Unidade</small>Correlação, \(R^2\), t, elasticidade</div><div class="face back">Sem unidade</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Unidade</small>SQT, SQE, SQR e \(\hat\sigma^2\)</div><div class="face back">Unidade de y ao quadrado</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Unidade</small>\(ep(\hat\beta_1)\)</div><div class="face back">A mesma de \(\hat\beta_1\) (y por x)</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Unidade</small>Coeficiente do log–nível</div><div class="face back">Proporção por unidade de x (× 100 = %)</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Aula 5</small>RLS.1</div><div class="face back">Linearidade nos parâmetros: \(y_i=\beta_0+\beta_1x_i+u_i\)</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Aula 5</small>RLS.2</div><div class="face back">Amostragem aleatória (pares iid)</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Aula 5</small>RLS.3</div><div class="face back">Variação em x: \(SQT_x&gt;0\)</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Aula 5</small>RLS.4</div><div class="face back">Média condicional zero: \(E[u\mid x]=0\). Sustenta o não viés</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Aula 5</small>RLS.5</div><div class="face back">Homocedasticidade: \(Var(u\mid x)=\sigma^2\). Dá a fórmula da variância e o BLUE</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Aula 6</small>RLS.6</div><div class="face back">\(u\mid X\sim N(0,\sigma^2)\): torna a t exata</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Aula 5</small>Não viesado × consistente</div><div class="face back">Não viesado: \(E(\hat\beta_1)=\beta_1\) com n fixo. Consistente: \(\text{plim}\,\hat\beta_1=\beta_1\) quando n → ∞</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Aula 5</small>Precisão × eficiência</div><div class="face back">Precisão: dispersão de um estimador. Eficiência: comparar estimadores (menor variância)</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Aula 5</small>BLUE</div><div class="face back">Best Linear Unbiased Estimator: menor variância entre lineares não viesados (Gauss–Markov)</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Prática 4–5</small>Variável omitida</div><div class="face back">Estima-se \(\beta_1+\) (efeito de Z em Y) × (inclinação de Z em X): 0,8 + 1,2 × 0,7 = 1,64</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Prática 4–5</small>Erro de medida em X</div><div class="face back">Atenuação: a inclinação vai para zero</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Aula 6</small>Erro tipo I × tipo II</div><div class="face back">I: rejeitar H₀ verdadeira (α). II: não rejeitar H₀ falsa (β)</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Aula 6</small>p-valor</div><div class="face back">P(estatística tão ou mais extrema | H₀). Não é P(H₀)</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Aula 6</small>Robusto</div><div class="face back">Corrige a incerteza sob heterocedasticidade; não corrige viés</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Log</small>\(\ln(ab)\) e \(\ln(a^b)\)</div><div class="face back">\(\ln a+\ln b\) e \(b\ln a\)</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Log</small>Exato no log–nível</div><div class="face back">\(100(e^{\beta_1\Delta x}-1)\%\)</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Derivada</small>Regra da cadeia</div><div class="face back">\([f(g(x))]'=f'(g(x))\cdot g'(x)\)</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Derivada</small>Máximo ou mínimo?</div><div class="face back">\(f'=0\); \(f''\lt0\) máximo, \(f''&gt;0\) mínimo</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Integral</small>Teorema Fundamental</div><div class="face back">\(\int_a^bf=F(b)-F(a)\), com \(F'=f\)</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>λ</small>Multiplicador de Lagrange</div><div class="face back">\(\lambda=df^*/dc\): quanto o ótimo muda se a restrição afrouxa 1 unidade</div></div></div>
+  </div>
+  <div class="quiz" data-answer="c"><div class="qh">Unidades</div>
+    <p>y é o salário mensal em reais e x são anos de experiência. A unidade de \(ep(\hat\beta_1)\) é:</p>
+    <div class="opts"><button data-k="a">a) reais</button><button data-k="b">b) anos</button><button data-k="c">c) reais por ano de experiência</button><button data-k="d">d) sem unidade</button></div>
+    <div class="fb" hidden>O erro-padrão tem a mesma unidade do coeficiente que ele mede. Por isso t = coeficiente ÷ ep não tem unidade.</div></div>
+  <div class="quiz" data-answer="a"><div class="qh">Unidades</div>
+    <p>Se x está em metros e y em reais, qual é a unidade de \(SQT_x\)?</p>
+    <div class="opts"><button data-k="a">a) metros ao quadrado</button><button data-k="b">b) reais ao quadrado</button><button data-k="c">c) reais por metro</button><button data-k="d">d) sem unidade</button></div>
+    <div class="fb" hidden>\(SQT_x=\sum(x_i-\bar x)^2\) soma desvios de x ao quadrado. SQT (sem o x) seria em reais ao quadrado.</div></div>
+  <div class="done-row"><button class="btn done-btn" data-done="dicionario" aria-pressed="false">Marcar como concluído</button></div>
+</section>
+
+
 <!-- ================= CALCULADORA ================= -->
 <section class="mod" id="calc" data-title="Calculadora">
   <div class="eyebrow">Ferramenta · confira suas contas</div>
@@ -2693,7 +4142,7 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
 <section class="mod" id="simulado" data-title="Simulado">
   <div class="eyebrow">Treino final · questões novas no estilo das listas</div>
   <h2>Simulado final</h2>
-  <p>20 questões misturando as Aulas 1 a 6 e as Listas. Faça no papel antes de clicar. Placar: <span class="score" id="simScore">0 de 20 respondidas · 0 acertos</span></p>
+  <p>40 questões misturando as Aulas 1 a 7, as Listas e a matemática de apoio. Faça no papel antes de clicar. Placar: <span class="score" id="simScore">0 de 40 respondidas · 0 acertos</span></p>
 
   <div class="quiz sim" data-answer="b"><div class="qh">1 · Fórmulas</div>
     <p>\(\bar x=10\), \(\bar y=50\), \(\widehat{Cov}(x,y)=12\), \(\widehat{Var}(x)=4\). Qual é a FRA?</p>
@@ -2794,6 +4243,86 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
     <p>Com \(E(u\mid X)=0\) e \(Var(u\mid X)\) crescendo com X:</p>
     <div class="opts"><button data-k="a">a) o MQO fica viesado</button><button data-k="b">b) o \(R^2\) fica errado</button><button data-k="c">c) o MQO continua não viesado, mas o erro-padrão usual não vale e ele não é mais garantidamente BLUE</button><button data-k="d">d) o erro-padrão robusto corrige também variável omitida</button></div>
     <div class="fb" hidden>c. Robusto corrige só a incerteza, não problemas de média condicional.</div></div>
+  <div class="quiz sim" data-answer="c"><div class="qh">21 · Unidades</div>
+    <p>Na Lista 2, Ex. 1 (aluguel em R$, área em m²), qual é a unidade de \(\hat\beta_1=24\)?</p>
+    <div class="opts"><button data-k="a">a) m²</button><button data-k="b">b) R$</button><button data-k="c">c) R$ por m²</button><button data-k="d">d) sem unidade</button></div>
+    <div class="fb" hidden>Inclinação = unidade de y por unidade de x: (m²·R$)/(m²)² = R$/m².</div></div>
+  <div class="quiz sim" data-answer="a"><div class="qh">22 · Aula 5</div>
+    <p>A hipótese RLS.3 exige que:</p>
+    <div class="opts"><button data-k="a">a) \(SQT_x=\sum(x_i-\bar x)^2&gt;0\), ou seja, x varie na amostra</button><button data-k="b">b) \(E[u\mid x]=0\)</button><button data-k="c">c) a amostra seja aleatória</button><button data-k="d">d) \(Var(u\mid x)=\sigma^2\)</button></div>
+    <div class="fb" hidden>Sem variação em x, o denominador de \(\hat\beta_1\) é zero e a inclinação não é identificada.</div></div>
+  <div class="quiz sim" data-answer="b"><div class="qh">23 · Aula 5 (afirmativas)</div>
+    <p>I. \(E(\hat\beta_1)=\beta_1\) descreve o centro da distribuição amostral. II. A fórmula \(Var(\hat\beta_1)=\sigma^2/SQT_x\) exige homocedasticidade. III. Com heterocedasticidade e \(E(u\mid X)=0\), o MQO fica viesado.</p>
+    <div class="opts"><button data-k="a">a) Apenas I</button><button data-k="b">b) Apenas I e II</button><button data-k="c">c) Apenas II e III</button><button data-k="d">d) I, II e III</button></div>
+    <div class="fb" hidden>III é falsa: heterocedasticidade não causa viés.</div></div>
+  <div class="quiz sim" data-answer="d"><div class="qh">24 · Aula 5</div>
+    <p>Qual é a “equação-chave” da Aula 5?</p>
+    <div class="opts"><button data-k="a">a) \(\hat\beta_1=\bar y-\hat\beta_0\bar x\)</button><button data-k="b">b) \(\hat\beta_1=\beta_1\)</button><button data-k="c">c) \(\hat\beta_1=SQR/(n-2)\)</button><button data-k="d">d) \(\hat\beta_1=\beta_1+\frac{1}{SQT_x}\sum d_iu_i\)</button></div>
+    <div class="fb" hidden>Estimativa = parâmetro + erro de estimação. Dela saem o não viés e a variância.</div></div>
+  <div class="quiz sim" data-answer="c"><div class="qh">25 · Aula 5</div>
+    <p>“Consistente” significa:</p>
+    <div class="opts"><button data-k="a">a) \(E(\hat\beta_1)=\beta_1\) para n fixo</button><button data-k="b">b) ter a menor variância</button><button data-k="c">c) \(\text{plim}\,\hat\beta_1=\beta_1\): chegar perto do parâmetro com alta probabilidade quando n cresce</button><button data-k="d">d) ter erro-padrão robusto</button></div>
+    <div class="fb" hidden>Não viés é sobre n fixo; consistência é sobre n → ∞.</div></div>
+  <div class="quiz sim" data-answer="a"><div class="qh">26 · Aula 5</div>
+    <p>O Teorema de Gauss–Markov diz que, sob RLS.1–RLS.5, o MQO:</p>
+    <div class="opts"><button data-k="a">a) tem a menor variância entre os estimadores lineares e não viesados (BLUE)</button><button data-k="b">b) é o único estimador não viesado</button><button data-k="c">c) tem variância zero</button><button data-k="d">d) é não viesado mesmo sem RLS.4</button></div>
+    <div class="fb" hidden>BLUE: Best Linear Unbiased Estimator.</div></div>
+  <div class="quiz sim" data-answer="b"><div class="qh">27 · Aula 3</div>
+    <p>SQT = 50 e SQE = 30. Quanto valem SQR e \(R^2\)?</p>
+    <div class="opts"><button data-k="a">a) 80 e 0,6</button><button data-k="b">b) 20 e 0,6</button><button data-k="c">c) 20 e 0,4</button><button data-k="d">d) 30 e 0,4</button></div>
+    <div class="fb" hidden>SQR = 50 − 30 = 20; \(R^2=30/50=0{,}6\).</div></div>
+  <div class="quiz sim" data-answer="d"><div class="qh">28 · Aula 2</div>
+    <p>\(Var(X)=4\). Quanto vale \(Var(3X-2)\)?</p>
+    <div class="opts"><button data-k="a">a) 10</button><button data-k="b">b) 12</button><button data-k="c">c) 34</button><button data-k="d">d) 36</button></div>
+    <div class="fb" hidden>\(3^2\times4=36\). A constante −2 não altera a variância.</div></div>
+  <div class="quiz sim" data-answer="a"><div class="qh">29 · Aula 2</div>
+    <p>\(Cov(X,Y)=5\). Quanto vale \(Cov(2X,-3Y)\)?</p>
+    <div class="opts"><button data-k="a">a) −30</button><button data-k="b">b) 30</button><button data-k="c">c) −6</button><button data-k="d">d) 5</button></div>
+    <div class="fb" hidden>\(2\times(-3)\times5=-30\).</div></div>
+  <div class="quiz sim" data-answer="c"><div class="qh">30 · Aula 4</div>
+    <p>y passa de reais para milhares de reais e x de anos para meses. O novo \(\tilde\beta_1\) é:</p>
+    <div class="opts"><button data-k="a">a) \(1000\times12\times\hat\beta_1\)</button><button data-k="b">b) \(\hat\beta_1\times12/1000\)</button><button data-k="c">c) \(\hat\beta_1/(1000\times12)\)</button><button data-k="d">d) \(\hat\beta_1\)</button></div>
+    <div class="fb" hidden>\(\tilde\beta_1=(b/c)\hat\beta_1\), com \(b=1/1000\) e \(c=12\).</div></div>
+  <div class="quiz sim" data-answer="b"><div class="qh">31 · Aula 4</div>
+    <p>Num log–log, \(\beta_1=0{,}8\). Um aumento de 1% em x está associado a:</p>
+    <div class="opts"><button data-k="a">a) 0,8 unidade a mais em y</button><button data-k="b">b) cerca de 0,8% a mais em y</button><button data-k="c">c) 80% a mais em y</button><button data-k="d">d) 0,008 unidade a mais em y</button></div>
+    <div class="fb" hidden>Elasticidade: % sobre %.</div></div>
+  <div class="quiz sim" data-answer="b"><div class="qh">32 · Aula 6</div>
+    <p>Regressão simples com n = 12. Quantos graus de liberdade tem o teste t?</p>
+    <div class="opts"><button data-k="a">a) 12</button><button data-k="b">b) 10</button><button data-k="c">c) 11</button><button data-k="d">d) 2</button></div>
+    <div class="fb" hidden>n − 2 = 10 (dois parâmetros estimados).</div></div>
+  <div class="quiz sim" data-answer="a"><div class="qh">33 · Aula 6</div>
+    <p>O erro-padrão robusto pode ser <strong>menor</strong> que o convencional?</p>
+    <div class="opts"><button data-k="a">a) Sim; robusto não significa necessariamente maior</button><button data-k="b">b) Não, é sempre maior</button><button data-k="c">c) Só se houver homocedasticidade</button><button data-k="d">d) Só com variável omitida</button></div>
+    <div class="fb" hidden>Lista 02, Q9: 0,40 (robusto) contra 0,683 (convencional).</div></div>
+  <div class="quiz sim" data-answer="c"><div class="qh">34 · Derivadas</div>
+    <p>\(f(x)=5+4\sqrt x\). Quanto vale \(f'(4)\)?</p>
+    <div class="opts"><button data-k="a">a) 4</button><button data-k="b">b) 2</button><button data-k="c">c) 1</button><button data-k="d">d) 0,5</button></div>
+    <div class="fb" hidden>\(f'(x)=4\cdot\frac{1}{2\sqrt x}=\frac{2}{\sqrt x}\); em x = 4, dá 1.</div></div>
+  <div class="quiz sim" data-answer="b"><div class="qh">35 · Integrais</div>
+    <p>\(X\sim U(0,4)\). Quanto vale \(P(1\lt X\le3)\)?</p>
+    <div class="opts"><button data-k="a">a) 0,25</button><button data-k="b">b) 0,5</button><button data-k="c">c) 0,75</button><button data-k="d">d) 2</button></div>
+    <div class="fb" hidden>Área = base 2 × altura 1/4 = 0,5.</div></div>
+  <div class="quiz sim" data-answer="d"><div class="qh">36 · Tipo Lista 2, Ex. 2</div>
+    <p>n = 5, \(\sum x=20\), \(\sum y=60\), \(\sum x^2=120\), \(\sum xy=330\). A FRA é:</p>
+    <div class="opts"><button data-k="a">a) \(\hat y=12+2{,}25x\)</button><button data-k="b">b) \(\hat y=3+4x\)</button><button data-k="c">c) \(\hat y=4+2x\)</button><button data-k="d">d) \(\hat y=3+2{,}25x\)</button></div>
+    <div class="fb" hidden>\(\bar x=4\), \(\bar y=12\); \(\hat\beta_1=\frac{330-5(4)(12)}{120-5(16)}=\frac{90}{40}=2{,}25\); \(\hat\beta_0=12-2{,}25(4)=3\).</div></div>
+  <div class="quiz sim" data-answer="a"><div class="qh">37 · Dummies</div>
+    <p>Médias do grupo D = 0: 20; do grupo D = 1: 26. Na regressão \(y=\beta_0+\beta_1D+u\):</p>
+    <div class="opts"><button data-k="a">a) \(\hat\beta_0=20\), \(\hat\beta_1=6\)</button><button data-k="b">b) \(\hat\beta_0=26\), \(\hat\beta_1=-6\)</button><button data-k="c">c) \(\hat\beta_0=23\), \(\hat\beta_1=3\)</button><button data-k="d">d) \(\hat\beta_0=0\), \(\hat\beta_1=26\)</button></div>
+    <div class="fb" hidden>Intercepto = média da referência; inclinação = diferença de médias.</div></div>
+  <div class="quiz sim" data-answer="c"><div class="qh">38 · Aula 1</div>
+    <p>Uma amostra muito maior resolve o problema de uma amostra selecionada (ex.: famílias ricas respondem menos)?</p>
+    <div class="opts"><button data-k="a">a) Sim, sempre</button><button data-k="b">b) Sim, se n passar de 1.000</button><button data-k="c">c) Não necessariamente: é preciso entender a seleção</button><button data-k="d">d) Só com erros robustos</button></div>
+    <div class="fb" hidden>Aula 1 e Lista 1, Q13: n maior reduz a variância, mas não corrige a falta de representatividade.</div></div>
+  <div class="quiz sim" data-answer="b"><div class="qh">39 · Aula 5</div>
+    <p>Duas pesquisas têm o mesmo \(\hat\sigma^2\), mas a B tem x muito mais disperso. Então:</p>
+    <div class="opts"><button data-k="a">a) A é mais precisa</button><button data-k="b">b) B tem menor \(ep(\hat\beta_1)\)</button><button data-k="c">c) as duas têm o mesmo ep</button><button data-k="d">d) B é viesada</button></div>
+    <div class="fb" hidden>\(SQT_x\) maior ⇒ variância menor (Lista 02, Q10).</div></div>
+  <div class="quiz sim" data-answer="d"><div class="qh">40 · Lagrange</div>
+    <p>No ótimo de max \(xy\) s.a. \(2x+4y=40\), \(\lambda=2{,}5\). Isso significa que:</p>
+    <div class="opts"><button data-k="a">a) x = 2,5</button><button data-k="b">b) a utilidade máxima é 2,5</button><button data-k="c">c) a restrição está errada</button><button data-k="d">d) com 1 real a mais de renda, a utilidade ótima sobe cerca de 2,5</button></div>
+    <div class="fb" hidden>λ é o preço sombra: \(df^*/dc\).</div></div>
   <div class="done-row"><button class="btn done-btn" data-done="simulado" aria-pressed="false">Marcar como concluído</button></div>
 </section>
 
@@ -2812,7 +4341,7 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
 
   <h3>Aula 4</h3>
   <ul>
-    <li>\(\tilde y=by\), \(\tilde x=cx\): \(\tilde\beta_1=\frac bc\hat\beta_1\); só Y escalado muda também \(\hat\beta_0\); \(R^2\) nunca muda.</li>
+    <li>\(\tilde y=by\), \(\tilde x=cx\): \(\tilde\beta_1=\frac bc\hat\beta_1\) e \(\tilde\beta_0=b\hat\beta_0\). Escalar só X não altera \(\hat\beta_0\). O \(R^2\) nunca muda com unidades.</li>
     <li>Log–nível: \(100\beta_1\%\) (exato \(100(e^{\beta_1}-1)\%\)). Nível–log: \(\beta_1/100\) por 1%. Log–log: elasticidade.</li>
     <li>Quadrático: efeito marginal \(\beta_1+2\beta_2X\); retorno \(X^*=-\beta_1/(2\beta_2)\); 2ª derivada &lt; 0 ⇒ côncava.</li>
     <li>Derivadas: constante → 0; \(x^n\to nx^{n-1}\); \(\sqrt x\to\frac{1}{2\sqrt x}\); \(\ln x\to\frac1x\).</li>
@@ -3002,6 +4531,25 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
     });
   });
   updateScore();
+
+  /* ---------- busca no dicionário ---------- */
+  var ds = $('#dictSearch');
+  if (ds) {
+    var entries = $$('.fentry');
+    var strip = function (t) { return String(t || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); };
+    entries.forEach(function (e) { e.__t = strip(e.getAttribute('data-s')) + ' ' + strip($('.fh', e).textContent); });
+    var filt = function () {
+      var qv = strip(ds.value.trim()), n = 0;
+      entries.forEach(function (e) { var ok = !qv || e.__t.indexOf(qv) >= 0; e.hidden = !ok; if (ok) n++; });
+      $$('.dgroup').forEach(function (h) {
+        var g = h.nextElementSibling;
+        var any = $$('.fentry', g).some(function (e) { return !e.hidden; });
+        h.hidden = !any; g.hidden = !any;
+      });
+      $('#dictCount').textContent = n + ' de ' + entries.length + ' fórmulas';
+    };
+    ds.addEventListener('input', filt); filt();
+  }
 
   /* ---------- cartões ---------- */
   $$('.flash').forEach(function (c) {

@@ -26,7 +26,7 @@
 <section class="mod" id="simulado" data-title="Simulado">
   <div class="eyebrow">Treino final · questões novas no estilo das listas</div>
   <h2>Simulado final</h2>
-  <p>20 questões misturando as Aulas 1 a 6 e as Listas. Faça no papel antes de clicar. Placar: <span class="score" id="simScore">0 de 20 respondidas · 0 acertos</span></p>
+  <p>40 questões misturando as Aulas 1 a 7, as Listas e a matemática de apoio. Faça no papel antes de clicar. Placar: <span class="score" id="simScore">0 de 40 respondidas · 0 acertos</span></p>
 
   <div class="quiz sim" data-answer="b"><div class="qh">1 · Fórmulas</div>
     <p>\(\bar x=10\), \(\bar y=50\), \(\widehat{Cov}(x,y)=12\), \(\widehat{Var}(x)=4\). Qual é a FRA?</p>
@@ -127,6 +127,86 @@
     <p>Com \(E(u\mid X)=0\) e \(Var(u\mid X)\) crescendo com X:</p>
     <div class="opts"><button data-k="a">a) o MQO fica viesado</button><button data-k="b">b) o \(R^2\) fica errado</button><button data-k="c">c) o MQO continua não viesado, mas o erro-padrão usual não vale e ele não é mais garantidamente BLUE</button><button data-k="d">d) o erro-padrão robusto corrige também variável omitida</button></div>
     <div class="fb" hidden>c. Robusto corrige só a incerteza, não problemas de média condicional.</div></div>
+  <div class="quiz sim" data-answer="c"><div class="qh">21 · Unidades</div>
+    <p>Na Lista 2, Ex. 1 (aluguel em R$, área em m²), qual é a unidade de \(\hat\beta_1=24\)?</p>
+    <div class="opts"><button data-k="a">a) m²</button><button data-k="b">b) R$</button><button data-k="c">c) R$ por m²</button><button data-k="d">d) sem unidade</button></div>
+    <div class="fb" hidden>Inclinação = unidade de y por unidade de x: (m²·R$)/(m²)² = R$/m².</div></div>
+  <div class="quiz sim" data-answer="a"><div class="qh">22 · Aula 5</div>
+    <p>A hipótese RLS.3 exige que:</p>
+    <div class="opts"><button data-k="a">a) \(SQT_x=\sum(x_i-\bar x)^2&gt;0\), ou seja, x varie na amostra</button><button data-k="b">b) \(E[u\mid x]=0\)</button><button data-k="c">c) a amostra seja aleatória</button><button data-k="d">d) \(Var(u\mid x)=\sigma^2\)</button></div>
+    <div class="fb" hidden>Sem variação em x, o denominador de \(\hat\beta_1\) é zero e a inclinação não é identificada.</div></div>
+  <div class="quiz sim" data-answer="b"><div class="qh">23 · Aula 5 (afirmativas)</div>
+    <p>I. \(E(\hat\beta_1)=\beta_1\) descreve o centro da distribuição amostral. II. A fórmula \(Var(\hat\beta_1)=\sigma^2/SQT_x\) exige homocedasticidade. III. Com heterocedasticidade e \(E(u\mid X)=0\), o MQO fica viesado.</p>
+    <div class="opts"><button data-k="a">a) Apenas I</button><button data-k="b">b) Apenas I e II</button><button data-k="c">c) Apenas II e III</button><button data-k="d">d) I, II e III</button></div>
+    <div class="fb" hidden>III é falsa: heterocedasticidade não causa viés.</div></div>
+  <div class="quiz sim" data-answer="d"><div class="qh">24 · Aula 5</div>
+    <p>Qual é a “equação-chave” da Aula 5?</p>
+    <div class="opts"><button data-k="a">a) \(\hat\beta_1=\bar y-\hat\beta_0\bar x\)</button><button data-k="b">b) \(\hat\beta_1=\beta_1\)</button><button data-k="c">c) \(\hat\beta_1=SQR/(n-2)\)</button><button data-k="d">d) \(\hat\beta_1=\beta_1+\frac{1}{SQT_x}\sum d_iu_i\)</button></div>
+    <div class="fb" hidden>Estimativa = parâmetro + erro de estimação. Dela saem o não viés e a variância.</div></div>
+  <div class="quiz sim" data-answer="c"><div class="qh">25 · Aula 5</div>
+    <p>“Consistente” significa:</p>
+    <div class="opts"><button data-k="a">a) \(E(\hat\beta_1)=\beta_1\) para n fixo</button><button data-k="b">b) ter a menor variância</button><button data-k="c">c) \(\text{plim}\,\hat\beta_1=\beta_1\): chegar perto do parâmetro com alta probabilidade quando n cresce</button><button data-k="d">d) ter erro-padrão robusto</button></div>
+    <div class="fb" hidden>Não viés é sobre n fixo; consistência é sobre n → ∞.</div></div>
+  <div class="quiz sim" data-answer="a"><div class="qh">26 · Aula 5</div>
+    <p>O Teorema de Gauss–Markov diz que, sob RLS.1–RLS.5, o MQO:</p>
+    <div class="opts"><button data-k="a">a) tem a menor variância entre os estimadores lineares e não viesados (BLUE)</button><button data-k="b">b) é o único estimador não viesado</button><button data-k="c">c) tem variância zero</button><button data-k="d">d) é não viesado mesmo sem RLS.4</button></div>
+    <div class="fb" hidden>BLUE: Best Linear Unbiased Estimator.</div></div>
+  <div class="quiz sim" data-answer="b"><div class="qh">27 · Aula 3</div>
+    <p>SQT = 50 e SQE = 30. Quanto valem SQR e \(R^2\)?</p>
+    <div class="opts"><button data-k="a">a) 80 e 0,6</button><button data-k="b">b) 20 e 0,6</button><button data-k="c">c) 20 e 0,4</button><button data-k="d">d) 30 e 0,4</button></div>
+    <div class="fb" hidden>SQR = 50 − 30 = 20; \(R^2=30/50=0{,}6\).</div></div>
+  <div class="quiz sim" data-answer="d"><div class="qh">28 · Aula 2</div>
+    <p>\(Var(X)=4\). Quanto vale \(Var(3X-2)\)?</p>
+    <div class="opts"><button data-k="a">a) 10</button><button data-k="b">b) 12</button><button data-k="c">c) 34</button><button data-k="d">d) 36</button></div>
+    <div class="fb" hidden>\(3^2\times4=36\). A constante −2 não altera a variância.</div></div>
+  <div class="quiz sim" data-answer="a"><div class="qh">29 · Aula 2</div>
+    <p>\(Cov(X,Y)=5\). Quanto vale \(Cov(2X,-3Y)\)?</p>
+    <div class="opts"><button data-k="a">a) −30</button><button data-k="b">b) 30</button><button data-k="c">c) −6</button><button data-k="d">d) 5</button></div>
+    <div class="fb" hidden>\(2\times(-3)\times5=-30\).</div></div>
+  <div class="quiz sim" data-answer="c"><div class="qh">30 · Aula 4</div>
+    <p>y passa de reais para milhares de reais e x de anos para meses. O novo \(\tilde\beta_1\) é:</p>
+    <div class="opts"><button data-k="a">a) \(1000\times12\times\hat\beta_1\)</button><button data-k="b">b) \(\hat\beta_1\times12/1000\)</button><button data-k="c">c) \(\hat\beta_1/(1000\times12)\)</button><button data-k="d">d) \(\hat\beta_1\)</button></div>
+    <div class="fb" hidden>\(\tilde\beta_1=(b/c)\hat\beta_1\), com \(b=1/1000\) e \(c=12\).</div></div>
+  <div class="quiz sim" data-answer="b"><div class="qh">31 · Aula 4</div>
+    <p>Num log–log, \(\beta_1=0{,}8\). Um aumento de 1% em x está associado a:</p>
+    <div class="opts"><button data-k="a">a) 0,8 unidade a mais em y</button><button data-k="b">b) cerca de 0,8% a mais em y</button><button data-k="c">c) 80% a mais em y</button><button data-k="d">d) 0,008 unidade a mais em y</button></div>
+    <div class="fb" hidden>Elasticidade: % sobre %.</div></div>
+  <div class="quiz sim" data-answer="b"><div class="qh">32 · Aula 6</div>
+    <p>Regressão simples com n = 12. Quantos graus de liberdade tem o teste t?</p>
+    <div class="opts"><button data-k="a">a) 12</button><button data-k="b">b) 10</button><button data-k="c">c) 11</button><button data-k="d">d) 2</button></div>
+    <div class="fb" hidden>n − 2 = 10 (dois parâmetros estimados).</div></div>
+  <div class="quiz sim" data-answer="a"><div class="qh">33 · Aula 6</div>
+    <p>O erro-padrão robusto pode ser <strong>menor</strong> que o convencional?</p>
+    <div class="opts"><button data-k="a">a) Sim; robusto não significa necessariamente maior</button><button data-k="b">b) Não, é sempre maior</button><button data-k="c">c) Só se houver homocedasticidade</button><button data-k="d">d) Só com variável omitida</button></div>
+    <div class="fb" hidden>Lista 02, Q9: 0,40 (robusto) contra 0,683 (convencional).</div></div>
+  <div class="quiz sim" data-answer="c"><div class="qh">34 · Derivadas</div>
+    <p>\(f(x)=5+4\sqrt x\). Quanto vale \(f'(4)\)?</p>
+    <div class="opts"><button data-k="a">a) 4</button><button data-k="b">b) 2</button><button data-k="c">c) 1</button><button data-k="d">d) 0,5</button></div>
+    <div class="fb" hidden>\(f'(x)=4\cdot\frac{1}{2\sqrt x}=\frac{2}{\sqrt x}\); em x = 4, dá 1.</div></div>
+  <div class="quiz sim" data-answer="b"><div class="qh">35 · Integrais</div>
+    <p>\(X\sim U(0,4)\). Quanto vale \(P(1\lt X\le3)\)?</p>
+    <div class="opts"><button data-k="a">a) 0,25</button><button data-k="b">b) 0,5</button><button data-k="c">c) 0,75</button><button data-k="d">d) 2</button></div>
+    <div class="fb" hidden>Área = base 2 × altura 1/4 = 0,5.</div></div>
+  <div class="quiz sim" data-answer="d"><div class="qh">36 · Tipo Lista 2, Ex. 2</div>
+    <p>n = 5, \(\sum x=20\), \(\sum y=60\), \(\sum x^2=120\), \(\sum xy=330\). A FRA é:</p>
+    <div class="opts"><button data-k="a">a) \(\hat y=12+2{,}25x\)</button><button data-k="b">b) \(\hat y=3+4x\)</button><button data-k="c">c) \(\hat y=4+2x\)</button><button data-k="d">d) \(\hat y=3+2{,}25x\)</button></div>
+    <div class="fb" hidden>\(\bar x=4\), \(\bar y=12\); \(\hat\beta_1=\frac{330-5(4)(12)}{120-5(16)}=\frac{90}{40}=2{,}25\); \(\hat\beta_0=12-2{,}25(4)=3\).</div></div>
+  <div class="quiz sim" data-answer="a"><div class="qh">37 · Dummies</div>
+    <p>Médias do grupo D = 0: 20; do grupo D = 1: 26. Na regressão \(y=\beta_0+\beta_1D+u\):</p>
+    <div class="opts"><button data-k="a">a) \(\hat\beta_0=20\), \(\hat\beta_1=6\)</button><button data-k="b">b) \(\hat\beta_0=26\), \(\hat\beta_1=-6\)</button><button data-k="c">c) \(\hat\beta_0=23\), \(\hat\beta_1=3\)</button><button data-k="d">d) \(\hat\beta_0=0\), \(\hat\beta_1=26\)</button></div>
+    <div class="fb" hidden>Intercepto = média da referência; inclinação = diferença de médias.</div></div>
+  <div class="quiz sim" data-answer="c"><div class="qh">38 · Aula 1</div>
+    <p>Uma amostra muito maior resolve o problema de uma amostra selecionada (ex.: famílias ricas respondem menos)?</p>
+    <div class="opts"><button data-k="a">a) Sim, sempre</button><button data-k="b">b) Sim, se n passar de 1.000</button><button data-k="c">c) Não necessariamente: é preciso entender a seleção</button><button data-k="d">d) Só com erros robustos</button></div>
+    <div class="fb" hidden>Aula 1 e Lista 1, Q13: n maior reduz a variância, mas não corrige a falta de representatividade.</div></div>
+  <div class="quiz sim" data-answer="b"><div class="qh">39 · Aula 5</div>
+    <p>Duas pesquisas têm o mesmo \(\hat\sigma^2\), mas a B tem x muito mais disperso. Então:</p>
+    <div class="opts"><button data-k="a">a) A é mais precisa</button><button data-k="b">b) B tem menor \(ep(\hat\beta_1)\)</button><button data-k="c">c) as duas têm o mesmo ep</button><button data-k="d">d) B é viesada</button></div>
+    <div class="fb" hidden>\(SQT_x\) maior ⇒ variância menor (Lista 02, Q10).</div></div>
+  <div class="quiz sim" data-answer="d"><div class="qh">40 · Lagrange</div>
+    <p>No ótimo de max \(xy\) s.a. \(2x+4y=40\), \(\lambda=2{,}5\). Isso significa que:</p>
+    <div class="opts"><button data-k="a">a) x = 2,5</button><button data-k="b">b) a utilidade máxima é 2,5</button><button data-k="c">c) a restrição está errada</button><button data-k="d">d) com 1 real a mais de renda, a utilidade ótima sobe cerca de 2,5</button></div>
+    <div class="fb" hidden>λ é o preço sombra: \(df^*/dc\).</div></div>
   <div class="done-row"><button class="btn done-btn" data-done="simulado" aria-pressed="false">Marcar como concluído</button></div>
 </section>
 
@@ -145,7 +225,7 @@
 
   <h3>Aula 4</h3>
   <ul>
-    <li>\(\tilde y=by\), \(\tilde x=cx\): \(\tilde\beta_1=\frac bc\hat\beta_1\); só Y escalado muda também \(\hat\beta_0\); \(R^2\) nunca muda.</li>
+    <li>\(\tilde y=by\), \(\tilde x=cx\): \(\tilde\beta_1=\frac bc\hat\beta_1\) e \(\tilde\beta_0=b\hat\beta_0\). Escalar só X não altera \(\hat\beta_0\). O \(R^2\) nunca muda com unidades.</li>
     <li>Log–nível: \(100\beta_1\%\) (exato \(100(e^{\beta_1}-1)\%\)). Nível–log: \(\beta_1/100\) por 1%. Log–log: elasticidade.</li>
     <li>Quadrático: efeito marginal \(\beta_1+2\beta_2X\); retorno \(X^*=-\beta_1/(2\beta_2)\); 2ª derivada &lt; 0 ⇒ côncava.</li>
     <li>Derivadas: constante → 0; \(x^n\to nx^{n-1}\); \(\sqrt x\to\frac{1}{2\sqrt x}\); \(\ln x\to\frac1x\).</li>

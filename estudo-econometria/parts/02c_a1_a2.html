@@ -1,102 +1,3 @@
-
-<!-- ================= MÓDULO 0 ================= -->
-<section class="mod" id="zero" data-title="Do zero">
-  <div class="eyebrow">Módulo 0 · para quem está começando</div>
-  <h2>Do zero: variável, média, Σ e o chapéu</h2>
-  <p>Antes de qualquer fórmula, você precisa ler a “língua” da disciplina. Este módulo ensina essa língua usando o mesmo exemplo que o professor usa nas Aulas 3 a 6: cinco pessoas, seus anos de estudo e seu salário por hora.</p>
-
-  <h3>1. O que é uma variável</h3>
-  <p>Uma <strong>variável</strong> é uma característica que muda de uma unidade observada para outra. Salário muda de pessoa para pessoa; anos de estudo também. A área de um apartamento muda de apartamento para apartamento. Se algo não muda, não é variável: é constante.</p>
-  <div class="tbl"><table>
-    <thead><tr><th>i (pessoa)</th><th class="r">x = anos de estudo</th><th class="r">y = salário/hora (R$)</th></tr></thead>
-    <tbody>
-      <tr><td>1</td><td class="r">8</td><td class="r">10</td></tr>
-      <tr><td>2</td><td class="r">10</td><td class="r">12</td></tr>
-      <tr><td>3</td><td class="r">12</td><td class="r">15</td></tr>
-      <tr><td>4</td><td class="r">14</td><td class="r">15</td></tr>
-      <tr><td>5</td><td class="r">16</td><td class="r">20</td></tr>
-    </tbody>
-  </table></div>
-  <p class="small muted">Amostra pequena e fictícia da Aula 3. Ela reaparece na Aula 4 (em log), na Aula 5 (erro-padrão) e na Aula 6 (teste t).</p>
-  <ul>
-    <li>Cada linha é uma <strong>observação</strong>. O índice <strong>i</strong> diz qual linha: i = 3 é a terceira pessoa.</li>
-    <li><strong>n</strong> é o número de observações. Aqui, n = 5.</li>
-    <li>\(x_i\) é o valor de x na linha i. Aqui \(x_3=12\) e \(y_3=15\).</li>
-    <li><strong>y</strong> é a <strong>variável dependente</strong>: aquilo que queremos explicar (o salário).</li>
-    <li><strong>x</strong> é a <strong>variável explicativa</strong>: aquilo que usamos para explicar (os anos de estudo).</li>
-  </ul>
-
-  <h3>2. O símbolo Σ (somatório)</h3>
-  <p>Σ é a letra grega sigma maiúscula e quer dizer <strong>“some tudo”</strong>.</p>
-  <div class="mathblock">\[\sum_{i=1}^{n}x_i\;=\;x_1+x_2+\dots+x_n\]</div>
-  <p>Leia assim: “some \(x_i\) com i indo de 1 até n”. No exemplo: \(\sum x_i=8+10+12+14+16=60\) e \(\sum y_i=10+12+15+15+20=72\).</p>
-
-  <h3>3. Média: a barra em cima</h3>
-  <p>A <strong>média amostral</strong> é a soma dividida por n. Ela é indicada por uma barra em cima da letra.</p>
-  <div class="mathblock">\[\bar x=\frac{1}{n}\sum_{i=1}^{n}x_i=\frac{60}{5}=12,\qquad \bar y=\frac{72}{5}=14{,}4\]</div>
-
-  <h3>4. Desvio: quanto cada um se afasta da média</h3>
-  <p>O <strong>desvio</strong> é \(x_i-\bar x\). No exemplo: \(8-12=-4\), \(10-12=-2\), \(0\), \(2\), \(4\). Some: \(-4-2+0+2+4=0\).</p>
-  <div class="box def"><span class="lbl">Regra que nunca falha</span>
-    <p>Os desvios em relação à média <strong>sempre somam zero</strong>: \(\sum(x_i-\bar x)=0\). Use isso para conferir suas contas na prova (Aula 2, propriedade P1).</p>
-  </div>
-
-  <h3>5. Variância e desvio-padrão: quanto os dados se espalham</h3>
-  <p>Como os desvios somam zero, para medir o espalhamento elevamos cada um ao quadrado (assim nenhum fica negativo) e somamos: \(16+4+0+4+16=40\). Essa soma tem nome: \(SQT_x=\sum(x_i-\bar x)^2\), a “soma dos quadrados totais de x”.</p>
-  <ul>
-    <li><strong>Variância amostral:</strong> \(\widehat{Var}(x)=\dfrac{\sum(x_i-\bar x)^2}{n-1}=\dfrac{40}{4}=10\).</li>
-    <li><strong>Desvio-padrão:</strong> a raiz da variância, \(s_x=\sqrt{10}\approx3{,}16\). E o caminho de volta: variância = desvio-padrão ao quadrado. Na Lista 2 Ex. 1, \(s=10\Rightarrow Var=100\).</li>
-  </ul>
-
-  <h3>6. Covariância: x e y andam juntos?</h3>
-  <p>Multiplique o desvio de x pelo desvio de y em cada linha e some. Se, quando x está acima da média, y também tende a estar, os produtos são positivos e a soma é positiva.</p>
-  <div class="mathblock">\[\widehat{Cov}(x,y)=\frac{\sum(x_i-\bar x)(y_i-\bar y)}{n-1}=\frac{46}{4}=11{,}5\]</div>
-  <p>A soma 46 é calculada na Aula 3. Guarde: \(\hat\beta_1=11{,}5/10=46/40=1{,}15\). Isso é a Fórmula 1.</p>
-
-  <h3>7. Letras gregas, chapéu e barra</h3>
-  <div class="tbl"><table>
-    <thead><tr><th>Símbolo</th><th>Lê-se</th><th>Significa</th></tr></thead>
-    <tbody>
-      <tr><td>\(\beta_0,\ \beta_1\)</td><td>beta zero, beta um</td><td>Parâmetros da <strong>população</strong>: números fixos e desconhecidos.</td></tr>
-      <tr><td>\(\hat\beta_0,\ \hat\beta_1\)</td><td>beta-chapéu</td><td>O que calculamos com a <strong>amostra</strong>. O chapéu sempre quer dizer “estimado”.</td></tr>
-      <tr><td>\(u\) (ou \(U\))</td><td>erro</td><td>Tudo o que afeta y e não está no modelo. Não é observado.</td></tr>
-      <tr><td>\(\hat u_i\)</td><td>resíduo</td><td>Estimativa do erro: \(y_i-\hat y_i\). É calculado.</td></tr>
-      <tr><td>\(\hat y_i\)</td><td>y-chapéu</td><td>Valor ajustado pela reta para a observação i.</td></tr>
-      <tr><td>\(\bar x,\ \bar y\)</td><td>x-barra</td><td>Média da amostra.</td></tr>
-      <tr><td>\(\mu\)</td><td>mi</td><td>Média da população.</td></tr>
-      <tr><td>\(\sigma,\ \sigma^2\)</td><td>sigma</td><td>Desvio-padrão e variância da população (na Aula 5: do erro u).</td></tr>
-      <tr><td>\(E[\cdot]\)</td><td>esperança</td><td>Média teórica (populacional) de uma variável aleatória.</td></tr>
-    </tbody>
-  </table></div>
-
-  <h3>8. A reta: intercepto e inclinação</h3>
-  <p>Toda reta tem a forma \(y=a+bx\). O <strong>intercepto</strong> \(a\) é a altura da reta quando \(x=0\). A <strong>inclinação</strong> \(b\) é quanto y sobe quando x aumenta 1. Na regressão, \(\beta_0\) faz o papel de \(a\) e \(\beta_1\) o de \(b\). No exemplo, a reta de MQO é \(\hat y=0{,}6+1{,}15x\): cada ano a mais de estudo está associado a R$ 1,15 a mais no salário/hora ajustado.</p>
-
-  <h3>9. População, amostra, parâmetro, estimador e estimativa</h3>
-  <ul>
-    <li><strong>População:</strong> o grupo inteiro que interessa (todos os trabalhadores).</li>
-    <li><strong>Amostra:</strong> a parte que observamos (as 5 pessoas).</li>
-    <li><strong>Parâmetro</strong> (\(\theta\), \(\beta_1\)): número da população. Fixo, mas desconhecido.</li>
-    <li><strong>Estimador</strong> (\(\hat\theta=g(Z_1,\dots,Z_n)\), \(\hat\beta_1\)): a <em>regra</em> aplicada à amostra. Como a amostra é sorteada, o estimador é <strong>aleatório</strong>.</li>
-    <li><strong>Estimativa</strong> (\(\hat\theta=2{,}4\), \(\hat\beta_1=1{,}15\)): o <em>número</em> que a regra deu na amostra que você tem.</li>
-  </ul>
-  <div class="box prova"><span class="lbl">Cai na prova</span><p>Essa distinção aparece na Lista 1 (Q5), na Lista 02 (Q1) e é a base da Aula 5 inteira. “As propriedades estatísticas pertencem ao estimador; a estimativa é apenas uma realização de sua distribuição amostral.”</p></div>
-
-  <div class="quiz" data-answer="b">
-    <div class="qh">Teste rápido</div>
-    <p>Para x = (3, 6, 7, 8), quanto vale \(\sum(x_i-\bar x)\)?</p>
-    <div class="opts"><button data-k="a">a) 24</button><button data-k="b">b) 0</button><button data-k="c">c) 14</button><button data-k="d">d) 6</button></div>
-    <div class="fb" hidden>A média é 24/4 = 6 e os desvios são −3, 0, 1, 2. Eles somam zero, como sempre (Lista 1, Q21).</div>
-  </div>
-  <div class="quiz" data-answer="c">
-    <div class="qh">Teste rápido</div>
-    <p>Um desvio-padrão vale 10. Quanto vale a variância?</p>
-    <div class="opts"><button data-k="a">a) 10</button><button data-k="b">b) 3,16</button><button data-k="c">c) 100</button><button data-k="d">d) 20</button></div>
-    <div class="fb" hidden>Variância = desvio-padrão ao quadrado: \(10^2=100\). É o primeiro passo da Lista 2, Ex. 1.</div>
-  </div>
-  <div class="done-row"><button class="btn done-btn" data-done="zero" aria-pressed="false">Marcar como concluído</button></div>
-</section>
-
 <!-- ================= AULA 1 ================= -->
 <section class="mod" id="aula1" data-title="Aula 1">
   <div class="eyebrow">Aula 1 · Natureza da econometria e dados econômicos</div>
@@ -257,6 +158,15 @@
     <li><strong>Contínua:</strong> probabilidades são áreas sob uma densidade, \(P(a\lt X\le b)=\int_a^b f(x)dx\), e \(P(X=x)=0\). Exemplo: tempo até o trabalho. \(P(X\le20)=0{,}20+0{,}58=0{,}78\).</li>
     <li><strong>FDA:</strong> \(F(x)=P(X\le x)\), não decrescente, vai de 0 a 1.</li>
   </ul>
+  <h4>Suporte, FMP, FDP e FDA em detalhe</h4>
+  <ul>
+    <li><strong>Suporte</strong> \(\mathcal X\): o conjunto de valores que X pode assumir. Meses empregado no ano: {0, 1, …, 12} (suporte finito, discreta). Renda: \(\mathbb R_+\) (contínua).</li>
+    <li>Letra maiúscula (X) é a variável aleatória; minúscula (x) é um valor realizado, um número.</li>
+    <li><strong>FMP</strong> (discreta): \(p(x)=P(X=x)\ge0\), \(\sum_xp(x)=1\) e \(F(x)=\sum_{x'\le x}p(x')\).</li>
+    <li><strong>FDP</strong> (contínua): \(f(x)\ge0\), \(\int f(x)dx=1\), \(f(x)=\frac{d}{dx}F(x)\) e \(F(x)=\int_{-\infty}^xf(t)dt\). É densidade, não probabilidade.</li>
+    <li><strong>FDA:</strong> não decrescente, com \(\lim_{x\to-\infty}F(x)=0\) e \(\lim_{x\to+\infty}F(x)=1\).</li>
+  </ul>
+  <p class="small muted">Integral e derivada estão explicadas do zero nos módulos <a href="#mat-deriv">Derivadas</a> e <a href="#mat-int">Integrais</a>.</p>
 
   <h3>Duas distribuições importantes</h3>
   <div class="tbl"><table>
@@ -266,6 +176,7 @@
       <td>Caracterizada pela média e variância. Se X é normal, \(aX+b\) também é. Terá papel central na aproximação de distribuições amostrais.</td>
     </tr></tbody>
   </table></div>
+  <div class="mathblock">\[\text{Normal: }f(x)=\frac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\frac12\frac{(x-\mu)^2}{\sigma^2}\right),\quad x\in\mathbb R\qquad\text{Uniforme }U(a,b):\ f(x)=\frac{1}{b-a},\ x\in(a,b)\]</div>
 
   <h3>Distribuição conjunta, marginal e condicional</h3>
   <p>A conjunta descreve X e Y juntos: \(p_{X,Y}(x,y)=P(X=x,Y=y)\). A condicional descreve Y na subpopulação em que X = x: \(p_{Y\mid X}(y\mid x)=p_{X,Y}(x,y)/p_X(x)\).</p>
@@ -278,6 +189,13 @@
     </tbody>
   </table></div>
   <p>\(P(Y=1\mid X=1)=0{,}45/0{,}50=0{,}90\) e \(P(Y=1\mid X=0)=0{,}40/0{,}50=0{,}80\). Como são diferentes, X e Y <strong>não são independentes</strong>. Independência exige \(p_{X,Y}(x,y)=p_X(x)p_Y(y)\) para todo par, ou seja, conhecer X não muda a distribuição de Y.</p>
+  <p><strong>Marginal a partir da conjunta:</strong> some a linha (ou a coluna): \(p(x)=\sum_yp(x,y)\). Ex.: \(P(X=1)=0{,}05+0{,}45=0{,}50\).</p>
+  <div class="box def"><span class="lbl">Regra de Bayes</span>
+    <div class="mathblock">\[p(y\mid x)=\frac{p(x\mid y)\,p(y)}{p(x)}\]</div>
+    <p>Com a tabela: qual a probabilidade de ter curso superior, dado que a pessoa está empregada? \(P(X=1\mid Y=1)=\frac{P(Y=1\mid X=1)P(X=1)}{P(Y=1)}=\frac{0{,}90\times0{,}50}{0{,}85}\approx0{,}529\). Conferindo direto: \(0{,}45/0{,}85\approx0{,}529\).</p>
+  </div>
+  <p><strong>Independência condicional</strong> \(Y\perp\!\!\!\perp X\mid W\): \(p(y\mid x,w)=p(y\mid w)\). Uma vez conhecido W, X não traz informação adicional sobre Y.</p>
+  <p><strong>Normal multivariada:</strong> parametrizada por um vetor de médias \(\mu\) e uma matriz de variância-covariância \(\Sigma\). Se (X, Y) têm distribuição conjunta normal: as marginais de X e de Y são normais, as condicionais X | Y e Y | X são normais, e qualquer combinação linear \(aX+bY+c\) é normal.</p>
 
   <h3>Esperança, variância, covariância e correlação</h3>
   <div class="mathblock">\[E[X]=\sum_x x\,p(x),\qquad E[a+bX]=a+bE[X]\]</div>
@@ -315,22 +233,45 @@
   <p>No modelo básico, a amostra é <strong>iid</strong>: independente (\(Y_i\perp\!\!\!\perp Y_j\)) e identicamente distribuída. O mecanismo de amostragem não pode excluir grupos relevantes: várias pessoas do mesmo domicílio provavelmente não são independentes, e só alunos do Mackenzie não representam todos os universitários.</p>
   <div class="mathblock">\[\hat\mu=\frac1N\sum_{i=1}^N Y_i,\qquad E[\hat\mu]=\mu,\qquad Var(\hat\mu)=\frac{\sigma^2}{N}\]</div>
   <p>A primeira igualdade diz que a média amostral é <strong>não viesada</strong>. A segunda, que sua dispersão cai quando N cresce, e por isso ela é <strong>consistente</strong> (\(\hat\mu\xrightarrow{p}\mu\)). Exemplo (Lista 1, Q26): média 80, variância 144. Com n = 16, 36 e 144, os erros-padrão são 3, 2 e 1. <strong>Quadruplicar n corta o erro-padrão pela metade</strong>, porque \(DP(\bar Y)\propto1/\sqrt n\).</p>
+  <details class="sol"><summary>De onde vem \(Var(\hat\mu)=\sigma^2/N\), e a média condicional amostral</summary><div class="in">
+    <div class="mathblock">\[Var(\hat\mu)=\frac{1}{N^2}\Big[\sum_iVar(Y_i)+2\sum_{i\lt j}Cov(Y_i,Y_j)\Big]=\frac{1}{N^2}\cdot N\sigma^2=\frac{\sigma^2}{N}\]</div>
+    <p>Com amostra iid, as covariâncias entre observações são zero. Como \(E[\hat\mu]=\mu\) e \(Var(\hat\mu)\to0\), a desigualdade de Chebyshev implica \(\hat\mu\xrightarrow{p}\mu\).</p>
+    <p><strong>Média condicional amostral:</strong> se X é discreta, estimamos \(\mu(x)=E[Y_i\mid X_i=x]\) pela média de Y no grupo com \(X_i=x\):</p>
+    <div class="mathblock">\[\hat\mu(x)=\frac{\sum_i1\{X_i=x\}Y_i}{\sum_i1\{X_i=x\}},\qquad E[\hat\mu(x)\mid N_x]=\mu(x),\qquad Var[\hat\mu(x)\mid N_x]=\frac{Var(Y_i\mid X_i=x)}{N_x}\]</div>
+    <p>\(N_x\) é o número de observações com \(X_i=x\). Grupos com poucas observações dão médias mais instáveis.</p>
+  </div></details>
 
   <h3>Testes e intervalos (versão da revisão)</h3>
+  <p>A pergunta que motiva a aula: numa amostra, a renda média deu R$ 30.000/ano. É razoável conjecturar que a média da população seja R$ 35.000? E R$ 50.000? Um teste de hipóteses mede <strong>quão compatível</strong> a média observada é com cada valor postulado.</p>
   <ol class="steps">
     <li><div>Hipótese nula \(H_0:\mu=\mu_0\) (por exemplo, renda média de R$ 35.000).</div></li>
-    <li><div>Estatística: com σ conhecido, \(Z=\dfrac{\hat\mu-\mu_0}{\sigma/\sqrt N}\sim N(0,1)\) sob \(H_0\). Com σ estimado por \(S\), \(T=\dfrac{\hat\mu-\mu_0}{S/\sqrt N}\sim t_{N-1}\) se a amostra é normal.</div></li>
-    <li><div><strong>p-valor:</strong> probabilidade, sob \(H_0\), de uma estatística tão ou mais extrema que a observada. <strong>Não</strong> é a probabilidade de \(H_0\) ser verdadeira.</div></li>
-    <li><div>Rejeite \(H_0\) se o p-valor for pequeno (α = 0,05 é convencional), ou se \(|Z|&gt;1{,}96\).</div></li>
+    <li><div>Estatística: com σ conhecido, \(Z=\dfrac{\hat\mu-\mu_0}{\sigma/\sqrt N}\sim N(0,1)\) sob \(H_0\): a distância entre \(\hat\mu\) e \(\mu_0\) <strong>medida em desvios-padrão</strong>. Com σ estimado por \(S\), onde \(S^2=\frac{1}{N-1}\sum_i(Y_i-\bar Y)^2\), fica \(T=\dfrac{\hat\mu-\mu_0}{S/\sqrt N}\sim t_{N-1}\) se a amostra é iid e normal. Para N grande, a t se aproxima da normal padrão.</div></li>
+    <li><div><strong>p-valor:</strong> probabilidade, sob \(H_0\), de uma estatística tão ou mais extrema que a observada. Um p-valor de 0,03 quer dizer: se \(H_0\) fosse verdadeira, só 3% das amostras dariam algo tão ou mais extremo. <strong>Não</strong> é a probabilidade de \(H_0\) ser verdadeira.</div></li>
+    <li><div>Rejeite \(H_0\) se o p-valor for pequeno (α = 0,05 é convencional), ou se \(|Z|&gt;1{,}96\): 95% da normal padrão fica entre −1,96 e 1,96.</div></li>
     <li><div><strong>IC de 95%:</strong> os valores de \(\mu_0\) que não seriam rejeitados, \(\hat\mu\pm1{,}96\,\sigma/\sqrt N\).</div></li>
   </ol>
-  <p><strong>Nível de significância</strong> é a probabilidade de rejeitar \(H_0\) verdadeira (erro tipo I). <strong>Poder</strong> é a probabilidade de rejeitar \(H_0\) quando ela é falsa (1 − erro tipo II). Significância estatística não é importância econômica.</p>
+  <div class="box ok"><span class="lbl">Exemplo com números (o desvio-padrão é nosso)</span>
+    <p>Suponha \(\sigma/\sqrt N=2.000\). Com \(\hat\mu=30.000\) e \(H_0:\mu=35.000\): \(Z=\frac{30.000-35.000}{2.000}=-2{,}5\). Como \(|{-2{,}5}|&gt;1{,}96\), <strong>rejeitamos</strong> \(H_0\). O IC de 95% é \(30.000\pm1{,}96\times2.000=[26.080;\ 33.920]\): 35.000 e 50.000 ficam fora, coerente com o teste.</p>
+    <p><strong>Unidades:</strong> numerador e denominador de Z estão em R$/ano, então Z é um número puro. O IC está em R$/ano.</p>
+  </div>
+  <p><strong>Como ler o IC:</strong> antes de sortear a amostra, o intervalo é aleatório, e o procedimento cobre o parâmetro verdadeiro em 95% das amostras repetidas. Depois de calculado, aquele intervalo específico contém ou não contém μ: não se diz “95% de probabilidade de μ estar nele”.</p>
+  <p><strong>Nível de significância</strong> é a probabilidade (fixada antes) de rejeitar \(H_0\) verdadeira (erro tipo I). <strong>Poder</strong> é a probabilidade de rejeitar \(H_0\) quando ela é falsa (1 − erro tipo II). Exemplo da aula: testamos \(H_0:\mu=35.000\), mas a média verdadeira é R$ 40.000. O poder é a chance de o teste detectar essa diferença.</p>
+  <p><strong>Significância estatística não é importância econômica.</strong> Com amostras muito grandes, diferenças pequenas viram “significativas”. Um p-valor pequeno diz que os dados são pouco compatíveis com \(H_0\), mas não mede o tamanho do efeito. A interpretação completa olha junto a estimativa pontual, o erro-padrão, o IC e a relevância econômica da magnitude.</p>
 
   <h3>LGN e TCL</h3>
   <ul>
+    <li><strong>Convergência em probabilidade</strong> \(X_N\xrightarrow{p}x\): a probabilidade de \(X_N\) ficar perto de x vai a 1 quando N cresce.</li>
+    <li><strong>Convergência em distribuição</strong> \(X_N\xrightarrow{d}X\): \(F_{X_N}(x)\to F_X(x)\) em todos os pontos de continuidade de \(F_X\). Descreve a aproximação entre distribuições; não exige que \(X_N\) fique perto de X em cada realização.</li>
     <li><strong>Lei dos Grandes Números:</strong> com amostra iid e variância finita, \(\hat\mu_N\xrightarrow{p}\mu\). A média amostral se aproxima da populacional com alta probabilidade.</li>
     <li><strong>Teorema Central do Limite:</strong> \(\dfrac{\sqrt N(\hat\mu-\mu)}{\sigma}\xrightarrow{d}N(0,1)\). É a <em>média padronizada</em> que fica aproximadamente normal, e não cada observação. Com \(S\) consistente, o resultado vale trocando σ por S (Slutsky).</li>
   </ul>
+  <p class="small">Ilustração do TCL citada na aula: o tabuleiro de Galton (1874), <a href="https://www.youtube.com/watch?v=EvHiee7gs9Y" target="_blank" rel="noopener">vídeo no YouTube</a>.</p>
+  <div class="quiz" data-answer="b">
+    <div class="qh">Aula 2 · Bayes</div>
+    <p>Na tabela curso superior × emprego, qual é \(P(X=0\mid Y=0)\), a chance de não ter superior dado que está desempregado?</p>
+    <div class="opts"><button data-k="a">a) 0,10</button><button data-k="b">b) cerca de 0,667</button><button data-k="c">c) 0,20</button><button data-k="d">d) 0,50</button></div>
+    <div class="fb" hidden>\(P(X=0,Y=0)/P(Y=0)=0{,}10/0{,}15\approx0{,}667\).</div>
+  </div>
 
   <div class="quiz" data-answer="b">
     <div class="qh">Lista 1 · Questão 16</div>
