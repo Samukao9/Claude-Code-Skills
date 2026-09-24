@@ -1,0 +1,193 @@
+
+<!-- ================= AULA 6 ================= -->
+<section class="mod" id="aula6" data-title="Aula 6">
+  <div class="eyebrow">Aula 6 · Inferência sobre os coeficientes de regressão</div>
+  <h2>Inferência: teste t, p-valor e intervalo de confiança</h2>
+  <p>Uma estimativa varia de amostra para amostra. Para saber o que ela revela sobre o parâmetro, combinamos três coisas:</p>
+  <div class="mathblock">\[\underbrace{\hat\beta_1}_{\text{estimativa}}\;+\;\underbrace{ep(\hat\beta_1)}_{\text{erro-padrão}}\;+\;\underbrace{t\text{ ou normal}}_{\text{distribuição de referência}}\;\Longrightarrow\;\text{inferência}\]</div>
+  <p><strong>Pergunta central:</strong> a distância entre \(\hat\beta_1\) e um valor hipotético é grande em relação à incerteza amostral?</p>
+
+  <h3>1. Hipóteses</h3>
+  <ul>
+    <li><strong>Hipótese nula \(H_0\)</strong>: a afirmação que confrontamos com os dados. Caso frequente: \(H_0:\beta_1=0\), “X não tem associação linear com Y no modelo”.</li>
+    <li><strong>Alternativa \(H_A\)</strong>: \(\beta_1\neq0\) (bilateral) ou \(\beta_1&gt;0\) / \(\beta_1\lt0\) (unilateral).</li>
+    <li>Podemos testar \(H_0:\beta_1=\beta_{1,0}\) para qualquer valor, não só zero.</li>
+  </ul>
+  <p><strong>Por que não olhar se \(\hat\beta_1\) “deu zero”?</strong> Porque \(\hat\beta_1\) quase nunca é exatamente zero, mesmo que \(\beta_1=0\), por causa do erro amostral. Precisamos medir quão longe de zero é longe o bastante para não ser só ruído.</p>
+
+  <h3>2. A estatística t</h3>
+  <div class="mathblock">\[t=\frac{\overbrace{\hat\beta_1-\beta_{1,0}}^{\text{discrepância em relação a }H_0}}{\underbrace{ep(\hat\beta_1)}_{\text{incerteza estimada}}}\]</div>
+  <p>Quantos erros-padrão a estimativa está distante do valor de \(H_0\). \(|t|\) grande indica discrepância grande em unidades de erro-padrão. O mesmo vale para \(\hat\beta_0\) com \(ep(\hat\beta_0)\).</p>
+
+  <h3>3. Exemplo numérico (os 5 indivíduos)</h3>
+  <p>\(\hat\beta_1=1{,}15\), \(ep(\hat\beta_1)=0{,}189\), n = 5. Testando \(H_0:\beta_1=0\) contra \(H_A:\beta_1\neq0\):</p>
+  <div class="mathblock">\[t=\frac{1{,}15-0}{0{,}189}\approx6{,}08\]</div>
+  <p>Sob normalidade e homocedasticidade, são n − 2 = 3 graus de liberdade e o valor crítico bilateral de 5% é \(t_{0{,}025;3}=3{,}182\). Como <strong>6,08 &gt; 3,182, rejeitamos \(H_0:\beta_1=0\)</strong>.</p>
+  <figure><div class="scroll">FIG:tdist</div><figcaption>Distribuição t com 3 graus de liberdade. As caudas vermelhas somam 5%; o t observado (6,08) cai na região de rejeição.</figcaption></figure>
+
+  <h3>4. p-valor</h3>
+  <div class="box def"><span class="lbl">Definição</span><p>A probabilidade de observar uma estatística t tão extrema quanto a observada, ou mais, <strong>supondo que \(H_0\) é verdadeira</strong>.</p></div>
+  <p>p-valor pequeno: seria muito improvável ver esses dados se \(H_0\) fosse verdadeira. p-valor grande: os dados são compatíveis com \(H_0\). No exemplo, com t ≈ 6,08 e 3 g.l., <strong>p ≈ 0,009</strong>: evidência forte contra \(H_0\).</p>
+  <div class="box trap"><span class="lbl">As três interpretações erradas mais cobradas</span>
+    <ul>
+      <li>O p-valor <strong>não</strong> é a probabilidade de \(H_0\) ser verdadeira. Ele é calculado supondo \(H_0\) verdadeira: tem a forma P(dados extremos | H₀), não P(H₀ | dados) (Lista 02, Q2-I).</li>
+      <li>“Não rejeitar \(H_0\)” ≠ “aceitar \(H_0\)”: os dados só não trouxeram evidência forte o suficiente.</li>
+      <li>O p-valor não mede o tamanho do efeito.</li>
+    </ul>
+  </div>
+  <p><strong>Regra de decisão:</strong> fixe α <em>antes</em> de olhar os dados (5% ou 1% são comuns). Se p &lt; α, rejeite \(H_0\) (estatisticamente significativo). Se p ≥ α, não rejeite.</p>
+
+  <h3>5. Erros tipo I e tipo II</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Realidade \ Decisão</th><th>Não rejeitamos \(H_0\)</th><th>Rejeitamos \(H_0\)</th></tr></thead>
+    <tbody>
+      <tr><td>\(H_0\) verdadeira</td><td>Decisão correta (prob. 1 − α)</td><td><strong>Erro tipo I</strong> (prob. α)</td></tr>
+      <tr><td>\(H_0\) falsa</td><td><strong>Erro tipo II</strong> (prob. β)</td><td>Decisão correta (prob. 1 − β = poder)</td></tr>
+    </tbody>
+  </table></div>
+  <p>O erro tipo I é controlado pelo α que escolhemos. O erro tipo II depende do tamanho da amostra e da magnitude da associação. No exemplo: tipo I seria concluir que o coeficiente da escolaridade é diferente de zero quando \(\beta_1=0\); tipo II seria não detectar uma associação que existe. O poder depende do tamanho da associação, da variância do erro, da dispersão de X, de n e de α.</p>
+
+  <h3>6. Intervalo de confiança</h3>
+  <div class="mathblock">\[IC=\hat\beta_1\pm t_{\alpha/2,\;n-2}\times ep(\hat\beta_1)\]</div>
+  <p>No exemplo: \(1{,}15\pm3{,}182\times0{,}189\approx1{,}15\pm0{,}60\), ou seja, <strong>IC 95% ≈ [0,55; 1,75]</strong>. Quanto mais estreito, mais precisa a estimativa.</p>
+  <p><strong>Interpretação frequencista:</strong> em amostras repetidas, 95% dos intervalos construídos por esse procedimento conteriam \(\beta_1\). Para esta amostra, reportamos [0,55; 1,75]. Não é “95% de probabilidade de o parâmetro fixo estar neste intervalo específico”.</p>
+  <div class="box def"><span class="lbl">Dualidade IC ↔ teste</span>
+    <p>Um IC de 95% contém exatamente os valores de \(\beta_{1,0}\) que <strong>não</strong> seriam rejeitados por um teste bilateral a 5%, se ambos usam o mesmo erro-padrão e a mesma distribuição. Regra prática: <strong>se 0 não está no IC de 95%, rejeitamos \(H_0:\beta_1=0\) a 5%</strong>. No exemplo, 0 ∉ [0,55; 1,75], a mesma conclusão do teste t.</p>
+  </div>
+
+  <h3>7. Unilateral × bilateral</h3>
+  <p>Bilateral (\(H_A:\beta_1\neq0\)) é o mais comum; o p-valor considera as duas caudas. Unilateral (\(H_A:\beta_1&gt;0\)) considera uma cauda só e deve ser usado com forte justificativa teórica <strong>prévia</strong>. Escolher a direção depois de ver os dados é prática questionável.</p>
+
+  <h3>8. Lendo o output de uma regressão</h3>
+  <div class="tbl"><table>
+    <thead><tr><th></th><th>Estimate</th><th>Std. Error</th><th>t value</th><th>Pr(&gt;|t|)</th></tr></thead>
+    <tbody>
+      <tr><td>(Intercept)</td><td>\(\hat\beta_0\)</td><td>\(ep(\hat\beta_0)\)</td><td>t</td><td>p-valor</td></tr>
+      <tr><td>educ</td><td>\(\hat\beta_1\)</td><td>\(ep(\hat\beta_1)\)</td><td>t</td><td>p-valor</td></tr>
+    </tbody>
+  </table></div>
+  <p>t value = Estimate / Std. Error (teste de \(H_0:\beta=0\)). Pr(&gt;|t|) é o p-valor bilateral.</p>
+  <div class="box ok"><span class="lbl">Como reportar (frase-modelo da aula)</span>
+    <p>“Um ano a mais de escolaridade está associado a um aumento de R$ 1,15/hora no salário (EP = 0,189; p = 0,009), com base em n = 5 observações.”</p>
+    <p class="small">Inclua sempre: coeficiente, erro-padrão ou IC, significância, amostra e especificação (e o tipo de erro-padrão), e o \(R^2\) como medida descritiva do ajuste.</p>
+  </div>
+  <p><strong>Significância não é importância econômica.</strong> Com amostras muito grandes, associações pequenas ficam significativas. Reporte a magnitude na unidade relevante, com erro-padrão ou IC, e compare com um referencial substantivo.</p>
+
+  <h3>9. Heterocedasticidade e erro-padrão robusto</h3>
+  <p>Há heterocedasticidade quando \(Var(u\mid X)=\sigma^2(X)\). Exemplo: a dispersão da poupança é pequena entre famílias de baixa renda e muito maior entre as de alta renda. Se \(E(u\mid X)=0\), a heterocedasticidade:</p>
+  <ul>
+    <li><strong>não</strong> torna \(\hat\beta_0\) e \(\hat\beta_1\) viesados e não impede a consistência;</li>
+    <li><strong>não</strong> altera coeficientes, valores ajustados, resíduos ou \(R^2\);</li>
+    <li>invalida, em geral, a fórmula homocedástica do erro-padrão;</li>
+    <li>elimina a garantia de eficiência de Gauss–Markov.</li>
+  </ul>
+  <div class="mathblock">\[Var(\hat\beta_1\mid X)=\frac{\sum_i(X_i-\bar X)^2\sigma_i^2}{\left[\sum_i(X_i-\bar X)^2\right]^2}\qquad\qquad \widehat{Var}_{HC0}(\hat\beta_1)=\frac{\sum_i(X_i-\bar X)^2\hat u_i^2}{\left[\sum_i(X_i-\bar X)^2\right]^2}\]</div>
+  <p>Como \(\sigma_i^2\) é desconhecido, a versão HC0 usa \(\hat u_i^2\). O erro-padrão robusto é a raiz disso. A reta estimada não muda; só a estimativa da incerteza. HC1 (correção por graus de liberdade), HC2 (alavancagem) e HC3 (correção mais forte para alta alavancagem) melhoram o comportamento em amostras menores.</p>
+  <p>Teste robusto: \(t_{rob}=(\hat\beta_1-\beta_{1,0})/ep_{rob}(\hat\beta_1)\xrightarrow{d}N(0,1)\); IC robusto aproximado \(\hat\beta_1\pm z_{1-\alpha/2}\,ep_{rob}\). A inferência robusta é <strong>assintótica</strong>.</p>
+  <div class="box trap"><span class="lbl">O que “robusto” não significa</span>
+    <ul>
+      <li>Robusto <strong>não é necessariamente maior</strong> que o convencional: pode ser maior ou menor (Lista 02, Q9).</li>
+      <li>Robusto <strong>não corrige</strong> variável omitida, simultaneidade, forma funcional errada, erro de medida ou dependência entre observações (Lista 02, Q3-III).</li>
+    </ul>
+  </div>
+  <p><strong>Fluxo de trabalho defensável:</strong> formule a média condicional pela pergunta econômica; estime e examine resíduos; reporte erros robustos quando a heterocedasticidade for plausível; use testes de heterocedasticidade como diagnóstico, não como pré-requisito; use MQP só com justificativa para os pesos. Não é preciso rejeitar homocedasticidade antes de usar erros robustos.</p>
+
+  <h3>10. Apêndice: de onde vem a t de Student</h3>
+  <p>Na revisão (Aula 2) usamos σ conhecido e a Normal. Aqui usamos \(\hat\sigma\), que também é aleatório. Para um resultado exato precisamos de uma hipótese nova:</p>
+  <div class="box def"><span class="lbl">RLS.6 · Normalidade dos erros</span>
+    <div class="mathblock">\[u_i\mid X\sim N(0,\sigma^2)\]</div>
+    <p>RLS.6 já implica \(E[u\mid x]=0\) (RLS.4) e \(Var(u\mid x)=\sigma^2\) (RLS.5). É mais forte que as duas, mas <strong>não substitui</strong> linearidade nos parâmetros, amostragem aleatória nem variação em X. A justificativa para ela (o erro soma muitos fatores) é só heurística.</p>
+  </div>
+  <ol class="steps">
+    <li><div>Se conhecêssemos σ: \(Z=\dfrac{\hat\beta_1-\beta_1}{\sigma/\sqrt{SQT_x}}\sim N(0,1)\).</div></li>
+    <li><div>Usamos \(\hat\sigma\), e vale (sem prova aqui) \(\dfrac{(n-2)\hat\sigma^2}{\sigma^2}\sim\chi^2_{n-2}\).</div></li>
+    <li><div>A t é, por construção, uma Normal dividida pela raiz de uma qui-quadrado sobre seus graus de liberdade: \(t_{n-2}\equiv\dfrac{Z}{\sqrt{\chi^2_{n-2}/(n-2)}}\). Trocando σ por \(\hat\sigma\) sobra exatamente isso: \(t=\dfrac{\hat\beta_1-\beta_{1,0}}{\hat\sigma/\sqrt{SQT_x}}\sim t_{n-2}\).</div></li>
+  </ol>
+  <p><strong>Caudas mais gordas:</strong> às vezes \(\hat\sigma\) sai menor que σ por acaso, e dividir por um número pequeno infla t. Por isso a t é mais espalhada que a Normal com n pequeno; com n grande, converge para a Normal (e a regra de bolso |t| &gt; 2 funciona). Sem normalidade, sob condições regulares, \((\hat\beta_1-\beta_1)/se(\hat\beta_1)\xrightarrow{d}N(0,1)\) pelo TCL.</p>
+  <p><strong>Testes de heterocedasticidade:</strong> Breusch–Pagan regride \(\hat u_i^2=\delta_0+\delta_1X_i+v_i\) e testa \(\delta_1=0\), com \(LM=nR^2_{aux}\xrightarrow{d}\chi^2_1\). White usa também \(X_i^2\) e testa \(\delta_1=\delta_2=0\); a rejeição pode refletir forma funcional errada. <strong>MQP:</strong> se \(Var(u\mid X)=\sigma^2h(X)\), dividir o modelo por \(\sqrt{h(X)}\) deixa o erro homocedástico; observações com menor variância recebem mais peso.</p>
+
+  <div class="quiz" data-answer="d">
+    <div class="qh">Lista 02 · Questão 2</div>
+    <ol class="afirm">
+      <li>I. Um p-valor de 0,03 significa que a probabilidade de \(H_0\) ser verdadeira é 3%.</li>
+      <li>II. Não rejeitar \(H_0\) significa que os dados não trouxeram evidência suficiente contra ela no nível adotado.</li>
+      <li>III. Um IC de 95% contém exatamente os valores de \(\beta_1\) que não seriam rejeitados por testes bilaterais a 5%, com o mesmo erro-padrão e a mesma distribuição.</li>
+    </ol>
+    <div class="opts"><button data-k="a">a) Apenas I</button><button data-k="b">b) Apenas II</button><button data-k="c">c) Apenas I e III</button><button data-k="d">d) Apenas II e III</button><button data-k="e">e) I, II e III</button></div>
+    <div class="fb" hidden>II e III. I confunde P(dados extremos | H₀) com P(H₀ | dados).</div>
+  </div>
+  <div class="quiz" data-answer="d">
+    <div class="qh">Lista 02 · Questão 3</div>
+    <ol class="afirm">
+      <li>I. Sob RLS.6, a normalidade implica média condicional zero e homocedasticidade, mas não substitui linearidade, amostragem aleatória e variação em X.</li>
+      <li>II. Se \(E(u\mid X)=0\), a heterocedasticidade torna o MQO necessariamente viesado.</li>
+      <li>III. Erros-padrão robustos corrigem a incerteza sob heterocedasticidade, mas não corrigem variável omitida, simultaneidade ou erro de medida.</li>
+    </ol>
+    <div class="opts"><button data-k="a">a) Apenas I</button><button data-k="b">b) Apenas II</button><button data-k="c">c) Apenas I e II</button><button data-k="d">d) Apenas I e III</button><button data-k="e">e) I, II e III</button></div>
+    <div class="fb" hidden>I e III. Heterocedasticidade com \(E(u\mid X)=0\) não causa viés nem inconsistência.</div>
+  </div>
+  <div class="quiz" data-answer="a">
+    <div class="qh">Aula 6</div>
+    <p>\(\hat\beta_1=0{,}90\), ep = 0,30, n = 22, valor crítico 2,086. Qual é a decisão para \(H_0:\beta_1=0\) a 5%?</p>
+    <div class="opts"><button data-k="a">a) t = 3 &gt; 2,086: rejeitar \(H_0\)</button><button data-k="b">b) t = 3: aceitar \(H_0\)</button><button data-k="c">c) t = 0,27: não rejeitar \(H_0\)</button><button data-k="d">d) t = 3: não rejeitar \(H_0\)</button></div>
+    <div class="fb" hidden>\(t=0{,}90/0{,}30=3\), que supera 2,086: rejeita \(H_0\). E nunca diga “aceitar”.</div>
+  </div>
+  <div class="done-row"><button class="btn done-btn" data-done="aula6" aria-pressed="false">Marcar como concluído</button></div>
+</section>
+
+<!-- ================= AULA 7 ================= -->
+<section class="mod" id="dummies" data-title="Aula 7">
+  <div class="eyebrow">Aula de 18/09 · Variáveis dummy e informação qualitativa <span class="tag warn">Confirme se cai na P1</span></div>
+  <h2>Dummies e regressão pela origem</h2>
+  <div class="box trap"><span class="lbl">Atenção ao escopo</span><p>Nenhuma lista cobre esta aula, e a Lista 02 diz “Aulas 5 e 6”. Estude depois de dominar as Aulas 3 a 6, ou pergunte ao professor se ela entra na P1.</p></div>
+
+  <h3>1. A variável dummy</h3>
+  <p>Muitas variáveis econômicas são qualitativas: sexo, sindicalização, participação num programa. Para colocá-las no modelo sem tratá-las como intensidade, usamos:</p>
+  <div class="mathblock">\[D_i=\begin{cases}1,&amp;\text{se a característica está presente}\\0,&amp;\text{caso contrário}\end{cases}\]</div>
+  <p>D = 0 é o <strong>grupo de referência</strong>; D = 1, o grupo de comparação. Os valores 0 e 1 são rótulos: o 1 não significa “mais” da característica. Trocar qual grupo recebe 0 muda a parametrização, mas não os valores ajustados nem a diferença entre os grupos.</p>
+
+  <h3>2. Uma dummy é uma diferença de médias</h3>
+  <div class="mathblock">\[y_i=\beta_0+\beta_1D_i+u_i\quad\Longrightarrow\quad E(y\mid D=0)=\beta_0,\qquad E(y\mid D=1)=\beta_0+\beta_1\]</div>
+  <p>Logo \(\beta_1=E[y\mid D=1]-E[y\mid D=0]\): a diferença entre as médias dos grupos. Na amostra, <strong>\(\hat\beta_0=\bar y_0\) e \(\hat\beta_1=\bar y_1-\bar y_0\)</strong>. Procedimento: identifique a referência, escreva a previsão de cada grupo e só então interprete a diferença.</p>
+  <div class="box ok"><span class="lbl">Exemplo da aula</span>
+    <p>Salário/hora de 5 não sindicalizados (8, 9, 10, 9, 9) e 5 sindicalizados (13, 14, 12, 14, 12). \(\bar y_0=45/5=9\) e \(\bar y_1=65/5=13\). Então \(\hat\beta_1=13-9=4\) e \(\hat\beta_0=9\): nesta amostra, o salário-hora médio dos sindicalizados é R$ 4,00 maior.</p>
+  </div>
+  <details class="sol"><summary>Derivação: por que \(\hat\beta_1=\bar y_1-\bar y_0\)</summary><div class="in">
+    <p>Com \(n_1\) observações com D = 1 e \(n_0\) com D = 0, \(\bar D=n_1/n\) e \(D_i^2=D_i\).</p>
+    <div class="mathblock">\[\sum_i(D_i-\bar D)^2=n_1\Big(\frac{n_0}{n}\Big)^2+n_0\Big(\frac{n_1}{n}\Big)^2=\frac{n_1n_0}{n},\qquad \sum_i(D_i-\bar D)(y_i-\bar y)=\frac{n_1n_0}{n}(\bar y_1-\bar y_0)\]</div>
+    <p>O fator \(n_1n_0/n\) cancela: \(\hat\beta_1=\bar y_1-\bar y_0\). Com \(\hat\beta_0=\bar y-\hat\beta_1\bar D\) e \(\bar y=(n_0\bar y_0+n_1\bar y_1)/n\), sai \(\hat\beta_0=\bar y_0\). Rodar a regressão é matematicamente idêntico a comparar médias.</p>
+    <p>Variâncias: \(Var(\hat\beta_0)=\sigma^2\dfrac{n_1}{n\cdot(n_1n_0/n)}=\dfrac{\sigma^2}{n_0}\), a variância da média de um grupo com \(n_0\) observações.</p>
+  </div></details>
+  <p><strong>Não é necessariamente causal:</strong> a diferença pode refletir escolaridade, experiência, ocupação ou setor associados à sindicalização. Para ler \(\beta_1\) como efeito causal, é preciso justificar por que os grupos seriam comparáveis.</p>
+  <p><strong>Precisão:</strong> sob homocedasticidade, \(Var(\hat\beta_1\mid D)=\sigma^2\left(\frac{1}{n_1}+\frac{1}{n_0}\right)\). Com variâncias diferentes, \(Var(\bar Y_1-\bar Y_0\mid D)=\frac{\sigma_1^2}{n_1}+\frac{\sigma_0^2}{n_0}\). Grupos muito desbalanceados reduzem a precisão.</p>
+
+  <h3>3. Armadilha da dummy e várias categorias</h3>
+  <p>Com intercepto, não se pode incluir D e (1 − D) juntas: \(D_i+(1-D_i)=1\) é constante e gera <strong>colinearidade perfeita</strong>. Sem intercepto, as duas dummies podem entrar e os coeficientes viram as duas médias. Com intercepto e <strong>G categorias, usamos G − 1 dummies</strong>. Exemplo (agricultura como referência): \(Y=\beta_0+\beta_1D_{ind}+\beta_2D_{serv}+u\), com \(E(Y\mid agr)=\beta_0\), \(E(Y\mid ind)=\beta_0+\beta_1\), \(E(Y\mid serv)=\beta_0+\beta_2\).</p>
+
+  <h3>4. Dummy com variável quantitativa e interação</h3>
+  <p>Sem interação, \(E(Y\mid X,D)=\beta_0+\beta_1X+\beta_2D\): retas paralelas, e \(\beta_2\) é a diferença de nível. Com interação:</p>
+  <div class="mathblock">\[Y=\beta_0+\beta_1X+\beta_2D+\beta_3(XD)+u:\quad D=0:\ \beta_0+\beta_1X;\qquad D=1:\ (\beta_0+\beta_2)+(\beta_1+\beta_3)X\]</div>
+  <p>\(\beta_2\) é a diferença de interceptos, \(\beta_3\) a diferença de inclinações, e a diferença entre grupos num dado X é \(\beta_2+\beta_3X\). \(\beta_2\) é a diferença só em X = 0; compare os grupos em valores relevantes de X.</p>
+  <p><strong>Dummy em log:</strong> se \(\log Y=\beta_0+\beta_1D+u\), a diferença percentual é \(100[\exp(\beta_1)-1]\%\); a aproximação \(100\beta_1\%\) só é boa com \(|\beta_1|\) pequeno.</p>
+  <details class="sol"><summary>Pratique: \(\widehat{\log(salario)}=1{,}80+0{,}09\,educ-0{,}18\,mulher+0{,}02\,(educ\times mulher)\)</summary><div class="in">
+    <ol>
+      <li><strong>Retorno da educação para a referência</strong> (mulher = 0): 0,09, cerca de 9% por ano.</li>
+      <li><strong>Para mulheres:</strong> \(0{,}09+0{,}02=0{,}11\), cerca de 11% por ano.</li>
+      <li><strong>O coeficiente de mulher é uma diferença constante?</strong> Não. A diferença no log salário é \(-0{,}18+0{,}02\,educ\): depende do nível de educação. −0,18 é a diferença só quando educ = 0.</li>
+    </ol>
+  </div></details>
+
+  <h3>5. Regressão pela origem</h3>
+  <p>Quando a teoria diz que Y deve ser exatamente 0 quando X = 0 (comissão = \(\beta_1\)·vendas; custo variável; litros = \(\beta_1\)·km; imposto proporcional), impomos \(\beta_0=0\) desde o início: \(y_i=\beta_1x_i+u_i\).</p>
+  <div class="mathblock">\[\min_{b_1}\sum(y_i-b_1x_i)^2\ \Rightarrow\ -2\sum x_i(y_i-\hat\beta_1x_i)=0\ \Rightarrow\ \boxed{\hat\beta_1=\frac{\sum_ix_iy_i}{\sum_ix_i^2}}\]</div>
+  <p>Diferente da regressão com intercepto: <strong>não subtraímos as médias</strong>. É uma média ponderada das razões \(y_i/x_i\), com pesos \(x_i^2/\sum x_j^2\).</p>
+  <ul>
+    <li><strong>Não viés</strong> (se a restrição é correta): \(\hat\beta_1=\beta_1+\frac{\sum x_iu_i}{\sum x_i^2}\), logo \(E[\hat\beta_1]=\beta_1\).</li>
+    <li><strong>Variância:</strong> \(Var(\hat\beta_1)=\sigma^2/\sum x_i^2\). Como \(\sum x_i^2=SQT_x+n\bar x^2\ge SQT_x\), é mais precisa que com intercepto, mas só se \(\beta_0=0\) for verdade.</li>
+    <li><strong>\(\hat\sigma^2=SQR/(n-1)\)</strong>: perde só 1 grau de liberdade. O “n − 2” nunca foi mágico: é n menos o número de parâmetros.</li>
+    <li><strong>Restrição errada</strong> (ex.: \(Y=8+0{,}12X+u\)): \(\text{Viés}=\beta_0\frac{\sum x_i}{\sum x_i^2}\). A inclinação absorve o intercepto omitido, e mais dados só dão “precisão em torno do alvo errado”.</li>
+    <li>Pela origem, \(\sum x_i\hat u_i=0\), mas em geral \(\sum\hat u_i\neq0\); e o R reporta um \(R^2\) não centrado, que não se compara com o usual.</li>
+  </ul>
+  <p><strong>Modelo de probabilidade linear:</strong> se Y é binária, \(P(Y=1\mid X)=\beta_0+\beta_1X\), e \(\beta_1\) é mudança em pontos percentuais. É simples, mas pode prever fora de [0, 1] e o erro é heterocedástico: use erros-padrão robustos.</p>
+  <div class="done-row"><button class="btn done-btn" data-done="dummies" aria-pressed="false">Marcar como concluído</button></div>
+</section>

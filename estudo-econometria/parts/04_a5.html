@@ -1,0 +1,322 @@
+
+<!-- ================= AULA 5 ================= -->
+<section class="mod" id="aula5" data-title="Aula 5">
+  <div class="eyebrow">Aula 5 · Propriedades estatísticas do estimador MQO <span class="tag hot">Prioridade máxima</span></div>
+  <h2>Viés, variância e as propriedades do estimador</h2>
+  <p>Até a Aula 4 calculamos <em>uma</em> reta para <em>uma</em> amostra. A Aula 5 pergunta o que aconteceria em <strong>amostras repetidas</strong>: se outra amostra produz outra reta, o que podemos afirmar sobre o comportamento de \(\hat\beta_0\) e \(\hat\beta_1\)?</p>
+
+  <div class="box prova"><span class="lbl">O mapa da aula em 5 linhas</span>
+    <ol>
+      <li>\(\hat\beta_1\) é uma <strong>variável aleatória</strong>; a estimativa é uma realização da sua distribuição amostral.</li>
+      <li>Sob RLS.1–RLS.4, o MQO é <strong>não viesado</strong>: \(E(\hat\beta_1)=\beta_1\).</li>
+      <li>Sob RLS.1–RLS.5, \(Var(\hat\beta_1\mid X)=\sigma^2/SQT_x\) e o MQO é <strong>BLUE</strong> (Gauss–Markov).</li>
+      <li>A ortogonalidade entre X e u sustenta a <strong>consistência</strong>.</li>
+      <li>Como \(\sigma^2\) é desconhecido, usamos \(\hat\sigma^2=SQR/(n-2)\) para os <strong>erros-padrão</strong>.</li>
+    </ol>
+  </div>
+
+  <h3>1. O que queremos de um bom estimador</h3>
+  <figure><div class="scroll">FIG:alvos</div>
+    <figcaption>Cada ponto vermelho é a estimativa de uma amostra diferente; o centro amarelo é o parâmetro verdadeiro. Viés é errar o centro <em>em média</em>; variância é o espalhamento.</figcaption></figure>
+  <p>Duas propriedades desejáveis: <strong>acertar o centro em média</strong> (ausência de viés) e <strong>ter baixa dispersão</strong> (precisão/eficiência). A aula mostra sob quais condições o MQO tem cada uma.</p>
+
+  <h3>2. O estimador é uma variável aleatória</h3>
+  <p>\(\hat\beta_1\) é calculado a partir da amostra \(\{(x_i,y_i)\}_{i=1}^n\) sorteada da população. Outra amostra daria outro valor. Formalmente, \(\hat\beta_1\) é uma função da amostra aleatória \(\{(X_i,Y_i)\}\), então é ele próprio uma variável aleatória: tem média, variância e uma distribuição chamada <strong>distribuição amostral</strong>.</p>
+  <p>Pense numa pesquisa eleitoral: uma amostra dá 45%, outra 47%, outra 44%. Do mesmo modo, a amostra 1 pode dar \(\hat\beta_1=1{,}05\), a amostra 2, \(1{,}22\), a amostra 3, \(0{,}95\). Queremos entender as propriedades dessa distribuição, não de uma estimativa isolada.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Objeto</th><th>O que é</th><th>Exemplo</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Parâmetro</strong> \(\beta_1\)</td><td>Característica fixa e desconhecida da população</td><td>—</td></tr>
+      <tr><td><strong>Estimador</strong> \(\hat\beta_1\)</td><td>Regra aplicada à amostra aleatória; logo, variável aleatória</td><td>\(\frac{\sum(x_i-\bar x)(y_i-\bar y)}{\sum(x_i-\bar x)^2}\)</td></tr>
+      <tr><td><strong>Estimativa</strong></td><td>O número obtido depois de observar os dados</td><td>\(\hat\beta_1=1{,}15\)</td></tr>
+    </tbody>
+  </table></div>
+  <p class="muted">Ideia central: as propriedades estatísticas pertencem ao estimador; a estimativa é apenas uma realização da sua distribuição amostral.</p>
+  <p>Sobre essa distribuição há <strong>duas perguntas</strong>, e cada uma exige hipóteses diferentes:</p>
+  <ul>
+    <li><strong>Onde ela está centrada?</strong> \(E[\hat\beta_1]=?\) → propriedade de ausência de viés.</li>
+    <li><strong>Quão espalhada ela é?</strong> \(Var(\hat\beta_1)=?\) → propriedade de precisão.</li>
+  </ul>
+  <div class="box ok"><span class="lbl">O que a simulação da prática mostrou</span>
+    <p>Com o mecanismo \(\ln(salario_i)=6{,}5+0{,}08\,educ_i+u_i\), \(E(u\mid educ)=0\) e \(\sigma=0{,}25\), o professor sorteou 2.000 amostras de 100 pessoas e estimou \(\hat\beta_1\) em cada uma. A média das 2.000 estimativas ficou perto de 0,08 (ausência de viés), e o desvio-padrão delas mede a precisão. Ausência de viés não significa que toda estimativa fica perto de 0,08; significa que o <em>centro</em> da distribuição é 0,08.</p>
+  </div>
+
+  <h3>3. As hipóteses RLS.1 a RLS.4</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Hipótese</th><th>Enunciado</th><th>Qual é o seu papel</th></tr></thead>
+    <tbody>
+      <tr><td><strong>RLS.1</strong><br>linearidade nos parâmetros</td><td>\(y_i=\beta_0+\beta_1x_i+u_i\); \(u_i\) contém os fatores não observáveis de i que afetam \(y_i\)</td><td>Define o modelo e permite a solução fechada do MQO. Modelos não lineares nos parâmetros exigem outro procedimento.</td></tr>
+      <tr><td><strong>RLS.2</strong><br>amostragem aleatória</td><td>\(\{(x_i,y_i)\}\) é amostra aleatória de tamanho n: pares iid da mesma população</td><td>Torna as observações sorteios comparáveis, permite usar LGN e resultados de distribuição amostral, e elimina covariâncias entre erros de observações diferentes.</td></tr>
+      <tr><td><strong>RLS.3</strong><br>variação amostral em x</td><td>Os \(x_i\) não são todos iguais: \(SQT_x=\sum(x_i-\bar x)^2&gt;0\)</td><td>Sem variação em x, o denominador de \(\hat\beta_1\) é zero e a inclinação não pode ser identificada.</td></tr>
+      <tr><td><strong>RLS.4</strong><br>média condicional zero</td><td>\(E[u\mid x]=0\); com amostragem aleatória, \(E[u_i\mid x_i]=0\) para cada i</td><td><strong>É a hipótese que sustenta diretamente a ausência de viés.</strong> Nenhum fator não observado que afeta y pode estar, em média, relacionado com x. Se \(E[u\mid x]\neq0\), então \(E[\hat\beta_1]\neq\beta_1\).</td></tr>
+    </tbody>
+  </table></div>
+  <div class="box trap"><span class="lbl">Cuidado</span><p>RLS.4 sustenta o não viés <em>no modelo especificado</em>. Uma interpretação <strong>causal</strong> exige, além disso, uma justificativa substantiva para tratar a variação em x como exógena.</p></div>
+
+  <div class="box def"><span class="lbl">Teorema da ausência de viés</span>
+    <p>Sob RLS.1 a RLS.4, \(E[\hat\beta_0]=\beta_0\) e \(E[\hat\beta_1]=\beta_1\), para quaisquer valores de \(\beta_0\) e \(\beta_1\). Em palavras: \(\hat\beta_0\) é não viesado para \(\beta_0\) e \(\hat\beta_1\) é não viesado para \(\beta_1\).</p>
+  </div>
+
+  <h3>4. Demonstração: a peça-chave da aula</h3>
+  <p>Objetivo: entender como \(\hat\beta_1\) se comporta como variável aleatória, olhando todas as amostras possíveis. Faça esta prova à mão até conseguir sozinho.</p>
+  <ol class="steps">
+    <li><div><strong>Parta da fórmula do MQO</strong> na forma com um só desvio (identidade P4 da Aula 2):
+      <div class="mathblock">\[\hat\beta_1=\frac{\sum_i(x_i-\bar x)\,y_i}{\sum_i(x_i-\bar x)^2}\]</div></div></li>
+    <li><div><strong>Substitua o modelo populacional</strong> (RLS.1), \(y_i=\beta_0+\beta_1x_i+u_i\):
+      <div class="mathblock">\[\hat\beta_1=\frac{\sum_i(x_i-\bar x)\,[\beta_0+\beta_1x_i+u_i]}{\sum_i(x_i-\bar x)^2}\]</div></div></li>
+    <li><div><strong>Abra o numerador em três termos:</strong>
+      <div class="mathblock">\[\underbrace{\beta_0\sum_i(x_i-\bar x)}_{=\,0}+\underbrace{\beta_1\sum_i(x_i-\bar x)x_i}_{=\,\beta_1SQT_x}+\underbrace{\sum_i(x_i-\bar x)u_i}_{\text{não simplifica}}\]</div>
+      <p>O primeiro é zero pela propriedade da média. O segundo usa a mesma manipulação da derivação do MQO: \(\sum(x_i-\bar x)x_i=\sum(x_i-\bar x)^2=SQT_x\).</p></div></li>
+    <li><div><strong>Divida por \(SQT_x\)</strong> (possível por RLS.3). Definindo \(d_i\equiv x_i-\bar x\) e \(SQT_x\equiv\sum d_i^2\):
+      <div class="mathblock">\[\boxed{\hat\beta_1=\beta_1+\frac{1}{SQT_x}\sum_i d_i\,u_i}\]</div></div></li>
+  </ol>
+  <div class="box def"><span class="lbl">Leia esta equação</span>
+    <p>\(\hat\beta_1\) é igual ao <strong>parâmetro populacional mais uma combinação linear dos erros</strong>. Condicional aos valores de x, toda a aleatoriedade de \(\hat\beta_1\) vem dos \(u_i\). Como os erros geralmente não são exatamente zero, \(\hat\beta_1\neq\beta_1\) em qualquer amostra específica. Isso não é falha do método: é esperado.</p>
+    <p>Tudo o que vem a seguir (não viés, variância e cada violação das hipóteses) é consequência de como esse <strong>erro de estimação</strong> \(\frac{1}{SQT_x}\sum d_iu_i\) se comporta.</p>
+  </div>
+  <details class="sol"><summary>A mesma prova com os pesos \(w_i\) (versão da prática em R)</summary><div class="in">
+    <p>Escreva \(\hat\beta_1=\sum_iw_iY_i\) com \(w_i=\dfrac{X_i-\bar X}{SQT_x}\). Condicional a X, cada \(w_i\) é um número fixo. Os pesos têm duas propriedades:</p>
+    <div class="mathblock">\[\sum_iw_i=\frac{1}{SQT_x}\sum_i(X_i-\bar X)=0,\qquad \sum_iw_iX_i=\sum_iw_i(X_i-\bar X)+\bar X\sum_iw_i=\frac{SQT_x}{SQT_x}+0=1\]</div>
+    <p>Substituindo \(Y_i=\beta_0+\beta_1X_i+u_i\):</p>
+    <div class="mathblock">\[\hat\beta_1=\beta_0\underbrace{\sum_iw_i}_{=0}+\beta_1\underbrace{\sum_iw_iX_i}_{=1}+\sum_iw_iu_i=\beta_1+\sum_iw_iu_i\]</div>
+    <p>Em palavras: os pesos não têm “massa” líquida, mas reproduzem exatamente o próprio X. É a mesma equação-chave, porque \(w_i=d_i/SQT_x\).</p>
+  </div></details>
+
+  <h4>Agora tome a esperança</h4>
+  <p>Seja \(\mathbf X=(x_1,\dots,x_n)\). Condicionando em todos os valores observados de x:</p>
+  <div class="mathblock">\[E(\hat\beta_1\mid\mathbf X)=\beta_1+\frac{1}{SQT_x}\sum_i d_i\,E(u_i\mid\mathbf X)=\beta_1\]</div>
+  <ul>
+    <li>Condicional a \(\mathbf X\), \(d_i\) e \(SQT_x\) são <strong>constantes</strong>, então a esperança atravessa a soma.</li>
+    <li>RLS.4 com amostragem aleatória (RLS.2) implica \(E(u_i\mid\mathbf X)=0\). Cada termo da soma zera.</li>
+    <li>Pela <strong>Lei das Expectativas Iteradas</strong>: \(E(\hat\beta_1)=E\big[E(\hat\beta_1\mid\mathbf X)\big]=\beta_1\). ∎</li>
+  </ul>
+  <details class="sol"><summary>E \(\hat\beta_0\)? (mesma lógica)</summary><div class="in">
+    <p>Tirando a média do modelo, \(\bar y=\beta_0+\beta_1\bar x+\bar u\). Substituindo em \(\hat\beta_0=\bar y-\hat\beta_1\bar x\) (é a expressão usada no slide de \(Var(\hat\beta_0)\)):</p>
+    <div class="mathblock">\[\hat\beta_0=\beta_0+(\beta_1-\hat\beta_1)\bar x+\bar u\]</div>
+    <p>Condicional a \(\mathbf X\): \(E(\beta_1-\hat\beta_1\mid\mathbf X)=0\) pelo resultado acima e \(E(\bar u\mid\mathbf X)=0\) por RLS.4. Logo \(E(\hat\beta_0\mid\mathbf X)=\beta_0\), e pela LEI, \(E(\hat\beta_0)=\beta_0\).</p>
+  </div></details>
+  <div class="tbl"><table>
+    <thead><tr><th>Onde cada hipótese entrou na prova</th><th></th></tr></thead>
+    <tbody>
+      <tr><td>RLS.1</td><td>Para substituir \(y_i=\beta_0+\beta_1x_i+u_i\)</td></tr>
+      <tr><td>RLS.3</td><td>Para poder dividir por \(SQT_x\)</td></tr>
+      <tr><td>RLS.2 + RLS.4</td><td>Para garantir \(E(u_i\mid\mathbf X)=0\) para cada i</td></tr>
+      <tr><td>RLS.5</td><td><strong>Não foi usada.</strong> Homocedasticidade não tem nada a ver com viés.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>5. O que ausência de viés significa (e o que não significa)</h3>
+  <ul>
+    <li>É uma característica da <strong>distribuição amostral</strong> de \(\hat\beta_0\) e \(\hat\beta_1\), não de uma estimativa específica.</li>
+    <li>Sempre é possível obter uma amostra “ruim”, com estimativa longe de \(\beta_1\), e nunca saberemos com certeza se é o caso da nossa.</li>
+    <li>Em amostras repetidas, os erros positivos e negativos se anulam <strong>em média</strong>. Isso não garante que uma estimativa particular esteja perto de \(\beta_1\).</li>
+  </ul>
+  <div class="box trap"><span class="lbl">Não viés não é precisão (Lista 02, Q1)</span>
+    <p>“Se \(\hat\beta_1\) é não viesado, então toda amostra produz uma estimativa próxima de \(\beta_1\)” é <strong>falso</strong>. A distância típica entre \(\hat\beta_1\) e \(\beta_1\) depende da <strong>variância</strong> da distribuição amostral.</p>
+  </div>
+
+  <h3>6. Variância: a hipótese RLS.5</h3>
+  <p>Dois estimadores podem ser igualmente não viesados e um variar muito mais que o outro de amostra para amostra. A ausência de viés diz que acertamos o alvo em média, mas nada sobre precisão. Com RLS.1–RLS.4 já dá para calcular \(Var(\hat\beta_1)\), mas a expressão fica complicada. Para simplificar, entra mais uma hipótese.</p>
+  <div class="box def"><span class="lbl">RLS.5 · Homocedasticidade</span>
+    <div class="mathblock">\[Var(u_i\mid\mathbf X)=\sigma^2,\qquad i=1,\dots,n\]</div>
+    <p>A variância do erro é a mesma qualquer que seja x: a dispersão dos pontos em torno da reta não muda ao longo de x. Se \(Var(u\mid x)\) depende de x, o erro é <strong>heterocedástico</strong>.</p>
+    <p><strong>Papel:</strong> o MQO já tem variância bem definida sem RLS.5. RLS.5 é necessária para que a <em>fórmula simples</em> \(\sigma^2/SQT_x\) valha; sem ela, cada termo do somatório entraria com seu próprio peso. <strong>RLS.1 a RLS.5, juntas, são as hipóteses de Gauss–Markov.</strong></p>
+  </div>
+  <figure><div class="scroll">FIG:homohetero</div>
+    <figcaption>A faixa azul é a dispersão condicional de Y em torno de E(Y | X), e não um intervalo de confiança da reta. À direita, ela cresce com x.</figcaption></figure>
+  <p><strong>Exemplo da aula:</strong> em \(salario=\beta_0+\beta_1educ+u\), RLS.5 diz que a variabilidade do salário em torno da média é igual em todos os níveis de escolaridade. Parece razoável? Talvez não: com pouca escolaridade há menos oportunidades e os salários se concentram perto do mínimo, então a dispersão pode ser menor nesse extremo.</p>
+
+  <h3>7. Demonstração: \(Var(\hat\beta_1)=\sigma^2/SQT_x\)</h3>
+  <p>Parta da equação-chave. Como \(\beta_1\) é constante, só o erro de estimação tem variância:</p>
+  <div class="mathblock">\[Var(\hat\beta_1\mid\mathbf X)=Var\!\left(\frac{1}{SQT_x}\sum_i d_iu_i\,\middle|\,\mathbf X\right)=\frac{1}{SQT_x^2}\,Var\!\left(\sum_i d_iu_i\,\middle|\,\mathbf X\right)\]</div>
+  <p>Para uma soma com pesos constantes, \(Var\left(\sum d_iu_i\right)=\sum d_i^2Var(u_i)+2\sum_{i\lt j}d_id_jCov(u_i,u_j)\). Duas hipóteses simplificam:</p>
+  <ol class="steps">
+    <li><div><strong>RLS.2 (amostragem aleatória):</strong> os \(u_i\) são independentes entre si, então \(Cov(u_i,u_j)=0\). A variância da soma é a soma das variâncias:
+      <div class="mathblock">\[Var(\hat\beta_1\mid\mathbf X)=\frac{1}{SQT_x^2}\sum_i d_i^2\,Var(u_i\mid\mathbf X)\]</div></div></li>
+    <li><div><strong>RLS.5 (homocedasticidade):</strong> \(Var(u_i\mid\mathbf X)=\sigma^2\) para todo i, uma constante que sai do somatório:
+      <div class="mathblock">\[Var(\hat\beta_1\mid\mathbf X)=\sigma^2\,\frac{1}{SQT_x^2}\sum_i d_i^2=\sigma^2\,\frac{SQT_x}{SQT_x^2}=\boxed{\frac{\sigma^2}{SQT_x}}\]</div></div></li>
+  </ol>
+  <div class="box def"><span class="lbl">Não confunda</span><p>\(SQT_x=\sum(x_i-\bar x)^2\) é a variação total <strong>de X</strong>. O SQT do \(R^2\) (Aula 3) é a variação total <strong>de Y</strong>. Os nomes são parecidos, mas medem variáveis diferentes.</p></div>
+
+  <h3>8. O que afeta a precisão do estimador</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Se…</th><th>Então…</th><th>Por quê</th></tr></thead>
+    <tbody>
+      <tr><td>\(\sigma^2\) ↑ (mais ruído)</td><td>\(Var(\hat\beta_1)\) ↑</td><td>Fica mais difícil estimar \(\beta_1\) com precisão</td></tr>
+      <tr><td>\(SQT_x\) ↑ (x mais disperso)</td><td>\(Var(\hat\beta_1)\) ↓</td><td>Fica mais fácil identificar a relação entre \(E[y\mid x]\) e x</td></tr>
+      <tr><td>n ↑</td><td>\(SQT_x\) ↑ em geral ⇒ \(Var(\hat\beta_1)\) ↓</td><td>Desde que as novas observações acrescentem variação informativa em x</td></tr>
+    </tbody>
+  </table></div>
+  <figure><div class="scroll">FIG:distribuicoes</div>
+    <figcaption>Duas distribuições não viesadas (centradas em β₁ = 0,8) com precisões diferentes, e uma viesada (centrada em 1,64, o caso de variável omitida da prática).</figcaption></figure>
+  <p><strong>Na prática em R:</strong> com o mesmo n = 100 e o mesmo ruído, x sorteado entre 12 e 16 gera estimativas bem mais espalhadas que x entre 8 e 20. No intervalo estreito, uma pequena mudança na inclinação pode ser compensada pelo intercepto sem mudar muito as previsões; no amplo, inclinações diferentes produzem previsões bem distintas.</p>
+  <div class="box ok"><span class="lbl">Com números (Lista 02, Q4 e Q10)</span>
+    <ul>
+      <li>n = 10, SQR = 40, \(SQT_x=20\): \(\hat\sigma^2=40/8=5\), \(\widehat{Var}=5/20=0{,}25\), ep = 0,50.</li>
+      <li>\(SQT_x\) de 20 para 80: \(\widehat{Var}=5/80=0{,}0625\), ep = 0,25. <strong>Quadruplicar \(SQT_x\) corta o erro-padrão pela metade.</strong></li>
+      <li>SQR de 40 para 80: \(\hat\sigma^2=10\), \(\widehat{Var}=0{,}5\), ep ≈ 0,707. <strong>Dobrar o ruído dobra a variância</strong> e multiplica o ep por \(\sqrt2\).</li>
+      <li>Mesma estimativa 0,60 e \(\hat\sigma^2=4\): com \(SQT_x=16\), ep = 0,5 e t = 1,2 (não rejeita); com \(SQT_x=100\), ep = 0,2 e t = 3 (rejeita).</li>
+    </ul>
+  </div>
+
+  <h3>9. Variância de \(\hat\beta_0\) (o “fica como exercício”)</h3>
+  <p>O slide deixa como exercício mostrar que</p>
+  <div class="mathblock">\[Var(\hat\beta_0)=\sigma^2\,\frac{\frac1n\sum_ix_i^2}{SQT_x}\]</div>
+  <details class="sol"><summary>Ver resolução completa, seguindo as 3 dicas do professor</summary><div class="in">
+    <p><strong>Ponto de partida:</strong> \(\hat\beta_0=\beta_0+(\beta_1-\hat\beta_1)\bar x+\bar u\).</p>
+    <p><strong>Dica 1:</strong> \(Var(\beta_0+Z)=Var(Z)\); o intercepto populacional não contribui.</p>
+    <div class="mathblock">\[Var(\hat\beta_0)=Var\big((\beta_1-\hat\beta_1)\bar x+\bar u\big)=\bar x^2Var(\hat\beta_1)+Var(\bar u)-2\bar x\,Cov(\hat\beta_1-\beta_1,\bar u)\]</div>
+    <p><strong>Dica 2: o termo cruzado é zero.</strong> Usando \(\hat\beta_1-\beta_1=\frac{1}{SQT_x}\sum_i d_iu_i\) e \(\bar u=\frac1n\sum_ju_j\):</p>
+    <div class="mathblock">\[Cov(\hat\beta_1-\beta_1,\bar u)=\frac{1}{n\,SQT_x}\sum_i\sum_j d_i\,Cov(u_i,u_j)=\frac{1}{n\,SQT_x}\sum_i d_i\,\sigma^2=\frac{\sigma^2}{n\,SQT_x}\underbrace{\sum_i d_i}_{=0}=0\]</div>
+    <p>Pela independência (RLS.2), só sobram os termos com i = j, que valem \(\sigma^2\) (RLS.5); e \(\sum d_i=0\).</p>
+    <p><strong>Dica 3:</strong> sobram \(\bar x^2Var(\hat\beta_1)=\bar x^2\sigma^2/SQT_x\) e \(Var(\bar u)=\sigma^2/n\):</p>
+    <div class="mathblock">\[Var(\hat\beta_0)=\sigma^2\left(\frac{\bar x^2}{SQT_x}+\frac1n\right)=\sigma^2\,\frac{n\bar x^2+SQT_x}{n\,SQT_x}=\sigma^2\,\frac{\sum_ix_i^2}{n\,SQT_x}\]</div>
+    <p>No último passo usamos a identidade P2 da Aula 2: \(SQT_x+n\bar x^2=\sum x_i^2\). ∎</p>
+  </div></details>
+
+  <h3>10. Desvio-padrão dos estimadores</h3>
+  <div class="mathblock">\[dp(\hat\beta_1)=\frac{\sigma}{\sqrt{SQT_x}},\qquad dp(\hat\beta_0)=\frac{\sigma\sqrt{\sum_ix_i^2}}{\sqrt{n\cdot SQT_x}}\]</div>
+  <p>Para calcular, precisamos de cada \(x_i\) (fácil, está na amostra) e de \(\sigma\), o verdadeiro desvio-padrão do erro, que em geral <strong>não é observável</strong>. Por isso precisamos estimá-lo.</p>
+
+  <h3>11. Estimando \(\sigma^2\): por que dividir por n − 2</h3>
+  <div class="mathblock">\[\hat\sigma^2=\frac{SQR}{n-2}=\frac{\sum_i\hat u_i^2}{n-2},\qquad E(\hat\sigma^2\mid\mathbf X)=\sigma^2\ \text{ sob RLS.1–RLS.5}\]</div>
+  <p>Como \(u_i\) não é observado, usamos os resíduos. A regressão simples estima dois parâmetros (\(\hat\beta_0\) e \(\hat\beta_1\)), então restam n − 2 graus de liberdade para medir a dispersão dos resíduos.</p>
+  <details class="sol"><summary>Prova completa de que \(\hat\sigma^2\) é não viesado (os 3 termos)</summary><div class="in">
+    <p><strong>(1) Resíduo em função dos erros:</strong></p>
+    <div class="mathblock">\[\hat u_i=\underbrace{\beta_0+\beta_1x_i+u_i}_{y_i}-\underbrace{(\hat\beta_0+\hat\beta_1x_i)}_{\hat y_i}=u_i-(\hat\beta_0-\beta_0)-(\hat\beta_1-\beta_1)x_i\]</div>
+    <p><strong>(2) Média dos resíduos</strong> (a CPO garante \(\bar{\hat u}=0\)):</p>
+    <div class="mathblock">\[0=\bar u-(\hat\beta_0-\beta_0)-(\hat\beta_1-\beta_1)\bar x\]</div>
+    <p><strong>(3) Subtraia (2) de (1)</strong> e <strong>(4) eleve ao quadrado:</strong></p>
+    <div class="mathblock">\[\hat u_i=(u_i-\bar u)-(\hat\beta_1-\beta_1)(x_i-\bar x)\]</div>
+    <div class="mathblock">\[\hat u_i^2=(u_i-\bar u)^2-2(u_i-\bar u)(\hat\beta_1-\beta_1)(x_i-\bar x)+(\hat\beta_1-\beta_1)^2(x_i-\bar x)^2\]</div>
+    <p><strong>(5) Some em i e tome a esperança</strong> condicional em x. Vamos usar um atalho três vezes:</p>
+    <div class="box def"><span class="lbl">Atalho</span><p>Se \(E[Z]=0\), então \(Var(Z)=E[Z^2]-E[Z]^2=E[Z^2]\). Vale para \(Z=u_i\) (\(E[u_i^2]=\sigma^2\)), para \(Z=\bar u\) (\(E[\bar u^2]=Var(\bar u)\)) e para \(Z=\hat\beta_1-\beta_1\) (média zero pela ausência de viés, então \(E[(\hat\beta_1-\beta_1)^2]=Var(\hat\beta_1)\)).</p></div>
+    <p><strong>Termo 1.</strong> Pela identidade \(\sum(u_i-\bar u)^2=\sum u_i^2-n\bar u^2\): \(E[\sum u_i^2]=n\sigma^2\). E \(Var(\bar u)=\frac{1}{n^2}\sum Var(u_i)=\frac{\sigma^2}{n}\) (RLS.2 e RLS.5), logo \(E[n\bar u^2]=\sigma^2\). <strong>Termo 1 = \(n\sigma^2-\sigma^2=(n-1)\sigma^2\).</strong></p>
+    <p><strong>Termo 2.</strong> Como \(\sum(x_i-\bar x)=0\), \(\sum(u_i-\bar u)(x_i-\bar x)=\sum d_iu_i=SQT_x(\hat\beta_1-\beta_1)\). Então o termo é \(-2\,SQT_x\,E[(\hat\beta_1-\beta_1)^2]=-2\,SQT_x\cdot\frac{\sigma^2}{SQT_x}\). <strong>Termo 2 = \(-2\sigma^2\).</strong></p>
+    <p><strong>Termo 3.</strong> \(E\big[(\hat\beta_1-\beta_1)^2\sum(x_i-\bar x)^2\big]=SQT_x\cdot\frac{\sigma^2}{SQT_x}\). <strong>Termo 3 = \(\sigma^2\).</strong></p>
+    <div class="mathblock">\[E\Big[\sum_i\hat u_i^2\Big]=\underbrace{(n-1)\sigma^2}_{\text{Termo 1}}\underbrace{-2\sigma^2}_{\text{Termo 2}}+\underbrace{\sigma^2}_{\text{Termo 3}}=(n-2)\sigma^2\quad\Longrightarrow\quad E\left[\frac{SQR}{n-2}\right]=\sigma^2\]</div>
+    <p>O ajuste n − 2 significa que perdemos 2 graus de liberdade pelos parâmetros estimados. ∎</p>
+  </div></details>
+
+  <h3>12. Erros-padrão</h3>
+  <p>Trocando \(\sigma^2\) por \(\hat\sigma^2\), obtemos as variâncias estimadas e, tirando a raiz, os erros-padrão:</p>
+  <div class="mathblock">\[\widehat{Var}(\hat\beta_1)=\frac{\hat\sigma^2}{SQT_x},\quad ep(\hat\beta_1)=\frac{\hat\sigma}{\sqrt{SQT_x}}\qquad\qquad \widehat{Var}(\hat\beta_0)=\frac{\hat\sigma^2\,\frac1n\sum x_i^2}{SQT_x},\quad ep(\hat\beta_0)=\frac{\hat\sigma\sqrt{\sum x_i^2}}{\sqrt{n\,SQT_x}}\]</div>
+  <div class="box ok"><span class="lbl">Aplicando aos 5 indivíduos (liga a Aula 3 à Aula 6)</span>
+    <ol>
+      <li>SQR = 4,30 (tabela da Aula 3) e n − 2 = 3, então \(\hat\sigma^2=4{,}30/3\approx1{,}4333\).</li>
+      <li>\(SQT_x=40\), então \(\widehat{Var}(\hat\beta_1)=1{,}4333/40\approx0{,}0358\).</li>
+      <li>\(ep(\hat\beta_1)=\sqrt{0{,}0358}\approx\mathbf{0{,}189}\). É exatamente o erro-padrão que a Aula 6 usa no teste t.</li>
+      <li>Aplicando a fórmula de \(\hat\beta_0\): \(\sum x_i^2=760\), \(\widehat{Var}(\hat\beta_0)=1{,}4333\times(760/5)/40\approx5{,}45\), \(ep(\hat\beta_0)\approx2{,}33\). <span class="muted">(conta nossa, com a fórmula do slide)</span></li>
+    </ol>
+  </div>
+
+  <h3>13. Eficiência e o Teorema de Gauss–Markov</h3>
+  <div class="box def"><span class="lbl">Eficiência</span><p>Eficiência é uma <strong>comparação</strong>: dentro de uma classe de estimadores não viesados, é mais eficiente o que tem menor variância.</p></div>
+  <div class="box def"><span class="lbl">Teorema de Gauss–Markov</span><p>Sob RLS.1 a RLS.5, o MQO tem a menor variância entre os estimadores <strong>lineares e não viesados</strong>: é <strong>BLUE</strong> (Best Linear Unbiased Estimator, o melhor estimador linear não viesado).</p></div>
+  <p><strong>Precisão × eficiência:</strong> precisão descreve a dispersão de <em>um</em> estimador (\(SQT_x\) maior e \(\sigma^2\) menor aumentam a precisão). Eficiência compara <em>estimadores</em> do mesmo parâmetro, sob o mesmo mecanismo gerador.</p>
+
+  <h3>14. O papel específico da homocedasticidade</h3>
+  <p>Se \(E(u\mid X)=0\), mas \(Var(u\mid X)\) varia com X:</p>
+  <ul>
+    <li>o MQO <strong>continua não viesado e consistente</strong>;</li>
+    <li>a fórmula homocedástica da variância fica, em geral, <strong>incorreta</strong>;</li>
+    <li>o MQO <strong>perde a garantia de ser BLUE</strong>;</li>
+    <li>a inferência deve usar uma estimativa de variância <strong>robusta</strong> (Aula 6).</li>
+  </ul>
+  <div class="box prova"><span class="lbl">Separação lógica (frase para decorar)</span><p>Média condicional zero sustenta o <strong>centro</strong> da distribuição do estimador; homocedasticidade fornece uma fórmula particular para a sua <strong>dispersão</strong> e a conclusão de Gauss–Markov.</p></div>
+  <p><strong>Na prática em R:</strong> com \(Var(u_i\mid X_i)\) crescendo com X, tanto o MQO quanto os <strong>mínimos quadrados ponderados</strong> (MQP, com pesos \(1/\sigma_i^2\), que dão menos peso às observações mais ruidosas) ficam centrados no verdadeiro 1,5. Mas o MQP tem variância menor. Esse é um exemplo de eficiência em sentido estrito.</p>
+
+  <h3>15. Não viesado × consistente</h3>
+  <p><strong>Lei dos Grandes Números:</strong> com observações iid e média finita, \(\bar Z_n=\frac1n\sum Z_i\xrightarrow{p}E(Z)\). As flutuações individuais se compensam e as médias amostrais se aproximam dos análogos populacionais.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Não viesado</th><th>Consistente</th></tr></thead>
+    <tbody><tr>
+      <td>Para um tamanho amostral <strong>fixo</strong>: \(E(\hat\beta_1)=\beta_1\).</td>
+      <td>Quando <strong>n cresce</strong>: \(\text{plim}_{n\to\infty}\hat\beta_1=\beta_1\). A probabilidade de uma distância relevante entre \(\hat\beta_1\) e \(\beta_1\) tende a zero.</td>
+    </tr></tbody>
+  </table></div>
+  <p>Um estimador pode ter pequeno viés em amostras finitas e ainda ser consistente; também pode ser não viesado e pouco preciso numa amostra.</p>
+  <p><strong>Por que o MQO converge:</strong> dividindo numerador e denominador por n,</p>
+  <div class="mathblock">\[\hat\beta_1=\beta_1+\frac{n^{-1}\sum_i(X_i-\bar X)u_i}{n^{-1}\sum_i(X_i-\bar X)^2}\ \xrightarrow{p}\ \beta_1+\frac{Cov(X,U)}{Var(X)}\]</div>
+  <p>Sob amostragem aleatória, momentos finitos e \(Var(X)&gt;0\), pela LGN. Se \(E(u\mid X)=0\), então \(Cov(X,u)=0\) e o segundo termo some. <strong>Leitura econômica:</strong> consistência depende de o regressor não carregar informação sistemática sobre os fatores não observados.</p>
+
+  <h3>16. Quando o MQO fica viesado (prática 4–5)</h3>
+  <h4>Variável omitida</h4>
+  <p>O verdadeiro mecanismo é \(Y_i=2+0{,}8X_i+1{,}2Z_i+\varepsilon_i\) com \(Z_i=0{,}7X_i+v_i\), mas o pesquisador estima só Y sobre X. Z vai para o erro; como Z afeta Y e está correlacionado com X, \(E(u\mid X)\neq0\).</p>
+  <div class="mathblock">\[E(\hat\alpha_1)=0{,}8+1{,}2\times0{,}7=1{,}64\]</div>
+  <p>A regressão simples atribui a X a sua associação própria com Y e também a parcela transmitida por Z. Com n = 2.000 a dispersão cai, mas o estimador se concentra em 1,64, e não em 0,8. <strong>Mais observações não corrigem endogeneidade.</strong> Quanto mais forte a relação entre X e a variável omitida (0,2 → 0,7 → 1,2), maior o viés.</p>
+  <p>Outro exemplo (exercício 4 da prática): se \(u=0{,}04\,educ+\text{ruído}\), então \(E(u\mid educ)=0{,}04\,educ\neq0\) e a média das estimativas fica perto de \(0{,}08+0{,}04=0{,}12\).</p>
+  <h4>Erro de medida no regressor</h4>
+  <p>Se observamos \(X^{obs}=X^*+r\) (erro clássico, independente de \(X^*\) e do erro da equação), a inclinação converge para</p>
+  <div class="mathblock">\[\text{plim}\,\hat\beta_1=\beta_1\,\frac{Var(X^*)}{Var(X^*)+Var(r)}\]</div>
+  <p>Quanto maior o erro de medida, mais a inclinação se aproxima de zero: é o <strong>viés de atenuação</strong>.</p>
+  <h4>Forma funcional errada</h4>
+  <p>Se a verdade é \(Y=4+2X-0{,}25X^2+u\) e estimamos uma reta, os resíduos ficam com padrão curvo: o erro do modelo linear contém estrutura previsível a partir de X. A reta ainda é a melhor aproximação linear, mas sua inclinação não representa um efeito marginal constante.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Situação</th><th>Centro de \(\hat\beta_1\)</th><th>Dispersão</th><th>Consequência</th></tr></thead>
+    <tbody>
+      <tr><td>\(E(u\mid X)=0\) e homocedasticidade</td><td>Correto</td><td>Fórmula usual válida</td><td>MQO é BLUE</td></tr>
+      <tr><td>\(E(u\mid X)=0\) e heterocedasticidade</td><td>Correto</td><td>Fórmula usual, em geral, inválida</td><td>MQO perde a garantia de eficiência</td></tr>
+      <tr><td>\(E(u\mid X)\neq0\)</td><td>Em geral, incorreto</td><td>Pode mudar</td><td>MQO pode ser viesado e inconsistente</td></tr>
+      <tr><td>Erro clássico de medida em X</td><td>Incorreto</td><td>Também muda</td><td>Atenuação na regressão simples</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>17. Encerramento</h3>
+  <ul>
+    <li>\(\hat\beta_1\) é uma variável aleatória; a estimativa observada é uma realização de sua distribuição amostral.</li>
+    <li>Sob RLS.1–RLS.4, o MQO é não viesado.</li>
+    <li>Sob condições de regularidade, a ortogonalidade entre X e u sustenta a consistência.</li>
+    <li>Sob RLS.1–RLS.5, valem as fórmulas homocedásticas de variância e o teorema de Gauss–Markov.</li>
+    <li>Como \(\sigma^2\) é desconhecido, usamos resíduos para estimar os erros-padrão.</li>
+  </ul>
+
+  <h3>Teste a Aula 5</h3>
+  <div class="quiz" data-answer="c">
+    <div class="qh">Lista 02 · Questão 1</div>
+    <ol class="afirm">
+      <li>I. A estimativa \(\hat\beta_1=1{,}4\) é uma realização do estimador \(\hat\beta_1\), enquanto \(\beta_1\) é um parâmetro fixo e desconhecido.</li>
+      <li>II. Se \(\hat\beta_1\) é não viesado, então toda amostra produz uma estimativa próxima de \(\beta_1\).</li>
+      <li>III. Sob RLS.1–RLS.4, o MQO é não viesado, mas isso não garante que sua variância seja pequena.</li>
+    </ol>
+    <div class="opts"><button data-k="a">a) Apenas I</button><button data-k="b">b) Apenas I e II</button><button data-k="c">c) Apenas I e III</button><button data-k="d">d) Apenas II e III</button><button data-k="e">e) I, II e III</button></div>
+    <div class="fb" hidden>I e III. II é falsa: não viés descreve o centro da distribuição, não a proximidade de cada estimativa. Uma amostra pode dar uma estimativa distante, sobretudo com variância alta.</div>
+  </div>
+  <div class="quiz" data-answer="d">
+    <div class="qh">Aula 5</div>
+    <p>Qual hipótese sustenta <strong>diretamente</strong> a ausência de viés do MQO?</p>
+    <div class="opts"><button data-k="a">a) RLS.1, linearidade</button><button data-k="b">b) RLS.3, variação em x</button><button data-k="c">c) RLS.5, homocedasticidade</button><button data-k="d">d) RLS.4, média condicional zero</button></div>
+    <div class="fb" hidden>RLS.4. As anteriores definem a estrutura, a amostragem e a variação necessária; RLS.4 é a que zera \(E(u_i\mid\mathbf X)\) na prova. RLS.5 nem é usada.</div>
+  </div>
+  <div class="quiz" data-answer="b">
+    <div class="qh">Aula 5</div>
+    <p>Para que serve a hipótese RLS.5?</p>
+    <div class="opts"><button data-k="a">a) Para o MQO ser não viesado</button><button data-k="b">b) Para valer a fórmula simples \(\sigma^2/SQT_x\) e o teorema de Gauss–Markov</button><button data-k="c">c) Para o MQO ter alguma variância</button><button data-k="d">d) Para o denominador de \(\hat\beta_1\) não ser zero</button></div>
+    <div class="fb" hidden>b. Sem RLS.5 a variância existe, mas não tem a forma fechada simples; e o MQO perde a garantia de BLUE. O denominador não nulo é RLS.3.</div>
+  </div>
+  <div class="quiz" data-answer="a">
+    <div class="qh">Aula 5</div>
+    <p>\(\sigma^2=4\) e \(SQT_x=100\). Quanto vale \(dp(\hat\beta_1)\)?</p>
+    <div class="opts"><button data-k="a">a) 0,2</button><button data-k="b">b) 0,04</button><button data-k="c">c) 25</button><button data-k="d">d) 0,4</button></div>
+    <div class="fb" hidden>\(Var=4/100=0{,}04\) e \(dp=\sqrt{0{,}04}=0{,}2\). Cuidado para não parar na variância.</div>
+  </div>
+  <div class="quiz" data-answer="c">
+    <div class="qh">Aula 5</div>
+    <p>Por que \(\hat\sigma^2\) divide SQR por n − 2?</p>
+    <div class="opts"><button data-k="a">a) Para deixar o número menor</button><button data-k="b">b) Porque a amostra é pequena</button><button data-k="c">c) Porque estimamos dois parâmetros (duas restrições das CPOs), e assim \(E(\hat\sigma^2)=\sigma^2\)</button><button data-k="d">d) Porque é assim com qualquer estimador de variância</button></div>
+    <div class="fb" hidden>c. Na prova, \(E[SQR]=(n-2)\sigma^2\). Na regressão pela origem, que estima só um parâmetro, divide-se por n − 1.</div>
+  </div>
+  <div class="quiz" data-answer="b">
+    <div class="qh">Aula 5</div>
+    <p>Um pesquisador omite uma variável relevante correlacionada com X e aumenta a amostra de 100 para 2.000. O que acontece com \(\hat\beta_1\)?</p>
+    <div class="opts"><button data-k="a">a) O viés desaparece</button><button data-k="b">b) A dispersão cai, mas o estimador continua centrado no valor errado</button><button data-k="c">c) Nada muda</button><button data-k="d">d) O estimador fica mais disperso</button></div>
+    <div class="fb" hidden>b. Na prática, com n = 2.000 as estimativas se concentram em 1,64, e não em 0,8. Mais observações não corrigem endogeneidade.</div>
+  </div>
+  <div class="quiz" data-answer="d">
+    <div class="qh">Aula 5</div>
+    <p>Com \(E(u\mid X)=0\) e heterocedasticidade, o MQO é:</p>
+    <div class="opts"><button data-k="a">a) Viesado e inconsistente</button><button data-k="b">b) Viesado, mas consistente</button><button data-k="c">c) Não viesado e BLUE</button><button data-k="d">d) Não viesado e consistente, mas sem garantia de ser BLUE</button></div>
+    <div class="fb" hidden>d. É também a afirmativa II (falsa) da Lista 02, Q3: heterocedasticidade não causa viés.</div>
+  </div>
+  <div class="done-row"><button class="btn done-btn" data-done="aula5" aria-pressed="false">Marcar como concluído</button></div>
+</section>

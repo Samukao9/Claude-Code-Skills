@@ -1,0 +1,369 @@
+
+<!-- ================= AULA 3 ================= -->
+<section class="mod" id="aula3" data-title="Aula 3">
+  <div class="eyebrow">Aula 3 · Regressão linear simples <span class="tag hot">Base de tudo</span></div>
+  <h2>Regressão simples e o estimador de MQO</h2>
+  <p>Numa amostra observamos pares \((x_i,y_i)\). Os valores de Y variam mesmo entre observações com X parecido, e nenhuma reta passa por todos os pontos. Duas perguntas guiam a aula: <strong>qual é a reta populacional de interesse?</strong> E <strong>como estimá-la com uma amostra?</strong></p>
+
+  <h3>1. O modelo populacional</h3>
+  <div class="mathblock">\[Y=\beta_0+\beta_1X+U\qquad(1)\]</div>
+  <ul>
+    <li>\(Y\): variável dependente. \(X\): variável explicativa.</li>
+    <li>\(\beta_0\): intercepto populacional. \(\beta_1\): inclinação populacional.</li>
+    <li>\(U\): reúne os outros fatores que afetam Y. Em \(wage=\beta_0+\beta_1educ+U\), U contém habilidade e experiência, qualidade da educação, ambiente familiar, características do mercado de trabalho e erros de medida. <strong>U não é simples ruído sem conteúdo econômico.</strong></li>
+  </ul>
+
+  <h3>2. A hipótese central: média condicional zero</h3>
+  <div class="mathblock">\[E[U\mid X]=0\qquad(2)\]</div>
+  <p>Para cada valor de X, os demais determinantes reunidos em U têm média zero. No exemplo de educação e salário, a hipótese é <strong>questionável</strong> se habilidade estiver em U e pessoas mais habilidosas escolherem estudar mais. Uma interpretação causal de \(\beta_1\) exige que a hipótese seja defensável.</p>
+
+  <h3>3. Função de regressão populacional (FRP)</h3>
+  <div class="mathblock">\[E[Y\mid X]=E[\beta_0+\beta_1X+U\mid X]=\beta_0+\beta_1X+\underbrace{E[U\mid X]}_{=0}=\beta_0+\beta_1X\]</div>
+  <p>\(E[Y\mid X]\) é a média condicional e o melhor preditor de Y baseado em X sob perda quadrática. O modelo pode ser escrito como \(Y=E[Y\mid X]+U\): <strong>o observado é um componente sistemático (a média condicional) mais um erro</strong>. Para cada X existe uma distribuição inteira de Y, e a reta passa pela média de cada uma. A hipótese \(E(U\mid X)=0\) <em>não</em> exige variância constante.</p>
+
+  <h3>4. Estimando: valor ajustado e resíduo</h3>
+  <p>Com uma amostra \(\{(x_i,y_i):i=1,\dots,n\}\), cada observação satisfaz \(y_i=\beta_0+\beta_1x_i+u_i\), mas não conhecemos os \(\beta\). Procuramos um par \(\{\hat\beta_0,\hat\beta_1\}\) que gere, para cada observação, um <strong>valor ajustado</strong> e um <strong>resíduo</strong>:</p>
+  <div class="mathblock">\[\hat y_i=\hat\beta_0+\hat\beta_1x_i\quad(4),\qquad \hat u_i=y_i-\hat y_i\]</div>
+  <p>Por que minimizar os <strong>quadrados</strong> dos resíduos? A soma simples \(\sum\hat u_i\) deixa desvios positivos e negativos se cancelarem e, em geral, não tem mínimo finito. Os valores absolutos seriam uma opção, mas os quadrados são diferenciáveis, penalizam mais os grandes desvios e geram uma solução fechada.</p>
+
+  <h3>5. O problema do MQO e a derivação completa</h3>
+  <div class="mathblock">\[(\hat\beta_0,\hat\beta_1)=\arg\min_{b_0,b_1}\sum_{i=1}^{n}(y_i-b_0-b_1x_i)^2\]</div>
+  <p>Precisamos de duas <strong>condições de primeira ordem (CPOs)</strong>: derivar em relação a \(b_0\) e a \(b_1\) e igualar a zero. Como a função objetivo é estritamente convexa, as CPOs dão o mínimo global; se \(x_i\) varia, a solução é única.</p>
+  <ol class="steps">
+    <li><div><strong>Derive (regra da cadeia).</strong> A derivada de \((y_i-b_0-b_1x_i)^2\) em \(b_0\) é \(2(\dots)\cdot(-1)\); em \(b_1\) é \(2(\dots)\cdot(-x_i)\). Iguale a zero:
+      <div class="mathblock">\[-2\sum_{i=1}^{n}(y_i-\hat\beta_0-\hat\beta_1x_i)=0\quad(7)\qquad\quad -2\sum_{i=1}^{n}x_i(y_i-\hat\beta_0-\hat\beta_1x_i)=0\quad(8)\]</div></div></li>
+    <li><div><strong>Divida (7) por \(-2n\)</strong> e use que \(\frac1n\sum y_i=\bar y\), \(\frac1n\sum\hat\beta_0=\hat\beta_0\) e \(\frac1n\sum\hat\beta_1x_i=\hat\beta_1\bar x\):
+      <div class="mathblock">\[\bar y-\hat\beta_0-\hat\beta_1\bar x=0\quad\Longrightarrow\quad\boxed{\hat\beta_0=\bar y-\hat\beta_1\bar x}\]</div></div></li>
+    <li><div><strong>Divida (8) por \(-2\)</strong> e substitua \(\hat\beta_0\) pelo que acabou de achar:
+      <div class="mathblock">\[\sum x_i\big[y_i-(\bar y-\hat\beta_1\bar x)-\hat\beta_1x_i\big]=0\;\Longrightarrow\;\sum x_i(y_i-\bar y)=\hat\beta_1\sum x_i(x_i-\bar x)\]</div></div></li>
+    <li><div><strong>Use a identidade P4 da Aula 2:</strong> \(\sum x_i(y_i-\bar y)=\sum(x_i-\bar x)(y_i-\bar y)\) e \(\sum x_i(x_i-\bar x)=\sum(x_i-\bar x)^2\). Isolando:
+      <div class="mathblock">\[\boxed{\hat\beta_1=\frac{\sum_{i=1}^{n}(x_i-\bar x)(y_i-\bar y)}{\sum_{i=1}^{n}(x_i-\bar x)^2}}\quad\text{desde que}\quad\sum_{i=1}^{n}(x_i-\bar x)^2&gt;0\]</div></div></li>
+  </ol>
+  <div class="box def"><span class="lbl">O que cada peça é</span>
+    <p>O numerador é proporcional à covariância amostral entre x e y; o denominador, à variância amostral de x. Então \(\hat\beta_1=\widehat{Cov}(X,Y)/\widehat{Var}(X)\). O divisor (n ou n − 1) se cancela na razão. Como \(\widehat{Var}(X)&gt;0\), o sinal de \(\hat\beta_1\) é o sinal da correlação amostral.</p>
+    <p><strong>Hipótese essencial:</strong> a variável explicativa <em>não pode ser constante</em>. Sem variação em x, o denominador é zero.</p>
+  </div>
+  <div class="box prova"><span class="lbl">Cai na prova</span><p>A Lista 1, Q40, pede exatamente esta derivação: “escreva as CPOs, iguale a zero e derive \(\hat\beta_0\) e \(\hat\beta_1\)”. Treine os 4 passos até conseguir fazer sem olhar.</p></div>
+
+  <h3>6. Exemplo numérico: os 5 indivíduos</h3>
+  <p><strong>Médias:</strong> \(\bar x=\frac{8+10+12+14+16}{5}=\frac{60}{5}=12\) e \(\bar y=\frac{10+12+15+15+20}{5}=\frac{72}{5}=14{,}4\).</p>
+  <div class="tbl"><table>
+    <thead><tr><th>i</th><th class="r">\(x_i-\bar x\)</th><th class="r">\(y_i-\bar y\)</th><th class="r">\((x_i-\bar x)(y_i-\bar y)\)</th><th class="r">\((x_i-\bar x)^2\)</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td class="r">−4</td><td class="r">−4,4</td><td class="r">17,6</td><td class="r">16</td></tr>
+      <tr><td>2</td><td class="r">−2</td><td class="r">−2,4</td><td class="r">4,8</td><td class="r">4</td></tr>
+      <tr><td>3</td><td class="r">0</td><td class="r">0,6</td><td class="r">0</td><td class="r">0</td></tr>
+      <tr><td>4</td><td class="r">2</td><td class="r">0,6</td><td class="r">1,2</td><td class="r">4</td></tr>
+      <tr><td>5</td><td class="r">4</td><td class="r">5,6</td><td class="r">22,4</td><td class="r">16</td></tr>
+      <tr class="sum"><td>Soma</td><td class="r">0</td><td class="r">—</td><td class="r">46</td><td class="r">40</td></tr>
+    </tbody>
+  </table></div>
+  <div class="mathblock">\[\hat\beta_1=\frac{46}{40}=1{,}15,\qquad \hat\beta_0=14{,}4-1{,}15\times12=0{,}6,\qquad \widehat{salario}=0{,}6+1{,}15\times anosestudo\]</div>
+  <figure><div class="scroll">FIG:a3_exemplo</div>
+    <figcaption>Os 5 pontos, a reta de MQO e os resíduos (tracejado vermelho). O losango amarelo é o ponto das médias (12; 14,4), por onde a reta sempre passa.</figcaption></figure>
+  <p><strong>Interpretação:</strong> na amostra, cada ano adicional de estudo está associado a R$ 1,15 a mais no salário-hora ajustado pela reta. O intercepto 0,6 seria o salário ajustado para 0 anos de estudo; como nenhuma observação chega perto disso, é só um ajuste matemático para posicionar a reta.</p>
+  <p><strong>Graus de liberdade:</strong> se dividirmos numerador e denominador por n − 1 = 4, temos \(\frac{46/4}{40/4}=\frac{11{,}5}{10}=1{,}15\). O fator \(\frac{1}{n-1}\) aparece nos dois e se cancela.</p>
+  <details class="sol"><summary>Continuação do exemplo: ajustados, resíduos, SQT, SQE, SQR e \(R^2\)</summary><div class="in">
+    <p>Aplicando as fórmulas da aula ao mesmo exemplo. Estes números são usados na Aula 5 (erro-padrão) e na Aula 6 (teste t).</p>
+    <div class="tbl"><table>
+      <thead><tr><th>i</th><th class="r">\(x_i\)</th><th class="r">\(y_i\)</th><th class="r">\(\hat y_i=0{,}6+1{,}15x_i\)</th><th class="r">\(\hat u_i\)</th><th class="r">\(x_i\hat u_i\)</th><th class="r">\(\hat u_i^2\)</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td class="r">8</td><td class="r">10</td><td class="r">9,8</td><td class="r">0,2</td><td class="r">1,6</td><td class="r">0,04</td></tr>
+        <tr><td>2</td><td class="r">10</td><td class="r">12</td><td class="r">12,1</td><td class="r">−0,1</td><td class="r">−1,0</td><td class="r">0,01</td></tr>
+        <tr><td>3</td><td class="r">12</td><td class="r">15</td><td class="r">14,4</td><td class="r">0,6</td><td class="r">7,2</td><td class="r">0,36</td></tr>
+        <tr><td>4</td><td class="r">14</td><td class="r">15</td><td class="r">16,7</td><td class="r">−1,7</td><td class="r">−23,8</td><td class="r">2,89</td></tr>
+        <tr><td>5</td><td class="r">16</td><td class="r">20</td><td class="r">19,0</td><td class="r">1,0</td><td class="r">16,0</td><td class="r">1,00</td></tr>
+        <tr class="sum"><td>Soma</td><td></td><td></td><td class="r">72</td><td class="r">0</td><td class="r">0</td><td class="r">4,30</td></tr>
+      </tbody>
+    </table></div>
+    <p>\(SQT=\sum(y_i-\bar y)^2=19{,}36+5{,}76+0{,}36+0{,}36+31{,}36=57{,}2\). \(SQR=4{,}30\). \(SQE=57{,}2-4{,}3=52{,}9\). \(R^2=52{,}9/57{,}2\approx0{,}925\).</p>
+    <p>\(\hat\sigma^2=SQR/(n-2)=4{,}30/3\approx1{,}433\).</p>
+  </div></details>
+
+  <h3>7. Interpretando os coeficientes</h3>
+  <ul>
+    <li><strong>\(\hat\beta_0\)</strong> é o valor ajustado de y quando x = 0. Em \(\widehat{salhora}=-0{,}9+0{,}5\cdot anosestudo\), o salário ajustado para 0 anos é negativo. Isso não faz sentido econômico: provavelmente não havia ninguém com 0 anos de estudo na amostra, e o intercepto só posiciona a altura da reta.</li>
+    <li><strong>\(\hat\beta_1\)</strong> é a variação no valor ajustado de y quando x aumenta 1 unidade. No mesmo exemplo, 12 anos de estudo têm salário-hora ajustado R$ 0,50 maior que 11 anos.</li>
+    <li>\(\hat\beta_1&gt;0\): y e x se movem na mesma direção. \(\hat\beta_1\lt0\): direções opostas. \(\hat\beta_1=0\): sem associação linear na amostra. A magnitude não se compara entre regressões com variáveis em escalas diferentes.</li>
+  </ul>
+  <p>Na prática em R com a base <code>wage1</code> (526 trabalhadores): \(\widehat{wage}=-0{,}905+0{,}541\,educ\), com \(R^2\approx0{,}165\). Cada ano de educação está associado a cerca de US$ 0,54 a mais por hora. É uma associação: a regressão simples não controla experiência, habilidade, ocupação ou região.</p>
+
+  <h3>8. FRA × FRP</h3>
+  <p>Depois de estimar, obtemos a <strong>função de regressão amostral (FRA)</strong> \(\hat y_i=\hat\beta_0+\hat\beta_1x_i\), que estima a <strong>FRP</strong>. A FRP é sempre a mesma, mas desconhecida; a FRA muda de amostra para amostra. \(\hat y_i\) é o <em>valor ajustado</em>; “previsão” fica reservado para valores de Y em observações novas.</p>
+
+  <h3>9. Propriedades algébricas do MQO</h3>
+  <p>Atenção: são <strong>resultados matemáticos</strong>, que valem em qualquer amostra. Não são hipóteses.</p>
+  <ol class="steps">
+    <li><div><strong>Com intercepto, os resíduos somam zero:</strong> \(\sum\hat u_i=0\). É a própria CPO (7). Dividindo por n, a média dos resíduos é zero. No exemplo: \(0{,}2-0{,}1+0{,}6-1{,}7+1{,}0=0\).</div></li>
+    <li><div><strong>O regressor e os resíduos são ortogonais:</strong> \(\sum x_i\hat u_i=0\). É a CPO (8). Como a média de \(\hat u\) é zero, isso implica covariância amostral zero entre \(x_i\) e \(\hat u_i\). No exemplo: \(1{,}6-1{,}0+7{,}2-23{,}8+16=0\).</div></li>
+    <li><div><strong>A reta passa por \((\bar x,\bar y)\)</strong>, e a média dos valores ajustados é \(\bar y\). As propriedades 1 e 2 implicam \(\widehat{Cov}(\hat Y,\hat U)=0\).</div></li>
+  </ol>
+  <div class="box trap"><span class="lbl">Pegadinha</span>
+    <p><strong>Ortogonalidade não é exogeneidade.</strong> \(\sum x_i\hat u_i=0\) vale por construção, mesmo quando a condição populacional \(E[XU]=0\) é falsa. Do mesmo jeito, \(\sum\hat u_i=0\) é mecânico e não prova nada sobre \(E[U]\). Resíduo \(\hat u_i\) e erro \(u_i\) são coisas diferentes (Lista 1, Q32).</p>
+  </div>
+
+  <h3>10. Decomposição da variação: SQT = SQE + SQR</h3>
+  <div class="mathblock">\[SQT\equiv\sum_{i=1}^{n}(y_i-\bar y)^2,\qquad SQE\equiv\sum_{i=1}^{n}(\hat y_i-\bar y)^2,\qquad SQR\equiv\sum_{i=1}^{n}\hat u_i^2\]</div>
+  <p>Comece por \(y_i-\bar y=(\hat y_i-\bar y)+\hat u_i\). Elevando ao quadrado e somando:</p>
+  <div class="mathblock">\[SQT=SQE+SQR+2\underbrace{\sum_{i=1}^{n}(\hat y_i-\bar y)\hat u_i}_{=0}\quad\Longrightarrow\quad SQT=SQE+SQR\]</div>
+  <p>O termo cruzado some pela ortogonalidade entre valores ajustados e resíduos. Dividindo SQT por n − 1 obtemos a variância amostral de Y.</p>
+
+  <h3>11. A variância do erro usa n − 2</h3>
+  <div class="mathblock">\[\hat\sigma^2=\frac{SQR}{n-2}\]</div>
+  <p>É o estimador não viesado usual de \(\sigma^2\) sob homocedasticidade. Os n − 2 graus de liberdade refletem as <strong>duas restrições impostas pelas CPOs</strong> (estimamos dois parâmetros). A prova está na Aula 5.</p>
+
+  <h3>12. \(R^2\): qualidade do ajuste</h3>
+  <div class="mathblock">\[1=\frac{SQE}{SQT}+\frac{SQR}{SQT}\quad\Longrightarrow\quad R^2=\frac{SQE}{SQT}=1-\frac{SQR}{SQT}\]</div>
+  <p>É a fração da variação amostral de y contabilizada pelos valores ajustados. Com intercepto, \(0\le R^2\le1\). Exemplo: \(\widehat{salario}=963{,}191+18{,}501\cdot roe\), n = 209, \(R^2=0{,}0132\). Um ponto percentual a mais de retorno sobre o patrimônio está associado a US$ 18.501 a mais no salário anual ajustado, mas a reta contabiliza só 1,3% da variação dos salários dos executivos.</p>
+  <div class="box trap"><span class="lbl">Cuidados com o \(R^2\)</span>
+    <ul>
+      <li>\(R^2\) baixo não torna o modelo necessariamente ruim.</li>
+      <li>“Variação explicada” quer dizer ajustada estatisticamente, <strong>não explicada causalmente</strong>.</li>
+      <li>\(R^2\) alto não garante interpretação causal de \(\hat\beta_1\) (Lista 1, Q35).</li>
+      <li>Para previsão, o \(R^2\) amostral é só um diagnóstico inicial.</li>
+    </ul>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>O MQO entrega</th><th>O MQO não entrega sozinho</th></tr></thead>
+    <tbody><tr>
+      <td>A reta que minimiza a soma dos resíduos ao quadrado; uma descrição da associação linear na amostra; valores ajustados, resíduos e uma medida de ajuste.</td>
+      <td>Causalidade; validade fora da população estudada; garantia de boa previsão fora da amostra.</td>
+    </tr></tbody>
+  </table></div>
+
+  <h3>13. A inclinação como soma ponderada dos \(y_i\)</h3>
+  <p>Esta forma, da prática em R, é a porta de entrada da Aula 5.</p>
+  <div class="mathblock">\[\hat\beta_1=\sum_{i}\omega_iy_i,\qquad \omega_i=\frac{x_i-\bar x}{\sum_j(x_j-\bar x)^2}\]</div>
+  <p>O termo com \(\bar y\) some porque \(\sum\omega_i=0\). Observações com \(x_i&gt;\bar x\) recebem peso positivo; abaixo da média, negativo; em \(x_i=\bar x\), zero. Quanto mais longe da média, maior o peso. Se x varia pouco, o denominador é pequeno e a inclinação fica sensível aos valores de y.</p>
+
+  <div class="quiz" data-answer="a">
+    <div class="qh">Lista 1 · Questão 31</div>
+    <ol class="afirm">
+      <li>I. Sob \(E(U\mid X)=0\), temos \(E(Y\mid X)=\beta_0+\beta_1X\).</li>
+      <li>II. \(E(U\mid X)=0\) implica que a variância de U não depende de X.</li>
+      <li>III. \(E(U\mid X)=0\) implica que U e X são independentes.</li>
+    </ol>
+    <div class="opts"><button data-k="a">(A) somente I</button><button data-k="b">(B) somente I e II</button><button data-k="c">(C) somente I e III</button><button data-k="d">(D) somente II e III</button><button data-k="e">(E) I, II e III</button></div>
+    <div class="fb" hidden>Só I. A média condicional zero restringe a <em>média</em>, não a variância (isso é homocedasticidade). Independência é mais forte que média condicional zero.</div>
+  </div>
+  <div class="quiz" data-answer="c">
+    <div class="qh">Lista 1 · Questão 32</div>
+    <ol class="afirm">
+      <li>I. O MQO escolhe \(\hat\beta_0,\hat\beta_1\) que minimizam a soma dos quadrados dos resíduos.</li>
+      <li>II. O resíduo \(\hat u_i\) e o erro \(u_i\) são a mesma quantidade com nomes diferentes.</li>
+      <li>III. Minimizar a soma dos desvios absolutos geralmente produz coeficientes diferentes dos do MQO.</li>
+    </ol>
+    <div class="opts"><button data-k="a">(A) somente I</button><button data-k="b">(B) somente I e II</button><button data-k="c">(C) somente I e III</button><button data-k="d">(D) somente II e III</button><button data-k="e">(E) I, II e III</button></div>
+    <div class="fb" hidden>I e III. O erro é populacional e não observado; o resíduo é calculado depois da estimação e é uma estimativa do erro.</div>
+  </div>
+  <div class="quiz" data-answer="e">
+    <div class="qh">Lista 1 · Questão 33</div>
+    <ol class="afirm">
+      <li>I. Com intercepto, \(\sum\hat u_i=0\).</li>
+      <li>II. Na regressão simples, \(\sum x_i\hat u_i=0\).</li>
+      <li>III. A média dos valores ajustados é igual a \(\bar y\).</li>
+    </ol>
+    <div class="opts"><button data-k="a">(A) somente I</button><button data-k="b">(B) somente I e II</button><button data-k="c">(C) somente I e III</button><button data-k="d">(D) somente II e III</button><button data-k="e">(E) I, II e III</button></div>
+    <div class="fb" hidden>Todas: as duas primeiras são as CPOs; a terceira sai de \(y_i=\hat y_i+\hat u_i\) com média dos resíduos zero.</div>
+  </div>
+  <div class="quiz" data-answer="b">
+    <div class="qh">Lista 1 · Questão 34</div>
+    <ol class="afirm">
+      <li>I. A inclinação do MQO é a covariância amostral entre X e Y dividida pela variância amostral de X.</li>
+      <li>II. O sinal de \(\hat\beta_1\) coincide sempre com o sinal da correlação amostral.</li>
+      <li>III. O intercepto \(\hat\beta_0\) sempre representa uma quantidade economicamente interpretável.</li>
+    </ol>
+    <div class="opts"><button data-k="a">(A) somente I</button><button data-k="b">(B) somente I e II</button><button data-k="c">(C) somente I e III</button><button data-k="d">(D) somente II e III</button><button data-k="e">(E) I, II e III</button></div>
+    <div class="fb" hidden>I e II. O intercepto só tem interpretação útil quando x = 0 pertence ao domínio relevante.</div>
+  </div>
+  <div class="quiz" data-answer="d">
+    <div class="qh">Lista 1 · Questão 35</div>
+    <ol class="afirm">
+      <li>I. Um \(R^2\) próximo de 1 garante que \(\hat\beta_1\) tenha interpretação causal.</li>
+      <li>II. Com intercepto, SQT = SQE + SQR.</li>
+      <li>III. \(R^2=1-SQR/SQT\) mede a proporção da variação de Y explicada linearmente por X.</li>
+    </ol>
+    <div class="opts"><button data-k="a">(A) somente I</button><button data-k="b">(B) somente I e II</button><button data-k="c">(C) somente I e III</button><button data-k="d">(D) somente II e III</button><button data-k="e">(E) I, II e III</button></div>
+    <div class="fb" hidden>II e III. \(R^2\) alto indica bom ajuste linear na amostra, não identificação causal.</div>
+  </div>
+  <div class="done-row"><button class="btn done-btn" data-done="aula3" aria-pressed="false">Marcar como concluído</button></div>
+</section>
+
+<!-- ================= AULA 4 ================= -->
+<section class="mod" id="aula4" data-title="Aula 4">
+  <div class="eyebrow">Aula 4 · Unidades de medida e forma funcional</div>
+  <h2>Unidades, logaritmos e derivadas</h2>
+  <p>Duas mudanças parecem iguais e não são. <strong>Mudança de escala</strong> altera a unidade (\(salario\to salario/1000\)) e mantém o conteúdo econômico. <strong>Transformação funcional</strong> altera a forma da relação (\(salario\to\ln(salario)\)) e muda a interpretação dos coeficientes.</p>
+
+  <h3>1. Mudança de escala</h3>
+  <p>Com renda em milhares de reais, \(\widehat{renda}_{mil}=25+3\,educ\): um ano a mais de educação está associado a R$ 3 mil a mais. Em reais, a mesma relação é \(\widehat{renda}_{reais}=25.000+3.000\,educ\). Os números mudaram; a relação, não.</p>
+  <div class="box def"><span class="lbl">Regras</span>
+    <ul>
+      <li>Multiplicar <strong>Y por a</strong> multiplica \(\hat\beta_0\), \(\hat\beta_1\) e os resíduos por a.</li>
+      <li>Multiplicar <strong>X por b</strong> divide a inclinação por b, sem alterar os valores ajustados.</li>
+      <li>Mudanças de unidade <strong>não alteram o \(R^2\)</strong> nem o conteúdo econômico.</li>
+      <li>Somar constantes altera o intercepto, mas não a inclinação.</li>
+    </ul>
+  </div>
+
+  <h3>2. Exercício-exemplo do apêndice (resolvido)</h3>
+  <p>Modelo \(renda=\beta_0+\beta_1educ+u\), com educ = (4, 5, 6) e renda em R$ mil = (36, 42, 42).</p>
+  <ol class="steps">
+    <li><div><strong>Médias e variâncias.</strong> \(\overline{educ}=5\), \(\overline{renda}=40\). Desvios de educ: −1, 0, 1, logo \(SQT_{educ}=2\) e \(Var(educ)=2/2=1\). Desvios de renda: −4, 2, 2, logo \(SQT_{renda}=24\) e \(Var(renda)=24/2=12\).</div></li>
+    <li><div><strong>Covariância.</strong> \((-1)(-4)+(0)(2)+(1)(2)=6\), e \(Cov=6/2=3\).</div></li>
+    <li><div><strong>Coeficientes.</strong> \(\hat\beta_1=3/1=3\) e \(\hat\beta_0=40-3\times5=25\). Então \(\widehat{renda}=25+3\,educ\).</div></li>
+    <li><div><strong>\(R^2\).</strong> Ajustados 37, 40, 43; resíduos −1, 2, −1 (somam 0). SQT = 24, SQE = 9 + 0 + 9 = 18, SQR = 1 + 4 + 1 = 6, \(R^2=18/24=0{,}75\).</div></li>
+    <li><div><strong>Renda dobrada</strong> (72, 84, 84): Cov = 6, \(\hat\beta_1'=6\), \(\hat\beta_0'=80-6\times5=50\), \(R^2=72/96=0{,}75\). Os dois coeficientes dobraram; o \(R^2\) não mudou.</div></li>
+    <li><div><strong>Educação dobrada</strong> (8, 10, 12): Var = 4, Cov = 6, \(\hat\beta_1'=1{,}5\), \(\hat\beta_0'=40-1{,}5\times10=25\), \(R^2=0{,}75\). A inclinação caiu pela metade, o intercepto ficou igual.</div></li>
+  </ol>
+  <div class="box def"><span class="lbl">Fórmulas gerais</span>
+    <div class="mathblock">\[\tilde y=by\Rightarrow\tilde\beta_1=b\hat\beta_1,\ \tilde\beta_0=b\hat\beta_0\qquad \tilde x=cx\Rightarrow\tilde\beta_1=\tfrac1c\hat\beta_1,\ \tilde\beta_0=\hat\beta_0\]</div>
+    <div class="mathblock">\[\tilde y=a+by,\ \tilde x=d+cx\ \Longrightarrow\ \tilde\beta_1=\frac bc\hat\beta_1,\qquad \tilde\beta_0=a+b\hat\beta_0-\frac bc\hat\beta_1d\]</div>
+    <p>Exemplos: reais → milhares (\(\tilde y=y/1000\)); metros → centímetros (\(\tilde x=100x\)); Celsius → Fahrenheit (\(\tilde x=32+1{,}8x\)). Ajustados e resíduos mudam de escala, mas o \(R^2\) fica igual.</p>
+  </div>
+
+  <h3>3. Por que usar logaritmos</h3>
+  <p>Renda, vendas e preços costumam ter cauda longa à direita, e muitas perguntas são em percentual (“aumentar o salário em 10%”). O log costuma reduzir a assimetria e pode deixar a relação aproximadamente linear, mas isso deve ser verificado nos dados.</p>
+  <div class="mathblock">\[\Delta\ln x\approx\frac{\Delta x}{x}\qquad\text{(mudança proporcional; }\times100=\text{ percentual)}\]</div>
+  <p>Exato: se x cresce g em proporção, \(\Delta\ln x=\ln(1+g)\). Para g pequeno, \(\ln(1+g)\approx g\).</p>
+
+  <h3>4. As quatro formas funcionais</h3>
+  <figure><div class="scroll">FIG:formas</div><figcaption>Cada forma captura uma curvatura diferente. Vale olhar o formato dos dados antes de escolher.</figcaption></figure>
+  <div class="tbl"><table>
+    <thead><tr><th>Modelo</th><th>Regressão</th><th>Derivada</th><th>Interpretação aproximada</th><th>Exata</th></tr></thead>
+    <tbody>
+      <tr><td>Nível–nível</td><td>\(E[Y\mid x]=\beta_0+\beta_1x\)</td><td>\(\beta_1\)</td><td>+1 em x ⇒ \(\beta_1\) unidades em Y</td><td>igual</td></tr>
+      <tr><td>Log–nível</td><td>\(E[\ln Y\mid x]=\beta_0+\beta_1x\)</td><td>\(\beta_1\)</td><td>+1 em x ⇒ \(100\beta_1\%\) em Y</td><td>\(100(e^{\beta_1\Delta x}-1)\%\)</td></tr>
+      <tr><td>Nível–log</td><td>\(E[Y\mid x]=\beta_0+\beta_1\ln x\)</td><td>\(\beta_1/x\)</td><td>+1% em x ⇒ \(\beta_1/100\) unidades em Y</td><td>\(\beta_1\ln(1+g)\)</td></tr>
+      <tr><td>Log–log</td><td>\(E[\ln Y\mid x]=\beta_0+\beta_1\ln x\)</td><td>\(\beta_1\)</td><td>+1% em x ⇒ \(\beta_1\%\) em Y (elasticidade)</td><td>\(100[(1+g)^{\beta_1}-1]\%\)</td></tr>
+    </tbody>
+  </table></div>
+  <p>No nível–log, a derivada \(\beta_1/x\) diz que o mesmo aumento absoluto em x está associado a mudanças menores em Y quando x é maior.</p>
+
+  <h3>5. Exemplo: os 5 indivíduos em log</h3>
+  <p>Mesmos dados, com \(\ln(y)\) no lugar de y: ln(10) = 2,303, ln(12) = 2,485, ln(15) = 2,708, ln(15) = 2,708, ln(20) = 2,996. Pelo mesmo procedimento de MQO:</p>
+  <div class="mathblock">\[\widehat{\ln(salario)}=1{,}674+0{,}080\times anosestudo\]</div>
+  <p><strong>Aproximação:</strong> \(100\times0{,}080=8\%\) por ano de estudo. <strong>Exato:</strong> \(100(e^{0{,}080}-1)\approx8{,}33\%\). No modelo nível–nível eram R$ 1,15 por ano: uma mudança em unidades, não em percentual.</p>
+  <div class="box trap"><span class="lbl">Cuidados</span>
+    <ul>
+      <li>Log só existe para valores <strong>estritamente positivos</strong>. Lucro, que pode ser negativo, não entra em log direto.</li>
+      <li>O \(R^2\) de uma regressão com Y <strong>não se compara</strong> com o de uma regressão com \(\ln Y\).</li>
+      <li>Voltar do log para o nível exige cuidado: \(E[Y\mid X]\neq\exp(E[\ln Y\mid X])\) em geral. Sob erros normais e homocedásticos, \(E[Y\mid X=x]=\exp(\beta_0+\beta_1x+\sigma^2/2)\).</li>
+    </ul>
+  </div>
+
+  <h3>6. Linear nos parâmetros × linear nas variáveis</h3>
+  <p>Um modelo é <strong>linear nos parâmetros</strong> se é uma soma de termos, cada um sendo um parâmetro multiplicando uma função qualquer dos dados, sem parâmetros elevados a potências, multiplicados entre si ou dentro de funções não lineares. É isso que permite usar as fórmulas do MQO. “Linear nas variáveis” é só sobre o formato da curva no gráfico.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Equação</th><th>Linear nos parâmetros?</th></tr></thead>
+    <tbody>
+      <tr><td>\(y=\beta_0+\beta_1x+u\)</td><td><span class="tag ok">Sim</span> o caso mais simples</td></tr>
+      <tr><td>\(y=\beta_0+\beta_1x^2+u\)</td><td><span class="tag ok">Sim</span> \(x^2\) é só uma variável transformada</td></tr>
+      <tr><td>\(y=\beta_0+\beta_1\frac1x+u\)</td><td><span class="tag ok">Sim</span> \(1/x\) é a variável transformada</td></tr>
+      <tr><td>\(y=\beta_0+\beta_1^2x+u\)</td><td><span class="tag warn">Não</span> reparametrizável com \(\gamma=\beta_1^2\ge0\); o sinal de \(\beta_1\) não é identificado</td></tr>
+      <tr><td>\(\ln y=\beta_0+\beta_1\ln x+u\)</td><td><span class="tag ok">Sim</span> transformações nas variáveis</td></tr>
+      <tr><td>\(y=\frac{1}{\beta_0+\beta_1x}+u\)</td><td><span class="tag warn">Não</span> parâmetros dentro de \(1/(\cdot)\)</td></tr>
+      <tr><td>\(y=\beta_0e^{\beta_1x}+u\)</td><td><span class="tag warn">Não</span> \(\beta_1\) no expoente</td></tr>
+      <tr><td>\(y=\beta_0+\beta_1x_1+\beta_2x_1x_2+u\)</td><td><span class="tag ok">Sim</span> a interação é só mais uma variável</td></tr>
+      <tr><td>\(Y=\beta_0+\sqrt{\beta_1}X+U\)</td><td><span class="tag warn">Não</span> (Lista 1, Q49)</td></tr>
+    </tbody>
+  </table></div>
+  <p>Modelos não lineares nos parâmetros podem minimizar \(\sum[y_i-f(x_i,\beta)]^2\), mas exigem métodos numéricos (mínimos quadrados não lineares).</p>
+
+  <h3 id="derivadas">7. Derivadas do zero (para os Ex. 4 e 5 da Lista 2)</h3>
+  <p>A <strong>derivada</strong> de uma função num ponto é a inclinação da curva naquele ponto. Em econometria ela é o <strong>efeito marginal</strong>: quanto a média de Y muda para um aumento pequeno de X. Numa reta a derivada é sempre \(\beta_1\); numa curva, ela muda de ponto para ponto.</p>
+  <div class="lousa">
+    <div class="who">Na lousa do professor (mesma aula, 22:09)</div>
+    <div class="hand">
+      <span class="l">f(x) = xⁿ  →  f′(x) = n · xⁿ⁻¹</span>
+      <span class="l">f(x) = √x = x^(1/2)  →  f′(x) = ½ · x^(1/2 − 1) = ½ · x^(−1/2) = ½ · 1/√x</span>
+    </div>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>Função</th><th>Derivada</th><th>Por quê</th></tr></thead>
+    <tbody>
+      <tr><td>constante, ex.: 40</td><td>0</td><td>Não muda, então não inclina</td></tr>
+      <tr><td>\(x\) (= \(x^1\))</td><td>1</td><td>Regra da potência: \(1\cdot x^0=1\)</td></tr>
+      <tr><td>\(12x\)</td><td>12</td><td>A constante que multiplica “sai”: \(12\cdot1\)</td></tr>
+      <tr><td>\(x^2\)</td><td>\(2x\)</td><td>\(2\cdot x^{2-1}\)</td></tr>
+      <tr><td>\(-x^2\)</td><td>\(-2x\)</td><td>O sinal vem junto</td></tr>
+      <tr><td>\(\sqrt x=x^{1/2}\)</td><td>\(\dfrac{1}{2\sqrt x}\)</td><td>\(\tfrac12x^{-1/2}\), como na lousa</td></tr>
+      <tr><td>\(6\sqrt x\)</td><td>\(\dfrac{3}{\sqrt x}\)</td><td>\(6\cdot\tfrac{1}{2\sqrt x}\)</td></tr>
+      <tr><td>\(\ln x\)</td><td>\(\dfrac1x\)</td><td>Usada no nível–log: \(d(\beta_1\ln x)/dx=\beta_1/x\)</td></tr>
+      <tr><td>soma \(f+g\)</td><td>\(f'+g'\)</td><td>Derive termo a termo</td></tr>
+    </tbody>
+  </table></div>
+  <p><strong>Exemplo da lousa:</strong> \(lucro=40+12Q-Q^2\). Derivando termo a termo: \(0+1\cdot12Q^0-2Q^1=12-2Q\).</p>
+  <div class="box def"><span class="lbl">Segunda derivada e ponto de retorno</span>
+    <ul>
+      <li>Derive de novo: a <strong>segunda derivada</strong> diz como a inclinação muda. \(12-2Q\) derivado dá \(-2\).</li>
+      <li>Segunda derivada <strong>negativa ⇒ côncava</strong> (“boca para baixo”, efeito marginal decrescente, tem máximo). <strong>Positiva ⇒ convexa</strong>.</li>
+      <li><strong>Ponto de retorno:</strong> iguale a primeira derivada a zero. \(12-2Q=0\Rightarrow Q=6\).</li>
+    </ul>
+  </div>
+
+  <h3>8. Termo quadrático</h3>
+  <div class="mathblock">\[E(Y\mid X)=\beta_0+\beta_1X+\beta_2X^2\quad\Longrightarrow\quad\frac{\partial E(Y\mid X)}{\partial X}=\beta_1+2\beta_2X,\qquad X^*=-\frac{\beta_1}{2\beta_2}\]</div>
+  <ul>
+    <li>\(\beta_2\lt0\): o efeito marginal diminui com X. \(\beta_2&gt;0\): aumenta.</li>
+    <li>\(\beta_1\) <strong>não</strong> é o efeito para todos: é o efeito marginal em X = 0.</li>
+    <li>O ponto de retorno só deve ser interpretado se pertencer (ou estiver perto) do intervalo observado dos dados.</li>
+  </ul>
+  <p>Exemplo (Lista 1, Q55): \(\hat Y=6+5X-0{,}4X^2\). Efeito marginal \(5-0{,}8X\): em X = 0, 2, 5, 6, 8 vale 5; 3,4; 1; 0,2; −1,4. Ponto de retorno \(5/0{,}8=6{,}25\). \(\hat Y(5)=21\), \(\hat Y(6)=21{,}6\), \(\hat Y(7)=21{,}4\): o máximo fica entre 6 e 7.</p>
+
+  <h3>9. Interações</h3>
+  <div class="mathblock">\[E(Y\mid X_1,X_2)=\beta_0+\beta_1X_1+\beta_2X_2+\beta_3X_1X_2\quad\Longrightarrow\quad\frac{\partial E}{\partial X_1}=\beta_1+\beta_3X_2\]</div>
+  <p>\(\beta_3\) mede quanto o efeito marginal de \(X_1\) muda quando \(X_2\) aumenta uma unidade. Por padrão, mantenha \(X_1\) e \(X_2\) no modelo junto com a interação.</p>
+
+  <div class="quiz" data-answer="e">
+    <div class="qh">Lista 1 · Questão 46</div>
+    <ol class="afirm">
+      <li>I. Aplicar log altera a forma funcional e a interpretação dos coeficientes.</li>
+      <li>II. Uma mudança de unidade não altera o conteúdo econômico da relação.</li>
+      <li>III. Uma mudança de unidade altera o valor numérico dos coeficientes.</li>
+    </ol>
+    <div class="opts"><button data-k="a">(A) somente I</button><button data-k="b">(B) somente I e II</button><button data-k="c">(C) somente I e III</button><button data-k="d">(D) somente II e III</button><button data-k="e">(E) I, II e III</button></div>
+    <div class="fb" hidden>Todas verdadeiras.</div>
+  </div>
+  <div class="quiz" data-answer="d">
+    <div class="qh">Lista 1 · Questão 47</div>
+    <ol class="afirm">
+      <li>I. No nível–nível, \(100\beta_1\) mede a variação percentual aproximada de Y por unidade de X.</li>
+      <li>II. No log–nível, \(100\beta_1\) é a variação percentual aproximada de Y por unidade adicional de X.</li>
+      <li>III. No nível–log, +1% em X está associado a cerca de \(\beta_1/100\) unidades em Y.</li>
+    </ol>
+    <div class="opts"><button data-k="a">(A) somente I</button><button data-k="b">(B) somente I e II</button><button data-k="c">(C) somente I e III</button><button data-k="d">(D) somente II e III</button><button data-k="e">(E) I, II e III</button></div>
+    <div class="fb" hidden>II e III. No nível–nível, \(\beta_1\) é variação em unidades, não em percentual.</div>
+  </div>
+  <div class="quiz" data-answer="a">
+    <div class="qh">Lista 1 · Questão 48</div>
+    <ol class="afirm">
+      <li>I. Usar \(\ln(X)\) exige que X assuma apenas valores positivos.</li>
+      <li>II. No log–log, \(\beta_1\) é variação de Y em unidades por unidade de X.</li>
+      <li>III. No log–log, a variação percentual exata é sempre \(\beta_1\) vezes a mudança percentual de X.</li>
+    </ol>
+    <div class="opts"><button data-k="a">(A) somente I</button><button data-k="b">(B) somente I e II</button><button data-k="c">(C) somente I e III</button><button data-k="d">(D) somente II e III</button><button data-k="e">(E) I, II e III</button></div>
+    <div class="fb" hidden>Só I. No log–log \(\beta_1\) é elasticidade, e a regra “\(\beta_1\) vezes” é aproximação; o exato é \(100[(1+g)^{\beta_1}-1]\%\).</div>
+  </div>
+  <div class="quiz" data-answer="c">
+    <div class="qh">Lista 1 · Questão 49</div>
+    <ol class="afirm">
+      <li>I. \(Y=\beta_0+\beta_1X^2+U\) é linear nos parâmetros.</li>
+      <li>II. \(Y=\beta_0+\sqrt{\beta_1}X+U\) é linear nos parâmetros.</li>
+      <li>III. \(\ln Y=\beta_0+\beta_1\ln X+U\) é linear nos parâmetros.</li>
+    </ol>
+    <div class="opts"><button data-k="a">(A) somente I</button><button data-k="b">(B) somente I e II</button><button data-k="c">(C) somente I e III</button><button data-k="d">(D) somente II e III</button><button data-k="e">(E) I, II e III</button></div>
+    <div class="fb" hidden>I e III. Em II o parâmetro está dentro de uma raiz.</div>
+  </div>
+  <div class="quiz" data-answer="b">
+    <div class="qh">Lista 1 · Questão 50</div>
+    <ol class="afirm">
+      <li>I. Em \(Y=\beta_0+\beta_1X+\beta_2X^2+U\), o efeito marginal de X é \(\beta_1+2\beta_2X\).</li>
+      <li>II. O ponto de retorno é \(-\beta_1/(2\beta_2)\), quando \(\beta_2\neq0\).</li>
+      <li>III. Se \(\beta_2&gt;0\), a função é côncava.</li>
+    </ol>
+    <div class="opts"><button data-k="a">(A) somente I</button><button data-k="b">(B) somente I e II</button><button data-k="c">(C) somente I e III</button><button data-k="d">(D) somente II e III</button><button data-k="e">(E) I, II e III</button></div>
+    <div class="fb" hidden>I e II. Com \(\beta_2&gt;0\) a segunda derivada \(2\beta_2\) é positiva: a função é <strong>convexa</strong>.</div>
+  </div>
+  <div class="done-row"><button class="btn done-btn" data-done="aula4" aria-pressed="false">Marcar como concluído</button></div>
+</section>

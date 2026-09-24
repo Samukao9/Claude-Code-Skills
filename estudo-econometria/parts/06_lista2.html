@@ -1,0 +1,276 @@
+
+<!-- ================= LISTA 2 (numérica) ================= -->
+<section class="mod" id="lista2" data-title="Lista 2">
+  <div class="eyebrow">Lista de exercícios numéricos · Aulas 1 a 4 <span class="tag hot">Ex. 1 e 4: prioridade máxima</span></div>
+  <h2>Lista 2: os 5 exercícios resolvidos</h2>
+  <p>Esta é a lista que o professor resolveu na lousa em 02/09 (as fotos mostram o Ex. 1 no projetor). Os Ex. 1 e 4 estão resolvidos em nível máximo de detalhe, com o que foi escrito na lousa, uma “resposta modelo” para a prova e os erros mais comuns. No fim há geradores que criam exercícios novos do mesmo tipo para você treinar.</p>
+
+  <!-- ---------- EX 1 ---------- -->
+  <div class="exq" id="ex1">
+    <div class="h"><b>Exercício 1: MQO a partir de correlação e desvios-padrão</b><span class="tag hot">★★★</span></div>
+    <p>Uma imobiliária estuda a relação entre a área de um apartamento e seu aluguel mensal. Modelo: \(aluguel_i=\beta_0+\beta_1area_i+u_i\), com aluguel em reais e área em m². Na amostra:</p>
+    <div class="given"><span>\(\overline{area}=60\)</span><span>\(\overline{aluguel}=2.000\)</span><span>\(s_{area}=10\)</span><span>\(s_{aluguel}=300\)</span><span>\(Corr(area,aluguel)=0{,}80\)</span></div>
+    <p class="small muted">Variância, covariância e correlação foram calculadas com o mesmo divisor.</p>
+    <ol type="a">
+      <li>Calcule \(Var(area)\) e \(Cov(area,aluguel)\). Use \(Corr(X,Y)=\dfrac{Cov(X,Y)}{s_Xs_Y}\).</li>
+      <li>Calcule \(\hat\beta_1\) e \(\hat\beta_0\) e escreva a função de regressão amostral.</li>
+      <li>Um apartamento de 70 m² tem aluguel observado de R$ 2.300. Calcule \(\widehat{aluguel}\) e o resíduo \(\hat u=aluguel-\widehat{aluguel}\). Interprete a inclinação nas unidades do problema.</li>
+    </ol>
+  </div>
+
+  <h3>Antes de fazer conta: a estratégia</h3>
+  <p>A Fórmula 1 na forma \(\hat\beta_1=\widehat{Cov}/\widehat{Var}\) pede covariância e variância. O enunciado <strong>não dá</strong> nenhuma das duas diretamente: dá <strong>desvios-padrão</strong> e <strong>correlação</strong>. Então o item (a) é só converter:</p>
+  <ul>
+    <li>desvio-padrão → variância: <strong>eleve ao quadrado</strong>;</li>
+    <li>correlação → covariância: <strong>isole Cov</strong> na fórmula da correlação.</li>
+  </ul>
+  <p>Depois, (b) é aplicar as duas fórmulas na ordem certa, e (c) é usar a reta.</p>
+
+  <h3>Item (a): variância e covariância</h3>
+  <ol class="steps">
+    <li><div><strong>Variância da área.</strong> O desvio-padrão é a raiz da variância, então a variância é o desvio-padrão ao quadrado:
+      <div class="mathblock">\[Var(area)=s_{area}^2=10^2=\mathbf{100}\]</div></div></li>
+    <li><div><strong>Covariância.</strong> A correlação é a covariância “padronizada” pelos desvios-padrão. Multiplique os dois lados por \(s_{area}s_{aluguel}\) para isolar a covariância:
+      <div class="mathblock">\[Corr=\frac{Cov}{s_{area}\,s_{aluguel}}\ \Longrightarrow\ Cov(area,aluguel)=Corr(area,aluguel)\cdot s_{area}\cdot s_{aluguel}=0{,}80\times10\times300=\mathbf{2.400}\]</div>
+      <p>O sinal positivo indica que apartamentos maiores tendem a ter aluguéis maiores na amostra.</p></div></li>
+  </ol>
+  <div class="lousa">
+    <div class="who">Na lousa (02/09)</div>
+    <div class="hand">
+      <span class="l">a) Vâr(área) = (S_área)² = 10² = 100</span>
+      <span class="l">Côv(área, aluguel) = Corr(área, aluguel) · S_área · S_aluguel</span>
+      <span class="l">= 0,8 · 10 · 300 = 2400</span>
+    </div>
+    <div class="note"><strong>Atenção a um lapso na foto:</strong> do lado direito da segunda linha o professor escreveu “Cov”, mas o certo é <strong>Corr</strong>. Se fosse Cov, a conta seria circular. A conta que ele fez (0,8 · 10 · 300) usa a correlação 0,8.</div>
+  </div>
+
+  <h3>Item (b): os coeficientes</h3>
+  <ol class="steps">
+    <li><div><strong>Primeiro \(\hat\beta_1\)</strong>, porque \(\hat\beta_0\) depende dele:
+      <div class="mathblock">\[\hat\beta_1=\frac{\widehat{Cov}(area,aluguel)}{\widehat{Var}(area)}=\frac{2.400}{100}=\mathbf{24}\]</div></div></li>
+    <li><div><strong>Depois \(\hat\beta_0\)</strong>, garantindo que a reta passe pelo ponto das médias:
+      <div class="mathblock">\[\hat\beta_0=\overline{aluguel}-\hat\beta_1\,\overline{area}=2.000-24\times60=2.000-1.440=\mathbf{560}\]</div></div></li>
+    <li><div><strong>Função de regressão amostral:</strong>
+      <div class="mathblock">\[\widehat{aluguel}=560+24\,area\]</div></div></li>
+  </ol>
+  <div class="lousa">
+    <div class="who">Na lousa (02/09)</div>
+    <div class="hand">
+      <span class="l">b) β̂₀ = 2000 − β̂₁ · 60 = 2000 − 24 · 60 = 560</span>
+      <span class="l">β̂₁ = Côv(área, aluguel) / Vâr(área) = 2400 / 100 = 24</span>
+      <span class="l">alugûel = 560 + 24 · área</span>
+    </div>
+    <div class="note">Ele escreveu β̂₀ em cima, mas precisou de β̂₁ = 24 para fechar a conta. Na prova, calcule β̂₁ primeiro.</div>
+  </div>
+  <p class="small"><strong>Conferência pelo atalho:</strong> \(\hat\beta_1=Corr\cdot\dfrac{s_{aluguel}}{s_{area}}=0{,}8\times\dfrac{300}{10}=24\). ✓ E a reta passa pelas médias: \(560+24\times60=2.000=\overline{aluguel}\). ✓</p>
+
+  <h3>Item (c): valor ajustado, resíduo e interpretação</h3>
+  <ol class="steps">
+    <li><div><strong>Valor ajustado</strong> para 70 m²:
+      <div class="mathblock">\[\widehat{aluguel}=560+24\times70=560+1.680=\mathbf{2.240}\]</div></div></li>
+    <li><div><strong>Resíduo</strong> = observado − ajustado:
+      <div class="mathblock">\[\hat u=2.300-2.240=\mathbf{60}\]</div></div></li>
+    <li><div><strong>Interpretação.</strong> Um metro quadrado adicional está associado a um aumento de <strong>R$ 24,00</strong> no aluguel mensal ajustado. O resíduo positivo informa que o aluguel observado desse apartamento está <strong>R$ 60,00 acima</strong> do valor ajustado pela regressão.</div></li>
+  </ol>
+  <figure><div class="scroll">FIG:aluguel</div>
+    <figcaption>A reta estimada. O ponto preto em 70 m² é o aluguel observado (2.300); o círculo azul na reta é o ajustado (2.240). A distância vertical entre eles é o resíduo, R$ 60.</figcaption></figure>
+
+  <div class="box ok"><span class="lbl">Resposta modelo (como escrever na prova)</span>
+    <p><strong>a)</strong> \(Var(area)=s_{area}^2=10^2=100\). Como \(Corr=\frac{Cov}{s_{area}s_{aluguel}}\), \(Cov=Corr\cdot s_{area}\cdot s_{aluguel}=0{,}80(10)(300)=2.400\). Covariância positiva: apartamentos maiores tendem a ter aluguéis maiores na amostra.</p>
+    <p><strong>b)</strong> \(\hat\beta_1=\frac{Cov(area,aluguel)}{Var(area)}=\frac{2.400}{100}=24\). \(\hat\beta_0=\overline{aluguel}-\hat\beta_1\overline{area}=2.000-24(60)=560\). FRA: \(\widehat{aluguel}=560+24\,area\).</p>
+    <p><strong>c)</strong> \(\widehat{aluguel}=560+24(70)=2.240\); \(\hat u=2.300-2.240=60\). Um m² adicional está associado a R$ 24,00 a mais no aluguel mensal ajustado; o aluguel desse apartamento está R$ 60,00 acima do ajustado.</p>
+  </div>
+  <div class="box trap"><span class="lbl">Erros que custam ponto</span>
+    <ul>
+      <li>Usar o desvio-padrão (10) no lugar da variância (100) no denominador.</li>
+      <li>Escrever \(Cov=Corr\times Var\) ou \(Cov=Corr/(s_xs_y)\). O certo é \(Corr\times s_x\times s_y\).</li>
+      <li>Tentar calcular \(\hat\beta_0\) antes de \(\hat\beta_1\).</li>
+      <li>Inverter o resíduo (\(2.240-2.300=-60\)). Resíduo é <strong>observado menos ajustado</strong>.</li>
+      <li>Interpretar como causa (“aumentar a área causa…”). Diga “está associado a”.</li>
+      <li>Esquecer as unidades: R$ por m², aluguel <em>mensal</em>.</li>
+    </ul>
+  </div>
+
+  <!-- ---------- EX 4 ---------- -->
+  <div class="exq" id="ex4">
+    <div class="h"><b>Exercício 4: efeito marginal em uma função quadrática</b><span class="tag hot">★★★</span></div>
+    <p>Uma empresa estimou \(\widehat{lucro}=40+12Q-Q^2\), com lucro em milhares de reais e Q em centenas de unidades produzidas.</p>
+    <ol type="a">
+      <li>Obtenha o efeito marginal \(\partial\widehat{lucro}/\partial Q\) e calcule seu valor para Q = 2, Q = 6 e Q = 8.</li>
+      <li>Obtenha a segunda derivada e determine se a função é côncava ou convexa. Encontre o ponto de retorno (Q com efeito marginal zero) e calcule o lucro ajustado nesse ponto.</li>
+      <li>Calcule \(\widehat{lucro}(3)-\widehat{lucro}(2)\) e \(\widehat{lucro}(7)-\widehat{lucro}(6)\). Compare cada mudança discreta com o efeito marginal no ponto inicial do intervalo.</li>
+    </ol>
+  </div>
+
+  <h3>Antes de fazer conta: a estratégia</h3>
+  <p>“Efeito marginal” = <strong>derivada</strong>. Se derivada ainda é novidade, leia antes a parte <a href="#derivadas">Derivadas do zero</a> da Aula 4 (5 minutos). A função tem três termos: derive cada um e some.</p>
+
+  <h3>Item (a): efeito marginal</h3>
+  <ol class="steps">
+    <li><div><strong>Derive termo a termo</strong> com a regra da potência \(\frac{d}{dQ}Q^n=nQ^{n-1}\):
+      <div class="tbl"><table>
+        <thead><tr><th>Termo</th><th>Derivada</th><th>Por quê</th></tr></thead>
+        <tbody>
+          <tr><td>40</td><td>0</td><td>Constante não varia</td></tr>
+          <tr><td>\(12Q=12Q^1\)</td><td>\(12\cdot1\cdot Q^0=12\)</td><td>\(Q^0=1\)</td></tr>
+          <tr><td>\(-Q^2\)</td><td>\(-2Q^1=-2Q\)</td><td>O expoente desce e diminui 1</td></tr>
+        </tbody>
+      </table></div>
+      <div class="mathblock">\[\frac{\partial\widehat{lucro}}{\partial Q}=12-2Q\]</div></div></li>
+    <li><div><strong>Substitua os pontos:</strong>
+      <div class="mathblock">\[Q=2:\ 12-2(2)=\mathbf{8}\qquad Q=6:\ 12-2(6)=\mathbf{0}\qquad Q=8:\ 12-2(8)=\mathbf{-4}\]</div></div></li>
+    <li><div><strong>Interprete:</strong> o termo quadrático faz a associação marginal variar com Q. Antes do ponto em que o efeito marginal zera, aumentos de produção estão associados a aumentos do lucro ajustado; depois dele, a reduções. Em Q = 2, uma centena de unidades a mais está associada, localmente, a cerca de R$ 8 mil a mais de lucro.</div></li>
+  </ol>
+  <div class="lousa">
+    <div class="who">Na lousa (02/09)</div>
+    <div class="hand">
+      <span class="l">a) f′(x) = 1 · 12Q⁰ − 2Q¹ = 12 − 2Q</span>
+      <span class="l">12 − 2·2 = 8</span>
+      <span class="l">12 − 2·6 = 0</span>
+      <span class="l">12 − 2·8 = −4</span>
+      <span class="l">lucrô(Q = 6) = 40 + 12·6 − 6² = 76</span>
+    </div>
+    <div class="note">Ao lado, o professor desenhou a parábola “de boca para baixo” com o topo tracejado em Q = 6.</div>
+  </div>
+
+  <h3>Item (b): curvatura e ponto de retorno</h3>
+  <ol class="steps">
+    <li><div><strong>Segunda derivada:</strong> derive \(12-2Q\) de novo:
+      <div class="mathblock">\[\frac{\partial^2\widehat{lucro}}{\partial Q^2}=-2\lt0\ \Longrightarrow\ \text{função }\mathbf{côncava}\]</div></div></li>
+    <li><div><strong>Ponto de retorno:</strong> iguale o efeito marginal a zero:
+      <div class="mathblock">\[12-2Q=0\ \Longrightarrow\ \mathbf{Q=6}\ \text{(600 unidades)}\]</div>
+      <p>Conferência pela fórmula da Aula 4: \(Q^*=-\beta_1/(2\beta_2)=-12/(2\times(-1))=6\). ✓</p></div></li>
+    <li><div><strong>Lucro nesse ponto.</strong> Como a função é côncava, Q = 6 é o <strong>máximo</strong>:
+      <div class="mathblock">\[\widehat{lucro}(6)=40+12(6)-6^2=40+72-36=\mathbf{76}\ \text{(R\$ 76 mil)}\]</div></div></li>
+  </ol>
+
+  <h3>Item (c): mudanças discretas × efeito marginal</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Intervalo</th><th class="r">Lucro no início</th><th class="r">Lucro no fim</th><th class="r">Mudança discreta</th><th class="r">Efeito marginal no início</th></tr></thead>
+    <tbody>
+      <tr><td>Q de 2 para 3</td><td class="r">\(40+24-4=60\)</td><td class="r">\(40+36-9=67\)</td><td class="r"><strong>7</strong></td><td class="r">8</td></tr>
+      <tr><td>Q de 6 para 7</td><td class="r">76</td><td class="r">\(40+84-49=75\)</td><td class="r"><strong>−1</strong></td><td class="r">0</td></tr>
+    </tbody>
+  </table></div>
+  <p>Os números não batem, e isso é o ponto do item: <strong>o efeito marginal é uma variação local</strong> (a inclinação exatamente no ponto inicial), enquanto <strong>a mudança discreta incorpora a curvatura da função ao longo de todo o intervalo</strong>. Como a curva vai ficando menos inclinada, a mudança de 2 para 3 (7) é menor que a inclinação em 2 (8); e de 6 para 7 o lucro já cai (−1), embora a inclinação em 6 seja 0.</p>
+  <p class="small muted">Truque para conferir (propriedade da parábola, não está no slide): numa quadrática, a mudança discreta de uma unidade é igual ao efeito marginal no meio do intervalo. \(12-2(2{,}5)=7\) ✓ e \(12-2(6{,}5)=-1\) ✓.</p>
+  <figure><div class="scroll">FIG:parabola</div>
+    <figcaption>A parábola do lucro, com as tangentes em Q = 2 (inclinação +8), Q = 6 (inclinação 0, o topo) e Q = 8 (inclinação −4).</figcaption></figure>
+
+  <div class="box ok"><span class="lbl">Resposta modelo (como escrever na prova)</span>
+    <p><strong>a)</strong> \(\partial\widehat{lucro}/\partial Q=12-2Q\). Em Q = 2: 8; em Q = 6: 0; em Q = 8: −4. Antes de Q = 6, aumentos de produção estão associados a aumentos do lucro ajustado; depois, a reduções.</p>
+    <p><strong>b)</strong> \(\partial^2\widehat{lucro}/\partial Q^2=-2\lt0\): função côncava. \(12-2Q=0\Rightarrow Q=6\), que é o máximo. \(\widehat{lucro}(6)=40+72-36=76\), ou seja, R$ 76 mil.</p>
+    <p><strong>c)</strong> \(\widehat{lucro}(3)-\widehat{lucro}(2)=67-60=7\), contra efeito marginal 8 em Q = 2. \(\widehat{lucro}(7)-\widehat{lucro}(6)=75-76=-1\), contra 0 em Q = 6. O efeito marginal é local; a mudança discreta incorpora a curvatura ao longo do intervalo.</p>
+  </div>
+  <div class="box trap"><span class="lbl">Erros que custam ponto</span>
+    <ul>
+      <li>Derivar a constante 40 como 40 (é 0) ou \(-Q^2\) como \(-Q\) (é \(-2Q\)).</li>
+      <li>Trocar côncava e convexa: segunda derivada <strong>negativa = côncava</strong> (tem máximo).</li>
+      <li>Responder “Q = 6” sem calcular o lucro nesse ponto, ou esquecer as unidades (Q em centenas, lucro em R$ mil).</li>
+      <li>Achar que mudança discreta e efeito marginal têm que ser iguais.</li>
+    </ul>
+  </div>
+
+  <!-- ---------- EX 2 ---------- -->
+  <h3>Exercício 2: variância, covariância e MQO com somas</h3>
+  <div class="exq">
+    <p>Modelo \(producao_i=\beta_0+\beta_1capital_i+u_i\) (capital em centenas de milhares de reais, produção em centenas de unidades). Com n = 11: \(\sum capital=55\), \(\sum producao=132\), \(\sum capital^2=315\), \(\sum capital\cdot producao=720\).</p>
+    <ol type="a"><li>Calcule as médias, \(Var(capital)\) e \(Cov(capital,producao)\) com divisor n − 1.</li><li>Calcule \(\hat\beta_1\), \(\hat\beta_0\) e a FRA.</li><li>Para capital = 6 e produção observada 15, calcule o ajustado, o resíduo e interprete.</li></ol>
+  </div>
+  <details class="sol"><summary>Ver resolução</summary><div class="in">
+    <p><strong>a)</strong> \(\overline{capital}=55/11=5\) e \(\overline{producao}=132/11=12\). Usando as identidades da Aula 2 com n − 1 = 10:</p>
+    <div class="mathblock">\[Var(capital)=\frac{\sum capital^2-n\,\overline{capital}^2}{n-1}=\frac{315-11(25)}{10}=\frac{40}{10}=4\]</div>
+    <div class="mathblock">\[Cov=\frac{\sum capital\cdot producao-n\,\overline{capital}\,\overline{producao}}{n-1}=\frac{720-11(5)(12)}{10}=\frac{60}{10}=6\]</div>
+    <p><strong>b)</strong> \(\hat\beta_1=6/4=1{,}5\); \(\hat\beta_0=12-1{,}5(5)=4{,}5\). FRA: \(\widehat{producao}=4{,}5+1{,}5\,capital\).</p>
+    <p><strong>c)</strong> \(\widehat{producao}=4{,}5+1{,}5(6)=13{,}5\); \(\hat u=15-13{,}5=1{,}5\). Uma unidade de capital (R$ 100 mil) está associada a 1,5 centena (150 unidades) a mais de produção ajustada; a produção observada supera a ajustada em 150 unidades.</p>
+  </div></details>
+
+  <!-- ---------- EX 3 ---------- -->
+  <h3>Exercício 3: ajuste e propriedades algébricas</h3>
+  <div class="exq">
+    <p>Preço x = (1, 2, 3, 4) e quantidade y = (8, 4, 5, 3). Modelo \(y_i=\beta_0+\beta_1x_i+u_i\).</p>
+    <ol type="a"><li>Calcule \(\bar x\), \(\bar y\), \(\sum(x_i-\bar x)(y_i-\bar y)\), \(\sum(x_i-\bar x)^2\), \(\hat\beta_1\), \(\hat\beta_0\) e a FRA.</li><li>Calcule \(\hat y_i\) e \(\hat u_i\) e verifique \(\sum\hat u_i=0\) e \(\sum x_i\hat u_i=0\).</li><li>Calcule SQT, SQE e SQR, verifique SQT = SQE + SQR, calcule e interprete o \(R^2\).</li></ol>
+  </div>
+  <details class="sol"><summary>Ver resolução</summary><div class="in">
+    <p><strong>a)</strong> \(\bar x=10/4=2{,}5\), \(\bar y=20/4=5\).</p>
+    <div class="tbl"><table>
+      <thead><tr><th class="r">\(x_i-\bar x\)</th><th class="r">\(y_i-\bar y\)</th><th class="r">produto</th><th class="r">\((x_i-\bar x)^2\)</th></tr></thead>
+      <tbody>
+        <tr><td class="r">−1,5</td><td class="r">3</td><td class="r">−4,5</td><td class="r">2,25</td></tr>
+        <tr><td class="r">−0,5</td><td class="r">−1</td><td class="r">0,5</td><td class="r">0,25</td></tr>
+        <tr><td class="r">0,5</td><td class="r">0</td><td class="r">0</td><td class="r">0,25</td></tr>
+        <tr><td class="r">1,5</td><td class="r">−2</td><td class="r">−3</td><td class="r">2,25</td></tr>
+        <tr class="sum"><td class="r">0</td><td class="r">0</td><td class="r">−7</td><td class="r">5</td></tr>
+      </tbody>
+    </table></div>
+    <p>\(\hat\beta_1=-7/5=-1{,}4\); \(\hat\beta_0=5-(-1{,}4)(2{,}5)=5+3{,}5=8{,}5\). FRA: \(\hat y=8{,}5-1{,}4x\).</p>
+    <p><strong>b)</strong></p>
+    <div class="tbl"><table>
+      <thead><tr><th class="r">\(x_i\)</th><th class="r">\(y_i\)</th><th class="r">\(\hat y_i\)</th><th class="r">\(\hat u_i\)</th><th class="r">\(x_i\hat u_i\)</th></tr></thead>
+      <tbody>
+        <tr><td class="r">1</td><td class="r">8</td><td class="r">7,1</td><td class="r">0,9</td><td class="r">0,9</td></tr>
+        <tr><td class="r">2</td><td class="r">4</td><td class="r">5,7</td><td class="r">−1,7</td><td class="r">−3,4</td></tr>
+        <tr><td class="r">3</td><td class="r">5</td><td class="r">4,3</td><td class="r">0,7</td><td class="r">2,1</td></tr>
+        <tr><td class="r">4</td><td class="r">3</td><td class="r">2,9</td><td class="r">0,1</td><td class="r">0,4</td></tr>
+        <tr class="sum"><td></td><td></td><td></td><td class="r">0</td><td class="r">0</td></tr>
+      </tbody>
+    </table></div>
+    <p>As duas somas zeram: são as condições algébricas do MQO com intercepto.</p>
+    <p><strong>c)</strong> \(SQT=9+1+0+4=14\). \(SQE=(2{,}1)^2+(0{,}7)^2+(-0{,}7)^2+(-2{,}1)^2=4{,}41+0{,}49+0{,}49+4{,}41=9{,}8\). \(SQR=0{,}81+2{,}89+0{,}49+0{,}01=4{,}2\). \(9{,}8+4{,}2=14\) ✓. \(R^2=1-4{,}2/14=0{,}70\): o ajuste linear com preço responde por 70% da variação amostral da quantidade. Isso mede ajuste, não causalidade.</p>
+  </div></details>
+
+  <!-- ---------- EX 5 ---------- -->
+  <h3>Exercício 5: raiz quadrada e efeito marginal</h3>
+  <div class="exq">
+    <p>\(\widehat{produtividade}=12+6\sqrt{treinamento}\), com treinamento &gt; 0.</p>
+    <ol type="a"><li>Obtenha o efeito marginal e calcule-o para treinamento = 1, 9 e 36.</li><li>Obtenha a segunda derivada em 1 e 9 e diga se a função é côncava ou convexa.</li><li>Calcule \(\widehat{prod}(9)-\widehat{prod}(4)\) e \(\widehat{prod}(25)-\widehat{prod}(16)\) e compare com o efeito marginal.</li></ol>
+  </div>
+  <details class="sol"><summary>Ver resolução</summary><div class="in">
+    <p><strong>a)</strong> Com \(\sqrt t=t^{1/2}\) (a regra da lousa): \(\dfrac{\partial\widehat{prod}}{\partial t}=6\cdot\tfrac12t^{-1/2}=\dfrac{3}{\sqrt t}\). Em t = 1: 3; t = 9: 1; t = 36: 0,5. A associação marginal é positiva, mas diminui com as horas de treinamento.</p>
+    <p><strong>b)</strong> \(\dfrac{\partial^2\widehat{prod}}{\partial t^2}=3\cdot\left(-\tfrac12t^{-3/2}\right)=-\dfrac{3}{2t^{3/2}}\). Em t = 1: −1,5. Em t = 9, como \(9^{3/2}=27\): \(-3/54=-1/18\). Negativa para todo t &gt; 0: função <strong>côncava</strong>.</p>
+    <p><strong>c)</strong> \(\widehat{prod}(9)=12+18=30\) e \(\widehat{prod}(4)=12+12=24\): diferença 6. \(\widehat{prod}(25)=42\) e \(\widehat{prod}(16)=36\): diferença 6. O mesmo ganho de 6 exige 5 horas a mais no primeiro intervalo (de 4 para 9) e 9 horas no segundo (de 16 para 25). Isso é consistente com o efeito marginal decrescente.</p>
+  </div></details>
+
+  <!-- ---------- TREINADORES ---------- -->
+  <h3>Treine com exercícios novos</h3>
+  <p>Cada clique em “Novo exercício” sorteia números novos no formato exato do Ex. 1 ou do Ex. 4. Preencha os campos e clique em “Corrigir”. Use vírgula ou ponto para decimais.</p>
+
+  <div class="tool" id="trainer1">
+    <h4>Gerador tipo Ex. 1: MQO a partir de correlação</h4>
+    <div class="given" id="t1given"></div>
+    <div class="fields">
+      <div class="field"><label for="t1var">a) Var(x)</label><input id="t1var" inputmode="decimal" autocomplete="off"><div class="hint"></div></div>
+      <div class="field"><label for="t1cov">a) Cov(x, y)</label><input id="t1cov" inputmode="decimal" autocomplete="off"><div class="hint"></div></div>
+      <div class="field"><label for="t1b1">b) β̂₁</label><input id="t1b1" inputmode="decimal" autocomplete="off"><div class="hint"></div></div>
+      <div class="field"><label for="t1b0">b) β̂₀</label><input id="t1b0" inputmode="decimal" autocomplete="off"><div class="hint"></div></div>
+      <div class="field"><label for="t1yh" id="t1yhl">c) ŷ</label><input id="t1yh" inputmode="decimal" autocomplete="off"><div class="hint"></div></div>
+      <div class="field"><label for="t1u">c) resíduo û</label><input id="t1u" inputmode="decimal" autocomplete="off"><div class="hint"></div></div>
+    </div>
+    <div class="row">
+      <button class="btn primary" id="t1check">Corrigir</button>
+      <button class="btn" id="t1show">Mostrar resolução</button>
+      <button class="btn" id="t1new">Novo exercício</button>
+    </div>
+    <div class="out" id="t1out"></div>
+  </div>
+
+  <div class="tool" id="trainer2">
+    <h4>Gerador tipo Ex. 4: efeito marginal no quadrático</h4>
+    <div class="given" id="t2given"></div>
+    <div class="fields">
+      <div class="field"><label for="t2m1" id="t2m1l">a) efeito marginal em Q₁</label><input id="t2m1" inputmode="decimal" autocomplete="off"><div class="hint"></div></div>
+      <div class="field"><label for="t2m2" id="t2m2l">a) efeito marginal em Q₂</label><input id="t2m2" inputmode="decimal" autocomplete="off"><div class="hint"></div></div>
+      <div class="field"><label for="t2d2">b) segunda derivada</label><input id="t2d2" inputmode="decimal" autocomplete="off"><div class="hint"></div></div>
+      <div class="field"><label for="t2qs">b) ponto de retorno Q*</label><input id="t2qs" inputmode="decimal" autocomplete="off"><div class="hint"></div></div>
+      <div class="field"><label for="t2ls">b) lucro em Q*</label><input id="t2ls" inputmode="decimal" autocomplete="off"><div class="hint"></div></div>
+      <div class="field"><label for="t2dd" id="t2ddl">c) lucro(Q₁+1) − lucro(Q₁)</label><input id="t2dd" inputmode="decimal" autocomplete="off"><div class="hint"></div></div>
+    </div>
+    <div class="row">
+      <button class="btn primary" id="t2check">Corrigir</button>
+      <button class="btn" id="t2show">Mostrar resolução</button>
+      <button class="btn" id="t2new">Novo exercício</button>
+    </div>
+    <div class="out" id="t2out"></div>
+  </div>
+  <div class="done-row"><button class="btn done-btn" data-done="lista2" aria-pressed="false">Marcar como concluído</button></div>
+</section>

@@ -1,0 +1,201 @@
+
+<!-- ================= CALCULADORA ================= -->
+<section class="mod" id="calc" data-title="Calculadora">
+  <div class="eyebrow">Ferramenta · confira suas contas</div>
+  <h2>Calculadora de MQO passo a passo</h2>
+  <p>Digite os valores de x e de y e veja cada passo que a prova pede: médias, a tabela de desvios, \(\hat\beta_1\), \(\hat\beta_0\), ajustados, resíduos, as duas propriedades algébricas, SQT, SQE, SQR, \(R^2\), \(\hat\sigma^2\), o erro-padrão e o t. Use para <strong>conferir</strong> contas feitas à mão, não para substituí-las: na prova não há software.</p>
+  <div class="tool" id="calcTool">
+    <div class="calc-io">
+      <div class="field"><label for="cx">Valores de x</label><textarea id="cx" rows="2" spellcheck="false">8 10 12 14 16</textarea></div>
+      <div class="field"><label for="cy">Valores de y</label><textarea id="cy" rows="2" spellcheck="false">10 12 15 15 20</textarea></div>
+    </div>
+    <p class="small muted">Separe os valores por espaço ou ponto e vírgula. Use vírgula ou ponto como separador decimal (ex.: 2,5).</p>
+    <div class="row">
+      <button class="btn primary" id="cgo">Calcular</button>
+      <button class="btn" data-preset="8 10 12 14 16|10 12 15 15 20">Aula 3: 5 indivíduos</button>
+      <button class="btn" data-preset="1 2 3 4|8 4 5 3">Lista 2 · Ex. 3</button>
+      <button class="btn" data-preset="2 3 5 6|4 5 8 9">Lista 1 · Q36</button>
+      <button class="btn" data-preset="4 5 6|36 42 42">Aula 4: renda × educ</button>
+    </div>
+    <div class="out" id="cout" aria-live="polite"></div>
+  </div>
+  <div class="done-row"><button class="btn done-btn" data-done="calc" aria-pressed="false">Marcar como concluído</button></div>
+</section>
+
+<!-- ================= SIMULADO ================= -->
+<section class="mod" id="simulado" data-title="Simulado">
+  <div class="eyebrow">Treino final · questões novas no estilo das listas</div>
+  <h2>Simulado final</h2>
+  <p>20 questões misturando as Aulas 1 a 6 e as Listas. Faça no papel antes de clicar. Placar: <span class="score" id="simScore">0 de 20 respondidas · 0 acertos</span></p>
+
+  <div class="quiz sim" data-answer="b"><div class="qh">1 · Fórmulas</div>
+    <p>\(\bar x=10\), \(\bar y=50\), \(\widehat{Cov}(x,y)=12\), \(\widehat{Var}(x)=4\). Qual é a FRA?</p>
+    <div class="opts"><button data-k="a">a) \(\hat y=3+20x\)</button><button data-k="b">b) \(\hat y=20+3x\)</button><button data-k="c">c) \(\hat y=47+3x\)</button><button data-k="d">d) \(\hat y=50+3x\)</button></div>
+    <div class="fb" hidden>\(\hat\beta_1=12/4=3\); \(\hat\beta_0=50-3(10)=20\).</div></div>
+
+  <div class="quiz sim" data-answer="c"><div class="qh">2 · Tipo Lista 2, Ex. 1</div>
+    <p>\(s_x=5\), \(s_y=40\), \(Corr(x,y)=0{,}5\). Quanto vale \(\hat\beta_1\)?</p>
+    <div class="opts"><button data-k="a">a) 0,5</button><button data-k="b">b) 20</button><button data-k="c">c) 4</button><button data-k="d">d) 100</button></div>
+    <div class="fb" hidden>\(Cov=0{,}5\times5\times40=100\), \(Var(x)=25\), \(\hat\beta_1=100/25=4\). Atalho: \(0{,}5\times40/5=4\).</div></div>
+
+  <div class="quiz sim" data-answer="a"><div class="qh">3 · Resíduo</div>
+    <p>O valor ajustado é 13,5 e o observado é 15. O resíduo é:</p>
+    <div class="opts"><button data-k="a">a) 1,5</button><button data-k="b">b) −1,5</button><button data-k="c">c) 28,5</button><button data-k="d">d) 0</button></div>
+    <div class="fb" hidden>Resíduo = observado − ajustado = 15 − 13,5 = 1,5 (Lista 2, Ex. 2).</div></div>
+
+  <div class="quiz sim" data-answer="d"><div class="qh">4 · Tipo Lista 2, Ex. 4</div>
+    <p>\(\widehat{lucro}=50+20Q-2Q^2\). Qual é o ponto de retorno e o lucro máximo?</p>
+    <div class="opts"><button data-k="a">a) Q = 10; lucro 50</button><button data-k="b">b) Q = 4; lucro 98</button><button data-k="c">c) Q = 5; lucro 150</button><button data-k="d">d) Q = 5; lucro 100</button></div>
+    <div class="fb" hidden>Efeito marginal \(20-4Q=0\Rightarrow Q=5\). Lucro \(50+100-50=100\). Segunda derivada −4 &lt; 0: é máximo.</div></div>
+
+  <div class="quiz sim" data-answer="b"><div class="qh">5 · Curvatura</div>
+    <p>A segunda derivada de uma função estimada é −3 em todo ponto. A função é:</p>
+    <div class="opts"><button data-k="a">a) convexa, com mínimo</button><button data-k="b">b) côncava, com efeito marginal decrescente</button><button data-k="c">c) linear</button><button data-k="d">d) não dá para saber</button></div>
+    <div class="fb" hidden>Segunda derivada negativa ⇒ côncava: o efeito marginal cai quando x aumenta.</div></div>
+
+  <div class="quiz sim" data-answer="c"><div class="qh">6 · \(R^2\)</div>
+    <p>SQT = 200 e SQR = 50. Quanto vale o \(R^2\)?</p>
+    <div class="opts"><button data-k="a">a) 0,25</button><button data-k="b">b) 4</button><button data-k="c">c) 0,75</button><button data-k="d">d) 150</button></div>
+    <div class="fb" hidden>\(R^2=1-50/200=0{,}75\) (e SQE = 150).</div></div>
+
+  <div class="quiz sim" data-answer="a"><div class="qh">7 · Variância do erro</div>
+    <p>Regressão simples com n = 12 e SQR = 30. Quanto vale \(\hat\sigma^2\)?</p>
+    <div class="opts"><button data-k="a">a) 3</button><button data-k="b">b) 2,5</button><button data-k="c">c) 2,73</button><button data-k="d">d) 30</button></div>
+    <div class="fb" hidden>\(30/(12-2)=3\). Dividir por n (2,5) ou n − 1 (2,73) é o erro clássico.</div></div>
+
+  <div class="quiz sim" data-answer="d"><div class="qh">8 · Erro-padrão</div>
+    <p>\(\hat\sigma^2=3\) e \(SQT_x=75\). Quanto vale \(ep(\hat\beta_1)\)?</p>
+    <div class="opts"><button data-k="a">a) 0,04</button><button data-k="b">b) 25</button><button data-k="c">c) 0,4</button><button data-k="d">d) 0,2</button></div>
+    <div class="fb" hidden>\(\widehat{Var}=3/75=0{,}04\), \(ep=\sqrt{0{,}04}=0{,}2\).</div></div>
+
+  <div class="quiz sim" data-answer="b"><div class="qh">9 · Teste t</div>
+    <p>\(\hat\beta_1=0{,}6\), \(ep=0{,}2\), valor crítico 2,1. Para \(H_0:\beta_1=0\) a 5%:</p>
+    <div class="opts"><button data-k="a">a) t = 0,12; não rejeitar</button><button data-k="b">b) t = 3; rejeitar</button><button data-k="c">c) t = 3; aceitar \(H_0\)</button><button data-k="d">d) t = 0,4; rejeitar</button></div>
+    <div class="fb" hidden>\(t=0{,}6/0{,}2=3&gt;2{,}1\): rejeita. “Aceitar H₀” nunca é a resposta.</div></div>
+
+  <div class="quiz sim" data-answer="c"><div class="qh">10 · Intervalo de confiança</div>
+    <p>\(\hat\beta_1=2\), \(ep=0{,}5\), valor crítico 2,1. O IC de 95% e a decisão sobre \(H_0:\beta_1=0\):</p>
+    <div class="opts"><button data-k="a">a) [1,5; 2,5]; não rejeita</button><button data-k="b">b) [0,95; 3,05]; não rejeita</button><button data-k="c">c) [0,95; 3,05]; rejeita</button><button data-k="d">d) [−0,1; 4,1]; rejeita</button></div>
+    <div class="fb" hidden>\(2\pm2{,}1\times0{,}5=2\pm1{,}05\). O zero está fora do intervalo: rejeita (dualidade IC ↔ teste).</div></div>
+
+  <div class="quiz sim" data-answer="d"><div class="qh">11 · Aula 5</div>
+    <p>Qual hipótese <strong>não</strong> é usada na prova de que \(E(\hat\beta_1)=\beta_1\)?</p>
+    <div class="opts"><button data-k="a">a) RLS.1</button><button data-k="b">b) RLS.3</button><button data-k="c">c) RLS.4</button><button data-k="d">d) RLS.5</button></div>
+    <div class="fb" hidden>Homocedasticidade (RLS.5) só entra na variância.</div></div>
+
+  <div class="quiz sim" data-answer="a"><div class="qh">12 · Aula 5</div>
+    <p>Mantendo \(\hat\sigma^2\), o que acontece com \(ep(\hat\beta_1)\) se \(SQT_x\) quadruplica?</p>
+    <div class="opts"><button data-k="a">a) Cai pela metade</button><button data-k="b">b) Cai para um quarto</button><button data-k="c">c) Dobra</button><button data-k="d">d) Não muda</button></div>
+    <div class="fb" hidden>\(ep=\hat\sigma/\sqrt{SQT_x}\): quadruplicar \(SQT_x\) divide o ep por \(\sqrt4=2\). A <em>variância</em> cai para um quarto.</div></div>
+
+  <div class="quiz sim" data-answer="c"><div class="qh">13 · Aula 6</div>
+    <p>O p-valor é:</p>
+    <div class="opts"><button data-k="a">a) a probabilidade de \(H_0\) ser verdadeira</button><button data-k="b">b) a probabilidade de \(H_A\) ser verdadeira</button><button data-k="c">c) a probabilidade, supondo \(H_0\) verdadeira, de uma estatística tão ou mais extrema que a observada</button><button data-k="d">d) o tamanho do efeito</button></div>
+    <div class="fb" hidden>c. É P(dados extremos | H₀).</div></div>
+
+  <div class="quiz sim" data-answer="b"><div class="qh">14 · Aula 3</div>
+    <p>Numa regressão com intercepto, \(\sum x_i\hat u_i=0\). Isso prova que \(E[XU]=0\) na população?</p>
+    <div class="opts"><button data-k="a">a) Sim, é a mesma coisa</button><button data-k="b">b) Não: vale por construção em qualquer amostra</button><button data-k="c">c) Só se \(R^2\) for alto</button><button data-k="d">d) Só com n grande</button></div>
+    <div class="fb" hidden>Ortogonalidade não é exogeneidade: é uma CPO, vale sempre.</div></div>
+
+  <div class="quiz sim" data-answer="a"><div class="qh">15 · Aula 4</div>
+    <p>Em \(\widehat{\ln(salario)}=1{,}9+0{,}05\,educ\), um ano a mais de educação está associado a:</p>
+    <div class="opts"><button data-k="a">a) cerca de 5% a mais no salário</button><button data-k="b">b) R$ 0,05 a mais</button><button data-k="c">c) 0,05% a mais</button><button data-k="d">d) 50% a mais</button></div>
+    <div class="fb" hidden>Log–nível: \(100\beta_1\%\) = 5% (exato: \(100(e^{0,05}-1)\approx5{,}13\%\)).</div></div>
+
+  <div class="quiz sim" data-answer="c"><div class="qh">16 · Aula 4</div>
+    <p>O salário passa de reais para milhares de reais (divide por 1.000). O que acontece?</p>
+    <div class="opts"><button data-k="a">a) \(\hat\beta_1\) igual e \(R^2\) cai</button><button data-k="b">b) \(\hat\beta_1\) × 1.000 e \(R^2\) igual</button><button data-k="c">c) \(\hat\beta_0\) e \(\hat\beta_1\) ÷ 1.000 e \(R^2\) igual</button><button data-k="d">d) Só o intercepto muda</button></div>
+    <div class="fb" hidden>Multiplicar Y por a multiplica os dois coeficientes por a (aqui a = 1/1.000); o \(R^2\) não muda.</div></div>
+
+  <div class="quiz sim" data-answer="b"><div class="qh">17 · Aula 1 e 5</div>
+    <p>“Na minha amostra, \(\hat\beta_1=1{,}15\).” O número 1,15 é:</p>
+    <div class="opts"><button data-k="a">a) o parâmetro</button><button data-k="b">b) uma estimativa</button><button data-k="c">c) o estimador</button><button data-k="d">d) o viés</button></div>
+    <div class="fb" hidden>O estimador é a regra; 1,15 é a estimativa (uma realização).</div></div>
+
+  <div class="quiz sim" data-answer="d"><div class="qh">18 · Variável omitida</div>
+    <p>Verdade: \(Y=1+2X+3Z+\varepsilon\), com \(Z=0{,}5X+v\). Estimando só Y sobre X, a inclinação fica centrada em:</p>
+    <div class="opts"><button data-k="a">a) 2</button><button data-k="b">b) 3</button><button data-k="c">c) 2,5</button><button data-k="d">d) 3,5</button></div>
+    <div class="fb" hidden>Mesma lógica da prática (0,8 + 1,2 × 0,7): \(2+3\times0{,}5=3{,}5\). Viés de 1,5 que não some com n grande.</div></div>
+
+  <div class="quiz sim" data-answer="a"><div class="qh">19 · Consistência</div>
+    <p>\(\beta_1=1\), \(Cov(X,U)=2\), \(Var(X)=4\). Para onde converge \(\hat\beta_1\)?</p>
+    <div class="opts"><button data-k="a">a) 1,5</button><button data-k="b">b) 1</button><button data-k="c">c) 3</button><button data-k="d">d) 0,5</button></div>
+    <div class="fb" hidden>\(\text{plim}\,\hat\beta_1=\beta_1+Cov(X,U)/Var(X)=1+2/4=1{,}5\): inconsistente, porque \(Cov(X,U)\neq0\).</div></div>
+
+  <div class="quiz sim" data-answer="c"><div class="qh">20 · Heterocedasticidade</div>
+    <p>Com \(E(u\mid X)=0\) e \(Var(u\mid X)\) crescendo com X:</p>
+    <div class="opts"><button data-k="a">a) o MQO fica viesado</button><button data-k="b">b) o \(R^2\) fica errado</button><button data-k="c">c) o MQO continua não viesado, mas o erro-padrão usual não vale e ele não é mais garantidamente BLUE</button><button data-k="d">d) o erro-padrão robusto corrige também variável omitida</button></div>
+    <div class="fb" hidden>c. Robusto corrige só a incerteza, não problemas de média condicional.</div></div>
+  <div class="done-row"><button class="btn done-btn" data-done="simulado" aria-pressed="false">Marcar como concluído</button></div>
+</section>
+
+<!-- ================= COLA ================= -->
+<section class="mod" id="cola" data-title="Cola de véspera">
+  <div class="eyebrow">Revisão rápida · leia na manhã da prova</div>
+  <h2>Cola de véspera</h2>
+
+  <h3>MQO</h3>
+  <div class="mathblock">\[\hat\beta_1=\frac{\sum(x_i-\bar x)(y_i-\bar y)}{\sum(x_i-\bar x)^2}=\frac{\widehat{Cov}(x,y)}{\widehat{Var}(x)}=\frac{\sum x_iy_i-n\bar x\bar y}{\sum x_i^2-n\bar x^2}=Corr\cdot\frac{s_y}{s_x}\qquad \hat\beta_0=\bar y-\hat\beta_1\bar x\]</div>
+  <div class="mathblock">\[\hat y_i=\hat\beta_0+\hat\beta_1x_i,\quad \hat u_i=y_i-\hat y_i,\quad \sum\hat u_i=0,\quad \sum x_i\hat u_i=0,\quad \text{reta passa por }(\bar x,\bar y)\]</div>
+  <div class="mathblock">\[SQT=SQE+SQR,\qquad R^2=\frac{SQE}{SQT}=1-\frac{SQR}{SQT}\]</div>
+
+  <h3>Aula 2</h3>
+  <div class="mathblock">\[Var(a+bX)=b^2Var(X),\quad Var(aX+bY)=a^2Var X+b^2Var Y+2ab\,Cov,\quad Cov(aX+c,bY+d)=ab\,Cov,\quad E[E(Y\mid X)]=E(Y)\]</div>
+
+  <h3>Aula 4</h3>
+  <ul>
+    <li>\(\tilde y=by\), \(\tilde x=cx\): \(\tilde\beta_1=\frac bc\hat\beta_1\); só Y escalado muda também \(\hat\beta_0\); \(R^2\) nunca muda.</li>
+    <li>Log–nível: \(100\beta_1\%\) (exato \(100(e^{\beta_1}-1)\%\)). Nível–log: \(\beta_1/100\) por 1%. Log–log: elasticidade.</li>
+    <li>Quadrático: efeito marginal \(\beta_1+2\beta_2X\); retorno \(X^*=-\beta_1/(2\beta_2)\); 2ª derivada &lt; 0 ⇒ côncava.</li>
+    <li>Derivadas: constante → 0; \(x^n\to nx^{n-1}\); \(\sqrt x\to\frac{1}{2\sqrt x}\); \(\ln x\to\frac1x\).</li>
+  </ul>
+
+  <h3>Aula 5</h3>
+  <ul>
+    <li>RLS.1 linear · RLS.2 amostra aleatória · RLS.3 \(SQT_x&gt;0\) · RLS.4 \(E[u\mid x]=0\) · RLS.5 \(Var(u\mid x)=\sigma^2\).</li>
+    <li>\(\hat\beta_1=\beta_1+\frac{1}{SQT_x}\sum d_iu_i\) → RLS.1–4: \(E(\hat\beta_1)=\beta_1\) (não viesado).</li>
+    <li>RLS.1–5: \(Var(\hat\beta_1)=\frac{\sigma^2}{SQT_x}\), \(Var(\hat\beta_0)=\frac{\sigma^2\frac1n\sum x_i^2}{SQT_x}\); MQO é BLUE (Gauss–Markov).</li>
+    <li>\(\hat\sigma^2=\frac{SQR}{n-2}\) (não viesado), \(ep(\hat\beta_1)=\frac{\hat\sigma}{\sqrt{SQT_x}}\).</li>
+    <li>\(\text{plim}\,\hat\beta_1=\beta_1+\frac{Cov(X,U)}{Var(X)}\): consistente se \(Cov(X,U)=0\).</li>
+  </ul>
+
+  <h3>Aula 6</h3>
+  <ul>
+    <li>\(t=\frac{\hat\beta_1-\beta_{1,0}}{ep(\hat\beta_1)}\), com n − 2 g.l. Rejeite se \(|t|&gt;\) crítico ou p &lt; α.</li>
+    <li>\(IC=\hat\beta_1\pm t_{\alpha/2,n-2}\,ep\). Zero fora do IC ⇔ rejeita \(H_0:\beta_1=0\).</li>
+    <li>Tipo I: rejeitar \(H_0\) verdadeira (α). Tipo II: não rejeitar \(H_0\) falsa (β). Poder = 1 − β.</li>
+    <li>Robusto (HC0): \(\frac{\sum(x_i-\bar x)^2\hat u_i^2}{SQT_x^2}\); pode ser maior ou menor; é assintótico.</li>
+  </ul>
+
+  <h3>Frases prontas para interpretar</h3>
+  <ul>
+    <li><strong>Inclinação:</strong> “Na amostra, uma unidade adicional de x está associada a \(\hat\beta_1\) [unidade de y] a mais em y ajustado.”</li>
+    <li><strong>Resíduo positivo:</strong> “O valor observado está \(\hat u\) acima do ajustado pela regressão.”</li>
+    <li><strong>\(R^2\):</strong> “O ajuste linear com x responde por \(100R^2\)% da variação amostral de y; isso mede ajuste, não causalidade.”</li>
+    <li><strong>Teste:</strong> “Como |t| = … &gt; …, rejeitamos \(H_0\) ao nível de 5%.” ou “… não rejeitamos \(H_0\).”</li>
+  </ul>
+
+  <h3>15 pegadinhas</h3>
+  <ol>
+    <li>Calcule \(\hat\beta_1\) <strong>antes</strong> de \(\hat\beta_0\).</li>
+    <li>Variância = desvio-padrão <strong>ao quadrado</strong>.</li>
+    <li>\(Cov=Corr\times s_x\times s_y\) (na lousa, o lado direito é Corr).</li>
+    <li>Resíduo = <strong>observado − ajustado</strong>.</li>
+    <li>O divisor n ou n − 1 cancela em \(\hat\beta_1\) se for o mesmo em cima e embaixo.</li>
+    <li>Resíduo \(\hat u\) ≠ erro u. Ortogonalidade ≠ exogeneidade.</li>
+    <li>\(R^2\) alto não prova causalidade; \(R^2\) de Y não se compara com o de ln Y.</li>
+    <li>Não viesado ≠ toda estimativa perto do parâmetro.</li>
+    <li>Heterocedasticidade <strong>não</strong> causa viés; muda a variância e tira o BLUE.</li>
+    <li>\(SQT_x\) (variação de X) ≠ SQT (variação de Y).</li>
+    <li>\(\hat\sigma^2\) divide por n − 2 (pela origem: n − 1).</li>
+    <li>ep é a <strong>raiz</strong> da variância estimada.</li>
+    <li>Nunca “aceitar \(H_0\)”. O p-valor não é P(H₀).</li>
+    <li>Mais dados não corrigem variável omitida nem restrição errada.</li>
+    <li>Efeito marginal (local) ≠ mudança discreta; 2ª derivada negativa = côncava.</li>
+  </ol>
+  <div class="done-row"><button class="btn done-btn" data-done="cola" aria-pressed="false">Marcar como concluído</button></div>
+</section>
+
+</main>
+</div>
