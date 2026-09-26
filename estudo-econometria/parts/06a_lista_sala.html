@@ -1,0 +1,242 @@
+
+<!-- ================= LISTA EM SALA ================= -->
+<section class="mod" id="listasala" data-title="Lista em sala">
+  <div class="eyebrow">Exercícios para resolução em sala · Prof. Tiago Ferraz <span class="tag hot">Prioridade máxima</span></div>
+  <h2>Lista em sala: os 5 exercícios resolvidos</h2>
+  <p>Esta lista (“Exercícios para resolução em sala”) está entre as <strong>principais</strong> para a P1, junto com a <a href="#lista3">Lista 3</a>. Ela mistura exatamente os temas centrais: <strong>viés, variância e EQM</strong> de estimadores (Ex. 1 e 2), <strong>intervalo de confiança e teste</strong> (Ex. 3 e 4) e as <strong>condições do MQO</strong> (Ex. 5).</p>
+  <div class="box trap"><span class="lbl">Sobre o gabarito</span>
+    <p>O gabarito oficial ainda não foi enviado. As resoluções abaixo são nossas, feitas com as fórmulas do curso e conferidas numericamente. Quando o gabarito chegar, elas serão comparadas uma a uma com ele.</p>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>Exercício</th><th>Tema</th><th>Teoria no guia</th></tr></thead>
+    <tbody>
+      <tr><td>1 ★</td><td>Viés e variância de uma média de duas fontes</td><td><a href="#aula2">Aula 2</a> (regras de E e Var); <a href="#aula5">Aula 5</a> (viés); <a href="#estat">Estatística do zero</a>, seção 13</td></tr>
+      <tr><td>2 ★</td><td>Comparar dois estimadores pelo EQM</td><td><a href="#estat">Estatística do zero</a>, seção 13; <a href="#conceitos">Conceitos-chave</a></td></tr>
+      <tr><td>3 ★</td><td>Do IC para a estimativa, a margem e o EP; teste</td><td><a href="#aula6">Aula 6</a>, seções 2 e 6; <a href="#lista3">Lista 3</a>, Q7</td></tr>
+      <tr><td>4 ★</td><td>t para um valor teórico e conjunto de não rejeição</td><td><a href="#aula6">Aula 6</a>; <a href="#lista3">Lista 3</a>, Q5 e Q7</td></tr>
+      <tr><td>5 ★</td><td>Resolver as CPOs do MQO; extrapolação</td><td><a href="#aula3">Aula 3</a>, seção 5; <a href="#praticas">prática da Aula 3</a>, Ex. 2</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="box def"><span class="lbl">As três regras que resolvem os Ex. 1 e 2 (Aula 2)</span>
+    <div class="mathblock">\[E(aX+bY+c)=aE(X)+bE(Y)+c\]</div>
+    <div class="mathblock">\[Var(aX+bY+c)=a^2Var(X)+b^2Var(Y)+2ab\,Cov(X,Y)\]</div>
+    <div class="mathblock">\[E\big[(\hat\theta-\theta)^2\big]=\underbrace{Var(\hat\theta)}_{\text{espalhamento}}+\underbrace{\big[E(\hat\theta)-\theta\big]^2}_{\text{viés}^2}\qquad\text{(EQM)}\]</div>
+    <p>A constante c some da variância; o fator entra <strong>ao quadrado</strong>; e um sinal de menos (\(b=-1\)) <strong>não</strong> diminui a variância, porque \((-1)^2=1\).</p>
+  </div>
+
+  <!-- ================= EX 1 ================= -->
+  <div class="exq" id="sala1">
+    <div class="h"><b>Exercício 1: viés de uma média de duas fontes</b><span class="tag hot">★★★ viés</span></div>
+    <p>Um pesquisador deseja estimar o efeito δ de um programa de treinamento sobre a produtividade. A partir de duas fontes independentes de informação, ele constrói \(T=\dfrac{Z_1+Z_2}{2}\). Sabe-se que</p>
+    <div class="given"><span>\(E(Z_1)=\delta+2\)</span><span>\(E(Z_2)=\delta\)</span><span>\(Var(Z_1)=Var(Z_2)=8\)</span><span>\(Cov(Z_1,Z_2)=0\)</span></div>
+    <ol type="a">
+      <li>Em muitas repetições do estudo, em torno de qual valor as estimativas produzidas por T tenderiam a se concentrar? Compare esse valor com δ.</li>
+      <li>Calcule a variância e o desvio-padrão de T. O aumento do número de repetições do estudo eliminaria a diferença identificada no item anterior? Justifique.</li>
+    </ol>
+  </div>
+  <h4>Estratégia</h4>
+  <p>“Em torno de qual valor as estimativas se concentram em muitas repetições” é a <strong>esperança</strong> do estimador, o centro da sua distribuição amostral. Comparar com δ é calcular o <strong>viés</strong>. A fonte 1 tem um erro sistemático de +2: veja quanto dele sobra em T.</p>
+  <ol class="steps">
+    <li><div><strong>(a) Esperança</strong> (linearidade, com \(a=b=\tfrac12\)):
+      <div class="mathblock">\[E(T)=\frac{E(Z_1)+E(Z_2)}{2}=\frac{(\delta+2)+\delta}{2}=\frac{2\delta+2}{2}=\mathbf{\delta+1}\]</div>
+      <p>As estimativas se concentram em <strong>δ + 1</strong>, uma unidade acima do efeito verdadeiro. O viés é \(E(T)-\delta=+1\): T é <strong>viesado</strong> e tende a <strong>superestimar</strong> o efeito do programa. Metade do erro sistemático de +2 da fonte 1 passa para a média.</p></div></li>
+    <li><div><strong>(b) Variância</strong> (a covariância é zero):
+      <div class="mathblock">\[Var(T)=\Big(\tfrac12\Big)^2Var(Z_1)+\Big(\tfrac12\Big)^2Var(Z_2)+2\cdot\tfrac12\cdot\tfrac12\,Cov(Z_1,Z_2)=\frac{8+8+0}{4}=\mathbf{4},\qquad dp(T)=\sqrt4=\mathbf{2}\]</div></div></li>
+    <li><div><strong>(b) Repetir o estudo resolve?</strong> <strong>Não.</strong> Repetir o estudo muitas vezes faz a <em>média</em> das estimativas se aproximar de E(T) = δ + 1 (Lei dos Grandes Números), não de δ. Mais repetições reduzem a dispersão da média das estimativas, mas não mudam o centro. O viés vem da forma como T é construído (a fonte 1 é sistematicamente deslocada) e só desaparece corrigindo a fonte ou o estimador (por exemplo, usando \(Z_1-2\), se o deslocamento fosse conhecido).</div></li>
+  </ol>
+  <figure><div class="scroll">FIG:sala1</div><figcaption>A distribuição de T está centrada em δ + 1, e não no alvo δ. Repetir o estudo acumula estimativas em volta de δ + 1: a dispersão da média delas cai, mas o centro não se move.</figcaption></figure>
+  <div class="box ok"><span class="lbl">Resposta-modelo</span>
+    <p>a) \(E(T)=\frac{E(Z_1)+E(Z_2)}{2}=\frac{\delta+2+\delta}{2}=\delta+1\). Em muitas repetições, as estimativas se concentram em δ + 1, uma unidade acima de δ: T é viesado, com viés +1, e superestima o efeito do programa. b) \(Var(T)=\frac14[Var(Z_1)+Var(Z_2)+2Cov(Z_1,Z_2)]=\frac14(8+8)=4\) e \(dp(T)=2\). Aumentar o número de repetições não elimina a diferença: a média das estimativas converge para E(T) = δ + 1, não para δ. Mais repetições reduzem a variabilidade da média, mas não corrigem o viés, que decorre do erro sistemático da fonte 1.</p>
+  </div>
+  <div class="box trap"><span class="lbl">Erros que custam ponto</span>
+    <ul>
+      <li>Somar as variâncias sem o fator ¼: Var(T) = 16 está errado. O ½ entra ao quadrado.</li>
+      <li>Dividir só por 2: \(Var(T)=(8+8)/2=8\) está errado.</li>
+      <li>Dizer que “com mais repetições o viés some”. Isso confunde viés (centro) com variância (dispersão).</li>
+      <li>Esquecer de comparar com δ e de dar o sinal do viés (superestima).</li>
+    </ul>
+  </div>
+  <p class="small"><strong>Para ir além (conta nossa):</strong> o EQM de T é \(4+1^2=5\). Se o pesquisador usasse só a fonte 2 (não viesada), teria EQM = Var = 8. Neste caso, T, mesmo viesado, erra menos em média: o ganho de precisão ao combinar as fontes compensa o viés. É exatamente a lógica do Exercício 2.</p>
+
+  <!-- ================= EX 2 ================= -->
+  <div class="exq" id="sala2">
+    <div class="h"><b>Exercício 2: escolher entre dois procedimentos pelo EQM</b><span class="tag hot">★★★ viés × variância</span></div>
+    <p>Dois procedimentos são candidatos para estimar um parâmetro θ:</p>
+    <div class="mathblock">\[\begin{gathered}A=\theta+1+\frac{u_1-u_2}{2}\\ B=\theta+\frac{u_1+u_2}{2}\end{gathered}\]</div>
+    <div class="given"><span>\(E(u_1)=E(u_2)=0\)</span><span>\(Var(u_1)=Var(u_2)=2\)</span><span>\(Cov(u_1,u_2)=0\)</span></div>
+    <ol type="a">
+      <li>Obtenha a média e a variância da distribuição amostral de cada procedimento.</li>
+      <li>Para cada procedimento, calcule \(E\big[(\text{estimativa}-\theta)^2\big]\). Se esse fosse o critério de escolha, qual procedimento deveria ser utilizado?</li>
+    </ol>
+  </div>
+  <h4>Estratégia</h4>
+  <p>θ e 1 são constantes: entram na média e somem da variância. \(E[(\text{estimativa}-\theta)^2]\) é o <strong>erro quadrático médio (EQM)</strong>: some a variância com o viés ao quadrado.</p>
+  <ol class="steps">
+    <li><div><strong>(a) Procedimento A.</strong>
+      <div class="mathblock">\[E(A)=\theta+1+\frac{E(u_1)-E(u_2)}{2}=\theta+1\quad(\text{viés}=+1)\]</div>
+      <div class="mathblock">\[Var(A)=\frac14Var(u_1-u_2)=\frac14\big[Var(u_1)+Var(u_2)-2Cov(u_1,u_2)\big]=\frac14(2+2-0)=\mathbf 1\]</div>
+      <p>Repare: o sinal de menos entre \(u_1\) e \(u_2\) <strong>não</strong> cancela as variâncias. Elas se somam.</p></div></li>
+    <li><div><strong>(a) Procedimento B.</strong>
+      <div class="mathblock">\[E(B)=\theta+\frac{0+0}{2}=\theta\quad(\text{não viesado}),\qquad Var(B)=\frac14(2+2+0)=\mathbf 1\]</div></div></li>
+    <li><div><strong>(b) EQM de cada um:</strong>
+      <div class="mathblock">\[E[(A-\theta)^2]=Var(A)+[E(A)-\theta]^2=1+1^2=\mathbf 2,\qquad E[(B-\theta)^2]=1+0^2=\mathbf 1\]</div>
+      <p>Conferindo A “na força bruta”: \(A-\theta=1+\frac{u_1-u_2}{2}\), então \(E[(A-\theta)^2]=1+2\cdot1\cdot E\!\left[\frac{u_1-u_2}{2}\right]+E\!\left[\frac{(u_1-u_2)^2}{4}\right]=1+0+\frac{4}{4}=2\) ✓.</p></div></li>
+    <li><div><strong>Escolha:</strong> pelo EQM, <strong>B</strong> (1 &lt; 2). Os dois têm a mesma variância; A perde porque carrega um viés de +1, que entra ao quadrado no EQM.</div></li>
+  </ol>
+  <figure><div class="scroll">FIG:sala2</div><figcaption>As duas distribuições têm o mesmo formato (variância 1). B está centrada no alvo θ; A está deslocada para θ + 1.</figcaption></figure>
+  <div class="tbl"><table>
+    <thead><tr><th>Procedimento</th><th class="r">Média</th><th class="r">Viés</th><th class="r">Variância</th><th class="r">EQM = Var + viés²</th></tr></thead>
+    <tbody>
+      <tr><td>A</td><td class="r">θ + 1</td><td class="r">+1</td><td class="r">1</td><td class="r">2</td></tr>
+      <tr><td>B</td><td class="r">θ</td><td class="r">0</td><td class="r">1</td><td class="r"><strong>1</strong></td></tr>
+    </tbody>
+  </table></div>
+  <div class="box ok"><span class="lbl">Resposta-modelo</span>
+    <p>a) \(E(A)=\theta+1\) e \(Var(A)=\frac14[Var(u_1)+Var(u_2)-2Cov(u_1,u_2)]=\frac14(2+2)=1\); \(E(B)=\theta\) e \(Var(B)=\frac14(2+2)=1\). A é viesado (viés +1) e B é não viesado; os dois têm a mesma variância. b) \(E[(A-\theta)^2]=Var(A)+[E(A)-\theta]^2=1+1=2\) e \(E[(B-\theta)^2]=1+0=1\). Pelo critério do erro quadrático médio, deve-se usar B.</p>
+  </div>
+  <div class="box trap"><span class="lbl">Erros que custam ponto</span>
+    <ul>
+      <li>Calcular \(Var(u_1-u_2)=2-2=0\). O correto é 2 + 2 = 4, porque \((-1)^2=1\).</li>
+      <li>Incluir o θ ou o 1 na variância. Constantes não variam.</li>
+      <li>Somar o viés sem elevar ao quadrado: EQM(A) = 1 + 1 aqui dá o mesmo número por coincidência (1² = 1). Escreva sempre “viés²”.</li>
+    </ul>
+  </div>
+
+  <!-- ================= EX 3 ================= -->
+  <div class="exq" id="sala3">
+    <div class="h"><b>Exercício 3: do intervalo de confiança de volta à estimativa</b><span class="tag hot">★★ IC e teste</span></div>
+    <p>Em um estudo sobre o efeito da experiência profissional sobre o salário, o intervalo de 95% de confiança para o coeficiente de experiência foi divulgado como</p>
+    <div class="mathblock">\[[0{,}4;\ 2{,}0]=\hat\beta_1\pm2\,EP(\hat\beta_1)\]</div>
+    <ol type="a">
+      <li>Recupere a estimativa pontual, a margem de erro e o erro-padrão utilizados na construção do intervalo.</li>
+      <li>Uma teoria econômica prevê que o coeficiente seja igual a 0,2. Confronte essa previsão com os resultados do estudo usando uma estatística de teste e o valor crítico bilateral igual a 2.</li>
+    </ol>
+  </div>
+  <h4>Estratégia</h4>
+  <p>Um IC simétrico é “centro ± margem”. O <strong>centro</strong> é a média dos extremos; a <strong>margem</strong> é metade da largura; e, como margem = 2 × EP, o <strong>EP</strong> é a margem dividida por 2.</p>
+  <ol class="steps">
+    <li><div><strong>Estimativa pontual</strong> (ponto médio): \(\hat\beta_1=\dfrac{0{,}4+2{,}0}{2}=\mathbf{1{,}2}\).</div></li>
+    <li><div><strong>Margem de erro</strong> (meia largura): \(\dfrac{2{,}0-0{,}4}{2}=\mathbf{0{,}8}\). Confere: 1,2 − 0,8 = 0,4 e 1,2 + 0,8 = 2,0 ✓.</div></li>
+    <li><div><strong>Erro-padrão:</strong> margem = 2 × EP, então \(EP=0{,}8/2=\mathbf{0{,}4}\).</div></li>
+    <li><div><strong>(b) Teste de \(H_0:\beta_1=0{,}2\)</strong> contra \(H_A:\beta_1\neq0{,}2\):
+      <div class="mathblock">\[t=\frac{\hat\beta_1-0{,}2}{EP(\hat\beta_1)}=\frac{1{,}2-0{,}2}{0{,}4}=\frac{1{,}0}{0{,}4}=\mathbf{2{,}5}\]</div>
+      <p>Como \(|2{,}5|&gt;2\), <strong>rejeitamos</strong> \(H_0\): a previsão teórica de 0,2 não é compatível com os dados, ao nível de cerca de 5%. Conferência pela dualidade: 0,2 está <strong>fora</strong> de [0,4; 2,0], a mesma conclusão.</p></div></li>
+  </ol>
+  <figure><div class="scroll">FIG:sala3</div><figcaption>O intervalo vai de 0,4 a 2,0, com centro 1,2. O valor teórico 0,2 fica fora dele: o teste bilateral com crítico 2 rejeita.</figcaption></figure>
+  <div class="box ok"><span class="lbl">Resposta-modelo</span>
+    <p>a) Estimativa pontual: \(\hat\beta_1=(0{,}4+2{,}0)/2=1{,}2\). Margem de erro: \((2{,}0-0{,}4)/2=0{,}8\). Como a margem é \(2\,EP\), \(EP(\hat\beta_1)=0{,}8/2=0{,}4\). b) Para \(H_0:\beta_1=0{,}2\) contra \(H_A:\beta_1\neq0{,}2\): \(t=(1{,}2-0{,}2)/0{,}4=2{,}5\). Como \(|t|=2{,}5&gt;2\), rejeitamos \(H_0\): os dados não são compatíveis com a previsão teórica. Coerentemente, 0,2 não pertence ao intervalo de 95%. A estimativa indica uma associação entre experiência e salário maior que a prevista pela teoria.</p>
+  </div>
+  <div class="box trap"><span class="lbl">Erros que custam ponto</span>
+    <ul>
+      <li>Dizer que o EP é 0,8 (essa é a margem) ou 1,6 (a largura inteira).</li>
+      <li>Testar \(\beta_1=0\) em vez de 0,2: \(1{,}2/0{,}4=3\) responde outra pergunta.</li>
+      <li>Concluir “aceitamos a teoria” ou “a teoria está provada errada”. Diga “rejeitamos \(H_0:\beta_1=0{,}2\) ao nível adotado”.</li>
+    </ul>
+  </div>
+
+  <!-- ================= EX 4 ================= -->
+  <div class="exq" id="sala4">
+    <div class="h"><b>Exercício 4: estimativa × valor teórico, com sinal negativo</b><span class="tag hot">★★ teste</span></div>
+    <p>Uma regressão relacionando o preço de um produto à quantidade demandada forneceu</p>
+    <div class="given"><span>\(\hat\beta_1=-0{,}9\)</span><span>\(EP(\hat\beta_1)=0{,}3\)</span><span>teoria: \(\beta_1=-0{,}2\)</span><span>\(t_c=2\) (bilateral)</span></div>
+    <ol type="a">
+      <li>Calcule quantos erros-padrão separam a estimativa obtida do valor previsto pelo modelo teórico. A diferença é estatisticamente significativa segundo o critério fornecido?</li>
+      <li>Determine o conjunto de valores de \(\beta_1\) que não seriam rejeitados por um teste bilateral baseado no mesmo valor crítico. Verifique se a previsão teórica pertence a esse conjunto.</li>
+    </ol>
+  </div>
+  <h4>Estratégia</h4>
+  <p>“Quantos erros-padrão separam” é exatamente a estatística t. Cuidado com o sinal: subtrair um número negativo vira soma. O “conjunto de valores não rejeitados” é o intervalo \(\hat\beta_1\pm t_c\cdot EP\) (dualidade IC ↔ teste).</p>
+  <ol class="steps">
+    <li><div><strong>(a) Estatística t</strong> para \(H_0:\beta_1=-0{,}2\):
+      <div class="mathblock">\[t=\frac{\hat\beta_1-\beta_{1,0}}{EP}=\frac{-0{,}9-(-0{,}2)}{0{,}3}=\frac{-0{,}9+0{,}2}{0{,}3}=\frac{-0{,}7}{0{,}3}\approx\mathbf{-2{,}33}\]</div>
+      <p>A estimativa está cerca de <strong>2,33 erros-padrão abaixo</strong> do valor teórico. Como \(|{-2{,}33}|&gt;2\), a diferença é <strong>estatisticamente significativa</strong>: rejeitamos \(H_0:\beta_1=-0{,}2\).</p></div></li>
+    <li><div><strong>(b) Conjunto de não rejeição:</strong> não rejeitamos um valor b quando \(|\hat\beta_1-b|\le2\,EP=0{,}6\):
+      <div class="mathblock">\[-0{,}9-2(0{,}3)\le b\le-0{,}9+2(0{,}3)\quad\Longrightarrow\quad\mathbf{[-1{,}5;\ -0{,}3]}\]</div>
+      <p>A previsão teórica, −0,2, está <strong>fora</strong> do conjunto (−0,2 &gt; −0,3). É a mesma conclusão do item (a), como tinha de ser.</p></div></li>
+  </ol>
+  <figure><div class="scroll">FIG:sala4</div><figcaption>O conjunto de valores não rejeitados vai de −1,5 a −0,3. O valor teórico −0,2 fica logo à direita dele, fora: rejeitado.</figcaption></figure>
+  <div class="box ok"><span class="lbl">Resposta-modelo</span>
+    <p>a) \(t=\frac{-0{,}9-(-0{,}2)}{0{,}3}=\frac{-0{,}7}{0{,}3}\approx-2{,}33\): a estimativa está cerca de 2,33 erros-padrão abaixo do valor teórico. Como \(|t|=2{,}33&gt;2\), a diferença é estatisticamente significativa e rejeitamos \(H_0:\beta_1=-0{,}2\). b) Não são rejeitados os valores b com \(|{-0{,}9}-b|\le2(0{,}3)\), isto é, \(b\in[-1{,}5;\ -0{,}3]\). A previsão −0,2 não pertence ao conjunto, o que confirma a rejeição (dualidade entre intervalo e teste bilateral). A demanda estimada responde ao preço mais fortemente (mais negativamente) do que prevê o modelo teórico.</p>
+  </div>
+  <div class="box trap"><span class="lbl">Erros que custam ponto</span>
+    <ul>
+      <li>Errar o sinal: \(-0{,}9-0{,}2=-1{,}1\) dá t = −3,67. O certo é \(-0{,}9-(-0{,}2)=-0{,}7\).</li>
+      <li>Comparar t negativo com +2 e concluir “−2,33 &lt; 2, não rejeita”. Compare o <strong>valor absoluto</strong>.</li>
+      <li>Montar o intervalo em torno de −0,2 (o valor teórico) em vez de em torno da estimativa −0,9.</li>
+    </ul>
+  </div>
+
+  <!-- ================= EX 5 ================= -->
+  <div class="exq" id="sala5">
+    <div class="h"><b>Exercício 5: resolvendo as condições do MQO</b><span class="tag hot">★★★ MQO</span></div>
+    <p>Ao minimizar a soma dos quadrados dos resíduos em uma amostra com quatro observações, um pesquisador chegou às seguintes condições:</p>
+    <div class="mathblock">\[4\hat\beta_0+8\hat\beta_1=20,\qquad 8\hat\beta_0+24\hat\beta_1=48\]</div>
+    <ol type="a">
+      <li>Resolva o sistema e obtenha os coeficientes da função de regressão amostral.</li>
+      <li>Sem calcular separadamente as duas previsões, determine quanto o valor previsto de Y varia quando X passa de 1 para 4.</li>
+      <li>Sabendo que os valores de X observados na amostra estavam entre 0 e 3, explique qual cuidado deve acompanhar o uso da reta estimada para prever Y quando X = 4.</li>
+    </ol>
+  </div>
+  <h4>De onde vem esse sistema</h4>
+  <p>São as duas <strong>condições de primeira ordem</strong> (CPOs) do MQO da <a href="#aula3">Aula 3</a>, chamadas de <strong>equações normais</strong>. Dividindo as CPOs (7) e (8) por −2 e abrindo as somas:</p>
+  <div class="mathblock">\[\sum(y_i-\hat\beta_0-\hat\beta_1x_i)=0\ \Longrightarrow\ n\,\hat\beta_0+\Big(\sum x_i\Big)\hat\beta_1=\sum y_i\]</div>
+  <div class="mathblock">\[\sum x_i(y_i-\hat\beta_0-\hat\beta_1x_i)=0\ \Longrightarrow\ \Big(\sum x_i\Big)\hat\beta_0+\Big(\sum x_i^2\Big)\hat\beta_1=\sum x_iy_i\]</div>
+  <p>Comparando com o enunciado: n = 4, \(\sum x_i=8\), \(\sum y_i=20\), \(\sum x_i^2=24\), \(\sum x_iy_i=48\).</p>
+  <ol class="steps">
+    <li><div><strong>(a) Eliminação.</strong> Multiplique a 1ª equação por 2: \(8\hat\beta_0+16\hat\beta_1=40\). Subtraia da 2ª: \((24-16)\hat\beta_1=48-40\Rightarrow8\hat\beta_1=8\Rightarrow\mathbf{\hat\beta_1=1}\).</div></li>
+    <li><div><strong>Volte na 1ª:</strong> \(4\hat\beta_0+8(1)=20\Rightarrow4\hat\beta_0=12\Rightarrow\mathbf{\hat\beta_0=3}\). FRA: \(\boxed{\hat y=3+1\cdot x}\).</div></li>
+    <li><div><strong>Conferência pelas fórmulas decoradas:</strong> \(\bar x=8/4=2\), \(\bar y=20/4=5\). \(SQT_x=\sum x_i^2-n\bar x^2=24-16=8\) e \(\sum(x_i-\bar x)(y_i-\bar y)=\sum x_iy_i-n\bar x\bar y=48-40=8\). Então \(\hat\beta_1=8/8=1\) e \(\hat\beta_0=\bar y-\hat\beta_1\bar x=5-2=3\) ✓. A reta passa por \((\bar x,\bar y)=(2;5)\) ✓.</div></li>
+    <li><div><strong>(b) Variação prevista:</strong> numa reta, a diferença entre duas previsões é a inclinação vezes a diferença em X (o intercepto se cancela):
+      <div class="mathblock">\[\Delta\hat y=\hat\beta_1\,\Delta x=1\times(4-1)=\mathbf 3\]</div>
+      <p>(Conferindo por fora: \(\hat y(4)-\hat y(1)=7-4=3\).)</p></div></li>
+    <li><div><strong>(c) O cuidado: extrapolação.</strong> X = 4 está <strong>fora</strong> da faixa observada (0 a 3). A reta foi estimada só com dados nessa faixa, e nada garante que a relação continue linear, com a mesma inclinação, além dela. Prever em X = 4 exige supor que o padrão se mantém onde não há dados; a previsão deve ser lida com cautela, e sua incerteza é maior longe da média de X. É o mesmo ponto do Ex. 2 da prática da Aula 3 (educação = 25 anos).</div></li>
+  </ol>
+  <figure><div class="scroll">FIG:sala5</div><figcaption>A reta estimada \(\hat y=3+x\) passa pelo ponto das médias (2; 5). A faixa azul é a região com dados (X de 0 a 3); o trecho tracejado até X = 4 é extrapolação.</figcaption></figure>
+  <div class="box ok"><span class="lbl">Resposta-modelo</span>
+    <p>a) Multiplicando a primeira equação por 2 e subtraindo da segunda: \(8\hat\beta_1=8\), logo \(\hat\beta_1=1\); substituindo, \(4\hat\beta_0=20-8\), logo \(\hat\beta_0=3\). FRA: \(\hat y=3+x\). b) \(\Delta\hat y=\hat\beta_1\Delta x=1\times3=3\): o valor previsto aumenta 3 unidades. c) X = 4 está fora do intervalo observado de X (0 a 3); usar a reta ali é uma extrapolação, que supõe que a relação linear estimada continua válida fora da região dos dados. Os dados não permitem verificar isso, e a previsão fica mais incerta, então deve ser interpretada com cautela.</p>
+  </div>
+  <div class="box trap"><span class="lbl">Erros que custam ponto</span>
+    <ul>
+      <li>Trocar a ordem e achar \(\hat\beta_0=1\), \(\hat\beta_1=3\). Confira sempre substituindo nas duas equações.</li>
+      <li>Em (b), somar o intercepto: “3 + 3 = 6”. O intercepto se cancela na diferença.</li>
+      <li>Em (c), dizer só “a previsão está errada”. O ponto é que ela depende de uma hipótese que os dados não conseguem verificar.</li>
+    </ul>
+  </div>
+  <p class="small muted"><strong>Observação técnica (auditoria):</strong> com n = 4, \(\sum x_i=8\) e \(\sum x_i^2=24\), não é possível que todos os X estejam entre 0 e 3: nessa faixa, o maior valor possível de \(\sum x_i^2\) com soma 8 é 22. Os valores X = 0, 2, 2, 4, por exemplo, geram essas somas. Provavelmente o enunciado simplificou. Na prova, responda o que o item (c) pede: o cuidado com a extrapolação.</p>
+
+  <!-- ================= TREINO ================= -->
+  <h3>Treine com exercícios novos</h3>
+  <div class="tool" id="trainer4">
+    <h4>Gerador tipo Ex. 3 e 4: do intervalo ao teste (crítico 2)</h4>
+    <div class="given" id="t4given"></div>
+    <div class="fields">
+      <div class="field"><label for="t4b">β̂₁ (centro)</label><input id="t4b" inputmode="decimal" autocomplete="off"><div class="hint"></div></div>
+      <div class="field"><label for="t4m">margem de erro</label><input id="t4m" inputmode="decimal" autocomplete="off"><div class="hint"></div></div>
+      <div class="field"><label for="t4e">EP(β̂₁)</label><input id="t4e" inputmode="decimal" autocomplete="off"><div class="hint"></div></div>
+      <div class="field"><label for="t4t" id="t4tl">t</label><input id="t4t" inputmode="decimal" autocomplete="off"><div class="hint"></div></div>
+    </div>
+    <div class="row">
+      <button class="btn primary" id="t4check">Corrigir</button>
+      <button class="btn" id="t4show">Mostrar resolução</button>
+      <button class="btn" id="t4new">Novo exercício</button>
+    </div>
+    <div class="out" id="t4out"></div>
+  </div>
+  <div class="tool" id="trainer5">
+    <h4>Gerador tipo Ex. 5: resolver as equações normais</h4>
+    <div class="given" id="t5given"></div>
+    <div class="fields">
+      <div class="field"><label for="t5b0">β̂₀</label><input id="t5b0" inputmode="decimal" autocomplete="off"><div class="hint"></div></div>
+      <div class="field"><label for="t5b1">β̂₁</label><input id="t5b1" inputmode="decimal" autocomplete="off"><div class="hint"></div></div>
+      <div class="field"><label for="t5d" id="t5dl">Δŷ</label><input id="t5d" inputmode="decimal" autocomplete="off"><div class="hint"></div></div>
+    </div>
+    <div class="row">
+      <button class="btn primary" id="t5check">Corrigir</button>
+      <button class="btn" id="t5show">Mostrar resolução</button>
+      <button class="btn" id="t5new">Novo exercício</button>
+    </div>
+    <div class="out" id="t5out"></div>
+  </div>
+  <div class="done-row"><button class="btn done-btn" data-done="listasala" aria-pressed="false">Marcar como concluído</button></div>
+</section>

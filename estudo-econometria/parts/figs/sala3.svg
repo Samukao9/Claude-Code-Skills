@@ -1,0 +1,18 @@
+<svg class="fig" viewBox="0 0 560 160" role="img" aria-label="Intervalo de confiança do Exercício 3 e o valor teórico 0,2" xmlns="http://www.w3.org/2000/svg">
+<line class="ax" x1="30" y1="122" x2="540" y2="122"/>
+<line class="ax" x1="30" y1="20" x2="30" y2="122"/>
+<text class="tk" x="132" y="138" text-anchor="middle">0</text>
+<text class="tk" x="166" y="138" text-anchor="middle">0,2</text>
+<text class="tk" x="200" y="138" text-anchor="middle">0,4</text>
+<text class="tk" x="336" y="138" text-anchor="middle">1,2</text>
+<text class="tk" x="472" y="138" text-anchor="middle">2</text>
+<text class="lb" x="285" y="154" text-anchor="middle">valores de β₁ (experiência)</text>
+<text class="lb" x="12" y="71" text-anchor="middle" transform="rotate(-90 12 71)"></text>
+<line class="fit" x1="200" y1="74" x2="472" y2="74"/>
+<line class="fit" x1="200" y1="67" x2="200" y2="81"/>
+<line class="fit" x1="472" y1="67" x2="472" y2="81"/>
+<circle class="pt" cx="336" cy="74" r="5"/>
+<text class="an" x="200" y="62">IC 95% = [0,4; 2,0]: centro 1,2, margem 0,8, EP 0,4</text>
+<line class="obs" x1="166" y1="40" x2="166" y2="122"/>
+<text class="an resc" x="172" y="108">teoria: 0,2 (fora → rejeita)</text>
+</svg>

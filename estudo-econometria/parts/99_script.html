@@ -337,5 +337,68 @@
       '</ol>';
   });
   newT3();
+
+  /* ---------- gerador tipo Lista em sala, Ex. 3 e 4 ---------- */
+  var T4 = null, T4ids = ['t4b', 't4m', 't4e', 't4t'];
+  function r2(v) { return Math.round(v * 100) / 100; }
+  function newT4() {
+    var ep = pick([0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5]), b = r2(pick([-1.5, -1.2, -0.9, -0.6, 0.6, 0.8, 1.2, 1.5, 2.1]));
+    var h0 = r2(b - ep * pick([2.5, 3, 1.5, 1.2, -1.4, -2.2, -3.1]));
+    var lo = r2(b - 2 * ep), hi = r2(b + 2 * ep);
+    T4 = { b: b, ep: ep, m: 2 * ep, lo: lo, hi: hi, h0: h0, t: (b - h0) / ep };
+    chips($('#t4given'), ['IC 95% = [' + fmt(lo) + '; ' + fmt(hi) + '] = β̂₁ ± 2·EP', 'H₀: β₁ = ' + fmt(h0), 'crítico bilateral = 2']);
+    $('#t4tl').textContent = 't para H₀: β₁ = ' + fmt(h0);
+    clearFields(T4ids, '#t4out');
+  }
+  $('#t4new').addEventListener('click', newT4);
+  $('#t4check').addEventListener('click', function () {
+    var t = T4, ok = 0;
+    ok += checkField('t4b', t.b, 'Ponto médio: (inferior + superior) ÷ 2.');
+    ok += checkField('t4m', t.m, 'Meia largura: (superior − inferior) ÷ 2.');
+    ok += checkField('t4e', t.ep, 'Margem ÷ 2 (o crítico é 2).');
+    ok += checkField('t4t', t.t, '(β̂₁ − valor de H₀) ÷ EP. Cuidado com os sinais.');
+    $('#t4out').innerHTML = '<p class="score">' + ok + ' de 4 certos' + (ok === 4 ? '. Perfeito: clique em “Novo exercício”.' : '.') + '</p>';
+  });
+  $('#t4show').addEventListener('click', function () {
+    var t = T4, rej = Math.abs(t.t) > 2, inside = t.h0 >= t.lo && t.h0 <= t.hi;
+    $('#t4out').innerHTML = '<ol class="steps">' +
+      '<li><div>β̂₁ = (' + fmt(t.lo) + ' + ' + fmt(t.hi) + ') ÷ 2 = <strong>' + fmt(t.b) + '</strong></div></li>' +
+      '<li><div>Margem = (' + fmt(t.hi) + ' − ' + fmt(t.lo) + ') ÷ 2 = <strong>' + fmt(t.m) + '</strong>; EP = margem ÷ 2 = <strong>' + fmt(t.ep) + '</strong></div></li>' +
+      '<li><div>t = (' + fmt(t.b) + ' − (' + fmt(t.h0) + ')) ÷ ' + fmt(t.ep) + ' = <strong>' + fmt(t.t, 3) + '</strong>. Como |t| ' + (rej ? '&gt;' : '≤') + ' 2, <strong>' + (rej ? 'rejeitamos' : 'não rejeitamos') + '</strong> H₀.</div></li>' +
+      '<li><div>Dualidade: ' + fmt(t.h0) + (inside ? ' está dentro' : ' está fora') + ' do intervalo, a mesma conclusão.</div></li>' +
+      '</ol>';
+  });
+  newT4();
+
+  /* ---------- gerador tipo Lista em sala, Ex. 5 ---------- */
+  var T5 = null, T5ids = ['t5b0', 't5b1', 't5d'];
+  function newT5() {
+    var n = pick([4, 5, 6, 8]), xb = pick([1, 2, 3]), sqt = pick([4, 6, 8, 10, 12]);
+    var b0 = pick([1, 2, 3, 4, 5, -2]), b1 = pick([1, 2, 3, -1, 0.5, 1.5]);
+    var sx = n * xb, sxx = sqt + n * xb * xb, sy = n * (b0 + b1 * xb), sxy = b0 * sx + b1 * sxx;
+    var x1 = pick([0, 1, 2]), x2 = x1 + pick([2, 3, 4]);
+    T5 = { n: n, sx: sx, sxx: sxx, sy: sy, sxy: sxy, b0: b0, b1: b1, x1: x1, x2: x2 };
+    chips($('#t5given'), [n + 'β̂₀ + ' + fmt(sx) + 'β̂₁ = ' + fmt(sy), fmt(sx) + 'β̂₀ + ' + fmt(sxx) + 'β̂₁ = ' + fmt(sxy)]);
+    $('#t5dl').textContent = 'Δŷ quando X vai de ' + x1 + ' a ' + x2;
+    clearFields(T5ids, '#t5out');
+  }
+  $('#t5new').addEventListener('click', newT5);
+  $('#t5check').addEventListener('click', function () {
+    var t = T5, ok = 0;
+    ok += checkField('t5b0', t.b0, 'Depois de achar β̂₁, volte na 1ª equação.');
+    ok += checkField('t5b1', t.b1, 'Elimine β̂₀: multiplique a 1ª equação e subtraia da 2ª.');
+    ok += checkField('t5d', t.b1 * (t.x2 - t.x1), 'Δŷ = β̂₁ × Δx (o intercepto se cancela).');
+    $('#t5out').innerHTML = '<p class="score">' + ok + ' de 3 certos' + (ok === 3 ? '. Perfeito: clique em “Novo exercício”.' : '.') + '</p>';
+  });
+  $('#t5show').addEventListener('click', function () {
+    var t = T5, xb = t.sx / t.n, yb = t.sy / t.n, sqt = t.sxx - t.n * xb * xb, sp = t.sxy - t.n * xb * yb;
+    $('#t5out').innerHTML = '<ol class="steps">' +
+      '<li><div>Identifique: n = ' + t.n + ', Σx = ' + fmt(t.sx) + ', Σy = ' + fmt(t.sy) + ', Σx² = ' + fmt(t.sxx) + ', Σxy = ' + fmt(t.sxy) + '.</div></li>' +
+      '<li><div>x̄ = ' + fmt(xb) + ', ȳ = ' + fmt(yb) + '; SQTₓ = Σx² − n·x̄² = ' + fmt(sqt) + '; Σ(x−x̄)(y−ȳ) = Σxy − n·x̄·ȳ = ' + fmt(sp) + '.</div></li>' +
+      '<li><div>β̂₁ = ' + fmt(sp) + ' ÷ ' + fmt(sqt) + ' = <strong>' + fmt(t.b1) + '</strong>; β̂₀ = ȳ − β̂₁·x̄ = <strong>' + fmt(t.b0) + '</strong> (confira nas duas equações).</div></li>' +
+      '<li><div>Δŷ = ' + fmt(t.b1) + ' × (' + t.x2 + ' − ' + t.x1 + ') = <strong>' + fmt(t.b1 * (t.x2 - t.x1)) + '</strong>.</div></li>' +
+      '</ol>';
+  });
+  newT5();
 })();
 </script>

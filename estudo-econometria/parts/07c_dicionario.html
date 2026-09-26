@@ -231,11 +231,12 @@
       <div class="fl"><span>Unidade</span>Sem unidade.</div>
       <div class="fl warn"><span>Cuidado</span>|Z| &gt; 1,96 rejeita a 5%.</div>
     </div>
-    <div class="fentry" data-s="viés e erro quadrático médio  lista 1 q8; aula 5 viés: erro do centro. eqm: erro total médio.">
-      <div class="fh"><b>Viés e erro quadrático médio</b><span class="src">Lista 1 Q8; Aula 5</span></div>
+    <div class="fentry" data-s="viés e erro quadrático médio eqm erro quadratico medio vies lista em sala lista 1 q8; aula 5; lista em sala ex. 1 e 2 viés: erro do centro. eqm: erro total médio.">
+      <div class="fh"><b>Viés e erro quadrático médio</b><span class="src">Lista 1 Q8; Aula 5; Lista em sala Ex. 1 e 2</span></div>
       <div class="mathblock">\[Vi\acute es=E[\hat\theta]-\theta,\qquad EQM=Var(\hat\theta)+Vi\acute es^2\]</div>
       <div class="fl"><span>Significa</span>Viés: erro do centro. EQM: erro total médio.</div>
       <div class="fl"><span>Unidade</span>Viés na unidade do parâmetro; EQM ao quadrado.</div>
+      <div class="fl warn"><span>Cuidado</span>EQM = E[(estimativa − θ)²]. Mais repetições não corrigem o viés.</div>
     </div>
   </div>
   <h3 class="dgroup">Regressão simples (Aula 3)</h3>
@@ -266,6 +267,13 @@
       <div class="mathblock">\[\hat\beta_1=\frac{\sum x_iy_i-n\bar x\bar y}{\sum x_i^2-n\bar x^2}=Corr(x,y)\,\frac{s_y}{s_x}\]</div>
       <div class="fl"><span>Significa</span>As mesmas contas a partir de somas brutas ou de correlação e desvios-padrão.</div>
       <div class="fl"><span>Unidade</span>Unidade de y por unidade de x.</div>
+    </div>
+    <div class="fentry" data-s="equações normais (cpos do mqo) cpo equacoes normais sistema lista em sala aula 3; lista em sala ex. 5 o sistema que o mqo resolve; a solução são as duas fórmulas decoradas.">
+      <div class="fh"><b>Equações normais (CPOs do MQO)</b><span class="src">Aula 3; Lista em sala Ex. 5</span></div>
+      <div class="mathblock">\[n\hat\beta_0+\Big(\sum x_i\Big)\hat\beta_1=\sum y_i,\qquad\Big(\sum x_i\Big)\hat\beta_0+\Big(\sum x_i^2\Big)\hat\beta_1=\sum x_iy_i\]</div>
+      <div class="fl"><span>Significa</span>O sistema que o MQO resolve; a solução são as duas fórmulas decoradas.</div>
+      <div class="fl"><span>Unidade</span>Cada equação na unidade de y (vezes x na segunda).</div>
+      <div class="fl warn"><span>Cuidado</span>Confira a solução substituindo nas duas equações.</div>
     </div>
     <div class="fentry" data-s="intercepto do mqo beta0 intercepto formula aula 3; listas 1 e 2 ★ altura da reta em x = 0; garante que a reta passe por \((\bar x,\bar y)\).">
       <div class="fh"><b>Intercepto do MQO</b><span class="src">Aula 3; Listas 1 e 2 ★</span></div>
@@ -460,6 +468,13 @@
       <div class="fl"><span>Significa</span>Valores de \(\beta_1\) compatíveis com os dados.</div>
       <div class="fl"><span>Unidade</span>A mesma de \(\beta_1\).</div>
       <div class="fl warn"><span>Cuidado</span>0 fora do IC ⇔ rejeita \(H_0:\beta_1=0\).</div>
+    </div>
+    <div class="fentry" data-s="do intervalo para a estimativa e o ep intervalo margem erro padrao lista em sala lista em sala ex. 3 e 4 recuperar a estimativa, a margem e o erro-padrão a partir de um ic divulgado.">
+      <div class="fh"><b>Do intervalo para a estimativa e o EP</b><span class="src">Lista em sala Ex. 3 e 4</span></div>
+      <div class="mathblock">\[[L;\,U]=\hat\beta_1\pm c\cdot EP\ \Rightarrow\ \hat\beta_1=\frac{L+U}{2},\quad\text{margem}=\frac{U-L}{2},\quad EP=\frac{\text{margem}}{c}\]</div>
+      <div class="fl"><span>Significa</span>Recuperar a estimativa, a margem e o erro-padrão a partir de um IC divulgado.</div>
+      <div class="fl"><span>Unidade</span>A de \(\beta_1\).</div>
+      <div class="fl warn"><span>Cuidado</span>A margem não é o EP: divida pelo valor crítico.</div>
     </div>
     <div class="fentry" data-s="p-valor p valor aulas 2 e 6; lista 3 q2 e q5 compatibilidade dos dados com \(h_0\).">
       <div class="fh"><b>p-valor</b><span class="src">Aulas 2 e 6; Lista 3 Q2 e Q5</span></div>

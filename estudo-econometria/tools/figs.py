@@ -440,3 +440,56 @@ def tspanel(x0,title,s):
     return '\n'.join(o)
 save("ar1", svg(580,212, tspanel(0,"Sem autocorrelação: sobe e desce ao acaso",e)+tspanel(300,"AR(1) com ρ = 0,8: ondas longas",u),"Resíduos independentes comparados com resíduos autocorrelacionados"))
 print("v4 figs ok")
+
+# ======================= v5: Lista em sala =======================
+# ---------- Ex. 1: distribuição de T (média δ+1, dp 2) ----------
+P=Plot(560,250, 30,540,26,200, -6,8,0,0.22)
+b=[P.axes([-4,-2,0,1,2,4,6],[],"valores de T (em torno de δ)","",xfmt=lambda v: {0:"δ",1:"δ+1"}.get(v,("δ"+("+" if v>0 else "−")+str(abs(v)))),grid=False)]
+b.append(f'<polyline class="fit" points="{" ".join(f"{f(P.X(x/20))},{f(P.Y(npdf(x/20,1,2)))}" for x in range(-120,161))}"/>')
+b.append(f'<line class="true" x1="{f(P.X(0))}" y1="{f(P.T)}" x2="{f(P.X(0))}" y2="{f(P.B)}"/>')
+b.append(f'<line class="obs" x1="{f(P.X(1))}" y1="{f(P.Y(0.2))}" x2="{f(P.X(1))}" y2="{f(P.B)}"/>')
+b.append(f'<text class="an" x="{f(P.X(0)-6)}" y="{f(P.T+10)}" text-anchor="end">alvo δ</text>')
+b.append(f'<text class="an resc" x="{f(P.X(1)+6)}" y="{f(P.Y(0.2)+4)}">centro de T: δ + 1 (viés +1)</text>')
+b.append(f'<text class="an fitc" x="{f(P.X(4.6))}" y="{f(P.Y(0.07))}">dp(T) = 2</text>')
+save("sala1", svg(560,250,'\n'.join(b),"Distribuição de T centrada em delta mais 1, com desvio-padrão 2"))
+
+# ---------- Ex. 2: A × B ----------
+P=Plot(560,250, 30,540,26,200, -3.5,4.5,0,0.45)
+b=[P.axes([-2,-1,0,1,2,3],[],"valores da estimativa (em torno de θ)","",xfmt=lambda v: {0:"θ",1:"θ+1"}.get(v,("θ"+("+" if v>0 else "−")+str(abs(v)))),grid=False)]
+for m,cls in [(0,"cA"),(1,"cC")]:
+    b.append(f'<polyline class="{cls}" points="{" ".join(f"{f(P.X(x/20))},{f(P.Y(npdf(x/20,m,1)))}" for x in range(-70,91))}"/>')
+b.append(f'<line class="true" x1="{f(P.X(0))}" y1="{f(P.T)}" x2="{f(P.X(0))}" y2="{f(P.B)}"/>')
+b.append(f'<text class="an cAt" x="{f(P.X(-0.2))}" y="{f(P.Y(0.42))}" text-anchor="end">B: centro θ, Var 1, EQM 1</text>')
+b.append(f'<text class="an cCt" x="{f(P.X(1.25))}" y="{f(P.Y(0.42))}">A: centro θ + 1, Var 1, EQM 2</text>')
+save("sala2", svg(560,250,'\n'.join(b),"Distribuições dos procedimentos A e B, com mesma variância e centros diferentes"))
+
+# ---------- Ex. 3 e 4: intervalos ----------
+P=Plot(560,160, 30,540,20,122, -0.6,2.4,0,1)
+b=[P.axes([0,0.2,0.4,1.2,2.0],[],"valores de β₁ (experiência)","",xfmt=lambda v: nb(v,1),grid=False)]
+b.append(ciline(P,74,0.4,2.0,1.2,"IC 95% = [0,4; 2,0]: centro 1,2, margem 0,8, EP 0,4"))
+b.append(f'<line class="obs" x1="{f(P.X(0.2))}" y1="40" x2="{f(P.X(0.2))}" y2="{f(P.B)}"/>')
+b.append(f'<text class="an resc" x="{f(P.X(0.2)+6)}" y="108">teoria: 0,2 (fora → rejeita)</text>')
+save("sala3", svg(560,160,'\n'.join(b),"Intervalo de confiança do Exercício 3 e o valor teórico 0,2"))
+
+P=Plot(560,160, 30,540,20,122, -1.8,0.2,0,1)
+b=[P.axes([-1.5,-0.9,-0.3,-0.2,0],[],"valores de β₁ (preço)","",xfmt=lambda v: nb(v,1),grid=False)]
+b.append(ciline(P,74,-1.5,-0.3,-0.9,"não rejeitados: −0,9 ± 2(0,3) = [−1,5; −0,3]"))
+b.append(f'<line class="obs" x1="{f(P.X(-0.2))}" y1="40" x2="{f(P.X(-0.2))}" y2="{f(P.B)}"/>')
+b.append(f'<text class="an resc" x="{f(P.X(-0.2)-6)}" y="108" text-anchor="end">teoria: −0,2 (fora → rejeita)</text>')
+save("sala4", svg(560,160,'\n'.join(b),"Conjunto de valores não rejeitados do Exercício 4 e o valor teórico"))
+
+# ---------- Ex. 5: reta estimada e extrapolação ----------
+P=Plot(560,280, 50,540,20,230, -0.5,5,0,9)
+b=[P.axes([0,1,2,3,4],[0,3,4,5,6,7],"X","Ŷ")]
+b.append(f'<rect class="bandf" x="{f(P.X(0))}" y="{f(P.T)}" width="{f(P.X(3)-P.X(0))}" height="{f(P.B-P.T)}"/>')
+b.append(f'<line class="fit" x1="{f(P.X(0))}" y1="{f(P.Y(3))}" x2="{f(P.X(3))}" y2="{f(P.Y(6))}"/>')
+b.append(f'<line class="res" x1="{f(P.X(3))}" y1="{f(P.Y(6))}" x2="{f(P.X(4.6))}" y2="{f(P.Y(7.6))}"/>')
+for x in (1,4): b.append(f'<circle class="fitpt" cx="{f(P.X(x))}" cy="{f(P.Y(3+x))}" r="5"/>')
+b.append(f'<rect class="meanpt" x="{f(P.X(2)-6)}" y="{f(P.Y(5)-6)}" width="12" height="12" transform="rotate(45 {f(P.X(2))} {f(P.Y(5))})"/>')
+b.append(f'<text class="an" x="{f(P.X(2)+12)}" y="{f(P.Y(5)+18)}">(x̄, ȳ) = (2; 5)</text>')
+b.append(f'<text class="an fitc" x="{f(P.X(0.15))}" y="{f(P.Y(8.3))}">faixa observada: X de 0 a 3</text>')
+b.append(f'<text class="an resc" x="{f(P.X(3.3))}" y="{f(P.Y(8.3))}">X = 4: extrapolação</text>')
+b.append(f'<text class="an" x="{f(P.X(1)+8)}" y="{f(P.Y(4)+18)}">Ŷ(1) = 4</text>')
+b.append(f'<text class="an" x="{f(P.X(4)+8)}" y="{f(P.Y(7)+18)}">Ŷ(4) = 7</text>')
+save("sala5", svg(560,280,'\n'.join(b),"Reta estimada Y chapéu igual a 3 mais X, com a faixa observada e a extrapolação em X igual a 4"))
+print("v5 figs ok")
