@@ -1,0 +1,278 @@
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<header class="topbar">
+  <button class="btn menu-btn" id="menuBtn" aria-controls="toc" aria-expanded="false">☰ Sumário</button>
+  <span class="brand">Econometria I</span>
+  <div class="grow"><div class="pbar" aria-hidden="true"><i id="pfill"></i></div></div>
+  <span class="ptext" id="ptext">0 de 27 módulos</span>
+  <a class="btn" href="#formulas">β̂ Fórmulas</a>
+</header>
+
+<div class="hero">
+  <div>
+    <h1>Econometria I, do zero absoluto <span class="hat">à P1</span></h1>
+    <p class="lead">Todo o conteúdo das suas aulas, listas, gabaritos e fotos da lousa, em ordem de aprendizado, mais Estatística 1 e 2 do zero, os conceitos-chave (MQO/OLS, parâmetro, estimador, viés), todas as Leis dos Grandes Números, matemática de apoio (log, derivada, integral e λ) e uma prévia da P2. Começa em “o que é uma variável” e vai até as demonstrações da Aula 5 e a inferência da Aula 6. O que vai além do seu material está sempre marcado.</p>
+    <div class="actions">
+      <a class="btn primary" href="#zero">Começar do zero</a>
+      <a class="btn" href="#formulas">As 2 fórmulas</a>
+      <a class="btn" href="#lista2">Lista 2: Ex. 1 e 4</a>
+      <a class="btn" href="#aula5">Aula 5</a>
+      <a class="btn" href="#listasala">Lista em sala</a>
+      <a class="btn" href="#lista3">Lista 3</a>
+    </div>
+  </div>
+  <div class="countdown" aria-live="polite">
+    <div class="lbl">P1 · quarta-feira, 30/09/2026</div>
+    <div class="big" id="cd">6 dias</div>
+    <ul>
+      <li>N1 = 30% × Quiz 1 + 70% × P1</li>
+      <li>As provas intermediárias <strong>não</strong> acumulam conteúdo</li>
+      <li>Sem software: tudo é feito à mão</li>
+    </ul>
+  </div>
+</div>
+
+<div class="layout">
+<nav class="toc" id="toc" aria-label="Sumário">
+  <h3>Antes de tudo</h3>
+  <ol>
+    <li><a href="#inicio" data-mod="inicio"><span class="n">00</span><span>Comece aqui: plano de 6 dias</span></a></li>
+    <li><a href="#formulas" data-mod="formulas"><span class="n">★</span><span>As 2 fórmulas para decorar <b class="star">★</b></span></a></li>
+  </ol>
+  <h3>Base</h3>
+  <ol>
+    <li><a href="#zero" data-mod="zero"><span class="n">M0</span><span>Do zero: variável, média, Σ</span></a></li>
+    <li><a href="#estat" data-mod="estat"><span class="n">E</span><span>Estatística 1 e 2 do zero</span></a></li>
+    <li><a href="#conceitos" data-mod="conceitos"><span class="n">C</span><span>Conceitos-chave: MQO/OLS, viés, estimador…</span></a></li>
+    <li><a href="#mat-log" data-mod="mat-log"><span class="n">∫1</span><span>Funções, exponencial e log</span></a></li>
+    <li><a href="#mat-deriv" data-mod="mat-deriv"><span class="n">∫2</span><span>Derivadas do zero ao MQO</span></a></li>
+    <li><a href="#mat-int" data-mod="mat-int"><span class="n">∫3</span><span>Integrais e probabilidade</span></a></li>
+    <li><a href="#mat-lambda" data-mod="mat-lambda"><span class="n">∫4</span><span>λ: Lagrange e distribuições</span></a></li>
+  </ol>
+  <h3>Teoria em ordem</h3>
+  <ol>
+    <li><a href="#aula1" data-mod="aula1"><span class="n">A1</span><span>Natureza da econometria</span></a></li>
+    <li><a href="#aula2" data-mod="aula2"><span class="n">A2</span><span>Ferramentas de matemática e estatística</span></a></li>
+    <li><a href="#lgn" data-mod="lgn"><span class="n">LGN</span><span>Todas as Leis dos Grandes Números</span></a></li>
+    <li><a href="#aula3" data-mod="aula3"><span class="n">A3</span><span>Regressão simples e MQO</span></a></li>
+    <li><a href="#aula4" data-mod="aula4"><span class="n">A4</span><span>Unidades, log e derivadas</span></a></li>
+    <li><a href="#aula5" data-mod="aula5"><span class="n">A5</span><span>Viés, variância, propriedades <b class="star">★</b></span></a></li>
+    <li><a href="#aula6" data-mod="aula6"><span class="n">A6</span><span>Inferência: t, p-valor, IC</span></a></li>
+    <li><a href="#dummies" data-mod="dummies"><span class="n">A7</span><span>Dummies e regressão pela origem</span></a></li>
+  </ol>
+  <h3>Listas resolvidas</h3>
+  <ol>
+    <li><a href="#listasala" data-mod="listasala"><span class="n">LS</span><span>Lista em sala (5 exercícios) <b class="star">★</b></span></a></li>
+    <li><a href="#lista3" data-mod="lista3"><span class="n">L3</span><span>Lista 3: propriedades e inferência <b class="star">★</b></span></a></li>
+    <li><a href="#lista2" data-mod="lista2"><span class="n">L2</span><span>Lista 2 numérica: Ex. 1 e 4 <b class="star">★</b></span></a></li>
+    <li><a href="#lista1" data-mod="lista1"><span class="n">L1</span><span>Lista 1: as 60 questões</span></a></li>
+    <li><a href="#praticas" data-mod="praticas"><span class="n">R</span><span>Exercícios das práticas em R</span></a></li>
+  </ol>
+  <h3>Treino e revisão</h3>
+  <ol>
+    <li><a href="#dicionario" data-mod="dicionario"><span class="n">Σ</span><span>Dicionário de fórmulas e unidades</span></a></li>
+    <li><a href="#calc" data-mod="calc"><span class="n">⚙</span><span>Calculadora de MQO passo a passo</span></a></li>
+    <li><a href="#simulado" data-mod="simulado"><span class="n">?</span><span>Simulado final</span></a></li>
+    <li><a href="#cola" data-mod="cola"><span class="n">✎</span><span>Cola de véspera e pegadinhas</span></a></li>
+  </ol>
+  <h3>Depois da P1</h3>
+  <ol>
+    <li><a href="#p2" data-mod="p2"><span class="n">P2</span><span>Prévia da P2: múltipla, multicolinearidade, autocorrelação</span></a></li>
+  </ol>
+</nav>
+
+<main id="conteudo">
+
+<!-- ================= INÍCIO ================= -->
+<section class="mod" id="inicio" data-title="Comece aqui">
+  <div class="eyebrow">Antes de tudo</div>
+  <h2>Comece aqui</h2>
+  <p>Este guia foi montado a partir de todo o material que você enviou: a apresentação do curso, as Aulas 1 a 6, a aula de dummies, as três práticas em R, a Lista 1, a Lista 2 numérica e a Lista 3 de propriedades, os três gabaritos e as fotos da lousa. Onde uma explicação precisou ficar mais simples, ela continua dizendo exatamente o que o material diz.</p>
+  <p>Há também módulos que você pediu além das aulas: <strong>Estatística 1 e 2 do zero</strong>, <strong>Conceitos-chave</strong> (MQO/OLS, parâmetro, estimador, viés e o resto), <strong>todas as Leis dos Grandes Números</strong>, quatro de <strong>Matemática de apoio</strong> (log, derivadas, integrais e λ), uma <strong>Prévia da P2</strong> (regressão múltipla, multicolinearidade, autocorrelação) e um <a href="#dicionario">dicionário com todas as fórmulas</a>, o que cada uma significa e a sua unidade de medida. Tudo que não está nos seus PDFs vem marcado com <span class="tag">Matemática de apoio</span> ou <span class="tag warn">Fora do material da P1</span>.</p>
+
+  <h3>Como usar</h3>
+  <ol class="steps">
+    <li><div><strong>Siga a ordem do sumário.</strong> Cada módulo usa o anterior. Se você nunca estudou estatística, faça nesta ordem: <a href="#zero">Módulo 0</a> → <a href="#estat">Estatística 1 e 2 do zero</a> → <a href="#conceitos">Conceitos-chave</a>, e só então a Aula 1. O módulo de <a href="#lgn">Leis dos Grandes Números</a> vem depois da Aula 2. A <a href="#p2">Prévia da P2</a> fica para depois da prova, ou se sobrar tempo.</div></li>
+    <li><div><strong>Tente antes de abrir.</strong> Toda resolução está escondida atrás de um botão “Ver resolução”. O próprio gabarito do professor recomenda tentar cada questão antes de consultar.</div></li>
+    <li><div><strong>Faça os testes rápidos.</strong> Clique numa alternativa e veja na hora se acertou, com a justificativa.</div></li>
+    <li><div><strong>Marque o módulo como concluído</strong> no fim de cada seção. A barra no topo mostra seu progresso (fica salva só neste navegador).</div></li>
+  </ol>
+
+  <details class="sol"><summary>Bibliografia indicada pelo professor, aula por aula</summary><div class="in">
+    <p>Livro-texto: Wooldridge, <em>Introdução à Econometria: uma abordagem moderna</em> (7ª ed., na Biblioteca Digital com o seu RA). Complementares: Stock e Watson; Pereda e Alves; e, para o R, <em>Introduction to Econometrics with R</em> (econometrics-with-r.org).</p>
+    <div class="tbl"><table>
+      <thead><tr><th>Aula</th><th>Leitura principal (Wooldridge)</th><th>Complementar</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Revisões matemáticas A–C, com ênfase em B e C</td><td>Stock e Watson, caps. 2 e 3</td></tr>
+        <tr><td>2</td><td>Revisão A (A.1), B (B.1–B.4) e C (C.1–C.3)</td><td>Stock e Watson, caps. 2 e 3</td></tr>
+        <tr><td>3</td><td>Cap. 2, seções 2.1–2.3</td><td>Stock e Watson, 4.1–4.3; Angrist e Pischke, <em>Mastering ’Metrics</em>, cap. 2</td></tr>
+        <tr><td>4</td><td>Seção 2.4 e cap. 6, seções 6.1–6.2</td><td>Stock e Watson, cap. 8 (logaritmos, polinômios e interações)</td></tr>
+        <tr><td>5</td><td>Cap. 2, seção 2.5; consistência: cap. 5, 5.1–5.2</td><td>Stock e Watson, caps. 4 e 5</td></tr>
+        <tr><td>6</td><td>Cap. 4 (testes t, p-valor, IC); cap. 8 (erros robustos)</td><td>Stock e Watson (inferência e heterocedasticidade)</td></tr>
+        <tr><td>Dummies</td><td>Cap. 7 (variáveis binárias); seção 2.6 (pela origem)</td><td>Stock e Watson (regressoras binárias e interações)</td></tr>
+      </tbody>
+    </table></div>
+  </div></details>
+
+  <h3>O que cai na P1</h3>
+  <p>A apresentação do curso não lista as aulas da P1, mas as listas indicam o recorte:</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Material</th><th>Cobre</th><th>Peso neste guia</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Lista em sala</strong> “Exercícios para resolução em sala” (5 exercícios)</td><td>Aulas 3, 5 e 6</td><td><span class="tag hot">Máximo</span> principal</td></tr>
+      <tr><td>Lista 1 (60 questões)</td><td>Aulas 1 a 4</td><td>Alto</td></tr>
+      <tr><td>Lista 2 “exercícios numéricos” (5 exercícios)</td><td>Aulas 1 a 4</td><td><span class="tag hot">Máximo</span> Ex. 1 e 4</td></tr>
+      <tr><td><strong>Lista 3</strong> (arquivo lista_03; dentro do PDF o título é “Lista 02”) “propriedades estatísticas e inferência” (10 questões)</td><td>Aulas 5 e 6</td><td><span class="tag hot">Máximo</span></td></tr>
+      <tr><td>Aula de dummies e regressão pela origem</td><td>“Aula 7”</td><td><span class="tag warn">Confirme</span> nenhuma lista cobre</td></tr>
+    </tbody>
+  </table></div>
+  <p class="muted small">Leitura mais provável: a P1 vai até a Aula 6. A aula de dummies está no guia completa, mas marcada para você confirmar com o professor.</p>
+
+  <div class="box prova"><span class="lbl">Suas prioridades</span>
+    <ol>
+      <li>As duas fórmulas: \(\hat\beta_0=\bar y-\hat\beta_1\bar x\) e \(\hat\beta_1\).</li>
+      <li>Aula 5: viés do estimador, variância do estimador e propriedades do estimador. Aula 6: teste t, p-valor, IC, poder e erro robusto.</li>
+      <li>Lista 2, exercícios 1 (aluguel × área) e 4 (lucro quadrático). O professor resolveu os dois na lousa.</li>
+      <li><strong>As listas principais:</strong> a <a href="#listasala">Lista em sala</a> (5 exercícios: viés, variância e EQM; IC e teste; CPOs do MQO) e a <a href="#lista3">Lista 3</a> (propriedades e inferência, Aulas 5 e 6: as 10 questões, com Q4, Q5, Q6, Q8 e Q9 em destaque).</li>
+    </ol>
+  </div>
+
+  <h3>Plano de 6 dias</h3>
+  <div class="plan">
+    <div class="day"><div class="d">Qua 23/09<small>à noite</small></div><div>Módulo 0 → <a href="#formulas">As 2 fórmulas</a> (decore com os cartões).</div></div>
+    <div class="day"><div class="d">Qui 24/09</div><div><a href="#mat-log">Log</a> e <a href="#mat-deriv">derivadas</a> → Aula 1 → Aula 2 (com a parte de <a href="#mat-int">integrais</a>).</div></div>
+    <div class="day"><div class="d">Sex 25/09</div><div>Aula 3 inteira (derivação do MQO e exemplo dos 5 indivíduos) → <a href="#calc">calculadora</a> → Lista 2, Ex. 1, 2 e 3.</div></div>
+    <div class="day"><div class="d">Sáb 26/09</div><div>Aula 4 → Lista 2, Ex. 4 e 5 → Lista 1, questões 31 a 60. Se sobrar tempo: <a href="#mat-lambda">λ</a> e exercícios das práticas.</div></div>
+    <div class="day"><div class="d">Dom 27/09</div><div><strong>Aula 5 inteira</strong>, incluindo as demonstrações do apêndice. Refaça à mão a prova de \(E(\hat\beta_1)=\beta_1\) e de \(Var(\hat\beta_1)=\sigma^2/SQT_x\).</div></div>
+    <div class="day"><div class="d">Seg 28/09</div><div>Aula 6 → <a href="#lista3">Lista 3</a> inteira (questões 1 a 10) → <a href="#listasala">Lista em sala</a> inteira (5 exercícios) → Lista 1, questões 1 a 30.</div></div>
+    <div class="day"><div class="d">Ter 29/09</div><div>Refaça, sem olhar, a <strong>Lista em sala</strong>, a <strong>Lista 3</strong> e a Lista 2, Ex. 1 e 4. Use os geradores de treino. Revise o <a href="#dicionario">dicionário de fórmulas</a>. Faça o <a href="#simulado">simulado</a>. Dummies, se o professor confirmar.</div></div>
+    <div class="day exam"><div class="d">Qua 30/09<small>P1</small></div><div>Só a <a href="#cola">cola de véspera</a> e os cartões de fórmulas. Nada de conteúdo novo.</div></div>
+  </div>
+
+  <details class="sol"><summary>Começando agora, no sábado 26/09? Plano de reta final com os módulos novos</summary><div class="in">
+    <div class="plan">
+      <div class="day"><div class="d">Sáb 26/09</div><div><a href="#zero">Módulo 0</a> → <a href="#estat">Estatística do zero</a> (seções 1 a 13) → <a href="#conceitos">Conceitos-chave</a> → <a href="#formulas">As 2 fórmulas</a> → Aula 3 → Lista 2, Ex. 1 → <a href="#listasala">Lista em sala, Ex. 5</a>.</div></div>
+      <div class="day"><div class="d">Dom 27/09</div><div>Aula 4 (com <a href="#mat-deriv">derivadas</a>) → Lista 2, Ex. 4 → <strong>Aula 5 inteira</strong>, com os laboratórios → <a href="#listasala">Lista em sala, Ex. 1 e 2</a>.</div></div>
+      <div class="day"><div class="d">Seg 28/09</div><div>Aula 2 (partes de LGN, TCL e testes) → <a href="#lgn">LGN</a> → Aula 6 → <strong>Lista 3</strong> (Q4, Q5, Q6, Q8 e Q9 primeiro) → <a href="#listasala">Lista em sala, Ex. 3 e 4</a>.</div></div>
+      <div class="day"><div class="d">Ter 29/09</div><div><strong>Refaça a Lista em sala e a Lista 3 inteiras, sem olhar</strong> → Lista 1 (as conceituais estão como testes nas aulas) → Lista 2, Ex. 1 e 4 → <a href="#simulado">simulado</a> → <a href="#dicionario">dicionário</a>.</div></div>
+      <div class="day exam"><div class="d">Qua 30/09<small>P1</small></div><div>Só a <a href="#cola">cola de véspera</a> e os cartões. A <a href="#p2">Prévia da P2</a> fica para depois.</div></div>
+    </div>
+  </div></details>
+
+  <h3>Como o professor corrige</h3>
+  <p>Isto está escrito nos gabaritos e nas orientações das listas. Vale nota.</p>
+  <ul>
+    <li><strong>Apresente as fórmulas e todas as substituições.</strong> Resposta final sem justificativa perde o crédito da justificativa.</li>
+    <li><strong>Há crédito parcial</strong> pela montagem correta da expressão, pelo desenvolvimento e pela interpretação, mesmo com erro de conta.</li>
+    <li><strong>Erro carregado:</strong> um erro isolado de conta não é penalizado de novo nos passos seguintes, se eles forem coerentes com ele.</li>
+    <li><strong>Guarde casas decimais</strong> nos cálculos intermediários e arredonde só no final. Diferenças pequenas na última casa são aceitas.</li>
+    <li><strong>Em testes, escreva “rejeitar” ou “não rejeitar” H₀.</strong> Nunca “aceitar” H₀.</li>
+    <li>Métodos equivalentes aos do gabarito são aceitos.</li>
+  </ul>
+  <div class="done-row"><button class="btn done-btn" data-done="inicio" aria-pressed="false">Marcar como concluído</button></div>
+</section>
+
+<!-- ================= FÓRMULAS ================= -->
+<section class="mod" id="formulas" data-title="As 2 fórmulas">
+  <div class="eyebrow"><span class="tag hot">Decorar</span> Aula 3 · Lista 2 · lousa</div>
+  <h2>As 2 fórmulas para decorar</h2>
+  <p>Estas duas fórmulas calculam a reta de regressão por <strong>Mínimos Quadrados Ordinários (MQO)</strong>. Quase toda conta da prova passa por elas. Se “Σ”, “x̄” ou o chapéu ainda não fazem sentido, leia antes o <a href="#zero">Módulo 0</a> e volte.</p>
+
+  <div class="formula-hero">
+    <div class="fcard">
+      <div class="num">Fórmula 1 · calcule primeiro</div>
+      <div class="mathblock">\[\hat\beta_1=\frac{\displaystyle\sum_{i=1}^{n}(x_i-\bar x)(y_i-\bar y)}{\displaystyle\sum_{i=1}^{n}(x_i-\bar x)^2}\]</div>
+      <div class="say">Inclinação: “soma dos produtos dos desvios, dividida pela soma dos quadrados dos desvios de x”.</div>
+    </div>
+    <div class="fcard">
+      <div class="num">Fórmula 2 · depois</div>
+      <div class="mathblock">\[\hat\beta_0=\bar y-\hat\beta_1\,\bar x\]</div>
+      <div class="say">Intercepto: “média de y menos beta-um-chapéu vezes a média de x”.</div>
+    </div>
+  </div>
+
+  <div class="box trap"><span class="lbl">A ordem importa</span>
+    <p>\(\hat\beta_0\) usa \(\hat\beta_1\) dentro dele. Então <strong>sempre calcule \(\hat\beta_1\) primeiro</strong>. Na lousa o professor escreveu \(\hat\beta_0\) em cima, mas na conta do Ex. 1 ele achou \(\hat\beta_1=24\) antes de fazer \(\hat\beta_0=2000-24\cdot 60\).</p>
+  </div>
+
+  <div class="lousa">
+    <div class="who">Na lousa do professor (aula de 02/09)</div>
+    <div class="hand">
+      <span class="l">β̂₀ = ȳ − β̂₁ · x̄</span>
+      <span class="l">β̂₁ = Σ(xᵢ − x̄)(yᵢ − ȳ) / Σ(xᵢ − x̄)²</span>
+      <span class="l">= [ (1/n) Σ(xᵢ − x̄)(yᵢ − ȳ) ] / [ (1/n) Σ(xᵢ − x̄)² ] = Côv(x, y) / Vâr(x)</span>
+    </div>
+    <div class="note">Ele dividiu em cima e embaixo por \(n\). O \(1/n\) cancela, e o que sobra em cima é a covariância amostral; embaixo, a variância amostral de x. Por isso tanto faz usar \(n\) ou \(n-1\), <strong>desde que seja o mesmo divisor nos dois</strong>.</div>
+  </div>
+
+  <h3>As quatro formas da Fórmula 1</h3>
+  <p>É sempre a mesma fórmula. Muda só o que o enunciado te dá.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Se o enunciado dá…</th><th>Use</th><th>Onde aparece</th></tr></thead>
+    <tbody>
+      <tr><td>A tabela com os valores de x e y</td><td>\(\dfrac{\sum(x_i-\bar x)(y_i-\bar y)}{\sum(x_i-\bar x)^2}\)</td><td>Aula 3; Lista 2 Ex. 3; Lista 1 Q36</td></tr>
+      <tr><td>Covariância e variância</td><td>\(\dfrac{\widehat{Cov}(x,y)}{\widehat{Var}(x)}\)</td><td>Aula 4 (renda × educ); Lista 2 Ex. 1</td></tr>
+      <tr><td>As somas \(\sum x,\ \sum y,\ \sum x^2,\ \sum xy\)</td><td>\(\dfrac{\sum x_iy_i-n\bar x\bar y}{\sum x_i^2-n\bar x^2}\)</td><td>Lista 2 Ex. 2</td></tr>
+      <tr><td>Correlação e desvios-padrão</td><td>\(Cov=Corr\cdot s_x\cdot s_y\), \(Var=s_x^2\)</td><td>Lista 2 Ex. 1 (lousa)</td></tr>
+    </tbody>
+  </table></div>
+  <p class="small muted">A terceira forma vem das identidades da Aula 2: \(\sum(x_i-\bar x)(y_i-\bar y)=\sum x_iy_i-n\bar x\bar y\) e \(\sum(x_i-\bar x)^2=\sum x_i^2-n\bar x^2\). A quarta junta tudo num atalho: \(\hat\beta_1=Corr\cdot s_x s_y/s_x^2=Corr\cdot s_y/s_x\). No Ex. 1, \(0{,}8\times300/10=24\), o mesmo número do gabarito.</p>
+
+  <h3>Por que \(\hat\beta_0=\bar y-\hat\beta_1\bar x\)?</h3>
+  <p>A primeira condição do MQO (Aula 3) obriga a reta a passar pelo <strong>ponto das médias</strong> \((\bar x,\bar y)\). Se a reta passa por ele, então \(\bar y=\hat\beta_0+\hat\beta_1\bar x\). Isolando \(\hat\beta_0\), sai a fórmula. É só isso.</p>
+  <figure><div class="scroll">FIG:aluguel</div>
+    <figcaption>Esboço como o da lousa, com os números da Lista 2, Ex. 1. A reta sai de 560 (o intercepto), sobe R$ 24 por m² e passa exatamente pelo ponto das médias (60; 2.000).</figcaption></figure>
+
+  <h3>Macetes para não esquecer</h3>
+  <ul>
+    <li><strong>β̂₁ = “juntos ÷ sozinho”.</strong> Em cima: quanto x e y variam <em>juntos</em> (covariância). Embaixo: quanto x varia <em>sozinho</em> (variância de x).</li>
+    <li><strong>β̂₀ = “a reta passa pelo meio”.</strong> Escreva \(\bar y=\hat\beta_0+\hat\beta_1\bar x\) e isole \(\hat\beta_0\).</li>
+    <li><strong>O denominador nunca pode ser zero.</strong> \(\sum(x_i-\bar x)^2>0\) exige que x não seja constante. Isso é a hipótese RLS.3 da Aula 5.</li>
+    <li><strong>O sinal de β̂₁ é o sinal da correlação</strong>, porque o denominador é sempre positivo.</li>
+  </ul>
+
+  <h3>Roteiro de qualquer conta de MQO</h3>
+  <ol class="steps">
+    <li><div>Calcule as médias \(\bar x\) e \(\bar y\).</div></li>
+    <li><div>Monte a tabela de desvios \((x_i-\bar x)\), \((y_i-\bar y)\), produtos e quadrados. Some as colunas. A coluna \(x_i-\bar x\) tem que somar zero: use isso para conferir.</div></li>
+    <li><div>\(\hat\beta_1\) = soma dos produtos ÷ soma dos quadrados.</div></li>
+    <li><div>\(\hat\beta_0=\bar y-\hat\beta_1\bar x\).</div></li>
+    <li><div>Escreva a função de regressão amostral: \(\hat y=\hat\beta_0+\hat\beta_1x\).</div></li>
+    <li><div>Se pedirem: valores ajustados \(\hat y_i\), resíduos \(\hat u_i=y_i-\hat y_i\), SQT, SQE, SQR e \(R^2\).</div></li>
+    <li><div>Interprete nas unidades do problema, dizendo “está associado a” e não “causa”.</div></li>
+  </ol>
+
+  <h3>Cartões de memorização</h3>
+  <p class="small muted">Clique num cartão para virar. Tente dizer a resposta antes.</p>
+  <div class="flash-grid">
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Fórmula</small>Inclinação \(\hat\beta_1\) com desvios</div><div class="face back">\(\dfrac{\sum(x_i-\bar x)(y_i-\bar y)}{\sum(x_i-\bar x)^2}\)</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Fórmula</small>Intercepto \(\hat\beta_0\)</div><div class="face back">\(\bar y-\hat\beta_1\bar x\)<br><span class="small muted">calcule \(\hat\beta_1\) antes</span></div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Fórmula</small>\(\hat\beta_1\) com covariância e variância</div><div class="face back">\(\widehat{Cov}(x,y)/\widehat{Var}(x)\)</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Lista 2 Ex. 1</small>Covariância a partir da correlação</div><div class="face back">\(Cov(x,y)=Corr(x,y)\cdot s_x\cdot s_y\)</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Básico</small>Variância a partir do desvio-padrão</div><div class="face back">\(Var(x)=s_x^2\)<br><span class="small muted">ex.: \(s=10\Rightarrow Var=100\)</span></div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Aula 3</small>Resíduo</div><div class="face back">\(\hat u_i=y_i-\hat y_i\)<br><span class="small muted">observado menos ajustado</span></div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Aula 3</small>\(R^2\)</div><div class="face back">\(R^2=\dfrac{SQE}{SQT}=1-\dfrac{SQR}{SQT}\)</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Aula 5 ★</small>Variância de \(\hat\beta_1\)</div><div class="face back">\(Var(\hat\beta_1\mid X)=\dfrac{\sigma^2}{SQT_x}\)</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Aula 5 ★</small>Estimador de \(\sigma^2\)</div><div class="face back">\(\hat\sigma^2=\dfrac{SQR}{n-2}\)</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Aula 5 ★</small>Erro-padrão de \(\hat\beta_1\)</div><div class="face back">\(ep(\hat\beta_1)=\dfrac{\hat\sigma}{\sqrt{SQT_x}}\)</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Aula 6</small>Estatística t</div><div class="face back">\(t=\dfrac{\hat\beta_1-\beta_{1,0}}{ep(\hat\beta_1)}\)</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Aula 6</small>Intervalo de confiança de 95%</div><div class="face back">\(\hat\beta_1\pm t_{\alpha/2,\,n-2}\cdot ep(\hat\beta_1)\)</div></div></div>
+  </div>
+
+  <div class="quiz" data-answer="c">
+    <div class="qh">Teste rápido</div>
+    <p>Uma amostra tem \(\bar x=5\), \(\bar y=40\) e \(\hat\beta_1=3\). Quanto vale \(\hat\beta_0\)?</p>
+    <div class="opts">
+      <button data-k="a">a) 43</button><button data-k="b">b) 55</button><button data-k="c">c) 25</button><button data-k="d">d) 37</button>
+    </div>
+    <div class="fb" hidden>\(\hat\beta_0=\bar y-\hat\beta_1\bar x=40-3\times5=25\). É o exercício-exemplo do apêndice da Aula 4 (renda × educação).</div>
+  </div>
+  <div class="quiz" data-answer="b">
+    <div class="qh">Teste rápido</div>
+    <p>\(\sum(x_i-\bar x)(y_i-\bar y)=46\) e \(\sum(x_i-\bar x)^2=40\). Quanto vale \(\hat\beta_1\)?</p>
+    <div class="opts">
+      <button data-k="a">a) 0,87</button><button data-k="b">b) 1,15</button><button data-k="c">c) 6</button><button data-k="d">d) 86</button>
+    </div>
+    <div class="fb" hidden>\(46/40=1{,}15\). É o exemplo dos 5 indivíduos da Aula 3 (anos de estudo × salário/hora).</div>
+  </div>
+  <div class="done-row"><button class="btn done-btn" data-done="formulas" aria-pressed="false">Marcar como concluído</button></div>
+</section>

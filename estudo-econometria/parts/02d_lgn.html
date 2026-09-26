@@ -1,0 +1,113 @@
+
+<!-- ================= LEIS DOS GRANDES NÚMEROS ================= -->
+<section class="mod" id="lgn" data-title="Leis dos Grandes Números">
+  <div class="eyebrow"><span class="tag">Aulas 1, 2 e 5</span> <span class="tag warn">Versões além da fraca: complemento</span></div>
+  <h2>Todas as Leis dos Grandes Números</h2>
+  <p>No material do professor, a Lei dos Grandes Números (LGN) aparece três vezes: na Aula 1 (“aproxima estatísticas amostrais de quantidades populacionais”), na Aula 2 (convergência em probabilidade, desigualdade de Chebyshev, Slutsky) e na Aula 5 (“a LGN liga amostra e população” e sustenta a consistência do MQO). Aqui estão todas as versões, da mais intuitiva à mais forte. O que vai além dos slides está marcado.</p>
+
+  <h3>1. A ideia, sem fórmula</h3>
+  <p>Lance um dado honesto. Um lançamento pode dar qualquer coisa de 1 a 6. Mas a <strong>média</strong> de muitos lançamentos vai chegando perto de 3,5, que é a média teórica \(E(X)=\frac{1+2+3+4+5+6}{6}\). As flutuações para cima e para baixo vão se compensando.</p>
+  <figure><div class="scroll">FIG:lgn</div><figcaption>Mil lançamentos simulados de um dado. Depois de 10 lançamentos a média estava em 4,7; depois de 100, em 3,7; depois de 1.000, em 3,514. Ela oscila muito no começo e vai se “grudando” em 3,5.</figcaption></figure>
+  <div class="box def"><span class="lbl">Em uma frase</span>
+    <p>Quanto maior a amostra, mais a média amostral se aproxima da média populacional, <strong>com probabilidade cada vez mais alta</strong>. É isso que permite aprender sobre a população olhando uma amostra.</p>
+  </div>
+
+  <h3>2. Convergência em probabilidade (a linguagem das leis)</h3>
+  <p>Uma sequência \(Z_n\) <strong>converge em probabilidade</strong> para c, escrito \(Z_n\xrightarrow{p}c\) ou \(\text{plim}\,Z_n=c\), se para qualquer margem \(\varepsilon&gt;0\), por menor que seja:</p>
+  <div class="mathblock">\[P\big(|Z_n-c|&gt;\varepsilon\big)\longrightarrow0\quad\text{quando }n\to\infty\]</div>
+  <p>Em palavras: a chance de ficar “longe” de c (mais que ε) vai a zero. É a definição usada na Aula 2 e na consistência da Aula 5.</p>
+
+  <h3>3. A LGN de Bernoulli: proporções <span class="tag">1713</span></h3>
+  <p>A primeira versão, de Jakob Bernoulli: em tentativas independentes com probabilidade de sucesso p, a <strong>proporção de sucessos</strong> converge para p. Com uma moeda honesta, a proporção de caras converge para 0,5. O desvio-padrão da proporção é \(\sqrt{p(1-p)/n}\): 0,05 com n = 100 e 0,005 com n = 10.000. É a base da probabilidade frequentista do slide da Aula 2 (“frequência relativa de longo prazo”).</p>
+
+  <h3>4. A desigualdade de Chebyshev (a ferramenta da prova)</h3>
+  <p>Para qualquer variável com média μ e variância σ² finitas, e qualquer k &gt; 0:</p>
+  <div class="mathblock">\[P\big(|X-\mu|\ge\varepsilon\big)\le\frac{\sigma^2}{\varepsilon^2}\qquad\text{ou, com }\varepsilon=k\sigma:\qquad P\big(|X-\mu|\ge k\sigma\big)\le\frac{1}{k^2}\]</div>
+  <p>Vale para <strong>qualquer</strong> distribuição, e por isso é folgada. Com k = 2, garante que no máximo 25% dos valores ficam a 2 desvios-padrão ou mais da média; numa normal, a proporção verdadeira é cerca de 5%.</p>
+
+  <h3>5. A LGN fraca (a versão do curso)</h3>
+  <div class="box def"><span class="lbl">Enunciado (Aula 2)</span>
+    <p>Se \(X_1,\dots,X_n\) são iid com média μ e variância σ² finitas, então \(\bar X_n\xrightarrow{p}\mu\).</p>
+  </div>
+  <p><strong>Prova em 3 linhas</strong> (é exatamente o que o slide da Aula 2 diz: “como \(E[\hat\mu]=\mu\) e \(Var(\hat\mu)\to0\), a desigualdade de Chebyshev implica \(\hat\mu\xrightarrow{p}\mu\)”):</p>
+  <ol class="steps">
+    <li><div>\(E(\bar X_n)=\mu\) e, pela independência, \(Var(\bar X_n)=\sigma^2/n\).</div></li>
+    <li><div>Chebyshev aplicada a \(\bar X_n\): \(P\big(|\bar X_n-\mu|\ge\varepsilon\big)\le\dfrac{\sigma^2}{n\varepsilon^2}\).</div></li>
+    <li><div>Quando n → ∞, o lado direito vai a zero, então o esquerdo também. ∎</div></li>
+  </ol>
+  <div class="box ok"><span class="lbl">Com números: o dado (σ² = 35/12 ≈ 2,917), margem ε = 0,1</span>
+    <div class="tbl"><table>
+      <thead><tr><th class="r">n</th><th class="r">Garantia de Chebyshev: \(P(|\bar X-3{,}5|\ge0{,}1)\le\)</th><th class="r">Valor aproximado pela normal (TCL)</th></tr></thead>
+      <tbody>
+        <tr><td class="r">100</td><td class="r">2,92 (inútil: maior que 1)</td><td class="r">0,56</td></tr>
+        <tr><td class="r">1.000</td><td class="r">0,29</td><td class="r">0,064</td></tr>
+        <tr><td class="r">10.000</td><td class="r">0,029</td><td class="r">≈ 0</td></tr>
+        <tr><td class="r">100.000</td><td class="r">0,0029</td><td class="r">≈ 0</td></tr>
+      </tbody>
+    </table></div>
+    <p>A garantia vai a zero, que é o que a LGN afirma. O TCL mostra que, na prática, a convergência é bem mais rápida que a garantia de Chebyshev. <span class="muted">(Contas nossas.)</span></p>
+  </div>
+
+  <h3>6. As outras versões <span class="tag warn">complemento</span></h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Versão</th><th>Hipóteses</th><th>Conclusão</th><th>O que acrescenta</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Bernoulli</strong> (1713)</td><td>Tentativas independentes com a mesma p</td><td>proporção \(\xrightarrow{p}\) p</td><td>A primeira; só para proporções</td></tr>
+      <tr><td><strong>Chebyshev</strong> (1867)</td><td>Independentes (ou só não correlacionadas), variâncias limitadas; as médias podem ser diferentes</td><td>\(\frac1n\sum(X_i-\mu_i)\xrightarrow{p}0\)</td><td>Não exige distribuições idênticas</td></tr>
+      <tr><td><strong>Markov</strong></td><td>\(Var(\bar X_n)\to0\), mesmo com dependência</td><td>\(\bar X_n-E(\bar X_n)\xrightarrow{p}0\)</td><td>Permite observações dependentes (séries de tempo)</td></tr>
+      <tr><td><strong>Khinchine</strong> (fraca, 1929)</td><td>iid com média finita (não precisa de variância finita)</td><td>\(\bar X_n\xrightarrow{p}\mu\)</td><td>A versão fraca mais geral para iid</td></tr>
+      <tr><td><strong>Kolmogorov</strong> (forte, 1933)</td><td>iid com média finita</td><td>\(\bar X_n\to\mu\) <strong>quase certamente</strong>: \(P(\lim\bar X_n=\mu)=1\)</td><td>Convergência mais forte (ver abaixo)</td></tr>
+    </tbody>
+  </table></div>
+  <h4>Fraca × forte</h4>
+  <ul>
+    <li><strong>Fraca</strong> (em probabilidade): para cada n grande, a chance de \(\bar X_n\) estar longe de μ é pequena. Ela não proíbe que, numa sequência específica, a média se afaste de vez em quando para sempre.</li>
+    <li><strong>Forte</strong> (quase certa): com probabilidade 1, a sequência de médias converge. A partir de algum ponto, ela fica dentro da margem <em>e não sai mais</em>.</li>
+    <li>A forte implica a fraca. Para a econometria do curso (consistência), a fraca basta.</li>
+  </ul>
+  <h4>Quando a LGN falha</h4>
+  <p>Sem média finita não há lei. O exemplo clássico é a distribuição de <strong>Cauchy</strong> (uma t com 1 grau de liberdade): a média de n observações de Cauchy tem a mesma distribuição de uma única observação e nunca “sossega”. É por isso que as hipóteses falam em “média finita” ou “momentos finitos” (slide da Aula 5).</p>
+
+  <h3>7. O que a LGN <em>não</em> diz</h3>
+  <div class="box trap"><span class="lbl">Três armadilhas</span>
+    <ul>
+      <li><strong>Falácia do jogador (“lei das médias”).</strong> Depois de 10 caras seguidas, a próxima <strong>não</strong> tem mais chance de ser coroa: continua 1/2. A LGN não funciona por <em>compensação</em>, e sim por <em>diluição</em>. Com 10 caras extras seguidas de lançamentos honestos, a proporção esperada é (10 + 495)/1.000 = 0,505 depois de mil lançamentos e 0,500005 depois de um milhão. As 10 caras não são “devolvidas”: ficam irrelevantes.</li>
+      <li><strong>“Lei dos pequenos números”.</strong> Achar que amostras pequenas já refletem a população. A LGN fala de n grande; com 10 lançamentos, a média do dado foi 4,7.</li>
+      <li><strong>Não confunda LGN com LEI.</strong> LEI, no curso, é a <em>Lei das Expectativas Iteradas</em>, \(E[E(Y\mid X)]=E(Y)\) (Aula 2), que é outra coisa.</li>
+    </ul>
+    <p>E a LGN não corrige viés: se o estimador está centrado no lugar errado (variável omitida), ele converge para o lugar errado.</p>
+  </div>
+
+  <h3>8. LGN × TCL</h3>
+  <div class="tbl"><table>
+    <thead><tr><th></th><th>Lei dos Grandes Números</th><th>Teorema Central do Limite</th></tr></thead>
+    <tbody>
+      <tr><td>Pergunta</td><td><strong>Para onde</strong> a média vai?</td><td><strong>Com que formato</strong> ela se espalha em volta do alvo?</td></tr>
+      <tr><td>Resultado</td><td>\(\bar X_n\xrightarrow{p}\mu\)</td><td>\(\dfrac{\sqrt n(\bar X_n-\mu)}{\sigma}\xrightarrow{d}N(0,1)\)</td></tr>
+      <tr><td>Tipo de convergência</td><td>em probabilidade (para um número)</td><td>em distribuição (para uma distribuição)</td></tr>
+      <tr><td>Uso no curso</td><td>consistência de \(\bar X\), \(\hat\sigma^2\), \(\hat\beta_1\)</td><td>testes e ICs aproximadamente normais; erro robusto (Aula 6)</td></tr>
+    </tbody>
+  </table></div>
+  <p>A LGN diz que o erro \(\bar X_n-\mu\) vai a zero; o TCL diz a <strong>velocidade</strong>: ele encolhe como \(1/\sqrt n\) e, ampliado por \(\sqrt n\), tem forma de sino. Ilustração citada na Aula 2: o tabuleiro de Galton.</p>
+
+  <h3>9. Slutsky e a consistência do MQO (a ponte com a Aula 5)</h3>
+  <p><strong>Teorema do mapeamento contínuo / Slutsky</strong> <span class="muted">(o nome Slutsky aparece na Aula 2)</span>: se \(A_n\xrightarrow{p}a\) e \(B_n\xrightarrow{p}b\neq0\), então \(A_n/B_n\xrightarrow{p}a/b\), \(A_n+B_n\xrightarrow{p}a+b\), e assim por diante. Na Aula 2 ele justifica trocar σ por S no TCL.</p>
+  <p>Na Aula 5, a inclinação é uma razão de duas médias amostrais:</p>
+  <div class="mathblock">\[\hat\beta_1=\beta_1+\frac{\overbrace{n^{-1}\sum_i(X_i-\bar X)u_i}^{\xrightarrow{p}\ Cov(X,u)\ \text{(LGN)}}}{\underbrace{n^{-1}\sum_i(X_i-\bar X)^2}_{\xrightarrow{p}\ Var(X)\ \text{(LGN)}}}\ \xrightarrow{p}\ \beta_1+\frac{Cov(X,u)}{Var(X)}\quad\text{(Slutsky)}\]</div>
+  <p>A LGN cuida de cada média; Slutsky cuida da razão. Se \(Cov(X,u)=0\), \(\text{plim}\,\hat\beta_1=\beta_1\): o MQO é <strong>consistente</strong>. É o slide “Por que o MQO converge para o parâmetro verdadeiro?”. O mesmo raciocínio mostra que \(\hat\sigma^2\) e S² são consistentes.</p>
+
+  <h3>Teste rápido</h3>
+  <div class="quiz" data-answer="c"><div class="qh">LGN</div>
+    <p>Depois de 8 coroas seguidas numa moeda honesta, a probabilidade de cara no próximo lançamento é:</p>
+    <div class="opts"><button data-k="a">a) maior que 1/2, para compensar</button><button data-k="b">b) menor que 1/2</button><button data-k="c">c) exatamente 1/2</button><button data-k="d">d) 1</button></div>
+    <div class="fb" hidden>c. Os lançamentos são independentes. A LGN age por diluição, não por compensação.</div></div>
+  <div class="quiz" data-answer="b"><div class="qh">LGN</div>
+    <p>A prova da LGN fraca do curso usa:</p>
+    <div class="opts"><button data-k="a">a) o TCL</button><button data-k="b">b) a desigualdade de Chebyshev e \(Var(\bar X)=\sigma^2/n\)</button><button data-k="c">c) a Lei das Expectativas Iteradas</button><button data-k="d">d) a normalidade dos dados</button></div>
+    <div class="fb" hidden>b. \(P(|\bar X-\mu|\ge\varepsilon)\le\sigma^2/(n\varepsilon^2)\to0\).</div></div>
+  <div class="quiz" data-answer="d"><div class="qh">LGN × TCL</div>
+    <p>Qual afirmação é do TCL, e não da LGN?</p>
+    <div class="opts"><button data-k="a">a) \(\bar X\) chega perto de μ</button><button data-k="b">b) a proporção de caras vai a 0,5</button><button data-k="c">c) o MQO é consistente se \(Cov(X,u)=0\)</button><button data-k="d">d) a média padronizada é aproximadamente normal</button></div>
+    <div class="fb" hidden>d. O TCL descreve a forma da distribuição; a LGN, o ponto para onde ela converge.</div></div>
+  <div class="done-row"><button class="btn done-btn" data-done="lgn" aria-pressed="false">Marcar como concluído</button></div>
+</section>

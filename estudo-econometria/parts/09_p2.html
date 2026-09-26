@@ -1,0 +1,135 @@
+
+<!-- ================= PRÉVIA DA P2 ================= -->
+<section class="mod" id="p2" data-title="Prévia da P2">
+  <div class="eyebrow"><span class="tag">Prévia da P2</span> <span class="tag warn">Fora do material da P1</span></div>
+  <h2>Regressão múltipla, multicolinearidade, heterocedasticidade e autocorrelação</h2>
+  <div class="box trap"><span class="lbl">Leia antes</span>
+    <p>A apresentação do curso diz que ele cobre “regressão linear simples e <strong>múltipla</strong>”, e o último slide da aula de dummies anuncia a próxima aula: <em>regressão múltipla, vários regressores, interpretação ceteris paribus, viés de variável omitida e representação matricial inicial</em>. Isso é conteúdo da <strong>P2</strong>. <strong>Multicolinearidade</strong> aparece no material só como “colinearidade perfeita” (armadilha da dummy), e <strong>autocorrelação</strong> não aparece em nenhum material. Tudo aqui foi incluído porque você pediu; os exemplos numéricos são nossos.</p>
+  </div>
+
+  <h3>1. Regressão múltipla: a ideia</h3>
+  <div class="mathblock">\[y_i=\beta_0+\beta_1x_{1i}+\beta_2x_{2i}+\dots+\beta_kx_{ki}+u_i\]</div>
+  <p>Cada \(\beta_j\) é a variação média de y quando \(x_j\) aumenta 1 unidade, <strong>mantendo todas as outras x constantes</strong> (ceteris paribus). Na regressão simples, tudo o que não é x vai para o erro; na múltipla, podemos <strong>tirar do erro</strong> as variáveis que causariam viés.</p>
+  <p><strong>Hipóteses</strong> (as mesmas da Aula 5, adaptadas): linearidade nos parâmetros; amostragem aleatória; <strong>nenhuma colinearidade perfeita</strong> (substitui “x varia”); \(E(u\mid x_1,\dots,x_k)=0\); homocedasticidade. Sob as quatro primeiras, MQO é não viesado; com a quinta, é BLUE.</p>
+  <p><strong>MQO:</strong> minimiza \(\sum_i(y_i-b_0-b_1x_{1i}-\dots-b_kx_{ki})^2\). São k + 1 CPOs: \(\sum\hat u_i=0\) e \(\sum x_{ji}\hat u_i=0\) para cada j. Na forma matricial (a “representação matricial inicial” anunciada): \(\hat{\boldsymbol\beta}=(\mathbf X'\mathbf X)^{-1}\mathbf X'\mathbf y\).</p>
+
+  <h3>2. Exemplo: o que muda quando incluímos a variável omitida</h3>
+  <div class="tbl"><table>
+    <thead><tr><th class="r">i</th><th class="r">educ (anos)</th><th class="r">hab (índice)</th><th class="r">salário (R$/h)</th></tr></thead>
+    <tbody>
+      <tr><td class="r">1</td><td class="r">8</td><td class="r">1</td><td class="r">12</td></tr>
+      <tr><td class="r">2</td><td class="r">10</td><td class="r">2</td><td class="r">15</td></tr>
+      <tr><td class="r">3</td><td class="r">12</td><td class="r">4</td><td class="r">23</td></tr>
+      <tr><td class="r">4</td><td class="r">12</td><td class="r">3</td><td class="r">20</td></tr>
+      <tr><td class="r">5</td><td class="r">14</td><td class="r">6</td><td class="r">29</td></tr>
+      <tr><td class="r">6</td><td class="r">16</td><td class="r">8</td><td class="r">33</td></tr>
+    </tbody>
+  </table></div>
+  <div class="tbl"><table>
+    <thead><tr><th>Regressão</th><th>Resultado</th><th>Leitura</th></tr></thead>
+    <tbody>
+      <tr><td>Simples: salário em educ</td><td>\(\widehat{sal}=-11{,}6+2{,}8\,educ\)</td><td>Cada ano de estudo associado a R$ 2,80/h a mais</td></tr>
+      <tr><td>Múltipla: salário em educ e hab</td><td>\(\widehat{sal}=2+1\,educ+2\,hab\)</td><td>Um ano a mais de estudo, <strong>com a mesma habilidade</strong>: R$ 1,00/h a mais</td></tr>
+      <tr><td>Auxiliar: hab em educ</td><td>\(\widehat{hab}=-6{,}8+0{,}9\,educ\)</td><td>Quem estuda mais tem, em média, mais habilidade</td></tr>
+    </tbody>
+  </table></div>
+  <p><strong>A conta do viés, exata na amostra:</strong> o coeficiente simples é o múltiplo mais o “caminho” pela habilidade:</p>
+  <div class="mathblock">\[\tilde\beta_1=\hat\beta_1+\hat\beta_2\,\tilde\delta_1=1+2\times0{,}9=2{,}8\]</div>
+  <p>É a fórmula do viés de variável omitida da Aula 5 (\(0{,}8+1{,}2\times0{,}7\)), agora vista com dados. A regressão simples atribui à educação R$ 1,80 que, na verdade, vêm da habilidade.</p>
+  <p><strong>Conferindo as CPOs:</strong> os resíduos da múltipla são 0, −1, 1, 0, 1, −1: somam zero, \(\sum educ_i\hat u_i=-10+12+14-16=0\) e \(\sum hab_i\hat u_i=-2+4+6-8=0\). SQR = 4.</p>
+  <details class="sol"><summary>“Partialling out” (Frisch–Waugh): de onde vem o 1 da múltipla</summary><div class="in">
+    <p>O \(\hat\beta_1\) da múltipla pode ser obtido em dois passos: (1) regredir educ em hab e guardar o resíduo \(\hat r_1\), que é a parte da educação <strong>não explicada</strong> pela habilidade; (2) regredir salário em \(\hat r_1\): \(\hat\beta_1=\sum\hat r_{1i}y_i/\sum\hat r_{1i}^2\). Aqui dá exatamente 1. É isso que “mantendo hab constante” quer dizer: usamos só a variação da educação que não anda junto com a habilidade.</p>
+  </div></details>
+
+  <h3>3. Ajuste, graus de liberdade e testes</h3>
+  <ul>
+    <li><strong>\(\hat\sigma^2=\dfrac{SQR}{n-k-1}\)</strong>: o n − 2 da regressão simples vira n − k − 1 (k explicativas + intercepto). No exemplo: 4/(6 − 2 − 1) = 1,333.</li>
+    <li><strong>\(R^2\)</strong> nunca diminui quando se acrescenta uma variável, mesmo inútil. Por isso existe o <strong>\(R^2\) ajustado</strong>, que penaliza variáveis a mais:
+      <div class="mathblock">\[\bar R^2=1-\frac{SQR/(n-k-1)}{SQT/(n-1)}\]</div>
+      No exemplo: \(R^2=1-4/324\approx0{,}988\) e \(\bar R^2=1-\frac{4/3}{324/5}\approx0{,}979\). Outro: \(R^2=0{,}60\), n = 30, k = 3 dá \(\bar R^2\approx0{,}554\).</li>
+    <li><strong>Teste t</strong> de cada coeficiente: igual à Aula 6, com n − k − 1 graus de liberdade.</li>
+    <li><strong>Teste F</strong> (vários coeficientes ao mesmo tempo, o “teaser” da Aula 6). Para \(H_0:\beta_1=\dots=\beta_k=0\):
+      <div class="mathblock">\[F=\frac{R^2/k}{(1-R^2)/(n-k-1)}\sim F_{k,\;n-k-1}\ \text{sob }H_0\]</div>
+      Com \(R^2=0{,}60\), n = 30, k = 3: \(F=\frac{0{,}2}{0{,}4/26}=13\), bem acima do crítico de 5% (≈ 2,98). Rejeita.</li>
+  </ul>
+
+  <h3>4. Multicolinearidade</h3>
+  <p><strong>Perfeita:</strong> uma explicativa é combinação linear exata das outras. Exemplos: \(x_2=2x_1\); educação em anos e em meses no mesmo modelo; a <strong>armadilha da dummy</strong> (D e 1 − D com intercepto). O MQO simplesmente não tem solução única, e a hipótese de “nenhuma colinearidade perfeita” a proíbe.</p>
+  <p><strong>Imperfeita</strong> (a que importa na prática): as explicativas são muito correlacionadas, mas não perfeitamente. Aí aparece na variância:</p>
+  <div class="mathblock">\[Var(\hat\beta_j)=\frac{\sigma^2}{SQT_j\,(1-R_j^2)},\qquad VIF_j=\frac{1}{1-R_j^2}\]</div>
+  <p>\(R_j^2\) é o \(R^2\) da regressão de \(x_j\) nas outras explicativas. Com uma só explicativa, \(R_j^2=0\) e volta a fórmula \(\sigma^2/SQT_x\) da Aula 5. O VIF (fator de inflação da variância) diz quantas vezes a variância aumentou por causa da correlação com as outras.</p>
+  <div class="tbl"><table>
+    <thead><tr><th class="r">\(R_j^2\)</th><th class="r">0</th><th class="r">0,5</th><th class="r">0,8</th><th class="r">0,9</th><th class="r">0,99</th></tr></thead>
+    <tbody>
+      <tr><td class="r">VIF</td><td class="r">1</td><td class="r">2</td><td class="r">5</td><td class="r">10</td><td class="r">100</td></tr>
+      <tr><td class="r">ep multiplicado por \(\sqrt{VIF}\)</td><td class="r">1</td><td class="r">1,41</td><td class="r">2,24</td><td class="r">3,16</td><td class="r">10</td></tr>
+    </tbody>
+  </table></div>
+  <div class="box ok"><span class="lbl">O sintoma clássico, no nosso exemplo</span>
+    <p>Educação e habilidade andam muito juntas: \(R^2\) de educ em hab ≈ 0,953, VIF ≈ 21. Com \(\hat\sigma^2=4/3\):</p>
+    <ul>
+      <li>educ: \(ep\approx0{,}84\), \(t=1/0{,}84\approx1{,}19\) (p ≈ 0,32);</li>
+      <li>hab: \(ep\approx0{,}91\), \(t=2/0{,}91\approx2{,}19\) (p ≈ 0,12).</li>
+    </ul>
+    <p>Com 3 g.l., o crítico de 5% é 3,182: <strong>nenhum</strong> coeficiente é significativo sozinho. Mas \(R^2\approx0{,}99\) e, com SQE = 324 − 4 = 320, \(F=\frac{SQE/k}{SQR/(n-k-1)}=\frac{320/2}{4/3}=120\) (crítico ≈ 9,55, p ≈ 0,001): <strong>juntas</strong>, as duas explicam muito. Os dados sabem que “educação + habilidade” importa, mas não conseguem separar quanto é de cada uma.</p>
+  </div>
+  <ul>
+    <li><strong>Não causa viés</strong> e o MQO continua BLUE. O problema é só a precisão.</li>
+    <li><strong>Sinais:</strong> t individuais pequenos com F grande; coeficientes que mudam muito com pequenas mudanças nos dados.</li>
+    <li><strong>O que fazer:</strong> mais dados ou mais variação independente nas x; aceitar, se o interesse é o efeito conjunto ou outro coeficiente. <strong>Não</strong> retire uma variável relevante só para baixar o VIF: isso troca imprecisão por viés de variável omitida. VIF &gt; 10 é um alerta usual, não um teste.</li>
+  </ul>
+
+  <h3>5. Heterocedasticidade (resumo)</h3>
+  <p>Já estudada nas <a href="#aula5">Aulas 5</a> e <a href="#aula6">6</a>. \(Var(u\mid x)\) muda com x. MQO continua não viesado e consistente, mas o erro-padrão usual fica errado e ele deixa de ser BLUE. Diagnóstico: gráfico dos resíduos (funil), testes de Breusch–Pagan e White. Remédio: erros-padrão robustos (HC0 a HC3) ou MQP. Na regressão múltipla, tudo continua igual.</p>
+
+  <h3>6. Autocorrelação (correlação serial)</h3>
+  <p>Aparece em <strong>séries temporais</strong>, em que a ordem dos dados importa (Aula 1). Há autocorrelação quando os erros de períodos diferentes são correlacionados: \(Cov(u_t,u_s\mid X)\neq0\) para \(t\neq s\). Em corte transversal, a amostragem aleatória (RLS.2) elimina isso; no tempo, não.</p>
+  <p>O modelo mais comum é o <strong>AR(1)</strong>: \(u_t=\rho\,u_{t-1}+e_t\), com \(|\rho|\lt1\) e \(e_t\) ruído independente. Com ρ &gt; 0, um choque ruim hoje tende a continuar amanhã (inércia).</p>
+  <figure><div class="scroll">FIG:ar1</div><figcaption>À esquerda, erros independentes: trocam de sinal ao acaso. À direita, AR(1) com ρ = 0,8: longas sequências do mesmo sinal, “ondas”. Na série simulada, Durbin–Watson ≈ 1,86 à esquerda e ≈ 0,54 à direita.</figcaption></figure>
+  <ul>
+    <li><strong>Consequências:</strong> com exogeneidade estrita, o MQO continua <strong>não viesado</strong>. Mas deixa de ser BLUE e o erro-padrão usual fica errado. Com ρ &gt; 0 e x também persistente, em geral ele <strong>subestima</strong> a incerteza, e t fica inflado (falsa significância).</li>
+    <li><strong>O tamanho do problema</strong> (ilustração nossa, para a média de uma série AR(1)): a variância verdadeira é cerca de \(\frac{\sigma_u^2}{n}\cdot\frac{1+\rho}{1-\rho}\). Com ρ = 0,5, 3 vezes a fórmula usual; com ρ = 0,8, 9 vezes (ep 3 vezes maior); com ρ = 0,9, 19 vezes.</li>
+    <li><strong>Diagnóstico:</strong> gráfico dos resíduos no tempo; estatística de <strong>Durbin–Watson</strong>,
+      <div class="mathblock">\[d=\frac{\sum_{t=2}^{T}(\hat u_t-\hat u_{t-1})^2}{\sum_{t=1}^{T}\hat u_t^2}\approx2(1-\hat\rho)\]</div>
+      d ≈ 2 indica ausência de autocorrelação, d perto de 0 indica autocorrelação positiva e d perto de 4, negativa. Há também o teste de <strong>Breusch–Godfrey</strong>: regredir \(\hat u_t\) em \(x_t\) e \(\hat u_{t-1}\) e testar o coeficiente de \(\hat u_{t-1}\).</li>
+    <li><strong>Correções:</strong> erros-padrão <strong>HAC</strong> (Newey–West), robustos a heterocedasticidade e autocorrelação; <strong>MQG factível</strong> (Cochrane–Orcutt, Prais–Winsten), que estima ρ e usa as quase-diferenças \(y_t-\hat\rho y_{t-1}\); primeira diferença quando ρ ≈ 1; ou modelar a dinâmica incluindo defasagens.</li>
+  </ul>
+  <div class="box ok"><span class="lbl">Durbin–Watson com números</span>
+    <p>Resíduos em 8 períodos: 1,0; 1,5; 1,2; 0,4; −0,5; −1,1; −1,4; −0,6. Diferenças sucessivas: 0,5; −0,3; −0,8; −0,9; −0,6; −0,3; 0,8, com quadrados somando 2,88. Soma dos quadrados dos resíduos: 8,63. \(d=2{,}88/8{,}63\approx0{,}33\), muito abaixo de 2: forte autocorrelação positiva, visível nas duas “ondas” de sinais.</p>
+  </div>
+
+  <h3>7. Dummies (resumo)</h3>
+  <p>Na regressão múltipla, dummies entram ao lado de variáveis contínuas (retas paralelas) e em interações (inclinações diferentes). Com G categorias e intercepto, use G − 1 dummies para evitar a colinearidade perfeita. Tudo está na <a href="#dummies">aula de dummies</a>.</p>
+
+  <h3>8. Quadro-resumo dos problemas</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Problema</th><th>Viés no MQO?</th><th>ep usual válido?</th><th>Remédio</th></tr></thead>
+    <tbody>
+      <tr><td>Variável omitida (correlacionada com x)</td><td><strong>Sim</strong></td><td>—</td><td>incluí-la (regressão múltipla)</td></tr>
+      <tr><td>Erro de medida em x</td><td><strong>Sim</strong> (atenuação)</td><td>—</td><td>dados melhores</td></tr>
+      <tr><td>Multicolinearidade perfeita</td><td>MQO nem calcula</td><td>—</td><td>tirar a variável redundante</td></tr>
+      <tr><td>Multicolinearidade imperfeita</td><td>Não</td><td>Sim (mas ep grande)</td><td>mais dados ou mais variação</td></tr>
+      <tr><td>Heterocedasticidade</td><td>Não</td><td><strong>Não</strong></td><td>erro robusto (HC), MQP</td></tr>
+      <tr><td>Autocorrelação</td><td>Não (com exogeneidade estrita)</td><td><strong>Não</strong></td><td>erro HAC, MQG factível</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Teste rápido</h3>
+  <div class="quiz" data-answer="b"><div class="qh">Regressão múltipla</div>
+    <p>Em \(\widehat{sal}=2+1\,educ+2\,hab\), o coeficiente 1 significa:</p>
+    <div class="opts"><button data-k="a">a) educação causa R$ 1/h, sempre</button><button data-k="b">b) um ano a mais de estudo associado a R$ 1/h a mais, mantendo a habilidade constante</button><button data-k="c">c) o salário de quem não estudou</button><button data-k="d">d) o mesmo que o coeficiente da regressão simples</button></div>
+    <div class="fb" hidden>b. É o efeito parcial (ceteris paribus). A regressão simples deu 2,8 porque misturava educação e habilidade.</div></div>
+  <div class="quiz" data-answer="c"><div class="qh">Multicolinearidade</div>
+    <p>Qual é a consequência da multicolinearidade <strong>imperfeita</strong>?</p>
+    <div class="opts"><button data-k="a">a) MQO viesado</button><button data-k="b">b) MQO não calcula</button><button data-k="c">c) erros-padrão maiores, sem viés</button><button data-k="d">d) \(R^2\) sempre baixo</button></div>
+    <div class="fb" hidden>c. \(Var(\hat\beta_j)=\sigma^2/[SQT_j(1-R_j^2)]\) cresce com \(R_j^2\). O \(R^2\) pode ser alto.</div></div>
+  <div class="quiz" data-answer="a"><div class="qh">Autocorrelação</div>
+    <p>Uma regressão com dados mensais tem Durbin–Watson = 0,4. Isso sugere:</p>
+    <div class="opts"><button data-k="a">a) autocorrelação positiva forte</button><button data-k="b">b) ausência de autocorrelação</button><button data-k="c">c) autocorrelação negativa</button><button data-k="d">d) heterocedasticidade</button></div>
+    <div class="fb" hidden>a. d ≈ 2(1 − ρ̂) dá ρ̂ ≈ 0,8.</div></div>
+  <div class="quiz" data-answer="d"><div class="qh">Regressão múltipla</div>
+    <p>n = 40, k = 4, SQR = 70. Quanto vale \(\hat\sigma^2\)?</p>
+    <div class="opts"><button data-k="a">a) 1,75</button><button data-k="b">b) 1,84</button><button data-k="c">c) 1,79</button><button data-k="d">d) 2</button></div>
+    <div class="fb" hidden>d. n − k − 1 = 35 e 70/35 = 2. Dividir por n − 2 (1,84) é o erro de copiar a regressão simples.</div></div>
+  <div class="done-row"><button class="btn done-btn" data-done="p2" aria-pressed="false">Marcar como concluído</button></div>
+</section>

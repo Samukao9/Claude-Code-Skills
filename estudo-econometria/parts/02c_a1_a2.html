@@ -1,0 +1,366 @@
+<!-- ================= AULA 1 ================= -->
+<section class="mod" id="aula1" data-title="Aula 1">
+  <div class="eyebrow">Aula 1 · Natureza da econometria e dados econômicos</div>
+  <h2>O que é econometria</h2>
+  <div class="box def"><span class="lbl">Definição</span>
+    <p>Econometria utiliza métodos estatísticos para estimar relações econômicas, testar teorias, avaliar políticas e realizar previsões.</p>
+  </div>
+  <p>Grande parte dos dados econômicos é <strong>observacional</strong>: ninguém sorteou quem estuda mais. Além disso, as variáveis são medidas com imperfeição, as decisões de pessoas, firmas e governos são interdependentes, e as relações podem mudar ao longo do tempo.</p>
+
+  <h3>Três tarefas diferentes</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Objetivo</th><th>Pergunta</th><th>Desafio principal</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Descrição</strong></td><td>O que observamos na população?</td><td>Medir e resumir adequadamente</td></tr>
+      <tr><td><strong>Causalidade</strong></td><td>O que mudaria se alterássemos X?</td><td>Construir uma comparação contrafactual</td></tr>
+      <tr><td><strong>Previsão</strong></td><td>Qual valor de Y devemos esperar?</td><td>Prever bem em novas observações</td></tr>
+    </tbody>
+  </table></div>
+  <p>Exemplos da aula: “A desigualdade de renda diminuiu no Brasil?” (descrição); “Qual é o efeito de um ano adicional de educação sobre o salário?” (causalidade); “Qual será a inflação no próximo trimestre?” (previsão). A interpretação dos resultados depende da pergunta.</p>
+  <p><strong>Previsão não exige causalidade:</strong> ver pessoas com guarda-chuva ajuda a prever chuva, mas abrir um guarda-chuva não provoca chuva. Boa capacidade preditiva não basta para uma interpretação causal. Para prever, procuramos relações <strong>estáveis</strong> em observações novas; para avaliar uma política, precisamos saber o que aconteceria <strong>se a política fosse alterada</strong>.</p>
+
+  <h3>A sequência de uma análise empírica</h3>
+  <ol class="steps">
+    <li><div><strong>Pergunta econômica</strong> bem formulada: população de interesse, variável de resultado, variável explicativa ou intervenção, e se o objetivo é descritivo, preditivo ou causal.</div></li>
+    <li><div><strong>Modelo econômico:</strong> \(wage=f(educ,exper,training,\dots)\). Seleciona relações, sugere sinais e mecanismos e explicita simplificações.</div></li>
+    <li><div><strong>Modelo econométrico:</strong> \(wage_i=\beta_0+\beta_1educ_i+\beta_2exper_i+\beta_3training_i+u_i\). Os \(\beta\) são parâmetros desconhecidos; se o interesse é treinamento, \(\beta_3\) é o central.</div></li>
+    <li><div><strong>Dados</strong> e, por fim, <strong>estimação e inferência</strong>.</div></li>
+  </ol>
+
+  <h3>O termo de erro não é apenas ruído</h3>
+  <p>No exemplo dos salários, \(u_i\) pode conter habilidade e motivação, qualidade da educação e ambiente familiar, erros de medida e outros determinantes fora do modelo. A questão central é: <strong>as variáveis explicativas estão relacionadas aos fatores que estão em \(u_i\)?</strong> Essa pergunta volta na Aula 3 (\(E[U\mid X]=0\)) e na Aula 5 (viés).</p>
+
+  <h3>Inferência, identificação e o tamanho da amostra</h3>
+  <p><strong>Inferência:</strong> amostra ⟹ estimativa + incerteza. A Lei dos Grandes Números aproxima estatísticas amostrais de quantidades populacionais; o Teorema Central do Limite permite aproximar distribuições amostrais; erros-padrão e intervalos quantificam a incerteza.</p>
+  <div class="tbl"><table>
+    <thead><tr><th></th><th>Identificação</th><th>Inferência</th></tr></thead>
+    <tbody>
+      <tr><td>Pergunta</td><td>As hipóteses permitem recuperar o parâmetro a partir da distribuição observável?</td><td>Como estimar o parâmetro identificado com uma amostra finita?</td></tr>
+      <tr><td>Esquema</td><td>distribuição + hipóteses ⟹ θ</td><td>amostra ⟹ θ̂ + incerteza</td></tr>
+    </tbody>
+  </table></div>
+  <div class="tbl"><table>
+    <thead><tr><th>Problema</th><th>Aumentar n ajuda?</th><th>O que é necessário</th></tr></thead>
+    <tbody>
+      <tr><td>Incerteza amostral</td><td>Em geral, sim</td><td>Inferência adequada</td></tr>
+      <tr><td>Amostra selecionada</td><td>Não necessariamente</td><td>Compreender a seleção</td></tr>
+      <tr><td>Falta de identificação</td><td>Não</td><td>Hipóteses ou desenho válido</td></tr>
+    </tbody>
+  </table></div>
+  <p class="muted">Precisão estatística não substitui uma comparação economicamente válida.</p>
+
+  <h3>Ceteris paribus e o experimento ideal</h3>
+  <p>O efeito causal de um ano a mais de estudo compara salários sob diferentes níveis de educação <strong>mantendo constantes os demais determinantes relevantes</strong> (ceteris paribus): \(\Delta wage\) quando \(\Delta educ=1\).</p>
+  <p><strong>Experimento do fertilizante:</strong> selecionamos lotes, atribuímos o fertilizante aleatoriamente, mantemos o manejo semelhante e comparamos as médias. A atribuição aleatória torna o fertilizante independente, em média, da qualidade da terra. Com educação isso é inviável: as pessoas escolhem quanto estudar, e habilidade e ambiente familiar afetam educação e salário ao mesmo tempo. Por isso dados observacionais exigem hipóteses adicionais.</p>
+  <div class="box def"><span class="lbl">Quando o tratamento não é aleatório, o que se faz (slide da aula)</span>
+    <ul>
+      <li>controlar os fatores <strong>observáveis</strong> que diferenciam os grupos;</li>
+      <li>explorar regras ou acontecimentos que gerem variação <strong>comparável</strong>;</li>
+      <li>formular hipóteses <strong>explícitas</strong> sobre os fatores não observados;</li>
+      <li>verificar se a comparação responde à pergunta original.</li>
+    </ul>
+    <p>Essas estratégias tentam reproduzir, tanto quanto possível, a comparação de um experimento ideal.</p>
+  </div>
+
+  <h3>Estruturas de dados</h3>
+  <ul>
+    <li><strong>Corte transversal (cross-section):</strong> várias unidades (indivíduos, firmas, municípios, países) num ponto do tempo ou período curto. Em geral, a ordem das linhas não contém informação econômica.</li>
+    <li><strong>Série temporal:</strong> uma ou mais variáveis ao longo do tempo (inflação mensal, PIB trimestral, preços diários de ações). A ordem cronológica é essencial, e tendências, sazonalidade e dependência temporal exigem atenção (é daí que vem a <a href="#p2">autocorrelação</a>).</li>
+    <li><strong>Painel:</strong> as <em>mesmas</em> unidades em dois ou mais períodos. Combina variação entre unidades e ao longo do tempo, permite estudar mudanças individuais e, sob condições adequadas, controlar características que não mudam no tempo.</li>
+    <li><strong>Cortes transversais empilhados:</strong> amostras em momentos diferentes, sem precisar serem as mesmas unidades.</li>
+  </ul>
+
+  <h3>Apêndice: resultados potenciais e viés de seleção</h3>
+  <p>Seja \(D_i=1\) se i cursa ensino superior. \(Y_i(1)\) é a renda se cursar e \(Y_i(0)\) se não cursar. O efeito individual é \(\tau_i=Y_i(1)-Y_i(0)\), mas <strong>só observamos um dos dois</strong>: \(Y_i=D_iY_i(1)+(1-D_i)Y_i(0)\). O parâmetro causal médio é \(ATE=E[Y_i(1)-Y_i(0)]\).</p>
+  <p>Na amostra calculamos a diferença de médias \(\hat\Delta\). Com 100 pessoas com superior (R$ 6.000) e 100 sem (R$ 3.500), \(\hat\Delta=R\$\,2.500\). Essa diferença se decompõe em:</p>
+  <div class="mathblock">\[E[Y_i\mid D_i=1]-E[Y_i\mid D_i=0]=\underbrace{E[Y_i(1)-Y_i(0)\mid D_i=1]}_{\text{efeito sobre os tratados}}+\underbrace{E[Y_i(0)\mid D_i=1]-E[Y_i(0)\mid D_i=0]}_{\text{viés de seleção}}\]</div>
+  <p>Num experimento aleatorizado, \(D_i\) é independente de \((Y_i(1),Y_i(0))\), o viés de seleção some e a diferença de médias é igual ao efeito causal médio.</p>
+
+  <div class="quiz" data-answer="e">
+    <div class="qh">Lista 1 · Questão 1</div>
+    <ol class="afirm">
+      <li>I. A econometria combina raciocínio econômico, formulação matemática, métodos estatísticos e dados.</li>
+      <li>II. Um mesmo conjunto de dados pode responder perguntas descritivas e investigar relações causais, dependendo da pergunta.</li>
+      <li>III. A qualidade da resposta depende da qualidade dos dados e da adequação do modelo.</li>
+    </ol>
+    <div class="opts"><button data-k="a">(A) somente I</button><button data-k="b">(B) somente I e II</button><button data-k="c">(C) somente I e III</button><button data-k="d">(D) somente II e III</button><button data-k="e">(E) I, II e III</button></div>
+    <div class="fb" hidden>As três são verdadeiras. O caráter descritivo ou causal depende da pergunta e das hipóteses, e dados ruins não são corrigidos por um modelo sofisticado.</div>
+  </div>
+  <div class="quiz" data-answer="d">
+    <div class="qh">Lista 1 · Questão 2</div>
+    <ol class="afirm">
+      <li>I. Toda pergunta com a palavra “efeito” pode ser respondida só com estatística descritiva.</li>
+      <li>II. Uma comparação ceteris paribus mantém constantes os demais fatores relevantes.</li>
+      <li>III. Uma correlação entre X e Y não implica, por si só, que X causa Y.</li>
+    </ol>
+    <div class="opts"><button data-k="a">(A) somente I</button><button data-k="b">(B) somente I e II</button><button data-k="c">(C) somente I e III</button><button data-k="d">(D) somente II e III</button><button data-k="e">(E) I, II e III</button></div>
+    <div class="fb" hidden>I é falsa: “efeito” é causal e envolve contrafactual. II e III são verdadeiras: correlação pode vir de causalidade reversa ou de uma terceira variável.</div>
+  </div>
+  <div class="quiz" data-answer="a">
+    <div class="qh">Lista 1 · Questão 3</div>
+    <ol class="afirm">
+      <li>I. Identificação pergunta se um parâmetro pode, em princípio, ser aprendido do modelo e da informação, mesmo com dados infinitos.</li>
+      <li>II. Aumentar a amostra resolve automaticamente problemas de identificação.</li>
+      <li>III. Inferência estatística elimina a necessidade de se preocupar com identificação.</li>
+    </ol>
+    <div class="opts"><button data-k="a">(A) somente I</button><button data-k="b">(B) somente I e II</button><button data-k="c">(C) somente I e III</button><button data-k="d">(D) somente II e III</button><button data-k="e">(E) I, II e III</button></div>
+    <div class="fb" hidden>Só I. Mais dados reduzem a incerteza de um estimador <em>identificado</em>, mas não criam identificação; e inferência não substitui identificação.</div>
+  </div>
+  <div class="quiz" data-answer="c">
+    <div class="qh">Lista 1 · Questão 4</div>
+    <ol class="afirm">
+      <li>I. Dados em painel observam as mesmas unidades em múltiplos períodos.</li>
+      <li>II. Em corte transversal, a ordem das observações na planilha altera a informação.</li>
+      <li>III. Em séries temporais, a ordem cronológica é relevante.</li>
+    </ol>
+    <div class="opts"><button data-k="a">(A) somente I</button><button data-k="b">(B) somente I e II</button><button data-k="c">(C) somente I e III</button><button data-k="d">(D) somente II e III</button><button data-k="e">(E) I, II e III</button></div>
+    <div class="fb" hidden>I e III. Reordenar as linhas de um corte transversal não altera a informação; embaralhar uma série temporal destrói parte dela.</div>
+  </div>
+  <div class="quiz" data-answer="b">
+    <div class="qh">Lista 1 · Questão 5</div>
+    <ol class="afirm">
+      <li>I. Um parâmetro populacional é uma quantidade fixa, ainda que desconhecida.</li>
+      <li>II. Um estimador é uma regra que transforma os dados de uma amostra em um número.</li>
+      <li>III. O valor de um estimador é idêntico em qualquer amostra da mesma população.</li>
+    </ol>
+    <div class="opts"><button data-k="a">(A) somente I</button><button data-k="b">(B) somente I e II</button><button data-k="c">(C) somente I e III</button><button data-k="d">(D) somente II e III</button><button data-k="e">(E) I, II e III</button></div>
+    <div class="fb" hidden>I e II. O valor do estimador varia de amostra para amostra: o parâmetro é fixo, a estimativa é uma realização do estimador.</div>
+  </div>
+  <div class="box prova"><span class="lbl">Checklist da Aula 1: eu consigo…</span>
+    <ul>
+      <li>dizer se uma pergunta é de descrição, causalidade ou previsão;</li>
+      <li>explicar por que previsão não exige causalidade (exemplo do guarda-chuva);</li>
+      <li>diferenciar modelo econômico de modelo econométrico e dizer o que vai no erro u;</li>
+      <li>distinguir identificação de inferência e dizer por que mais dados não resolvem identificação;</li>
+      <li>explicar ceteris paribus e o experimento ideal (fertilizante);</li>
+      <li>reconhecer corte transversal, série temporal, painel e cortes empilhados;</li>
+      <li>decompor a diferença de médias em efeito sobre os tratados + viés de seleção.</li>
+    </ul>
+  </div>
+  <div class="done-row"><button class="btn done-btn" data-done="aula1" aria-pressed="false">Marcar como concluído</button></div>
+</section>
+
+<!-- ================= AULA 2 ================= -->
+<section class="mod" id="aula2" data-title="Aula 2">
+  <div class="eyebrow">Aula 2 · Revisão de matemática, probabilidade e estatística</div>
+  <h2>As ferramentas que o MQO usa</h2>
+  <p>A regressão é construída a partir de poucos objetos: dados → estatísticas amostrais → estimadores → inferência. Somatórios organizam as contas, esperança e variância descrevem distribuições, covariância descreve associação linear e a esperança condicional descreve como a média de Y varia com X.</p>
+
+  <h3>Propriedades do somatório</h3>
+  <div class="tbl"><table>
+    <thead><tr><th></th><th>Propriedade</th><th>Em palavras</th></tr></thead>
+    <tbody>
+      <tr><td>P1</td><td>\(\sum_{i=1}^n c=n\cdot c\)</td><td>Somar uma constante n vezes</td></tr>
+      <tr><td>P2</td><td>\(\sum c\,x_i=c\sum x_i\)</td><td>Constante “sai” da soma</td></tr>
+      <tr><td>P3</td><td>\(\sum(ax_i+by_i)=a\sum x_i+b\sum y_i\)</td><td>A soma é linear</td></tr>
+      <tr><td>P4</td><td>\(\sum \frac{x_i}{y_i}\neq\frac{\sum x_i}{\sum y_i}\) em geral</td><td>Soma de razões não é razão de somas</td></tr>
+      <tr><td>P5</td><td>\(\sum x_i^2\neq\left(\sum x_i\right)^2\) em geral</td><td>Soma dos quadrados não é o quadrado da soma</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Identidades de centralização</h3>
+  <p>Estas quatro identidades são usadas na derivação do MQO e para calcular β̂₁ a partir de somas brutas (Lista 2, Ex. 2).</p>
+  <div class="mathblock">\[\begin{aligned}
+  \text{P1:}&amp;\quad \sum_{i=1}^{n}(x_i-\bar x)=0\\
+  \text{P2:}&amp;\quad \sum_{i=1}^{n}(x_i-\bar x)^2=\sum_{i=1}^{n}x_i^2-n\bar x^2\\
+  \text{P3:}&amp;\quad \sum_{i=1}^{n}(x_i-\bar x)(y_i-\bar y)=\sum_{i=1}^{n}x_iy_i-n\,\bar x\,\bar y\\
+  \text{P4:}&amp;\quad \sum_{i=1}^{n}(x_i-\bar x)(y_i-\bar y)=\sum_{i=1}^{n}x_i(y_i-\bar y)=\sum_{i=1}^{n}(x_i-\bar x)y_i
+  \end{aligned}\]</div>
+  <details class="sol"><summary>Por que P4 vale (1 linha)</summary><div class="in">
+    <p>\(\sum(x_i-\bar x)(y_i-\bar y)=\sum x_i(y_i-\bar y)-\bar x\underbrace{\sum(y_i-\bar y)}_{=0}\). O segundo termo é zero por P1. “Centralizar uma ou ambas as variáveis dá o mesmo resultado.”</p>
+    <p>Exemplo (Lista 1, Q21): para x = (3, 6, 7, 8), \(\bar x=6\), \(\sum(x_i-\bar x)^2=9+0+1+4=14\) e \(\sum x_i^2-n\bar x^2=158-4(36)=14\).</p>
+  </div></details>
+
+  <h3>Variáveis aleatórias</h3>
+  <p>Um <strong>experimento aleatório</strong> é um procedimento cujo resultado não pode ser previsto com certeza (jogar uma moeda, sortear um domicílio). Uma <strong>variável aleatória</strong> é uma função que associa cada resultado a um número: \(X:\Omega\to\mathbb R\). Ao lançar duas moedas, se X conta as caras, \(X(C,K)=1\).</p>
+  <ul>
+    <li><strong>Discreta:</strong> valores contáveis, com \(p_X(x)=P(X=x)\) e \(\sum_x p_X(x)=1\). Exemplo: falhas de wifi. \(P(X&gt;2)=P(3)+P(4)=0{,}03+0{,}01=0{,}04\).</li>
+    <li><strong>Contínua:</strong> probabilidades são áreas sob uma densidade, \(P(a\lt X\le b)=\int_a^b f(x)dx\), e \(P(X=x)=0\). Exemplo: tempo até o trabalho. \(P(X\le20)=0{,}20+0{,}58=0{,}78\).</li>
+    <li><strong>FDA:</strong> \(F(x)=P(X\le x)\), não decrescente, vai de 0 a 1.</li>
+  </ul>
+  <h4>Suporte, FMP, FDP e FDA em detalhe</h4>
+  <ul>
+    <li><strong>Suporte</strong> \(\mathcal X\): o conjunto de valores que X pode assumir. Meses empregado no ano: {0, 1, …, 12} (suporte finito, discreta). Renda: \(\mathbb R_+\) (contínua).</li>
+    <li>Letra maiúscula (X) é a variável aleatória; minúscula (x) é um valor realizado, um número.</li>
+    <li><strong>FMP</strong> (discreta): \(p(x)=P(X=x)\ge0\), \(\sum_xp(x)=1\) e \(F(x)=\sum_{x'\le x}p(x')\).</li>
+    <li><strong>FDP</strong> (contínua): \(f(x)\ge0\), \(\int f(x)dx=1\), \(f(x)=\frac{d}{dx}F(x)\) e \(F(x)=\int_{-\infty}^xf(t)dt\). É densidade, não probabilidade.</li>
+    <li><strong>FDA:</strong> não decrescente, com \(\lim_{x\to-\infty}F(x)=0\) e \(\lim_{x\to+\infty}F(x)=1\).</li>
+  </ul>
+  <p class="small muted">Integral e derivada estão explicadas do zero nos módulos <a href="#mat-deriv">Derivadas</a> e <a href="#mat-int">Integrais</a>.</p>
+
+  <h3>Duas distribuições importantes</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Bernoulli (\(D\in\{0,1\}\), \(P(D=1)=\pi\))</th><th>Normal \(N(\mu,\sigma^2)\)</th></tr></thead>
+    <tbody><tr>
+      <td>\(E[D]=\pi\) e \(Var(D)=\pi(1-\pi)\). A média de uma binária é uma proporção. \(Var\) é máxima em \(\pi=0{,}5\).</td>
+      <td>Caracterizada pela média e variância. Se X é normal, \(aX+b\) também é. Terá papel central na aproximação de distribuições amostrais.</td>
+    </tr></tbody>
+  </table></div>
+  <div class="mathblock">\[\text{Normal: }f(x)=\frac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\frac12\frac{(x-\mu)^2}{\sigma^2}\right),\quad x\in\mathbb R\qquad\text{Uniforme }U(a,b):\ f(x)=\frac{1}{b-a},\ x\in(a,b)\]</div>
+
+  <h3>Distribuição conjunta, marginal e condicional</h3>
+  <p>A conjunta descreve X e Y juntos: \(p_{X,Y}(x,y)=P(X=x,Y=y)\). A condicional descreve Y na subpopulação em que X = x: \(p_{Y\mid X}(y\mid x)=p_{X,Y}(x,y)/p_X(x)\).</p>
+  <div class="tbl"><table>
+    <thead><tr><th></th><th class="r">Y = 0 (desempregado)</th><th class="r">Y = 1 (empregado)</th><th class="r">Marginal de X</th></tr></thead>
+    <tbody>
+      <tr><td>X = 0 (sem superior)</td><td class="r">0,10</td><td class="r">0,40</td><td class="r">0,50</td></tr>
+      <tr><td>X = 1 (com superior)</td><td class="r">0,05</td><td class="r">0,45</td><td class="r">0,50</td></tr>
+      <tr class="sum"><td>Marginal de Y</td><td class="r">0,15</td><td class="r">0,85</td><td class="r">1,00</td></tr>
+    </tbody>
+  </table></div>
+  <p>\(P(Y=1\mid X=1)=0{,}45/0{,}50=0{,}90\) e \(P(Y=1\mid X=0)=0{,}40/0{,}50=0{,}80\). Como são diferentes, X e Y <strong>não são independentes</strong>. Independência exige \(p_{X,Y}(x,y)=p_X(x)p_Y(y)\) para todo par, ou seja, conhecer X não muda a distribuição de Y.</p>
+  <p><strong>Marginal a partir da conjunta:</strong> some a linha (ou a coluna): \(p(x)=\sum_yp(x,y)\). Ex.: \(P(X=1)=0{,}05+0{,}45=0{,}50\).</p>
+  <div class="box def"><span class="lbl">Regra de Bayes</span>
+    <div class="mathblock">\[p(y\mid x)=\frac{p(x\mid y)\,p(y)}{p(x)}\]</div>
+    <p>Com a tabela: qual a probabilidade de ter curso superior, dado que a pessoa está empregada? \(P(X=1\mid Y=1)=\frac{P(Y=1\mid X=1)P(X=1)}{P(Y=1)}=\frac{0{,}90\times0{,}50}{0{,}85}\approx0{,}529\). Conferindo direto: \(0{,}45/0{,}85\approx0{,}529\).</p>
+  </div>
+  <p><strong>Independência condicional</strong> \(Y\perp\!\!\!\perp X\mid W\): \(p(y\mid x,w)=p(y\mid w)\). Uma vez conhecido W, X não traz informação adicional sobre Y.</p>
+  <p><strong>Normal multivariada:</strong> parametrizada por um vetor de médias \(\mu\) e uma matriz de variância-covariância \(\Sigma\). Se (X, Y) têm distribuição conjunta normal: as marginais de X e de Y são normais, as condicionais X | Y e Y | X são normais, e qualquer combinação linear \(aX+bY+c\) é normal.</p>
+
+  <h3>Esperança, variância, covariância e correlação</h3>
+  <div class="mathblock">\[E[X]=\sum_x x\,p(x),\qquad E[a+bX]=a+bE[X]\]</div>
+  <p>Exemplo do dado honesto: \(E[X]=\frac16(1+2+\dots+6)=3{,}5\). A esperança não precisa ser um valor possível.</p>
+  <div class="mathblock">\[Var(X)=E[(X-E[X])^2]=E[X^2]-(E[X])^2,\qquad Var(a+bX)=b^2Var(X)\]</div>
+  <details class="sol"><summary>Derivação de \(Var(a+bX)=b^2Var(X)\)</summary><div class="in">
+    <div class="mathblock">\[\begin{aligned}Var(a+bX)&amp;=E[((a+bX)-E[a+bX])^2]=E[(a+bX-a-bE[X])^2]\\&amp;=E[b^2(X-E[X])^2]=b^2E[(X-E[X])^2]=b^2Var(X)\end{aligned}\]</div>
+    <p>A constante \(a\) desloca, mas não espalha. O fator \(b\) entra ao quadrado.</p>
+  </div></details>
+  <div class="mathblock">\[Cov(X,Y)=E[(X-E[X])(Y-E[Y])]=E[XY]-E[X]E[Y],\qquad Corr(X,Y)=\frac{Cov(X,Y)}{\sqrt{Var(X)}\sqrt{Var(Y)}}\]</div>
+  <p>A covariância depende das unidades (gastos em R$ bilhões × empregos em milhares é difícil de interpretar). A correlação é <strong>adimensional</strong> e fica entre −1 e 1.</p>
+  <div class="box def"><span class="lbl">Regras de combinações lineares</span>
+    <div class="mathblock">\[\begin{aligned}
+    E[aX+bY+c]&amp;=aE[X]+bE[Y]+c\\
+    Var(aX+bY+c)&amp;=a^2Var(X)+2ab\,Cov(X,Y)+b^2Var(Y)\\
+    Cov(aX+c,\;bY+d)&amp;=ab\,Cov(X,Y)
+    \end{aligned}\]</div>
+    <p>Somar constantes não altera variância, covariância nem correlação. Multiplicar por um número negativo inverte o sinal da correlação.</p>
+  </div>
+
+  <h3>Esperança condicional e a Lei das Expectativas Iteradas</h3>
+  <p>A <strong>função esperança condicional (CEF)</strong> responde: qual é a média de Y quando X = x? Em geral, \(E[Y\mid X]\) é uma função de X. Quando condicionamos em X, qualquer função de X vira constante: \(E[f(X)+g(X)Y\mid X=x]=f(x)+g(x)E[Y\mid X=x]\).</p>
+  <div class="box def"><span class="lbl">Lei das Expectativas Iteradas (LEI)</span>
+    <div class="mathblock">\[E[Y]=E\big[E[Y\mid X]\big]\]</div>
+    <p>A renda média da turma é a média da renda de quem trabalha e de quem não trabalha, ponderada pela fração de cada grupo. Essa lei é usada na Aula 5 para provar que o MQO é não viesado.</p>
+  </div>
+  <p><strong>Três conceitos em cadeia:</strong> independência ⟹ independência na média (\(E[Y\mid X]=E[Y]\)) ⟹ covariância zero. <strong>As voltas são falsas.</strong> Contraexemplo: \(X\sim U(-1,1)\) e \(Y=X^2\) são dependentes, mas \(Corr(X,Y)=0\).</p>
+  <details class="sol"><summary>Prova: independência na média ⟹ Cov = 0 (usa a LEI)</summary><div class="in">
+    <div class="mathblock">\[\begin{aligned}Cov(X,Y)&amp;=E\big[E[(X-E[X])(Y-E[Y])\mid X]\big]\quad\text{(LEI)}\\
+    &amp;=E\big[(X-E[X])\,E[Y-E[Y]\mid X]\big]\quad\text{(dado X, }X-E[X]\text{ é constante)}\\
+    &amp;=E\big[(X-E[X])(E[Y\mid X]-E[Y])\big]=E\big[(X-E[X])(E[Y]-E[Y])\big]=0\end{aligned}\]</div>
+  </div></details>
+
+  <h3>Amostra aleatória e média amostral</h3>
+  <p>No modelo básico, a amostra é <strong>iid</strong>: independente (\(Y_i\perp\!\!\!\perp Y_j\)) e identicamente distribuída. O mecanismo de amostragem não pode excluir grupos relevantes: várias pessoas do mesmo domicílio provavelmente não são independentes, e só alunos do Mackenzie não representam todos os universitários.</p>
+  <div class="mathblock">\[\hat\mu=\frac1N\sum_{i=1}^N Y_i,\qquad E[\hat\mu]=\mu,\qquad Var(\hat\mu)=\frac{\sigma^2}{N}\]</div>
+  <p>A primeira igualdade diz que a média amostral é <strong>não viesada</strong>. A segunda, que sua dispersão cai quando N cresce, e por isso ela é <strong>consistente</strong> (\(\hat\mu\xrightarrow{p}\mu\)). Exemplo (Lista 1, Q26): média 80, variância 144. Com n = 16, 36 e 144, os erros-padrão são 3, 2 e 1. <strong>Quadruplicar n corta o erro-padrão pela metade</strong>, porque \(DP(\bar Y)\propto1/\sqrt n\).</p>
+  <details class="sol"><summary>De onde vem \(Var(\hat\mu)=\sigma^2/N\), e a média condicional amostral</summary><div class="in">
+    <div class="mathblock">\[Var(\hat\mu)=\frac{1}{N^2}\Big[\sum_iVar(Y_i)+2\sum_{i\lt j}Cov(Y_i,Y_j)\Big]=\frac{1}{N^2}\cdot N\sigma^2=\frac{\sigma^2}{N}\]</div>
+    <p>Com amostra iid, as covariâncias entre observações são zero. Como \(E[\hat\mu]=\mu\) e \(Var(\hat\mu)\to0\), a desigualdade de Chebyshev implica \(\hat\mu\xrightarrow{p}\mu\).</p>
+    <p><strong>Média condicional amostral:</strong> se X é discreta, estimamos \(\mu(x)=E[Y_i\mid X_i=x]\) pela média de Y no grupo com \(X_i=x\):</p>
+    <div class="mathblock">\[\hat\mu(x)=\frac{\sum_i1\{X_i=x\}Y_i}{\sum_i1\{X_i=x\}},\qquad E[\hat\mu(x)\mid N_x]=\mu(x),\qquad Var[\hat\mu(x)\mid N_x]=\frac{Var(Y_i\mid X_i=x)}{N_x}\]</div>
+    <p>\(N_x\) é o número de observações com \(X_i=x\). Grupos com poucas observações dão médias mais instáveis.</p>
+  </div></details>
+
+  <h3>Testes e intervalos (versão da revisão)</h3>
+  <p>A pergunta que motiva a aula: numa amostra, a renda média deu R$ 30.000/ano. É razoável conjecturar que a média da população seja R$ 35.000? E R$ 50.000? Um teste de hipóteses mede <strong>quão compatível</strong> a média observada é com cada valor postulado.</p>
+  <ol class="steps">
+    <li><div>Hipótese nula \(H_0:\mu=\mu_0\) (por exemplo, renda média de R$ 35.000).</div></li>
+    <li><div>Estatística: com σ conhecido, \(Z=\dfrac{\hat\mu-\mu_0}{\sigma/\sqrt N}\sim N(0,1)\) sob \(H_0\): a distância entre \(\hat\mu\) e \(\mu_0\) <strong>medida em desvios-padrão</strong>. Com σ estimado por \(S\), onde \(S^2=\frac{1}{N-1}\sum_i(Y_i-\bar Y)^2\), fica \(T=\dfrac{\hat\mu-\mu_0}{S/\sqrt N}\sim t_{N-1}\) se a amostra é iid e normal. Para N grande, a t se aproxima da normal padrão.</div></li>
+    <li><div><strong>p-valor:</strong> probabilidade, sob \(H_0\), de uma estatística tão ou mais extrema que a observada. Um p-valor de 0,03 quer dizer: se \(H_0\) fosse verdadeira, só 3% das amostras dariam algo tão ou mais extremo. <strong>Não</strong> é a probabilidade de \(H_0\) ser verdadeira.</div></li>
+    <li><div>Rejeite \(H_0\) se o p-valor for pequeno (α = 0,05 é convencional), ou se \(|Z|&gt;1{,}96\): 95% da normal padrão fica entre −1,96 e 1,96.</div></li>
+    <li><div><strong>IC de 95%:</strong> os valores de \(\mu_0\) que não seriam rejeitados, \(\hat\mu\pm1{,}96\,\sigma/\sqrt N\).</div></li>
+  </ol>
+  <div class="box ok"><span class="lbl">Exemplo com números (o desvio-padrão é nosso)</span>
+    <p>Suponha \(\sigma/\sqrt N=2.000\). Com \(\hat\mu=30.000\) e \(H_0:\mu=35.000\): \(Z=\frac{30.000-35.000}{2.000}=-2{,}5\). Como \(|{-2{,}5}|&gt;1{,}96\), <strong>rejeitamos</strong> \(H_0\). O IC de 95% é \(30.000\pm1{,}96\times2.000=[26.080;\ 33.920]\): 35.000 e 50.000 ficam fora, coerente com o teste.</p>
+    <p><strong>Unidades:</strong> numerador e denominador de Z estão em R$/ano, então Z é um número puro. O IC está em R$/ano.</p>
+  </div>
+  <p><strong>Como ler o IC:</strong> antes de sortear a amostra, o intervalo é aleatório, e o procedimento cobre o parâmetro verdadeiro em 95% das amostras repetidas. Depois de calculado, aquele intervalo específico contém ou não contém μ: não se diz “95% de probabilidade de μ estar nele”.</p>
+  <p><strong>Nível de significância</strong> é a probabilidade (fixada antes) de rejeitar \(H_0\) verdadeira (erro tipo I). <strong>Poder</strong> é a probabilidade de rejeitar \(H_0\) quando ela é falsa (1 − erro tipo II). Exemplo da aula: testamos \(H_0:\mu=35.000\), mas a média verdadeira é R$ 40.000. O poder é a chance de o teste detectar essa diferença.</p>
+  <p><strong>Significância estatística não é importância econômica.</strong> Com amostras muito grandes, diferenças pequenas viram “significativas”. Um p-valor pequeno diz que os dados são pouco compatíveis com \(H_0\), mas não mede o tamanho do efeito. A interpretação completa olha junto a estimativa pontual, o erro-padrão, o IC e a relevância econômica da magnitude.</p>
+
+  <h3>LGN e TCL</h3>
+  <ul>
+    <li><strong>Convergência em probabilidade</strong> \(X_N\xrightarrow{p}x\): a probabilidade de \(X_N\) ficar perto de x vai a 1 quando N cresce.</li>
+    <li><strong>Convergência em distribuição</strong> \(X_N\xrightarrow{d}X\): \(F_{X_N}(x)\to F_X(x)\) em todos os pontos de continuidade de \(F_X\). Descreve a aproximação entre distribuições; não exige que \(X_N\) fique perto de X em cada realização.</li>
+    <li><strong>Lei dos Grandes Números:</strong> com amostra iid e variância finita, \(\hat\mu_N\xrightarrow{p}\mu\). A média amostral se aproxima da populacional com alta probabilidade.</li>
+    <li><strong>Teorema Central do Limite:</strong> \(\dfrac{\sqrt N(\hat\mu-\mu)}{\sigma}\xrightarrow{d}N(0,1)\). É a <em>média padronizada</em> que fica aproximadamente normal, e não cada observação. Com \(S\) consistente, o resultado vale trocando σ por S (Slutsky).</li>
+  </ul>
+  <p class="small">Ilustração do TCL citada na aula: o tabuleiro de Galton (1874), <a href="https://www.youtube.com/watch?v=EvHiee7gs9Y" target="_blank" rel="noopener">vídeo no YouTube</a>.</p>
+  <div class="quiz" data-answer="b">
+    <div class="qh">Aula 2 · Bayes</div>
+    <p>Na tabela curso superior × emprego, qual é \(P(X=0\mid Y=0)\), a chance de não ter superior dado que está desempregado?</p>
+    <div class="opts"><button data-k="a">a) 0,10</button><button data-k="b">b) cerca de 0,667</button><button data-k="c">c) 0,20</button><button data-k="d">d) 0,50</button></div>
+    <div class="fb" hidden>\(P(X=0,Y=0)/P(Y=0)=0{,}10/0{,}15\approx0{,}667\).</div>
+  </div>
+
+  <div class="quiz" data-answer="b">
+    <div class="qh">Lista 1 · Questão 16</div>
+    <ol class="afirm">
+      <li>I. Para quaisquer \(x_1,\dots,x_n\), \(\sum(x_i-\bar x)=0\).</li>
+      <li>II. \(\sum x_i(y_i-\bar y)=\sum(x_i-\bar x)(y_i-\bar y)\).</li>
+      <li>III. \(\sum(x_i-\bar x)^2\) pode ser negativo quando os \(x_i\) têm sinais diferentes.</li>
+    </ol>
+    <div class="opts"><button data-k="a">(A) somente I</button><button data-k="b">(B) somente I e II</button><button data-k="c">(C) somente I e III</button><button data-k="d">(D) somente II e III</button><button data-k="e">(E) I, II e III</button></div>
+    <div class="fb" hidden>I e II (P1 e P4). III é falsa: cada termo ao quadrado é não negativo, então a soma nunca é negativa.</div>
+  </div>
+  <div class="quiz" data-answer="e">
+    <div class="qh">Lista 1 · Questão 17</div>
+    <ol class="afirm">
+      <li>I. Se D é Bernoulli com \(P(D=1)=\pi\), então \(E(D)=\pi\).</li>
+      <li>II. \(Var(D)=\pi(1-\pi)\).</li>
+      <li>III. \(Var(D)\) é máxima quando \(\pi=0{,}5\).</li>
+    </ol>
+    <div class="opts"><button data-k="a">(A) somente I</button><button data-k="b">(B) somente I e II</button><button data-k="c">(C) somente I e III</button><button data-k="d">(D) somente II e III</button><button data-k="e">(E) I, II e III</button></div>
+    <div class="fb" hidden>Todas. Como \(D^2=D\), \(E(D^2)=\pi\) e \(Var=\pi-\pi^2\). A derivada \(1-2\pi\) zera em 0,5.</div>
+  </div>
+  <div class="quiz" data-answer="a">
+    <div class="qh">Lista 1 · Questão 18</div>
+    <ol class="afirm">
+      <li>I. Independência implica covariância zero, quando os momentos existem.</li>
+      <li>II. Covariância zero implica independência em qualquer distribuição.</li>
+      <li>III. Correlação zero implica que X e Y não têm nenhuma relação, linear ou não.</li>
+    </ol>
+    <div class="opts"><button data-k="a">(A) somente I</button><button data-k="b">(B) somente I e II</button><button data-k="c">(C) somente I e III</button><button data-k="d">(D) somente II e III</button><button data-k="e">(E) I, II e III</button></div>
+    <div class="fb" hidden>Só I. Covariância e correlação zero excluem só associação <em>linear</em>. Lembre de \(Y=X^2\).</div>
+  </div>
+  <div class="quiz" data-answer="c">
+    <div class="qh">Lista 1 · Questão 19</div>
+    <ol class="afirm">
+      <li>I. \(Var(a+bX)=b^2Var(X)\).</li>
+      <li>II. A covariância entre X e Y não muda se Y for medido em outra unidade.</li>
+      <li>III. Multiplicar X por uma constante positiva não altera o sinal da correlação.</li>
+    </ol>
+    <div class="opts"><button data-k="a">(A) somente I</button><button data-k="b">(B) somente I e II</button><button data-k="c">(C) somente I e III</button><button data-k="d">(D) somente II e III</button><button data-k="e">(E) I, II e III</button></div>
+    <div class="fb" hidden>I e III. Se \(Y^*=cY\), \(Cov(X,Y^*)=c\,Cov(X,Y)\): a covariância depende da unidade.</div>
+  </div>
+  <div class="quiz" data-answer="d">
+    <div class="qh">Lista 1 · Questão 20</div>
+    <ol class="afirm">
+      <li>I. O TCL garante que cada observação individual fica aproximadamente normal quando n cresce.</li>
+      <li>II. \(E(Y\mid X)\) é, em geral, uma função de X.</li>
+      <li>III. \(E[E(Y\mid X)]=E(Y)\).</li>
+    </ol>
+    <div class="opts"><button data-k="a">(A) somente I</button><button data-k="b">(B) somente I e II</button><button data-k="c">(C) somente I e III</button><button data-k="d">(D) somente II e III</button><button data-k="e">(E) I, II e III</button></div>
+    <div class="fb" hidden>II e III. O TCL fala da média amostral padronizada, não de cada observação. III é a LEI.</div>
+  </div>
+  <h3>Exercícios extras resolvidos</h3>
+  <p class="small muted">Criados por nós no formato da Lista 1.</p>
+  <details class="sol"><summary>G1 · X vale 0, 1, 2 com probabilidades 0,2; 0,5; 0,3. Calcule E(X), Var(X), dp e Var(3X + 2).</summary><div class="in">
+    <p>\(E(X)=0(0{,}2)+1(0{,}5)+2(0{,}3)=1{,}1\). \(E(X^2)=0+1(0{,}5)+4(0{,}3)=1{,}7\). \(Var(X)=1{,}7-1{,}1^2=0{,}49\), dp = 0,7. \(Var(3X+2)=9\times0{,}49=4{,}41\): o +2 não muda a variância.</p>
+  </div></details>
+  <details class="sol"><summary>G2 · E(X) = 2, E(Y) = 3, E(XY) = 7,5, Var(X) = 1, Var(Y) = 4. Calcule Cov, Corr, Var(X + Y) e Var(X − Y).</summary><div class="in">
+    <p>\(Cov=E(XY)-E(X)E(Y)=7{,}5-6=1{,}5\). \(Corr=1{,}5/(1\times2)=0{,}75\). \(Var(X+Y)=1+4+2(1{,}5)=8\); \(Var(X-Y)=1+4-2(1{,}5)=2\).</p>
+  </div></details>
+  <div class="box prova"><span class="lbl">Checklist da Aula 2: eu consigo…</span>
+    <ul>
+      <li>usar as propriedades do somatório e as identidades P1 a P4;</li>
+      <li>calcular probabilidades com FMP (soma) e FDP (área);</li>
+      <li>tirar marginal e condicional de uma tabela conjunta e usar Bayes;</li>
+      <li>calcular E, Var, Cov e Corr, inclusive de combinações lineares;</li>
+      <li>usar a LEI e explicar independência ⇒ independência na média ⇒ Cov = 0 (e que as voltas são falsas);</li>
+      <li>mostrar que \(E(\hat\mu)=\mu\) e \(Var(\hat\mu)=\sigma^2/N\);</li>
+      <li>fazer um teste z e um IC para a média; enunciar LGN e TCL.</li>
+    </ul>
+  </div>
+  <div class="done-row"><button class="btn done-btn" data-done="aula2" aria-pressed="false">Marcar como concluído</button></div>
+</section>

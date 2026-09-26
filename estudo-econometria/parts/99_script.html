@@ -1,0 +1,404 @@
+
+<script>
+(function () {
+  'use strict';
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+
+  /* ---------- fórmulas longas no celular ---------- */
+  window.__fixMath = function () {
+    $$('mjx-container:not([display="true"])').forEach(function (m) {
+      m.classList.remove('wide-inline');
+      var p = m.parentElement;
+      while (p && getComputedStyle(p).display.indexOf('inline') === 0) p = p.parentElement;
+      if (!p) return;
+      if (m.getBoundingClientRect().width > p.clientWidth - 2) m.classList.add('wide-inline');
+    });
+  };
+  var rt = null;
+  window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(window.__fixMath, 200); });
+
+  /* ---------- armazenamento local (opcional) ---------- */
+  var KEY = 'eco1-guia-concluidos';
+  function load() { try { return JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { return {}; } }
+  function save(o) { try { localStorage.setItem(KEY, JSON.stringify(o)); } catch (e) { /* sem armazenamento */ } }
+
+  /* ---------- formatação pt-BR ---------- */
+  function fmt(v, d) {
+    if (!isFinite(v)) return '—';
+    if (Math.abs(v) < 1e-10) v = 0;
+    return v.toLocaleString('pt-BR', { maximumFractionDigits: d === undefined ? 4 : d });
+  }
+  function parseNum(s) {
+    s = String(s || '').trim().replace(/\s/g, '').replace('−', '-');
+    if (!s) return NaN;
+    if (s.indexOf(',') >= 0) { s = s.replace(/\./g, '').replace(',', '.'); }
+    else if (/^-?\d{1,3}(\.\d{3})+$/.test(s)) { s = s.replace(/\./g, ''); }
+    return Number(s);
+  }
+  function pick(a) { return a[Math.floor(Math.random() * a.length)]; }
+
+  /* ---------- sumário (gaveta no celular) ---------- */
+  var toc = $('#toc'), menuBtn = $('#menuBtn'), scrim = null;
+  function closeToc() {
+    toc.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false');
+    if (scrim) { scrim.remove(); scrim = null; }
+  }
+  menuBtn.addEventListener('click', function () {
+    if (toc.classList.contains('open')) { closeToc(); return; }
+    toc.classList.add('open'); menuBtn.setAttribute('aria-expanded', 'true');
+    scrim = document.createElement('div'); scrim.className = 'scrim';
+    scrim.addEventListener('click', closeToc); document.body.appendChild(scrim);
+  });
+  $$('a', toc).forEach(function (a) { a.addEventListener('click', closeToc); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeToc(); });
+
+  /* ---------- seção atual no sumário ---------- */
+  var links = {};
+  $$('a[data-mod]', toc).forEach(function (a) { links[a.getAttribute('data-mod')] = a; });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) {
+          $$('a.on', toc).forEach(function (a) { a.classList.remove('on'); });
+          var l = links[en.target.id]; if (l) l.classList.add('on');
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    $$('section.mod').forEach(function (s) { io.observe(s); });
+  }
+
+  /* ---------- progresso ---------- */
+  var done = load();
+  var total = $$('.done-btn').length;
+  function paint() {
+    var n = 0;
+    $$('.done-btn').forEach(function (b) {
+      var id = b.getAttribute('data-done'), on = !!done[id];
+      if (on) n++;
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      b.textContent = on ? 'Concluído ✓' : 'Marcar como concluído';
+      if (links[id]) links[id].classList.toggle('done', on);
+    });
+    $('#pfill').style.width = (100 * n / total) + '%';
+    $('#ptext').textContent = n + ' de ' + total + ' módulos';
+  }
+  $$('.done-btn').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var id = b.getAttribute('data-done');
+      if (done[id]) delete done[id]; else done[id] = 1;
+      save(done); paint();
+    });
+  });
+  paint();
+
+  /* ---------- contagem regressiva ---------- */
+  (function () {
+    var now = new Date(), today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    var exam = new Date(2026, 8, 30);
+    var d = Math.round((exam - today) / 86400000);
+    var el = $('#cd');
+    if (d > 1) el.textContent = d + ' dias';
+    else if (d === 1) el.textContent = 'Amanhã';
+    else if (d === 0) el.textContent = 'Hoje. Boa prova!';
+    else el.textContent = 'Prova realizada';
+  })();
+
+  /* ---------- testes (quiz) ---------- */
+  function updateScore() {
+    var sims = $$('.quiz.sim'), ans = 0, ok = 0;
+    sims.forEach(function (q) { if (q.dataset.done) { ans++; if (q.dataset.done === 'y') ok++; } });
+    var s = $('#simScore'); if (s) s.textContent = ans + ' de ' + sims.length + ' respondidas · ' + ok + ' acertos';
+  }
+  $$('.quiz').forEach(function (q) {
+    var right = q.getAttribute('data-answer');
+    var fb = $('.fb', q);
+    $$('.opts button', q).forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        if (q.dataset.done) return;
+        var k = btn.getAttribute('data-k'), ok = k === right;
+        q.dataset.done = ok ? 'y' : 'n';
+        $$('.opts button', q).forEach(function (b) {
+          if (b.getAttribute('data-k') === right) b.classList.add('right');
+          b.setAttribute('aria-disabled', 'true');
+        });
+        if (!ok) btn.classList.add('wrong');
+        if (fb) {
+          var tag = document.createElement('span');
+          tag.className = 'res ' + (ok ? 'y' : 'n');
+          tag.textContent = ok ? 'Certo. ' : 'Não é essa. A resposta é (' + right + '). ';
+          fb.insertBefore(tag, fb.firstChild);
+          fb.hidden = false;
+        }
+        updateScore();
+      });
+    });
+  });
+  updateScore();
+
+  /* ---------- busca no dicionário ---------- */
+  var ds = $('#dictSearch');
+  if (ds) {
+    var entries = $$('.fentry');
+    var strip = function (t) { return String(t || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); };
+    entries.forEach(function (e) { e.__t = strip(e.getAttribute('data-s')) + ' ' + strip($('.fh', e).textContent); });
+    var filt = function () {
+      var qv = strip(ds.value.trim()), n = 0;
+      entries.forEach(function (e) { var ok = !qv || e.__t.indexOf(qv) >= 0; e.hidden = !ok; if (ok) n++; });
+      $$('.dgroup').forEach(function (h) {
+        var g = h.nextElementSibling;
+        var any = $$('.fentry', g).some(function (e) { return !e.hidden; });
+        h.hidden = !any; g.hidden = !any;
+      });
+      $('#dictCount').textContent = n + ' de ' + entries.length + ' fórmulas';
+    };
+    ds.addEventListener('input', filt); filt();
+  }
+
+  /* ---------- cartões ---------- */
+  $$('.flash').forEach(function (c) {
+    c.setAttribute('aria-label', 'Cartão de memorização: clique para virar');
+    c.addEventListener('click', function () { c.classList.toggle('flip'); });
+    c.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); c.classList.toggle('flip'); } });
+  });
+
+  /* ---------- calculadora de MQO ---------- */
+  function parseList(s) {
+    return String(s || '').split(/[\s;]+/).filter(function (t) { return t.length; }).map(parseNum);
+  }
+  function calc() {
+    var out = $('#cout');
+    var x = parseList($('#cx').value), y = parseList($('#cy').value);
+    if (x.some(isNaN) || y.some(isNaN)) { out.innerHTML = '<div class="box trap"><span class="lbl">Confira os valores</span><p>Algum valor não é um número. Separe por espaço ou ponto e vírgula e use vírgula para decimais.</p></div>'; return; }
+    if (x.length !== y.length) { out.innerHTML = '<div class="box trap"><span class="lbl">Tamanhos diferentes</span><p>Há ' + x.length + ' valores de x e ' + y.length + ' de y. Cada observação precisa de um x e um y.</p></div>'; return; }
+    var n = x.length;
+    if (n < 2) { out.innerHTML = '<div class="box trap"><span class="lbl">Poucos dados</span><p>Informe pelo menos 2 observações.</p></div>'; return; }
+    var xb = x.reduce(function (a, b) { return a + b; }, 0) / n;
+    var yb = y.reduce(function (a, b) { return a + b; }, 0) / n;
+    var Sxy = 0, Sxx = 0, SQT = 0;
+    for (var i = 0; i < n; i++) { Sxy += (x[i] - xb) * (y[i] - yb); Sxx += (x[i] - xb) * (x[i] - xb); SQT += (y[i] - yb) * (y[i] - yb); }
+    if (Math.abs(Sxx) < 1e-12) { out.innerHTML = '<div class="box trap"><span class="lbl">x não varia</span><p>Todos os x são iguais, então Σ(xᵢ − x̄)² = 0 e β̂₁ não existe (hipótese RLS.3).</p></div>'; return; }
+    var b1 = Sxy / Sxx, b0 = yb - b1 * xb;
+    var rows = '', su = 0, sxu = 0, SQR = 0, SQE = 0;
+    for (var j = 0; j < n; j++) {
+      var yh = b0 + b1 * x[j], u = y[j] - yh;
+      su += u; sxu += x[j] * u; SQR += u * u; SQE += (yh - yb) * (yh - yb);
+      rows += '<tr><td>' + (j + 1) + '</td><td class="r">' + fmt(x[j]) + '</td><td class="r">' + fmt(y[j]) + '</td><td class="r">' + fmt(x[j] - xb) + '</td><td class="r">' + fmt(y[j] - yb) + '</td><td class="r">' + fmt((x[j] - xb) * (y[j] - yb)) + '</td><td class="r">' + fmt((x[j] - xb) * (x[j] - xb)) + '</td><td class="r">' + fmt(yh) + '</td><td class="r">' + fmt(u) + '</td></tr>';
+    }
+    var html = '';
+    html += '<h4>1. Médias</h4><p class="mono">x̄ = ' + fmt(x.reduce(function (a, b) { return a + b; }, 0)) + ' / ' + n + ' = ' + fmt(xb) + '&nbsp;&nbsp;&nbsp; ȳ = ' + fmt(y.reduce(function (a, b) { return a + b; }, 0)) + ' / ' + n + ' = ' + fmt(yb) + '</p>';
+    html += '<h4>2. Tabela de desvios, ajustados e resíduos</h4><div class="tbl"><table><thead><tr><th>i</th><th class="r">x</th><th class="r">y</th><th class="r">x − x̄</th><th class="r">y − ȳ</th><th class="r">produto</th><th class="r">(x − x̄)²</th><th class="r">ŷ</th><th class="r">û</th></tr></thead><tbody>' + rows +
+      '<tr class="sum"><td>Soma</td><td></td><td></td><td class="r">' + fmt(0) + '</td><td class="r">' + fmt(0) + '</td><td class="r">' + fmt(Sxy) + '</td><td class="r">' + fmt(Sxx) + '</td><td></td><td class="r">' + fmt(su) + '</td></tr></tbody></table></div>';
+    html += '<h4>3. Coeficientes</h4><p class="mono">β̂₁ = ' + fmt(Sxy) + ' / ' + fmt(Sxx) + ' = <strong>' + fmt(b1) + '</strong><br>β̂₀ = ' + fmt(yb) + ' − (' + fmt(b1) + ') × ' + fmt(xb) + ' = <strong>' + fmt(b0) + '</strong><br>FRA: ŷ = ' + fmt(b0) + (b1 < 0 ? ' − ' : ' + ') + fmt(Math.abs(b1)) + 'x</p>';
+    html += '<h4>4. Propriedades algébricas</h4><p class="mono">Σûᵢ = ' + fmt(su) + '&nbsp;&nbsp;&nbsp; Σxᵢûᵢ = ' + fmt(sxu) + '</p>';
+    html += '<h4>5. Ajuste</h4><p class="mono">SQT = ' + fmt(SQT) + '&nbsp;&nbsp; SQE = ' + fmt(SQE) + '&nbsp;&nbsp; SQR = ' + fmt(SQR) + '&nbsp;&nbsp; SQE + SQR = ' + fmt(SQE + SQR) + '<br>R² = 1 − SQR/SQT = ' + (SQT > 0 ? fmt(1 - SQR / SQT) : '—') + '</p>';
+    if (n > 2) {
+      var s2 = SQR / (n - 2), ep = Math.sqrt(s2 / Sxx);
+      html += '<h4>6. Aula 5 e Aula 6</h4><p class="mono">σ̂² = SQR/(n − 2) = ' + fmt(SQR) + ' / ' + (n - 2) + ' = ' + fmt(s2) + '<br>Vâr(β̂₁) = σ̂²/SQTₓ = ' + fmt(s2) + ' / ' + fmt(Sxx) + ' = ' + fmt(s2 / Sxx, 6) + '<br>ep(β̂₁) = ' + fmt(ep) + '<br>t para H₀: β₁ = 0 → ' + (ep > 0 ? fmt(b1 / ep, 3) : '—') + ' (compare com o valor crítico da t com ' + (n - 2) + ' g.l.)</p>';
+    } else {
+      html += '<p class="small muted">Com n = 2 não há graus de liberdade para estimar σ² (n − 2 = 0).</p>';
+    }
+    out.innerHTML = html;
+  }
+  $('#cgo').addEventListener('click', calc);
+  $$('[data-preset]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var p = b.getAttribute('data-preset').split('|');
+      $('#cx').value = p[0]; $('#cy').value = p[1]; calc();
+    });
+  });
+  calc();
+
+  /* ---------- correção de campos ---------- */
+  function checkField(id, val, hint) {
+    var inp = $('#' + id), h = inp.parentNode.querySelector('.hint');
+    var v = parseNum(inp.value);
+    var tol = Math.max(0.011, Math.abs(val) * 0.005);
+    inp.classList.remove('okv', 'badv');
+    if (inp.value.trim() === '') { h.textContent = 'Preencha este campo.'; return false; }
+    if (!isNaN(v) && Math.abs(v - val) <= tol) { inp.classList.add('okv'); h.textContent = 'Certo.'; return true; }
+    inp.classList.add('badv'); h.textContent = hint; return false;
+  }
+  function clearFields(ids, out) {
+    ids.forEach(function (id) { var i = $('#' + id); i.value = ''; i.classList.remove('okv', 'badv'); i.parentNode.querySelector('.hint').textContent = ''; });
+    $(out).innerHTML = '';
+  }
+  function chips(el, list) { el.innerHTML = list.map(function (t) { return '<span>' + t + '</span>'; }).join(''); }
+
+  /* ---------- gerador tipo Ex. 1 ---------- */
+  var T1 = null, T1ids = ['t1var', 't1cov', 't1b1', 't1b0', 't1yh', 't1u'];
+  function newT1() {
+    var xb = pick([40, 50, 60, 80, 100, 120]), yb = pick([800, 1200, 1500, 2000, 2500, 3000]);
+    var sx = pick([4, 5, 8, 10, 12, 20]), sy = pick([100, 150, 200, 240, 300, 400]);
+    var r = pick([0.4, 0.5, 0.6, 0.75, 0.8, 0.9, -0.5, -0.6]);
+    var x0 = xb + pick([-10, -5, 5, 10, 15]);
+    var v = sx * sx, c = r * sx * sy, b1 = c / v, b0 = yb - b1 * xb, yh = b0 + b1 * x0;
+    var yo = Math.round(yh + pick([-80, -50, -30, 30, 50, 60, 90]));
+    T1 = { xb: xb, yb: yb, sx: sx, sy: sy, r: r, x0: x0, yo: yo, v: v, c: c, b1: b1, b0: b0, yh: yh, u: yo - yh };
+    chips($('#t1given'), ['x̄ = ' + fmt(xb), 'ȳ = ' + fmt(yb), 'sₓ = ' + fmt(sx), 'sᵧ = ' + fmt(sy), 'Corr = ' + fmt(r, 2), 'x₀ = ' + fmt(x0), 'y observado em x₀ = ' + fmt(yo)]);
+    $('#t1yhl').textContent = 'c) ŷ para x = ' + fmt(x0);
+    clearFields(T1ids, '#t1out');
+  }
+  $('#t1new').addEventListener('click', newT1);
+  $('#t1check').addEventListener('click', function () {
+    var ok = 0;
+    ok += checkField('t1var', T1.v, 'Eleve o desvio-padrão de x ao quadrado.');
+    ok += checkField('t1cov', T1.c, 'Cov = Corr × sₓ × sᵧ.');
+    ok += checkField('t1b1', T1.b1, 'β̂₁ = Cov ÷ Var(x).');
+    ok += checkField('t1b0', T1.b0, 'β̂₀ = ȳ − β̂₁ · x̄ (com o β̂₁ certo).');
+    ok += checkField('t1yh', T1.yh, 'ŷ = β̂₀ + β̂₁ · x₀.');
+    ok += checkField('t1u', T1.u, 'û = observado − ajustado.');
+    $('#t1out').innerHTML = '<p class="score">' + ok + ' de 6 certos' + (ok === 6 ? '. Perfeito: clique em “Novo exercício”.' : '.') + '</p>';
+  });
+  $('#t1show').addEventListener('click', function () {
+    var t = T1;
+    $('#t1out').innerHTML = '<ol class="steps">' +
+      '<li><div>Var(x) = sₓ² = ' + fmt(t.sx) + '² = <strong>' + fmt(t.v) + '</strong></div></li>' +
+      '<li><div>Cov = Corr × sₓ × sᵧ = ' + fmt(t.r, 2) + ' × ' + fmt(t.sx) + ' × ' + fmt(t.sy) + ' = <strong>' + fmt(t.c) + '</strong></div></li>' +
+      '<li><div>β̂₁ = ' + fmt(t.c) + ' ÷ ' + fmt(t.v) + ' = <strong>' + fmt(t.b1) + '</strong></div></li>' +
+      '<li><div>β̂₀ = ' + fmt(t.yb) + ' − (' + fmt(t.b1) + ') × ' + fmt(t.xb) + ' = <strong>' + fmt(t.b0) + '</strong></div></li>' +
+      '<li><div>ŷ = ' + fmt(t.b0) + ' + (' + fmt(t.b1) + ') × ' + fmt(t.x0) + ' = <strong>' + fmt(t.yh) + '</strong></div></li>' +
+      '<li><div>û = ' + fmt(t.yo) + ' − ' + fmt(t.yh) + ' = <strong>' + fmt(t.u) + '</strong>. ' + (t.u > 0 ? 'Positivo: o observado está acima do ajustado.' : 'Negativo: o observado está abaixo do ajustado.') + '</div></li>' +
+      '</ol><p>Interpretação: uma unidade adicional de x está associada a ' + fmt(t.b1) + ' unidades ' + (t.b1 < 0 ? 'a menos' : 'a mais') + ' em y ajustado.</p>';
+  });
+  newT1();
+
+  /* ---------- gerador tipo Ex. 4 ---------- */
+  var T2 = null, T2ids = ['t2m1', 't2m2', 't2d2', 't2qs', 't2ls', 't2dd'];
+  function L(q) { return T2.a + T2.b * q - T2.c * q * q; }
+  function newT2() {
+    var qs = pick([3, 4, 5, 6, 7, 8, 9]), c = pick([1, 2]), b = 2 * c * qs, a = pick([20, 30, 40, 50, 60]);
+    var q1 = qs - pick([1, 2, 3]); if (q1 < 1) q1 = 1;
+    var q2 = qs + pick([1, 2, 3]);
+    T2 = { a: a, b: b, c: c, qs: qs, q1: q1, q2: q2 };
+    var cTxt = c === 1 ? 'Q²' : c + 'Q²';
+    chips($('#t2given'), ['lucro = ' + a + ' + ' + b + 'Q − ' + cTxt, 'Q₁ = ' + q1, 'Q₂ = ' + q2]);
+    $('#t2m1l').textContent = 'a) efeito marginal em Q = ' + q1;
+    $('#t2m2l').textContent = 'a) efeito marginal em Q = ' + q2;
+    $('#t2ddl').textContent = 'c) lucro(' + (q1 + 1) + ') − lucro(' + q1 + ')';
+    clearFields(T2ids, '#t2out');
+  }
+  $('#t2new').addEventListener('click', newT2);
+  $('#t2check').addEventListener('click', function () {
+    var t = T2, ok = 0;
+    ok += checkField('t2m1', t.b - 2 * t.c * t.q1, 'Derive: ' + t.b + ' − ' + (2 * t.c) + 'Q, e substitua Q.');
+    ok += checkField('t2m2', t.b - 2 * t.c * t.q2, 'Mesma derivada; depois do topo ela fica negativa.');
+    ok += checkField('t2d2', -2 * t.c, 'Derive o efeito marginal de novo.');
+    ok += checkField('t2qs', t.qs, 'Iguale o efeito marginal a zero.');
+    ok += checkField('t2ls', L(t.qs), 'Substitua Q* na função do lucro.');
+    ok += checkField('t2dd', L(t.q1 + 1) - L(t.q1), 'Calcule o lucro nos dois pontos e subtraia.');
+    $('#t2out').innerHTML = '<p class="score">' + ok + ' de 6 certos' + (ok === 6 ? '. Perfeito: clique em “Novo exercício”.' : '.') + '</p>';
+  });
+  $('#t2show').addEventListener('click', function () {
+    var t = T2, em = function (q) { return t.b - 2 * t.c * q; };
+    $('#t2out').innerHTML = '<ol class="steps">' +
+      '<li><div>Efeito marginal: derivada termo a termo = 0 + ' + t.b + ' − ' + (2 * t.c) + 'Q.</div></li>' +
+      '<li><div>Em Q = ' + t.q1 + ': ' + t.b + ' − ' + (2 * t.c) + '×' + t.q1 + ' = <strong>' + fmt(em(t.q1)) + '</strong>. Em Q = ' + t.q2 + ': <strong>' + fmt(em(t.q2)) + '</strong>.</div></li>' +
+      '<li><div>Segunda derivada = <strong>' + fmt(-2 * t.c) + '</strong> &lt; 0: função côncava.</div></li>' +
+      '<li><div>' + t.b + ' − ' + (2 * t.c) + 'Q = 0 ⇒ Q* = <strong>' + t.qs + '</strong> (máximo).</div></li>' +
+      '<li><div>lucro(' + t.qs + ') = ' + t.a + ' + ' + t.b + '×' + t.qs + ' − ' + t.c + '×' + t.qs + '² = <strong>' + fmt(L(t.qs)) + '</strong>.</div></li>' +
+      '<li><div>lucro(' + (t.q1 + 1) + ') − lucro(' + t.q1 + ') = ' + fmt(L(t.q1 + 1)) + ' − ' + fmt(L(t.q1)) + ' = <strong>' + fmt(L(t.q1 + 1) - L(t.q1)) + '</strong>, contra efeito marginal ' + fmt(em(t.q1)) + ' em Q = ' + t.q1 + ': o efeito marginal é local; a mudança discreta incorpora a curvatura.</div></li>' +
+      '</ol>';
+  });
+  newT2();
+
+  /* ---------- gerador tipo Lista 3 (Q4, Q5, Q7) ---------- */
+  var TC = { 6: 2.447, 8: 2.306, 10: 2.228, 13: 2.160, 16: 2.120, 18: 2.101, 20: 2.086, 23: 2.069, 28: 2.048, 30: 2.042 };
+  var T3 = null, T3ids = ['t3s2', 't3ep', 't3t', 't3lo', 't3hi'];
+  function newT3() {
+    var df = pick([6, 8, 10, 13, 16, 18, 20, 23, 28, 30]), n = df + 2;
+    var sqr = pick([12, 18, 24, 30, 36, 40, 48, 60, 80]), sqt = pick([10, 16, 20, 25, 40, 50, 64, 80, 100]);
+    var s2 = sqr / df, ep = Math.sqrt(s2 / sqt), h0 = pick([0, 0, 0, 1, 0.5]);
+    var b1 = Math.round((h0 + ep * pick([0.8, 1.4, 1.9, 2.3, 2.7, 3.4, 4.1])) * 100) / 100;
+    var c = TC[df], t = (b1 - h0) / ep;
+    T3 = { n: n, df: df, sqr: sqr, sqt: sqt, s2: s2, ep: ep, h0: h0, b1: b1, c: c, t: t, lo: b1 - c * ep, hi: b1 + c * ep };
+    chips($('#t3given'), ['n = ' + n, 'SQR = ' + fmt(sqr), 'SQTₓ = ' + fmt(sqt), 'β̂₁ = ' + fmt(b1, 2), 'H₀: β₁ = ' + fmt(h0) + ' (bilateral, 5%)', 't₀,₀₂₅;' + df + ' = ' + c.toFixed(3).replace('.', ',')]);
+    $('#t3tl').textContent = 't para H₀: β₁ = ' + fmt(h0);
+    clearFields(T3ids, '#t3out');
+  }
+  $('#t3new').addEventListener('click', newT3);
+  $('#t3check').addEventListener('click', function () {
+    var t = T3, ok = 0;
+    ok += checkField('t3s2', t.s2, 'Divida SQR por n − 2 = ' + t.df + '.');
+    ok += checkField('t3ep', t.ep, 'Raiz de σ̂²/SQTₓ (não pare na variância).');
+    ok += checkField('t3t', t.t, '(β̂₁ − valor de H₀) ÷ ep.');
+    ok += checkField('t3lo', t.lo, 'β̂₁ − t crítico × ep.');
+    ok += checkField('t3hi', t.hi, 'β̂₁ + t crítico × ep.');
+    $('#t3out').innerHTML = '<p class="score">' + ok + ' de 5 certos' + (ok === 5 ? '. Perfeito: clique em “Novo exercício”.' : '.') + '</p>';
+  });
+  $('#t3show').addEventListener('click', function () {
+    var t = T3, rej = Math.abs(t.t) > t.c;
+    $('#t3out').innerHTML = '<ol class="steps">' +
+      '<li><div>Graus de liberdade: n − 2 = ' + t.n + ' − 2 = ' + t.df + '.</div></li>' +
+      '<li><div>σ̂² = SQR/(n − 2) = ' + fmt(t.sqr) + ' / ' + t.df + ' = <strong>' + fmt(t.s2) + '</strong></div></li>' +
+      '<li><div>Vâr(β̂₁) = σ̂²/SQTₓ = ' + fmt(t.s2) + ' / ' + fmt(t.sqt) + ' = ' + fmt(t.s2 / t.sqt, 5) + '; ep = √' + fmt(t.s2 / t.sqt, 5) + ' = <strong>' + fmt(t.ep) + '</strong></div></li>' +
+      '<li><div>t = (' + fmt(t.b1, 2) + ' − ' + fmt(t.h0) + ') / ' + fmt(t.ep) + ' = <strong>' + fmt(t.t, 3) + '</strong>. Como |t| ' + (rej ? '&gt;' : '≤') + ' ' + t.c.toFixed(3).replace('.', ',') + ', <strong>' + (rej ? 'rejeitamos' : 'não rejeitamos') + '</strong> H₀: β₁ = ' + fmt(t.h0) + ' a 5%.</div></li>' +
+      '<li><div>IC 95% = ' + fmt(t.b1, 2) + ' ± ' + t.c.toFixed(3).replace('.', ',') + ' × ' + fmt(t.ep) + ' = [<strong>' + fmt(t.lo) + '</strong>; <strong>' + fmt(t.hi) + '</strong>]. O valor ' + fmt(t.h0) + (rej ? ' está fora do intervalo' : ' está dentro do intervalo') + ': mesma conclusão do teste (dualidade).</div></li>' +
+      '</ol>';
+  });
+  newT3();
+
+  /* ---------- gerador tipo Lista em sala, Ex. 3 e 4 ---------- */
+  var T4 = null, T4ids = ['t4b', 't4m', 't4e', 't4t'];
+  function r2(v) { return Math.round(v * 100) / 100; }
+  function newT4() {
+    var ep = pick([0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5]), b = r2(pick([-1.5, -1.2, -0.9, -0.6, 0.6, 0.8, 1.2, 1.5, 2.1]));
+    var h0 = r2(b - ep * pick([2.5, 3, 1.5, 1.2, -1.4, -2.2, -3.1]));
+    var lo = r2(b - 2 * ep), hi = r2(b + 2 * ep);
+    T4 = { b: b, ep: ep, m: 2 * ep, lo: lo, hi: hi, h0: h0, t: (b - h0) / ep };
+    chips($('#t4given'), ['IC 95% = [' + fmt(lo) + '; ' + fmt(hi) + '] = β̂₁ ± 2·EP', 'H₀: β₁ = ' + fmt(h0), 'crítico bilateral = 2']);
+    $('#t4tl').textContent = 't para H₀: β₁ = ' + fmt(h0);
+    clearFields(T4ids, '#t4out');
+  }
+  $('#t4new').addEventListener('click', newT4);
+  $('#t4check').addEventListener('click', function () {
+    var t = T4, ok = 0;
+    ok += checkField('t4b', t.b, 'Ponto médio: (inferior + superior) ÷ 2.');
+    ok += checkField('t4m', t.m, 'Meia largura: (superior − inferior) ÷ 2.');
+    ok += checkField('t4e', t.ep, 'Margem ÷ 2 (o crítico é 2).');
+    ok += checkField('t4t', t.t, '(β̂₁ − valor de H₀) ÷ EP. Cuidado com os sinais.');
+    $('#t4out').innerHTML = '<p class="score">' + ok + ' de 4 certos' + (ok === 4 ? '. Perfeito: clique em “Novo exercício”.' : '.') + '</p>';
+  });
+  $('#t4show').addEventListener('click', function () {
+    var t = T4, rej = Math.abs(t.t) > 2, inside = t.h0 >= t.lo && t.h0 <= t.hi;
+    $('#t4out').innerHTML = '<ol class="steps">' +
+      '<li><div>β̂₁ = (' + fmt(t.lo) + ' + ' + fmt(t.hi) + ') ÷ 2 = <strong>' + fmt(t.b) + '</strong></div></li>' +
+      '<li><div>Margem = (' + fmt(t.hi) + ' − ' + fmt(t.lo) + ') ÷ 2 = <strong>' + fmt(t.m) + '</strong>; EP = margem ÷ 2 = <strong>' + fmt(t.ep) + '</strong></div></li>' +
+      '<li><div>t = (' + fmt(t.b) + ' − (' + fmt(t.h0) + ')) ÷ ' + fmt(t.ep) + ' = <strong>' + fmt(t.t, 3) + '</strong>. Como |t| ' + (rej ? '&gt;' : '≤') + ' 2, <strong>' + (rej ? 'rejeitamos' : 'não rejeitamos') + '</strong> H₀.</div></li>' +
+      '<li><div>Dualidade: ' + fmt(t.h0) + (inside ? ' está dentro' : ' está fora') + ' do intervalo, a mesma conclusão.</div></li>' +
+      '</ol>';
+  });
+  newT4();
+
+  /* ---------- gerador tipo Lista em sala, Ex. 5 ---------- */
+  var T5 = null, T5ids = ['t5b0', 't5b1', 't5d'];
+  function newT5() {
+    var n = pick([4, 5, 6, 8]), xb = pick([1, 2, 3]), sqt = pick([4, 6, 8, 10, 12]);
+    var b0 = pick([1, 2, 3, 4, 5, -2]), b1 = pick([1, 2, 3, -1, 0.5, 1.5]);
+    var sx = n * xb, sxx = sqt + n * xb * xb, sy = n * (b0 + b1 * xb), sxy = b0 * sx + b1 * sxx;
+    var x1 = pick([0, 1, 2]), x2 = x1 + pick([2, 3, 4]);
+    T5 = { n: n, sx: sx, sxx: sxx, sy: sy, sxy: sxy, b0: b0, b1: b1, x1: x1, x2: x2 };
+    chips($('#t5given'), [n + 'β̂₀ + ' + fmt(sx) + 'β̂₁ = ' + fmt(sy), fmt(sx) + 'β̂₀ + ' + fmt(sxx) + 'β̂₁ = ' + fmt(sxy)]);
+    $('#t5dl').textContent = 'Δŷ quando X vai de ' + x1 + ' a ' + x2;
+    clearFields(T5ids, '#t5out');
+  }
+  $('#t5new').addEventListener('click', newT5);
+  $('#t5check').addEventListener('click', function () {
+    var t = T5, ok = 0;
+    ok += checkField('t5b0', t.b0, 'Depois de achar β̂₁, volte na 1ª equação.');
+    ok += checkField('t5b1', t.b1, 'Elimine β̂₀: multiplique a 1ª equação e subtraia da 2ª.');
+    ok += checkField('t5d', t.b1 * (t.x2 - t.x1), 'Δŷ = β̂₁ × Δx (o intercepto se cancela).');
+    $('#t5out').innerHTML = '<p class="score">' + ok + ' de 3 certos' + (ok === 3 ? '. Perfeito: clique em “Novo exercício”.' : '.') + '</p>';
+  });
+  $('#t5show').addEventListener('click', function () {
+    var t = T5, xb = t.sx / t.n, yb = t.sy / t.n, sqt = t.sxx - t.n * xb * xb, sp = t.sxy - t.n * xb * yb;
+    $('#t5out').innerHTML = '<ol class="steps">' +
+      '<li><div>Identifique: n = ' + t.n + ', Σx = ' + fmt(t.sx) + ', Σy = ' + fmt(t.sy) + ', Σx² = ' + fmt(t.sxx) + ', Σxy = ' + fmt(t.sxy) + '.</div></li>' +
+      '<li><div>x̄ = ' + fmt(xb) + ', ȳ = ' + fmt(yb) + '; SQTₓ = Σx² − n·x̄² = ' + fmt(sqt) + '; Σ(x−x̄)(y−ȳ) = Σxy − n·x̄·ȳ = ' + fmt(sp) + '.</div></li>' +
+      '<li><div>β̂₁ = ' + fmt(sp) + ' ÷ ' + fmt(sqt) + ' = <strong>' + fmt(t.b1) + '</strong>; β̂₀ = ȳ − β̂₁·x̄ = <strong>' + fmt(t.b0) + '</strong> (confira nas duas equações).</div></li>' +
+      '<li><div>Δŷ = ' + fmt(t.b1) + ' × (' + t.x2 + ' − ' + t.x1 + ') = <strong>' + fmt(t.b1 * (t.x2 - t.x1)) + '</strong>.</div></li>' +
+      '</ol>';
+  });
+  newT5();
+})();
+</script>
