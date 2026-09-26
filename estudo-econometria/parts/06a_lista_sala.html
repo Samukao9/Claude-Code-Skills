@@ -4,8 +4,14 @@
   <div class="eyebrow">Exercícios para resolução em sala · Prof. Tiago Ferraz <span class="tag hot">Prioridade máxima</span></div>
   <h2>Lista em sala: os 5 exercícios resolvidos</h2>
   <p>Esta lista (“Exercícios para resolução em sala”) está entre as <strong>principais</strong> para a P1, junto com a <a href="#lista3">Lista 3</a>. Ela mistura exatamente os temas centrais: <strong>viés, variância e EQM</strong> de estimadores (Ex. 1 e 2), <strong>intervalo de confiança e teste</strong> (Ex. 3 e 4) e as <strong>condições do MQO</strong> (Ex. 5).</p>
-  <div class="box trap"><span class="lbl">Sobre o gabarito</span>
-    <p>O gabarito oficial ainda não foi enviado. As resoluções abaixo são nossas, feitas com as fórmulas do curso e conferidas numericamente. Quando o gabarito chegar, elas serão comparadas uma a uma com ele.</p>
+  <div class="box def"><span class="lbl">O que foi conferido com a lousa</span>
+    <p>O professor resolveu parte desta lista na lousa. As caixas <strong>“Na lousa”</strong> abaixo transcrevem as fotos da aula. Tudo o que ele escreveu bate com as resoluções do guia:</p>
+    <ul>
+      <li><strong>Ex. 1, itens (a) e (b):</strong> E[T] = δ + 1, Var(T) = 4, DP(T) = 2 e a anotação sobre as repetições. <span class="tag ok">conferido</span></li>
+      <li><strong>Ex. 2, item (a), as médias:</strong> E[A] = θ + 1 e E[B] = θ. <span class="tag ok">conferido</span></li>
+      <li><strong>A demonstração de EQM = Var + viés²</strong>, feita durante o Ex. 2. <span class="tag ok">conferido</span></li>
+    </ul>
+    <p>As variâncias e os EQMs de A e B e os Ex. 3 a 5 não aparecem nas fotos. Nessas partes a resolução é nossa, feita com as fórmulas do curso e conferida numericamente. O gabarito oficial ainda não foi enviado; quando chegar, será comparado item por item.</p>
   </div>
   <div class="tbl"><table>
     <thead><tr><th>Exercício</th><th>Tema</th><th>Teoria no guia</th></tr></thead>
@@ -23,6 +29,7 @@
     <div class="mathblock">\[Var(aX+bY+c)=a^2Var(X)+b^2Var(Y)+2ab\,Cov(X,Y)\]</div>
     <div class="mathblock">\[E\big[(\hat\theta-\theta)^2\big]=\underbrace{Var(\hat\theta)}_{\text{espalhamento}}+\underbrace{\big[E(\hat\theta)-\theta\big]^2}_{\text{viés}^2}\qquad\text{(EQM)}\]</div>
     <p>A constante c some da variância; o fator entra <strong>ao quadrado</strong>; e um sinal de menos (\(b=-1\)) <strong>não</strong> diminui a variância, porque \((-1)^2=1\).</p>
+    <p class="small">De onde vem a fórmula do EQM: veja a <a href="#sala-eqm">demonstração que o professor fez na lousa</a>, no Ex. 2.</p>
   </div>
 
   <!-- ================= EX 1 ================= -->
@@ -45,9 +52,37 @@
       <div class="mathblock">\[Var(T)=\Big(\tfrac12\Big)^2Var(Z_1)+\Big(\tfrac12\Big)^2Var(Z_2)+2\cdot\tfrac12\cdot\tfrac12\,Cov(Z_1,Z_2)=\frac{8+8+0}{4}=\mathbf{4},\qquad dp(T)=\sqrt4=\mathbf{2}\]</div></div></li>
     <li><div><strong>(b) Repetir o estudo resolve?</strong> <strong>Não.</strong> Repetir o estudo muitas vezes faz a <em>média</em> das estimativas se aproximar de E(T) = δ + 1 (Lei dos Grandes Números), não de δ. Mais repetições reduzem a dispersão da média das estimativas, mas não mudam o centro. O viés vem da forma como T é construído (a fonte 1 é sistematicamente deslocada) e só desaparece corrigindo a fonte ou o estimador (por exemplo, usando \(Z_1-2\), se o deslocamento fosse conhecido).</div></li>
   </ol>
+  <div class="lousa">
+    <div class="who">Na lousa: Ex. 1(a)</div>
+    <div class="hand">
+      <span class="l">E[T] = δ ?</span>
+      <span class="l">E[T] = E[(Z₁ + Z₂)/2] = ½ · E[Z₁] + ½ · E[Z₂]</span>
+      <span class="l">= ½ · (δ + 2) + ½ · δ</span>
+      <span class="l">= ½ · 2δ + ½ · 2 = δ + 1</span>
+    </div>
+    <div class="note">O professor abriu com a pergunta “E[T] = δ?”, isto é, “T é não viesado?”. A resposta é <strong>não</strong>: E[T] = δ + 1. É a mesma conta do passo (a), só agrupada de outro jeito: os dois δ viram 2δ, e ½ · 2δ = δ; o 2 da fonte 1 vira ½ · 2 = 1.</div>
+  </div>
+  <div class="lousa">
+    <div class="who">Na lousa: Ex. 1(b)</div>
+    <div class="hand">
+      <span class="l">VAR[T] = VAR[(Z₁ + Z₂)/2]</span>
+      <span class="l">= (½)² · VAR(Z₁) + (½)² · VAR(Z₂) + (½)² · 2 COV(Z₁, Z₂)</span>
+      <span class="l">= ¼ · 8 + ¼ · 8 + ¼ · 0 = 2 + 2 = 4</span>
+      <span class="l">DP(T) = √VAR(T) = 2</span>
+      <span class="l">no canto: VAR[A + B] = VAR(A) + VAR(B) + 2 COV(A, B)</span>
+      <span class="l">no canto: Σₖ VARₖ(T) / K = K · VAR(T) / K</span>
+    </div>
+    <div class="note">O termo da covariância aparece como (½)² · 2 Cov, que é o mesmo \(2\cdot\tfrac12\cdot\tfrac12\,Cov\) do passo (b): é o \(2ab\,Cov\) da regra, com a = b = ½. Como Cov = 0, ele some. A fórmula do canto é a regra geral da variância de uma soma. A última anotação é a resposta à pergunta das repetições, explicada logo abaixo.</div>
+  </div>
+  <div class="box def"><span class="lbl">A anotação das repetições, explicada</span>
+    <p>Repita o estudo K vezes. Cada repetição k produz uma estimativa \(T_k\), construída da mesma forma que T, e por isso com a mesma distribuição: média δ + 1 e variância 4. A conta da lousa tira a média das K variâncias:</p>
+    <div class="mathblock">\[\begin{aligned}\frac{1}{K}\sum_{k=1}^{K}Var_k(T)&=\frac{K\cdot Var(T)}{K}\\ &=Var(T)=4\end{aligned}\]</div>
+    <p>O resultado não depende de K. Por mais que o estudo seja repetido, cada estimativa continua com a mesma variância e com a mesma média δ + 1. <strong>Repetir o estudo não muda as propriedades de T</strong>, então não elimina o viés de +1. Só corrigir o estimador resolve.</p>
+    <p class="small"><strong>Não confunda (complemento nosso):</strong> a lousa calcula a <em>média das variâncias</em>, que continua igual a Var(T). Outra coisa é a <em>variância da média</em> das K estimativas, \(\bar T_K=\frac1K\sum_k T_k\). Com repetições independentes, \(Var(\bar T_K)=Var(T)/K\), que cai com K, mas \(E(\bar T_K)=\delta+1\) para qualquer K. Nas duas leituras o centro continua em δ + 1: o viés não some.</p>
+  </div>
   <figure><div class="scroll">FIG:sala1</div><figcaption>A distribuição de T está centrada em δ + 1, e não no alvo δ. Repetir o estudo acumula estimativas em volta de δ + 1: a dispersão da média delas cai, mas o centro não se move.</figcaption></figure>
-  <div class="box ok"><span class="lbl">Resposta-modelo</span>
-    <p>a) \(E(T)=\frac{E(Z_1)+E(Z_2)}{2}=\frac{\delta+2+\delta}{2}=\delta+1\). Em muitas repetições, as estimativas se concentram em δ + 1, uma unidade acima de δ: T é viesado, com viés +1, e superestima o efeito do programa. b) \(Var(T)=\frac14[Var(Z_1)+Var(Z_2)+2Cov(Z_1,Z_2)]=\frac14(8+8)=4\) e \(dp(T)=2\). Aumentar o número de repetições não elimina a diferença: a média das estimativas converge para E(T) = δ + 1, não para δ. Mais repetições reduzem a variabilidade da média, mas não corrigem o viés, que decorre do erro sistemático da fonte 1.</p>
+  <div class="box ok"><span class="lbl">Resposta-modelo (conferida com a lousa)</span>
+    <p>a) \(E(T)=\frac{E(Z_1)+E(Z_2)}{2}=\frac{\delta+2+\delta}{2}=\delta+1\). Em muitas repetições, as estimativas se concentram em δ + 1, uma unidade acima de δ: T é viesado, com viés +1, e superestima o efeito do programa. b) \(Var(T)=\frac14[Var(Z_1)+Var(Z_2)+2Cov(Z_1,Z_2)]=\frac14(8+8)=4\) e \(dp(T)=2\). Aumentar o número de repetições não elimina a diferença. Cada repetição produz um T com a mesma distribuição: a média das variâncias é \(\frac{K\cdot Var(T)}{K}=Var(T)\), e a média das estimativas converge para E(T) = δ + 1, não para δ. O viés decorre do erro sistemático da fonte 1 e só some corrigindo o estimador.</p>
   </div>
   <div class="box trap"><span class="lbl">Erros que custam ponto</span>
     <ul>
@@ -84,6 +119,53 @@
       <p>Conferindo A “na força bruta”: \(A-\theta=1+\frac{u_1-u_2}{2}\), então \(E[(A-\theta)^2]=1+2\cdot1\cdot E\!\left[\frac{u_1-u_2}{2}\right]+E\!\left[\frac{(u_1-u_2)^2}{4}\right]=1+0+\frac{4}{4}=2\) ✓.</p></div></li>
     <li><div><strong>Escolha:</strong> pelo EQM, <strong>B</strong> (1 &lt; 2). Os dois têm a mesma variância; A perde porque carrega um viés de +1, que entra ao quadrado no EQM.</div></li>
   </ol>
+  <div class="lousa">
+    <div class="who">Na lousa: Ex. 2(a), as médias</div>
+    <div class="hand">
+      <span class="l">E[A] = E[θ + 1 + (u₁ − u₂)/2] =</span>
+      <span class="l">= E(θ) + E(1) + ½ · E(u₁) − ½ · E(u₂)      (um 0 em cima de cada E(u))</span>
+      <span class="l">= θ + 1</span>
+      <span class="l">E[B] = θ, pois E[u₁] = E[u₂] = 0</span>
+    </div>
+    <div class="note">Igual ao passo (a): A tem média θ + 1 (viés +1) e B tem média θ (não viesado). A esperança “entra” em cada termo da soma (linearidade); θ e 1 são constantes, então E(θ) = θ e E(1) = 1. As variâncias de A e B e os EQMs não aparecem nas fotos: essas partes seguem a resolução nossa acima.</div>
+  </div>
+
+  <h4 id="sala-eqm">Na lousa: por que EQM = Var + viés²</h4>
+  <p>Antes do item (b), o professor demonstrou a fórmula do EQM para um estimador \(\hat\theta\) qualquer. A ideia é um truque de álgebra: <strong>somar e subtrair</strong> a média do estimador, \(E(\hat\theta)\), dentro do erro \(\hat\theta-\theta\). Isso não muda nada (soma zero), mas separa o erro em duas partes: o quanto a estimativa se afasta da própria média (espalhamento) e o quanto a média se afasta do alvo (viés).</p>
+  <div class="lousa">
+    <div class="who">Na lousa: demonstração do EQM</div>
+    <div class="hand">
+      <span class="l">E[\(\hat\theta\) − θ]² = E[\(\hat\theta\) − E(\(\hat\theta\)) + E(\(\hat\theta\)) − θ]²</span>
+      <span class="l">= E[(\(\hat\theta\) − E(\(\hat\theta\)))² + (E(\(\hat\theta\)) − θ)² + 2 (\(\hat\theta\) − E(\(\hat\theta\))) (E(\(\hat\theta\)) − θ)]</span>
+      <span class="l">E[\(\hat\theta^2\)] + E[\(\hat\theta\)]² − 2 E[\(\hat\theta\)] · E[\(\hat\theta\)] + (E(\(\hat\theta\)) − θ)² + 2 (…)</span>
+      <span class="l">(embaixo de −2 E[\(\hat\theta\)] · E[\(\hat\theta\)]: E[\(\hat\theta\)]²)</span>
+      <span class="l">E[\(\hat\theta^2\)] − E[\(\hat\theta\)]²</span>
+      <span class="l">┌ EQM = VAR(\(\hat\theta\)) + VIÉS² ┐</span>
+    </div>
+    <div class="note"><strong>Notação:</strong> na lousa, “\(E[\hat\theta-\theta]^2\)” significa \(E[(\hat\theta-\theta)^2]\), a esperança <em>do quadrado</em>. Não confunda com \(\big(E[\hat\theta-\theta]\big)^2\), que é só o viés ao quadrado. Na foto, o termo cruzado “+ 2(…)” está meio apagado; a conta abaixo mostra por que ele vale zero.</div>
+  </div>
+  <p>A mesma demonstração, passo a passo. Chame \(m=E(\hat\theta)\): é um <strong>número fixo</strong>, não uma variável aleatória.</p>
+  <ol class="steps">
+    <li><div><strong>Somar e subtrair m:</strong>
+      <div class="mathblock">\[\hat\theta-\theta=(\hat\theta-m)+(m-\theta)\]</div></div></li>
+    <li><div><strong>Elevar ao quadrado</strong> com \((a+b)^2=a^2+b^2+2ab\):
+      <div class="mathblock">\[\begin{aligned}(\hat\theta-\theta)^2&=(\hat\theta-m)^2+(m-\theta)^2\\ &\quad+2(\hat\theta-m)(m-\theta)\end{aligned}\]</div></div></li>
+    <li><div><strong>Tirar a esperança de cada termo:</strong>
+      <ul>
+        <li>\(E[(\hat\theta-m)^2]=Var(\hat\theta)\), pela definição de variância. Na lousa ele abriu o quadrado: \(E[\hat\theta^2]-2m\,E[\hat\theta]+m^2=E[\hat\theta^2]-E[\hat\theta]^2\), a fórmula de atalho da variância.</li>
+        <li>\(E[(m-\theta)^2]=(m-\theta)^2=\text{viés}^2\): é um número fixo, e a esperança de uma constante é ela mesma.</li>
+        <li>\(E[2(\hat\theta-m)(m-\theta)]=2(m-\theta)\cdot E[\hat\theta-m]=2(m-\theta)\cdot(m-m)=0\). O termo cruzado <strong>some sempre</strong>, com ou sem viés: \((m-\theta)\) é constante e sai da esperança, e o que sobra, \(E[\hat\theta-m]\), é a distância média do estimador à própria média, que é zero.</li>
+      </ul></div></li>
+    <li><div><strong>Somar:</strong>
+      <div class="mathblock">\[\begin{aligned}EQM(\hat\theta)&=E[(\hat\theta-\theta)^2]\\ &=Var(\hat\theta)+\big[E(\hat\theta)-\theta\big]^2\\ &=Var(\hat\theta)+\text{viés}^2\end{aligned}\]</div></div></li>
+  </ol>
+  <p>Aplicando ao Ex. 2: EQM(A) = 1 + 1² = 2 e EQM(B) = 1 + 0² = 1. Aplicando ao Ex. 1: EQM(T) = 4 + 1² = 5.</p>
+  <div class="quiz" data-answer="b">
+    <div class="qh">Demonstração do EQM (lousa)</div>
+    <p>Na demonstração de EQM = Var + viés², por que \(E\big[2(\hat\theta-E(\hat\theta))(E(\hat\theta)-\theta)\big]=0\)?</p>
+    <div class="opts"><button data-k="a">a) Porque o estimador é não viesado, então \(E(\hat\theta)-\theta=0\).</button><button data-k="b">b) Porque \(E(\hat\theta)-\theta\) é uma constante e \(E[\hat\theta-E(\hat\theta)]=0\).</button><button data-k="c">c) Porque \(Cov(u_1,u_2)=0\).</button><button data-k="d">d) Porque \(\hat\theta\) e θ são independentes.</button></div>
+    <div class="fb" hidden>b. O viés \(E(\hat\theta)-\theta\) é um número fixo, então sai da esperança; o que sobra, \(E[\hat\theta-E(\hat\theta)]=E(\hat\theta)-E(\hat\theta)=0\). Por isso a fórmula vale para qualquer estimador, viesado ou não (a letra a só cobriria os não viesados). As letras c e d não têm relação com a demonstração: θ é um parâmetro fixo, não uma variável aleatória.</div>
+  </div>
   <figure><div class="scroll">FIG:sala2</div><figcaption>As duas distribuições têm o mesmo formato (variância 1). B está centrada no alvo θ; A está deslocada para θ + 1.</figcaption></figure>
   <div class="tbl"><table>
     <thead><tr><th>Procedimento</th><th class="r">Média</th><th class="r">Viés</th><th class="r">Variância</th><th class="r">EQM = Var + viés²</th></tr></thead>
@@ -92,7 +174,7 @@
       <tr><td>B</td><td class="r">θ</td><td class="r">0</td><td class="r">1</td><td class="r"><strong>1</strong></td></tr>
     </tbody>
   </table></div>
-  <div class="box ok"><span class="lbl">Resposta-modelo</span>
+  <div class="box ok"><span class="lbl">Resposta-modelo (médias conferidas com a lousa)</span>
     <p>a) \(E(A)=\theta+1\) e \(Var(A)=\frac14[Var(u_1)+Var(u_2)-2Cov(u_1,u_2)]=\frac14(2+2)=1\); \(E(B)=\theta\) e \(Var(B)=\frac14(2+2)=1\). A é viesado (viés +1) e B é não viesado; os dois têm a mesma variância. b) \(E[(A-\theta)^2]=Var(A)+[E(A)-\theta]^2=1+1=2\) e \(E[(B-\theta)^2]=1+0=1\). Pelo critério do erro quadrático médio, deve-se usar B.</p>
   </div>
   <div class="box trap"><span class="lbl">Erros que custam ponto</span>

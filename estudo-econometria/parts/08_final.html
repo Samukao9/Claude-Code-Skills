@@ -308,7 +308,7 @@
   <ul>
     <li>\(E\big(\frac{Z_1+Z_2}{2}\big)=\frac{E(Z_1)+E(Z_2)}{2}\); \(Var\big(\frac{Z_1+Z_2}{2}\big)=\frac{Var(Z_1)+Var(Z_2)+2Cov}{4}\). Viés = E(estimador) − parâmetro.</li>
     <li>\(Var(u_1-u_2)=Var(u_1)+Var(u_2)-2Cov\): o sinal de menos <strong>não</strong> subtrai as variâncias.</li>
-    <li>\(EQM=E[(\hat\theta-\theta)^2]=Var+\text{viés}^2\). Mais repetições não corrigem viés.</li>
+    <li>\(EQM=E[(\hat\theta-\theta)^2]=Var+\text{viés}^2\) (lousa: some e subtraia \(E(\hat\theta)\); o termo cruzado vale 0). Mais repetições não corrigem viés: \(\frac1K\sum_k Var_k(T)=Var(T)\).</li>
     <li>IC \([L;U]=\hat\beta\pm c\cdot EP\): \(\hat\beta=\frac{L+U}{2}\), margem \(=\frac{U-L}{2}\), \(EP=\frac{\text{margem}}{c}\).</li>
     <li>\(t=\frac{\hat\beta_1-\beta_{1,0}}{EP}\) com o valor de \(H_0\) (cuidado com o sinal de valores negativos); não rejeitados: \(\hat\beta_1\pm c\cdot EP\).</li>
     <li>Equações normais: \(n\hat\beta_0+(\sum x)\hat\beta_1=\sum y\) e \((\sum x)\hat\beta_0+(\sum x^2)\hat\beta_1=\sum xy\). \(\Delta\hat y=\hat\beta_1\Delta x\). Fora da faixa de X observada = extrapolação.</li>
