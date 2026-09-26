@@ -26,7 +26,7 @@
 <section class="mod" id="simulado" data-title="Simulado">
   <div class="eyebrow">Treino final · questões novas no estilo das listas</div>
   <h2>Simulado final</h2>
-  <p>40 questões misturando as Aulas 1 a 7, as Listas e a matemática de apoio. Faça no papel antes de clicar. Placar: <span class="score" id="simScore">0 de 40 respondidas · 0 acertos</span></p>
+  <p>48 questões misturando as Aulas 1 a 7, as Listas, a estatística do zero, a matemática de apoio e a prévia da P2 (41 a 48 cobrem os módulos novos). Faça no papel antes de clicar. Placar: <span class="score" id="simScore">0 de 48 respondidas · 0 acertos</span></p>
 
   <div class="quiz sim" data-answer="b"><div class="qh">1 · Fórmulas</div>
     <p>\(\bar x=10\), \(\bar y=50\), \(\widehat{Cov}(x,y)=12\), \(\widehat{Var}(x)=4\). Qual é a FRA?</p>
@@ -207,6 +207,38 @@
     <p>No ótimo de max \(xy\) s.a. \(2x+4y=40\), \(\lambda=2{,}5\). Isso significa que:</p>
     <div class="opts"><button data-k="a">a) x = 2,5</button><button data-k="b">b) a utilidade máxima é 2,5</button><button data-k="c">c) a restrição está errada</button><button data-k="d">d) com 1 real a mais de renda, a utilidade ótima sobe cerca de 2,5</button></div>
     <div class="fb" hidden>λ é o preço sombra: \(df^*/dc\).</div></div>
+  <div class="quiz sim" data-answer="c"><div class="qh">41 · Estatística</div>
+    <p>Dados: 1, 2, 2, 3, 100. Média e mediana valem:</p>
+    <div class="opts"><button data-k="a">a) 21,6 e 21,6</button><button data-k="b">b) 2 e 21,6</button><button data-k="c">c) 21,6 e 2</button><button data-k="d">d) 3 e 2</button></div>
+    <div class="fb" hidden>Média = 108/5 = 21,6, puxada pelo 100; mediana = 2, o valor do meio.</div></div>
+  <div class="quiz sim" data-answer="a"><div class="qh">42 · Probabilidade</div>
+    <p>P(A) = 0,5, P(B) = 0,4 e A e B são independentes. P(A e B) =</p>
+    <div class="opts"><button data-k="a">a) 0,20</button><button data-k="b">b) 0,90</button><button data-k="c">c) 0,10</button><button data-k="d">d) 0,45</button></div>
+    <div class="fb" hidden>Independência: P(A)·P(B) = 0,5 × 0,4 = 0,20.</div></div>
+  <div class="quiz sim" data-answer="d"><div class="qh">43 · Estimação</div>
+    <p>Estimador A: viés 0 e variância 4. Estimador B: viés 1 e variância 1. Pelo EQM:</p>
+    <div class="opts"><button data-k="a">a) A é melhor (é não viesado)</button><button data-k="b">b) empatam</button><button data-k="c">c) não dá para comparar</button><button data-k="d">d) B é melhor (EQM 2 contra 4)</button></div>
+    <div class="fb" hidden>EQM = Var + viés²: A = 4, B = 1 + 1 = 2. Não viés não é tudo.</div></div>
+  <div class="quiz sim" data-answer="b"><div class="qh">44 · LGN</div>
+    <p>A LGN garante que, com n grande:</p>
+    <div class="opts"><button data-k="a">a) cada observação fica normal</button><button data-k="b">b) a média amostral fica perto da média populacional com alta probabilidade</button><button data-k="c">c) o MQO fica não viesado mesmo com variável omitida</button><button data-k="d">d) resultados passados são compensados</button></div>
+    <div class="fb" hidden>b. (a) confunde com o TCL, e mesmo o TCL é sobre a média; (c) LGN não corrige viés; (d) é a falácia do jogador.</div></div>
+  <div class="quiz sim" data-answer="c"><div class="qh">45 · Tipo Lista 3, Q8</div>
+    <p>\(\hat\beta_1\sim N(\beta_1,\,0{,}5^2)\), crítico 1,96, \(H_0:\beta_1=0\). Os limites da região de não rejeição são:</p>
+    <div class="opts"><button data-k="a">a) ±0,5</button><button data-k="b">b) ±1,96</button><button data-k="c">c) ±0,98</button><button data-k="d">d) ±3,92</button></div>
+    <div class="fb" hidden>±1,96 × 0,5 = ±0,98.</div></div>
+  <div class="quiz sim" data-answer="a"><div class="qh">46 · Aula 5 (laboratório)</div>
+    <p>x = (1, 2, 3) e erros independentes ±1 com probabilidade 1/2. Quanto vale \(Var(\hat\beta_1)\)?</p>
+    <div class="opts"><button data-k="a">a) 0,5</button><button data-k="b">b) 1</button><button data-k="c">c) 2</button><button data-k="d">d) 1/3</button></div>
+    <div class="fb" hidden>\(\sigma^2/SQT_x=1/2\). É o Laboratório 2 da Aula 5.</div></div>
+  <div class="quiz sim" data-answer="d"><div class="qh">47 · Prévia da P2</div>
+    <p>Na regressão múltipla o coeficiente de educ é 1; habilidade tem coeficiente 2 e a inclinação de habilidade sobre educação é 0,9. Na regressão simples, o coeficiente de educ será:</p>
+    <div class="opts"><button data-k="a">a) 1</button><button data-k="b">b) 1,9</button><button data-k="c">c) 0,9</button><button data-k="d">d) 2,8</button></div>
+    <div class="fb" hidden>1 + 2 × 0,9 = 2,8: a fórmula do viés de variável omitida.</div></div>
+  <div class="quiz sim" data-answer="b"><div class="qh">48 · Prévia da P2</div>
+    <p>Todos os t individuais são pequenos, mas o teste F conjunto rejeita com folga e o \(R^2\) é alto. O suspeito mais provável é:</p>
+    <div class="opts"><button data-k="a">a) heterocedasticidade</button><button data-k="b">b) multicolinearidade</button><button data-k="c">c) autocorrelação</button><button data-k="d">d) variável omitida</button></div>
+    <div class="fb" hidden>Explicativas muito correlacionadas: juntas explicam bem, separadas ninguém sabe quanto é de cada uma.</div></div>
   <div class="done-row"><button class="btn done-btn" data-done="simulado" aria-pressed="false">Marcar como concluído</button></div>
 </section>
 

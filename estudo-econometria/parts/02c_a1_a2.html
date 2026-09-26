@@ -17,7 +17,7 @@
     </tbody>
   </table></div>
   <p>Exemplos da aula: “A desigualdade de renda diminuiu no Brasil?” (descrição); “Qual é o efeito de um ano adicional de educação sobre o salário?” (causalidade); “Qual será a inflação no próximo trimestre?” (previsão). A interpretação dos resultados depende da pergunta.</p>
-  <p><strong>Previsão não exige causalidade:</strong> ver pessoas com guarda-chuva ajuda a prever chuva, mas abrir um guarda-chuva não provoca chuva. Boa capacidade preditiva não basta para uma interpretação causal.</p>
+  <p><strong>Previsão não exige causalidade:</strong> ver pessoas com guarda-chuva ajuda a prever chuva, mas abrir um guarda-chuva não provoca chuva. Boa capacidade preditiva não basta para uma interpretação causal. Para prever, procuramos relações <strong>estáveis</strong> em observações novas; para avaliar uma política, precisamos saber o que aconteceria <strong>se a política fosse alterada</strong>.</p>
 
   <h3>A sequência de uma análise empírica</h3>
   <ol class="steps">
@@ -52,12 +52,21 @@
   <h3>Ceteris paribus e o experimento ideal</h3>
   <p>O efeito causal de um ano a mais de estudo compara salários sob diferentes níveis de educação <strong>mantendo constantes os demais determinantes relevantes</strong> (ceteris paribus): \(\Delta wage\) quando \(\Delta educ=1\).</p>
   <p><strong>Experimento do fertilizante:</strong> selecionamos lotes, atribuímos o fertilizante aleatoriamente, mantemos o manejo semelhante e comparamos as médias. A atribuição aleatória torna o fertilizante independente, em média, da qualidade da terra. Com educação isso é inviável: as pessoas escolhem quanto estudar, e habilidade e ambiente familiar afetam educação e salário ao mesmo tempo. Por isso dados observacionais exigem hipóteses adicionais.</p>
+  <div class="box def"><span class="lbl">Quando o tratamento não é aleatório, o que se faz (slide da aula)</span>
+    <ul>
+      <li>controlar os fatores <strong>observáveis</strong> que diferenciam os grupos;</li>
+      <li>explorar regras ou acontecimentos que gerem variação <strong>comparável</strong>;</li>
+      <li>formular hipóteses <strong>explícitas</strong> sobre os fatores não observados;</li>
+      <li>verificar se a comparação responde à pergunta original.</li>
+    </ul>
+    <p>Essas estratégias tentam reproduzir, tanto quanto possível, a comparação de um experimento ideal.</p>
+  </div>
 
   <h3>Estruturas de dados</h3>
   <ul>
-    <li><strong>Corte transversal (cross-section):</strong> várias unidades num ponto do tempo. A ordem das linhas não contém informação.</li>
-    <li><strong>Série temporal:</strong> variáveis ao longo do tempo (inflação mensal, PIB trimestral). A ordem cronológica é essencial.</li>
-    <li><strong>Painel:</strong> as <em>mesmas</em> unidades em dois ou mais períodos.</li>
+    <li><strong>Corte transversal (cross-section):</strong> várias unidades (indivíduos, firmas, municípios, países) num ponto do tempo ou período curto. Em geral, a ordem das linhas não contém informação econômica.</li>
+    <li><strong>Série temporal:</strong> uma ou mais variáveis ao longo do tempo (inflação mensal, PIB trimestral, preços diários de ações). A ordem cronológica é essencial, e tendências, sazonalidade e dependência temporal exigem atenção (é daí que vem a <a href="#p2">autocorrelação</a>).</li>
+    <li><strong>Painel:</strong> as <em>mesmas</em> unidades em dois ou mais períodos. Combina variação entre unidades e ao longo do tempo, permite estudar mudanças individuais e, sob condições adequadas, controlar características que não mudam no tempo.</li>
     <li><strong>Cortes transversais empilhados:</strong> amostras em momentos diferentes, sem precisar serem as mesmas unidades.</li>
   </ul>
 

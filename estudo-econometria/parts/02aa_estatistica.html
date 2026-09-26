@@ -1,0 +1,245 @@
+
+<!-- ================= ESTATÍSTICA 1 E 2 DO ZERO ================= -->
+<section class="mod" id="estat" data-title="Estatística do zero">
+  <div class="eyebrow"><span class="tag">Base</span> Estatística 1 e 2 do zero · para quem nunca estudou estatística</div>
+  <h2>Estatística 1 e 2 do zero absoluto</h2>
+  <p>Econometria é estatística aplicada à economia. A Aula 2 do professor é uma <em>revisão</em> de Estatística 1 e 2, então ela supõe que você já viu isso. Este módulo ensina desde o começo, na ordem em que as disciplinas de Estatística ensinam, sempre ligando cada ideia ao lugar onde ela volta no curso. Os números dos exemplos são nossos e foram conferidos.</p>
+  <div class="box def"><span class="lbl">Mapa do módulo</span>
+    <p><strong>Estatística 1</strong> (descrever dados e probabilidade): seções 1 a 11. <strong>Estatística 2</strong> (inferência: tirar conclusões sobre a população a partir de uma amostra): seções 12 a 16.</p>
+  </div>
+
+  <h3>1. O que é estatística</h3>
+  <p>Estatística é o conjunto de métodos para <strong>coletar, resumir e interpretar dados</strong>, e para tirar conclusões quando só observamos uma parte do todo.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Ramo</th><th>Pergunta</th><th>Exemplo</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Descritiva</strong></td><td>Como resumir os dados que tenho?</td><td>“O salário médio destas 7 pessoas é R$ 7 mil.”</td></tr>
+      <tr><td><strong>Inferencial</strong></td><td>O que os dados dizem sobre um grupo maior que não observei inteiro?</td><td>“Com 95% de confiança, o salário médio de todos os trabalhadores está entre R$ 6,5 mil e R$ 7,5 mil.”</td></tr>
+    </tbody>
+  </table></div>
+  <ul>
+    <li><strong>População:</strong> o grupo inteiro que interessa (todos os trabalhadores do Brasil).</li>
+    <li><strong>Amostra:</strong> a parte que de fato observamos (2.000 trabalhadores sorteados).</li>
+    <li><strong>Censo:</strong> quando se observa a população inteira (raro e caro).</li>
+    <li><strong>Parâmetro:</strong> um número da população, em geral desconhecido. Usa letra grega: μ (média), σ (desvio-padrão), β (coeficientes).</li>
+    <li><strong>Estatística:</strong> um número calculado na amostra: \(\bar x\), s, \(\hat\beta\). Serve para <em>estimar</em> o parâmetro.</li>
+  </ul>
+
+  <h3>2. Tipos de variáveis</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Tipo</th><th>Subtipo</th><th>O que é</th><th>Exemplos</th></tr></thead>
+    <tbody>
+      <tr><td rowspan="2">Qualitativa (categórica)</td><td>Nominal</td><td>Categorias sem ordem</td><td>sexo, região, sindicalizado ou não</td></tr>
+      <tr><td>Ordinal</td><td>Categorias com ordem</td><td>escolaridade (fundamental, médio, superior), nota A/B/C</td></tr>
+      <tr><td rowspan="2">Quantitativa (numérica)</td><td>Discreta</td><td>Valores contáveis</td><td>número de filhos, falhas de wifi por dia</td></tr>
+      <tr><td>Contínua</td><td>Qualquer valor num intervalo</td><td>salário, altura, tempo até o trabalho</td></tr>
+    </tbody>
+  </table></div>
+  <p>Na regressão, qualitativas entram como <strong>dummies</strong> (0 ou 1), assunto da <a href="#dummies">aula de dummies</a>.</p>
+
+  <h3>3. Medidas de tendência central: o “meio” dos dados</h3>
+  <p>Exemplo: salários (R$ mil) de 7 pessoas, já em ordem: <strong>2, 3, 3, 4, 5, 6, 26</strong>.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Medida</th><th>Como calcular</th><th class="r">Resultado</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Média</strong> \(\bar x\)</td><td>soma ÷ quantidade: \(49/7\)</td><td class="r">7</td></tr>
+      <tr><td><strong>Mediana</strong></td><td>o valor do meio, com os dados em ordem (o 4º de 7)</td><td class="r">4</td></tr>
+      <tr><td><strong>Moda</strong></td><td>o valor que mais aparece</td><td class="r">3</td></tr>
+    </tbody>
+  </table></div>
+  <p><strong>A lição:</strong> um único salário alto (26) puxa a média para 7, embora 6 das 7 pessoas ganhem R$ 6 mil ou menos. Sem ele, a média seria 3,83. A mediana (4) quase não muda. A média é sensível a valores extremos; a mediana é <strong>robusta</strong>. Com n par, a mediana é a média dos dois valores do meio.</p>
+
+  <h3>4. Medidas de dispersão: quanto os dados se espalham</h3>
+  <ol class="steps">
+    <li><div><strong>Amplitude:</strong> maior − menor = 26 − 2 = 24. Simples, mas depende só de dois valores.</div></li>
+    <li><div><strong>Desvios em relação à média:</strong> −5, −4, −4, −3, −2, −1, 19 (somam zero, sempre).</div></li>
+    <li><div><strong>Quadrados:</strong> 25, 16, 16, 9, 4, 1, 361. Soma = 432.</div></li>
+    <li><div><strong>Variância amostral:</strong> \(s^2=\frac{432}{n-1}=\frac{432}{6}=72\) (R$ mil)². <strong>Desvio-padrão:</strong> \(s=\sqrt{72}\approx8{,}49\) R$ mil, de volta à unidade original.</div></li>
+    <li><div><strong>Coeficiente de variação:</strong> \(CV=s/\bar x=8{,}49/7\approx1{,}21\), ou seja, 121%. Sem unidade: serve para comparar a dispersão de variáveis em unidades diferentes.</div></li>
+  </ol>
+  <div class="box def"><span class="lbl">Por que dividir por n − 1 na amostra?</span>
+    <p>Na população, a variância usa a média verdadeira μ e divide por N: \(\sigma^2=\frac1N\sum(x_i-\mu)^2\). Na amostra não conhecemos μ e usamos \(\bar x\), que fica “no meio” dos próprios dados. Por isso os desvios em relação a \(\bar x\) são, em média, <strong>menores</strong> que em relação a μ. Dividir por n − 1 compensa isso e deixa \(s^2\) <strong>não viesado</strong>. Dizemos que a média “gastou” 1 grau de liberdade.</p>
+    <p>Exemplo com (2, 4, 6): soma dos quadrados = 8; ÷3 dá 2,67 e ÷2 dá 4. É a mesma ideia do <strong>n − 2</strong> da regressão (Aula 5), em que a reta gasta 2 graus de liberdade.</p>
+  </div>
+
+  <h3>5. Medidas de posição: quartis, boxplot e escore z</h3>
+  <p><strong>Quartis</strong> dividem os dados ordenados em 4 partes: Q1 (25%), Q2 = mediana (50%), Q3 (75%). No exemplo, Q1 = 3 e Q3 = 6 (mediana de cada metade). A <strong>amplitude interquartil</strong> é AIQ = Q3 − Q1 = 3. Regra usual para outlier: acima de Q3 + 1,5·AIQ = 10,5, ou abaixo de Q1 − 1,5·AIQ.</p>
+  <figure><div class="scroll">FIG:boxplot</div><figcaption>Boxplot: a caixa vai de Q1 a Q3, o traço interno é a mediana. O 26 passa do limite 10,5 e aparece como outlier. O triângulo mostra a média (7), puxada para a direita.</figcaption></figure>
+  <p><strong>Escore z</strong>: quantos desvios-padrão um valor está da média, \(z=\frac{x-\bar x}{s}\). Serve para comparar coisas em escalas diferentes. Nota 80 numa prova com média 70 e dp 5 dá z = 2; nota 85 noutra prova com média 75 e dp 10 dá z = 1. A primeira é o desempenho relativo melhor, embora a nota seja menor. A estatística t da Aula 6 é um “escore z” da estimativa.</p>
+
+  <h3>6. Forma da distribuição: simetria e assimetria</h3>
+  <ul>
+    <li><strong>Simétrica:</strong> média ≈ mediana (alturas, notas).</li>
+    <li><strong>Assimétrica à direita</strong> (cauda longa para valores altos): média &gt; mediana. É o caso de renda, salário, vendas e preços. É por isso que a <a href="#aula4">Aula 4</a> usa o log, que costuma reduzir essa assimetria.</li>
+    <li><strong>Assimétrica à esquerda:</strong> média &lt; mediana (idade de morte em países ricos, nota numa prova fácil).</li>
+  </ul>
+
+  <h3>7. Probabilidade do zero</h3>
+  <ul>
+    <li><strong>Experimento aleatório:</strong> algo cujo resultado não dá para prever com certeza (lançar um dado).</li>
+    <li><strong>Espaço amostral Ω:</strong> todos os resultados possíveis, Ω = {1, 2, 3, 4, 5, 6}.</li>
+    <li><strong>Evento:</strong> um conjunto de resultados, por exemplo A = “sair par” = {2, 4, 6}.</li>
+    <li><strong>Probabilidade clássica:</strong> casos favoráveis ÷ casos possíveis, se todos são igualmente prováveis: P(par) = 3/6 = 1/2.</li>
+    <li><strong>Probabilidade frequentista</strong> (a definição do slide da Aula 2): a frequência relativa de longo prazo do evento em muitas repetições. É a Lei dos Grandes Números em ação (<a href="#lgn">módulo LGN</a>).</li>
+  </ul>
+  <div class="tbl"><table>
+    <thead><tr><th>Regra</th><th>Fórmula</th><th>Exemplo com um dado</th></tr></thead>
+    <tbody>
+      <tr><td>Axiomas</td><td>\(0\le P(A)\le1\), \(P(\Omega)=1\)</td><td>P(sair algo de 1 a 6) = 1</td></tr>
+      <tr><td>Complementar</td><td>\(P(\text{não }A)=1-P(A)\)</td><td>P(não sair 6) = 5/6</td></tr>
+      <tr><td>Soma (“ou”)</td><td>\(P(A\cup B)=P(A)+P(B)-P(A\cap B)\)</td><td>P(par ou &gt; 4) = 3/6 + 2/6 − 1/6 = 4/6 (o 6 foi contado duas vezes)</td></tr>
+      <tr><td>Condicional (“dado que”)</td><td>\(P(A\mid B)=\dfrac{P(A\cap B)}{P(B)}\)</td><td>P(6 | par) = (1/6)/(3/6) = 1/3</td></tr>
+      <tr><td>Multiplicação (“e”)</td><td>\(P(A\cap B)=P(A\mid B)\,P(B)\)</td><td>—</td></tr>
+      <tr><td>Independência</td><td>\(P(A\cap B)=P(A)P(B)\), isto é, \(P(A\mid B)=P(A)\)</td><td>duas moedas: P(2 caras) = 1/2 × 1/2 = 1/4</td></tr>
+    </tbody>
+  </table></div>
+  <p>A <strong>regra de Bayes</strong>, que inverte a condicional, e as tabelas de distribuição conjunta estão na <a href="#aula2">Aula 2</a>.</p>
+
+  <h3>8. Variável aleatória</h3>
+  <p>Uma <strong>variável aleatória</strong> (v.a.) é uma regra que associa um número a cada resultado de um experimento. Letra maiúscula (X) é a variável; minúscula (x) é um valor observado.</p>
+  <ul>
+    <li><strong>Discreta:</strong> tem uma lista de valores com probabilidades que somam 1 (a FMP). Ex.: número de caras.</li>
+    <li><strong>Contínua:</strong> probabilidade é <strong>área</strong> sob uma curva, a densidade (FDP). \(P(X=x)=0\) para um valor exato. Ex.: tempo até o trabalho. As integrais estão no <a href="#mat-int">módulo de Integrais</a>.</li>
+    <li><strong>Esperança</strong> \(E(X)\): a média teórica, média ponderada pelas probabilidades. <strong>Variância</strong> \(Var(X)=E[(X-E(X))^2]\): o espalhamento teórico. São as versões “de população” de \(\bar x\) e \(s^2\).</li>
+  </ul>
+
+  <h3>9. As distribuições que aparecem no curso</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Distribuição</th><th>Modela</th><th>E</th><th>Var</th><th>Onde aparece</th></tr></thead>
+    <tbody>
+      <tr><td>Bernoulli(π)</td><td>um sim/não</td><td>π</td><td>π(1 − π)</td><td>dummies; Lista 1, Q17 e Q27</td></tr>
+      <tr><td>Binomial(n, π)</td><td>nº de “sins” em n tentativas independentes</td><td>nπ</td><td>nπ(1 − π)</td><td>soma de Bernoullis (Lista 1, Q27)</td></tr>
+      <tr><td>Poisson(λ)</td><td>contagens</td><td>λ</td><td>λ</td><td>Aula 6 (“e se u não for normal?”)</td></tr>
+      <tr><td>Uniforme(a, b)</td><td>“qualquer valor igualmente provável”</td><td>(a + b)/2</td><td>(b − a)²/12</td><td>Aula 2; práticas</td></tr>
+      <tr><td><strong>Normal</strong>(μ, σ²)</td><td>forma de sino; somas e médias</td><td>μ</td><td>σ²</td><td>TCL, RLS.6, teste z</td></tr>
+      <tr><td>t de Student (g.l.)</td><td>normal com caudas mais gordas</td><td>0</td><td>&gt; 1</td><td>teste t e IC (Aula 6)</td></tr>
+      <tr><td>Qui-quadrado \(\chi^2\) (g.l.)</td><td>soma de normais padrão ao quadrado</td><td>g.l.</td><td>2·g.l.</td><td>distribuição de \(\hat\sigma^2\); teste de Breusch–Pagan</td></tr>
+      <tr><td>F (g.l.₁, g.l.₂)</td><td>razão de duas qui-quadrado</td><td>—</td><td>—</td><td>teste F (<a href="#p2">Prévia da P2</a>)</td></tr>
+    </tbody>
+  </table></div>
+  <div class="box ok"><span class="lbl">Binomial com números</span>
+    <p>Lançar uma moeda honesta 5 vezes. A probabilidade de exatamente k caras é \(P(X=k)=\binom{5}{k}\left(\tfrac12\right)^5\), em que \(\binom{5}{k}\) conta de quantas formas escolher as k posições das caras.</p>
+    <div class="tbl"><table>
+      <thead><tr><th class="r">k</th><th class="r">0</th><th class="r">1</th><th class="r">2</th><th class="r">3</th><th class="r">4</th><th class="r">5</th></tr></thead>
+      <tbody><tr><td class="r">P(X = k)</td><td class="r">0,031</td><td class="r">0,156</td><td class="r">0,313</td><td class="r">0,313</td><td class="r">0,156</td><td class="r">0,031</td></tr></tbody>
+    </table></div>
+    <p>E = 5 × 0,5 = 2,5 caras; Var = 5 × 0,5 × 0,5 = 1,25. Outro exemplo: se cada um de 10 clientes compra com probabilidade 0,2, independentemente, P(ninguém compra) = 0,8¹⁰ ≈ 0,107 e P(pelo menos um compra) ≈ 0,893 (regra do complementar).</p>
+  </div>
+
+  <h3>10. A distribuição normal e a padronização</h3>
+  <figure><div class="scroll">FIG:normal68</div><figcaption>Numa normal, cerca de 68% dos valores ficam a até 1 desvio-padrão da média, 95% a até 2 (mais precisamente 1,96) e 99,7% a até 3.</figcaption></figure>
+  <p><strong>Padronizar</strong> transforma qualquer normal na normal padrão N(0, 1): \(Z=\frac{X-\mu}{\sigma}\). A função \(\Phi(z)=P(Z\le z)\) é a área à esquerda de z, tirada de uma tabela.</p>
+  <p><strong>Exemplo:</strong> altura X ~ N(170, 10²) em cm.</p>
+  <ul>
+    <li>P(160 &lt; X &lt; 180): z de −1 a 1, cerca de <strong>68%</strong>.</li>
+    <li>P(X &gt; 190): z = 2, então \(1-\Phi(2)\approx0{,}023\).</li>
+    <li>P(X ≤ 185): z = 1,5, então \(\Phi(1{,}5)\approx0{,}933\).</li>
+  </ul>
+  <p>Propriedades que o curso usa: \(aX+b\) de uma normal é normal; soma de normais independentes é normal; e, pelo <strong>TCL</strong>, médias de muitas observações ficam aproximadamente normais mesmo que os dados não sejam.</p>
+
+  <h3>11. t, qui-quadrado e F em uma frase cada</h3>
+  <ul>
+    <li><strong>t:</strong> aparece quando dividimos uma normal por um desvio-padrão <em>estimado</em>. Com poucos graus de liberdade tem caudas mais gordas; com muitos, vira a normal.</li>
+    <li><strong>\(\chi^2\):</strong> soma de normais padrão ao quadrado; descreve variâncias estimadas, como \((n-2)\hat\sigma^2/\sigma^2\sim\chi^2_{n-2}\) (Aula 6).</li>
+    <li><strong>F:</strong> razão de duas \(\chi^2\) divididas pelos seus g.l.; usada para testar vários coeficientes de uma vez.</li>
+  </ul>
+
+  <h3>12. Amostragem e distribuição amostral (começo da Estatística 2)</h3>
+  <p>Uma <strong>estatística</strong> (como \(\bar x\)) muda de amostra para amostra, então ela própria é uma variável aleatória, com distribuição, média e variância. Essa distribuição se chama <strong>distribuição amostral</strong>. É a ideia central da Aula 5, aplicada a \(\hat\beta_1\).</p>
+  <figure><div class="scroll">FIG:dados</div><figcaption>À esquerda, um dado: os 6 valores têm a mesma chance. À direita, a média de 2 dados, com as 36 combinações possíveis: os valores do meio ficam mais prováveis e os extremos, raros.</figcaption></figure>
+  <ul>
+    <li><strong>Centro:</strong> E(1 dado) = 3,5 e E(média de 2) = 3,5. A média amostral é não viesada.</li>
+    <li><strong>Espalhamento:</strong> Var(1 dado) = 35/12 ≈ 2,92; Var(média de 2) = 35/24 ≈ 1,46 = σ²/n. A variância da média cai com n, e o <strong>erro-padrão</strong> é \(\sigma/\sqrt n\).</li>
+    <li><strong>Concentração:</strong> P(valor entre 3 e 4) é 2/6 ≈ 0,33 com 1 dado e 16/36 ≈ 0,44 com a média de 2. Com mais dados, a média se concentra perto de 3,5 (LGN) e a forma vira um sino (TCL).</li>
+  </ul>
+
+  <h3>13. Estimação: estimador, estimativa e as propriedades</h3>
+  <p><strong>Estimador</strong> é a regra (a fórmula); <strong>estimativa</strong> é o número que a regra dá na sua amostra. As propriedades são do estimador:</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Propriedade</th><th>Pergunta</th><th>Fórmula</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Viés</strong></td><td>Em média, acerta o alvo?</td><td>\(\text{Viés}(\hat\theta)=E(\hat\theta)-\theta\)</td></tr>
+      <tr><td><strong>Variância</strong></td><td>Quanto varia entre amostras?</td><td>\(Var(\hat\theta)\)</td></tr>
+      <tr><td><strong>EQM</strong> (erro quadrático médio)</td><td>Quão longe fica do alvo, somando os dois problemas?</td><td>\(EQM=E[(\hat\theta-\theta)^2]=Var(\hat\theta)+\text{Viés}^2\)</td></tr>
+      <tr><td><strong>Eficiência</strong></td><td>Entre os não viesados, qual tem menor variância?</td><td>comparação de variâncias</td></tr>
+      <tr><td><strong>Consistência</strong></td><td>Com n → ∞, chega no alvo?</td><td>\(\text{plim}\,\hat\theta=\theta\)</td></tr>
+    </tbody>
+  </table></div>
+  <div class="box ok"><span class="lbl">Três estimadores da média μ = 10 (σ² = 25, n = 25)</span>
+    <div class="tbl"><table>
+      <thead><tr><th>Estimador</th><th class="r">Viés</th><th class="r">Variância</th><th class="r">EQM</th></tr></thead>
+      <tbody>
+        <tr><td>\(\bar X\) (média amostral)</td><td class="r">0</td><td class="r">25/25 = 1</td><td class="r">1</td></tr>
+        <tr><td>\(0{,}9\,\bar X\) (encolhido)</td><td class="r">−1</td><td class="r">0,81</td><td class="r">1,81</td></tr>
+        <tr><td>\(X_1\) (só a 1ª observação)</td><td class="r">0</td><td class="r">25</td><td class="r">25</td></tr>
+      </tbody>
+    </table></div>
+    <p>\(X_1\) é não viesado, mas desperdiça 24 observações: é muito menos <strong>eficiente</strong> que \(\bar X\). O \(0{,}9\bar X\) tem variância menor, mas o viés pesa mais. É o mesmo raciocínio de Gauss–Markov (Aula 5).</p>
+  </div>
+  <p><strong>Viés da variância com ÷n:</strong> \(E\left[\sum(X_i-\bar X)^2\right]=(n-1)\sigma^2\). Dividindo por n, a esperança fica \(\frac{n-1}{n}\sigma^2\) (com n = 5, 0,8σ²): viesado, mas o viés some quando n cresce, então é <strong>consistente</strong>. Viés e consistência são coisas diferentes.</p>
+
+  <h3>14. Intervalo de confiança para a média</h3>
+  <p>Amostra de n = 25 com \(\bar x=50\).</p>
+  <ul>
+    <li><strong>σ conhecido</strong> (σ = 10): \(50\pm1{,}96\cdot\frac{10}{\sqrt{25}}=50\pm3{,}92=[46{,}08;\ 53{,}92]\).</li>
+    <li><strong>σ desconhecido</strong> (s = 10): troca 1,96 por \(t_{0,025;24}=2{,}064\): \(50\pm4{,}13=[45{,}87;\ 54{,}13]\), um pouco mais largo porque s também é aleatório.</li>
+  </ul>
+  <p><strong>Como ler:</strong> se repetíssemos a amostragem muitas vezes, 95% dos intervalos construídos assim conteriam μ. Não é “95% de probabilidade de μ estar neste intervalo”.</p>
+
+  <h3>15. Teste de hipóteses do zero</h3>
+  <div class="box def"><span class="lbl">A analogia do tribunal</span>
+    <p>\(H_0\) é “o réu é inocente”: é mantida até que haja evidência forte em contrário. <strong>Rejeitar \(H_0\)</strong> é condenar. <strong>Erro tipo I</strong> é condenar um inocente (probabilidade α, que escolhemos pequena, como 5%). <strong>Erro tipo II</strong> é absolver um culpado. “Não rejeitar” não prova inocência: só diz que as provas não bastaram. Por isso nunca se diz “aceitar \(H_0\)”.</p>
+  </div>
+  <ol class="steps">
+    <li><div><strong>Hipóteses:</strong> \(H_0:\mu=45\) × \(H_A:\mu\neq45\).</div></li>
+    <li><div><strong>Estatística:</strong> \(z=\frac{\bar x-\mu_0}{\sigma/\sqrt n}=\frac{50-45}{2}=2{,}5\). A média observada está 2,5 erros-padrão acima de 45.</div></li>
+    <li><div><strong>Decisão:</strong> como \(|2{,}5|&gt;1{,}96\), rejeitamos \(H_0\) a 5%.</div></li>
+    <li><div><strong>p-valor:</strong> \(2[1-\Phi(2{,}5)]\approx0{,}012\). Se μ fosse 45, só 1,2% das amostras dariam algo tão ou mais extremo.</div></li>
+  </ol>
+  <p>A Aula 6 faz exatamente isso, trocando \(\bar x\) por \(\hat\beta_1\) e a normal pela t.</p>
+
+  <h3>16. Correlação não é causalidade</h3>
+  <ul>
+    <li><strong>Terceira variável:</strong> venda de sorvete e afogamentos sobem juntos, porque os dois aumentam no calor.</li>
+    <li><strong>Causalidade reversa:</strong> cidades com mais policiais têm mais crimes? Talvez porque mais crime leve a contratar mais policiais.</li>
+    <li><strong>Seleção:</strong> quem faz curso superior pode ser diferente de quem não faz (Aula 1, viés de seleção).</li>
+  </ul>
+  <p>É por isso que o curso sempre diz “está <em>associado</em> a” e reserva “causa” para quando as hipóteses (como RLS.4) são defensáveis.</p>
+
+  <h3>Teste rápido</h3>
+  <div class="quiz" data-answer="b"><div class="qh">Estatística 1</div>
+    <p>Salários: 2, 3, 3, 4, 5, 6, 26. Qual medida descreve melhor o salário “típico”?</p>
+    <div class="opts"><button data-k="a">a) a média, 7</button><button data-k="b">b) a mediana, 4</button><button data-k="c">c) a amplitude, 24</button><button data-k="d">d) a variância, 72</button></div>
+    <div class="fb" hidden>b. A média é puxada pelo outlier; a mediana é robusta. Amplitude e variância medem dispersão, não o centro.</div></div>
+  <div class="quiz" data-answer="c"><div class="qh">Probabilidade</div>
+    <p>Num dado honesto, quanto vale P(sair 6 | saiu par)?</p>
+    <div class="opts"><button data-k="a">a) 1/6</button><button data-k="b">b) 1/2</button><button data-k="c">c) 1/3</button><button data-k="d">d) 1/12</button></div>
+    <div class="fb" hidden>c. Sabendo que saiu par, sobram {2, 4, 6}: 1 caso em 3.</div></div>
+  <div class="quiz" data-answer="a"><div class="qh">Normal</div>
+    <p>X ~ N(100, 15²). Aproximadamente qual fração fica entre 70 e 130?</p>
+    <div class="opts"><button data-k="a">a) 95%</button><button data-k="b">b) 68%</button><button data-k="c">c) 99,7%</button><button data-k="d">d) 50%</button></div>
+    <div class="fb" hidden>a. 70 e 130 estão a 2 desvios-padrão da média (z = ±2).</div></div>
+  <div class="quiz" data-answer="d"><div class="qh">Estimação</div>
+    <p>Um estimador tem viés 2 e variância 5. Quanto vale o EQM?</p>
+    <div class="opts"><button data-k="a">a) 7</button><button data-k="b">b) 5</button><button data-k="c">c) 3</button><button data-k="d">d) 9</button></div>
+    <div class="fb" hidden>d. EQM = Var + viés² = 5 + 4 = 9.</div></div>
+  <div class="quiz" data-answer="b"><div class="qh">Distribuição amostral</div>
+    <p>Uma população tem σ² = 36. Qual é o erro-padrão da média de n = 9 observações?</p>
+    <div class="opts"><button data-k="a">a) 4</button><button data-k="b">b) 2</button><button data-k="c">c) 6</button><button data-k="d">d) 12</button></div>
+    <div class="fb" hidden>b. \(\sigma/\sqrt n=6/3=2\) (variância da média = 36/9 = 4).</div></div>
+
+  <h3>Exercícios resolvidos</h3>
+  <details class="sol"><summary>S1 · Dados 4, 8, 6, 5, 7: média, mediana, variância amostral e dp</summary><div class="in">
+    <p>Ordenados: 4, 5, 6, 7, 8. Média = 30/5 = 6; mediana = 6. Desvios: −2, −1, 0, 1, 2; quadrados somam 10; \(s^2=10/4=2{,}5\); \(s\approx1{,}58\).</p>
+  </div></details>
+  <details class="sol"><summary>S2 · Duas moedas: P(pelo menos uma cara)</summary><div class="in">
+    <p>Complementar: 1 − P(nenhuma cara) = 1 − (1/2)(1/2) = 3/4.</p>
+  </div></details>
+  <details class="sol"><summary>S3 · Nota ~ N(60, 8²): P(nota ≥ 76)</summary><div class="in">
+    <p>z = (76 − 60)/8 = 2; P(Z ≥ 2) = 1 − Φ(2) ≈ 0,023, cerca de 2,3%.</p>
+  </div></details>
+  <details class="sol"><summary>S4 · n = 16, x̄ = 20, σ = 8: IC de 95% e teste de μ = 24</summary><div class="in">
+    <p>Erro-padrão = 8/4 = 2. IC = 20 ± 1,96 × 2 = [16,08; 23,92]. z = (20 − 24)/2 = −2, |z| &gt; 1,96: rejeita μ = 24, coerente com 24 estar fora do IC.</p>
+  </div></details>
+  <div class="done-row"><button class="btn done-btn" data-done="estat" aria-pressed="false">Marcar como concluído</button></div>
+</section>

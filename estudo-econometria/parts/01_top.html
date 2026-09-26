@@ -3,14 +3,14 @@
   <button class="btn menu-btn" id="menuBtn" aria-controls="toc" aria-expanded="false">☰ Sumário</button>
   <span class="brand">Econometria I</span>
   <div class="grow"><div class="pbar" aria-hidden="true"><i id="pfill"></i></div></div>
-  <span class="ptext" id="ptext">0 de 22 módulos</span>
+  <span class="ptext" id="ptext">0 de 26 módulos</span>
   <a class="btn" href="#formulas">β̂ Fórmulas</a>
 </header>
 
 <div class="hero">
   <div>
     <h1>Econometria I, do zero absoluto <span class="hat">à P1</span></h1>
-    <p class="lead">Todo o conteúdo das suas aulas, listas, gabaritos e fotos da lousa, em ordem de aprendizado, mais um curso de matemática de apoio (log, derivada, integral e λ). Começa em “o que é uma variável” e termina nas demonstrações da Aula 5. O que vai além do seu material está sempre marcado.</p>
+    <p class="lead">Todo o conteúdo das suas aulas, listas, gabaritos e fotos da lousa, em ordem de aprendizado, mais Estatística 1 e 2 do zero, os conceitos-chave (MQO/OLS, parâmetro, estimador, viés), todas as Leis dos Grandes Números, matemática de apoio (log, derivada, integral e λ) e uma prévia da P2. Começa em “o que é uma variável” e vai até as demonstrações da Aula 5 e a inferência da Aula 6. O que vai além do seu material está sempre marcado.</p>
     <div class="actions">
       <a class="btn primary" href="#zero">Começar do zero</a>
       <a class="btn" href="#formulas">As 2 fórmulas</a>
@@ -40,6 +40,8 @@
   <h3>Base</h3>
   <ol>
     <li><a href="#zero" data-mod="zero"><span class="n">M0</span><span>Do zero: variável, média, Σ</span></a></li>
+    <li><a href="#estat" data-mod="estat"><span class="n">E</span><span>Estatística 1 e 2 do zero</span></a></li>
+    <li><a href="#conceitos" data-mod="conceitos"><span class="n">C</span><span>Conceitos-chave: MQO/OLS, viés, estimador…</span></a></li>
     <li><a href="#mat-log" data-mod="mat-log"><span class="n">∫1</span><span>Funções, exponencial e log</span></a></li>
     <li><a href="#mat-deriv" data-mod="mat-deriv"><span class="n">∫2</span><span>Derivadas do zero ao MQO</span></a></li>
     <li><a href="#mat-int" data-mod="mat-int"><span class="n">∫3</span><span>Integrais e probabilidade</span></a></li>
@@ -49,11 +51,13 @@
   <ol>
     <li><a href="#aula1" data-mod="aula1"><span class="n">A1</span><span>Natureza da econometria</span></a></li>
     <li><a href="#aula2" data-mod="aula2"><span class="n">A2</span><span>Ferramentas de matemática e estatística</span></a></li>
+    <li><a href="#lgn" data-mod="lgn"><span class="n">LGN</span><span>Todas as Leis dos Grandes Números</span></a></li>
     <li><a href="#aula3" data-mod="aula3"><span class="n">A3</span><span>Regressão simples e MQO</span></a></li>
     <li><a href="#aula4" data-mod="aula4"><span class="n">A4</span><span>Unidades, log e derivadas</span></a></li>
     <li><a href="#aula5" data-mod="aula5"><span class="n">A5</span><span>Viés, variância, propriedades <b class="star">★</b></span></a></li>
     <li><a href="#aula6" data-mod="aula6"><span class="n">A6</span><span>Inferência: t, p-valor, IC</span></a></li>
     <li><a href="#dummies" data-mod="dummies"><span class="n">A7</span><span>Dummies e regressão pela origem</span></a></li>
+    <li><a href="#p2" data-mod="p2"><span class="n">P2</span><span>Prévia da P2: múltipla, multicolinearidade, autocorrelação</span></a></li>
   </ol>
   <h3>Listas resolvidas</h3>
   <ol>
@@ -78,15 +82,31 @@
   <div class="eyebrow">Antes de tudo</div>
   <h2>Comece aqui</h2>
   <p>Este guia foi montado a partir de todo o material que você enviou: a apresentação do curso, as Aulas 1 a 6, a aula de dummies, as três práticas em R, a Lista 1, a Lista 2 numérica e a Lista 3 de propriedades, os três gabaritos e as fotos da lousa. Onde uma explicação precisou ficar mais simples, ela continua dizendo exatamente o que o material diz.</p>
-  <p>Há também quatro módulos de <strong>Matemática de apoio</strong> (log, derivadas, integrais e λ), que você pediu, e um <a href="#dicionario">dicionário com todas as fórmulas</a>, o que cada uma significa e a sua unidade de medida. Tudo que não está nos seus PDFs vem marcado com <span class="tag">Matemática de apoio</span> ou <span class="tag warn">Fora do material da P1</span>.</p>
+  <p>Há também módulos que você pediu além das aulas: <strong>Estatística 1 e 2 do zero</strong>, <strong>Conceitos-chave</strong> (MQO/OLS, parâmetro, estimador, viés e o resto), <strong>todas as Leis dos Grandes Números</strong>, quatro de <strong>Matemática de apoio</strong> (log, derivadas, integrais e λ), uma <strong>Prévia da P2</strong> (regressão múltipla, multicolinearidade, autocorrelação) e um <a href="#dicionario">dicionário com todas as fórmulas</a>, o que cada uma significa e a sua unidade de medida. Tudo que não está nos seus PDFs vem marcado com <span class="tag">Matemática de apoio</span> ou <span class="tag warn">Fora do material da P1</span>.</p>
 
   <h3>Como usar</h3>
   <ol class="steps">
-    <li><div><strong>Siga a ordem do sumário.</strong> Cada módulo usa o anterior. O Módulo 0 existe para quem nunca viu estatística: não pule se “variável” ou “Σ” ainda soam estranhos.</div></li>
+    <li><div><strong>Siga a ordem do sumário.</strong> Cada módulo usa o anterior. Se você nunca estudou estatística, faça nesta ordem: <a href="#zero">Módulo 0</a> → <a href="#estat">Estatística 1 e 2 do zero</a> → <a href="#conceitos">Conceitos-chave</a>, e só então a Aula 1. O módulo de <a href="#lgn">Leis dos Grandes Números</a> vem depois da Aula 2. A <a href="#p2">Prévia da P2</a> fica para depois da prova, ou se sobrar tempo.</div></li>
     <li><div><strong>Tente antes de abrir.</strong> Toda resolução está escondida atrás de um botão “Ver resolução”. O próprio gabarito do professor recomenda tentar cada questão antes de consultar.</div></li>
     <li><div><strong>Faça os testes rápidos.</strong> Clique numa alternativa e veja na hora se acertou, com a justificativa.</div></li>
     <li><div><strong>Marque o módulo como concluído</strong> no fim de cada seção. A barra no topo mostra seu progresso (fica salva só neste navegador).</div></li>
   </ol>
+
+  <details class="sol"><summary>Bibliografia indicada pelo professor, aula por aula</summary><div class="in">
+    <p>Livro-texto: Wooldridge, <em>Introdução à Econometria: uma abordagem moderna</em> (7ª ed., na Biblioteca Digital com o seu RA). Complementares: Stock e Watson; Pereda e Alves; e, para o R, <em>Introduction to Econometrics with R</em> (econometrics-with-r.org).</p>
+    <div class="tbl"><table>
+      <thead><tr><th>Aula</th><th>Leitura principal (Wooldridge)</th><th>Complementar</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Revisões matemáticas A–C, com ênfase em B e C</td><td>Stock e Watson, caps. 2 e 3</td></tr>
+        <tr><td>2</td><td>Revisão A (A.1), B (B.1–B.4) e C (C.1–C.3)</td><td>Stock e Watson, caps. 2 e 3</td></tr>
+        <tr><td>3</td><td>Cap. 2, seções 2.1–2.3</td><td>Stock e Watson, 4.1–4.3; Angrist e Pischke, <em>Mastering ’Metrics</em>, cap. 2</td></tr>
+        <tr><td>4</td><td>Seção 2.4 e cap. 6, seções 6.1–6.2</td><td>Stock e Watson, cap. 8 (logaritmos, polinômios e interações)</td></tr>
+        <tr><td>5</td><td>Cap. 2, seção 2.5; consistência: cap. 5, 5.1–5.2</td><td>Stock e Watson, caps. 4 e 5</td></tr>
+        <tr><td>6</td><td>Cap. 4 (testes t, p-valor, IC); cap. 8 (erros robustos)</td><td>Stock e Watson (inferência e heterocedasticidade)</td></tr>
+        <tr><td>Dummies</td><td>Cap. 7 (variáveis binárias); seção 2.6 (pela origem)</td><td>Stock e Watson (regressoras binárias e interações)</td></tr>
+      </tbody>
+    </table></div>
+  </div></details>
 
   <h3>O que cai na P1</h3>
   <p>A apresentação do curso não lista as aulas da P1, mas as listas indicam o recorte:</p>
@@ -121,6 +141,16 @@
     <div class="day"><div class="d">Ter 29/09</div><div>Refaça Lista 2, Ex. 1 e 4, sem olhar. Use os geradores de treino. Revise o <a href="#dicionario">dicionário de fórmulas</a>. Faça o <a href="#simulado">simulado</a>. Dummies, se o professor confirmar.</div></div>
     <div class="day exam"><div class="d">Qua 30/09<small>P1</small></div><div>Só a <a href="#cola">cola de véspera</a> e os cartões de fórmulas. Nada de conteúdo novo.</div></div>
   </div>
+
+  <details class="sol"><summary>Começando agora, no sábado 26/09? Plano de reta final com os módulos novos</summary><div class="in">
+    <div class="plan">
+      <div class="day"><div class="d">Sáb 26/09</div><div><a href="#zero">Módulo 0</a> → <a href="#estat">Estatística do zero</a> (seções 1 a 13) → <a href="#conceitos">Conceitos-chave</a> → <a href="#formulas">As 2 fórmulas</a> → Aula 3 → Lista 2, Ex. 1.</div></div>
+      <div class="day"><div class="d">Dom 27/09</div><div>Aula 4 (com <a href="#mat-deriv">derivadas</a>) → Lista 2, Ex. 4 → <strong>Aula 5 inteira</strong>, com os laboratórios.</div></div>
+      <div class="day"><div class="d">Seg 28/09</div><div>Aula 2 (partes de LGN, TCL e testes) → <a href="#lgn">LGN</a> → Aula 6 → <strong>Lista 3</strong> (Q4, Q5, Q6, Q8 e Q9 primeiro).</div></div>
+      <div class="day"><div class="d">Ter 29/09</div><div>Lista 1 (as conceituais estão como testes nas aulas) → refaça Lista 2, Ex. 1 e 4, sem olhar → <a href="#simulado">simulado</a> → <a href="#dicionario">dicionário</a>.</div></div>
+      <div class="day exam"><div class="d">Qua 30/09<small>P1</small></div><div>Só a <a href="#cola">cola de véspera</a> e os cartões. A <a href="#p2">Prévia da P2</a> fica para depois.</div></div>
+    </div>
+  </div></details>
 
   <h3>Como o professor corrige</h3>
   <p>Isto está escrito nos gabaritos e nas orientações das listas. Vale nota.</p>

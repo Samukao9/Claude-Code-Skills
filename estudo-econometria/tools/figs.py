@@ -350,3 +350,93 @@ b.append(ciline(P,118,0.2,1.0,0.6,"Estudo B: SQTₓ = 100, ep = 0,20 → [0,20; 
 b.append(f'<line class="obs" x1="{f(P.X(0))}" y1="30" x2="{f(P.X(0))}" y2="{f(P.B)}"/>')
 save("icq10", svg(560,190,'\n'.join(b),"Intervalos de confiança dos estudos A e B da Questão 10"))
 print("v3 figs ok")
+
+# ======================= v4: estatística do zero, conceitos, LGN, P2 =======================
+# ---------- 1 dado × média de 2 dados ----------
+def bars(x0,title,vals,probs,ymax,xt):
+    P=Plot(0,0, x0+40,x0+270,26,180, 0.5,6.5,0,ymax)
+    o=[f'<line class="ax" x1="{f(P.L)}" y1="{f(P.B)}" x2="{f(P.R)}" y2="{f(P.B)}"/>',f'<line class="ax" x1="{f(P.L)}" y1="{f(P.T)}" x2="{f(P.L)}" y2="{f(P.B)}"/>']
+    w=(P.X(1)-P.X(0))*(0.4 if len(vals)>6 else 0.7)
+    for v,p in zip(vals,probs):
+        o.append(f'<rect class="barA" x="{f(P.X(v)-w/2)}" y="{f(P.Y(p))}" width="{f(w)}" height="{f(P.Y(0)-P.Y(p))}"/>')
+    for v in xt: o.append(f'<text class="tk" x="{f(P.X(v))}" y="{f(P.B+15)}" text-anchor="middle">{nb(v,1)}</text>')
+    for v in (0.1,0.2): o.append(f'<text class="tk" x="{f(P.L-6)}" y="{f(P.Y(v)+4)}" text-anchor="end">{nb(v,1)}</text>')
+    o.append(f'<line class="true" x1="{f(P.X(3.5))}" y1="{f(P.T)}" x2="{f(P.X(3.5))}" y2="{f(P.B)}"/>')
+    o.append(f'<text class="an" x="{f((P.L+P.R)/2)}" y="16" text-anchor="middle">{title}</text>')
+    return '\n'.join(o)
+v2=[1+i/2 for i in range(11)]; p2=[c/36 for c in (1,2,3,4,5,6,5,4,3,2,1)]
+save("dados", svg(600,210, bars(0,"1 dado: todos com 1/6",[1,2,3,4,5,6],[1/6]*6,0.2,[1,2,3,4,5,6])+bars(300,"Média de 2 dados: o meio fica mais provável",v2,p2,0.2,[1,2,3,4,5,6]),"Distribuição de um dado e da média de dois dados"))
+
+# ---------- normal 68-95-99,7 ----------
+P=Plot(560,260, 30,540,20,210, -3.6,3.6,0,0.42)
+b=[P.axes([-3,-2,-1,0,1,2,3],[],"desvios-padrão a partir da média (z)","",xfmt=lambda v: (f"{v:+g}" if v else "0").replace('+',''),grid=False)]
+for k,cls in [(3,"t1"),(2,"t3"),(1,"t4")]:
+    xs_=[-k+i*(2*k)/120 for i in range(121)]
+    pts=[f"{f(P.X(-k))},{f(P.B)}"]+[f"{f(P.X(x))},{f(P.Y(npdf(x,0,1)))}" for x in xs_]+[f"{f(P.X(k))},{f(P.B)}"]
+    b.append(f'<polygon class="{cls}" points="{" ".join(pts)}"/>')
+b.append(f'<polyline class="fit" points="{" ".join(f"{f(P.X(x/40))},{f(P.Y(npdf(x/40,0,1)))}" for x in range(-144,145))}"/>')
+b.append(f'<text class="an" x="{f(P.X(0))}" y="{f(P.Y(0.2))}" text-anchor="middle">68%</text>')
+b.append(f'<text class="an" x="{f(P.X(1.5))}" y="{f(P.Y(0.06))}" text-anchor="middle">95%</text>')
+b.append(f'<text class="an" x="{f(P.X(2.55))}" y="{f(P.Y(0.035))}" text-anchor="middle">99,7%</text>')
+save("normal68", svg(560,260,'\n'.join(b),"Curva normal com as faixas de 68, 95 e 99,7 por cento"))
+
+# ---------- boxplot ----------
+P=Plot(560,170, 30,540,20,120, 0,28,0,1)
+b=[P.axes([0,2,3,4,6,10.5,26],[],"salário (R$ mil)","",xfmt=lambda v: nb(v,1),grid=False)]
+yc=P.Y(0.55)
+b.append(f'<rect class="t3" x="{f(P.X(3))}" y="{f(yc-18)}" width="{f(P.X(6)-P.X(3))}" height="36"/>')
+b.append(f'<line class="fit" x1="{f(P.X(4))}" y1="{f(yc-18)}" x2="{f(P.X(4))}" y2="{f(yc+18)}"/>')
+for a_,c_ in [(2,3),(6,6)]: pass
+b.append(f'<line class="ax" x1="{f(P.X(2))}" y1="{f(yc)}" x2="{f(P.X(3))}" y2="{f(yc)}"/><line class="ax" x1="{f(P.X(6))}" y1="{f(yc)}" x2="{f(P.X(6))}" y2="{f(yc)}"/>')
+b.append(f'<line class="ax" x1="{f(P.X(2))}" y1="{f(yc-10)}" x2="{f(P.X(2))}" y2="{f(yc+10)}"/>')
+b.append(f'<line class="true" x1="{f(P.X(10.5))}" y1="{f(yc-26)}" x2="{f(P.X(10.5))}" y2="{f(yc+26)}"/>')
+b.append(f'<circle class="shot" cx="{f(P.X(26))}" cy="{f(yc)}" r="6"/>')
+b.append(f'<text class="an resc" x="{f(P.X(26))}" y="{f(yc-14)}" text-anchor="middle">outlier (26)</text>')
+b.append(f'<text class="an" x="{f(P.X(4.5))}" y="{f(yc-26)}" text-anchor="middle">Q1 = 3 · mediana = 4 · Q3 = 6</text>')
+b.append(f'<text class="an" x="{f(P.X(10.5)+6)}" y="{f(yc+26)}">limite Q3 + 1,5·AIQ = 10,5</text>')
+b.append(f'<polygon class="meanpt" points="{f(P.X(7))},{f(yc+12)} {f(P.X(7)-6)},{f(yc+22)} {f(P.X(7)+6)},{f(yc+22)}"/>')
+b.append(f'<text class="an" x="{f(P.X(7))}" y="{f(yc+36)}" text-anchor="middle">média = 7</text>')
+save("boxplot", svg(560,170,'\n'.join(b),"Boxplot dos salários com um outlier"))
+
+# ---------- MQO: quadrados dos resíduos ----------
+def sqpanel(x0,title,b0,b1,lab):
+    P=Plot(0,0, x0+40,x0+270,30,200, 0.5,4.5,1,9.5)
+    o=[f'<line class="ax" x1="{f(P.L)}" y1="{f(P.B)}" x2="{f(P.R)}" y2="{f(P.B)}"/>',f'<line class="ax" x1="{f(P.L)}" y1="{f(P.T)}" x2="{f(P.L)}" y2="{f(P.B)}"/>']
+    xs=[1,2,3,4]; ys=[8,4,5,3]; tot=0
+    for x,y in zip(xs,ys):
+        yh=b0+b1*x; r=y-yh; tot+=r*r; side=abs(P.Y(y)-P.Y(yh))
+        top=min(P.Y(y),P.Y(yh))
+        o.append(f'<rect class="sqr" x="{f(P.X(x))}" y="{f(top)}" width="{f(side)}" height="{f(side)}"/>')
+    o.append(f'<line class="fit" x1="{f(P.X(0.6))}" y1="{f(P.Y(b0+b1*0.6))}" x2="{f(P.X(4.4))}" y2="{f(P.Y(b0+b1*4.4))}"/>')
+    for x,y in zip(xs,ys): o.append(f'<circle class="pt" cx="{f(P.X(x))}" cy="{f(P.Y(y))}" r="4.5"/>')
+    for v in xs: o.append(f'<text class="tk" x="{f(P.X(v))}" y="{f(P.B+15)}" text-anchor="middle">{v}</text>')
+    o.append(f'<text class="an" x="{f((P.L+P.R)/2)}" y="16" text-anchor="middle">{title}</text>')
+    o.append(f'<text class="an resc" x="{f((P.L+P.R)/2)}" y="{f(P.B+34)}" text-anchor="middle">{lab}</text>')
+    return '\n'.join(o)
+save("mqo_quadrados", svg(600,250, sqpanel(0,"Reta do MQO: ŷ = 8,5 − 1,4x",8.5,-1.4,"soma das áreas = SQR = 4,2 (a menor possível)")+sqpanel(300,"Linha na média: ŷ = 5",5,0,"soma das áreas = 14"),"Quadrados dos resíduos para a reta de MQO e para a linha horizontal na média"))
+
+# ---------- LGN: média corrente de lançamentos de dado ----------
+random.seed(37); rolls=[random.randint(1,6) for _ in range(1000)]; acc=0; rm=[]
+for i,r in enumerate(rolls,1): acc+=r; rm.append(acc/i)
+P=Plot(560,260, 50,540,20,210, 0,1000,1.5,5.5)
+b=[P.axes([0,200,400,600,800,1000],[2,3,3.5,4,5],"número de lançamentos (n)","média até ali",yfmt=lambda v: nb(v,1))]
+b.append(f'<line class="true" x1="{f(P.L)}" y1="{f(P.Y(3.5))}" x2="{f(P.R)}" y2="{f(P.Y(3.5))}"/>')
+b.append(f'<polyline class="fit" points="{" ".join(f"{f(P.X(i+1))},{f(P.Y(v))}" for i,v in enumerate(rm))}"/>')
+b.append(f'<text class="an" x="{f(P.X(620))}" y="{f(P.Y(3.5)-10)}">E(X) = 3,5</text>')
+b.append(f'<text class="an resc" x="{f(P.X(40))}" y="{f(P.Y(5.2))}">no começo, a média oscila muito</text>')
+save("lgn", svg(560,260,'\n'.join(b),"Média corrente de mil lançamentos de um dado convergindo para 3,5"))
+print("LGN final mean", rm[9], rm[99], rm[-1])
+
+# ---------- resíduos independentes × AR(1) ----------
+random.seed(7); e=[random.gauss(0,1) for _ in range(60)]; u=[e[0]]
+for t in range(1,60): u.append(0.8*u[-1]+e[t])
+def tspanel(x0,title,s):
+    P=Plot(0,0, x0+20,x0+270,28,190, 0,60,-4.2,4.2)
+    o=[f'<line class="ax" x1="{f(P.L)}" y1="{f(P.Y(0))}" x2="{f(P.R)}" y2="{f(P.Y(0))}"/>',f'<line class="ax" x1="{f(P.L)}" y1="{f(P.T)}" x2="{f(P.L)}" y2="{f(P.B)}"/>']
+    o.append(f'<polyline class="cB" points="{" ".join(f"{f(P.X(i))},{f(P.Y(v))}" for i,v in enumerate(s))}"/>')
+    for i,v in enumerate(s): o.append(f'<circle class="pt sm" cx="{f(P.X(i))}" cy="{f(P.Y(v))}" r="2.4"/>')
+    o.append(f'<text class="an" x="{f((P.L+P.R)/2)}" y="16" text-anchor="middle">{title}</text>')
+    o.append(f'<text class="tk" x="{f(P.R)}" y="{f(P.B+14)}" text-anchor="end">tempo t</text>')
+    return '\n'.join(o)
+save("ar1", svg(580,212, tspanel(0,"Sem autocorrelação: sobe e desce ao acaso",e)+tspanel(300,"AR(1) com ρ = 0,8: ondas longas",u),"Resíduos independentes comparados com resíduos autocorrelacionados"))
+print("v4 figs ok")

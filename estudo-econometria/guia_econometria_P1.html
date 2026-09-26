@@ -205,6 +205,7 @@ svg.fig.wide{min-width:560px}
 .fig .obs{stroke:var(--red);stroke-width:2.4}
 .fig .barA{fill:color-mix(in srgb,var(--marker) 45%,transparent);stroke:var(--marker);stroke-width:1.5}
 .fig .barB{fill:color-mix(in srgb,var(--red) 22%,transparent);stroke:var(--red);stroke-width:1.5;stroke-dasharray:4 3}
+.fig .sqr{fill:color-mix(in srgb,var(--red) 20%,transparent);stroke:var(--red);stroke-width:1.2}
 
 /* passo a passo */
 ol.steps{list-style:none;counter-reset:s;padding:0;margin:12px 0}
@@ -313,14 +314,14 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
   <button class="btn menu-btn" id="menuBtn" aria-controls="toc" aria-expanded="false">☰ Sumário</button>
   <span class="brand">Econometria I</span>
   <div class="grow"><div class="pbar" aria-hidden="true"><i id="pfill"></i></div></div>
-  <span class="ptext" id="ptext">0 de 22 módulos</span>
+  <span class="ptext" id="ptext">0 de 26 módulos</span>
   <a class="btn" href="#formulas">β̂ Fórmulas</a>
 </header>
 
 <div class="hero">
   <div>
     <h1>Econometria I, do zero absoluto <span class="hat">à P1</span></h1>
-    <p class="lead">Todo o conteúdo das suas aulas, listas, gabaritos e fotos da lousa, em ordem de aprendizado, mais um curso de matemática de apoio (log, derivada, integral e λ). Começa em “o que é uma variável” e termina nas demonstrações da Aula 5. O que vai além do seu material está sempre marcado.</p>
+    <p class="lead">Todo o conteúdo das suas aulas, listas, gabaritos e fotos da lousa, em ordem de aprendizado, mais Estatística 1 e 2 do zero, os conceitos-chave (MQO/OLS, parâmetro, estimador, viés), todas as Leis dos Grandes Números, matemática de apoio (log, derivada, integral e λ) e uma prévia da P2. Começa em “o que é uma variável” e vai até as demonstrações da Aula 5 e a inferência da Aula 6. O que vai além do seu material está sempre marcado.</p>
     <div class="actions">
       <a class="btn primary" href="#zero">Começar do zero</a>
       <a class="btn" href="#formulas">As 2 fórmulas</a>
@@ -350,6 +351,8 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
   <h3>Base</h3>
   <ol>
     <li><a href="#zero" data-mod="zero"><span class="n">M0</span><span>Do zero: variável, média, Σ</span></a></li>
+    <li><a href="#estat" data-mod="estat"><span class="n">E</span><span>Estatística 1 e 2 do zero</span></a></li>
+    <li><a href="#conceitos" data-mod="conceitos"><span class="n">C</span><span>Conceitos-chave: MQO/OLS, viés, estimador…</span></a></li>
     <li><a href="#mat-log" data-mod="mat-log"><span class="n">∫1</span><span>Funções, exponencial e log</span></a></li>
     <li><a href="#mat-deriv" data-mod="mat-deriv"><span class="n">∫2</span><span>Derivadas do zero ao MQO</span></a></li>
     <li><a href="#mat-int" data-mod="mat-int"><span class="n">∫3</span><span>Integrais e probabilidade</span></a></li>
@@ -359,11 +362,13 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
   <ol>
     <li><a href="#aula1" data-mod="aula1"><span class="n">A1</span><span>Natureza da econometria</span></a></li>
     <li><a href="#aula2" data-mod="aula2"><span class="n">A2</span><span>Ferramentas de matemática e estatística</span></a></li>
+    <li><a href="#lgn" data-mod="lgn"><span class="n">LGN</span><span>Todas as Leis dos Grandes Números</span></a></li>
     <li><a href="#aula3" data-mod="aula3"><span class="n">A3</span><span>Regressão simples e MQO</span></a></li>
     <li><a href="#aula4" data-mod="aula4"><span class="n">A4</span><span>Unidades, log e derivadas</span></a></li>
     <li><a href="#aula5" data-mod="aula5"><span class="n">A5</span><span>Viés, variância, propriedades <b class="star">★</b></span></a></li>
     <li><a href="#aula6" data-mod="aula6"><span class="n">A6</span><span>Inferência: t, p-valor, IC</span></a></li>
     <li><a href="#dummies" data-mod="dummies"><span class="n">A7</span><span>Dummies e regressão pela origem</span></a></li>
+    <li><a href="#p2" data-mod="p2"><span class="n">P2</span><span>Prévia da P2: múltipla, multicolinearidade, autocorrelação</span></a></li>
   </ol>
   <h3>Listas resolvidas</h3>
   <ol>
@@ -388,15 +393,31 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
   <div class="eyebrow">Antes de tudo</div>
   <h2>Comece aqui</h2>
   <p>Este guia foi montado a partir de todo o material que você enviou: a apresentação do curso, as Aulas 1 a 6, a aula de dummies, as três práticas em R, a Lista 1, a Lista 2 numérica e a Lista 3 de propriedades, os três gabaritos e as fotos da lousa. Onde uma explicação precisou ficar mais simples, ela continua dizendo exatamente o que o material diz.</p>
-  <p>Há também quatro módulos de <strong>Matemática de apoio</strong> (log, derivadas, integrais e λ), que você pediu, e um <a href="#dicionario">dicionário com todas as fórmulas</a>, o que cada uma significa e a sua unidade de medida. Tudo que não está nos seus PDFs vem marcado com <span class="tag">Matemática de apoio</span> ou <span class="tag warn">Fora do material da P1</span>.</p>
+  <p>Há também módulos que você pediu além das aulas: <strong>Estatística 1 e 2 do zero</strong>, <strong>Conceitos-chave</strong> (MQO/OLS, parâmetro, estimador, viés e o resto), <strong>todas as Leis dos Grandes Números</strong>, quatro de <strong>Matemática de apoio</strong> (log, derivadas, integrais e λ), uma <strong>Prévia da P2</strong> (regressão múltipla, multicolinearidade, autocorrelação) e um <a href="#dicionario">dicionário com todas as fórmulas</a>, o que cada uma significa e a sua unidade de medida. Tudo que não está nos seus PDFs vem marcado com <span class="tag">Matemática de apoio</span> ou <span class="tag warn">Fora do material da P1</span>.</p>
 
   <h3>Como usar</h3>
   <ol class="steps">
-    <li><div><strong>Siga a ordem do sumário.</strong> Cada módulo usa o anterior. O Módulo 0 existe para quem nunca viu estatística: não pule se “variável” ou “Σ” ainda soam estranhos.</div></li>
+    <li><div><strong>Siga a ordem do sumário.</strong> Cada módulo usa o anterior. Se você nunca estudou estatística, faça nesta ordem: <a href="#zero">Módulo 0</a> → <a href="#estat">Estatística 1 e 2 do zero</a> → <a href="#conceitos">Conceitos-chave</a>, e só então a Aula 1. O módulo de <a href="#lgn">Leis dos Grandes Números</a> vem depois da Aula 2. A <a href="#p2">Prévia da P2</a> fica para depois da prova, ou se sobrar tempo.</div></li>
     <li><div><strong>Tente antes de abrir.</strong> Toda resolução está escondida atrás de um botão “Ver resolução”. O próprio gabarito do professor recomenda tentar cada questão antes de consultar.</div></li>
     <li><div><strong>Faça os testes rápidos.</strong> Clique numa alternativa e veja na hora se acertou, com a justificativa.</div></li>
     <li><div><strong>Marque o módulo como concluído</strong> no fim de cada seção. A barra no topo mostra seu progresso (fica salva só neste navegador).</div></li>
   </ol>
+
+  <details class="sol"><summary>Bibliografia indicada pelo professor, aula por aula</summary><div class="in">
+    <p>Livro-texto: Wooldridge, <em>Introdução à Econometria: uma abordagem moderna</em> (7ª ed., na Biblioteca Digital com o seu RA). Complementares: Stock e Watson; Pereda e Alves; e, para o R, <em>Introduction to Econometrics with R</em> (econometrics-with-r.org).</p>
+    <div class="tbl"><table>
+      <thead><tr><th>Aula</th><th>Leitura principal (Wooldridge)</th><th>Complementar</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Revisões matemáticas A–C, com ênfase em B e C</td><td>Stock e Watson, caps. 2 e 3</td></tr>
+        <tr><td>2</td><td>Revisão A (A.1), B (B.1–B.4) e C (C.1–C.3)</td><td>Stock e Watson, caps. 2 e 3</td></tr>
+        <tr><td>3</td><td>Cap. 2, seções 2.1–2.3</td><td>Stock e Watson, 4.1–4.3; Angrist e Pischke, <em>Mastering ’Metrics</em>, cap. 2</td></tr>
+        <tr><td>4</td><td>Seção 2.4 e cap. 6, seções 6.1–6.2</td><td>Stock e Watson, cap. 8 (logaritmos, polinômios e interações)</td></tr>
+        <tr><td>5</td><td>Cap. 2, seção 2.5; consistência: cap. 5, 5.1–5.2</td><td>Stock e Watson, caps. 4 e 5</td></tr>
+        <tr><td>6</td><td>Cap. 4 (testes t, p-valor, IC); cap. 8 (erros robustos)</td><td>Stock e Watson (inferência e heterocedasticidade)</td></tr>
+        <tr><td>Dummies</td><td>Cap. 7 (variáveis binárias); seção 2.6 (pela origem)</td><td>Stock e Watson (regressoras binárias e interações)</td></tr>
+      </tbody>
+    </table></div>
+  </div></details>
 
   <h3>O que cai na P1</h3>
   <p>A apresentação do curso não lista as aulas da P1, mas as listas indicam o recorte:</p>
@@ -431,6 +452,16 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
     <div class="day"><div class="d">Ter 29/09</div><div>Refaça Lista 2, Ex. 1 e 4, sem olhar. Use os geradores de treino. Revise o <a href="#dicionario">dicionário de fórmulas</a>. Faça o <a href="#simulado">simulado</a>. Dummies, se o professor confirmar.</div></div>
     <div class="day exam"><div class="d">Qua 30/09<small>P1</small></div><div>Só a <a href="#cola">cola de véspera</a> e os cartões de fórmulas. Nada de conteúdo novo.</div></div>
   </div>
+
+  <details class="sol"><summary>Começando agora, no sábado 26/09? Plano de reta final com os módulos novos</summary><div class="in">
+    <div class="plan">
+      <div class="day"><div class="d">Sáb 26/09</div><div><a href="#zero">Módulo 0</a> → <a href="#estat">Estatística do zero</a> (seções 1 a 13) → <a href="#conceitos">Conceitos-chave</a> → <a href="#formulas">As 2 fórmulas</a> → Aula 3 → Lista 2, Ex. 1.</div></div>
+      <div class="day"><div class="d">Dom 27/09</div><div>Aula 4 (com <a href="#mat-deriv">derivadas</a>) → Lista 2, Ex. 4 → <strong>Aula 5 inteira</strong>, com os laboratórios.</div></div>
+      <div class="day"><div class="d">Seg 28/09</div><div>Aula 2 (partes de LGN, TCL e testes) → <a href="#lgn">LGN</a> → Aula 6 → <strong>Lista 3</strong> (Q4, Q5, Q6, Q8 e Q9 primeiro).</div></div>
+      <div class="day"><div class="d">Ter 29/09</div><div>Lista 1 (as conceituais estão como testes nas aulas) → refaça Lista 2, Ex. 1 e 4, sem olhar → <a href="#simulado">simulado</a> → <a href="#dicionario">dicionário</a>.</div></div>
+      <div class="day exam"><div class="d">Qua 30/09<small>P1</small></div><div>Só a <a href="#cola">cola de véspera</a> e os cartões. A <a href="#p2">Prévia da P2</a> fica para depois.</div></div>
+    </div>
+  </div></details>
 
   <h3>Como o professor corrige</h3>
   <p>Isto está escrito nos gabaritos e nas orientações das listas. Vale nota.</p>
@@ -688,10 +719,550 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
     <div class="opts"><button data-k="a">a) 10</button><button data-k="b">b) 3,16</button><button data-k="c">c) 100</button><button data-k="d">d) 20</button></div>
     <div class="fb" hidden>Variância = desvio-padrão ao quadrado: \(10^2=100\). É o primeiro passo da Lista 2, Ex. 1.</div>
   </div>
-  <div class="box def"><span class="lbl">Próximo passo</span><p>Se potência, log, derivada ou integral estão enferrujados, siga para a <a href="#mat-log">Matemática de apoio</a>. Se estão em dia, vá direto para a <a href="#aula1">Aula 1</a>.</p></div>
+  <div class="box def"><span class="lbl">Próximo passo</span><p>Se você nunca estudou estatística, siga para <a href="#estat">Estatística 1 e 2 do zero</a> e depois para os <a href="#conceitos">Conceitos-chave</a>. Se potência, log, derivada ou integral estão enferrujados, faça também a <a href="#mat-log">Matemática de apoio</a>. Se está tudo em dia, vá direto para a <a href="#aula1">Aula 1</a>.</p></div>
   <div class="done-row"><button class="btn done-btn" data-done="zero" aria-pressed="false">Marcar como concluído</button></div>
 </section>
 
+
+
+<!-- ================= ESTATÍSTICA 1 E 2 DO ZERO ================= -->
+<section class="mod" id="estat" data-title="Estatística do zero">
+  <div class="eyebrow"><span class="tag">Base</span> Estatística 1 e 2 do zero · para quem nunca estudou estatística</div>
+  <h2>Estatística 1 e 2 do zero absoluto</h2>
+  <p>Econometria é estatística aplicada à economia. A Aula 2 do professor é uma <em>revisão</em> de Estatística 1 e 2, então ela supõe que você já viu isso. Este módulo ensina desde o começo, na ordem em que as disciplinas de Estatística ensinam, sempre ligando cada ideia ao lugar onde ela volta no curso. Os números dos exemplos são nossos e foram conferidos.</p>
+  <div class="box def"><span class="lbl">Mapa do módulo</span>
+    <p><strong>Estatística 1</strong> (descrever dados e probabilidade): seções 1 a 11. <strong>Estatística 2</strong> (inferência: tirar conclusões sobre a população a partir de uma amostra): seções 12 a 16.</p>
+  </div>
+
+  <h3>1. O que é estatística</h3>
+  <p>Estatística é o conjunto de métodos para <strong>coletar, resumir e interpretar dados</strong>, e para tirar conclusões quando só observamos uma parte do todo.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Ramo</th><th>Pergunta</th><th>Exemplo</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Descritiva</strong></td><td>Como resumir os dados que tenho?</td><td>“O salário médio destas 7 pessoas é R$ 7 mil.”</td></tr>
+      <tr><td><strong>Inferencial</strong></td><td>O que os dados dizem sobre um grupo maior que não observei inteiro?</td><td>“Com 95% de confiança, o salário médio de todos os trabalhadores está entre R$ 6,5 mil e R$ 7,5 mil.”</td></tr>
+    </tbody>
+  </table></div>
+  <ul>
+    <li><strong>População:</strong> o grupo inteiro que interessa (todos os trabalhadores do Brasil).</li>
+    <li><strong>Amostra:</strong> a parte que de fato observamos (2.000 trabalhadores sorteados).</li>
+    <li><strong>Censo:</strong> quando se observa a população inteira (raro e caro).</li>
+    <li><strong>Parâmetro:</strong> um número da população, em geral desconhecido. Usa letra grega: μ (média), σ (desvio-padrão), β (coeficientes).</li>
+    <li><strong>Estatística:</strong> um número calculado na amostra: \(\bar x\), s, \(\hat\beta\). Serve para <em>estimar</em> o parâmetro.</li>
+  </ul>
+
+  <h3>2. Tipos de variáveis</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Tipo</th><th>Subtipo</th><th>O que é</th><th>Exemplos</th></tr></thead>
+    <tbody>
+      <tr><td rowspan="2">Qualitativa (categórica)</td><td>Nominal</td><td>Categorias sem ordem</td><td>sexo, região, sindicalizado ou não</td></tr>
+      <tr><td>Ordinal</td><td>Categorias com ordem</td><td>escolaridade (fundamental, médio, superior), nota A/B/C</td></tr>
+      <tr><td rowspan="2">Quantitativa (numérica)</td><td>Discreta</td><td>Valores contáveis</td><td>número de filhos, falhas de wifi por dia</td></tr>
+      <tr><td>Contínua</td><td>Qualquer valor num intervalo</td><td>salário, altura, tempo até o trabalho</td></tr>
+    </tbody>
+  </table></div>
+  <p>Na regressão, qualitativas entram como <strong>dummies</strong> (0 ou 1), assunto da <a href="#dummies">aula de dummies</a>.</p>
+
+  <h3>3. Medidas de tendência central: o “meio” dos dados</h3>
+  <p>Exemplo: salários (R$ mil) de 7 pessoas, já em ordem: <strong>2, 3, 3, 4, 5, 6, 26</strong>.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Medida</th><th>Como calcular</th><th class="r">Resultado</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Média</strong> \(\bar x\)</td><td>soma ÷ quantidade: \(49/7\)</td><td class="r">7</td></tr>
+      <tr><td><strong>Mediana</strong></td><td>o valor do meio, com os dados em ordem (o 4º de 7)</td><td class="r">4</td></tr>
+      <tr><td><strong>Moda</strong></td><td>o valor que mais aparece</td><td class="r">3</td></tr>
+    </tbody>
+  </table></div>
+  <p><strong>A lição:</strong> um único salário alto (26) puxa a média para 7, embora 6 das 7 pessoas ganhem R$ 6 mil ou menos. Sem ele, a média seria 3,83. A mediana (4) quase não muda. A média é sensível a valores extremos; a mediana é <strong>robusta</strong>. Com n par, a mediana é a média dos dois valores do meio.</p>
+
+  <h3>4. Medidas de dispersão: quanto os dados se espalham</h3>
+  <ol class="steps">
+    <li><div><strong>Amplitude:</strong> maior − menor = 26 − 2 = 24. Simples, mas depende só de dois valores.</div></li>
+    <li><div><strong>Desvios em relação à média:</strong> −5, −4, −4, −3, −2, −1, 19 (somam zero, sempre).</div></li>
+    <li><div><strong>Quadrados:</strong> 25, 16, 16, 9, 4, 1, 361. Soma = 432.</div></li>
+    <li><div><strong>Variância amostral:</strong> \(s^2=\frac{432}{n-1}=\frac{432}{6}=72\) (R$ mil)². <strong>Desvio-padrão:</strong> \(s=\sqrt{72}\approx8{,}49\) R$ mil, de volta à unidade original.</div></li>
+    <li><div><strong>Coeficiente de variação:</strong> \(CV=s/\bar x=8{,}49/7\approx1{,}21\), ou seja, 121%. Sem unidade: serve para comparar a dispersão de variáveis em unidades diferentes.</div></li>
+  </ol>
+  <div class="box def"><span class="lbl">Por que dividir por n − 1 na amostra?</span>
+    <p>Na população, a variância usa a média verdadeira μ e divide por N: \(\sigma^2=\frac1N\sum(x_i-\mu)^2\). Na amostra não conhecemos μ e usamos \(\bar x\), que fica “no meio” dos próprios dados. Por isso os desvios em relação a \(\bar x\) são, em média, <strong>menores</strong> que em relação a μ. Dividir por n − 1 compensa isso e deixa \(s^2\) <strong>não viesado</strong>. Dizemos que a média “gastou” 1 grau de liberdade.</p>
+    <p>Exemplo com (2, 4, 6): soma dos quadrados = 8; ÷3 dá 2,67 e ÷2 dá 4. É a mesma ideia do <strong>n − 2</strong> da regressão (Aula 5), em que a reta gasta 2 graus de liberdade.</p>
+  </div>
+
+  <h3>5. Medidas de posição: quartis, boxplot e escore z</h3>
+  <p><strong>Quartis</strong> dividem os dados ordenados em 4 partes: Q1 (25%), Q2 = mediana (50%), Q3 (75%). No exemplo, Q1 = 3 e Q3 = 6 (mediana de cada metade). A <strong>amplitude interquartil</strong> é AIQ = Q3 − Q1 = 3. Regra usual para outlier: acima de Q3 + 1,5·AIQ = 10,5, ou abaixo de Q1 − 1,5·AIQ.</p>
+  <figure><div class="scroll"><svg class="fig" viewBox="0 0 560 170" role="img" aria-label="Boxplot dos salários com um outlier" xmlns="http://www.w3.org/2000/svg">
+<line class="ax" x1="30" y1="120" x2="540" y2="120"/>
+<line class="ax" x1="30" y1="20" x2="30" y2="120"/>
+<text class="tk" x="30" y="136" text-anchor="middle">0</text>
+<text class="tk" x="66.4" y="136" text-anchor="middle">2</text>
+<text class="tk" x="84.6" y="136" text-anchor="middle">3</text>
+<text class="tk" x="102.9" y="136" text-anchor="middle">4</text>
+<text class="tk" x="139.3" y="136" text-anchor="middle">6</text>
+<text class="tk" x="221.2" y="136" text-anchor="middle">10,5</text>
+<text class="tk" x="503.6" y="136" text-anchor="middle">26</text>
+<text class="lb" x="285" y="164" text-anchor="middle">salário (R$ mil)</text>
+<text class="lb" x="12" y="70" text-anchor="middle" transform="rotate(-90 12 70)"></text>
+<rect class="t3" x="84.6" y="47" width="54.6" height="36"/>
+<line class="fit" x1="102.9" y1="47" x2="102.9" y2="83"/>
+<line class="ax" x1="66.4" y1="65" x2="84.6" y2="65"/><line class="ax" x1="139.3" y1="65" x2="139.3" y2="65"/>
+<line class="ax" x1="66.4" y1="55" x2="66.4" y2="75"/>
+<line class="true" x1="221.2" y1="39" x2="221.2" y2="91"/>
+<circle class="shot" cx="503.6" cy="65" r="6"/>
+<text class="an resc" x="503.6" y="51" text-anchor="middle">outlier (26)</text>
+<text class="an" x="112" y="39" text-anchor="middle">Q1 = 3 · mediana = 4 · Q3 = 6</text>
+<text class="an" x="227.2" y="91">limite Q3 + 1,5·AIQ = 10,5</text>
+<polygon class="meanpt" points="157.5,77 151.5,87 163.5,87"/>
+<text class="an" x="157.5" y="101" text-anchor="middle">média = 7</text>
+</svg></div><figcaption>Boxplot: a caixa vai de Q1 a Q3, o traço interno é a mediana. O 26 passa do limite 10,5 e aparece como outlier. O triângulo mostra a média (7), puxada para a direita.</figcaption></figure>
+  <p><strong>Escore z</strong>: quantos desvios-padrão um valor está da média, \(z=\frac{x-\bar x}{s}\). Serve para comparar coisas em escalas diferentes. Nota 80 numa prova com média 70 e dp 5 dá z = 2; nota 85 noutra prova com média 75 e dp 10 dá z = 1. A primeira é o desempenho relativo melhor, embora a nota seja menor. A estatística t da Aula 6 é um “escore z” da estimativa.</p>
+
+  <h3>6. Forma da distribuição: simetria e assimetria</h3>
+  <ul>
+    <li><strong>Simétrica:</strong> média ≈ mediana (alturas, notas).</li>
+    <li><strong>Assimétrica à direita</strong> (cauda longa para valores altos): média &gt; mediana. É o caso de renda, salário, vendas e preços. É por isso que a <a href="#aula4">Aula 4</a> usa o log, que costuma reduzir essa assimetria.</li>
+    <li><strong>Assimétrica à esquerda:</strong> média &lt; mediana (idade de morte em países ricos, nota numa prova fácil).</li>
+  </ul>
+
+  <h3>7. Probabilidade do zero</h3>
+  <ul>
+    <li><strong>Experimento aleatório:</strong> algo cujo resultado não dá para prever com certeza (lançar um dado).</li>
+    <li><strong>Espaço amostral Ω:</strong> todos os resultados possíveis, Ω = {1, 2, 3, 4, 5, 6}.</li>
+    <li><strong>Evento:</strong> um conjunto de resultados, por exemplo A = “sair par” = {2, 4, 6}.</li>
+    <li><strong>Probabilidade clássica:</strong> casos favoráveis ÷ casos possíveis, se todos são igualmente prováveis: P(par) = 3/6 = 1/2.</li>
+    <li><strong>Probabilidade frequentista</strong> (a definição do slide da Aula 2): a frequência relativa de longo prazo do evento em muitas repetições. É a Lei dos Grandes Números em ação (<a href="#lgn">módulo LGN</a>).</li>
+  </ul>
+  <div class="tbl"><table>
+    <thead><tr><th>Regra</th><th>Fórmula</th><th>Exemplo com um dado</th></tr></thead>
+    <tbody>
+      <tr><td>Axiomas</td><td>\(0\le P(A)\le1\), \(P(\Omega)=1\)</td><td>P(sair algo de 1 a 6) = 1</td></tr>
+      <tr><td>Complementar</td><td>\(P(\text{não }A)=1-P(A)\)</td><td>P(não sair 6) = 5/6</td></tr>
+      <tr><td>Soma (“ou”)</td><td>\(P(A\cup B)=P(A)+P(B)-P(A\cap B)\)</td><td>P(par ou &gt; 4) = 3/6 + 2/6 − 1/6 = 4/6 (o 6 foi contado duas vezes)</td></tr>
+      <tr><td>Condicional (“dado que”)</td><td>\(P(A\mid B)=\dfrac{P(A\cap B)}{P(B)}\)</td><td>P(6 | par) = (1/6)/(3/6) = 1/3</td></tr>
+      <tr><td>Multiplicação (“e”)</td><td>\(P(A\cap B)=P(A\mid B)\,P(B)\)</td><td>—</td></tr>
+      <tr><td>Independência</td><td>\(P(A\cap B)=P(A)P(B)\), isto é, \(P(A\mid B)=P(A)\)</td><td>duas moedas: P(2 caras) = 1/2 × 1/2 = 1/4</td></tr>
+    </tbody>
+  </table></div>
+  <p>A <strong>regra de Bayes</strong>, que inverte a condicional, e as tabelas de distribuição conjunta estão na <a href="#aula2">Aula 2</a>.</p>
+
+  <h3>8. Variável aleatória</h3>
+  <p>Uma <strong>variável aleatória</strong> (v.a.) é uma regra que associa um número a cada resultado de um experimento. Letra maiúscula (X) é a variável; minúscula (x) é um valor observado.</p>
+  <ul>
+    <li><strong>Discreta:</strong> tem uma lista de valores com probabilidades que somam 1 (a FMP). Ex.: número de caras.</li>
+    <li><strong>Contínua:</strong> probabilidade é <strong>área</strong> sob uma curva, a densidade (FDP). \(P(X=x)=0\) para um valor exato. Ex.: tempo até o trabalho. As integrais estão no <a href="#mat-int">módulo de Integrais</a>.</li>
+    <li><strong>Esperança</strong> \(E(X)\): a média teórica, média ponderada pelas probabilidades. <strong>Variância</strong> \(Var(X)=E[(X-E(X))^2]\): o espalhamento teórico. São as versões “de população” de \(\bar x\) e \(s^2\).</li>
+  </ul>
+
+  <h3>9. As distribuições que aparecem no curso</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Distribuição</th><th>Modela</th><th>E</th><th>Var</th><th>Onde aparece</th></tr></thead>
+    <tbody>
+      <tr><td>Bernoulli(π)</td><td>um sim/não</td><td>π</td><td>π(1 − π)</td><td>dummies; Lista 1, Q17 e Q27</td></tr>
+      <tr><td>Binomial(n, π)</td><td>nº de “sins” em n tentativas independentes</td><td>nπ</td><td>nπ(1 − π)</td><td>soma de Bernoullis (Lista 1, Q27)</td></tr>
+      <tr><td>Poisson(λ)</td><td>contagens</td><td>λ</td><td>λ</td><td>Aula 6 (“e se u não for normal?”)</td></tr>
+      <tr><td>Uniforme(a, b)</td><td>“qualquer valor igualmente provável”</td><td>(a + b)/2</td><td>(b − a)²/12</td><td>Aula 2; práticas</td></tr>
+      <tr><td><strong>Normal</strong>(μ, σ²)</td><td>forma de sino; somas e médias</td><td>μ</td><td>σ²</td><td>TCL, RLS.6, teste z</td></tr>
+      <tr><td>t de Student (g.l.)</td><td>normal com caudas mais gordas</td><td>0</td><td>&gt; 1</td><td>teste t e IC (Aula 6)</td></tr>
+      <tr><td>Qui-quadrado \(\chi^2\) (g.l.)</td><td>soma de normais padrão ao quadrado</td><td>g.l.</td><td>2·g.l.</td><td>distribuição de \(\hat\sigma^2\); teste de Breusch–Pagan</td></tr>
+      <tr><td>F (g.l.₁, g.l.₂)</td><td>razão de duas qui-quadrado</td><td>—</td><td>—</td><td>teste F (<a href="#p2">Prévia da P2</a>)</td></tr>
+    </tbody>
+  </table></div>
+  <div class="box ok"><span class="lbl">Binomial com números</span>
+    <p>Lançar uma moeda honesta 5 vezes. A probabilidade de exatamente k caras é \(P(X=k)=\binom{5}{k}\left(\tfrac12\right)^5\), em que \(\binom{5}{k}\) conta de quantas formas escolher as k posições das caras.</p>
+    <div class="tbl"><table>
+      <thead><tr><th class="r">k</th><th class="r">0</th><th class="r">1</th><th class="r">2</th><th class="r">3</th><th class="r">4</th><th class="r">5</th></tr></thead>
+      <tbody><tr><td class="r">P(X = k)</td><td class="r">0,031</td><td class="r">0,156</td><td class="r">0,313</td><td class="r">0,313</td><td class="r">0,156</td><td class="r">0,031</td></tr></tbody>
+    </table></div>
+    <p>E = 5 × 0,5 = 2,5 caras; Var = 5 × 0,5 × 0,5 = 1,25. Outro exemplo: se cada um de 10 clientes compra com probabilidade 0,2, independentemente, P(ninguém compra) = 0,8¹⁰ ≈ 0,107 e P(pelo menos um compra) ≈ 0,893 (regra do complementar).</p>
+  </div>
+
+  <h3>10. A distribuição normal e a padronização</h3>
+  <figure><div class="scroll"><svg class="fig" viewBox="0 0 560 260" role="img" aria-label="Curva normal com as faixas de 68, 95 e 99,7 por cento" xmlns="http://www.w3.org/2000/svg">
+<line class="ax" x1="30" y1="210" x2="540" y2="210"/>
+<line class="ax" x1="30" y1="20" x2="30" y2="210"/>
+<text class="tk" x="72.5" y="226" text-anchor="middle">-3</text>
+<text class="tk" x="143.3" y="226" text-anchor="middle">-2</text>
+<text class="tk" x="214.2" y="226" text-anchor="middle">-1</text>
+<text class="tk" x="285" y="226" text-anchor="middle">0</text>
+<text class="tk" x="355.8" y="226" text-anchor="middle">1</text>
+<text class="tk" x="426.7" y="226" text-anchor="middle">2</text>
+<text class="tk" x="497.5" y="226" text-anchor="middle">3</text>
+<text class="lb" x="285" y="254" text-anchor="middle">desvios-padrão a partir da média (z)</text>
+<text class="lb" x="12" y="115" text-anchor="middle" transform="rotate(-90 12 115)"></text>
+<polygon class="t1" points="72.5,210 72.5,208 76,207.7 79.6,207.3 83.1,206.9 86.7,206.4 90.2,205.9 93.8,205.3 97.3,204.6 100.8,203.9 104.4,203 107.9,202.1 111.5,201 115,199.9 118.5,198.6 122.1,197.2 125.6,195.6 129.2,194 132.7,192.1 136.2,190.1 139.8,187.9 143.3,185.6 146.9,183 150.4,180.3 154,177.4 157.5,174.3 161,171 164.6,167.5 168.1,163.7 171.7,159.8 175.2,155.7 178.8,151.4 182.3,146.9 185.8,142.3 189.4,137.4 192.9,132.5 196.5,127.4 200,122.2 203.5,116.8 207.1,111.4 210.6,106 214.2,100.5 217.7,95.1 221.2,89.6 224.8,84.2 228.3,78.9 231.9,73.8 235.4,68.7 239,63.9 242.5,59.3 246,54.9 249.6,50.7 253.1,46.9 256.7,43.4 260.2,40.2 263.8,37.5 267.3,35.1 270.8,33.1 274.4,31.5 277.9,30.4 281.5,29.8 285,29.5 288.5,29.8 292.1,30.4 295.6,31.5 299.2,33.1 302.7,35.1 306.2,37.5 309.8,40.2 313.3,43.4 316.9,46.9 320.4,50.7 324,54.9 327.5,59.3 331,63.9 334.6,68.7 338.1,73.8 341.7,78.9 345.2,84.2 348.8,89.6 352.3,95.1 355.8,100.5 359.4,106 362.9,111.4 366.5,116.8 370,122.2 373.5,127.4 377.1,132.5 380.6,137.4 384.2,142.3 387.7,146.9 391.2,151.4 394.8,155.7 398.3,159.8 401.9,163.7 405.4,167.5 409,171 412.5,174.3 416,177.4 419.6,180.3 423.1,183 426.7,185.6 430.2,187.9 433.7,190.1 437.3,192.1 440.8,194 444.4,195.6 447.9,197.2 451.5,198.6 455,199.9 458.5,201 462.1,202.1 465.6,203 469.2,203.9 472.7,204.6 476.3,205.3 479.8,205.9 483.3,206.4 486.9,206.9 490.4,207.3 494,207.7 497.5,208 497.5,210"/>
+<polygon class="t3" points="143.3,210 143.3,185.6 145.7,183.9 148.1,182.2 150.4,180.3 152.8,178.4 155.1,176.4 157.5,174.3 159.9,172.1 162.2,169.8 164.6,167.5 166.9,165 169.3,162.5 171.7,159.8 174,157.1 176.4,154.3 178.8,151.4 181.1,148.4 183.5,145.4 185.8,142.3 188.2,139.1 190.6,135.8 192.9,132.5 195.3,129.1 197.6,125.6 200,122.2 202.4,118.6 204.7,115 207.1,111.4 209.4,107.8 211.8,104.2 214.2,100.5 216.5,96.9 218.9,93.3 221.2,89.6 223.6,86 226,82.5 228.3,78.9 230.7,75.5 233.1,72.1 235.4,68.7 237.8,65.5 240.1,62.3 242.5,59.3 244.9,56.3 247.2,53.5 249.6,50.7 251.9,48.1 254.3,45.7 256.7,43.4 259,41.3 261.4,39.3 263.8,37.5 266.1,35.8 268.5,34.4 270.8,33.1 273.2,32 275.6,31.1 277.9,30.4 280.3,29.9 282.6,29.6 285,29.5 287.4,29.6 289.7,29.9 292.1,30.4 294.4,31.1 296.8,32 299.2,33.1 301.5,34.4 303.9,35.8 306.2,37.5 308.6,39.3 311,41.3 313.3,43.4 315.7,45.7 318.1,48.1 320.4,50.7 322.8,53.5 325.1,56.3 327.5,59.3 329.9,62.3 332.2,65.5 334.6,68.7 336.9,72.1 339.3,75.5 341.7,78.9 344,82.5 346.4,86 348.8,89.6 351.1,93.3 353.5,96.9 355.8,100.5 358.2,104.2 360.6,107.8 362.9,111.4 365.3,115 367.6,118.6 370,122.2 372.4,125.6 374.7,129.1 377.1,132.5 379.4,135.8 381.8,139.1 384.2,142.3 386.5,145.4 388.9,148.4 391.2,151.4 393.6,154.3 396,157.1 398.3,159.8 400.7,162.5 403.1,165 405.4,167.5 407.8,169.8 410.1,172.1 412.5,174.3 414.9,176.4 417.2,178.4 419.6,180.3 421.9,182.2 424.3,183.9 426.7,185.6 426.7,210"/>
+<polygon class="t4" points="214.2,210 214.2,100.5 215.3,98.7 216.5,96.9 217.7,95.1 218.9,93.3 220.1,91.4 221.2,89.6 222.4,87.8 223.6,86 224.8,84.2 226,82.5 227.2,80.7 228.3,78.9 229.5,77.2 230.7,75.5 231.9,73.8 233.1,72.1 234.2,70.4 235.4,68.7 236.6,67.1 237.8,65.5 239,63.9 240.1,62.3 241.3,60.8 242.5,59.3 243.7,57.8 244.9,56.3 246,54.9 247.2,53.5 248.4,52.1 249.6,50.7 250.8,49.4 251.9,48.1 253.1,46.9 254.3,45.7 255.5,44.5 256.7,43.4 257.8,42.3 259,41.3 260.2,40.2 261.4,39.3 262.6,38.4 263.8,37.5 264.9,36.6 266.1,35.8 267.3,35.1 268.5,34.4 269.7,33.7 270.8,33.1 272,32.5 273.2,32 274.4,31.5 275.6,31.1 276.7,30.8 277.9,30.4 279.1,30.2 280.3,29.9 281.5,29.8 282.6,29.6 283.8,29.6 285,29.5 286.2,29.6 287.4,29.6 288.5,29.8 289.7,29.9 290.9,30.2 292.1,30.4 293.3,30.8 294.4,31.1 295.6,31.5 296.8,32 298,32.5 299.2,33.1 300.3,33.7 301.5,34.4 302.7,35.1 303.9,35.8 305.1,36.6 306.3,37.5 307.4,38.4 308.6,39.3 309.8,40.2 311,41.3 312.2,42.3 313.3,43.4 314.5,44.5 315.7,45.7 316.9,46.9 318.1,48.1 319.2,49.4 320.4,50.7 321.6,52.1 322.8,53.5 324,54.9 325.1,56.3 326.3,57.8 327.5,59.3 328.7,60.8 329.9,62.3 331,63.9 332.2,65.5 333.4,67.1 334.6,68.7 335.8,70.4 336.9,72.1 338.1,73.8 339.3,75.5 340.5,77.2 341.7,78.9 342.8,80.7 344,82.5 345.2,84.2 346.4,86 347.6,87.8 348.8,89.6 349.9,91.4 351.1,93.3 352.3,95.1 353.5,96.9 354.7,98.7 355.8,100.5 355.8,210"/>
+<polyline class="fit" points="30,209.7 31.8,209.7 33.5,209.7 35.3,209.6 37.1,209.6 38.9,209.6 40.6,209.5 42.4,209.5 44.2,209.4 45.9,209.4 47.7,209.3 49.5,209.3 51.3,209.2 53,209.2 54.8,209.1 56.6,209 58.3,208.9 60.1,208.8 61.9,208.7 63.6,208.6 65.4,208.5 67.2,208.4 69,208.3 70.7,208.1 72.5,208 74.3,207.8 76,207.7 77.8,207.5 79.6,207.3 81.4,207.1 83.1,206.9 84.9,206.7 86.7,206.4 88.4,206.2 90.2,205.9 92,205.6 93.8,205.3 95.5,205 97.3,204.6 99.1,204.2 100.8,203.9 102.6,203.4 104.4,203 106.1,202.6 107.9,202.1 109.7,201.6 111.5,201 113.2,200.5 115,199.9 116.8,199.2 118.5,198.6 120.3,197.9 122.1,197.2 123.9,196.4 125.6,195.6 127.4,194.8 129.2,194 130.9,193 132.7,192.1 134.5,191.1 136.2,190.1 138,189 139.8,187.9 141.6,186.8 143.3,185.6 145.1,184.3 146.9,183 148.6,181.7 150.4,180.3 152.2,178.9 154,177.4 155.7,175.9 157.5,174.3 159.3,172.7 161,171 162.8,169.2 164.6,167.5 166.4,165.6 168.1,163.7 169.9,161.8 171.7,159.8 173.4,157.8 175.2,155.7 177,153.6 178.8,151.4 180.5,149.2 182.3,146.9 184.1,144.6 185.8,142.3 187.6,139.9 189.4,137.4 191.1,135 192.9,132.5 194.7,129.9 196.5,127.4 198.2,124.8 200,122.2 201.8,119.5 203.5,116.8 205.3,114.2 207.1,111.4 208.9,108.7 210.6,106 212.4,103.3 214.2,100.5 215.9,97.8 217.7,95.1 219.5,92.3 221.2,89.6 223,86.9 224.8,84.2 226.6,81.6 228.3,78.9 230.1,76.3 231.9,73.8 233.6,71.2 235.4,68.7 237.2,66.3 239,63.9 240.7,61.5 242.5,59.3 244.3,57 246,54.9 247.8,52.8 249.6,50.7 251.4,48.8 253.1,46.9 254.9,45.1 256.7,43.4 258.4,41.8 260.2,40.2 262,38.8 263.8,37.5 265.5,36.2 267.3,35.1 269.1,34 270.8,33.1 272.6,32.3 274.4,31.5 276.1,30.9 277.9,30.4 279.7,30 281.5,29.8 283.2,29.6 285,29.5 286.8,29.6 288.5,29.8 290.3,30 292.1,30.4 293.9,30.9 295.6,31.5 297.4,32.3 299.2,33.1 300.9,34 302.7,35.1 304.5,36.2 306.2,37.5 308,38.8 309.8,40.2 311.6,41.8 313.3,43.4 315.1,45.1 316.9,46.9 318.6,48.8 320.4,50.7 322.2,52.8 324,54.9 325.7,57 327.5,59.3 329.3,61.5 331,63.9 332.8,66.3 334.6,68.7 336.4,71.2 338.1,73.8 339.9,76.3 341.7,78.9 343.4,81.6 345.2,84.2 347,86.9 348.8,89.6 350.5,92.3 352.3,95.1 354.1,97.8 355.8,100.5 357.6,103.3 359.4,106 361.1,108.7 362.9,111.4 364.7,114.2 366.5,116.8 368.2,119.5 370,122.2 371.8,124.8 373.5,127.4 375.3,129.9 377.1,132.5 378.9,135 380.6,137.4 382.4,139.9 384.2,142.3 385.9,144.6 387.7,146.9 389.5,149.2 391.2,151.4 393,153.6 394.8,155.7 396.6,157.8 398.3,159.8 400.1,161.8 401.9,163.7 403.6,165.6 405.4,167.5 407.2,169.2 409,171 410.7,172.7 412.5,174.3 414.3,175.9 416,177.4 417.8,178.9 419.6,180.3 421.4,181.7 423.1,183 424.9,184.3 426.7,185.6 428.4,186.8 430.2,187.9 432,189 433.8,190.1 435.5,191.1 437.3,192.1 439.1,193 440.8,194 442.6,194.8 444.4,195.6 446.1,196.4 447.9,197.2 449.7,197.9 451.5,198.6 453.2,199.2 455,199.9 456.8,200.5 458.5,201 460.3,201.6 462.1,202.1 463.9,202.6 465.6,203 467.4,203.4 469.2,203.9 470.9,204.2 472.7,204.6 474.5,205 476.3,205.3 478,205.6 479.8,205.9 481.6,206.2 483.3,206.4 485.1,206.7 486.9,206.9 488.6,207.1 490.4,207.3 492.2,207.5 494,207.7 495.7,207.8 497.5,208 499.3,208.1 501,208.3 502.8,208.4 504.6,208.5 506.4,208.6 508.1,208.7 509.9,208.8 511.7,208.9 513.4,209 515.2,209.1 517,209.2 518.8,209.2 520.5,209.3 522.3,209.3 524.1,209.4 525.8,209.4 527.6,209.5 529.4,209.5 531.1,209.6 532.9,209.6 534.7,209.6 536.5,209.7 538.2,209.7 540,209.7"/>
+<text class="an" x="285" y="119.5" text-anchor="middle">68%</text>
+<text class="an" x="391.2" y="182.9" text-anchor="middle">95%</text>
+<text class="an" x="465.6" y="194.2" text-anchor="middle">99,7%</text>
+</svg></div><figcaption>Numa normal, cerca de 68% dos valores ficam a até 1 desvio-padrão da média, 95% a até 2 (mais precisamente 1,96) e 99,7% a até 3.</figcaption></figure>
+  <p><strong>Padronizar</strong> transforma qualquer normal na normal padrão N(0, 1): \(Z=\frac{X-\mu}{\sigma}\). A função \(\Phi(z)=P(Z\le z)\) é a área à esquerda de z, tirada de uma tabela.</p>
+  <p><strong>Exemplo:</strong> altura X ~ N(170, 10²) em cm.</p>
+  <ul>
+    <li>P(160 &lt; X &lt; 180): z de −1 a 1, cerca de <strong>68%</strong>.</li>
+    <li>P(X &gt; 190): z = 2, então \(1-\Phi(2)\approx0{,}023\).</li>
+    <li>P(X ≤ 185): z = 1,5, então \(\Phi(1{,}5)\approx0{,}933\).</li>
+  </ul>
+  <p>Propriedades que o curso usa: \(aX+b\) de uma normal é normal; soma de normais independentes é normal; e, pelo <strong>TCL</strong>, médias de muitas observações ficam aproximadamente normais mesmo que os dados não sejam.</p>
+
+  <h3>11. t, qui-quadrado e F em uma frase cada</h3>
+  <ul>
+    <li><strong>t:</strong> aparece quando dividimos uma normal por um desvio-padrão <em>estimado</em>. Com poucos graus de liberdade tem caudas mais gordas; com muitos, vira a normal.</li>
+    <li><strong>\(\chi^2\):</strong> soma de normais padrão ao quadrado; descreve variâncias estimadas, como \((n-2)\hat\sigma^2/\sigma^2\sim\chi^2_{n-2}\) (Aula 6).</li>
+    <li><strong>F:</strong> razão de duas \(\chi^2\) divididas pelos seus g.l.; usada para testar vários coeficientes de uma vez.</li>
+  </ul>
+
+  <h3>12. Amostragem e distribuição amostral (começo da Estatística 2)</h3>
+  <p>Uma <strong>estatística</strong> (como \(\bar x\)) muda de amostra para amostra, então ela própria é uma variável aleatória, com distribuição, média e variância. Essa distribuição se chama <strong>distribuição amostral</strong>. É a ideia central da Aula 5, aplicada a \(\hat\beta_1\).</p>
+  <figure><div class="scroll"><svg class="fig" viewBox="0 0 600 210" role="img" aria-label="Distribuição de um dado e da média de dois dados" xmlns="http://www.w3.org/2000/svg">
+<line class="ax" x1="40" y1="180" x2="270" y2="180"/>
+<line class="ax" x1="40" y1="26" x2="40" y2="180"/>
+<rect class="barA" x="45.8" y="51.7" width="26.8" height="128.3"/>
+<rect class="barA" x="84.1" y="51.7" width="26.8" height="128.3"/>
+<rect class="barA" x="122.4" y="51.7" width="26.8" height="128.3"/>
+<rect class="barA" x="160.8" y="51.7" width="26.8" height="128.3"/>
+<rect class="barA" x="199.1" y="51.7" width="26.8" height="128.3"/>
+<rect class="barA" x="237.4" y="51.7" width="26.8" height="128.3"/>
+<text class="tk" x="59.2" y="195" text-anchor="middle">1</text>
+<text class="tk" x="97.5" y="195" text-anchor="middle">2</text>
+<text class="tk" x="135.8" y="195" text-anchor="middle">3</text>
+<text class="tk" x="174.2" y="195" text-anchor="middle">4</text>
+<text class="tk" x="212.5" y="195" text-anchor="middle">5</text>
+<text class="tk" x="250.8" y="195" text-anchor="middle">6</text>
+<text class="tk" x="34" y="107" text-anchor="end">0,1</text>
+<text class="tk" x="34" y="30" text-anchor="end">0,2</text>
+<line class="true" x1="155" y1="26" x2="155" y2="180"/>
+<text class="an" x="155" y="16" text-anchor="middle">1 dado: todos com 1/6</text><line class="ax" x1="340" y1="180" x2="570" y2="180"/>
+<line class="ax" x1="340" y1="26" x2="340" y2="180"/>
+<rect class="barA" x="351.5" y="158.6" width="15.3" height="21.4"/>
+<rect class="barA" x="370.7" y="137.2" width="15.3" height="42.8"/>
+<rect class="barA" x="389.8" y="115.8" width="15.3" height="64.2"/>
+<rect class="barA" x="409" y="94.4" width="15.3" height="85.6"/>
+<rect class="barA" x="428.2" y="73.1" width="15.3" height="106.9"/>
+<rect class="barA" x="447.3" y="51.7" width="15.3" height="128.3"/>
+<rect class="barA" x="466.5" y="73.1" width="15.3" height="106.9"/>
+<rect class="barA" x="485.7" y="94.4" width="15.3" height="85.6"/>
+<rect class="barA" x="504.8" y="115.8" width="15.3" height="64.2"/>
+<rect class="barA" x="524" y="137.2" width="15.3" height="42.8"/>
+<rect class="barA" x="543.2" y="158.6" width="15.3" height="21.4"/>
+<text class="tk" x="359.2" y="195" text-anchor="middle">1</text>
+<text class="tk" x="397.5" y="195" text-anchor="middle">2</text>
+<text class="tk" x="435.8" y="195" text-anchor="middle">3</text>
+<text class="tk" x="474.2" y="195" text-anchor="middle">4</text>
+<text class="tk" x="512.5" y="195" text-anchor="middle">5</text>
+<text class="tk" x="550.8" y="195" text-anchor="middle">6</text>
+<text class="tk" x="334" y="107" text-anchor="end">0,1</text>
+<text class="tk" x="334" y="30" text-anchor="end">0,2</text>
+<line class="true" x1="455" y1="26" x2="455" y2="180"/>
+<text class="an" x="455" y="16" text-anchor="middle">Média de 2 dados: o meio fica mais provável</text>
+</svg></div><figcaption>À esquerda, um dado: os 6 valores têm a mesma chance. À direita, a média de 2 dados, com as 36 combinações possíveis: os valores do meio ficam mais prováveis e os extremos, raros.</figcaption></figure>
+  <ul>
+    <li><strong>Centro:</strong> E(1 dado) = 3,5 e E(média de 2) = 3,5. A média amostral é não viesada.</li>
+    <li><strong>Espalhamento:</strong> Var(1 dado) = 35/12 ≈ 2,92; Var(média de 2) = 35/24 ≈ 1,46 = σ²/n. A variância da média cai com n, e o <strong>erro-padrão</strong> é \(\sigma/\sqrt n\).</li>
+    <li><strong>Concentração:</strong> P(valor entre 3 e 4) é 2/6 ≈ 0,33 com 1 dado e 16/36 ≈ 0,44 com a média de 2. Com mais dados, a média se concentra perto de 3,5 (LGN) e a forma vira um sino (TCL).</li>
+  </ul>
+
+  <h3>13. Estimação: estimador, estimativa e as propriedades</h3>
+  <p><strong>Estimador</strong> é a regra (a fórmula); <strong>estimativa</strong> é o número que a regra dá na sua amostra. As propriedades são do estimador:</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Propriedade</th><th>Pergunta</th><th>Fórmula</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Viés</strong></td><td>Em média, acerta o alvo?</td><td>\(\text{Viés}(\hat\theta)=E(\hat\theta)-\theta\)</td></tr>
+      <tr><td><strong>Variância</strong></td><td>Quanto varia entre amostras?</td><td>\(Var(\hat\theta)\)</td></tr>
+      <tr><td><strong>EQM</strong> (erro quadrático médio)</td><td>Quão longe fica do alvo, somando os dois problemas?</td><td>\(EQM=E[(\hat\theta-\theta)^2]=Var(\hat\theta)+\text{Viés}^2\)</td></tr>
+      <tr><td><strong>Eficiência</strong></td><td>Entre os não viesados, qual tem menor variância?</td><td>comparação de variâncias</td></tr>
+      <tr><td><strong>Consistência</strong></td><td>Com n → ∞, chega no alvo?</td><td>\(\text{plim}\,\hat\theta=\theta\)</td></tr>
+    </tbody>
+  </table></div>
+  <div class="box ok"><span class="lbl">Três estimadores da média μ = 10 (σ² = 25, n = 25)</span>
+    <div class="tbl"><table>
+      <thead><tr><th>Estimador</th><th class="r">Viés</th><th class="r">Variância</th><th class="r">EQM</th></tr></thead>
+      <tbody>
+        <tr><td>\(\bar X\) (média amostral)</td><td class="r">0</td><td class="r">25/25 = 1</td><td class="r">1</td></tr>
+        <tr><td>\(0{,}9\,\bar X\) (encolhido)</td><td class="r">−1</td><td class="r">0,81</td><td class="r">1,81</td></tr>
+        <tr><td>\(X_1\) (só a 1ª observação)</td><td class="r">0</td><td class="r">25</td><td class="r">25</td></tr>
+      </tbody>
+    </table></div>
+    <p>\(X_1\) é não viesado, mas desperdiça 24 observações: é muito menos <strong>eficiente</strong> que \(\bar X\). O \(0{,}9\bar X\) tem variância menor, mas o viés pesa mais. É o mesmo raciocínio de Gauss–Markov (Aula 5).</p>
+  </div>
+  <p><strong>Viés da variância com ÷n:</strong> \(E\left[\sum(X_i-\bar X)^2\right]=(n-1)\sigma^2\). Dividindo por n, a esperança fica \(\frac{n-1}{n}\sigma^2\) (com n = 5, 0,8σ²): viesado, mas o viés some quando n cresce, então é <strong>consistente</strong>. Viés e consistência são coisas diferentes.</p>
+
+  <h3>14. Intervalo de confiança para a média</h3>
+  <p>Amostra de n = 25 com \(\bar x=50\).</p>
+  <ul>
+    <li><strong>σ conhecido</strong> (σ = 10): \(50\pm1{,}96\cdot\frac{10}{\sqrt{25}}=50\pm3{,}92=[46{,}08;\ 53{,}92]\).</li>
+    <li><strong>σ desconhecido</strong> (s = 10): troca 1,96 por \(t_{0,025;24}=2{,}064\): \(50\pm4{,}13=[45{,}87;\ 54{,}13]\), um pouco mais largo porque s também é aleatório.</li>
+  </ul>
+  <p><strong>Como ler:</strong> se repetíssemos a amostragem muitas vezes, 95% dos intervalos construídos assim conteriam μ. Não é “95% de probabilidade de μ estar neste intervalo”.</p>
+
+  <h3>15. Teste de hipóteses do zero</h3>
+  <div class="box def"><span class="lbl">A analogia do tribunal</span>
+    <p>\(H_0\) é “o réu é inocente”: é mantida até que haja evidência forte em contrário. <strong>Rejeitar \(H_0\)</strong> é condenar. <strong>Erro tipo I</strong> é condenar um inocente (probabilidade α, que escolhemos pequena, como 5%). <strong>Erro tipo II</strong> é absolver um culpado. “Não rejeitar” não prova inocência: só diz que as provas não bastaram. Por isso nunca se diz “aceitar \(H_0\)”.</p>
+  </div>
+  <ol class="steps">
+    <li><div><strong>Hipóteses:</strong> \(H_0:\mu=45\) × \(H_A:\mu\neq45\).</div></li>
+    <li><div><strong>Estatística:</strong> \(z=\frac{\bar x-\mu_0}{\sigma/\sqrt n}=\frac{50-45}{2}=2{,}5\). A média observada está 2,5 erros-padrão acima de 45.</div></li>
+    <li><div><strong>Decisão:</strong> como \(|2{,}5|&gt;1{,}96\), rejeitamos \(H_0\) a 5%.</div></li>
+    <li><div><strong>p-valor:</strong> \(2[1-\Phi(2{,}5)]\approx0{,}012\). Se μ fosse 45, só 1,2% das amostras dariam algo tão ou mais extremo.</div></li>
+  </ol>
+  <p>A Aula 6 faz exatamente isso, trocando \(\bar x\) por \(\hat\beta_1\) e a normal pela t.</p>
+
+  <h3>16. Correlação não é causalidade</h3>
+  <ul>
+    <li><strong>Terceira variável:</strong> venda de sorvete e afogamentos sobem juntos, porque os dois aumentam no calor.</li>
+    <li><strong>Causalidade reversa:</strong> cidades com mais policiais têm mais crimes? Talvez porque mais crime leve a contratar mais policiais.</li>
+    <li><strong>Seleção:</strong> quem faz curso superior pode ser diferente de quem não faz (Aula 1, viés de seleção).</li>
+  </ul>
+  <p>É por isso que o curso sempre diz “está <em>associado</em> a” e reserva “causa” para quando as hipóteses (como RLS.4) são defensáveis.</p>
+
+  <h3>Teste rápido</h3>
+  <div class="quiz" data-answer="b"><div class="qh">Estatística 1</div>
+    <p>Salários: 2, 3, 3, 4, 5, 6, 26. Qual medida descreve melhor o salário “típico”?</p>
+    <div class="opts"><button data-k="a">a) a média, 7</button><button data-k="b">b) a mediana, 4</button><button data-k="c">c) a amplitude, 24</button><button data-k="d">d) a variância, 72</button></div>
+    <div class="fb" hidden>b. A média é puxada pelo outlier; a mediana é robusta. Amplitude e variância medem dispersão, não o centro.</div></div>
+  <div class="quiz" data-answer="c"><div class="qh">Probabilidade</div>
+    <p>Num dado honesto, quanto vale P(sair 6 | saiu par)?</p>
+    <div class="opts"><button data-k="a">a) 1/6</button><button data-k="b">b) 1/2</button><button data-k="c">c) 1/3</button><button data-k="d">d) 1/12</button></div>
+    <div class="fb" hidden>c. Sabendo que saiu par, sobram {2, 4, 6}: 1 caso em 3.</div></div>
+  <div class="quiz" data-answer="a"><div class="qh">Normal</div>
+    <p>X ~ N(100, 15²). Aproximadamente qual fração fica entre 70 e 130?</p>
+    <div class="opts"><button data-k="a">a) 95%</button><button data-k="b">b) 68%</button><button data-k="c">c) 99,7%</button><button data-k="d">d) 50%</button></div>
+    <div class="fb" hidden>a. 70 e 130 estão a 2 desvios-padrão da média (z = ±2).</div></div>
+  <div class="quiz" data-answer="d"><div class="qh">Estimação</div>
+    <p>Um estimador tem viés 2 e variância 5. Quanto vale o EQM?</p>
+    <div class="opts"><button data-k="a">a) 7</button><button data-k="b">b) 5</button><button data-k="c">c) 3</button><button data-k="d">d) 9</button></div>
+    <div class="fb" hidden>d. EQM = Var + viés² = 5 + 4 = 9.</div></div>
+  <div class="quiz" data-answer="b"><div class="qh">Distribuição amostral</div>
+    <p>Uma população tem σ² = 36. Qual é o erro-padrão da média de n = 9 observações?</p>
+    <div class="opts"><button data-k="a">a) 4</button><button data-k="b">b) 2</button><button data-k="c">c) 6</button><button data-k="d">d) 12</button></div>
+    <div class="fb" hidden>b. \(\sigma/\sqrt n=6/3=2\) (variância da média = 36/9 = 4).</div></div>
+
+  <h3>Exercícios resolvidos</h3>
+  <details class="sol"><summary>S1 · Dados 4, 8, 6, 5, 7: média, mediana, variância amostral e dp</summary><div class="in">
+    <p>Ordenados: 4, 5, 6, 7, 8. Média = 30/5 = 6; mediana = 6. Desvios: −2, −1, 0, 1, 2; quadrados somam 10; \(s^2=10/4=2{,}5\); \(s\approx1{,}58\).</p>
+  </div></details>
+  <details class="sol"><summary>S2 · Duas moedas: P(pelo menos uma cara)</summary><div class="in">
+    <p>Complementar: 1 − P(nenhuma cara) = 1 − (1/2)(1/2) = 3/4.</p>
+  </div></details>
+  <details class="sol"><summary>S3 · Nota ~ N(60, 8²): P(nota ≥ 76)</summary><div class="in">
+    <p>z = (76 − 60)/8 = 2; P(Z ≥ 2) = 1 − Φ(2) ≈ 0,023, cerca de 2,3%.</p>
+  </div></details>
+  <details class="sol"><summary>S4 · n = 16, x̄ = 20, σ = 8: IC de 95% e teste de μ = 24</summary><div class="in">
+    <p>Erro-padrão = 8/4 = 2. IC = 20 ± 1,96 × 2 = [16,08; 23,92]. z = (20 − 24)/2 = −2, |z| &gt; 1,96: rejeita μ = 24, coerente com 24 estar fora do IC.</p>
+  </div></details>
+  <div class="done-row"><button class="btn done-btn" data-done="estat" aria-pressed="false">Marcar como concluído</button></div>
+</section>
+
+
+<!-- ================= CONCEITOS-CHAVE EM LINGUAGEM SIMPLES ================= -->
+<section class="mod" id="conceitos" data-title="Conceitos-chave">
+  <div class="eyebrow"><span class="tag">Base</span> Os conceitos da disciplina em linguagem simples</div>
+  <h2>Os conceitos-chave, um por um</h2>
+  <p>Este módulo responde, em português simples, às perguntas “o que é…?” da disciplina. Cada conceito tem uma definição curta, uma analogia, a fórmula quando existe e um link para onde ele é aprofundado. Leia de cima a baixo uma vez; depois use como consulta.</p>
+
+  <h3>1. Econometria, em uma frase</h3>
+  <p>Econometria é usar dados e estatística para <strong>medir relações econômicas</strong> (quanto o salário muda com mais um ano de estudo?), <strong>testar teorias</strong>, <strong>avaliar políticas</strong> e <strong>prever</strong>. A ferramenta principal do curso é a <strong>regressão</strong> estimada por <strong>MQO</strong>.</p>
+
+  <h3>2. Parâmetro, estimador e estimativa</h3>
+  <div class="box def"><span class="lbl">A analogia do alvo</span>
+    <p>Imagine um arqueiro atirando num alvo. O <strong>centro do alvo</strong> é o <strong>parâmetro</strong>: um número fixo que existe na população, mas que ninguém vê (por exemplo, \(\beta_1\), o quanto o salário médio muda com um ano a mais de estudo em toda a população). O <strong>arqueiro, com a técnica dele</strong>, é o <strong>estimador</strong>: a regra ou fórmula que usamos (por exemplo, a fórmula do MQO). <strong>Cada flecha</strong> é uma <strong>estimativa</strong>: o número que a regra dá numa amostra específica (por exemplo, \(\hat\beta_1=1{,}15\)).</p>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th></th><th>Parâmetro</th><th>Estimador</th><th>Estimativa</th></tr></thead>
+    <tbody>
+      <tr><td>O que é</td><td>Número fixo da população</td><td>Regra aplicada à amostra</td><td>Número que a regra deu na sua amostra</td></tr>
+      <tr><td>É aleatório?</td><td>Não (fixo, desconhecido)</td><td><strong>Sim</strong>: muda com a amostra</td><td>Não: é uma realização</td></tr>
+      <tr><td>Notação</td><td>\(\beta_1,\ \mu,\ \sigma^2\)</td><td>\(\hat\beta_1=\frac{\sum(x_i-\bar x)(y_i-\bar y)}{\sum(x_i-\bar x)^2}\)</td><td>\(\hat\beta_1=1{,}15\)</td></tr>
+    </tbody>
+  </table></div>
+  <p>Frase do professor para decorar: <strong>“as propriedades estatísticas pertencem ao estimador; a estimativa é apenas uma realização de sua distribuição amostral”</strong>.</p>
+
+  <h3>3. Viés, variância, consistência e eficiência</h3>
+  <figure><div class="scroll"><svg class="fig" viewBox="0 0 700 180" role="img" aria-label="Quatro alvos combinando viés e variância" xmlns="http://www.w3.org/2000/svg">
+<circle class="t1" cx="80" cy="80" r="62"/>
+<circle class="t2" cx="80" cy="80" r="44"/>
+<circle class="t3" cx="80" cy="80" r="26"/>
+<circle class="t4" cx="80" cy="80" r="9"/>
+<circle class="shot" cx="77.3" cy="85.3" r="3.6"/>
+<circle class="shot" cx="87.4" cy="83.6" r="3.6"/>
+<circle class="shot" cx="78.4" cy="79.6" r="3.6"/>
+<circle class="shot" cx="78.2" cy="79.9" r="3.6"/>
+<circle class="shot" cx="82.4" cy="80.6" r="3.6"/>
+<circle class="shot" cx="80.9" cy="80.6" r="3.6"/>
+<circle class="shot" cx="78.5" cy="80.8" r="3.6"/>
+<circle class="shot" cx="80.5" cy="83.1" r="3.6"/>
+<circle class="shot" cx="73.9" cy="73.8" r="3.6"/>
+<circle class="shot" cx="77.6" cy="81.8" r="3.6"/>
+<text class="an" x="80" y="164" text-anchor="middle">Não viesado, baixa variância</text>
+<circle class="t1" cx="260" cy="80" r="62"/>
+<circle class="t2" cx="260" cy="80" r="44"/>
+<circle class="t3" cx="260" cy="80" r="26"/>
+<circle class="t4" cx="260" cy="80" r="9"/>
+<circle class="shot" cx="308.7" cy="72.7" r="3.6"/>
+<circle class="shot" cx="256.3" cy="94.4" r="3.6"/>
+<circle class="shot" cx="270.2" cy="93" r="3.6"/>
+<circle class="shot" cx="266.1" cy="66.2" r="3.6"/>
+<circle class="shot" cx="273.6" cy="109.3" r="3.6"/>
+<circle class="shot" cx="247.3" cy="93.1" r="3.6"/>
+<circle class="shot" cx="252" cy="77.5" r="3.6"/>
+<circle class="shot" cx="261" cy="83.4" r="3.6"/>
+<circle class="shot" cx="251.4" cy="61.6" r="3.6"/>
+<circle class="shot" cx="251.5" cy="74.9" r="3.6"/>
+<text class="an" x="260" y="164" text-anchor="middle">Não viesado, alta variância</text>
+<circle class="t1" cx="440" cy="80" r="62"/>
+<circle class="t2" cx="440" cy="80" r="44"/>
+<circle class="t3" cx="440" cy="80" r="26"/>
+<circle class="t4" cx="440" cy="80" r="9"/>
+<circle class="shot" cx="462.3" cy="61.1" r="3.6"/>
+<circle class="shot" cx="462.3" cy="48.8" r="3.6"/>
+<circle class="shot" cx="466.3" cy="67.6" r="3.6"/>
+<circle class="shot" cx="468.7" cy="57.3" r="3.6"/>
+<circle class="shot" cx="465.4" cy="55.4" r="3.6"/>
+<circle class="shot" cx="480" cy="72.9" r="3.6"/>
+<circle class="shot" cx="465.8" cy="60.1" r="3.6"/>
+<circle class="shot" cx="462" cy="60.3" r="3.6"/>
+<circle class="shot" cx="471.7" cy="61.4" r="3.6"/>
+<circle class="shot" cx="456.7" cy="55.4" r="3.6"/>
+<text class="an" x="440" y="164" text-anchor="middle">Viesado, baixa variância</text>
+<circle class="t1" cx="620" cy="80" r="62"/>
+<circle class="t2" cx="620" cy="80" r="44"/>
+<circle class="t3" cx="620" cy="80" r="26"/>
+<circle class="t4" cx="620" cy="80" r="9"/>
+<circle class="shot" cx="657.1" cy="49" r="3.6"/>
+<circle class="shot" cx="615.4" cy="39.4" r="3.6"/>
+<circle class="shot" cx="604" cy="37" r="3.6"/>
+<circle class="shot" cx="658.7" cy="55.4" r="3.6"/>
+<circle class="shot" cx="641.3" cy="60.8" r="3.6"/>
+<circle class="shot" cx="643.6" cy="52.5" r="3.6"/>
+<circle class="shot" cx="616.9" cy="21.5" r="3.6"/>
+<circle class="shot" cx="645.5" cy="62" r="3.6"/>
+<circle class="shot" cx="644" cy="61.8" r="3.6"/>
+<circle class="shot" cx="641.3" cy="61.2" r="3.6"/>
+<text class="an" x="620" y="164" text-anchor="middle">Viesado, alta variância</text>
+</svg></div><figcaption>Viés é errar o centro <em>em média</em>; variância é o espalhamento das flechas. O ideal é o primeiro alvo: não viesado e com baixa variância.</figcaption></figure>
+  <ul>
+    <li><strong>Viés</strong> = E(estimador) − parâmetro. <strong>Não viesado</strong> quer dizer que, repetindo a amostragem muitas vezes, a média das estimativas bate no parâmetro. Não quer dizer que cada estimativa acerta (<a href="#aula5">Aula 5</a>, Laboratório 1).</li>
+    <li><strong>Variância do estimador</strong>: quanto as estimativas variam de amostra para amostra. Sua raiz é o desvio-padrão do estimador; a versão estimada é o <strong>erro-padrão (ep)</strong>. Menor variância = mais <strong>precisão</strong>.</li>
+    <li><strong>Consistência</strong>: com n cada vez maior, o estimador chega tão perto quanto se queira do parâmetro (\(\text{plim}\,\hat\beta_1=\beta_1\)). Depende da Lei dos Grandes Números (<a href="#lgn">módulo LGN</a>).</li>
+    <li><strong>Eficiência</strong>: entre estimadores não viesados, o de menor variância. <strong>BLUE</strong> (Best Linear Unbiased Estimator) quer dizer “o melhor, isto é, de menor variância, entre os lineares e não viesados”. Pelo Teorema de Gauss–Markov, o MQO é BLUE sob RLS.1 a RLS.5.</li>
+  </ul>
+
+  <h3>4. O que é MQO (OLS)</h3>
+  <p><strong>MQO</strong> = <strong>Mínimos Quadrados Ordinários</strong>. Em inglês, <strong>OLS</strong> = <strong>Ordinary Least Squares</strong>. É o <em>método</em> que escolhe a reta (ou o plano) que melhor se ajusta aos dados.</p>
+  <div class="box def"><span class="lbl">A ideia em uma frase</span>
+    <p>Entre todas as retas possíveis, o MQO escolhe aquela que torna <strong>a soma dos quadrados dos resíduos a menor possível</strong>. Resíduo é a distância vertical entre o ponto observado e a reta: \(\hat u_i=y_i-\hat y_i\).</p>
+  </div>
+  <figure><div class="scroll"><svg class="fig" viewBox="0 0 600 250" role="img" aria-label="Quadrados dos resíduos para a reta de MQO e para a linha horizontal na média" xmlns="http://www.w3.org/2000/svg">
+<line class="ax" x1="40" y1="200" x2="270" y2="200"/>
+<line class="ax" x1="40" y1="30" x2="40" y2="200"/>
+<rect class="sqr" x="68.8" y="60" width="18" height="18"/>
+<rect class="sqr" x="126.2" y="106" width="34" height="34"/>
+<rect class="sqr" x="183.8" y="120" width="14" height="14"/>
+<rect class="sqr" x="241.2" y="160" width="2" height="2"/>
+<line class="fit" x1="45.8" y1="66.8" x2="264.2" y2="173.2"/>
+<circle class="pt" cx="68.8" cy="60" r="4.5"/>
+<circle class="pt" cx="126.2" cy="140" r="4.5"/>
+<circle class="pt" cx="183.8" cy="120" r="4.5"/>
+<circle class="pt" cx="241.2" cy="160" r="4.5"/>
+<text class="tk" x="68.8" y="215" text-anchor="middle">1</text>
+<text class="tk" x="126.2" y="215" text-anchor="middle">2</text>
+<text class="tk" x="183.8" y="215" text-anchor="middle">3</text>
+<text class="tk" x="241.2" y="215" text-anchor="middle">4</text>
+<text class="an" x="155" y="16" text-anchor="middle">Reta do MQO: ŷ = 8,5 − 1,4x</text>
+<text class="an resc" x="155" y="234" text-anchor="middle">soma das áreas = SQR = 4,2 (a menor possível)</text><line class="ax" x1="340" y1="200" x2="570" y2="200"/>
+<line class="ax" x1="340" y1="30" x2="340" y2="200"/>
+<rect class="sqr" x="368.8" y="60" width="60" height="60"/>
+<rect class="sqr" x="426.2" y="120" width="20" height="20"/>
+<rect class="sqr" x="483.8" y="120" width="0" height="0"/>
+<rect class="sqr" x="541.2" y="120" width="40" height="40"/>
+<line class="fit" x1="345.8" y1="120" x2="564.2" y2="120"/>
+<circle class="pt" cx="368.8" cy="60" r="4.5"/>
+<circle class="pt" cx="426.2" cy="140" r="4.5"/>
+<circle class="pt" cx="483.8" cy="120" r="4.5"/>
+<circle class="pt" cx="541.2" cy="160" r="4.5"/>
+<text class="tk" x="368.8" y="215" text-anchor="middle">1</text>
+<text class="tk" x="426.2" y="215" text-anchor="middle">2</text>
+<text class="tk" x="483.8" y="215" text-anchor="middle">3</text>
+<text class="tk" x="541.2" y="215" text-anchor="middle">4</text>
+<text class="an" x="455" y="16" text-anchor="middle">Linha na média: ŷ = 5</text>
+<text class="an resc" x="455" y="234" text-anchor="middle">soma das áreas = 14</text>
+</svg></div><figcaption>Dados da Lista 2, Ex. 3. Cada quadrado vermelho tem lado igual ao resíduo. À esquerda, a reta do MQO: a soma das áreas é 4,2. À direita, uma linha horizontal na média: a soma é 14. Nenhuma outra reta consegue menos que 4,2 (por exemplo, \(\hat y=9-1{,}6x\) dá 4,4).</figcaption></figure>
+  <ul>
+    <li><strong>Por que “quadrados”?</strong> Se somássemos os resíduos sem elevar ao quadrado, os positivos cancelariam os negativos e uma reta péssima poderia dar soma zero. O quadrado deixa tudo positivo, pune mais os erros grandes e permite achar a solução com derivadas (CPOs), chegando a uma fórmula fechada.</li>
+    <li><strong>Por que “mínimos”?</strong> Porque minimizamos essa soma: \(\min_{b_0,b_1}\sum_i(y_i-b_0-b_1x_i)^2\).</li>
+    <li><strong>Por que “ordinários”?</strong> Porque todas as observações têm o <strong>mesmo peso</strong>. Existem variações: <strong>MQP/WLS</strong> (ponderados, pesos diferentes, usados com heterocedasticidade, Aula 6), <strong>MQG/GLS</strong> (generalizados, com autocorrelação, <a href="#p2">Prévia da P2</a>) e <strong>MQNL</strong> (não lineares, quando os parâmetros não entram de forma linear, Aula 4).</li>
+  </ul>
+  <p><strong>O resultado do MQO</strong> são as duas fórmulas que você decorou:</p>
+  <div class="mathblock">\[\hat\beta_1=\frac{\sum(x_i-\bar x)(y_i-\bar y)}{\sum(x_i-\bar x)^2}=\frac{\widehat{Cov}(x,y)}{\widehat{Var}(x)},\qquad\hat\beta_0=\bar y-\hat\beta_1\bar x\]</div>
+  <p><strong>O que o MQO garante sempre</strong> (álgebra, em qualquer amostra): resíduos somam zero, são ortogonais a x, e a reta passa por \((\bar x,\bar y)\). <strong>O que depende de hipóteses</strong> (estatística): ser não viesado (RLS.1–4), ter a variância \(\sigma^2/SQT_x\) e ser BLUE (RLS.1–5), ter t exata (RLS.6). A derivação completa está na <a href="#aula3">Aula 3</a>; as propriedades, na <a href="#aula5">Aula 5</a>.</p>
+
+  <h3>5. Regressão simples e regressão múltipla</h3>
+  <ul>
+    <li><strong>Regressão linear simples:</strong> uma variável explicativa. \(y=\beta_0+\beta_1x+u\). \(\beta_1\) é a variação média de y quando x aumenta 1 unidade. É o conteúdo da P1.</li>
+    <li><strong>Regressão linear múltipla:</strong> várias explicativas. \(y=\beta_0+\beta_1x_1+\beta_2x_2+\dots+\beta_kx_k+u\). Cada \(\beta_j\) é o efeito de \(x_j\) <strong>mantendo as outras constantes</strong> (ceteris paribus). Serve, por exemplo, para tirar do erro uma variável que causaria viés. A aula seguinte à de dummies começa esse assunto (<a href="#p2">Prévia da P2</a>).</li>
+  </ul>
+  <p>Nas duas, <strong>y</strong> é a variável <strong>dependente</strong> (explicada), <strong>x</strong> é a <strong>explicativa</strong> (independente, regressor) e <strong>u</strong> é o <strong>erro</strong>: tudo o que afeta y e não está no modelo.</p>
+
+  <h3>6. Erro × resíduo</h3>
+  <div class="tbl"><table>
+    <thead><tr><th></th><th>Erro \(u_i\)</th><th>Resíduo \(\hat u_i\)</th></tr></thead>
+    <tbody>
+      <tr><td>De onde vem</td><td>Do modelo populacional: \(u_i=y_i-\beta_0-\beta_1x_i\)</td><td>Da reta estimada: \(\hat u_i=y_i-\hat\beta_0-\hat\beta_1x_i\)</td></tr>
+      <tr><td>Observável?</td><td>Não (depende dos β verdadeiros)</td><td>Sim, é calculado</td></tr>
+      <tr><td>Soma zero?</td><td>Não necessariamente</td><td>Sim, sempre (com intercepto)</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>7. Exogeneidade e endogeneidade</h3>
+  <p><strong>Exogeneidade</strong> (RLS.4, \(E(u\mid x)=0\)): o que ficou no erro não tem relação sistemática com x. É a hipótese que faz o MQO acertar o alvo em média. <strong>Endogeneidade</strong> é o contrário: algo no erro anda junto com x. As três causas vistas no curso são <strong>variável omitida</strong> (habilidade, em salário × educação), <strong>erro de medida</strong> em x e <strong>simultaneidade</strong> (x afeta y e y afeta x). Com endogeneidade, o MQO fica viesado e inconsistente, e mais dados não resolvem (<a href="#aula5">Aula 5</a>, seção 16).</p>
+
+  <h3>8. Homocedasticidade e heterocedasticidade</h3>
+  <p><strong>Homo</strong> = igual, <strong>cedasticidade</strong> = dispersão. <strong>Homocedasticidade</strong> (RLS.5): a variância do erro é a mesma para qualquer x. <strong>Heterocedasticidade</strong>: a variância muda com x (a poupança varia pouco entre os pobres e muito entre os ricos). Consequências: o MQO continua sem viés, mas a fórmula usual do erro-padrão fica errada e o MQO deixa de ser BLUE. Remédio: <strong>erro-padrão robusto</strong> (HC0 a HC3) ou MQP (Aulas 5 e 6).</p>
+
+  <h3>9. Multicolinearidade e autocorrelação</h3>
+  <ul>
+    <li><strong>Multicolinearidade</strong> (regressão múltipla): as explicativas são muito correlacionadas entre si, então fica difícil separar o efeito de cada uma. <strong>Perfeita</strong> (uma é combinação exata das outras, como na armadilha da dummy): o MQO nem calcula. <strong>Imperfeita</strong>: não causa viés, mas aumenta os erros-padrão.</li>
+    <li><strong>Autocorrelação</strong> (dados no tempo): o erro de um período está correlacionado com o de outro (um choque ruim hoje tende a continuar amanhã). Não causa viés sob exogeneidade estrita, mas os erros-padrão usuais ficam errados.</li>
+  </ul>
+  <p>Os dois estão explicados com números na <a href="#p2">Prévia da P2</a>. Não fazem parte do material da P1.</p>
+
+  <h3>10. Variável dummy</h3>
+  <p>Uma variável que vale <strong>1</strong> se a pessoa tem uma característica e <strong>0</strong> se não tem (sindicalizado, mulher, participou de um programa). Numa regressão \(y=\beta_0+\beta_1D+u\), \(\beta_0\) é a média do grupo D = 0 e \(\beta_1\) é a <strong>diferença de médias</strong> entre os grupos (<a href="#dummies">aula de dummies</a>).</p>
+
+  <h3>11. Leis dos Grandes Números e Teorema Central do Limite</h3>
+  <ul>
+    <li><strong>LGN:</strong> com muitas observações, a média amostral chega perto da média populacional. É o que garante que estimadores como \(\bar X\) e \(\hat\beta_1\) sejam consistentes. Todas as versões estão no <a href="#lgn">módulo LGN</a>.</li>
+    <li><strong>TCL:</strong> a média de muitas observações (padronizada) tem distribuição aproximadamente <strong>normal</strong>, qualquer que seja a distribuição original. É o que justifica usar a normal nos testes com amostras grandes.</li>
+  </ul>
+
+  <h3>12. Inferência: erro-padrão, t, p-valor, IC</h3>
+  <ul>
+    <li><strong>Erro-padrão:</strong> o tamanho típico do erro da estimativa, \(ep(\hat\beta_1)=\hat\sigma/\sqrt{SQT_x}\).</li>
+    <li><strong>Estatística t:</strong> quantos erros-padrão a estimativa está do valor de \(H_0\).</li>
+    <li><strong>p-valor:</strong> se \(H_0\) fosse verdade, a chance de ver algo tão ou mais extremo. Pequeno → rejeita. Não é a chance de \(H_0\) ser verdade.</li>
+    <li><strong>IC:</strong> a faixa de valores compatíveis com os dados; contém exatamente os valores que o teste não rejeitaria.</li>
+    <li><strong>\(R^2\):</strong> a fração da variação de y acompanhada pela reta. Mede ajuste, não causalidade.</li>
+  </ul>
+
+  <h3>Teste rápido</h3>
+  <div class="quiz" data-answer="c"><div class="qh">MQO</div>
+    <p>O MQO escolhe a reta que minimiza:</p>
+    <div class="opts"><button data-k="a">a) a soma dos resíduos</button><button data-k="b">b) a soma dos valores absolutos de y</button><button data-k="c">c) a soma dos quadrados dos resíduos</button><button data-k="d">d) o número de pontos fora da reta</button></div>
+    <div class="fb" hidden>c. A soma simples dos resíduos pode ser zero com uma reta ruim; os quadrados evitam o cancelamento.</div></div>
+  <div class="quiz" data-answer="b"><div class="qh">Conceitos</div>
+    <p>“Na minha amostra, a inclinação estimada foi 1,15.” O número 1,15 é:</p>
+    <div class="opts"><button data-k="a">a) o parâmetro</button><button data-k="b">b) uma estimativa</button><button data-k="c">c) o estimador</button><button data-k="d">d) o viés</button></div>
+    <div class="fb" hidden>b. O estimador é a regra; 1,15 é a realização dela nesta amostra.</div></div>
+  <div class="quiz" data-answer="a"><div class="qh">Conceitos</div>
+    <p>O “O” de MQO/OLS significa que:</p>
+    <div class="opts"><button data-k="a">a) todas as observações têm o mesmo peso</button><button data-k="b">b) os dados estão ordenados</button><button data-k="c">c) a reta passa pela origem</button><button data-k="d">d) o método é ótimo em qualquer situação</button></div>
+    <div class="fb" hidden>a. “Ordinários” em oposição a ponderados (MQP) ou generalizados (MQG).</div></div>
+  <div class="quiz" data-answer="d"><div class="qh">Conceitos</div>
+    <p>Qual problema <strong>não</strong> causa viés no MQO (supondo \(E(u\mid x)=0\))?</p>
+    <div class="opts"><button data-k="a">a) variável omitida correlacionada com x</button><button data-k="b">b) erro de medida em x</button><button data-k="c">c) simultaneidade</button><button data-k="d">d) heterocedasticidade</button></div>
+    <div class="fb" hidden>d. Heterocedasticidade afeta a variância e o erro-padrão, não o centro. As outras três são formas de endogeneidade.</div></div>
+  <div class="done-row"><button class="btn done-btn" data-done="conceitos" aria-pressed="false">Marcar como concluído</button></div>
+</section>
 
 
 <!-- ================= MATEMÁTICA 1: FUNÇÕES, EXPONENCIAL E LOG ================= -->
@@ -1339,7 +1910,7 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
     </tbody>
   </table></div>
   <p>Exemplos da aula: “A desigualdade de renda diminuiu no Brasil?” (descrição); “Qual é o efeito de um ano adicional de educação sobre o salário?” (causalidade); “Qual será a inflação no próximo trimestre?” (previsão). A interpretação dos resultados depende da pergunta.</p>
-  <p><strong>Previsão não exige causalidade:</strong> ver pessoas com guarda-chuva ajuda a prever chuva, mas abrir um guarda-chuva não provoca chuva. Boa capacidade preditiva não basta para uma interpretação causal.</p>
+  <p><strong>Previsão não exige causalidade:</strong> ver pessoas com guarda-chuva ajuda a prever chuva, mas abrir um guarda-chuva não provoca chuva. Boa capacidade preditiva não basta para uma interpretação causal. Para prever, procuramos relações <strong>estáveis</strong> em observações novas; para avaliar uma política, precisamos saber o que aconteceria <strong>se a política fosse alterada</strong>.</p>
 
   <h3>A sequência de uma análise empírica</h3>
   <ol class="steps">
@@ -1374,12 +1945,21 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
   <h3>Ceteris paribus e o experimento ideal</h3>
   <p>O efeito causal de um ano a mais de estudo compara salários sob diferentes níveis de educação <strong>mantendo constantes os demais determinantes relevantes</strong> (ceteris paribus): \(\Delta wage\) quando \(\Delta educ=1\).</p>
   <p><strong>Experimento do fertilizante:</strong> selecionamos lotes, atribuímos o fertilizante aleatoriamente, mantemos o manejo semelhante e comparamos as médias. A atribuição aleatória torna o fertilizante independente, em média, da qualidade da terra. Com educação isso é inviável: as pessoas escolhem quanto estudar, e habilidade e ambiente familiar afetam educação e salário ao mesmo tempo. Por isso dados observacionais exigem hipóteses adicionais.</p>
+  <div class="box def"><span class="lbl">Quando o tratamento não é aleatório, o que se faz (slide da aula)</span>
+    <ul>
+      <li>controlar os fatores <strong>observáveis</strong> que diferenciam os grupos;</li>
+      <li>explorar regras ou acontecimentos que gerem variação <strong>comparável</strong>;</li>
+      <li>formular hipóteses <strong>explícitas</strong> sobre os fatores não observados;</li>
+      <li>verificar se a comparação responde à pergunta original.</li>
+    </ul>
+    <p>Essas estratégias tentam reproduzir, tanto quanto possível, a comparação de um experimento ideal.</p>
+  </div>
 
   <h3>Estruturas de dados</h3>
   <ul>
-    <li><strong>Corte transversal (cross-section):</strong> várias unidades num ponto do tempo. A ordem das linhas não contém informação.</li>
-    <li><strong>Série temporal:</strong> variáveis ao longo do tempo (inflação mensal, PIB trimestral). A ordem cronológica é essencial.</li>
-    <li><strong>Painel:</strong> as <em>mesmas</em> unidades em dois ou mais períodos.</li>
+    <li><strong>Corte transversal (cross-section):</strong> várias unidades (indivíduos, firmas, municípios, países) num ponto do tempo ou período curto. Em geral, a ordem das linhas não contém informação econômica.</li>
+    <li><strong>Série temporal:</strong> uma ou mais variáveis ao longo do tempo (inflação mensal, PIB trimestral, preços diários de ações). A ordem cronológica é essencial, e tendências, sazonalidade e dependência temporal exigem atenção (é daí que vem a <a href="#p2">autocorrelação</a>).</li>
+    <li><strong>Painel:</strong> as <em>mesmas</em> unidades em dois ou mais períodos. Combina variação entre unidades e ao longo do tempo, permite estudar mudanças individuais e, sob condições adequadas, controlar características que não mudam no tempo.</li>
     <li><strong>Cortes transversais empilhados:</strong> amostras em momentos diferentes, sem precisar serem as mesmas unidades.</li>
   </ul>
 
@@ -1676,6 +2256,151 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
     </ul>
   </div>
   <div class="done-row"><button class="btn done-btn" data-done="aula2" aria-pressed="false">Marcar como concluído</button></div>
+</section>
+
+
+<!-- ================= LEIS DOS GRANDES NÚMEROS ================= -->
+<section class="mod" id="lgn" data-title="Leis dos Grandes Números">
+  <div class="eyebrow"><span class="tag">Aulas 1, 2 e 5</span> <span class="tag warn">Versões além da fraca: complemento</span></div>
+  <h2>Todas as Leis dos Grandes Números</h2>
+  <p>No material do professor, a Lei dos Grandes Números (LGN) aparece três vezes: na Aula 1 (“aproxima estatísticas amostrais de quantidades populacionais”), na Aula 2 (convergência em probabilidade, desigualdade de Chebyshev, Slutsky) e na Aula 5 (“a LGN liga amostra e população” e sustenta a consistência do MQO). Aqui estão todas as versões, da mais intuitiva à mais forte. O que vai além dos slides está marcado.</p>
+
+  <h3>1. A ideia, sem fórmula</h3>
+  <p>Lance um dado honesto. Um lançamento pode dar qualquer coisa de 1 a 6. Mas a <strong>média</strong> de muitos lançamentos vai chegando perto de 3,5, que é a média teórica \(E(X)=\frac{1+2+3+4+5+6}{6}\). As flutuações para cima e para baixo vão se compensando.</p>
+  <figure><div class="scroll"><svg class="fig" viewBox="0 0 560 260" role="img" aria-label="Média corrente de mil lançamentos de um dado convergindo para 3,5" xmlns="http://www.w3.org/2000/svg">
+<line class="g" x1="50" y1="186.2" x2="540" y2="186.2"/>
+<line class="g" x1="50" y1="138.8" x2="540" y2="138.8"/>
+<line class="g" x1="50" y1="115" x2="540" y2="115"/>
+<line class="g" x1="50" y1="91.2" x2="540" y2="91.2"/>
+<line class="g" x1="50" y1="43.8" x2="540" y2="43.8"/>
+<line class="g" x1="50" y1="20" x2="50" y2="210"/>
+<line class="g" x1="148" y1="20" x2="148" y2="210"/>
+<line class="g" x1="246" y1="20" x2="246" y2="210"/>
+<line class="g" x1="344" y1="20" x2="344" y2="210"/>
+<line class="g" x1="442" y1="20" x2="442" y2="210"/>
+<line class="g" x1="540" y1="20" x2="540" y2="210"/>
+<line class="ax" x1="50" y1="210" x2="540" y2="210"/>
+<line class="ax" x1="50" y1="20" x2="50" y2="210"/>
+<text class="tk" x="50" y="226" text-anchor="middle">0</text>
+<text class="tk" x="148" y="226" text-anchor="middle">200</text>
+<text class="tk" x="246" y="226" text-anchor="middle">400</text>
+<text class="tk" x="344" y="226" text-anchor="middle">600</text>
+<text class="tk" x="442" y="226" text-anchor="middle">800</text>
+<text class="tk" x="540" y="226" text-anchor="middle">1000</text>
+<text class="tk" x="43" y="190.2" text-anchor="end">2</text>
+<text class="tk" x="43" y="142.8" text-anchor="end">3</text>
+<text class="tk" x="43" y="119" text-anchor="end">3,5</text>
+<text class="tk" x="43" y="95.2" text-anchor="end">4</text>
+<text class="tk" x="43" y="47.8" text-anchor="end">5</text>
+<text class="lb" x="295" y="254" text-anchor="middle">número de lançamentos (n)</text>
+<text class="lb" x="12" y="115" text-anchor="middle" transform="rotate(-90 12 115)">média até ali</text>
+<line class="true" x1="50" y1="115" x2="540" y2="115"/>
+<polyline class="fit" points="50.5,-3.8 51,20 51.5,91.2 52,79.4 52.5,62.8 52.9,51.7 53.4,43.8 53.9,43.8 54.4,64.9 54.9,58 55.4,65.3 55.9,67.5 56.4,65.7 56.9,77.7 57.4,72.2 57.8,73.4 58.3,71.7 58.8,75.4 59.3,76.2 59.8,72.2 60.3,73.2 60.8,74 61.3,78.9 61.8,85.3 62.2,91.2 62.7,91.2 63.2,96.5 63.7,94.6 64.2,96.2 64.7,97.6 65.2,94.3 65.7,91.2 66.2,91.2 66.7,89.9 67.2,88.5 67.6,89.9 68.1,87.4 68.6,85 69.1,83.9 69.6,87.7 70.1,86.6 70.6,85.6 71.1,87.9 71.6,86.9 72,87 72.5,90.2 73,93.3 73.5,96.2 74,94.2 74.5,93.2 75,94 75.5,96.7 76,94.8 76.5,93.9 77,95.6 77.4,98 77.9,98.8 78.4,99.4 78.9,98.5 79.4,100 79.9,102.2 80.4,100.4 80.9,102.6 81.4,103.9 81.8,102.2 82.3,100.6 82.8,101.2 83.3,99.6 83.8,100.9 84.3,100.1 84.8,98.6 85.3,99.2 85.8,98.4 86.3,100.2 86.8,100.8 87.2,101.3 87.7,99.9 88.2,101 88.7,100.9 89.2,101.9 89.7,103 90.2,103.4 90.7,102.7 91.2,101.4 91.7,103 92.1,102.8 92.6,102.7 93.1,104.2 93.6,103.5 94.1,102.3 94.6,103.8 95.1,104.2 95.6,103 96.1,103.9 96.5,105.2 97,105.1 97.5,104 98,104.8 98.5,105.2 99,105.5 99.5,106.8 100,108 100.5,108.8 101,110 101.4,109.3 101.9,110.1 102.4,109 102.9,108.4 103.4,107.4 103.9,108.1 104.4,107.5 104.9,107.8 105.4,107.6 105.9,108.7 106.3,108.2 106.8,108.9 107.3,108.3 107.8,108.6 108.3,109.2 108.8,109.9 109.3,110.9 109.8,109.9 110.3,110.6 110.8,110.4 111.2,109.9 111.7,109.3 112.2,108.8 112.7,107.9 113.2,108.9 113.7,109.2 114.2,109.4 114.7,110.3 115.2,109.8 115.7,110.7 116.2,111.3 116.6,111.9 117.1,111.7 117.6,111.6 118.1,111.8 118.6,112.6 119.1,113.1 119.6,114 120.1,114.2 120.6,115 121,115.5 121.5,116 122,115.2 122.5,115 123,114.5 123.5,113.7 124,113.6 124.5,113.8 125,113.3 125.5,113.5 126,113 126.4,113.8 126.9,113.3 127.4,112.6 127.9,113.1 128.4,112.3 128.9,112.5 129.4,111.8 129.9,112.5 130.4,112.7 130.9,112.3 131.3,111.9 131.8,112.6 132.3,112.7 132.8,112.3 133.3,112.2 133.8,112.6 134.3,112.8 134.8,112.4 135.3,112.5 135.8,113 136.2,112.3 136.7,112.5 137.2,113.1 137.7,113.3 138.2,113.2 138.7,113.8 139.2,113.7 139.7,113.3 140.2,112.9 140.7,112.6 141.1,113 141.6,112.3 142.1,112 142.6,111.4 143.1,112 143.6,112.1 144.1,111.5 144.6,111.7 145.1,112.3 145.6,112.2 146,112.6 146.5,113.2 147,112.6 147.5,112 148,112.1 148.5,112 149,111.7 149.5,111.4 150,112 150.4,111.9 150.9,111.3 151.4,111.7 151.9,112 152.4,111.5 152.9,111.6 153.4,111.1 153.9,111.4 154.4,111.8 154.9,112.1 155.3,112.5 155.8,112.6 156.3,113.1 156.8,113.5 157.3,113.2 157.8,113.7 158.3,113.8 158.8,113.7 159.3,114 159.8,114.6 160.2,115.1 160.7,115.6 161.2,115.7 161.7,115.4 162.2,115.9 162.7,115.4 163.2,115.7 163.7,115.8 164.2,115.3 164.7,115.2 165.1,114.9 165.6,115.4 166.1,114.9 166.6,114.6 167.1,115.1 167.6,115.2 168.1,115.5 168.6,115.4 169.1,115.7 169.6,115.4 170.1,114.9 170.5,114.6 171,115.1 171.5,115 172,114.9 172.5,115 173,115.3 173.5,115 174,114.7 174.5,115.2 174.9,115.1 175.4,114.8 175.9,114.4 176.4,114.6 176.9,115.1 177.4,115.4 177.9,115.6 178.4,115.5 178.9,115.5 179.4,115.4 179.8,115.4 180.3,115.7 180.8,116 181.3,116.4 181.8,116.7 182.3,116.4 182.8,116 183.3,116.4 183.8,116.5 184.3,116 184.8,116 185.2,116 185.7,116.3 186.2,115.9 186.7,116.1 187.2,116.4 187.7,115.9 188.2,115.7 188.7,115.6 189.2,116 189.6,116.4 190.1,116.8 190.6,116.6 191.1,116.2 191.6,116.4 192.1,116.8 192.6,116.6 193.1,116.1 193.6,116.4 194.1,116.1 194.5,116.2 195,115.8 195.5,115.9 196,115.6 196.5,115.9 197,116.1 197.5,116 198,116.1 198.5,116.2 199,115.8 199.4,115.7 199.9,115.6 200.4,115.4 200.9,115.3 201.4,114.9 201.9,114.8 202.4,114.6 202.9,114.4 203.4,114.2 203.9,113.9 204.3,114.3 204.8,114.1 205.3,113.7 205.8,113.5 206.3,113.3 206.8,113.5 207.3,113.6 207.8,113.5 208.3,113.6 208.8,113.2 209.2,112.9 209.7,112.7 210.2,113 210.7,112.8 211.2,112.8 211.7,113.1 212.2,113.3 212.7,113.3 213.2,113.2 213.7,112.9 214.2,112.8 214.6,112.9 215.1,113 215.6,113.2 216.1,113.1 216.6,113.3 217.1,113 217.6,113.2 218.1,113.1 218.6,112.8 219,112.7 219.5,112.4 220,112.1 220.5,112.3 221,112.3 221.5,112.7 222,112.6 222.5,112.4 223,112.1 223.5,112.5 223.9,112.7 224.4,113 224.9,113.3 225.4,113.4 225.9,113.1 226.4,113.4 226.9,113.8 227.4,113.6 227.9,113.6 228.4,113.8 228.8,114.2 229.3,114 229.8,113.9 230.3,114 230.8,113.9 231.3,114 231.8,114.3 232.3,114 232.8,113.8 233.3,113.5 233.8,113.7 234.2,113.4 234.7,113 235.2,113.4 235.7,113.3 236.2,113.5 236.7,113.6 237.2,113.5 237.7,113.7 238.2,113.8 238.7,113.7 239.1,113.8 239.6,113.6 240.1,113.3 240.6,113.1 241.1,112.8 241.6,112.9 242.1,112.6 242.6,112.8 243.1,112.6 243.6,112.5 244,112.5 244.5,112.5 245,112.3 245.5,112.1 246,111.8 246.5,111.9 247,112.2 247.5,111.9 248,112.1 248.5,112 248.9,111.8 249.4,111.7 249.9,111.6 250.4,111.3 250.9,111.2 251.4,111.5 251.9,111.7 252.4,111.5 252.9,111.2 253.3,111.5 253.8,111.7 254.3,111.5 254.8,111.2 255.3,111.4 255.8,111.2 256.3,111.4 256.8,111.6 257.3,111.8 257.8,111.8 258.2,111.6 258.7,111.9 259.2,111.9 259.7,112.1 260.2,112.1 260.7,112 261.2,112.2 261.7,112.5 262.2,112.2 262.7,112.4 263.1,112.3 263.6,112.1 264.1,111.9 264.6,112 265.1,111.9 265.6,112 266.1,112.1 266.6,112.4 267.1,112.2 267.6,112 268.1,111.9 268.5,112 269,111.9 269.5,111.8 270,111.8 270.5,111.6 271,111.4 271.5,111.5 272,111.5 272.5,111.4 273,111.6 273.4,111.9 273.9,112 274.4,112.2 274.9,112.5 275.4,112.2 275.9,112.5 276.4,112.5 276.9,112.3 277.4,112.3 277.9,112.2 278.3,112.5 278.8,112.6 279.3,112.9 279.8,112.9 280.3,113.1 280.8,113.1 281.3,113.2 281.8,113 282.3,113 282.8,113 283.2,113.2 283.7,113.1 284.2,112.9 284.7,113.1 285.2,113 285.7,113.3 286.2,113.5 286.7,113.7 287.2,113.4 287.6,113.7 288.1,113.9 288.6,113.9 289.1,113.9 289.6,114 290.1,113.8 290.6,114.1 291.1,113.9 291.6,114 292.1,114 292.6,113.9 293,113.8 293.5,113.5 294,113.5 294.5,113.5 295,113.5 295.5,113.3 296,113.1 296.5,113.2 297,113 297.4,113.1 297.9,112.8 298.4,112.6 298.9,112.6 299.4,112.5 299.9,112.6 300.4,112.6 300.9,112.6 301.4,112.8 301.9,112.8 302.4,112.9 302.8,112.7 303.3,112.8 303.8,112.8 304.3,112.8 304.8,112.8 305.3,112.8 305.8,112.8 306.3,113 306.8,112.9 307.2,113.1 307.7,113.4 308.2,113.2 308.7,113.1 309.2,113.2 309.7,112.9 310.2,113.2 310.7,113.2 311.2,113.3 311.7,113.2 312.2,113 312.6,113.1 313.1,113 313.6,112.9 314.1,113.1 314.6,113.2 315.1,113.1 315.6,113.1 316.1,113.1 316.6,113.3 317.1,113.3 317.5,113.1 318,113 318.5,112.9 319,113.1 319.5,112.8 320,112.7 320.5,112.6 321,112.5 321.5,112.4 322,112.5 322.4,112.7 322.9,112.7 323.4,112.9 323.9,113.1 324.4,113.2 324.9,113.2 325.4,113.2 325.9,113.4 326.4,113.4 326.8,113.4 327.3,113.5 327.8,113.4 328.3,113.4 328.8,113.4 329.3,113.2 329.8,113 330.3,113 330.8,113.2 331.3,113.3 331.8,113.6 332.2,113.5 332.7,113.6 333.2,113.5 333.7,113.5 334.2,113.4 334.7,113.5 335.2,113.6 335.7,113.4 336.2,113.3 336.6,113.4 337.1,113.5 337.6,113.5 338.1,113.5 338.6,113.3 339.1,113.1 339.6,113 340.1,113 340.6,113.1 341.1,113.1 341.6,113 342,113 342.5,113.1 343,113.1 343.5,113.1 344,113.1 344.5,113.2 345,113.3 345.5,113.2 346,113.1 346.4,112.9 346.9,112.7 347.4,112.8 347.9,112.9 348.4,112.9 348.9,113.1 349.4,113.1 349.9,112.9 350.4,113 350.9,113.1 351.4,113 351.8,112.9 352.3,113 352.8,113 353.3,113 353.8,112.9 354.3,113 354.8,113 355.3,112.8 355.8,112.8 356.2,112.6 356.7,112.7 357.2,112.7 357.7,112.7 358.2,112.6 358.7,112.8 359.2,112.9 359.7,112.8 360.2,112.9 360.7,113 361.1,112.8 361.6,112.7 362.1,112.9 362.6,112.7 363.1,112.7 363.6,112.8 364.1,112.7 364.6,112.7 365.1,112.9 365.6,113.1 366.1,113 366.5,112.9 367,113.1 367.5,113.1 368,113.2 368.5,113 369,113 369.5,112.8 370,112.9 370.5,113.1 370.9,113.3 371.4,113.3 371.9,113.4 372.4,113.4 372.9,113.3 373.4,113.3 373.9,113.4 374.4,113.2 374.9,113.4 375.4,113.3 375.9,113.2 376.3,113.4 376.8,113.4 377.3,113.4 377.8,113.5 378.3,113.5 378.8,113.4 379.3,113.2 379.8,113.1 380.3,113 380.8,113.1 381.2,112.9 381.7,112.9 382.2,113 382.7,112.9 383.2,113 383.7,113.1 384.2,113.3 384.7,113.2 385.2,113.1 385.7,112.9 386.1,112.9 386.6,112.8 387.1,113 387.6,112.9 388.1,112.8 388.6,112.9 389.1,112.9 389.6,112.9 390.1,112.7 390.5,112.6 391,112.7 391.5,112.6 392,112.5 392.5,112.5 393,112.4 393.5,112.4 394,112.3 394.5,112.2 395,112 395.4,112 395.9,112 396.4,112 396.9,112 397.4,112 397.9,111.9 398.4,111.9 398.9,111.8 399.4,111.8 399.9,112 400.3,112.2 400.8,112.2 401.3,112.3 401.8,112.1 402.3,112.1 402.8,112 403.3,111.8 403.8,112 404.3,112.1 404.8,112.3 405.2,112.4 405.7,112.3 406.2,112.2 406.7,112.2 407.2,112.2 407.7,112.2 408.2,112.4 408.7,112.3 409.2,112.4 409.7,112.5 410.1,112.7 410.6,112.8 411.1,113 411.6,113 412.1,113 412.6,112.9 413.1,113 413.6,113.1 414.1,113.1 414.6,113.1 415.1,113.1 415.5,113.2 416,113.2 416.5,113.2 417,113.1 417.5,113.1 418,112.9 418.5,112.9 419,112.8 419.5,113 419.9,113 420.4,112.8 420.9,112.9 421.4,112.9 421.9,113.1 422.4,113.1 422.9,113.2 423.4,113.1 423.9,113.1 424.4,113.2 424.9,113.3 425.3,113.4 425.8,113.4 426.3,113.3 426.8,113.4 427.3,113.3 427.8,113.3 428.3,113.3 428.8,113.4 429.3,113.3 429.8,113.4 430.2,113.5 430.7,113.6 431.2,113.5 431.7,113.4 432.2,113.3 432.7,113.1 433.2,113.1 433.7,113.2 434.2,113.2 434.7,113.3 435.1,113.4 435.6,113.3 436.1,113.3 436.6,113.3 437.1,113.3 437.6,113.4 438.1,113.3 438.6,113.4 439.1,113.4 439.6,113.5 440,113.6 440.5,113.4 441,113.4 441.5,113.4 442,113.3 442.5,113.2 443,113.1 443.5,113.1 444,113.1 444.5,113.3 444.9,113.2 445.4,113.3 445.9,113.4 446.4,113.4 446.9,113.3 447.4,113.2 447.9,113.4 448.4,113.4 448.9,113.4 449.3,113.5 449.8,113.6 450.3,113.6 450.8,113.5 451.3,113.5 451.8,113.4 452.3,113.4 452.8,113.3 453.3,113.2 453.8,113 454.2,113.1 454.7,113.2 455.2,113.2 455.7,113.1 456.2,113.3 456.7,113.4 457.2,113.3 457.7,113.3 458.2,113.4 458.7,113.3 459.1,113.3 459.6,113.4 460.1,113.5 460.6,113.6 461.1,113.7 461.6,113.8 462.1,113.7 462.6,113.8 463.1,113.7 463.6,113.7 464.1,113.6 464.5,113.7 465,113.7 465.5,113.9 466,113.8 466.5,113.7 467,113.5 467.5,113.4 468,113.2 468.5,113.4 468.9,113.4 469.4,113.3 469.9,113.5 470.4,113.6 470.9,113.7 471.4,113.8 471.9,113.6 472.4,113.6 472.9,113.5 473.4,113.5 473.9,113.4 474.3,113.2 474.8,113.2 475.3,113.2 475.8,113.1 476.3,113.3 476.8,113.4 477.3,113.4 477.8,113.4 478.3,113.5 478.8,113.5 479.2,113.4 479.7,113.5 480.2,113.4 480.7,113.4 481.2,113.5 481.7,113.5 482.2,113.5 482.7,113.4 483.2,113.4 483.6,113.5 484.1,113.6 484.6,113.5 485.1,113.4 485.6,113.3 486.1,113.2 486.6,113.3 487.1,113.3 487.6,113.3 488.1,113.1 488.6,113.2 489,113.2 489.5,113.2 490,113.2 490.5,113.2 491,113.4 491.5,113.4 492,113.3 492.5,113.3 493,113.3 493.4,113.3 493.9,113.3 494.4,113.4 494.9,113.4 495.4,113.2 495.9,113.4 496.4,113.4 496.9,113.5 497.4,113.4 497.9,113.3 498.4,113.5 498.8,113.4 499.3,113.6 499.8,113.7 500.3,113.8 500.8,113.7 501.3,113.6 501.8,113.7 502.3,113.7 502.8,113.8 503.2,113.7 503.7,113.9 504.2,113.8 504.7,113.8 505.2,113.8 505.7,114 506.2,113.9 506.7,113.8 507.2,113.8 507.7,113.9 508.2,113.9 508.6,113.8 509.1,114 509.6,114 510.1,114.1 510.6,114.1 511.1,114.1 511.6,114.1 512.1,114 512.6,113.9 513,113.9 513.5,113.9 514,113.9 514.5,113.9 515,114 515.5,114 516,114 516.5,114 517,114.1 517.5,114.1 518,114.1 518.4,114 518.9,114.1 519.4,114.2 519.9,114.3 520.4,114.4 520.9,114.3 521.4,114.3 521.9,114.2 522.4,114.2 522.8,114.2 523.3,114.2 523.8,114.1 524.3,114.2 524.8,114.1 525.3,114.1 525.8,114.2 526.3,114.1 526.8,114 527.3,114.1 527.8,114.1 528.2,114.2 528.7,114.1 529.2,114.1 529.7,114.2 530.2,114.2 530.7,114.2 531.2,114.2 531.7,114.1 532.2,114 532.6,114 533.1,113.9 533.6,113.9 534.1,113.9 534.6,114 535.1,114 535.6,113.9 536.1,113.9 536.6,113.9 537.1,114 537.5,114.1 538,114 538.5,114 539,114.1 539.5,114.3 540,114.3"/>
+<text class="an" x="353.8" y="105">E(X) = 3,5</text>
+<text class="an resc" x="69.6" y="34.2">no começo, a média oscila muito</text>
+</svg></div><figcaption>Mil lançamentos simulados de um dado. Depois de 10 lançamentos a média estava em 4,7; depois de 100, em 3,7; depois de 1.000, em 3,514. Ela oscila muito no começo e vai se “grudando” em 3,5.</figcaption></figure>
+  <div class="box def"><span class="lbl">Em uma frase</span>
+    <p>Quanto maior a amostra, mais a média amostral se aproxima da média populacional, <strong>com probabilidade cada vez mais alta</strong>. É isso que permite aprender sobre a população olhando uma amostra.</p>
+  </div>
+
+  <h3>2. Convergência em probabilidade (a linguagem das leis)</h3>
+  <p>Uma sequência \(Z_n\) <strong>converge em probabilidade</strong> para c, escrito \(Z_n\xrightarrow{p}c\) ou \(\text{plim}\,Z_n=c\), se para qualquer margem \(\varepsilon&gt;0\), por menor que seja:</p>
+  <div class="mathblock">\[P\big(|Z_n-c|&gt;\varepsilon\big)\longrightarrow0\quad\text{quando }n\to\infty\]</div>
+  <p>Em palavras: a chance de ficar “longe” de c (mais que ε) vai a zero. É a definição usada na Aula 2 e na consistência da Aula 5.</p>
+
+  <h3>3. A LGN de Bernoulli: proporções <span class="tag">1713</span></h3>
+  <p>A primeira versão, de Jakob Bernoulli: em tentativas independentes com probabilidade de sucesso p, a <strong>proporção de sucessos</strong> converge para p. Com uma moeda honesta, a proporção de caras converge para 0,5. O desvio-padrão da proporção é \(\sqrt{p(1-p)/n}\): 0,05 com n = 100 e 0,005 com n = 10.000. É a base da probabilidade frequentista do slide da Aula 2 (“frequência relativa de longo prazo”).</p>
+
+  <h3>4. A desigualdade de Chebyshev (a ferramenta da prova)</h3>
+  <p>Para qualquer variável com média μ e variância σ² finitas, e qualquer k &gt; 0:</p>
+  <div class="mathblock">\[P\big(|X-\mu|\ge\varepsilon\big)\le\frac{\sigma^2}{\varepsilon^2}\qquad\text{ou, com }\varepsilon=k\sigma:\qquad P\big(|X-\mu|\ge k\sigma\big)\le\frac{1}{k^2}\]</div>
+  <p>Vale para <strong>qualquer</strong> distribuição, e por isso é folgada. Com k = 2, garante que no máximo 25% dos valores ficam a 2 desvios-padrão ou mais da média; numa normal, a proporção verdadeira é cerca de 5%.</p>
+
+  <h3>5. A LGN fraca (a versão do curso)</h3>
+  <div class="box def"><span class="lbl">Enunciado (Aula 2)</span>
+    <p>Se \(X_1,\dots,X_n\) são iid com média μ e variância σ² finitas, então \(\bar X_n\xrightarrow{p}\mu\).</p>
+  </div>
+  <p><strong>Prova em 3 linhas</strong> (é exatamente o que o slide da Aula 2 diz: “como \(E[\hat\mu]=\mu\) e \(Var(\hat\mu)\to0\), a desigualdade de Chebyshev implica \(\hat\mu\xrightarrow{p}\mu\)”):</p>
+  <ol class="steps">
+    <li><div>\(E(\bar X_n)=\mu\) e, pela independência, \(Var(\bar X_n)=\sigma^2/n\).</div></li>
+    <li><div>Chebyshev aplicada a \(\bar X_n\): \(P\big(|\bar X_n-\mu|\ge\varepsilon\big)\le\dfrac{\sigma^2}{n\varepsilon^2}\).</div></li>
+    <li><div>Quando n → ∞, o lado direito vai a zero, então o esquerdo também. ∎</div></li>
+  </ol>
+  <div class="box ok"><span class="lbl">Com números: o dado (σ² = 35/12 ≈ 2,917), margem ε = 0,1</span>
+    <div class="tbl"><table>
+      <thead><tr><th class="r">n</th><th class="r">Garantia de Chebyshev: \(P(|\bar X-3{,}5|\ge0{,}1)\le\)</th><th class="r">Valor aproximado pela normal (TCL)</th></tr></thead>
+      <tbody>
+        <tr><td class="r">100</td><td class="r">2,92 (inútil: maior que 1)</td><td class="r">0,56</td></tr>
+        <tr><td class="r">1.000</td><td class="r">0,29</td><td class="r">0,064</td></tr>
+        <tr><td class="r">10.000</td><td class="r">0,029</td><td class="r">≈ 0</td></tr>
+        <tr><td class="r">100.000</td><td class="r">0,0029</td><td class="r">≈ 0</td></tr>
+      </tbody>
+    </table></div>
+    <p>A garantia vai a zero, que é o que a LGN afirma. O TCL mostra que, na prática, a convergência é bem mais rápida que a garantia de Chebyshev. <span class="muted">(Contas nossas.)</span></p>
+  </div>
+
+  <h3>6. As outras versões <span class="tag warn">complemento</span></h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Versão</th><th>Hipóteses</th><th>Conclusão</th><th>O que acrescenta</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Bernoulli</strong> (1713)</td><td>Tentativas independentes com a mesma p</td><td>proporção \(\xrightarrow{p}\) p</td><td>A primeira; só para proporções</td></tr>
+      <tr><td><strong>Chebyshev</strong> (1867)</td><td>Independentes (ou só não correlacionadas), variâncias limitadas; as médias podem ser diferentes</td><td>\(\frac1n\sum(X_i-\mu_i)\xrightarrow{p}0\)</td><td>Não exige distribuições idênticas</td></tr>
+      <tr><td><strong>Markov</strong></td><td>\(Var(\bar X_n)\to0\), mesmo com dependência</td><td>\(\bar X_n-E(\bar X_n)\xrightarrow{p}0\)</td><td>Permite observações dependentes (séries de tempo)</td></tr>
+      <tr><td><strong>Khinchine</strong> (fraca, 1929)</td><td>iid com média finita (não precisa de variância finita)</td><td>\(\bar X_n\xrightarrow{p}\mu\)</td><td>A versão fraca mais geral para iid</td></tr>
+      <tr><td><strong>Kolmogorov</strong> (forte, 1933)</td><td>iid com média finita</td><td>\(\bar X_n\to\mu\) <strong>quase certamente</strong>: \(P(\lim\bar X_n=\mu)=1\)</td><td>Convergência mais forte (ver abaixo)</td></tr>
+    </tbody>
+  </table></div>
+  <h4>Fraca × forte</h4>
+  <ul>
+    <li><strong>Fraca</strong> (em probabilidade): para cada n grande, a chance de \(\bar X_n\) estar longe de μ é pequena. Ela não proíbe que, numa sequência específica, a média se afaste de vez em quando para sempre.</li>
+    <li><strong>Forte</strong> (quase certa): com probabilidade 1, a sequência de médias converge. A partir de algum ponto, ela fica dentro da margem <em>e não sai mais</em>.</li>
+    <li>A forte implica a fraca. Para a econometria do curso (consistência), a fraca basta.</li>
+  </ul>
+  <h4>Quando a LGN falha</h4>
+  <p>Sem média finita não há lei. O exemplo clássico é a distribuição de <strong>Cauchy</strong> (uma t com 1 grau de liberdade): a média de n observações de Cauchy tem a mesma distribuição de uma única observação e nunca “sossega”. É por isso que as hipóteses falam em “média finita” ou “momentos finitos” (slide da Aula 5).</p>
+
+  <h3>7. O que a LGN <em>não</em> diz</h3>
+  <div class="box trap"><span class="lbl">Três armadilhas</span>
+    <ul>
+      <li><strong>Falácia do jogador (“lei das médias”).</strong> Depois de 10 caras seguidas, a próxima <strong>não</strong> tem mais chance de ser coroa: continua 1/2. A LGN não funciona por <em>compensação</em>, e sim por <em>diluição</em>. Com 10 caras extras seguidas de lançamentos honestos, a proporção esperada é (10 + 495)/1.000 = 0,505 depois de mil lançamentos e 0,500005 depois de um milhão. As 10 caras não são “devolvidas”: ficam irrelevantes.</li>
+      <li><strong>“Lei dos pequenos números”.</strong> Achar que amostras pequenas já refletem a população. A LGN fala de n grande; com 10 lançamentos, a média do dado foi 4,7.</li>
+      <li><strong>Não confunda LGN com LEI.</strong> LEI, no curso, é a <em>Lei das Expectativas Iteradas</em>, \(E[E(Y\mid X)]=E(Y)\) (Aula 2), que é outra coisa.</li>
+    </ul>
+    <p>E a LGN não corrige viés: se o estimador está centrado no lugar errado (variável omitida), ele converge para o lugar errado.</p>
+  </div>
+
+  <h3>8. LGN × TCL</h3>
+  <div class="tbl"><table>
+    <thead><tr><th></th><th>Lei dos Grandes Números</th><th>Teorema Central do Limite</th></tr></thead>
+    <tbody>
+      <tr><td>Pergunta</td><td><strong>Para onde</strong> a média vai?</td><td><strong>Com que formato</strong> ela se espalha em volta do alvo?</td></tr>
+      <tr><td>Resultado</td><td>\(\bar X_n\xrightarrow{p}\mu\)</td><td>\(\dfrac{\sqrt n(\bar X_n-\mu)}{\sigma}\xrightarrow{d}N(0,1)\)</td></tr>
+      <tr><td>Tipo de convergência</td><td>em probabilidade (para um número)</td><td>em distribuição (para uma distribuição)</td></tr>
+      <tr><td>Uso no curso</td><td>consistência de \(\bar X\), \(\hat\sigma^2\), \(\hat\beta_1\)</td><td>testes e ICs aproximadamente normais; erro robusto (Aula 6)</td></tr>
+    </tbody>
+  </table></div>
+  <p>A LGN diz que o erro \(\bar X_n-\mu\) vai a zero; o TCL diz a <strong>velocidade</strong>: ele encolhe como \(1/\sqrt n\) e, ampliado por \(\sqrt n\), tem forma de sino. Ilustração citada na Aula 2: o tabuleiro de Galton.</p>
+
+  <h3>9. Slutsky e a consistência do MQO (a ponte com a Aula 5)</h3>
+  <p><strong>Teorema do mapeamento contínuo / Slutsky</strong> <span class="muted">(o nome Slutsky aparece na Aula 2)</span>: se \(A_n\xrightarrow{p}a\) e \(B_n\xrightarrow{p}b\neq0\), então \(A_n/B_n\xrightarrow{p}a/b\), \(A_n+B_n\xrightarrow{p}a+b\), e assim por diante. Na Aula 2 ele justifica trocar σ por S no TCL.</p>
+  <p>Na Aula 5, a inclinação é uma razão de duas médias amostrais:</p>
+  <div class="mathblock">\[\hat\beta_1=\beta_1+\frac{\overbrace{n^{-1}\sum_i(X_i-\bar X)u_i}^{\xrightarrow{p}\ Cov(X,u)\ \text{(LGN)}}}{\underbrace{n^{-1}\sum_i(X_i-\bar X)^2}_{\xrightarrow{p}\ Var(X)\ \text{(LGN)}}}\ \xrightarrow{p}\ \beta_1+\frac{Cov(X,u)}{Var(X)}\quad\text{(Slutsky)}\]</div>
+  <p>A LGN cuida de cada média; Slutsky cuida da razão. Se \(Cov(X,u)=0\), \(\text{plim}\,\hat\beta_1=\beta_1\): o MQO é <strong>consistente</strong>. É o slide “Por que o MQO converge para o parâmetro verdadeiro?”. O mesmo raciocínio mostra que \(\hat\sigma^2\) e S² são consistentes.</p>
+
+  <h3>Teste rápido</h3>
+  <div class="quiz" data-answer="c"><div class="qh">LGN</div>
+    <p>Depois de 8 coroas seguidas numa moeda honesta, a probabilidade de cara no próximo lançamento é:</p>
+    <div class="opts"><button data-k="a">a) maior que 1/2, para compensar</button><button data-k="b">b) menor que 1/2</button><button data-k="c">c) exatamente 1/2</button><button data-k="d">d) 1</button></div>
+    <div class="fb" hidden>c. Os lançamentos são independentes. A LGN age por diluição, não por compensação.</div></div>
+  <div class="quiz" data-answer="b"><div class="qh">LGN</div>
+    <p>A prova da LGN fraca do curso usa:</p>
+    <div class="opts"><button data-k="a">a) o TCL</button><button data-k="b">b) a desigualdade de Chebyshev e \(Var(\bar X)=\sigma^2/n\)</button><button data-k="c">c) a Lei das Expectativas Iteradas</button><button data-k="d">d) a normalidade dos dados</button></div>
+    <div class="fb" hidden>b. \(P(|\bar X-\mu|\ge\varepsilon)\le\sigma^2/(n\varepsilon^2)\to0\).</div></div>
+  <div class="quiz" data-answer="d"><div class="qh">LGN × TCL</div>
+    <p>Qual afirmação é do TCL, e não da LGN?</p>
+    <div class="opts"><button data-k="a">a) \(\bar X\) chega perto de μ</button><button data-k="b">b) a proporção de caras vai a 0,5</button><button data-k="c">c) o MQO é consistente se \(Cov(X,u)=0\)</button><button data-k="d">d) a média padronizada é aproximadamente normal</button></div>
+    <div class="fb" hidden>d. O TCL descreve a forma da distribuição; a LGN, o ponto para onde ela converge.</div></div>
+  <div class="done-row"><button class="btn done-btn" data-done="lgn" aria-pressed="false">Marcar como concluído</button></div>
 </section>
 
 
@@ -2093,6 +2818,15 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
       <li>Log só existe para valores <strong>estritamente positivos</strong>. Lucro, que pode ser negativo, não entra em log direto.</li>
       <li>O \(R^2\) de uma regressão com Y <strong>não se compara</strong> com o de uma regressão com \(\ln Y\).</li>
       <li>Voltar do log para o nível exige cuidado: \(E[Y\mid X]\neq\exp(E[\ln Y\mid X])\) em geral. Sob erros normais e homocedásticos, \(E[Y\mid X=x]=\exp(\beta_0+\beta_1x+\sigma^2/2)\).</li>
+    </ul>
+  </div>
+
+  <div class="box def"><span class="lbl">Como escolher a forma funcional (slide da aula)</span>
+    <ul>
+      <li>Examine o formato dos dados e dos resíduos: gráficos sugerem transformações, mas não decidem sozinhos.</li>
+      <li>A teoria às vezes já indica a forma: elasticidade constante (log–log) é comum em Microeconomia.</li>
+      <li>Pense na interpretação desejada: associação em R$ ou em percentual?</li>
+      <li>Para previsão, avalie o desempenho fora da amostra e a estabilidade da relação.</li>
     </ul>
   </div>
 
@@ -3473,6 +4207,272 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
 </section>
 
 
+<!-- ================= PRÉVIA DA P2 ================= -->
+<section class="mod" id="p2" data-title="Prévia da P2">
+  <div class="eyebrow"><span class="tag">Prévia da P2</span> <span class="tag warn">Fora do material da P1</span></div>
+  <h2>Regressão múltipla, multicolinearidade, heterocedasticidade e autocorrelação</h2>
+  <div class="box trap"><span class="lbl">Leia antes</span>
+    <p>A apresentação do curso diz que ele cobre “regressão linear simples e <strong>múltipla</strong>”, e o último slide da aula de dummies anuncia a próxima aula: <em>regressão múltipla, vários regressores, interpretação ceteris paribus, viés de variável omitida e representação matricial inicial</em>. Isso é conteúdo da <strong>P2</strong>. <strong>Multicolinearidade</strong> aparece no material só como “colinearidade perfeita” (armadilha da dummy), e <strong>autocorrelação</strong> não aparece em nenhum material. Tudo aqui foi incluído porque você pediu; os exemplos numéricos são nossos.</p>
+  </div>
+
+  <h3>1. Regressão múltipla: a ideia</h3>
+  <div class="mathblock">\[y_i=\beta_0+\beta_1x_{1i}+\beta_2x_{2i}+\dots+\beta_kx_{ki}+u_i\]</div>
+  <p>Cada \(\beta_j\) é a variação média de y quando \(x_j\) aumenta 1 unidade, <strong>mantendo todas as outras x constantes</strong> (ceteris paribus). Na regressão simples, tudo o que não é x vai para o erro; na múltipla, podemos <strong>tirar do erro</strong> as variáveis que causariam viés.</p>
+  <p><strong>Hipóteses</strong> (as mesmas da Aula 5, adaptadas): linearidade nos parâmetros; amostragem aleatória; <strong>nenhuma colinearidade perfeita</strong> (substitui “x varia”); \(E(u\mid x_1,\dots,x_k)=0\); homocedasticidade. Sob as quatro primeiras, MQO é não viesado; com a quinta, é BLUE.</p>
+  <p><strong>MQO:</strong> minimiza \(\sum_i(y_i-b_0-b_1x_{1i}-\dots-b_kx_{ki})^2\). São k + 1 CPOs: \(\sum\hat u_i=0\) e \(\sum x_{ji}\hat u_i=0\) para cada j. Na forma matricial (a “representação matricial inicial” anunciada): \(\hat{\boldsymbol\beta}=(\mathbf X'\mathbf X)^{-1}\mathbf X'\mathbf y\).</p>
+
+  <h3>2. Exemplo: o que muda quando incluímos a variável omitida</h3>
+  <div class="tbl"><table>
+    <thead><tr><th class="r">i</th><th class="r">educ (anos)</th><th class="r">hab (índice)</th><th class="r">salário (R$/h)</th></tr></thead>
+    <tbody>
+      <tr><td class="r">1</td><td class="r">8</td><td class="r">1</td><td class="r">12</td></tr>
+      <tr><td class="r">2</td><td class="r">10</td><td class="r">2</td><td class="r">15</td></tr>
+      <tr><td class="r">3</td><td class="r">12</td><td class="r">4</td><td class="r">23</td></tr>
+      <tr><td class="r">4</td><td class="r">12</td><td class="r">3</td><td class="r">20</td></tr>
+      <tr><td class="r">5</td><td class="r">14</td><td class="r">6</td><td class="r">29</td></tr>
+      <tr><td class="r">6</td><td class="r">16</td><td class="r">8</td><td class="r">33</td></tr>
+    </tbody>
+  </table></div>
+  <div class="tbl"><table>
+    <thead><tr><th>Regressão</th><th>Resultado</th><th>Leitura</th></tr></thead>
+    <tbody>
+      <tr><td>Simples: salário em educ</td><td>\(\widehat{sal}=-11{,}6+2{,}8\,educ\)</td><td>Cada ano de estudo associado a R$ 2,80/h a mais</td></tr>
+      <tr><td>Múltipla: salário em educ e hab</td><td>\(\widehat{sal}=2+1\,educ+2\,hab\)</td><td>Um ano a mais de estudo, <strong>com a mesma habilidade</strong>: R$ 1,00/h a mais</td></tr>
+      <tr><td>Auxiliar: hab em educ</td><td>\(\widehat{hab}=-6{,}8+0{,}9\,educ\)</td><td>Quem estuda mais tem, em média, mais habilidade</td></tr>
+    </tbody>
+  </table></div>
+  <p><strong>A conta do viés, exata na amostra:</strong> o coeficiente simples é o múltiplo mais o “caminho” pela habilidade:</p>
+  <div class="mathblock">\[\tilde\beta_1=\hat\beta_1+\hat\beta_2\,\tilde\delta_1=1+2\times0{,}9=2{,}8\]</div>
+  <p>É a fórmula do viés de variável omitida da Aula 5 (\(0{,}8+1{,}2\times0{,}7\)), agora vista com dados. A regressão simples atribui à educação R$ 1,80 que, na verdade, vêm da habilidade.</p>
+  <p><strong>Conferindo as CPOs:</strong> os resíduos da múltipla são 0, −1, 1, 0, 1, −1: somam zero, \(\sum educ_i\hat u_i=-10+12+14-16=0\) e \(\sum hab_i\hat u_i=-2+4+6-8=0\). SQR = 4.</p>
+  <details class="sol"><summary>“Partialling out” (Frisch–Waugh): de onde vem o 1 da múltipla</summary><div class="in">
+    <p>O \(\hat\beta_1\) da múltipla pode ser obtido em dois passos: (1) regredir educ em hab e guardar o resíduo \(\hat r_1\), que é a parte da educação <strong>não explicada</strong> pela habilidade; (2) regredir salário em \(\hat r_1\): \(\hat\beta_1=\sum\hat r_{1i}y_i/\sum\hat r_{1i}^2\). Aqui dá exatamente 1. É isso que “mantendo hab constante” quer dizer: usamos só a variação da educação que não anda junto com a habilidade.</p>
+  </div></details>
+
+  <h3>3. Ajuste, graus de liberdade e testes</h3>
+  <ul>
+    <li><strong>\(\hat\sigma^2=\dfrac{SQR}{n-k-1}\)</strong>: o n − 2 da regressão simples vira n − k − 1 (k explicativas + intercepto). No exemplo: 4/(6 − 2 − 1) = 1,333.</li>
+    <li><strong>\(R^2\)</strong> nunca diminui quando se acrescenta uma variável, mesmo inútil. Por isso existe o <strong>\(R^2\) ajustado</strong>, que penaliza variáveis a mais:
+      <div class="mathblock">\[\bar R^2=1-\frac{SQR/(n-k-1)}{SQT/(n-1)}\]</div>
+      No exemplo: \(R^2=1-4/324\approx0{,}988\) e \(\bar R^2=1-\frac{4/3}{324/5}\approx0{,}979\). Outro: \(R^2=0{,}60\), n = 30, k = 3 dá \(\bar R^2\approx0{,}554\).</li>
+    <li><strong>Teste t</strong> de cada coeficiente: igual à Aula 6, com n − k − 1 graus de liberdade.</li>
+    <li><strong>Teste F</strong> (vários coeficientes ao mesmo tempo, o “teaser” da Aula 6). Para \(H_0:\beta_1=\dots=\beta_k=0\):
+      <div class="mathblock">\[F=\frac{R^2/k}{(1-R^2)/(n-k-1)}\sim F_{k,\;n-k-1}\ \text{sob }H_0\]</div>
+      Com \(R^2=0{,}60\), n = 30, k = 3: \(F=\frac{0{,}2}{0{,}4/26}=13\), bem acima do crítico de 5% (≈ 2,98). Rejeita.</li>
+  </ul>
+
+  <h3>4. Multicolinearidade</h3>
+  <p><strong>Perfeita:</strong> uma explicativa é combinação linear exata das outras. Exemplos: \(x_2=2x_1\); educação em anos e em meses no mesmo modelo; a <strong>armadilha da dummy</strong> (D e 1 − D com intercepto). O MQO simplesmente não tem solução única, e a hipótese de “nenhuma colinearidade perfeita” a proíbe.</p>
+  <p><strong>Imperfeita</strong> (a que importa na prática): as explicativas são muito correlacionadas, mas não perfeitamente. Aí aparece na variância:</p>
+  <div class="mathblock">\[Var(\hat\beta_j)=\frac{\sigma^2}{SQT_j\,(1-R_j^2)},\qquad VIF_j=\frac{1}{1-R_j^2}\]</div>
+  <p>\(R_j^2\) é o \(R^2\) da regressão de \(x_j\) nas outras explicativas. Com uma só explicativa, \(R_j^2=0\) e volta a fórmula \(\sigma^2/SQT_x\) da Aula 5. O VIF (fator de inflação da variância) diz quantas vezes a variância aumentou por causa da correlação com as outras.</p>
+  <div class="tbl"><table>
+    <thead><tr><th class="r">\(R_j^2\)</th><th class="r">0</th><th class="r">0,5</th><th class="r">0,8</th><th class="r">0,9</th><th class="r">0,99</th></tr></thead>
+    <tbody>
+      <tr><td class="r">VIF</td><td class="r">1</td><td class="r">2</td><td class="r">5</td><td class="r">10</td><td class="r">100</td></tr>
+      <tr><td class="r">ep multiplicado por \(\sqrt{VIF}\)</td><td class="r">1</td><td class="r">1,41</td><td class="r">2,24</td><td class="r">3,16</td><td class="r">10</td></tr>
+    </tbody>
+  </table></div>
+  <div class="box ok"><span class="lbl">O sintoma clássico, no nosso exemplo</span>
+    <p>Educação e habilidade andam muito juntas: \(R^2\) de educ em hab ≈ 0,953, VIF ≈ 21. Com \(\hat\sigma^2=4/3\):</p>
+    <ul>
+      <li>educ: \(ep\approx0{,}84\), \(t=1/0{,}84\approx1{,}19\) (p ≈ 0,32);</li>
+      <li>hab: \(ep\approx0{,}91\), \(t=2/0{,}91\approx2{,}19\) (p ≈ 0,12).</li>
+    </ul>
+    <p>Com 3 g.l., o crítico de 5% é 3,182: <strong>nenhum</strong> coeficiente é significativo sozinho. Mas \(R^2\approx0{,}99\) e, com SQE = 324 − 4 = 320, \(F=\frac{SQE/k}{SQR/(n-k-1)}=\frac{320/2}{4/3}=120\) (crítico ≈ 9,55, p ≈ 0,001): <strong>juntas</strong>, as duas explicam muito. Os dados sabem que “educação + habilidade” importa, mas não conseguem separar quanto é de cada uma.</p>
+  </div>
+  <ul>
+    <li><strong>Não causa viés</strong> e o MQO continua BLUE. O problema é só a precisão.</li>
+    <li><strong>Sinais:</strong> t individuais pequenos com F grande; coeficientes que mudam muito com pequenas mudanças nos dados.</li>
+    <li><strong>O que fazer:</strong> mais dados ou mais variação independente nas x; aceitar, se o interesse é o efeito conjunto ou outro coeficiente. <strong>Não</strong> retire uma variável relevante só para baixar o VIF: isso troca imprecisão por viés de variável omitida. VIF &gt; 10 é um alerta usual, não um teste.</li>
+  </ul>
+
+  <h3>5. Heterocedasticidade (resumo)</h3>
+  <p>Já estudada nas <a href="#aula5">Aulas 5</a> e <a href="#aula6">6</a>. \(Var(u\mid x)\) muda com x. MQO continua não viesado e consistente, mas o erro-padrão usual fica errado e ele deixa de ser BLUE. Diagnóstico: gráfico dos resíduos (funil), testes de Breusch–Pagan e White. Remédio: erros-padrão robustos (HC0 a HC3) ou MQP. Na regressão múltipla, tudo continua igual.</p>
+
+  <h3>6. Autocorrelação (correlação serial)</h3>
+  <p>Aparece em <strong>séries temporais</strong>, em que a ordem dos dados importa (Aula 1). Há autocorrelação quando os erros de períodos diferentes são correlacionados: \(Cov(u_t,u_s\mid X)\neq0\) para \(t\neq s\). Em corte transversal, a amostragem aleatória (RLS.2) elimina isso; no tempo, não.</p>
+  <p>O modelo mais comum é o <strong>AR(1)</strong>: \(u_t=\rho\,u_{t-1}+e_t\), com \(|\rho|\lt1\) e \(e_t\) ruído independente. Com ρ &gt; 0, um choque ruim hoje tende a continuar amanhã (inércia).</p>
+  <figure><div class="scroll"><svg class="fig" viewBox="0 0 580 212" role="img" aria-label="Resíduos independentes comparados com resíduos autocorrelacionados" xmlns="http://www.w3.org/2000/svg">
+<line class="ax" x1="20" y1="109" x2="270" y2="109"/>
+<line class="ax" x1="20" y1="28" x2="20" y2="190"/>
+<polyline class="cB" points="20,113.9 24.2,99.1 28.3,113.4 32.5,115.1 36.7,126.9 40.8,113.1 45,87.6 49.2,100.8 53.3,89 57.5,104.2 61.7,101.4 65.8,105.4 70,141.1 74.2,92.5 78.3,99.2 82.5,99.4 86.7,141.6 90.8,142.6 95,126.2 99.2,118 103.3,103.1 107.5,109.9 111.7,99 115.8,121.4 120,103 124.2,101.4 128.3,121.8 132.5,75.9 136.7,98.3 140.8,85.9 145,121 149.2,123.3 153.3,115.6 157.5,111.1 161.7,96.8 165.8,104.2 170,117.6 174.2,127.5 178.3,119 182.5,85.5 186.7,124.6 190.8,104.3 195,100.8 199.2,137.7 203.3,108.1 207.5,83.8 211.7,147.8 215.8,115.2 220,111 224.2,124.8 228.3,99.4 232.5,110.2 236.7,137.2 240.8,93 245,96.1 249.2,90.8 253.3,81.2 257.5,102 261.7,106.7 265.8,134.1"/>
+<circle class="pt sm" cx="20" cy="113.9" r="2.4"/>
+<circle class="pt sm" cx="24.2" cy="99.1" r="2.4"/>
+<circle class="pt sm" cx="28.3" cy="113.4" r="2.4"/>
+<circle class="pt sm" cx="32.5" cy="115.1" r="2.4"/>
+<circle class="pt sm" cx="36.7" cy="126.9" r="2.4"/>
+<circle class="pt sm" cx="40.8" cy="113.1" r="2.4"/>
+<circle class="pt sm" cx="45" cy="87.6" r="2.4"/>
+<circle class="pt sm" cx="49.2" cy="100.8" r="2.4"/>
+<circle class="pt sm" cx="53.3" cy="89" r="2.4"/>
+<circle class="pt sm" cx="57.5" cy="104.2" r="2.4"/>
+<circle class="pt sm" cx="61.7" cy="101.4" r="2.4"/>
+<circle class="pt sm" cx="65.8" cy="105.4" r="2.4"/>
+<circle class="pt sm" cx="70" cy="141.1" r="2.4"/>
+<circle class="pt sm" cx="74.2" cy="92.5" r="2.4"/>
+<circle class="pt sm" cx="78.3" cy="99.2" r="2.4"/>
+<circle class="pt sm" cx="82.5" cy="99.4" r="2.4"/>
+<circle class="pt sm" cx="86.7" cy="141.6" r="2.4"/>
+<circle class="pt sm" cx="90.8" cy="142.6" r="2.4"/>
+<circle class="pt sm" cx="95" cy="126.2" r="2.4"/>
+<circle class="pt sm" cx="99.2" cy="118" r="2.4"/>
+<circle class="pt sm" cx="103.3" cy="103.1" r="2.4"/>
+<circle class="pt sm" cx="107.5" cy="109.9" r="2.4"/>
+<circle class="pt sm" cx="111.7" cy="99" r="2.4"/>
+<circle class="pt sm" cx="115.8" cy="121.4" r="2.4"/>
+<circle class="pt sm" cx="120" cy="103" r="2.4"/>
+<circle class="pt sm" cx="124.2" cy="101.4" r="2.4"/>
+<circle class="pt sm" cx="128.3" cy="121.8" r="2.4"/>
+<circle class="pt sm" cx="132.5" cy="75.9" r="2.4"/>
+<circle class="pt sm" cx="136.7" cy="98.3" r="2.4"/>
+<circle class="pt sm" cx="140.8" cy="85.9" r="2.4"/>
+<circle class="pt sm" cx="145" cy="121" r="2.4"/>
+<circle class="pt sm" cx="149.2" cy="123.3" r="2.4"/>
+<circle class="pt sm" cx="153.3" cy="115.6" r="2.4"/>
+<circle class="pt sm" cx="157.5" cy="111.1" r="2.4"/>
+<circle class="pt sm" cx="161.7" cy="96.8" r="2.4"/>
+<circle class="pt sm" cx="165.8" cy="104.2" r="2.4"/>
+<circle class="pt sm" cx="170" cy="117.6" r="2.4"/>
+<circle class="pt sm" cx="174.2" cy="127.5" r="2.4"/>
+<circle class="pt sm" cx="178.3" cy="119" r="2.4"/>
+<circle class="pt sm" cx="182.5" cy="85.5" r="2.4"/>
+<circle class="pt sm" cx="186.7" cy="124.6" r="2.4"/>
+<circle class="pt sm" cx="190.8" cy="104.3" r="2.4"/>
+<circle class="pt sm" cx="195" cy="100.8" r="2.4"/>
+<circle class="pt sm" cx="199.2" cy="137.7" r="2.4"/>
+<circle class="pt sm" cx="203.3" cy="108.1" r="2.4"/>
+<circle class="pt sm" cx="207.5" cy="83.8" r="2.4"/>
+<circle class="pt sm" cx="211.7" cy="147.8" r="2.4"/>
+<circle class="pt sm" cx="215.8" cy="115.2" r="2.4"/>
+<circle class="pt sm" cx="220" cy="111" r="2.4"/>
+<circle class="pt sm" cx="224.2" cy="124.8" r="2.4"/>
+<circle class="pt sm" cx="228.3" cy="99.4" r="2.4"/>
+<circle class="pt sm" cx="232.5" cy="110.2" r="2.4"/>
+<circle class="pt sm" cx="236.7" cy="137.2" r="2.4"/>
+<circle class="pt sm" cx="240.8" cy="93" r="2.4"/>
+<circle class="pt sm" cx="245" cy="96.1" r="2.4"/>
+<circle class="pt sm" cx="249.2" cy="90.8" r="2.4"/>
+<circle class="pt sm" cx="253.3" cy="81.2" r="2.4"/>
+<circle class="pt sm" cx="257.5" cy="102" r="2.4"/>
+<circle class="pt sm" cx="261.7" cy="106.7" r="2.4"/>
+<circle class="pt sm" cx="265.8" cy="134.1" r="2.4"/>
+<text class="an" x="145" y="16" text-anchor="middle">Sem autocorrelação: sobe e desce ao acaso</text>
+<text class="tk" x="270" y="204" text-anchor="end">tempo t</text><line class="ax" x1="320" y1="109" x2="570" y2="109"/>
+<line class="ax" x1="320" y1="28" x2="320" y2="190"/>
+<polyline class="cB" points="320,113.9 324.2,103.1 328.3,108.6 332.5,114.8 336.7,131.6 340.8,131.2 345,105.3 349.2,97.8 353.3,80.1 357.5,81.1 361.7,79 365.8,81.5 370,119.1 374.2,100.6 378.3,92.5 382.5,86.2 386.7,123.4 390.8,154.1 395,162.3 399.2,160.6 403.3,144.4 407.5,138.2 411.7,122.3 415.8,132 420,121.5 424.2,111.4 428.3,123.7 432.5,87.6 436.7,81.1 440.8,63.6 445,84.7 449.2,103.8 453.3,111.5 457.5,113 461.7,100 465.8,97 470,108.1 474.2,126.7 478.3,133.2 482.5,104.8 486.7,121.2 490.8,114.1 495,104.8 499.2,134.4 503.3,128.4 507.5,99.3 511.7,140.1 515.8,140.1 520,135.9 524.2,146.3 528.3,129.2 532.5,126.4 536.7,151.2 540.8,126.8 545,110.3 549.2,91.8 553.3,67.5 557.5,68.8 561.7,74.5 565.8,106.5"/>
+<circle class="pt sm" cx="320" cy="113.9" r="2.4"/>
+<circle class="pt sm" cx="324.2" cy="103.1" r="2.4"/>
+<circle class="pt sm" cx="328.3" cy="108.6" r="2.4"/>
+<circle class="pt sm" cx="332.5" cy="114.8" r="2.4"/>
+<circle class="pt sm" cx="336.7" cy="131.6" r="2.4"/>
+<circle class="pt sm" cx="340.8" cy="131.2" r="2.4"/>
+<circle class="pt sm" cx="345" cy="105.3" r="2.4"/>
+<circle class="pt sm" cx="349.2" cy="97.8" r="2.4"/>
+<circle class="pt sm" cx="353.3" cy="80.1" r="2.4"/>
+<circle class="pt sm" cx="357.5" cy="81.1" r="2.4"/>
+<circle class="pt sm" cx="361.7" cy="79" r="2.4"/>
+<circle class="pt sm" cx="365.8" cy="81.5" r="2.4"/>
+<circle class="pt sm" cx="370" cy="119.1" r="2.4"/>
+<circle class="pt sm" cx="374.2" cy="100.6" r="2.4"/>
+<circle class="pt sm" cx="378.3" cy="92.5" r="2.4"/>
+<circle class="pt sm" cx="382.5" cy="86.2" r="2.4"/>
+<circle class="pt sm" cx="386.7" cy="123.4" r="2.4"/>
+<circle class="pt sm" cx="390.8" cy="154.1" r="2.4"/>
+<circle class="pt sm" cx="395" cy="162.3" r="2.4"/>
+<circle class="pt sm" cx="399.2" cy="160.6" r="2.4"/>
+<circle class="pt sm" cx="403.3" cy="144.4" r="2.4"/>
+<circle class="pt sm" cx="407.5" cy="138.2" r="2.4"/>
+<circle class="pt sm" cx="411.7" cy="122.3" r="2.4"/>
+<circle class="pt sm" cx="415.8" cy="132" r="2.4"/>
+<circle class="pt sm" cx="420" cy="121.5" r="2.4"/>
+<circle class="pt sm" cx="424.2" cy="111.4" r="2.4"/>
+<circle class="pt sm" cx="428.3" cy="123.7" r="2.4"/>
+<circle class="pt sm" cx="432.5" cy="87.6" r="2.4"/>
+<circle class="pt sm" cx="436.7" cy="81.1" r="2.4"/>
+<circle class="pt sm" cx="440.8" cy="63.6" r="2.4"/>
+<circle class="pt sm" cx="445" cy="84.7" r="2.4"/>
+<circle class="pt sm" cx="449.2" cy="103.8" r="2.4"/>
+<circle class="pt sm" cx="453.3" cy="111.5" r="2.4"/>
+<circle class="pt sm" cx="457.5" cy="113" r="2.4"/>
+<circle class="pt sm" cx="461.7" cy="100" r="2.4"/>
+<circle class="pt sm" cx="465.8" cy="97" r="2.4"/>
+<circle class="pt sm" cx="470" cy="108.1" r="2.4"/>
+<circle class="pt sm" cx="474.2" cy="126.7" r="2.4"/>
+<circle class="pt sm" cx="478.3" cy="133.2" r="2.4"/>
+<circle class="pt sm" cx="482.5" cy="104.8" r="2.4"/>
+<circle class="pt sm" cx="486.7" cy="121.2" r="2.4"/>
+<circle class="pt sm" cx="490.8" cy="114.1" r="2.4"/>
+<circle class="pt sm" cx="495" cy="104.8" r="2.4"/>
+<circle class="pt sm" cx="499.2" cy="134.4" r="2.4"/>
+<circle class="pt sm" cx="503.3" cy="128.4" r="2.4"/>
+<circle class="pt sm" cx="507.5" cy="99.3" r="2.4"/>
+<circle class="pt sm" cx="511.7" cy="140.1" r="2.4"/>
+<circle class="pt sm" cx="515.8" cy="140.1" r="2.4"/>
+<circle class="pt sm" cx="520" cy="135.9" r="2.4"/>
+<circle class="pt sm" cx="524.2" cy="146.3" r="2.4"/>
+<circle class="pt sm" cx="528.3" cy="129.2" r="2.4"/>
+<circle class="pt sm" cx="532.5" cy="126.4" r="2.4"/>
+<circle class="pt sm" cx="536.7" cy="151.2" r="2.4"/>
+<circle class="pt sm" cx="540.8" cy="126.8" r="2.4"/>
+<circle class="pt sm" cx="545" cy="110.3" r="2.4"/>
+<circle class="pt sm" cx="549.2" cy="91.8" r="2.4"/>
+<circle class="pt sm" cx="553.3" cy="67.5" r="2.4"/>
+<circle class="pt sm" cx="557.5" cy="68.8" r="2.4"/>
+<circle class="pt sm" cx="561.7" cy="74.5" r="2.4"/>
+<circle class="pt sm" cx="565.8" cy="106.5" r="2.4"/>
+<text class="an" x="445" y="16" text-anchor="middle">AR(1) com ρ = 0,8: ondas longas</text>
+<text class="tk" x="570" y="204" text-anchor="end">tempo t</text>
+</svg></div><figcaption>À esquerda, erros independentes: trocam de sinal ao acaso. À direita, AR(1) com ρ = 0,8: longas sequências do mesmo sinal, “ondas”. Na série simulada, Durbin–Watson ≈ 1,86 à esquerda e ≈ 0,54 à direita.</figcaption></figure>
+  <ul>
+    <li><strong>Consequências:</strong> com exogeneidade estrita, o MQO continua <strong>não viesado</strong>. Mas deixa de ser BLUE e o erro-padrão usual fica errado. Com ρ &gt; 0 e x também persistente, em geral ele <strong>subestima</strong> a incerteza, e t fica inflado (falsa significância).</li>
+    <li><strong>O tamanho do problema</strong> (ilustração nossa, para a média de uma série AR(1)): a variância verdadeira é cerca de \(\frac{\sigma_u^2}{n}\cdot\frac{1+\rho}{1-\rho}\). Com ρ = 0,5, 3 vezes a fórmula usual; com ρ = 0,8, 9 vezes (ep 3 vezes maior); com ρ = 0,9, 19 vezes.</li>
+    <li><strong>Diagnóstico:</strong> gráfico dos resíduos no tempo; estatística de <strong>Durbin–Watson</strong>,
+      <div class="mathblock">\[d=\frac{\sum_{t=2}^{T}(\hat u_t-\hat u_{t-1})^2}{\sum_{t=1}^{T}\hat u_t^2}\approx2(1-\hat\rho)\]</div>
+      d ≈ 2 indica ausência de autocorrelação, d perto de 0 indica autocorrelação positiva e d perto de 4, negativa. Há também o teste de <strong>Breusch–Godfrey</strong>: regredir \(\hat u_t\) em \(x_t\) e \(\hat u_{t-1}\) e testar o coeficiente de \(\hat u_{t-1}\).</li>
+    <li><strong>Correções:</strong> erros-padrão <strong>HAC</strong> (Newey–West), robustos a heterocedasticidade e autocorrelação; <strong>MQG factível</strong> (Cochrane–Orcutt, Prais–Winsten), que estima ρ e usa as quase-diferenças \(y_t-\hat\rho y_{t-1}\); primeira diferença quando ρ ≈ 1; ou modelar a dinâmica incluindo defasagens.</li>
+  </ul>
+  <div class="box ok"><span class="lbl">Durbin–Watson com números</span>
+    <p>Resíduos em 8 períodos: 1,0; 1,5; 1,2; 0,4; −0,5; −1,1; −1,4; −0,6. Diferenças sucessivas: 0,5; −0,3; −0,8; −0,9; −0,6; −0,3; 0,8, com quadrados somando 2,88. Soma dos quadrados dos resíduos: 8,63. \(d=2{,}88/8{,}63\approx0{,}33\), muito abaixo de 2: forte autocorrelação positiva, visível nas duas “ondas” de sinais.</p>
+  </div>
+
+  <h3>7. Dummies (resumo)</h3>
+  <p>Na regressão múltipla, dummies entram ao lado de variáveis contínuas (retas paralelas) e em interações (inclinações diferentes). Com G categorias e intercepto, use G − 1 dummies para evitar a colinearidade perfeita. Tudo está na <a href="#dummies">aula de dummies</a>.</p>
+
+  <h3>8. Quadro-resumo dos problemas</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Problema</th><th>Viés no MQO?</th><th>ep usual válido?</th><th>Remédio</th></tr></thead>
+    <tbody>
+      <tr><td>Variável omitida (correlacionada com x)</td><td><strong>Sim</strong></td><td>—</td><td>incluí-la (regressão múltipla)</td></tr>
+      <tr><td>Erro de medida em x</td><td><strong>Sim</strong> (atenuação)</td><td>—</td><td>dados melhores</td></tr>
+      <tr><td>Multicolinearidade perfeita</td><td>MQO nem calcula</td><td>—</td><td>tirar a variável redundante</td></tr>
+      <tr><td>Multicolinearidade imperfeita</td><td>Não</td><td>Sim (mas ep grande)</td><td>mais dados ou mais variação</td></tr>
+      <tr><td>Heterocedasticidade</td><td>Não</td><td><strong>Não</strong></td><td>erro robusto (HC), MQP</td></tr>
+      <tr><td>Autocorrelação</td><td>Não (com exogeneidade estrita)</td><td><strong>Não</strong></td><td>erro HAC, MQG factível</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Teste rápido</h3>
+  <div class="quiz" data-answer="b"><div class="qh">Regressão múltipla</div>
+    <p>Em \(\widehat{sal}=2+1\,educ+2\,hab\), o coeficiente 1 significa:</p>
+    <div class="opts"><button data-k="a">a) educação causa R$ 1/h, sempre</button><button data-k="b">b) um ano a mais de estudo associado a R$ 1/h a mais, mantendo a habilidade constante</button><button data-k="c">c) o salário de quem não estudou</button><button data-k="d">d) o mesmo que o coeficiente da regressão simples</button></div>
+    <div class="fb" hidden>b. É o efeito parcial (ceteris paribus). A regressão simples deu 2,8 porque misturava educação e habilidade.</div></div>
+  <div class="quiz" data-answer="c"><div class="qh">Multicolinearidade</div>
+    <p>Qual é a consequência da multicolinearidade <strong>imperfeita</strong>?</p>
+    <div class="opts"><button data-k="a">a) MQO viesado</button><button data-k="b">b) MQO não calcula</button><button data-k="c">c) erros-padrão maiores, sem viés</button><button data-k="d">d) \(R^2\) sempre baixo</button></div>
+    <div class="fb" hidden>c. \(Var(\hat\beta_j)=\sigma^2/[SQT_j(1-R_j^2)]\) cresce com \(R_j^2\). O \(R^2\) pode ser alto.</div></div>
+  <div class="quiz" data-answer="a"><div class="qh">Autocorrelação</div>
+    <p>Uma regressão com dados mensais tem Durbin–Watson = 0,4. Isso sugere:</p>
+    <div class="opts"><button data-k="a">a) autocorrelação positiva forte</button><button data-k="b">b) ausência de autocorrelação</button><button data-k="c">c) autocorrelação negativa</button><button data-k="d">d) heterocedasticidade</button></div>
+    <div class="fb" hidden>a. d ≈ 2(1 − ρ̂) dá ρ̂ ≈ 0,8.</div></div>
+  <div class="quiz" data-answer="d"><div class="qh">Regressão múltipla</div>
+    <p>n = 40, k = 4, SQR = 70. Quanto vale \(\hat\sigma^2\)?</p>
+    <div class="opts"><button data-k="a">a) 1,75</button><button data-k="b">b) 1,84</button><button data-k="c">c) 1,79</button><button data-k="d">d) 2</button></div>
+    <div class="fb" hidden>d. n − k − 1 = 35 e 70/35 = 2. Dividir por n − 2 (1,84) é o erro de copiar a regressão simples.</div></div>
+  <div class="done-row"><button class="btn done-btn" data-done="p2" aria-pressed="false">Marcar como concluído</button></div>
+</section>
+
+
 <!-- ================= LISTA 2 (numérica) ================= -->
 <section class="mod" id="lista2" data-title="Lista 2">
   <div class="eyebrow">Lista de exercícios numéricos · Aulas 1 a 4 <span class="tag hot">Ex. 1 e 4: prioridade máxima</span></div>
@@ -4520,6 +5520,63 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
     <p>\(\hat\beta_1\) tem unidade “y por x”. Se y passa de reais para milhares de reais, o mesmo efeito vira um número 1.000 vezes menor. Se x passa de anos para meses, “por mês” é 12 vezes menor que “por ano”. \(R^2\), t e elasticidades não têm unidade, então não mudam.</p>
   </div>
 
+  <h3 class="dgroup">Estatística do zero</h3>
+  <div class="dgrid">
+    <div class="fentry" data-s="escore z (padronização) padronizacao z score normal padrao módulo estatística do zero; aula 2 quantos desvios-padrão um valor está da média.">
+      <div class="fh"><b>Escore z (padronização)</b><span class="src">Módulo Estatística do zero; Aula 2</span></div>
+      <div class="mathblock">\[z=\frac{x-\bar x}{s}\quad\text{ou}\quad Z=\frac{X-\mu}{\sigma}\]</div>
+      <div class="fl"><span>Significa</span>Quantos desvios-padrão um valor está da média.</div>
+      <div class="fl"><span>Unidade</span>Sem unidade.</div>
+      <div class="fl warn"><span>Cuidado</span>A estatística t é um escore z da estimativa.</div>
+    </div>
+    <div class="fentry" data-s="coeficiente de variação cv dispersao relativa módulo estatística do zero dispersão relativa à média.">
+      <div class="fh"><b>Coeficiente de variação</b><span class="src">Módulo Estatística do zero</span></div>
+      <div class="mathblock">\[CV=\frac{s}{\bar x}\]</div>
+      <div class="fl"><span>Significa</span>Dispersão relativa à média.</div>
+      <div class="fl"><span>Unidade</span>Sem unidade (muitas vezes em %).</div>
+      <div class="fl warn"><span>Cuidado</span>Só faz sentido para variáveis positivas.</div>
+    </div>
+    <div class="fentry" data-s="probabilidade condicional e independência condicional independencia módulo estatística do zero; aula 2 probabilidade de a sabendo que b ocorreu.">
+      <div class="fh"><b>Probabilidade condicional e independência</b><span class="src">Módulo Estatística do zero; Aula 2</span></div>
+      <div class="mathblock">\[P(A\mid B)=\frac{P(A\cap B)}{P(B)},\qquad\text{independentes: }P(A\cap B)=P(A)P(B)\]</div>
+      <div class="fl"><span>Significa</span>Probabilidade de A sabendo que B ocorreu.</div>
+      <div class="fl"><span>Unidade</span>Probabilidade (0 a 1).</div>
+    </div>
+    <div class="fentry" data-s="binomial binomial bernoulli contagem módulo estatística do zero; lista 1 q27 número de sucessos em n tentativas independentes.">
+      <div class="fh"><b>Binomial</b><span class="src">Módulo Estatística do zero; Lista 1 Q27</span></div>
+      <div class="mathblock">\[P(X=k)=\binom nk\pi^k(1-\pi)^{n-k},\quad E=n\pi,\quad Var=n\pi(1-\pi)\]</div>
+      <div class="fl"><span>Significa</span>Número de sucessos em n tentativas independentes.</div>
+      <div class="fl"><span>Unidade</span>Contagem (sem unidade).</div>
+    </div>
+    <div class="fentry" data-s="normal e regra 68–95–99,7 normal gaussiana sino módulo estatística do zero; aula 2 forma de sino; padronize e use \(\phi\).">
+      <div class="fh"><b>Normal e regra 68–95–99,7</b><span class="src">Módulo Estatística do zero; Aula 2</span></div>
+      <div class="mathblock">\[X\sim N(\mu,\sigma^2):\ P(|X-\mu|\le\sigma)\approx0{,}68,\ \le2\sigma\approx0{,}95,\ \le3\sigma\approx0{,}997\]</div>
+      <div class="fl"><span>Significa</span>Forma de sino; padronize e use \(\Phi\).</div>
+      <div class="fl"><span>Unidade</span>A de X.</div>
+      <div class="fl warn"><span>Cuidado</span>Com 95%, o valor exato é 1,96σ.</div>
+    </div>
+    <div class="fentry" data-s="desigualdade de chebyshev chebyshev tchebychev desigualdade aula 2; módulo lgn limite para a chance de ficar longe da média, em qualquer distribuição.">
+      <div class="fh"><b>Desigualdade de Chebyshev</b><span class="src">Aula 2; módulo LGN</span></div>
+      <div class="mathblock">\[P(|X-\mu|\ge\varepsilon)\le\frac{\sigma^2}{\varepsilon^2}\]</div>
+      <div class="fl"><span>Significa</span>Limite para a chance de ficar longe da média, em qualquer distribuição.</div>
+      <div class="fl"><span>Unidade</span>Probabilidade.</div>
+      <div class="fl warn"><span>Cuidado</span>É folgada: a normal dá bem menos.</div>
+    </div>
+    <div class="fentry" data-s="lei dos grandes números lgn lei grandes numeros consistencia aulas 1, 2 e 5; módulo lgn a média amostral se aproxima da populacional quando n cresce.">
+      <div class="fh"><b>Lei dos Grandes Números</b><span class="src">Aulas 1, 2 e 5; módulo LGN</span></div>
+      <div class="mathblock">\[\bar X_n\xrightarrow{p}\mu\quad(\text{iid, média finita})\]</div>
+      <div class="fl"><span>Significa</span>A média amostral se aproxima da populacional quando n cresce.</div>
+      <div class="fl"><span>Unidade</span>A de X.</div>
+      <div class="fl warn"><span>Cuidado</span>Não funciona por compensação (falácia do jogador) e não corrige viés.</div>
+    </div>
+    <div class="fentry" data-s="teorema central do limite tcl teorema central limite normal aula 2; módulo lgn a média padronizada fica aproximadamente normal.">
+      <div class="fh"><b>Teorema Central do Limite</b><span class="src">Aula 2; módulo LGN</span></div>
+      <div class="mathblock">\[\frac{\sqrt n(\bar X_n-\mu)}{\sigma}\xrightarrow{d}N(0,1)\]</div>
+      <div class="fl"><span>Significa</span>A média padronizada fica aproximadamente normal.</div>
+      <div class="fl"><span>Unidade</span>Sem unidade.</div>
+      <div class="fl warn"><span>Cuidado</span>É a média, não cada observação, que fica normal.</div>
+    </div>
+  </div>
   <h3 class="dgroup">Estatística descritiva (Aula 2)</h3>
   <div class="dgrid">
     <div class="fentry" data-s="somatório soma sigma aula 2 (p1–p5) soma de todos os valores.">
@@ -4950,6 +6007,44 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
       <div class="fl warn"><span>Cuidado</span>Se \(\beta_0\neq0\), fica viesado; \(\sum\hat u_i\neq0\) em geral.</div>
     </div>
   </div>
+  <h3 class="dgroup">Prévia da P2 (fora da P1)</h3>
+  <div class="dgrid">
+    <div class="fentry" data-s="variância do erro na regressão múltipla multipla graus liberdade módulo prévia da p2 com k explicativas mais o intercepto, perdem-se k + 1 graus de liberdade.">
+      <div class="fh"><b>Variância do erro na regressão múltipla</b><span class="src">Módulo Prévia da P2</span></div>
+      <div class="mathblock">\[\hat\sigma^2=\frac{SQR}{n-k-1}\]</div>
+      <div class="fl"><span>Significa</span>Com k explicativas mais o intercepto, perdem-se k + 1 graus de liberdade.</div>
+      <div class="fl"><span>Unidade</span>Unidade de y ao quadrado.</div>
+      <div class="fl warn"><span>Cuidado</span>Não use n − 2 com mais de uma explicativa.</div>
+    </div>
+    <div class="fentry" data-s="r² ajustado r2 ajustado módulo prévia da p2 r² que penaliza variáveis a mais.">
+      <div class="fh"><b>R² ajustado</b><span class="src">Módulo Prévia da P2</span></div>
+      <div class="mathblock">\[\bar R^2=1-\frac{SQR/(n-k-1)}{SQT/(n-1)}\]</div>
+      <div class="fl"><span>Significa</span>R² que penaliza variáveis a mais.</div>
+      <div class="fl"><span>Unidade</span>Sem unidade.</div>
+      <div class="fl warn"><span>Cuidado</span>O R² comum nunca cai ao incluir variáveis.</div>
+    </div>
+    <div class="fentry" data-s="variância na múltipla e vif multicolinearidade vif módulo prévia da p2 multicolinearidade infla a variância.">
+      <div class="fh"><b>Variância na múltipla e VIF</b><span class="src">Módulo Prévia da P2</span></div>
+      <div class="mathblock">\[Var(\hat\beta_j)=\frac{\sigma^2}{SQT_j(1-R_j^2)},\qquad VIF_j=\frac{1}{1-R_j^2}\]</div>
+      <div class="fl"><span>Significa</span>Multicolinearidade infla a variância.</div>
+      <div class="fl"><span>Unidade</span>(Unid. y / unid. \(x_j\))².</div>
+      <div class="fl warn"><span>Cuidado</span>Não causa viés; VIF &gt; 10 é só um alerta.</div>
+    </div>
+    <div class="fentry" data-s="teste f de significância conjunta teste f conjunto aula 6 (teaser); módulo prévia da p2 testa se todas as inclinações são zero ao mesmo tempo.">
+      <div class="fh"><b>Teste F de significância conjunta</b><span class="src">Aula 6 (teaser); módulo Prévia da P2</span></div>
+      <div class="mathblock">\[F=\frac{R^2/k}{(1-R^2)/(n-k-1)}\sim F_{k,\,n-k-1}\]</div>
+      <div class="fl"><span>Significa</span>Testa se todas as inclinações são zero ao mesmo tempo.</div>
+      <div class="fl"><span>Unidade</span>Sem unidade.</div>
+      <div class="fl warn"><span>Cuidado</span>Pode rejeitar mesmo com todos os t pequenos (multicolinearidade).</div>
+    </div>
+    <div class="fentry" data-s="autocorrelação ar(1) e durbin–watson autocorrelacao serial durbin watson módulo prévia da p2 erros correlacionados no tempo; d ≈ 2 indica ausência.">
+      <div class="fh"><b>Autocorrelação AR(1) e Durbin–Watson</b><span class="src">Módulo Prévia da P2</span></div>
+      <div class="mathblock">\[u_t=\rho u_{t-1}+e_t,\qquad d=\frac{\sum_{t\ge2}(\hat u_t-\hat u_{t-1})^2}{\sum\hat u_t^2}\approx2(1-\hat\rho)\]</div>
+      <div class="fl"><span>Significa</span>Erros correlacionados no tempo; d ≈ 2 indica ausência.</div>
+      <div class="fl"><span>Unidade</span>Sem unidade.</div>
+      <div class="fl warn"><span>Cuidado</span>Não causa viés sob exogeneidade estrita, mas o ep usual fica errado (use HAC).</div>
+    </div>
+  </div>
   <h3 class="dgroup">Matemática de apoio</h3>
   <div class="dgrid">
     <div class="fentry" data-s="derivadas básicas derivada regra módulo derivadas; lousa inclinação da curva num ponto (efeito marginal).">
@@ -5049,7 +6144,7 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
 <section class="mod" id="simulado" data-title="Simulado">
   <div class="eyebrow">Treino final · questões novas no estilo das listas</div>
   <h2>Simulado final</h2>
-  <p>40 questões misturando as Aulas 1 a 7, as Listas e a matemática de apoio. Faça no papel antes de clicar. Placar: <span class="score" id="simScore">0 de 40 respondidas · 0 acertos</span></p>
+  <p>48 questões misturando as Aulas 1 a 7, as Listas, a estatística do zero, a matemática de apoio e a prévia da P2 (41 a 48 cobrem os módulos novos). Faça no papel antes de clicar. Placar: <span class="score" id="simScore">0 de 48 respondidas · 0 acertos</span></p>
 
   <div class="quiz sim" data-answer="b"><div class="qh">1 · Fórmulas</div>
     <p>\(\bar x=10\), \(\bar y=50\), \(\widehat{Cov}(x,y)=12\), \(\widehat{Var}(x)=4\). Qual é a FRA?</p>
@@ -5230,6 +6325,38 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
     <p>No ótimo de max \(xy\) s.a. \(2x+4y=40\), \(\lambda=2{,}5\). Isso significa que:</p>
     <div class="opts"><button data-k="a">a) x = 2,5</button><button data-k="b">b) a utilidade máxima é 2,5</button><button data-k="c">c) a restrição está errada</button><button data-k="d">d) com 1 real a mais de renda, a utilidade ótima sobe cerca de 2,5</button></div>
     <div class="fb" hidden>λ é o preço sombra: \(df^*/dc\).</div></div>
+  <div class="quiz sim" data-answer="c"><div class="qh">41 · Estatística</div>
+    <p>Dados: 1, 2, 2, 3, 100. Média e mediana valem:</p>
+    <div class="opts"><button data-k="a">a) 21,6 e 21,6</button><button data-k="b">b) 2 e 21,6</button><button data-k="c">c) 21,6 e 2</button><button data-k="d">d) 3 e 2</button></div>
+    <div class="fb" hidden>Média = 108/5 = 21,6, puxada pelo 100; mediana = 2, o valor do meio.</div></div>
+  <div class="quiz sim" data-answer="a"><div class="qh">42 · Probabilidade</div>
+    <p>P(A) = 0,5, P(B) = 0,4 e A e B são independentes. P(A e B) =</p>
+    <div class="opts"><button data-k="a">a) 0,20</button><button data-k="b">b) 0,90</button><button data-k="c">c) 0,10</button><button data-k="d">d) 0,45</button></div>
+    <div class="fb" hidden>Independência: P(A)·P(B) = 0,5 × 0,4 = 0,20.</div></div>
+  <div class="quiz sim" data-answer="d"><div class="qh">43 · Estimação</div>
+    <p>Estimador A: viés 0 e variância 4. Estimador B: viés 1 e variância 1. Pelo EQM:</p>
+    <div class="opts"><button data-k="a">a) A é melhor (é não viesado)</button><button data-k="b">b) empatam</button><button data-k="c">c) não dá para comparar</button><button data-k="d">d) B é melhor (EQM 2 contra 4)</button></div>
+    <div class="fb" hidden>EQM = Var + viés²: A = 4, B = 1 + 1 = 2. Não viés não é tudo.</div></div>
+  <div class="quiz sim" data-answer="b"><div class="qh">44 · LGN</div>
+    <p>A LGN garante que, com n grande:</p>
+    <div class="opts"><button data-k="a">a) cada observação fica normal</button><button data-k="b">b) a média amostral fica perto da média populacional com alta probabilidade</button><button data-k="c">c) o MQO fica não viesado mesmo com variável omitida</button><button data-k="d">d) resultados passados são compensados</button></div>
+    <div class="fb" hidden>b. (a) confunde com o TCL, e mesmo o TCL é sobre a média; (c) LGN não corrige viés; (d) é a falácia do jogador.</div></div>
+  <div class="quiz sim" data-answer="c"><div class="qh">45 · Tipo Lista 3, Q8</div>
+    <p>\(\hat\beta_1\sim N(\beta_1,\,0{,}5^2)\), crítico 1,96, \(H_0:\beta_1=0\). Os limites da região de não rejeição são:</p>
+    <div class="opts"><button data-k="a">a) ±0,5</button><button data-k="b">b) ±1,96</button><button data-k="c">c) ±0,98</button><button data-k="d">d) ±3,92</button></div>
+    <div class="fb" hidden>±1,96 × 0,5 = ±0,98.</div></div>
+  <div class="quiz sim" data-answer="a"><div class="qh">46 · Aula 5 (laboratório)</div>
+    <p>x = (1, 2, 3) e erros independentes ±1 com probabilidade 1/2. Quanto vale \(Var(\hat\beta_1)\)?</p>
+    <div class="opts"><button data-k="a">a) 0,5</button><button data-k="b">b) 1</button><button data-k="c">c) 2</button><button data-k="d">d) 1/3</button></div>
+    <div class="fb" hidden>\(\sigma^2/SQT_x=1/2\). É o Laboratório 2 da Aula 5.</div></div>
+  <div class="quiz sim" data-answer="d"><div class="qh">47 · Prévia da P2</div>
+    <p>Na regressão múltipla o coeficiente de educ é 1; habilidade tem coeficiente 2 e a inclinação de habilidade sobre educação é 0,9. Na regressão simples, o coeficiente de educ será:</p>
+    <div class="opts"><button data-k="a">a) 1</button><button data-k="b">b) 1,9</button><button data-k="c">c) 0,9</button><button data-k="d">d) 2,8</button></div>
+    <div class="fb" hidden>1 + 2 × 0,9 = 2,8: a fórmula do viés de variável omitida.</div></div>
+  <div class="quiz sim" data-answer="b"><div class="qh">48 · Prévia da P2</div>
+    <p>Todos os t individuais são pequenos, mas o teste F conjunto rejeita com folga e o \(R^2\) é alto. O suspeito mais provável é:</p>
+    <div class="opts"><button data-k="a">a) heterocedasticidade</button><button data-k="b">b) multicolinearidade</button><button data-k="c">c) autocorrelação</button><button data-k="d">d) variável omitida</button></div>
+    <div class="fb" hidden>Explicativas muito correlacionadas: juntas explicam bem, separadas ninguém sabe quanto é de cada uma.</div></div>
   <div class="done-row"><button class="btn done-btn" data-done="simulado" aria-pressed="false">Marcar como concluído</button></div>
 </section>
 

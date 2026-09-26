@@ -38,6 +38,63 @@
     <p>\(\hat\beta_1\) tem unidade “y por x”. Se y passa de reais para milhares de reais, o mesmo efeito vira um número 1.000 vezes menor. Se x passa de anos para meses, “por mês” é 12 vezes menor que “por ano”. \(R^2\), t e elasticidades não têm unidade, então não mudam.</p>
   </div>
 
+  <h3 class="dgroup">Estatística do zero</h3>
+  <div class="dgrid">
+    <div class="fentry" data-s="escore z (padronização) padronizacao z score normal padrao módulo estatística do zero; aula 2 quantos desvios-padrão um valor está da média.">
+      <div class="fh"><b>Escore z (padronização)</b><span class="src">Módulo Estatística do zero; Aula 2</span></div>
+      <div class="mathblock">\[z=\frac{x-\bar x}{s}\quad\text{ou}\quad Z=\frac{X-\mu}{\sigma}\]</div>
+      <div class="fl"><span>Significa</span>Quantos desvios-padrão um valor está da média.</div>
+      <div class="fl"><span>Unidade</span>Sem unidade.</div>
+      <div class="fl warn"><span>Cuidado</span>A estatística t é um escore z da estimativa.</div>
+    </div>
+    <div class="fentry" data-s="coeficiente de variação cv dispersao relativa módulo estatística do zero dispersão relativa à média.">
+      <div class="fh"><b>Coeficiente de variação</b><span class="src">Módulo Estatística do zero</span></div>
+      <div class="mathblock">\[CV=\frac{s}{\bar x}\]</div>
+      <div class="fl"><span>Significa</span>Dispersão relativa à média.</div>
+      <div class="fl"><span>Unidade</span>Sem unidade (muitas vezes em %).</div>
+      <div class="fl warn"><span>Cuidado</span>Só faz sentido para variáveis positivas.</div>
+    </div>
+    <div class="fentry" data-s="probabilidade condicional e independência condicional independencia módulo estatística do zero; aula 2 probabilidade de a sabendo que b ocorreu.">
+      <div class="fh"><b>Probabilidade condicional e independência</b><span class="src">Módulo Estatística do zero; Aula 2</span></div>
+      <div class="mathblock">\[P(A\mid B)=\frac{P(A\cap B)}{P(B)},\qquad\text{independentes: }P(A\cap B)=P(A)P(B)\]</div>
+      <div class="fl"><span>Significa</span>Probabilidade de A sabendo que B ocorreu.</div>
+      <div class="fl"><span>Unidade</span>Probabilidade (0 a 1).</div>
+    </div>
+    <div class="fentry" data-s="binomial binomial bernoulli contagem módulo estatística do zero; lista 1 q27 número de sucessos em n tentativas independentes.">
+      <div class="fh"><b>Binomial</b><span class="src">Módulo Estatística do zero; Lista 1 Q27</span></div>
+      <div class="mathblock">\[P(X=k)=\binom nk\pi^k(1-\pi)^{n-k},\quad E=n\pi,\quad Var=n\pi(1-\pi)\]</div>
+      <div class="fl"><span>Significa</span>Número de sucessos em n tentativas independentes.</div>
+      <div class="fl"><span>Unidade</span>Contagem (sem unidade).</div>
+    </div>
+    <div class="fentry" data-s="normal e regra 68–95–99,7 normal gaussiana sino módulo estatística do zero; aula 2 forma de sino; padronize e use \(\phi\).">
+      <div class="fh"><b>Normal e regra 68–95–99,7</b><span class="src">Módulo Estatística do zero; Aula 2</span></div>
+      <div class="mathblock">\[X\sim N(\mu,\sigma^2):\ P(|X-\mu|\le\sigma)\approx0{,}68,\ \le2\sigma\approx0{,}95,\ \le3\sigma\approx0{,}997\]</div>
+      <div class="fl"><span>Significa</span>Forma de sino; padronize e use \(\Phi\).</div>
+      <div class="fl"><span>Unidade</span>A de X.</div>
+      <div class="fl warn"><span>Cuidado</span>Com 95%, o valor exato é 1,96σ.</div>
+    </div>
+    <div class="fentry" data-s="desigualdade de chebyshev chebyshev tchebychev desigualdade aula 2; módulo lgn limite para a chance de ficar longe da média, em qualquer distribuição.">
+      <div class="fh"><b>Desigualdade de Chebyshev</b><span class="src">Aula 2; módulo LGN</span></div>
+      <div class="mathblock">\[P(|X-\mu|\ge\varepsilon)\le\frac{\sigma^2}{\varepsilon^2}\]</div>
+      <div class="fl"><span>Significa</span>Limite para a chance de ficar longe da média, em qualquer distribuição.</div>
+      <div class="fl"><span>Unidade</span>Probabilidade.</div>
+      <div class="fl warn"><span>Cuidado</span>É folgada: a normal dá bem menos.</div>
+    </div>
+    <div class="fentry" data-s="lei dos grandes números lgn lei grandes numeros consistencia aulas 1, 2 e 5; módulo lgn a média amostral se aproxima da populacional quando n cresce.">
+      <div class="fh"><b>Lei dos Grandes Números</b><span class="src">Aulas 1, 2 e 5; módulo LGN</span></div>
+      <div class="mathblock">\[\bar X_n\xrightarrow{p}\mu\quad(\text{iid, média finita})\]</div>
+      <div class="fl"><span>Significa</span>A média amostral se aproxima da populacional quando n cresce.</div>
+      <div class="fl"><span>Unidade</span>A de X.</div>
+      <div class="fl warn"><span>Cuidado</span>Não funciona por compensação (falácia do jogador) e não corrige viés.</div>
+    </div>
+    <div class="fentry" data-s="teorema central do limite tcl teorema central limite normal aula 2; módulo lgn a média padronizada fica aproximadamente normal.">
+      <div class="fh"><b>Teorema Central do Limite</b><span class="src">Aula 2; módulo LGN</span></div>
+      <div class="mathblock">\[\frac{\sqrt n(\bar X_n-\mu)}{\sigma}\xrightarrow{d}N(0,1)\]</div>
+      <div class="fl"><span>Significa</span>A média padronizada fica aproximadamente normal.</div>
+      <div class="fl"><span>Unidade</span>Sem unidade.</div>
+      <div class="fl warn"><span>Cuidado</span>É a média, não cada observação, que fica normal.</div>
+    </div>
+  </div>
   <h3 class="dgroup">Estatística descritiva (Aula 2)</h3>
   <div class="dgrid">
     <div class="fentry" data-s="somatório soma sigma aula 2 (p1–p5) soma de todos os valores.">
@@ -466,6 +523,44 @@
       <div class="fl"><span>Significa</span>Reta forçada a passar por (0, 0).</div>
       <div class="fl"><span>Unidade</span>Unid. y / unid. x.</div>
       <div class="fl warn"><span>Cuidado</span>Se \(\beta_0\neq0\), fica viesado; \(\sum\hat u_i\neq0\) em geral.</div>
+    </div>
+  </div>
+  <h3 class="dgroup">Prévia da P2 (fora da P1)</h3>
+  <div class="dgrid">
+    <div class="fentry" data-s="variância do erro na regressão múltipla multipla graus liberdade módulo prévia da p2 com k explicativas mais o intercepto, perdem-se k + 1 graus de liberdade.">
+      <div class="fh"><b>Variância do erro na regressão múltipla</b><span class="src">Módulo Prévia da P2</span></div>
+      <div class="mathblock">\[\hat\sigma^2=\frac{SQR}{n-k-1}\]</div>
+      <div class="fl"><span>Significa</span>Com k explicativas mais o intercepto, perdem-se k + 1 graus de liberdade.</div>
+      <div class="fl"><span>Unidade</span>Unidade de y ao quadrado.</div>
+      <div class="fl warn"><span>Cuidado</span>Não use n − 2 com mais de uma explicativa.</div>
+    </div>
+    <div class="fentry" data-s="r² ajustado r2 ajustado módulo prévia da p2 r² que penaliza variáveis a mais.">
+      <div class="fh"><b>R² ajustado</b><span class="src">Módulo Prévia da P2</span></div>
+      <div class="mathblock">\[\bar R^2=1-\frac{SQR/(n-k-1)}{SQT/(n-1)}\]</div>
+      <div class="fl"><span>Significa</span>R² que penaliza variáveis a mais.</div>
+      <div class="fl"><span>Unidade</span>Sem unidade.</div>
+      <div class="fl warn"><span>Cuidado</span>O R² comum nunca cai ao incluir variáveis.</div>
+    </div>
+    <div class="fentry" data-s="variância na múltipla e vif multicolinearidade vif módulo prévia da p2 multicolinearidade infla a variância.">
+      <div class="fh"><b>Variância na múltipla e VIF</b><span class="src">Módulo Prévia da P2</span></div>
+      <div class="mathblock">\[Var(\hat\beta_j)=\frac{\sigma^2}{SQT_j(1-R_j^2)},\qquad VIF_j=\frac{1}{1-R_j^2}\]</div>
+      <div class="fl"><span>Significa</span>Multicolinearidade infla a variância.</div>
+      <div class="fl"><span>Unidade</span>(Unid. y / unid. \(x_j\))².</div>
+      <div class="fl warn"><span>Cuidado</span>Não causa viés; VIF &gt; 10 é só um alerta.</div>
+    </div>
+    <div class="fentry" data-s="teste f de significância conjunta teste f conjunto aula 6 (teaser); módulo prévia da p2 testa se todas as inclinações são zero ao mesmo tempo.">
+      <div class="fh"><b>Teste F de significância conjunta</b><span class="src">Aula 6 (teaser); módulo Prévia da P2</span></div>
+      <div class="mathblock">\[F=\frac{R^2/k}{(1-R^2)/(n-k-1)}\sim F_{k,\,n-k-1}\]</div>
+      <div class="fl"><span>Significa</span>Testa se todas as inclinações são zero ao mesmo tempo.</div>
+      <div class="fl"><span>Unidade</span>Sem unidade.</div>
+      <div class="fl warn"><span>Cuidado</span>Pode rejeitar mesmo com todos os t pequenos (multicolinearidade).</div>
+    </div>
+    <div class="fentry" data-s="autocorrelação ar(1) e durbin–watson autocorrelacao serial durbin watson módulo prévia da p2 erros correlacionados no tempo; d ≈ 2 indica ausência.">
+      <div class="fh"><b>Autocorrelação AR(1) e Durbin–Watson</b><span class="src">Módulo Prévia da P2</span></div>
+      <div class="mathblock">\[u_t=\rho u_{t-1}+e_t,\qquad d=\frac{\sum_{t\ge2}(\hat u_t-\hat u_{t-1})^2}{\sum\hat u_t^2}\approx2(1-\hat\rho)\]</div>
+      <div class="fl"><span>Significa</span>Erros correlacionados no tempo; d ≈ 2 indica ausência.</div>
+      <div class="fl"><span>Unidade</span>Sem unidade.</div>
+      <div class="fl warn"><span>Cuidado</span>Não causa viés sob exogeneidade estrita, mas o ep usual fica errado (use HAC).</div>
     </div>
   </div>
   <h3 class="dgroup">Matemática de apoio</h3>
