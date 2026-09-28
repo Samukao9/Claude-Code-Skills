@@ -416,6 +416,7 @@
     <p>O fator \(n_1n_0/n\) cancela: \(\hat\beta_1=\bar y_1-\bar y_0\). Com \(\hat\beta_0=\bar y-\hat\beta_1\bar D\) e \(\bar y=(n_0\bar y_0+n_1\bar y_1)/n\), sai \(\hat\beta_0=\bar y_0\). Rodar a regressão é matematicamente idêntico a comparar médias.</p>
     <p>Variâncias: \(Var(\hat\beta_0)=\sigma^2\dfrac{n_1}{n\cdot(n_1n_0/n)}=\dfrac{\sigma^2}{n_0}\), a variância da média de um grupo com \(n_0\) observações.</p>
   </div></details>
+  <p class="small">Em desenho (médias dos grupos e interação): <a href="#betas">Os betas, visualmente</a>, seção 9.</p>
   <p><strong>Não é necessariamente causal:</strong> a diferença pode refletir escolaridade, experiência, ocupação ou setor associados à sindicalização. Para ler \(\beta_1\) como efeito causal, é preciso justificar por que os grupos seriam comparáveis.</p>
   <p><strong>Precisão:</strong> sob homocedasticidade, \(Var(\hat\beta_1\mid D)=\sigma^2\left(\frac{1}{n_1}+\frac{1}{n_0}\right)\). Com variâncias diferentes, \(Var(\bar Y_1-\bar Y_0\mid D)=\frac{\sigma_1^2}{n_1}+\frac{\sigma_0^2}{n_0}\). Grupos muito desbalanceados reduzem a precisão. Na prática, erros-padrão robustos (HC1, com correção por graus de liberdade) acomodam variâncias diferentes entre os grupos: <strong>os coeficientes não mudam; muda a incerteza estimada</strong>.</p>
 

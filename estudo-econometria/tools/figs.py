@@ -493,3 +493,224 @@ b.append(f'<text class="an" x="{f(P.X(1)+8)}" y="{f(P.Y(4)+18)}">Ŷ(1) = 4</text
 b.append(f'<text class="an" x="{f(P.X(4)+8)}" y="{f(P.Y(7)+18)}">Ŷ(4) = 7</text>')
 save("sala5", svg(560,280,'\n'.join(b),"Reta estimada Y chapéu igual a 3 mais X, com a faixa observada e a extrapolação em X igual a 4"))
 print("v5 figs ok")
+
+# ======================= v7: Os betas, visualmente =======================
+def arrow(x1,y1,x2,y2,cls="arw",hcls="arwh",h=9):
+    a=math.atan2(y2-y1,x2-x1); bx=x2-h*math.cos(a); by=y2-h*math.sin(a)
+    p1=(bx+h*0.45*math.sin(a), by-h*0.45*math.cos(a)); p2=(bx-h*0.45*math.sin(a), by+h*0.45*math.cos(a))
+    return (f'<line class="{cls}" x1="{f(x1)}" y1="{f(y1)}" x2="{f(bx)}" y2="{f(by)}"/>'
+            f'<polygon class="{hcls}" points="{f(x2)},{f(y2)} {f(p1[0])},{f(p1[1])} {f(p2[0])},{f(p2[1])}"/>')
+def ols(xs,ys):
+    n=len(xs); mx=sum(xs)/n; my=sum(ys)/n
+    b1=sum((x-mx)*(y-my) for x,y in zip(xs,ys))/sum((x-mx)**2 for x in xs); return my-b1*mx,b1
+
+# ---------- anatomia da equação ----------
+cols=[(64,"y","nb","",["y: o que queremos","explicar","(ex.: salário-hora)"]),
+      (192,"β₀","nr","resc",["β₀: intercepto","valor médio de y","quando x = 0"]),
+      (320,"β₁","nm","fitc",["β₁: inclinação","quanto y muda, em","média, se x sobe 1"]),
+      (448,"x","nb","",["x: variável","explicativa","(ex.: anos de estudo)"]),
+      (576,"u","ng","posc",["u: erro","tudo o mais","que afeta y"])]
+b=[]
+b.append(f'<path class="brk" d="M150 44 V36 H486 V44"/><text class="an" x="318" y="28" text-anchor="middle">a reta (parte explicada por x): E(y | x) = β₀ + β₁x</text>')
+b.append(f'<path class="brk" d="M540 44 V36 H612 V44"/><text class="an" x="576" y="28" text-anchor="middle">o que a reta não vê</text>')
+for cx,t,box,tc,lab in cols:
+    b.append(f'<rect class="{box}" x="{cx-40}" y="52" width="80" height="54" rx="10"/>')
+    b.append(f'<text class="big {tc}" x="{cx}" y="90" text-anchor="middle">{t}</text>')
+    for i,l in enumerate(lab): b.append(f'<text class="an sm" x="{cx}" y="{128+i*16}" text-anchor="middle">{l}</text>')
+for cx,t in [(128,"="),(256,"+"),(384,"·"),(512,"+")]:
+    b.append(f'<text class="big" x="{cx}" y="90" text-anchor="middle">{t}</text>')
+save("b_anatomia", svg(640,184,'\n'.join(b),"Anatomia da equação y igual a beta zero mais beta um vezes x mais u, com o significado de cada parte"))
+
+# ---------- β verdadeiro × β̂ de várias amostras ----------
+P=Plot(560,300, 50,540,24,250, 0,10,0,12)
+b=[P.axes([0,2,4,6,8,10],[0,2,4,6,8,10,12],"x","y")]
+random.seed(11); est=[]
+for k in range(3):
+    xs=[random.uniform(0.5,9.5) for _ in range(12)]; ys=[2+0.8*x+random.gauss(0,1.6) for x in xs]
+    b0,b1=ols(xs,ys); est.append((b0,b1,xs,ys))
+for b0,b1,_,_ in est:
+    b.append(f'<line class="samp" x1="{f(P.X(0))}" y1="{f(P.Y(b0))}" x2="{f(P.X(10))}" y2="{f(P.Y(b0+10*b1))}"/>')
+for x,y in zip(est[0][2],est[0][3]): b.append(f'<circle class="pt sm" cx="{f(P.X(x))}" cy="{f(P.Y(y))}" r="3"/>')
+b.append(f'<line class="truel" x1="{f(P.X(0))}" y1="{f(P.Y(2))}" x2="{f(P.X(10))}" y2="{f(P.Y(10))}"/>')
+b.append(f'<text class="an" x="{f(P.X(9.9))}" y="{f(P.Y(3.4))}" text-anchor="end">tracejada: reta verdadeira, β₁ = 0,8 (fixa)</text>')
+b.append(f'<text class="an fitc" x="{f(P.X(9.9))}" y="{f(P.Y(2.3))}" text-anchor="end">azuis: retas de 3 amostras diferentes</text>')
+_bt='; '.join(f'{e[1]:.2f}'.replace('.',',') for e in est)
+b.append(f'<text class="an fitc" x="{f(P.X(9.9))}" y="{f(P.Y(1.2))}" text-anchor="end">β̂₁ = {_bt}</text>')
+save("b_popamostra", svg(560,300,'\n'.join(b),"Reta verdadeira fixa e três retas estimadas em amostras diferentes"))
+BETA_EST=[nb(e[1],2) for e in est]
+
+# ---------- β₀: onde a reta corta o eixo ----------
+P=Plot(560,280, 50,540,24,236, 0,10,0,11)
+b=[P.axes([0,2,4,6,8,10],[0,2,4,6,8,10],"x","y")]
+b.append(f'<line class="samp" x1="{f(P.X(0))}" y1="{f(P.Y(4.5))}" x2="{f(P.X(10))}" y2="{f(P.Y(10.5))}"/>')
+b.append(f'<line class="fit" x1="{f(P.X(0))}" y1="{f(P.Y(2))}" x2="{f(P.X(10))}" y2="{f(P.Y(8))}"/>')
+b.append(f'<line class="brk" x1="{f(P.X(0)+10)}" y1="{f(P.Y(0))}" x2="{f(P.X(0)+10)}" y2="{f(P.Y(2))}"/>')
+b.append(f'<text class="an posc" x="{f(P.X(0)+16)}" y="{f(P.Y(1)+4)}">β₀ = 2</text>')
+for y0 in (2,4.5): b.append(f'<circle class="icpt" cx="{f(P.X(0))}" cy="{f(P.Y(y0))}" r="5.5"/>')
+b.append(f'<text class="an fitc" x="{f(P.X(6.2))}" y="{f(P.Y(5.2))}">y = 2 + 0,6x</text>')
+b.append(f'<text class="an" x="{f(P.X(4.2))}" y="{f(P.Y(9.6))}">y = 4,5 + 0,6x: mesma inclinação, β₀ maior</text>')
+b.append(f'<text class="an resc" x="{f(P.X(2.2))}" y="{f(P.Y(0.8))}">β₀ é a altura onde a reta cruza x = 0</text>')
+save("b_beta0", svg(560,280,'\n'.join(b),"Intercepto como a altura em que a reta cruza o eixo vertical; mudar o intercepto desloca a reta sem girar"))
+
+# ---------- β₁: a escada ----------
+P=Plot(560,300, 58,540,20,250, 7,17,6,22)
+b=[P.axes([8,10,12,14,16],[6,10,14,18,22],"Anos de estudo (x)","Salário-hora ajustado, R$")]
+b.append(f'<line class="fit" x1="{f(P.X(7.5))}" y1="{f(P.Y(0.6+1.15*7.5))}" x2="{f(P.X(16.5))}" y2="{f(P.Y(0.6+1.15*16.5))}"/>')
+for x in (10,11,12,13):
+    y=0.6+1.15*x
+    b.append(f'<path class="tri" d="M{f(P.X(x))} {f(P.Y(y))} H{f(P.X(x+1))} V{f(P.Y(y+1.15))}"/>')
+b.append(f'<text class="an posc" x="{f(P.X(10.5))}" y="{f(P.Y(0.6+11.5)+16)}" text-anchor="middle">+1 ano</text>')
+b.append(f'<text class="an posc" x="{f(P.X(11)+6)}" y="{f(P.Y(0.6+1.15*10.5)+4)}">+R$ 1,15</text>')
+b.append(f'<text class="an" x="{f(P.X(7.6))}" y="{f(P.Y(18.8))}">cada degrau: +1 em x ⇒ +β̂₁ em ŷ</text>')
+b.append(f'<text class="an" x="{f(P.X(7.6))}" y="{f(P.Y(17.5))}">4 anos a mais ⇒ 4 × 1,15 = R$ 4,60</text>')
+b.append(f'<text class="an fitc" x="{f(P.X(7.6))}" y="{f(P.Y(20.5))}">ŷ = 0,6 + 1,15x</text>')
+save("b_beta1", svg(560,300,'\n'.join(b),"A inclinação como uma escada: cada ano a mais de estudo sobe o salário ajustado em 1,15"))
+
+# ---------- sinais de β₁ ----------
+def sgn(x0,slope,title):
+    P=Plot(0,0, x0+14,x0+184,16,146, 0,10,0,10)
+    o=[f'<line class="ax" x1="{P.L}" y1="{P.B}" x2="{P.R}" y2="{P.B}"/>',f'<line class="ax" x1="{P.L}" y1="{P.T}" x2="{P.L}" y2="{P.B}"/>']
+    a=5-slope*5; random.seed(int(20+slope*10))
+    for k in range(14):
+        x=random.uniform(0.6,9.4); y=min(9.4,max(0.6,a+slope*x+random.gauss(0,0.9)))
+        o.append(f'<circle class="pt sm" cx="{f(P.X(x))}" cy="{f(P.Y(y))}" r="2.6"/>')
+    cls="tg" if slope>0 else ("tgn" if slope<0 else "tg0")
+    o.append(f'<line class="{cls}" x1="{f(P.X(0.3))}" y1="{f(P.Y(a+slope*0.3))}" x2="{f(P.X(9.7))}" y2="{f(P.Y(a+slope*9.7))}"/>')
+    for i,l in enumerate(title): o.append(f'<text class="an sm" x="{f((P.L+P.R)/2)}" y="{166+i*15}" text-anchor="middle">{l}</text>')
+    return '\n'.join(o)
+save("b_sinais", svg(600,200, sgn(0,0.7,["β₁ > 0: x e y sobem juntos","(educação × salário)"])+sgn(200,0,["β₁ = 0: sem relação linear","(y não muda com x)"])+sgn(400,-0.7,["β₁ < 0: x sobe, y desce","(preço × quantidade)"]),"Três painéis: inclinação positiva, nula e negativa"))
+
+# ---------- de onde vem β̂₁: áreas (x − x̄)(y − ȳ) ----------
+P=Plot(560,330, 58,540,20,280, 6,18,8,22)
+b=[P.axes([6,8,10,12,14,16,18],[8,10,12,14,16,18,20,22],"Anos de estudo (x)","Salário-hora, R$ (y)")]
+xs=[8,10,12,14,16]; ys=[10,12,15,15,20]; mx,my=12,14.4
+for x,y in zip(xs,ys):
+    pr=(x-mx)*(y-my)
+    if abs(x-mx)<1e-9: continue
+    x1,x2=sorted([P.X(mx),P.X(x)]); y1,y2=sorted([P.Y(my),P.Y(y)])
+    b.append(f'<rect class="{"pos" if pr>0 else "sqr"}" x="{f(x1)}" y="{f(y1)}" width="{f(x2-x1)}" height="{f(y2-y1)}"/>')
+b.append(f'<line class="mean" x1="{f(P.X(mx))}" y1="{f(P.T)}" x2="{f(P.X(mx))}" y2="{f(P.B)}"/>')
+b.append(f'<line class="mean" x1="{f(P.L)}" y1="{f(P.Y(my))}" x2="{f(P.R)}" y2="{f(P.Y(my))}"/>')
+for x,y in zip(xs,ys): b.append(f'<circle class="pt" cx="{f(P.X(x))}" cy="{f(P.Y(y))}" r="5"/>')
+labs={8:("+17,6",-1),10:("+4,8",-1),12:("0",1),14:("+1,2",1),16:("+22,4",1)}
+for x,y in zip(xs,ys):
+    t,s=labs[x]
+    b.append(f'<text class="an posc" x="{f(P.X(x)+(8 if s>0 else -8))}" y="{f(P.Y(y)-8)}" text-anchor="{"start" if s>0 else "end"}">{t}</text>')
+b.append(f'<text class="an posc" x="{f(P.X(17.8))}" y="{f(P.Y(21.3))}" text-anchor="end">quadrante I: (+)·(+) = +</text>')
+b.append(f'<text class="an posc" x="{f(P.X(6.3))}" y="{f(P.Y(8.6))}">quadrante III: (−)·(−) = +</text>')
+b.append(f'<text class="an resc" x="{f(P.X(6.3))}" y="{f(P.Y(21.3))}">II: (−)·(+) = −</text>')
+b.append(f'<text class="an resc" x="{f(P.X(17.8))}" y="{f(P.Y(8.6))}" text-anchor="end">IV: (+)·(−) = −</text>')
+b.append(f'<text class="an" x="{f(P.X(12)+6)}" y="{f(P.T+12)}">x̄ = 12</text><text class="an" x="{f(P.R-4)}" y="{f(P.Y(my)-6)}" text-anchor="end">ȳ = 14,4</text>')
+save("b_quadrantes", svg(560,330,'\n'.join(b),"Retângulos entre o ponto das médias e cada observação; a soma das áreas com sinal é o numerador de beta um chapéu"))
+
+# ---------- β̂₀ a partir do ponto das médias ----------
+P=Plot(560,300, 50,540,20,250, 0,17,0,22)
+b=[P.axes([0,4,8,12,16],[0,4,8,12,16,20],"Anos de estudo (x)","Salário-hora ajustado, R$")]
+b.append(f'<line class="fit" x1="{f(P.X(0))}" y1="{f(P.Y(0.6))}" x2="{f(P.X(17))}" y2="{f(P.Y(0.6+1.15*17))}"/>')
+b.append(f'<path class="tri" d="M{f(P.X(12))} {f(P.Y(14.4))} H{f(P.X(0))} V{f(P.Y(0.6))}"/>')
+b.append(f'<rect class="meanpt" x="{f(P.X(12)-6)}" y="{f(P.Y(14.4)-6)}" width="12" height="12" transform="rotate(45 {f(P.X(12))} {f(P.Y(14.4))})"/>')
+b.append(f'<circle class="icpt" cx="{f(P.X(0))}" cy="{f(P.Y(0.6))}" r="5.5"/>')
+b.append(f'<text class="an" x="{f(P.X(12.4))}" y="{f(P.Y(12.3))}">1. comece em (x̄, ȳ)</text><text class="an" x="{f(P.X(12.4))}" y="{f(P.Y(10.9))}">= (12; 14,4)</text>')
+b.append(f'<text class="an posc" x="{f(P.X(6))}" y="{f(P.Y(14.4)-8)}" text-anchor="middle">2. volte x̄ = 12 anos até x = 0</text>')
+b.append(f'<text class="an posc" x="{f(P.X(0)+10)}" y="{f(P.Y(9.2))}">3. desça β̂₁·x̄</text><text class="an posc" x="{f(P.X(0)+10)}" y="{f(P.Y(7.8))}">= 1,15 × 12 = 13,8</text>')
+b.append(f'<text class="an resc" x="{f(P.X(2.0))}" y="{f(P.Y(1.1))}">4. chegou em β̂₀ = 14,4 − 13,8 = 0,6</text>')
+save("b_pivo", svg(560,300,'\n'.join(b),"Como achar beta zero chapéu: partir do ponto das médias, voltar até x igual a zero e descer beta um vezes x barra"))
+
+# ---------- tradutor das formas funcionais ----------
+rows=[("Nível–nível","y = β₀ + β₁x","+1 unidade em x","+β₁ unidades em y","área +1 m² ⇒ aluguel +R$ 24 (β̂₁ = 24)"),
+      ("Log–nível","ln y = β₀ + β₁x","+1 unidade em x","≈ +100·β₁ % em y","estudo +1 ano ⇒ salário ≈ +8% (β̂₁ = 0,080)"),
+      ("Nível–log","y = β₀ + β₁ ln x","+1% em x","≈ +β₁/100 unidades em y","β̂₁ = 50: x +1% ⇒ y +0,5 unidade"),
+      ("Log–log","ln y = β₀ + β₁ ln x","+1% em x","≈ +β₁ % em y (elasticidade)","β̂₁ = 1,5: x +10% ⇒ y ≈ +15%")]
+b=[]
+for i,(nm,eq,cx,cy,ex) in enumerate(rows):
+    y0=8+i*66
+    b.append(f'<text class="an" x="0" y="{y0+20}" font-weight="700">{nm}</text><text class="an sm" x="0" y="{y0+37}">{eq}</text>')
+    b.append(f'<rect class="nb" x="150" y="{y0+4}" width="170" height="38" rx="8"/><text class="an" x="235" y="{y0+28}" text-anchor="middle">{cx}</text>')
+    b.append(arrow(326,y0+23,382,y0+23))
+    b.append(f'<rect class="nm" x="388" y="{y0+4}" width="252" height="38" rx="8"/><text class="an fitc" x="514" y="{y0+28}" text-anchor="middle">{cy}</text>')
+    b.append(f'<text class="an sm cBt" x="150" y="{y0+58}">exemplo: {ex}</text>')
+save("b_tradutor", svg(640,272,'\n'.join(b),"Tradutor dos betas nas quatro formas funcionais: o que muda em x e o que muda em y"))
+
+# ---------- dummy: diferença de médias ----------
+P=Plot(560,300, 58,540,20,240, 0,4.3,6,16)
+b=[P.axes([],[6,8,10,12,14,16],"","Salário-hora, R$",grid=True)]
+for x,t in [(1,"D = 0: não sindicalizados"),(3,"D = 1: sindicalizados")]:
+    b.append(f'<text class="tk" x="{f(P.X(x))}" y="{f(P.B+18)}" text-anchor="middle">{t}</text>')
+g0=[8,9,10,9,9]; g1=[13,14,12,14,12]
+def jit(v):
+    seen={}; out=[]
+    for y in v:
+        k=seen.get(y,0); seen[y]=k+1; out.append((k-(v.count(y)-1)/2)*0.13)
+    return out
+for grp,xc,cls in [(g0,1,"pt"),(g1,3,"ptB")]:
+    for y,j in zip(grp,jit(grp)): b.append(f'<circle class="{cls}" cx="{f(P.X(xc+j))}" cy="{f(P.Y(y))}" r="5"/>')
+b.append(f'<line class="fit" x1="{f(P.X(1))}" y1="{f(P.Y(9))}" x2="{f(P.X(3))}" y2="{f(P.Y(13))}"/>')
+b.append(f'<line class="mean" x1="{f(P.X(1))}" y1="{f(P.Y(9))}" x2="{f(P.X(3.45))}" y2="{f(P.Y(9))}"/>')
+for x,y in [(1,9),(3,13)]:
+    b.append(f'<rect class="meanpt" x="{f(P.X(x)-6)}" y="{f(P.Y(y)-6)}" width="12" height="12" transform="rotate(45 {f(P.X(x))} {f(P.Y(y))})"/>')
+b.append(f'<line class="brk" x1="{f(P.X(3.45))}" y1="{f(P.Y(9))}" x2="{f(P.X(3.45))}" y2="{f(P.Y(13))}"/>')
+b.append(f'<text class="an posc" x="{f(P.X(3.45)+8)}" y="{f(P.Y(11.4))}">β̂₁ = 13 − 9</text><text class="an posc" x="{f(P.X(3.45)+8)}" y="{f(P.Y(10.6))}">= 4</text>')
+b.append(f'<text class="an resc" x="{f(P.X(1))}" y="{f(P.Y(7.1))}" text-anchor="middle">β̂₀ = 9 (média do grupo base)</text>')
+b.append(f'<text class="an" x="{f(P.X(3))}" y="{f(P.Y(15.1))}" text-anchor="middle">média do grupo D = 1: β̂₀ + β̂₁ = 13</text>')
+save("b_dummy", svg(560,300,'\n'.join(b),"Regressão numa dummy: beta zero é a média do grupo base e beta um é a diferença de médias"))
+
+# ---------- dummy sozinha × com interação ----------
+def ipanel(x0,title,b0,b1,g,gs):
+    P=Plot(0,0, x0+16,x0+286,16,170, 0,10,0,12)
+    o=[f'<line class="ax" x1="{P.L}" y1="{P.B}" x2="{P.R}" y2="{P.B}"/>',f'<line class="ax" x1="{P.L}" y1="{P.T}" x2="{P.L}" y2="{P.B}"/>']
+    o.append(f'<line class="fit" x1="{f(P.X(0))}" y1="{f(P.Y(b0))}" x2="{f(P.X(10))}" y2="{f(P.Y(b0+10*b1))}"/>')
+    o.append(f'<line class="tgn" x1="{f(P.X(0))}" y1="{f(P.Y(b0+g))}" x2="{f(P.X(10))}" y2="{f(P.Y(b0+g+10*(b1+gs)))}"/>')
+    for xx in (2,8):
+        o.append(f'<line class="brk" x1="{f(P.X(xx))}" y1="{f(P.Y(b0+b1*xx))}" x2="{f(P.X(xx))}" y2="{f(P.Y(b0+g+(b1+gs)*xx))}"/>')
+    o.append(f'<text class="an sm fitc" x="{f(P.X(10))}" y="{f(P.Y(b0+b1*5)+22)}" text-anchor="end">grupo base (D = 0)</text>')
+    o.append(f'<text class="an sm resc" x="{f(P.X(10))}" y="{f(P.Y(b0+g+(b1+gs)*10)-8)}" text-anchor="end">grupo D = 1</text>')
+    for i,l in enumerate(title): o.append(f'<text class="an sm" x="{f((P.L+P.R)/2)}" y="{190+i*15}" text-anchor="middle">{l}</text>')
+    return '\n'.join(o)
+save("b_interacao", svg(620,226, ipanel(0,["Só a dummy: retas paralelas","diferença constante = β₂"],2,0.5,1.5,0)+ipanel(320,["Dummy + interação D·x: inclinações diferentes","diferença = β₂ + β₃·x (cresce com x)"],2,0.5,1,0.3),"Dummy sozinha desloca a reta; com interação, a inclinação também muda"))
+
+# ---------- regressão múltipla: β₁ com o resto constante ----------
+P=Plot(560,320, 58,540,20,270, 7,17,8,36)
+b=[P.axes([8,10,12,14,16],[8,12,16,20,24,28,32,36],"Anos de estudo (educ)","Salário-hora, R$")]
+E=[8,10,12,12,14,16]; H=[1,2,4,3,6,8]; S=[12,15,23,20,29,33]
+b.append(f'<line class="cC" x1="{f(P.X(7.5))}" y1="{f(P.Y(-11.6+2.8*7.5))}" x2="{f(P.X(16.5))}" y2="{f(P.Y(-11.6+2.8*16.5))}"/>')
+for hb in (2,6):
+    b.append(f'<line class="samp" x1="{f(P.X(7.5))}" y1="{f(P.Y(2+2*hb+7.5))}" x2="{f(P.X(16.5))}" y2="{f(P.Y(2+2*hb+16.5))}"/>')
+    b.append(f'<text class="an sm fitc" x="{f(P.X(16.6))}" y="{f(P.Y(2+2*hb+16.5)+4)}">hab = {hb}</text>')
+for e,h,s in zip(E,H,S):
+    b.append(f'<circle class="pt" cx="{f(P.X(e))}" cy="{f(P.Y(s))}" r="5"/>')
+    side={(8,12):"L",(10,15):"R",(12,23):"L",(12,20):"R",(14,29):"L",(16,33):"B"}[(e,s)]
+    if side=="L": b.append(f'<text class="an sm" x="{f(P.X(e)-9)}" y="{f(P.Y(s)+4)}" text-anchor="end">h={h}</text>')
+    elif side=="R": b.append(f'<text class="an sm" x="{f(P.X(e)+9)}" y="{f(P.Y(s)+4)}">h={h}</text>')
+    else: b.append(f'<text class="an sm" x="{f(P.X(e)+6)}" y="{f(P.Y(s)+18)}">h={h}</text>')
+b.append(f'<text class="an resc" x="{f(P.X(16.6))}" y="{f(P.Y(13.6))}" text-anchor="end">vermelha: simples, inclinação 2,8</text>')
+b.append(f'<text class="an resc" x="{f(P.X(16.6))}" y="{f(P.Y(11.9))}" text-anchor="end">(educação + habilidade juntas)</text>')
+b.append(f'<text class="an fitc" x="{f(P.X(16.6))}" y="{f(P.Y(9.6))}" text-anchor="end">azuis: hab fixa, inclinação β̂₁ = 1</text>')
+save("b_multipla", svg(600,320,'\n'.join(b),"Na regressão múltipla, beta um é a inclinação com habilidade fixa; na simples, a inclinação mistura educação e habilidade"))
+
+# ---------- diagrama de caminhos (viés de variável omitida) ----------
+b=[]
+for cx,cy,t,box in [(90,150,"educ","nb"),(510,150,"salário","nb"),(300,50,"hab","ng")]:
+    b.append(f'<rect class="{box}" x="{cx-58}" y="{cy-22}" width="116" height="44" rx="10"/><text class="an" x="{cx}" y="{cy+5}" text-anchor="middle" font-weight="700">{t}</text>')
+b.append(arrow(150,150,450,150))
+b.append(arrow(140,130,242,68))
+b.append(arrow(358,68,460,130))
+b.append(f'<text class="an fitc" x="300" y="170" text-anchor="middle">β₁ = 1 (efeito direto, com hab fixa)</text>')
+b.append(f'<text class="an" x="170" y="92" text-anchor="end">δ₁ = 0,9</text>')
+b.append(f'<text class="an" x="428" y="92">β₂ = 2</text>')
+b.append(f'<text class="an resc" x="300" y="206" text-anchor="middle">a regressão simples mede os dois caminhos juntos: 1 + 2 × 0,9 = 2,8</text>')
+save("b_caminhos", svg(600,218,'\n'.join(b),"Diagrama de caminhos: efeito direto da educação e caminho indireto pela habilidade"))
+
+# ---------- régua de erros-padrão: t e IC ----------
+P=Plot(600,178, 30,580,20,120, -0.15,1.85,0,1)
+b=[P.axes([0,0.55,1.15,1.75],[],"valores de β₁","",xfmt=lambda v: nb(v,2),grid=False)]
+ep=0.189
+for k in range(0,7):
+    x=k*ep
+    b.append(f'<line class="mean" x1="{f(P.X(x))}" y1="30" x2="{f(P.X(x))}" y2="{f(P.B)}"/>')
+    b.append(f'<text class="tk" x="{f(P.X(x))}" y="26" text-anchor="middle">{k} EP</text>')
+b.append(ciline(P,86,0.549,1.751,1.15,"IC 95%: 1,15 ± 3,182 × 0,189 = [0,55; 1,75]"))
+b.append(f'<line class="obs" x1="{f(P.X(0))}" y1="34" x2="{f(P.X(0))}" y2="{f(P.B)}"/>')
+b.append(f'<text class="an resc" x="{f(P.X(0)+6)}" y="112">H₀: β₁ = 0</text>')
+b.append(f'<text class="an fitc" x="{f(P.R)}" y="112" text-anchor="end">β̂₁ = 1,15 está a t = 1,15 / 0,189 ≈ 6,08 EPs do zero</text>')
+save("b_regua", svg(600,178,'\n'.join(b),"Régua de erros-padrão: a estimativa está a cerca de seis erros-padrão do zero e o intervalo não contém o zero"))
+print("v7 figs ok", BETA_EST)

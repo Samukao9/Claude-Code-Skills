@@ -212,6 +212,29 @@ svg.fig.wide{min-width:560px}
 .fig .barA{fill:color-mix(in srgb,var(--marker) 45%,transparent);stroke:var(--marker);stroke-width:1.5}
 .fig .barB{fill:color-mix(in srgb,var(--red) 22%,transparent);stroke:var(--red);stroke-width:1.5;stroke-dasharray:4 3}
 .fig .sqr{fill:color-mix(in srgb,var(--red) 20%,transparent);stroke:var(--red);stroke-width:1.2}
+.fig .pos{fill:color-mix(in srgb,var(--green) 22%,transparent);stroke:var(--green);stroke-width:1.2}
+.fig .posc{fill:var(--green)}
+.fig .big{font:700 30px var(--f-display);fill:var(--ink)}
+.fig .big.fitc{fill:var(--marker)}.fig .big.resc{fill:var(--red)}.fig .big.posc{fill:var(--green)}
+.fig .nb{fill:var(--card);stroke:var(--line);stroke-width:1.4}
+.fig .nr{fill:var(--red-soft);stroke:var(--red);stroke-width:1.4}
+.fig .nm{fill:var(--marker-soft);stroke:var(--marker);stroke-width:1.4}
+.fig .ng{fill:var(--green-soft);stroke:var(--green);stroke-width:1.4}
+.fig .samp{stroke:var(--marker);stroke-width:1.8;opacity:.6;fill:none}
+.fig .truel{stroke:var(--ink);stroke-width:2.4;stroke-dasharray:8 5;fill:none}
+.fig .arw{stroke:var(--ink-2);stroke-width:1.8;fill:none}
+.fig .arwh{fill:var(--ink-2)}
+.fig .brk{stroke:var(--green);stroke-width:2.2;fill:none}
+.fig .ptB{fill:var(--red);stroke:var(--card);stroke-width:1.5}
+.fig text.sm{font-size:11.5px}
+/* fichas dos betas */
+.bcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin:14px 0}
+.bcard{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--marker);border-radius:12px;padding:14px 16px;box-shadow:var(--shadow)}
+.bcard.b0{border-left-color:var(--red)}.bcard.bg{border-left-color:var(--green)}.bcard.bi{border-left-color:var(--ink-3)}
+.bcard h4{margin:0 0 6px;font-family:var(--f-display);font-size:18px}
+.bcard dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:4px 10px;font-size:14.5px}
+.bcard dt{font-weight:700;color:var(--ink-2)}
+.bcard dd{margin:0}
 
 /* passo a passo */
 ol.steps{list-style:none;counter-reset:s;padding:0;margin:12px 0}

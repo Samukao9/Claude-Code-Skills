@@ -212,6 +212,29 @@ svg.fig.wide{min-width:560px}
 .fig .barA{fill:color-mix(in srgb,var(--marker) 45%,transparent);stroke:var(--marker);stroke-width:1.5}
 .fig .barB{fill:color-mix(in srgb,var(--red) 22%,transparent);stroke:var(--red);stroke-width:1.5;stroke-dasharray:4 3}
 .fig .sqr{fill:color-mix(in srgb,var(--red) 20%,transparent);stroke:var(--red);stroke-width:1.2}
+.fig .pos{fill:color-mix(in srgb,var(--green) 22%,transparent);stroke:var(--green);stroke-width:1.2}
+.fig .posc{fill:var(--green)}
+.fig .big{font:700 30px var(--f-display);fill:var(--ink)}
+.fig .big.fitc{fill:var(--marker)}.fig .big.resc{fill:var(--red)}.fig .big.posc{fill:var(--green)}
+.fig .nb{fill:var(--card);stroke:var(--line);stroke-width:1.4}
+.fig .nr{fill:var(--red-soft);stroke:var(--red);stroke-width:1.4}
+.fig .nm{fill:var(--marker-soft);stroke:var(--marker);stroke-width:1.4}
+.fig .ng{fill:var(--green-soft);stroke:var(--green);stroke-width:1.4}
+.fig .samp{stroke:var(--marker);stroke-width:1.8;opacity:.6;fill:none}
+.fig .truel{stroke:var(--ink);stroke-width:2.4;stroke-dasharray:8 5;fill:none}
+.fig .arw{stroke:var(--ink-2);stroke-width:1.8;fill:none}
+.fig .arwh{fill:var(--ink-2)}
+.fig .brk{stroke:var(--green);stroke-width:2.2;fill:none}
+.fig .ptB{fill:var(--red);stroke:var(--card);stroke-width:1.5}
+.fig text.sm{font-size:11.5px}
+/* fichas dos betas */
+.bcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin:14px 0}
+.bcard{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--marker);border-radius:12px;padding:14px 16px;box-shadow:var(--shadow)}
+.bcard.b0{border-left-color:var(--red)}.bcard.bg{border-left-color:var(--green)}.bcard.bi{border-left-color:var(--ink-3)}
+.bcard h4{margin:0 0 6px;font-family:var(--f-display);font-size:18px}
+.bcard dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:4px 10px;font-size:14.5px}
+.bcard dt{font-weight:700;color:var(--ink-2)}
+.bcard dd{margin:0}
 
 /* passo a passo */
 ol.steps{list-style:none;counter-reset:s;padding:0;margin:12px 0}
@@ -322,7 +345,7 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
   <button class="btn menu-btn" id="menuBtn" aria-controls="toc" aria-expanded="false">☰ Sumário</button>
   <span class="brand">Econometria I</span>
   <div class="grow"><div class="pbar" aria-hidden="true"><i id="pfill"></i></div></div>
-  <span class="ptext" id="ptext">0 de 27 módulos</span>
+  <span class="ptext" id="ptext">0 de 28 módulos</span>
   <button class="btn theme-btn" id="themeBtn" type="button" aria-label="Mudar para o modo escuro" title="Alternar modo claro e escuro"><svg class="moon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z" fill="currentColor"/></svg><svg class="sun" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.3 5.3l1.7 1.7M17 17l1.7 1.7M5.3 18.7L7 17M17 7l1.7-1.7" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg><span class="lbl-t">Escuro</span></button>
   <a class="btn" href="#formulas">β̂ Fórmulas</a>
 </header>
@@ -334,6 +357,7 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
     <div class="actions">
       <a class="btn primary" href="#zero">Começar do zero</a>
       <a class="btn" href="#formulas">As 2 fórmulas</a>
+      <a class="btn" href="#betas">Os betas em desenho</a>
       <a class="btn" href="#lista2">Lista 2: Ex. 1 e 4</a>
       <a class="btn" href="#aula5">Aula 5</a>
       <a class="btn" href="#listasala">Lista em sala</a>
@@ -363,6 +387,7 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
     <li><a href="#zero" data-mod="zero"><span class="n">M0</span><span>Do zero: variável, média, Σ</span></a></li>
     <li><a href="#estat" data-mod="estat"><span class="n">E</span><span>Estatística 1 e 2 do zero</span></a></li>
     <li><a href="#conceitos" data-mod="conceitos"><span class="n">C</span><span>Conceitos-chave: MQO/OLS, viés, estimador…</span></a></li>
+    <li><a href="#betas" data-mod="betas"><span class="n">β</span><span>Os betas, visualmente <b class="star">★</b></span></a></li>
     <li><a href="#mat-log" data-mod="mat-log"><span class="n">∫1</span><span>Funções, exponencial e log</span></a></li>
     <li><a href="#mat-deriv" data-mod="mat-deriv"><span class="n">∫2</span><span>Derivadas do zero ao MQO</span></a></li>
     <li><a href="#mat-int" data-mod="mat-int"><span class="n">∫3</span><span>Integrais e probabilidade</span></a></li>
@@ -473,7 +498,7 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
       <div class="day"><div class="d">Sáb 26/09</div><div><a href="#zero">Módulo 0</a> → <a href="#estat">Estatística do zero</a> (seções 1 a 13) → <a href="#conceitos">Conceitos-chave</a> → <a href="#formulas">As 2 fórmulas</a> → Aula 3 → Lista 2, Ex. 1 → <a href="#listasala">Lista em sala, Ex. 5</a>.</div></div>
       <div class="day"><div class="d">Dom 27/09</div><div>Aula 4 (com <a href="#mat-deriv">derivadas</a>) → Lista 2, Ex. 4 → <strong>Aula 5 inteira</strong>, com os laboratórios → <a href="#listasala">Lista em sala, Ex. 1 e 2</a>.</div></div>
       <div class="day"><div class="d">Seg 28/09</div><div>Aula 2 (partes de LGN, TCL e testes) → <a href="#lgn">LGN</a> → Aula 6 → <strong>Lista 3</strong> (Q4, Q5, Q6, Q8 e Q9 primeiro) → <a href="#listasala">Lista em sala, Ex. 3 e 4</a>.</div></div>
-      <div class="day"><div class="d">Ter 29/09</div><div><strong>Refaça a Lista em sala e a Lista 3 inteiras, sem olhar</strong> → Lista 1 (as conceituais estão como testes nas aulas) → Lista 2, Ex. 1 e 4 → <a href="#simulado">simulado</a> → <a href="#dicionario">dicionário</a>.</div></div>
+      <div class="day"><div class="d">Ter 29/09</div><div><a href="#betas">Os betas, visualmente</a> (30 min, para fixar as leituras) → <strong>Refaça a Lista em sala e a Lista 3 inteiras, sem olhar</strong> → Lista 1 (as conceituais estão como testes nas aulas) → Lista 2, Ex. 1 e 4 → <a href="#simulado">simulado</a> → <a href="#dicionario">dicionário</a>.</div></div>
       <div class="day exam"><div class="d">Qua 30/09<small>P1</small></div><div>Só a <a href="#cola">cola de véspera</a> e os cartões. A <a href="#p2">Prévia da P2</a> fica para depois.</div></div>
     </div>
   </div></details>
@@ -495,7 +520,7 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
 <section class="mod" id="formulas" data-title="As 2 fórmulas">
   <div class="eyebrow"><span class="tag hot">Decorar</span> Aula 3 · Lista 2 · lousa</div>
   <h2>As 2 fórmulas para decorar</h2>
-  <p>Estas duas fórmulas calculam a reta de regressão por <strong>Mínimos Quadrados Ordinários (MQO)</strong>. Quase toda conta da prova passa por elas. Se “Σ”, “x̄” ou o chapéu ainda não fazem sentido, leia antes o <a href="#zero">Módulo 0</a> e volte.</p>
+  <p>Estas duas fórmulas calculam a reta de regressão por <strong>Mínimos Quadrados Ordinários (MQO)</strong>. Quase toda conta da prova passa por elas. Se “Σ”, “x̄” ou o chapéu ainda não fazem sentido, leia antes o <a href="#zero">Módulo 0</a> e volte. Para ver em desenho o que cada β significa (intercepto, inclinação, log, dummy, múltipla), veja <a href="#betas">Os betas, visualmente</a>.</p>
 
   <div class="formula-hero">
     <div class="fcard">
@@ -1277,6 +1302,717 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
     <div class="opts"><button data-k="a">a) variável omitida correlacionada com x</button><button data-k="b">b) erro de medida em x</button><button data-k="c">c) simultaneidade</button><button data-k="d">d) heterocedasticidade</button></div>
     <div class="fb" hidden>d. Heterocedasticidade afeta a variância e o erro-padrão, não o centro. As outras três são formas de endogeneidade.</div></div>
   <div class="done-row"><button class="btn done-btn" data-done="conceitos" aria-pressed="false">Marcar como concluído</button></div>
+</section>
+
+
+<!-- ================= OS BETAS, VISUALMENTE ================= -->
+<section class="mod" id="betas" data-title="Os betas">
+  <div class="eyebrow"><span class="tag hot">Visual</span> Todos os β do curso, um por um, com desenho</div>
+  <h2>Os betas, visualmente</h2>
+  <p>Quase toda questão da P1 gira em torno de um β: calcular, interpretar, testar ou dizer se tem viés. Este módulo mostra <strong>cada beta como um desenho</strong>. Para cada um há uma ficha com quatro linhas: <strong>o que é</strong>, <strong>em que unidade vem</strong>, <strong>a frase para a prova</strong> e <strong>o erro mais comum</strong>. Os números são os mesmos das aulas e listas.</p>
+  <div class="box def"><span class="lbl">O módulo inteiro em 3 linhas</span>
+    <ul>
+      <li><strong>\(\beta_0\)</strong> é a <strong>altura</strong> da reta onde x = 0. <strong>\(\beta_1\)</strong> é a <strong>inclinação</strong>: quanto y muda, em média, quando x sobe 1.</li>
+      <li><strong>Sem chapéu</strong> (\(\beta\)) é o valor verdadeiro, fixo e desconhecido. <strong>Com chapéu</strong> (\(\hat\beta\)) é o que a amostra estimou; muda de amostra para amostra.</li>
+      <li>Com <strong>log</strong>, o beta vira porcentagem; com <strong>dummy</strong>, vira diferença de médias; na <strong>múltipla</strong>, vale “com as outras variáveis fixas”.</li>
+    </ul>
+  </div>
+
+  <h3>1. A anatomia da equação</h3>
+  <figure><div class="scroll"><svg class="fig" viewBox="0 0 640 184" role="img" aria-label="Anatomia da equação y igual a beta zero mais beta um vezes x mais u, com o significado de cada parte" xmlns="http://www.w3.org/2000/svg">
+<path class="brk" d="M150 44 V36 H486 V44"/><text class="an" x="318" y="28" text-anchor="middle">a reta (parte explicada por x): E(y | x) = β₀ + β₁x</text>
+<path class="brk" d="M540 44 V36 H612 V44"/><text class="an" x="576" y="28" text-anchor="middle">o que a reta não vê</text>
+<rect class="nb" x="24" y="52" width="80" height="54" rx="10"/>
+<text class="big " x="64" y="90" text-anchor="middle">y</text>
+<text class="an sm" x="64" y="128" text-anchor="middle">y: o que queremos</text>
+<text class="an sm" x="64" y="144" text-anchor="middle">explicar</text>
+<text class="an sm" x="64" y="160" text-anchor="middle">(ex.: salário-hora)</text>
+<rect class="nr" x="152" y="52" width="80" height="54" rx="10"/>
+<text class="big resc" x="192" y="90" text-anchor="middle">β₀</text>
+<text class="an sm" x="192" y="128" text-anchor="middle">β₀: intercepto</text>
+<text class="an sm" x="192" y="144" text-anchor="middle">valor médio de y</text>
+<text class="an sm" x="192" y="160" text-anchor="middle">quando x = 0</text>
+<rect class="nm" x="280" y="52" width="80" height="54" rx="10"/>
+<text class="big fitc" x="320" y="90" text-anchor="middle">β₁</text>
+<text class="an sm" x="320" y="128" text-anchor="middle">β₁: inclinação</text>
+<text class="an sm" x="320" y="144" text-anchor="middle">quanto y muda, em</text>
+<text class="an sm" x="320" y="160" text-anchor="middle">média, se x sobe 1</text>
+<rect class="nb" x="408" y="52" width="80" height="54" rx="10"/>
+<text class="big " x="448" y="90" text-anchor="middle">x</text>
+<text class="an sm" x="448" y="128" text-anchor="middle">x: variável</text>
+<text class="an sm" x="448" y="144" text-anchor="middle">explicativa</text>
+<text class="an sm" x="448" y="160" text-anchor="middle">(ex.: anos de estudo)</text>
+<rect class="ng" x="536" y="52" width="80" height="54" rx="10"/>
+<text class="big posc" x="576" y="90" text-anchor="middle">u</text>
+<text class="an sm" x="576" y="128" text-anchor="middle">u: erro</text>
+<text class="an sm" x="576" y="144" text-anchor="middle">tudo o mais</text>
+<text class="an sm" x="576" y="160" text-anchor="middle">que afeta y</text>
+<text class="big" x="128" y="90" text-anchor="middle">=</text>
+<text class="big" x="256" y="90" text-anchor="middle">+</text>
+<text class="big" x="384" y="90" text-anchor="middle">·</text>
+<text class="big" x="512" y="90" text-anchor="middle">+</text>
+</svg></div><figcaption>Cada pedaço da equação tem um papel. A reta \(\beta_0+\beta_1x\) é a parte de y que x explica; o erro u junta todo o resto (habilidade, sorte, região…).</figcaption></figure>
+  <p>Pense numa rampa. <strong>\(\beta_0\)</strong> é a altura em que a rampa começa. <strong>\(\beta_1\)</strong> é o quão íngreme ela é: quanto você sobe a cada passo para a frente. <strong>u</strong> é o quanto cada pessoa fica acima ou abaixo da rampa por motivos que a gente não mediu.</p>
+
+  <h3>2. β sem chapéu × β̂ com chapéu</h3>
+  <figure><div class="scroll"><svg class="fig" viewBox="0 0 560 300" role="img" aria-label="Reta verdadeira fixa e três retas estimadas em amostras diferentes" xmlns="http://www.w3.org/2000/svg">
+<line class="g" x1="50" y1="250" x2="540" y2="250"/>
+<line class="g" x1="50" y1="212.3" x2="540" y2="212.3"/>
+<line class="g" x1="50" y1="174.7" x2="540" y2="174.7"/>
+<line class="g" x1="50" y1="137" x2="540" y2="137"/>
+<line class="g" x1="50" y1="99.3" x2="540" y2="99.3"/>
+<line class="g" x1="50" y1="61.7" x2="540" y2="61.7"/>
+<line class="g" x1="50" y1="24" x2="540" y2="24"/>
+<line class="g" x1="50" y1="24" x2="50" y2="250"/>
+<line class="g" x1="148" y1="24" x2="148" y2="250"/>
+<line class="g" x1="246" y1="24" x2="246" y2="250"/>
+<line class="g" x1="344" y1="24" x2="344" y2="250"/>
+<line class="g" x1="442" y1="24" x2="442" y2="250"/>
+<line class="g" x1="540" y1="24" x2="540" y2="250"/>
+<line class="ax" x1="50" y1="250" x2="540" y2="250"/>
+<line class="ax" x1="50" y1="24" x2="50" y2="250"/>
+<text class="tk" x="50" y="266" text-anchor="middle">0</text>
+<text class="tk" x="148" y="266" text-anchor="middle">2</text>
+<text class="tk" x="246" y="266" text-anchor="middle">4</text>
+<text class="tk" x="344" y="266" text-anchor="middle">6</text>
+<text class="tk" x="442" y="266" text-anchor="middle">8</text>
+<text class="tk" x="540" y="266" text-anchor="middle">10</text>
+<text class="tk" x="43" y="254" text-anchor="end">0</text>
+<text class="tk" x="43" y="216.3" text-anchor="end">2</text>
+<text class="tk" x="43" y="178.7" text-anchor="end">4</text>
+<text class="tk" x="43" y="141" text-anchor="end">6</text>
+<text class="tk" x="43" y="103.3" text-anchor="end">8</text>
+<text class="tk" x="43" y="65.7" text-anchor="end">10</text>
+<text class="tk" x="43" y="28" text-anchor="end">12</text>
+<text class="lb" x="295" y="294" text-anchor="middle">x</text>
+<text class="lb" x="12" y="137" text-anchor="middle" transform="rotate(-90 12 137)">y</text>
+<line class="samp" x1="50" y1="217.2" x2="540" y2="45.1"/>
+<line class="samp" x1="50" y1="181.7" x2="540" y2="87"/>
+<line class="samp" x1="50" y1="202.6" x2="540" y2="59.6"/>
+<circle class="pt sm" cx="274" cy="97.2" r="3"/>
+<circle class="pt sm" cx="321.4" cy="99.3" r="3"/>
+<circle class="pt sm" cx="482.1" cy="82.5" r="3"/>
+<circle class="pt sm" cx="279.9" cy="149.9" r="3"/>
+<circle class="pt sm" cx="298.5" cy="58.5" r="3"/>
+<circle class="pt sm" cx="333.5" cy="133.9" r="3"/>
+<circle class="pt sm" cx="155.9" cy="203.4" r="3"/>
+<circle class="pt sm" cx="300.3" cy="169.7" r="3"/>
+<circle class="pt sm" cx="352.3" cy="116.5" r="3"/>
+<circle class="pt sm" cx="424.2" cy="92.9" r="3"/>
+<circle class="pt sm" cx="116" cy="202.4" r="3"/>
+<circle class="pt sm" cx="208.3" cy="165.5" r="3"/>
+<line class="truel" x1="50" y1="212.3" x2="540" y2="61.7"/>
+<text class="an" x="535.1" y="186" text-anchor="end">tracejada: reta verdadeira, β₁ = 0,8 (fixa)</text>
+<text class="an fitc" x="535.1" y="206.7" text-anchor="end">azuis: retas de 3 amostras diferentes</text>
+<text class="an fitc" x="535.1" y="227.4" text-anchor="end">β̂₁ = 0,91; 0,50; 0,76</text>
+</svg></div><figcaption>A reta tracejada é a verdadeira da população: existe, mas ninguém a vê. Cada amostra de 12 pessoas produz uma reta estimada um pouco diferente. Os pontos são os da primeira amostra.</figcaption></figure>
+  <div class="tbl"><table>
+    <thead><tr><th></th><th>\(\beta_1\) (sem chapéu)</th><th>\(\hat\beta_1\) (com chapéu)</th></tr></thead>
+    <tbody>
+      <tr><td>Nome</td><td>Parâmetro</td><td>Estimador (a fórmula) / estimativa (o número)</td></tr>
+      <tr><td>Muda com a amostra?</td><td>Não: é fixo</td><td><strong>Sim</strong>: cada amostra dá um valor</td></tr>
+      <tr><td>Conhecemos?</td><td>Não</td><td>Sim, calculamos</td></tr>
+      <tr><td>Tem viés, variância, EP?</td><td>Não (é só um número)</td><td><strong>Sim</strong>: é aqui que moram as propriedades da Aula 5</td></tr>
+    </tbody>
+  </table></div>
+  <p>O chapéu “^” significa <strong>“estimado”</strong>. Na figura, o β₁ verdadeiro é 0,8 e as três amostras deram estimativas diferentes, em volta dele. “Não viesado” quer dizer que, repetindo isso muitas vezes, as estimativas acertam o 0,8 <strong>na média</strong> (veja os <a href="#aula5">laboratórios da Aula 5</a>).</p>
+
+  <h3>3. β₀: o intercepto</h3>
+  <figure><div class="scroll"><svg class="fig" viewBox="0 0 560 280" role="img" aria-label="Intercepto como a altura em que a reta cruza o eixo vertical; mudar o intercepto desloca a reta sem girar" xmlns="http://www.w3.org/2000/svg">
+<line class="g" x1="50" y1="236" x2="540" y2="236"/>
+<line class="g" x1="50" y1="197.5" x2="540" y2="197.5"/>
+<line class="g" x1="50" y1="158.9" x2="540" y2="158.9"/>
+<line class="g" x1="50" y1="120.4" x2="540" y2="120.4"/>
+<line class="g" x1="50" y1="81.8" x2="540" y2="81.8"/>
+<line class="g" x1="50" y1="43.3" x2="540" y2="43.3"/>
+<line class="g" x1="50" y1="24" x2="50" y2="236"/>
+<line class="g" x1="148" y1="24" x2="148" y2="236"/>
+<line class="g" x1="246" y1="24" x2="246" y2="236"/>
+<line class="g" x1="344" y1="24" x2="344" y2="236"/>
+<line class="g" x1="442" y1="24" x2="442" y2="236"/>
+<line class="g" x1="540" y1="24" x2="540" y2="236"/>
+<line class="ax" x1="50" y1="236" x2="540" y2="236"/>
+<line class="ax" x1="50" y1="24" x2="50" y2="236"/>
+<text class="tk" x="50" y="252" text-anchor="middle">0</text>
+<text class="tk" x="148" y="252" text-anchor="middle">2</text>
+<text class="tk" x="246" y="252" text-anchor="middle">4</text>
+<text class="tk" x="344" y="252" text-anchor="middle">6</text>
+<text class="tk" x="442" y="252" text-anchor="middle">8</text>
+<text class="tk" x="540" y="252" text-anchor="middle">10</text>
+<text class="tk" x="43" y="240" text-anchor="end">0</text>
+<text class="tk" x="43" y="201.5" text-anchor="end">2</text>
+<text class="tk" x="43" y="162.9" text-anchor="end">4</text>
+<text class="tk" x="43" y="124.4" text-anchor="end">6</text>
+<text class="tk" x="43" y="85.8" text-anchor="end">8</text>
+<text class="tk" x="43" y="47.3" text-anchor="end">10</text>
+<text class="lb" x="295" y="274" text-anchor="middle">x</text>
+<text class="lb" x="12" y="130" text-anchor="middle" transform="rotate(-90 12 130)">y</text>
+<line class="samp" x1="50" y1="149.3" x2="540" y2="33.6"/>
+<line class="fit" x1="50" y1="197.5" x2="540" y2="81.8"/>
+<line class="brk" x1="60" y1="236" x2="60" y2="197.5"/>
+<text class="an posc" x="66" y="220.7">β₀ = 2</text>
+<circle class="icpt" cx="50" cy="197.5" r="5.5"/>
+<circle class="icpt" cx="50" cy="149.3" r="5.5"/>
+<text class="an fitc" x="353.8" y="135.8">y = 2 + 0,6x</text>
+<text class="an" x="255.8" y="51">y = 4,5 + 0,6x: mesma inclinação, β₀ maior</text>
+<text class="an resc" x="157.8" y="220.6">β₀ é a altura onde a reta cruza x = 0</text>
+</svg></div><figcaption>\(\beta_0\) é onde a reta cruza o eixo vertical (x = 0). Mudar só o \(\beta_0\) sobe ou desce a reta inteira, sem girar.</figcaption></figure>
+  <div class="bcards">
+    <div class="bcard b0"><h4>\(\beta_0\) · intercepto</h4><dl>
+      <dt>É</dt><dd>O valor médio de y quando x = 0. Na figura, a altura da reta no eixo vertical.</dd>
+      <dt>Unidade</dt><dd>A mesma de y (R$, R$/h, toneladas…).</dd>
+      <dt>Frase</dt><dd>“Para x = 0, o valor ajustado de y é \(\hat\beta_0\).”</dd>
+      <dt>Cuidado</dt><dd>Muitas vezes x = 0 está fora dos dados. Aí \(\hat\beta_0\) é só a altura da reta, sem leitura econômica.</dd>
+    </dl></div>
+    <div class="bcard b0"><h4>Exemplos do curso</h4><dl>
+      <dt>Lista 2</dt><dd>\(\widehat{aluguel}=560+24\,area\): R$ 560 seria o aluguel de um imóvel de 0 m². Não existe; é só onde a reta começa.</dd>
+      <dt>Aula 3</dt><dd>\(\widehat{salhora}=-0{,}90+0{,}50\,educ\): salário negativo com 0 anos de estudo. Provavelmente ninguém na amostra tinha 0 anos: o intercepto só posiciona a reta.</dd>
+    </dl></div>
+  </div>
+
+  <h3>4. β₁: a inclinação</h3>
+  <figure><div class="scroll"><svg class="fig" viewBox="0 0 560 300" role="img" aria-label="A inclinação como uma escada: cada ano a mais de estudo sobe o salário ajustado em 1,15" xmlns="http://www.w3.org/2000/svg">
+<line class="g" x1="58" y1="250" x2="540" y2="250"/>
+<line class="g" x1="58" y1="192.5" x2="540" y2="192.5"/>
+<line class="g" x1="58" y1="135" x2="540" y2="135"/>
+<line class="g" x1="58" y1="77.5" x2="540" y2="77.5"/>
+<line class="g" x1="58" y1="20" x2="540" y2="20"/>
+<line class="g" x1="106.2" y1="20" x2="106.2" y2="250"/>
+<line class="g" x1="202.6" y1="20" x2="202.6" y2="250"/>
+<line class="g" x1="299" y1="20" x2="299" y2="250"/>
+<line class="g" x1="395.4" y1="20" x2="395.4" y2="250"/>
+<line class="g" x1="491.8" y1="20" x2="491.8" y2="250"/>
+<line class="ax" x1="58" y1="250" x2="540" y2="250"/>
+<line class="ax" x1="58" y1="20" x2="58" y2="250"/>
+<text class="tk" x="106.2" y="266" text-anchor="middle">8</text>
+<text class="tk" x="202.6" y="266" text-anchor="middle">10</text>
+<text class="tk" x="299" y="266" text-anchor="middle">12</text>
+<text class="tk" x="395.4" y="266" text-anchor="middle">14</text>
+<text class="tk" x="491.8" y="266" text-anchor="middle">16</text>
+<text class="tk" x="51" y="254" text-anchor="end">6</text>
+<text class="tk" x="51" y="196.5" text-anchor="end">10</text>
+<text class="tk" x="51" y="139" text-anchor="end">14</text>
+<text class="tk" x="51" y="81.5" text-anchor="end">18</text>
+<text class="tk" x="51" y="24" text-anchor="end">22</text>
+<text class="lb" x="299" y="294" text-anchor="middle">Anos de estudo (x)</text>
+<text class="lb" x="12" y="135" text-anchor="middle" transform="rotate(-90 12 135)">Salário-hora ajustado, R$</text>
+<line class="fit" x1="82.1" y1="203.6" x2="515.9" y2="54.9"/>
+<path class="tri" d="M202.6 162.3 H250.8 V145.8"/>
+<path class="tri" d="M250.8 145.8 H299 V129.2"/>
+<path class="tri" d="M299 129.2 H347.2 V112.7"/>
+<path class="tri" d="M347.2 112.7 H395.4 V96.2"/>
+<text class="an posc" x="226.7" y="178.3" text-anchor="middle">+1 ano</text>
+<text class="an posc" x="256.8" y="158">+R$ 1,15</text>
+<text class="an" x="86.9" y="66">cada degrau: +1 em x ⇒ +β̂₁ em ŷ</text>
+<text class="an" x="86.9" y="84.7">4 anos a mais ⇒ 4 × 1,15 = R$ 4,60</text>
+<text class="an fitc" x="86.9" y="41.6">ŷ = 0,6 + 1,15x</text>
+</svg></div><figcaption>A inclinação é uma escada: cada ano a mais de estudo (+1 em x) sobe o salário ajustado em R$ 1,15 (\(\hat\beta_1\)). Vários degraus somam: \(\Delta\hat y=\hat\beta_1\,\Delta x\).</figcaption></figure>
+  <figure><div class="scroll"><svg class="fig" viewBox="0 0 600 200" role="img" aria-label="Três painéis: inclinação positiva, nula e negativa" xmlns="http://www.w3.org/2000/svg">
+<line class="ax" x1="14" y1="146" x2="184" y2="146"/>
+<line class="ax" x1="14" y1="16" x2="14" y2="146"/>
+<circle class="pt sm" cx="121.2" cy="77.9" r="2.6"/>
+<circle class="pt sm" cx="53.6" cy="133.3" r="2.6"/>
+<circle class="pt sm" cx="34" cy="111.1" r="2.6"/>
+<circle class="pt sm" cx="79.9" cy="100.6" r="2.6"/>
+<circle class="pt sm" cx="146.1" cy="45.4" r="2.6"/>
+<circle class="pt sm" cx="97.7" cy="58.3" r="2.6"/>
+<circle class="pt sm" cx="34.9" cy="102.1" r="2.6"/>
+<circle class="pt sm" cx="36" cy="122.3" r="2.6"/>
+<circle class="pt sm" cx="149.7" cy="50.9" r="2.6"/>
+<circle class="pt sm" cx="122.6" cy="87.4" r="2.6"/>
+<circle class="pt sm" cx="172.7" cy="23.8" r="2.6"/>
+<circle class="pt sm" cx="120.4" cy="67.2" r="2.6"/>
+<circle class="pt sm" cx="62" cy="108.9" r="2.6"/>
+<circle class="pt sm" cx="121.5" cy="75.9" r="2.6"/>
+<line class="tg" x1="19.1" y1="123.8" x2="178.9" y2="38.2"/>
+<text class="an sm" x="99" y="166" text-anchor="middle">β₁ > 0: x e y sobem juntos</text>
+<text class="an sm" x="99" y="181" text-anchor="middle">(educação × salário)</text><line class="ax" x1="214" y1="146" x2="384" y2="146"/>
+<line class="ax" x1="214" y1="16" x2="214" y2="146"/>
+<circle class="pt sm" cx="359.7" cy="88.8" r="2.6"/>
+<circle class="pt sm" cx="359.5" cy="99.4" r="2.6"/>
+<circle class="pt sm" cx="263.1" cy="97.7" r="2.6"/>
+<circle class="pt sm" cx="354.7" cy="100.1" r="2.6"/>
+<circle class="pt sm" cx="309.9" cy="75.2" r="2.6"/>
+<circle class="pt sm" cx="372.9" cy="70.5" r="2.6"/>
+<circle class="pt sm" cx="239.6" cy="93.1" r="2.6"/>
+<circle class="pt sm" cx="291.4" cy="55" r="2.6"/>
+<circle class="pt sm" cx="255.4" cy="91.4" r="2.6"/>
+<circle class="pt sm" cx="274.4" cy="57.6" r="2.6"/>
+<circle class="pt sm" cx="288.1" cy="95.7" r="2.6"/>
+<circle class="pt sm" cx="297.8" cy="96.2" r="2.6"/>
+<circle class="pt sm" cx="236.4" cy="83.8" r="2.6"/>
+<circle class="pt sm" cx="238.3" cy="82.4" r="2.6"/>
+<line class="tg0" x1="219.1" y1="81" x2="378.9" y2="81"/>
+<text class="an sm" x="299" y="166" text-anchor="middle">β₁ = 0: sem relação linear</text>
+<text class="an sm" x="299" y="181" text-anchor="middle">(y não muda com x)</text><line class="ax" x1="414" y1="146" x2="584" y2="146"/>
+<line class="ax" x1="414" y1="16" x2="414" y2="146"/>
+<circle class="pt sm" cx="462.9" cy="68.7" r="2.6"/>
+<circle class="pt sm" cx="551.3" cy="125.3" r="2.6"/>
+<circle class="pt sm" cx="452" cy="55" r="2.6"/>
+<circle class="pt sm" cx="457.9" cy="52.4" r="2.6"/>
+<circle class="pt sm" cx="534" cy="89.9" r="2.6"/>
+<circle class="pt sm" cx="456.2" cy="47.6" r="2.6"/>
+<circle class="pt sm" cx="468.3" cy="84.8" r="2.6"/>
+<circle class="pt sm" cx="515.2" cy="80.4" r="2.6"/>
+<circle class="pt sm" cx="426.4" cy="43.2" r="2.6"/>
+<circle class="pt sm" cx="554.5" cy="104.2" r="2.6"/>
+<circle class="pt sm" cx="545.3" cy="98.3" r="2.6"/>
+<circle class="pt sm" cx="535.6" cy="121.1" r="2.6"/>
+<circle class="pt sm" cx="566.2" cy="114.5" r="2.6"/>
+<circle class="pt sm" cx="551.4" cy="117.7" r="2.6"/>
+<line class="tgn" x1="419.1" y1="38.2" x2="578.9" y2="123.8"/>
+<text class="an sm" x="499" y="166" text-anchor="middle">β₁ < 0: x sobe, y desce</text>
+<text class="an sm" x="499" y="181" text-anchor="middle">(preço × quantidade)</text>
+</svg></div><figcaption>O sinal de \(\beta_1\) diz a direção: positivo, a nuvem sobe; zero, fica plana; negativo, desce.</figcaption></figure>
+  <div class="bcards">
+    <div class="bcard"><h4>\(\beta_1\) · inclinação</h4><dl>
+      <dt>É</dt><dd>Quanto y muda, <strong>em média</strong>, quando x aumenta 1 unidade. É a derivada \(dy/dx\) da reta.</dd>
+      <dt>Unidade</dt><dd>Unidade de y <strong>por</strong> unidade de x: R$/h por ano de estudo; R$ por m².</dd>
+      <dt>Frase</dt><dd>“Na amostra, um ano a mais de estudo está associado, em média, a R$ 1,15 a mais de salário-hora.”</dd>
+      <dt>Cuidado</dt><dd>“Associado” não é “causa”. Só vira efeito causal se \(E(u\mid x)=0\) (nada no u anda junto com x).</dd>
+    </dl></div>
+    <div class="bcard"><h4>Mudou a unidade? Muda o β</h4><dl>
+      <dt>x em meses</dt><dd>Em vez de anos: \(\hat\beta_1\) fica 12 vezes menor (1,15/12 ≈ 0,096 por mês).</dd>
+      <dt>y em centavos</dt><dd>Em vez de reais: \(\hat\beta_0\) e \(\hat\beta_1\) ficam 100 vezes maiores.</dd>
+      <dt>O que não muda</dt><dd>O \(R^2\), a estatística t e a conclusão do teste (<a href="#aula4">Aula 4</a>).</dd>
+    </dl></div>
+  </div>
+
+  <h3>5. De onde vem o número de β̂₁: a conta em desenho</h3>
+  <p>A fórmula \(\hat\beta_1=\frac{\sum(x_i-\bar x)(y_i-\bar y)}{\sum(x_i-\bar x)^2}\) parece abstrata, mas tem um desenho simples. Marque o ponto das médias (x̄, ȳ) e ligue cada observação a ele por um retângulo. A área do retângulo, com sinal, é o produto \((x_i-\bar x)(y_i-\bar y)\).</p>
+  <figure><div class="scroll"><svg class="fig" viewBox="0 0 560 330" role="img" aria-label="Retângulos entre o ponto das médias e cada observação; a soma das áreas com sinal é o numerador de beta um chapéu" xmlns="http://www.w3.org/2000/svg">
+<line class="g" x1="58" y1="280" x2="540" y2="280"/>
+<line class="g" x1="58" y1="242.9" x2="540" y2="242.9"/>
+<line class="g" x1="58" y1="205.7" x2="540" y2="205.7"/>
+<line class="g" x1="58" y1="168.6" x2="540" y2="168.6"/>
+<line class="g" x1="58" y1="131.4" x2="540" y2="131.4"/>
+<line class="g" x1="58" y1="94.3" x2="540" y2="94.3"/>
+<line class="g" x1="58" y1="57.1" x2="540" y2="57.1"/>
+<line class="g" x1="58" y1="20" x2="540" y2="20"/>
+<line class="g" x1="58" y1="20" x2="58" y2="280"/>
+<line class="g" x1="138.3" y1="20" x2="138.3" y2="280"/>
+<line class="g" x1="218.7" y1="20" x2="218.7" y2="280"/>
+<line class="g" x1="299" y1="20" x2="299" y2="280"/>
+<line class="g" x1="379.3" y1="20" x2="379.3" y2="280"/>
+<line class="g" x1="459.7" y1="20" x2="459.7" y2="280"/>
+<line class="g" x1="540" y1="20" x2="540" y2="280"/>
+<line class="ax" x1="58" y1="280" x2="540" y2="280"/>
+<line class="ax" x1="58" y1="20" x2="58" y2="280"/>
+<text class="tk" x="58" y="296" text-anchor="middle">6</text>
+<text class="tk" x="138.3" y="296" text-anchor="middle">8</text>
+<text class="tk" x="218.7" y="296" text-anchor="middle">10</text>
+<text class="tk" x="299" y="296" text-anchor="middle">12</text>
+<text class="tk" x="379.3" y="296" text-anchor="middle">14</text>
+<text class="tk" x="459.7" y="296" text-anchor="middle">16</text>
+<text class="tk" x="540" y="296" text-anchor="middle">18</text>
+<text class="tk" x="51" y="284" text-anchor="end">8</text>
+<text class="tk" x="51" y="246.9" text-anchor="end">10</text>
+<text class="tk" x="51" y="209.7" text-anchor="end">12</text>
+<text class="tk" x="51" y="172.6" text-anchor="end">14</text>
+<text class="tk" x="51" y="135.4" text-anchor="end">16</text>
+<text class="tk" x="51" y="98.3" text-anchor="end">18</text>
+<text class="tk" x="51" y="61.1" text-anchor="end">20</text>
+<text class="tk" x="51" y="24" text-anchor="end">22</text>
+<text class="lb" x="299" y="324" text-anchor="middle">Anos de estudo (x)</text>
+<text class="lb" x="12" y="150" text-anchor="middle" transform="rotate(-90 12 150)">Salário-hora, R$ (y)</text>
+<rect class="pos" x="138.3" y="161.1" width="160.7" height="81.7"/>
+<rect class="pos" x="218.7" y="161.1" width="80.3" height="44.6"/>
+<rect class="pos" x="299" y="150" width="80.3" height="11.1"/>
+<rect class="pos" x="299" y="57.1" width="160.7" height="104"/>
+<line class="mean" x1="299" y1="20" x2="299" y2="280"/>
+<line class="mean" x1="58" y1="161.1" x2="540" y2="161.1"/>
+<circle class="pt" cx="138.3" cy="242.9" r="5"/>
+<circle class="pt" cx="218.7" cy="205.7" r="5"/>
+<circle class="pt" cx="299" cy="150" r="5"/>
+<circle class="pt" cx="379.3" cy="150" r="5"/>
+<circle class="pt" cx="459.7" cy="57.1" r="5"/>
+<text class="an posc" x="130.3" y="234.9" text-anchor="end">+17,6</text>
+<text class="an posc" x="210.7" y="197.7" text-anchor="end">+4,8</text>
+<text class="an posc" x="307" y="142" text-anchor="start">0</text>
+<text class="an posc" x="387.3" y="142" text-anchor="start">+1,2</text>
+<text class="an posc" x="467.7" y="49.1" text-anchor="start">+22,4</text>
+<text class="an posc" x="532" y="33" text-anchor="end">quadrante I: (+)·(+) = +</text>
+<text class="an posc" x="70" y="268.9">quadrante III: (−)·(−) = +</text>
+<text class="an resc" x="70" y="33">II: (−)·(+) = −</text>
+<text class="an resc" x="532" y="268.9" text-anchor="end">IV: (+)·(−) = −</text>
+<text class="an" x="305" y="32">x̄ = 12</text><text class="an" x="536" y="155.1" text-anchor="end">ȳ = 14,4</text>
+</svg></div><figcaption>Os 5 indivíduos da Aula 3. Os retângulos verdes caem nos quadrantes I e III (produto positivo). Não há nenhum vermelho, então a soma é positiva e a reta sobe.</figcaption></figure>
+  <div class="tbl"><table>
+    <thead><tr><th class="r">i</th><th class="r">x</th><th class="r">y</th><th class="r">x − x̄</th><th class="r">y − ȳ</th><th class="r">produto (área)</th><th class="r">(x − x̄)²</th></tr></thead>
+    <tbody>
+      <tr><td class="r">1</td><td class="r">8</td><td class="r">10</td><td class="r">−4</td><td class="r">−4,4</td><td class="r">+17,6</td><td class="r">16</td></tr>
+      <tr><td class="r">2</td><td class="r">10</td><td class="r">12</td><td class="r">−2</td><td class="r">−2,4</td><td class="r">+4,8</td><td class="r">4</td></tr>
+      <tr><td class="r">3</td><td class="r">12</td><td class="r">15</td><td class="r">0</td><td class="r">+0,6</td><td class="r">0</td><td class="r">0</td></tr>
+      <tr><td class="r">4</td><td class="r">14</td><td class="r">15</td><td class="r">+2</td><td class="r">+0,6</td><td class="r">+1,2</td><td class="r">4</td></tr>
+      <tr><td class="r">5</td><td class="r">16</td><td class="r">20</td><td class="r">+4</td><td class="r">+5,6</td><td class="r">+22,4</td><td class="r">16</td></tr>
+      <tr><td><strong>Σ</strong></td><td></td><td></td><td class="r">0</td><td class="r">0</td><td class="r"><strong>46</strong></td><td class="r"><strong>40</strong></td></tr>
+    </tbody>
+  </table></div>
+  <div class="mathblock">\[\hat\beta_1=\frac{\text{soma das áreas com sinal}}{\text{soma dos quadrados dos desvios de }x}=\frac{46}{40}=1{,}15\]</div>
+  <ul>
+    <li><strong>Numerador</strong> (vira a covariância ao dividir por n): se os pontos ficam nos quadrantes I e III, x e y andam juntos → positivo. Nos quadrantes II e IV → negativo. Espalhados por todos → perto de zero.</li>
+    <li><strong>Denominador</strong> (vira a variância de x): quanto x varia. Por isso \(\hat\beta_1=\dfrac{Cov(x,y)}{Var(x)}\), e se x não varia (todos iguais) a conta é impossível: é a hipótese <strong>RLS.3</strong>.</li>
+  </ul>
+
+  <h3>6. De onde vem β̂₀: a reta passa pelo ponto das médias</h3>
+  <figure><div class="scroll"><svg class="fig" viewBox="0 0 560 300" role="img" aria-label="Como achar beta zero chapéu: partir do ponto das médias, voltar até x igual a zero e descer beta um vezes x barra" xmlns="http://www.w3.org/2000/svg">
+<line class="g" x1="50" y1="250" x2="540" y2="250"/>
+<line class="g" x1="50" y1="208.2" x2="540" y2="208.2"/>
+<line class="g" x1="50" y1="166.4" x2="540" y2="166.4"/>
+<line class="g" x1="50" y1="124.5" x2="540" y2="124.5"/>
+<line class="g" x1="50" y1="82.7" x2="540" y2="82.7"/>
+<line class="g" x1="50" y1="40.9" x2="540" y2="40.9"/>
+<line class="g" x1="50" y1="20" x2="50" y2="250"/>
+<line class="g" x1="165.3" y1="20" x2="165.3" y2="250"/>
+<line class="g" x1="280.6" y1="20" x2="280.6" y2="250"/>
+<line class="g" x1="395.9" y1="20" x2="395.9" y2="250"/>
+<line class="g" x1="511.2" y1="20" x2="511.2" y2="250"/>
+<line class="ax" x1="50" y1="250" x2="540" y2="250"/>
+<line class="ax" x1="50" y1="20" x2="50" y2="250"/>
+<text class="tk" x="50" y="266" text-anchor="middle">0</text>
+<text class="tk" x="165.3" y="266" text-anchor="middle">4</text>
+<text class="tk" x="280.6" y="266" text-anchor="middle">8</text>
+<text class="tk" x="395.9" y="266" text-anchor="middle">12</text>
+<text class="tk" x="511.2" y="266" text-anchor="middle">16</text>
+<text class="tk" x="43" y="254" text-anchor="end">0</text>
+<text class="tk" x="43" y="212.2" text-anchor="end">4</text>
+<text class="tk" x="43" y="170.4" text-anchor="end">8</text>
+<text class="tk" x="43" y="128.5" text-anchor="end">12</text>
+<text class="tk" x="43" y="86.7" text-anchor="end">16</text>
+<text class="tk" x="43" y="44.9" text-anchor="end">20</text>
+<text class="lb" x="295" y="294" text-anchor="middle">Anos de estudo (x)</text>
+<text class="lb" x="12" y="135" text-anchor="middle" transform="rotate(-90 12 135)">Salário-hora ajustado, R$</text>
+<line class="fit" x1="50" y1="243.7" x2="540" y2="39.3"/>
+<path class="tri" d="M395.9 99.5 H50 V243.7"/>
+<rect class="meanpt" x="389.9" y="93.5" width="12" height="12" transform="rotate(45 395.9 99.5)"/>
+<circle class="icpt" cx="50" cy="243.7" r="5.5"/>
+<text class="an" x="407.4" y="121.4">1. comece em (x̄, ȳ)</text><text class="an" x="407.4" y="136">= (12; 14,4)</text>
+<text class="an posc" x="222.9" y="91.5" text-anchor="middle">2. volte x̄ = 12 anos até x = 0</text>
+<text class="an posc" x="60" y="153.8">3. desça β̂₁·x̄</text><text class="an posc" x="60" y="168.5">= 1,15 × 12 = 13,8</text>
+<text class="an resc" x="107.6" y="238.5">4. chegou em β̂₀ = 14,4 − 13,8 = 0,6</text>
+</svg></div><figcaption>A reta do MQO sempre passa por (x̄, ȳ). Para achar onde ela corta o eixo, saia desse ponto, volte x̄ unidades até x = 0 e desça \(\hat\beta_1\cdot\bar x\).</figcaption></figure>
+  <div class="mathblock">\[\hat\beta_0=\bar y-\hat\beta_1\,\bar x=14{,}4-1{,}15\times12=0{,}6\]</div>
+  <p>É exatamente o caminho do desenho, em conta. Por isso <strong>\(\hat\beta_1\) vem sempre primeiro</strong>: sem a inclinação, não dá para “descer” até o eixo. Na Lista 2: \(\hat\beta_0=2.000-24\times60=560\).</p>
+
+  <h3>7. Os betas quando há log</h3>
+  <p>Regra de bolso: <strong>onde tem log, tem porcentagem</strong>. Log em y transforma o efeito em y em %; log em x transforma a mudança em x em %.</p>
+  <figure><div class="scroll"><svg class="fig" viewBox="0 0 640 272" role="img" aria-label="Tradutor dos betas nas quatro formas funcionais: o que muda em x e o que muda em y" xmlns="http://www.w3.org/2000/svg">
+<text class="an" x="0" y="28" font-weight="700">Nível–nível</text><text class="an sm" x="0" y="45">y = β₀ + β₁x</text>
+<rect class="nb" x="150" y="12" width="170" height="38" rx="8"/><text class="an" x="235" y="36" text-anchor="middle">+1 unidade em x</text>
+<line class="arw" x1="326" y1="31" x2="373" y2="31"/><polygon class="arwh" points="382,31 373,26.9 373,35"/>
+<rect class="nm" x="388" y="12" width="252" height="38" rx="8"/><text class="an fitc" x="514" y="36" text-anchor="middle">+β₁ unidades em y</text>
+<text class="an sm cBt" x="150" y="66">exemplo: área +1 m² ⇒ aluguel +R$ 24 (β̂₁ = 24)</text>
+<text class="an" x="0" y="94" font-weight="700">Log–nível</text><text class="an sm" x="0" y="111">ln y = β₀ + β₁x</text>
+<rect class="nb" x="150" y="78" width="170" height="38" rx="8"/><text class="an" x="235" y="102" text-anchor="middle">+1 unidade em x</text>
+<line class="arw" x1="326" y1="97" x2="373" y2="97"/><polygon class="arwh" points="382,97 373,93 373,101"/>
+<rect class="nm" x="388" y="78" width="252" height="38" rx="8"/><text class="an fitc" x="514" y="102" text-anchor="middle">≈ +100·β₁ % em y</text>
+<text class="an sm cBt" x="150" y="132">exemplo: estudo +1 ano ⇒ salário ≈ +8% (β̂₁ = 0,080)</text>
+<text class="an" x="0" y="160" font-weight="700">Nível–log</text><text class="an sm" x="0" y="177">y = β₀ + β₁ ln x</text>
+<rect class="nb" x="150" y="144" width="170" height="38" rx="8"/><text class="an" x="235" y="168" text-anchor="middle">+1% em x</text>
+<line class="arw" x1="326" y1="163" x2="373" y2="163"/><polygon class="arwh" points="382,163 373,158.9 373,167.1"/>
+<rect class="nm" x="388" y="144" width="252" height="38" rx="8"/><text class="an fitc" x="514" y="168" text-anchor="middle">≈ +β₁/100 unidades em y</text>
+<text class="an sm cBt" x="150" y="198">exemplo: β̂₁ = 50: x +1% ⇒ y +0,5 unidade</text>
+<text class="an" x="0" y="226" font-weight="700">Log–log</text><text class="an sm" x="0" y="243">ln y = β₀ + β₁ ln x</text>
+<rect class="nb" x="150" y="210" width="170" height="38" rx="8"/><text class="an" x="235" y="234" text-anchor="middle">+1% em x</text>
+<line class="arw" x1="326" y1="229" x2="373" y2="229"/><polygon class="arwh" points="382,229 373,224.9 373,233.1"/>
+<rect class="nm" x="388" y="210" width="252" height="38" rx="8"/><text class="an fitc" x="514" y="234" text-anchor="middle">≈ +β₁ % em y (elasticidade)</text>
+<text class="an sm cBt" x="150" y="264">exemplo: β̂₁ = 1,5: x +10% ⇒ y ≈ +15%</text>
+</svg></div><figcaption>O “tradutor”: à esquerda, o que muda em x; à direita, o que acontece com y. As leituras com “≈” valem para mudanças pequenas.</figcaption></figure>
+  <div class="tbl"><table>
+    <thead><tr><th>Modelo</th><th>Leitura rápida</th><th>Conta exata (quando o β ou a mudança é grande)</th></tr></thead>
+    <tbody>
+      <tr><td>Log–nível, \(\hat\beta_1=0{,}080\)</td><td>+1 ano ⇒ ≈ +8%</td><td>\(100(e^{0{,}080}-1)=8{,}33\%\)</td></tr>
+      <tr><td>Log–log, \(\hat\beta_1=1{,}5\)</td><td>x +10% ⇒ ≈ +15%</td><td>\(100(1{,}1^{1{,}5}-1)=15{,}37\%\)</td></tr>
+      <tr><td>Nível–log, \(\hat\beta_1=50\)</td><td>x +1% ⇒ +0,5 unidade</td><td>\(50\cdot\ln(1{,}01)=0{,}4975\)</td></tr>
+    </tbody>
+  </table></div>
+  <p class="small">Tudo isso está derivado, com as regras de log, na <a href="#aula4">Aula 4</a> e no módulo <a href="#mat-log">Funções, exponencial e log</a>.</p>
+
+  <h3>8. Dois betas numa curva: o modelo quadrático</h3>
+  <figure><div class="scroll"><svg class="fig" viewBox="0 0 520 330" role="img" aria-label="Parábola do lucro com retas tangentes em Q igual a 2, 6 e 8" xmlns="http://www.w3.org/2000/svg">
+<line class="g" x1="58" y1="280" x2="500" y2="280"/>
+<line class="g" x1="58" y1="227.6" x2="500" y2="227.6"/>
+<line class="g" x1="58" y1="175.2" x2="500" y2="175.2"/>
+<line class="g" x1="58" y1="122.8" x2="500" y2="122.8"/>
+<line class="g" x1="58" y1="70.4" x2="500" y2="70.4"/>
+<line class="g" x1="58" y1="18" x2="500" y2="18"/>
+<line class="g" x1="58" y1="18" x2="58" y2="280"/>
+<line class="g" x1="131.7" y1="18" x2="131.7" y2="280"/>
+<line class="g" x1="205.3" y1="18" x2="205.3" y2="280"/>
+<line class="g" x1="279" y1="18" x2="279" y2="280"/>
+<line class="g" x1="352.7" y1="18" x2="352.7" y2="280"/>
+<line class="g" x1="426.3" y1="18" x2="426.3" y2="280"/>
+<line class="g" x1="500" y1="18" x2="500" y2="280"/>
+<line class="ax" x1="58" y1="280" x2="500" y2="280"/>
+<line class="ax" x1="58" y1="18" x2="58" y2="280"/>
+<text class="tk" x="58" y="296" text-anchor="middle">0</text>
+<text class="tk" x="131.7" y="296" text-anchor="middle">2</text>
+<text class="tk" x="205.3" y="296" text-anchor="middle">4</text>
+<text class="tk" x="279" y="296" text-anchor="middle">6</text>
+<text class="tk" x="352.7" y="296" text-anchor="middle">8</text>
+<text class="tk" x="426.3" y="296" text-anchor="middle">10</text>
+<text class="tk" x="500" y="296" text-anchor="middle">12</text>
+<text class="tk" x="51" y="284" text-anchor="end">30</text>
+<text class="tk" x="51" y="231.6" text-anchor="end">40</text>
+<text class="tk" x="51" y="179.2" text-anchor="end">50</text>
+<text class="tk" x="51" y="126.8" text-anchor="end">60</text>
+<text class="tk" x="51" y="74.4" text-anchor="end">70</text>
+<text class="tk" x="51" y="22" text-anchor="end">80</text>
+<text class="lb" x="279" y="324" text-anchor="middle">Q (centenas de unidades)</text>
+<text class="lb" x="12" y="149" text-anchor="middle" transform="rotate(-90 12 149)">Lucro ajustado (R$ mil)</text>
+<polyline class="fit" points="58,227.6 59.8,224.5 61.7,221.4 63.5,218.3 65.4,215.2 67.2,212.2 69,209.2 70.9,206.2 72.7,203.3 74.6,200.4 76.4,197.5 78.3,194.6 80.1,191.8 81.9,188.9 83.8,186.2 85.6,183.4 87.5,180.6 89.3,177.9 91.2,175.3 93,172.6 94.8,170 96.7,167.4 98.5,164.8 100.4,162.2 102.2,159.7 104,157.2 105.9,154.7 107.7,152.3 109.6,149.8 111.4,147.4 113.2,145.1 115.1,142.7 116.9,140.4 118.8,138.1 120.6,135.8 122.5,133.6 124.3,131.4 126.1,129.2 128,127 129.8,124.9 131.7,122.8 133.5,120.7 135.4,118.7 137.2,116.6 139,114.6 140.9,112.6 142.7,110.7 144.6,108.8 146.4,106.9 148.2,105 150.1,103.1 151.9,101.3 153.8,99.5 155.6,97.8 157.4,96 159.3,94.3 161.1,92.6 163,91 164.8,89.3 166.7,87.7 168.5,86.1 170.3,84.6 172.2,83 174,81.5 175.9,80 177.7,78.6 179.5,77.2 181.4,75.8 183.2,74.4 185.1,73 186.9,71.7 188.8,70.4 190.6,69.1 192.4,67.9 194.3,66.7 196.1,65.5 198,64.3 199.8,63.2 201.7,62.1 203.5,61 205.3,59.9 207.2,58.9 209,57.9 210.9,56.9 212.7,55.9 214.5,55 216.4,54.1 218.2,53.2 220.1,52.4 221.9,51.5 223.8,50.8 225.6,50 227.4,49.2 229.3,48.5 231.1,47.8 233,47.1 234.8,46.5 236.6,45.9 238.5,45.3 240.3,44.7 242.2,44.2 244,43.7 245.8,43.2 247.7,42.7 249.5,42.3 251.4,41.9 253.2,41.5 255.1,41.2 256.9,40.8 258.7,40.5 260.6,40.3 262.4,40 264.3,39.8 266.1,39.6 268,39.4 269.8,39.3 271.6,39.2 273.5,39.1 275.3,39 277.2,39 279,39 280.8,39 282.7,39 284.5,39.1 286.4,39.2 288.2,39.3 290.1,39.4 291.9,39.6 293.7,39.8 295.6,40 297.4,40.3 299.3,40.5 301.1,40.8 302.9,41.2 304.8,41.5 306.6,41.9 308.5,42.3 310.3,42.7 312.2,43.2 314,43.7 315.8,44.2 317.7,44.7 319.5,45.3 321.4,45.9 323.2,46.5 325,47.1 326.9,47.8 328.7,48.5 330.6,49.2 332.4,50 334.2,50.8 336.1,51.5 337.9,52.4 339.8,53.2 341.6,54.1 343.5,55 345.3,55.9 347.1,56.9 349,57.9 350.8,58.9 352.7,59.9 354.5,61 356.3,62.1 358.2,63.2 360,64.3 361.9,65.5 363.7,66.7 365.6,67.9 367.4,69.1 369.2,70.4 371.1,71.7 372.9,73 374.8,74.4 376.6,75.8 378.4,77.2 380.3,78.6 382.1,80 384,81.5 385.8,83 387.7,84.6 389.5,86.1 391.3,87.7 393.2,89.3 395,91 396.9,92.6 398.7,94.3 400.6,96 402.4,97.8 404.2,99.5 406.1,101.3 407.9,103.1 409.8,105 411.6,106.9 413.4,108.8 415.3,110.7 417.1,112.6 419,114.6 420.8,116.6 422.7,118.7 424.5,120.7 426.3,122.8 428.2,124.9 430,127 431.9,129.2 433.7,131.4 435.5,133.6 437.4,135.8 439.2,138.1 441.1,140.4 442.9,142.7 444.8,145.1 446.6,147.4 448.4,149.8 450.3,152.3 452.1,154.7 454,157.2 455.8,159.7 457.6,162.2 459.5,164.8 461.3,167.4 463.2,170 465,172.6 466.8,175.3 468.7,177.9 470.5,180.6 472.4,183.4 474.2,186.2 476.1,188.9 477.9,191.8 479.7,194.6 481.6,197.5 483.4,200.4 485.3,203.3 487.1,206.2 488.9,209.2 490.8,212.2 492.6,215.2 494.5,218.3 496.3,221.4 498.2,224.5 500,227.6"/>
+<line class="tg" x1="98.5" y1="160.5" x2="164.8" y2="85.1"/>
+<circle class="pt" cx="131.7" cy="122.8" r="5"/>
+<line class="tg0" x1="245.8" y1="39" x2="312.2" y2="39"/>
+<circle class="pt" cx="279" cy="39" r="5"/>
+<line class="tgn" x1="319.5" y1="41.1" x2="385.8" y2="78.8"/>
+<circle class="pt" cx="352.7" cy="59.9" r="5"/>
+<line class="mean" x1="279" y1="280" x2="279" y2="39"/>
+<text class="an" x="141.7" y="138.8">Q=2: inclinação +8</text>
+<text class="an" x="279" y="27" text-anchor="middle">Q*=6: inclinação 0 → lucro máx. 76</text>
+<text class="an" x="362.7" y="63.9">Q=8: inclinação −4</text>
+<text class="an fitc" x="396.9" y="190.9">lucro = 40 + 12Q − Q²</text>
+</svg></div><figcaption>Lista 2, Ex. 4: \(lucro=40+12Q-Q^2\), ou seja, \(\hat\beta_1=12\) e \(\hat\beta_2=-1\). A inclinação muda ao longo da curva: +8 em Q = 2, zero em Q = 6, −4 em Q = 8.</figcaption></figure>
+  <div class="bcards">
+    <div class="bcard bg"><h4>\(\beta_1\) e \(\beta_2\) juntos</h4><dl>
+      <dt>Inclinação</dt><dd>\(\dfrac{d\hat y}{dx}=\hat\beta_1+2\hat\beta_2\,x\): depende de onde você está.</dd>
+      <dt>\(\beta_1\)</dt><dd>A inclinação em x = 0 (o começo da curva).</dd>
+      <dt>\(\beta_2\)</dt><dd>A curvatura: negativo = morro (∩), positivo = vale (∪).</dd>
+      <dt>Virada</dt><dd>\(x^*=-\dfrac{\hat\beta_1}{2\hat\beta_2}=-\dfrac{12}{2(-1)}=6\).</dd>
+    </dl></div>
+    <div class="bcard bg"><h4>Erro comum</h4><dl>
+      <dt>Errado</dt><dd>“Uma unidade a mais de Q aumenta o lucro em 12.”</dd>
+      <dt>Certo</dt><dd>“Em Q = 2, uma unidade a mais está associada a ≈ 8 a mais de lucro; depois de Q = 6, o lucro cai.”</dd>
+    </dl></div>
+  </div>
+
+  <h3>9. Betas de dummies</h3>
+  <figure><div class="scroll"><svg class="fig" viewBox="0 0 560 300" role="img" aria-label="Regressão numa dummy: beta zero é a média do grupo base e beta um é a diferença de médias" xmlns="http://www.w3.org/2000/svg">
+<line class="g" x1="58" y1="240" x2="540" y2="240"/>
+<line class="g" x1="58" y1="196" x2="540" y2="196"/>
+<line class="g" x1="58" y1="152" x2="540" y2="152"/>
+<line class="g" x1="58" y1="108" x2="540" y2="108"/>
+<line class="g" x1="58" y1="64" x2="540" y2="64"/>
+<line class="g" x1="58" y1="20" x2="540" y2="20"/>
+<line class="ax" x1="58" y1="240" x2="540" y2="240"/>
+<line class="ax" x1="58" y1="20" x2="58" y2="240"/>
+<text class="tk" x="51" y="244" text-anchor="end">6</text>
+<text class="tk" x="51" y="200" text-anchor="end">8</text>
+<text class="tk" x="51" y="156" text-anchor="end">10</text>
+<text class="tk" x="51" y="112" text-anchor="end">12</text>
+<text class="tk" x="51" y="68" text-anchor="end">14</text>
+<text class="tk" x="51" y="24" text-anchor="end">16</text>
+<text class="lb" x="299" y="294" text-anchor="middle"></text>
+<text class="lb" x="12" y="130" text-anchor="middle" transform="rotate(-90 12 130)">Salário-hora, R$</text>
+<text class="tk" x="170.1" y="258" text-anchor="middle">D = 0: não sindicalizados</text>
+<text class="tk" x="394.3" y="258" text-anchor="middle">D = 1: sindicalizados</text>
+<circle class="pt" cx="170.1" cy="196" r="5"/>
+<circle class="pt" cx="155.5" cy="174" r="5"/>
+<circle class="pt" cx="170.1" cy="152" r="5"/>
+<circle class="pt" cx="170.1" cy="174" r="5"/>
+<circle class="pt" cx="184.7" cy="174" r="5"/>
+<circle class="ptB" cx="394.3" cy="86" r="5"/>
+<circle class="ptB" cx="387" cy="64" r="5"/>
+<circle class="ptB" cx="387" cy="108" r="5"/>
+<circle class="ptB" cx="401.6" cy="64" r="5"/>
+<circle class="ptB" cx="401.6" cy="108" r="5"/>
+<line class="fit" x1="170.1" y1="174" x2="394.3" y2="86"/>
+<line class="mean" x1="170.1" y1="174" x2="444.7" y2="174"/>
+<rect class="meanpt" x="164.1" y="168" width="12" height="12" transform="rotate(45 170.1 174)"/>
+<rect class="meanpt" x="388.3" y="80" width="12" height="12" transform="rotate(45 394.3 86)"/>
+<line class="brk" x1="444.7" y1="174" x2="444.7" y2="86"/>
+<text class="an posc" x="452.7" y="121.2">β̂₁ = 13 − 9</text><text class="an posc" x="452.7" y="138.8">= 4</text>
+<text class="an resc" x="170.1" y="215.8" text-anchor="middle">β̂₀ = 9 (média do grupo base)</text>
+<text class="an" x="394.3" y="39.8" text-anchor="middle">média do grupo D = 1: β̂₀ + β̂₁ = 13</text>
+</svg></div><figcaption>Aula de dummies: 5 não sindicalizados (pontos pretos) e 5 sindicalizados (pontos vermelhos). A “reta” só liga as duas médias: \(\hat\beta_0\) é a média do grupo base e \(\hat\beta_1\) é o degrau entre os grupos.</figcaption></figure>
+  <figure><div class="scroll"><svg class="fig" viewBox="0 0 620 226" role="img" aria-label="Dummy sozinha desloca a reta; com interação, a inclinação também muda" xmlns="http://www.w3.org/2000/svg">
+<line class="ax" x1="16" y1="170" x2="286" y2="170"/>
+<line class="ax" x1="16" y1="16" x2="16" y2="170"/>
+<line class="fit" x1="16" y1="144.3" x2="286" y2="80.2"/>
+<line class="tgn" x1="16" y1="125.1" x2="286" y2="60.9"/>
+<line class="brk" x1="70" y1="131.5" x2="70" y2="112.2"/>
+<line class="brk" x1="232" y1="93" x2="232" y2="73.8"/>
+<text class="an sm fitc" x="286" y="134.2" text-anchor="end">grupo base (D = 0)</text>
+<text class="an sm resc" x="286" y="52.9" text-anchor="end">grupo D = 1</text>
+<text class="an sm" x="151" y="190" text-anchor="middle">Só a dummy: retas paralelas</text>
+<text class="an sm" x="151" y="205" text-anchor="middle">diferença constante = β₂</text><line class="ax" x1="336" y1="170" x2="606" y2="170"/>
+<line class="ax" x1="336" y1="16" x2="336" y2="170"/>
+<line class="fit" x1="336" y1="144.3" x2="606" y2="80.2"/>
+<line class="tgn" x1="336" y1="131.5" x2="606" y2="28.8"/>
+<line class="brk" x1="390" y1="131.5" x2="390" y2="111"/>
+<line class="brk" x1="552" y1="93" x2="552" y2="49.4"/>
+<text class="an sm fitc" x="606" y="134.2" text-anchor="end">grupo base (D = 0)</text>
+<text class="an sm resc" x="606" y="20.8" text-anchor="end">grupo D = 1</text>
+<text class="an sm" x="471" y="190" text-anchor="middle">Dummy + interação D·x: inclinações diferentes</text>
+<text class="an sm" x="471" y="205" text-anchor="middle">diferença = β₂ + β₃·x (cresce com x)</text>
+</svg></div><figcaption>Esquema com números ilustrativos. À esquerda, a dummy só desloca a reta (o intercepto muda, a inclinação é a mesma). À direita, a interação D·x também muda a inclinação: a distância entre os grupos cresce com x.</figcaption></figure>
+  <div class="bcards">
+    <div class="bcard b0"><h4>\(\beta_0\) numa dummy</h4><dl>
+      <dt>É</dt><dd>A média de y no grupo de referência (D = 0).</dd>
+      <dt>Exemplo</dt><dd>\(\hat\beta_0=9\): salário-hora médio dos não sindicalizados.</dd>
+    </dl></div>
+    <div class="bcard"><h4>\(\beta_1\) da dummy D</h4><dl>
+      <dt>É</dt><dd>A diferença de médias: grupo D = 1 menos grupo D = 0.</dd>
+      <dt>Exemplo</dt><dd>\(\hat\beta_1=13-9=4\): sindicalizados ganham, em média, R$ 4 a mais por hora na amostra.</dd>
+      <dt>Com log em y</dt><dd>Diferença percentual: \(100(e^{\hat\beta}-1)\%\). Com −0,18: \(100(e^{-0{,}18}-1)=-16{,}5\%\).</dd>
+    </dl></div>
+    <div class="bcard bi"><h4>\(\beta_3\) da interação D·x</h4><dl>
+      <dt>É</dt><dd>Quanto a inclinação do grupo D = 1 difere da do grupo base.</dd>
+      <dt>Diferença</dt><dd>Entre os grupos: \(\beta_2+\beta_3x\), não é mais constante.</dd>
+      <dt>Cuidado</dt><dd>Com interação, \(\beta_2\) sozinho é a diferença só em x = 0.</dd>
+    </dl></div>
+  </div>
+
+  <h3>10. Betas na regressão múltipla: “com o resto constante”</h3>
+  <p>Na múltipla, \(\hat\beta_1\) responde a uma pergunta diferente da simples: <strong>comparando pessoas com a mesma habilidade</strong>, quanto um ano a mais de estudo está associado ao salário? Os dados são os da <a href="#p2">Prévia da P2</a>.</p>
+  <figure><div class="scroll"><svg class="fig" viewBox="0 0 600 320" role="img" aria-label="Na regressão múltipla, beta um é a inclinação com habilidade fixa; na simples, a inclinação mistura educação e habilidade" xmlns="http://www.w3.org/2000/svg">
+<line class="g" x1="58" y1="270" x2="540" y2="270"/>
+<line class="g" x1="58" y1="234.3" x2="540" y2="234.3"/>
+<line class="g" x1="58" y1="198.6" x2="540" y2="198.6"/>
+<line class="g" x1="58" y1="162.9" x2="540" y2="162.9"/>
+<line class="g" x1="58" y1="127.1" x2="540" y2="127.1"/>
+<line class="g" x1="58" y1="91.4" x2="540" y2="91.4"/>
+<line class="g" x1="58" y1="55.7" x2="540" y2="55.7"/>
+<line class="g" x1="58" y1="20" x2="540" y2="20"/>
+<line class="g" x1="106.2" y1="20" x2="106.2" y2="270"/>
+<line class="g" x1="202.6" y1="20" x2="202.6" y2="270"/>
+<line class="g" x1="299" y1="20" x2="299" y2="270"/>
+<line class="g" x1="395.4" y1="20" x2="395.4" y2="270"/>
+<line class="g" x1="491.8" y1="20" x2="491.8" y2="270"/>
+<line class="ax" x1="58" y1="270" x2="540" y2="270"/>
+<line class="ax" x1="58" y1="20" x2="58" y2="270"/>
+<text class="tk" x="106.2" y="286" text-anchor="middle">8</text>
+<text class="tk" x="202.6" y="286" text-anchor="middle">10</text>
+<text class="tk" x="299" y="286" text-anchor="middle">12</text>
+<text class="tk" x="395.4" y="286" text-anchor="middle">14</text>
+<text class="tk" x="491.8" y="286" text-anchor="middle">16</text>
+<text class="tk" x="51" y="274" text-anchor="end">8</text>
+<text class="tk" x="51" y="238.3" text-anchor="end">12</text>
+<text class="tk" x="51" y="202.6" text-anchor="end">16</text>
+<text class="tk" x="51" y="166.9" text-anchor="end">20</text>
+<text class="tk" x="51" y="131.1" text-anchor="end">24</text>
+<text class="tk" x="51" y="95.4" text-anchor="end">28</text>
+<text class="tk" x="51" y="59.7" text-anchor="end">32</text>
+<text class="tk" x="51" y="24" text-anchor="end">36</text>
+<text class="lb" x="299" y="314" text-anchor="middle">Anos de estudo (educ)</text>
+<text class="lb" x="12" y="145" text-anchor="middle" transform="rotate(-90 12 145)">Salário-hora, R$</text>
+<line class="cC" x1="82.1" y1="257.5" x2="515.9" y2="32.5"/>
+<line class="samp" x1="82.1" y1="220.9" x2="515.9" y2="140.5"/>
+<text class="an sm fitc" x="520.7" y="144.5">hab = 2</text>
+<line class="samp" x1="82.1" y1="149.5" x2="515.9" y2="69.1"/>
+<text class="an sm fitc" x="520.7" y="73.1">hab = 6</text>
+<circle class="pt" cx="106.2" cy="234.3" r="5"/>
+<text class="an sm" x="97.2" y="238.3" text-anchor="end">h=1</text>
+<circle class="pt" cx="202.6" cy="207.5" r="5"/>
+<text class="an sm" x="211.6" y="211.5">h=2</text>
+<circle class="pt" cx="299" cy="136.1" r="5"/>
+<text class="an sm" x="290" y="140.1" text-anchor="end">h=4</text>
+<circle class="pt" cx="299" cy="162.9" r="5"/>
+<text class="an sm" x="308" y="166.9">h=3</text>
+<circle class="pt" cx="395.4" cy="82.5" r="5"/>
+<text class="an sm" x="386.4" y="86.5" text-anchor="end">h=6</text>
+<circle class="pt" cx="491.8" cy="46.8" r="5"/>
+<text class="an sm" x="497.8" y="64.8">h=8</text>
+<text class="an resc" x="520.7" y="220" text-anchor="end">vermelha: simples, inclinação 2,8</text>
+<text class="an resc" x="520.7" y="235.2" text-anchor="end">(educação + habilidade juntas)</text>
+<text class="an fitc" x="520.7" y="255.7" text-anchor="end">azuis: hab fixa, inclinação β̂₁ = 1</text>
+</svg></div><figcaption>Cada ponto traz a habilidade (h). A reta vermelha, da regressão simples, sobe 2,8 por ano porque quem estuda mais também tem mais habilidade. As azuis fixam a habilidade (2 ou 6) e sobem só 1 por ano: esse é o \(\hat\beta_1\) da múltipla.</figcaption></figure>
+  <figure><div class="scroll"><svg class="fig" viewBox="0 0 600 218" role="img" aria-label="Diagrama de caminhos: efeito direto da educação e caminho indireto pela habilidade" xmlns="http://www.w3.org/2000/svg">
+<rect class="nb" x="32" y="128" width="116" height="44" rx="10"/><text class="an" x="90" y="155" text-anchor="middle" font-weight="700">educ</text>
+<rect class="nb" x="452" y="128" width="116" height="44" rx="10"/><text class="an" x="510" y="155" text-anchor="middle" font-weight="700">salário</text>
+<rect class="ng" x="242" y="28" width="116" height="44" rx="10"/><text class="an" x="300" y="55" text-anchor="middle" font-weight="700">hab</text>
+<line class="arw" x1="150" y1="150" x2="441" y2="150"/><polygon class="arwh" points="450,150 441,145.9 441,154.1"/>
+<line class="arw" x1="140" y1="130" x2="234.3" y2="72.7"/><polygon class="arwh" points="242,68 232.2,69.2 236.4,76.1"/>
+<line class="arw" x1="358" y1="68" x2="452.3" y2="125.3"/><polygon class="arwh" points="460,130 454.4,121.9 450.2,128.8"/>
+<text class="an fitc" x="300" y="170" text-anchor="middle">β₁ = 1 (efeito direto, com hab fixa)</text>
+<text class="an" x="170" y="92" text-anchor="end">δ₁ = 0,9</text>
+<text class="an" x="428" y="92">β₂ = 2</text>
+<text class="an resc" x="300" y="206" text-anchor="middle">a regressão simples mede os dois caminhos juntos: 1 + 2 × 0,9 = 2,8</text>
+</svg></div><figcaption>A educação chega ao salário por dois caminhos: o direto (\(\beta_1=1\)) e o indireto, pela habilidade (educação → habilidade → salário = 0,9 × 2). A regressão simples soma os dois.</figcaption></figure>
+  <div class="mathblock">\[\underbrace{\tilde\beta_1}_{\text{simples}}=\underbrace{\hat\beta_1}_{\text{direto}}+\underbrace{\hat\beta_2}_{\text{hab}\to\text{sal}}\times\underbrace{\hat\delta_1}_{\text{educ}\to\text{hab}}=1+2\times0{,}9=2{,}8\]</div>
+  <p>É a fórmula do <strong>viés de variável omitida</strong> da <a href="#aula5">Aula 5</a>: se a habilidade fica no u, a simples atribui à educação o caminho indireto.</p>
+
+  <h3>11. β̂ tem erro: EP, t e IC numa régua</h3>
+  <p>Como \(\hat\beta_1\) muda de amostra para amostra, ele tem um desvio-padrão. A versão estimada é o <strong>erro-padrão (EP)</strong>. Use o EP como a <strong>unidade de medida</strong> da régua: a estatística t diz quantos EPs a estimativa está do valor de \(H_0\).</p>
+  <figure><div class="scroll"><svg class="fig" viewBox="0 0 600 178" role="img" aria-label="Régua de erros-padrão: a estimativa está a cerca de seis erros-padrão do zero e o intervalo não contém o zero" xmlns="http://www.w3.org/2000/svg">
+<line class="ax" x1="30" y1="120" x2="580" y2="120"/>
+<line class="ax" x1="30" y1="20" x2="30" y2="120"/>
+<text class="tk" x="71.2" y="136" text-anchor="middle">0</text>
+<text class="tk" x="222.5" y="136" text-anchor="middle">0,55</text>
+<text class="tk" x="387.5" y="136" text-anchor="middle">1,15</text>
+<text class="tk" x="552.5" y="136" text-anchor="middle">1,75</text>
+<text class="lb" x="305" y="172" text-anchor="middle">valores de β₁</text>
+<text class="lb" x="12" y="70" text-anchor="middle" transform="rotate(-90 12 70)"></text>
+<line class="mean" x1="71.2" y1="30" x2="71.2" y2="120"/>
+<text class="tk" x="71.2" y="26" text-anchor="middle">0 EP</text>
+<line class="mean" x1="123.2" y1="30" x2="123.2" y2="120"/>
+<text class="tk" x="123.2" y="26" text-anchor="middle">1 EP</text>
+<line class="mean" x1="175.2" y1="30" x2="175.2" y2="120"/>
+<text class="tk" x="175.2" y="26" text-anchor="middle">2 EP</text>
+<line class="mean" x1="227.2" y1="30" x2="227.2" y2="120"/>
+<text class="tk" x="227.2" y="26" text-anchor="middle">3 EP</text>
+<line class="mean" x1="279.1" y1="30" x2="279.1" y2="120"/>
+<text class="tk" x="279.1" y="26" text-anchor="middle">4 EP</text>
+<line class="mean" x1="331.1" y1="30" x2="331.1" y2="120"/>
+<text class="tk" x="331.1" y="26" text-anchor="middle">5 EP</text>
+<line class="mean" x1="383.1" y1="30" x2="383.1" y2="120"/>
+<text class="tk" x="383.1" y="26" text-anchor="middle">6 EP</text>
+<line class="fit" x1="222.2" y1="86" x2="552.8" y2="86"/>
+<line class="fit" x1="222.2" y1="79" x2="222.2" y2="93"/>
+<line class="fit" x1="552.8" y1="79" x2="552.8" y2="93"/>
+<circle class="pt" cx="387.5" cy="86" r="5"/>
+<text class="an" x="222.2" y="74">IC 95%: 1,15 ± 3,182 × 0,189 = [0,55; 1,75]</text>
+<line class="obs" x1="71.2" y1="34" x2="71.2" y2="120"/>
+<text class="an resc" x="77.2" y="112">H₀: β₁ = 0</text>
+<text class="an fitc" x="580" y="112" text-anchor="end">β̂₁ = 1,15 está a t = 1,15 / 0,189 ≈ 6,08 EPs do zero</text>
+</svg></div><figcaption>Exemplo da Aula 6 (n = 5): \(\hat\beta_1=1{,}15\), EP = 0,189. A estimativa está a mais de 6 “passos de EP” do zero, bem além do crítico 3,182, e o IC de 95% não contém o zero: rejeita \(H_0:\beta_1=0\).</figcaption></figure>
+  <div class="mathblock">\[t=\frac{\hat\beta_1-\beta_{1,0}}{EP(\hat\beta_1)}=\frac{1{,}15-0}{0{,}189}\approx6{,}08\qquad IC=\hat\beta_1\pm t_c\cdot EP\]</div>
+
+  <h3>12. Quadro-resumo: cada beta numa frase</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Beta</th><th>Onde aparece</th><th>Leitura para a prova</th><th>Unidade</th></tr></thead>
+    <tbody>
+      <tr><td>\(\beta_0\)</td><td>\(y=\beta_0+\beta_1x+u\)</td><td>Valor médio de y quando x = 0</td><td>de y</td></tr>
+      <tr><td>\(\beta_1\)</td><td>idem</td><td>Variação média de y quando x sobe 1</td><td>de y por unidade de x</td></tr>
+      <tr><td>\(\hat\beta_0,\ \hat\beta_1\)</td><td>reta estimada</td><td>As estimativas da amostra; mudam de amostra para amostra</td><td>as mesmas</td></tr>
+      <tr><td>\(\beta_1\) log–nível</td><td>\(\ln y=\beta_0+\beta_1x\)</td><td>+1 em x ⇒ ≈ \(100\beta_1\)% em y</td><td>% por unidade de x</td></tr>
+      <tr><td>\(\beta_1\) nível–log</td><td>\(y=\beta_0+\beta_1\ln x\)</td><td>+1% em x ⇒ \(\beta_1/100\) unidades de y</td><td>de y por 1%</td></tr>
+      <tr><td>\(\beta_1\) log–log</td><td>\(\ln y=\beta_0+\beta_1\ln x\)</td><td>Elasticidade: +1% em x ⇒ \(\beta_1\)% em y</td><td>% por %</td></tr>
+      <tr><td>\(\beta_1,\ \beta_2\) quadrático</td><td>\(y=\beta_0+\beta_1x+\beta_2x^2\)</td><td>Efeito marginal \(\beta_1+2\beta_2x\); virada em \(-\beta_1/(2\beta_2)\)</td><td>de y por unidade de x</td></tr>
+      <tr><td>\(\beta_1\) dummy</td><td>\(y=\beta_0+\beta_1D\)</td><td>Diferença de médias entre D = 1 e D = 0</td><td>de y</td></tr>
+      <tr><td>\(\beta_3\) interação</td><td>\(+\beta_2D+\beta_3D\cdot x\)</td><td>Diferença de inclinações entre os grupos</td><td>de y por unidade de x</td></tr>
+      <tr><td>\(\beta_j\) múltipla</td><td>\(y=\beta_0+\beta_1x_1+\beta_2x_2\)</td><td>Efeito de \(x_j\) com as outras variáveis fixas</td><td>de y por unidade de \(x_j\)</td></tr>
+      <tr><td>EP\((\hat\beta_1)\)</td><td>saída da regressão</td><td>Desvio-padrão estimado de \(\hat\beta_1\): a incerteza</td><td>a mesma de \(\hat\beta_1\)</td></tr>
+      <tr><td>t</td><td>\((\hat\beta_1-\beta_{1,0})/EP\)</td><td>Quantos EPs a estimativa está do valor de \(H_0\)</td><td>sem unidade</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Teste rápido</h3>
+  <div class="quiz" data-answer="b"><div class="qh">β₁ simples</div>
+    <p>Em \(\hat y=0{,}6+1{,}15x\) (x = anos de estudo; y = salário-hora em R$), o número 1,15 significa:</p>
+    <div class="opts"><button data-k="a">a) o salário-hora de quem não estudou</button><button data-k="b">b) cada ano a mais de estudo está associado, em média, a R$ 1,15 a mais por hora</button><button data-k="c">c) cada ano a mais aumenta o salário em 115%</button><button data-k="d">d) o salário-hora médio da amostra</button></div>
+    <div class="fb" hidden>b. A inclinação está em R$/h por ano. A letra a descreve o \(\hat\beta_0\); a c seria leitura de modelo com log; a d é o ȳ = 14,4.</div></div>
+  <div class="quiz" data-answer="c"><div class="qh">Log–nível</div>
+    <p>Em \(\widehat{\ln(salario)}=1{,}674+0{,}080\,educ\), um ano a mais de estudo está associado a:</p>
+    <div class="opts"><button data-k="a">a) R$ 0,08 a mais</button><button data-k="b">b) 0,08% a mais</button><button data-k="c">c) cerca de 8% a mais</button><button data-k="d">d) 80% a mais</button></div>
+    <div class="fb" hidden>c. Log só em y: +1 em x ⇒ ≈ \(100\times0{,}080=8\%\). O exato é \(100(e^{0{,}08}-1)=8{,}33\%\).</div></div>
+  <div class="quiz" data-answer="c"><div class="qh">Dummy</div>
+    <p>Em \(\widehat{salario}=9+4D\), com D = 1 para sindicalizados, o salário-hora médio dos sindicalizados na amostra é:</p>
+    <div class="opts"><button data-k="a">a) 4</button><button data-k="b">b) 9</button><button data-k="c">c) 13</button><button data-k="d">d) 36</button></div>
+    <div class="fb" hidden>c. Grupo D = 1: \(\hat\beta_0+\hat\beta_1=9+4=13\). O 4 é a diferença, não a média.</div></div>
+  <div class="quiz" data-answer="b"><div class="qh">Retângulos de β̂₁</div>
+    <p>Se quase todos os retângulos entre (x̄, ȳ) e os pontos caíssem nos quadrantes II e IV, \(\hat\beta_1\) seria:</p>
+    <div class="opts"><button data-k="a">a) positivo</button><button data-k="b">b) negativo</button><button data-k="c">c) zero</button><button data-k="d">d) impossível de calcular</button></div>
+    <div class="fb" hidden>b. Nos quadrantes II e IV um desvio é positivo e o outro negativo: o produto é negativo, a soma do numerador é negativa e a reta desce.</div></div>
+  <div class="quiz" data-answer="d"><div class="qh">Quadrático</div>
+    <p>Em \(lucro=40+12Q-Q^2\), o efeito aproximado de uma unidade a mais de Q quando Q = 8 é:</p>
+    <div class="opts"><button data-k="a">a) +12</button><button data-k="b">b) −1</button><button data-k="c">c) 0</button><button data-k="d">d) −4</button></div>
+    <div class="fb" hidden>d. \(12+2(-1)(8)=12-16=-4\). Depois do ponto de virada (Q = 6), o lucro cai.</div></div>
+  <div class="quiz" data-answer="b"><div class="qh">Múltipla</div>
+    <p>Por que a inclinação da educação na regressão simples (2,8) é maior que na múltipla com habilidade (1)?</p>
+    <div class="opts"><button data-k="a">a) erro de conta: as duas deveriam ser iguais</button><button data-k="b">b) a simples atribui à educação parte do efeito da habilidade, que anda junto com ela</button><button data-k="c">c) a múltipla usa menos observações</button><button data-k="d">d) a múltipla sempre dá coeficientes menores</button></div>
+    <div class="fb" hidden>b. Caminho indireto: \(\hat\beta_2\times\hat\delta_1=2\times0{,}9=1{,}8\). Somado ao direto (1), dá 2,8. É o viés de variável omitida.</div></div>
+  <div class="done-row"><button class="btn done-btn" data-done="betas" aria-pressed="false">Marcar como concluído</button></div>
 </section>
 
 
@@ -2553,6 +3289,7 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
   </div></details>
 
   <h3>7. Interpretando os coeficientes</h3>
+  <p class="small">Em desenho: <a href="#betas">Os betas, visualmente</a> (intercepto, inclinação e a conta de \(\hat\beta_1\) como áreas).</p>
   <ul>
     <li><strong>\(\hat\beta_0\)</strong> é o valor ajustado de y quando x = 0. Em \(\widehat{salhora}=-0{,}9+0{,}5\cdot anosestudo\), o salário ajustado para 0 anos é negativo. Isso não faz sentido econômico: provavelmente não havia ninguém com 0 anos de estudo na amostra, e o intercepto só posiciona a altura da reta.</li>
     <li><strong>\(\hat\beta_1\)</strong> é a variação no valor ajustado de y quando x aumenta 1 unidade. No mesmo exemplo, 12 anos de estudo têm salário-hora ajustado R$ 0,50 maior que 11 anos.</li>
@@ -2822,6 +3559,7 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
     </tbody>
   </table></div>
   <p>No nível–log, a derivada \(\beta_1/x\) diz que o mesmo aumento absoluto em x está associado a mudanças menores em Y quando x é maior.</p>
+  <p class="small">Resumo visual das quatro leituras: o “tradutor” em <a href="#betas">Os betas, visualmente</a>, seção 7.</p>
 
   <h3>5. Exemplo: os 5 indivíduos em log</h3>
   <p>Mesmos dados, com \(\ln(y)\) no lugar de y: ln(10) = 2,303, ln(12) = 2,485, ln(15) = 2,708, ln(15) = 2,708, ln(20) = 2,996. Pelo mesmo procedimento de MQO:</p>
@@ -4174,6 +4912,7 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
     <p>O fator \(n_1n_0/n\) cancela: \(\hat\beta_1=\bar y_1-\bar y_0\). Com \(\hat\beta_0=\bar y-\hat\beta_1\bar D\) e \(\bar y=(n_0\bar y_0+n_1\bar y_1)/n\), sai \(\hat\beta_0=\bar y_0\). Rodar a regressão é matematicamente idêntico a comparar médias.</p>
     <p>Variâncias: \(Var(\hat\beta_0)=\sigma^2\dfrac{n_1}{n\cdot(n_1n_0/n)}=\dfrac{\sigma^2}{n_0}\), a variância da média de um grupo com \(n_0\) observações.</p>
   </div></details>
+  <p class="small">Em desenho (médias dos grupos e interação): <a href="#betas">Os betas, visualmente</a>, seção 9.</p>
   <p><strong>Não é necessariamente causal:</strong> a diferença pode refletir escolaridade, experiência, ocupação ou setor associados à sindicalização. Para ler \(\beta_1\) como efeito causal, é preciso justificar por que os grupos seriam comparáveis.</p>
   <p><strong>Precisão:</strong> sob homocedasticidade, \(Var(\hat\beta_1\mid D)=\sigma^2\left(\frac{1}{n_1}+\frac{1}{n_0}\right)\). Com variâncias diferentes, \(Var(\bar Y_1-\bar Y_0\mid D)=\frac{\sigma_1^2}{n_1}+\frac{\sigma_0^2}{n_0}\). Grupos muito desbalanceados reduzem a precisão. Na prática, erros-padrão robustos (HC1, com correção por graus de liberdade) acomodam variâncias diferentes entre os grupos: <strong>os coeficientes não mudam; muda a incerteza estimada</strong>.</p>
 
