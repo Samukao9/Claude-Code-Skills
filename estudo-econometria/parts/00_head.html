@@ -4,6 +4,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@500;700&display=swap">
 <script>
+/* tema escolhido pelo leitor (claro/escuro), aplicado antes de pintar a página */
+(function () { try { var t = localStorage.getItem('eco1-tema'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {} })();
 window.MathJax = {
   tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']], processEscapes: false },
   svg: { fontCache: 'global' },
@@ -78,6 +80,10 @@ a{color:var(--marker)}
   padding:7px 12px;border-radius:8px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;text-decoration:none}
 .btn:hover{border-color:var(--marker)}
 .btn.primary{background:var(--marker);border-color:var(--marker);color:var(--card)}
+.theme-btn svg{flex:none}
+.theme-btn .sun{display:none}
+.theme-btn.is-dark .sun{display:inline}
+.theme-btn.is-dark .moon{display:none}
 .menu-btn{display:none}
 .topbar .btn{white-space:nowrap;padding:6px 10px}
 
@@ -302,8 +308,10 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
   body{font-size:16px}
   .formula-hero,.calc-io{grid-template-columns:1fr}
   .topbar .ptext{display:none}
+  .topbar .theme-btn .lbl-t{display:none}
+  .topbar .theme-btn{padding-inline:9px}
   .topbar{gap:8px}
-  .topbar .brand{font-size:15px}
+  .topbar .brand{display:none}
   .day{grid-template-columns:1fr}
   .lousa .hand{font-size:22px}
 }

@@ -18,6 +18,31 @@
   var rt = null;
   window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(window.__fixMath, 200); });
 
+  /* ---------- modo claro / escuro ---------- */
+  var THEME_KEY = 'eco1-tema';
+  var mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+  function currentTheme() {
+    var t = document.documentElement.getAttribute('data-theme');
+    if (t === 'dark' || t === 'light') return t;
+    return mq && mq.matches ? 'dark' : 'light';
+  }
+  function paintThemeBtn() {
+    var b = $('#themeBtn'); if (!b) return;
+    var dark = currentTheme() === 'dark';
+    b.classList.toggle('is-dark', dark);
+    b.setAttribute('aria-label', dark ? 'Mudar para o modo claro' : 'Mudar para o modo escuro');
+    $('.lbl-t', b).textContent = dark ? 'Claro' : 'Escuro';
+  }
+  var themeBtn = $('#themeBtn');
+  if (themeBtn) themeBtn.addEventListener('click', function () {
+    var next = currentTheme() === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try { localStorage.setItem(THEME_KEY, next); } catch (e) { /* sem armazenamento */ }
+    paintThemeBtn();
+  });
+  if (mq) { if (mq.addEventListener) mq.addEventListener('change', paintThemeBtn); else if (mq.addListener) mq.addListener(paintThemeBtn); }
+  paintThemeBtn();
+
   /* ---------- armazenamento local (opcional) ---------- */
   var KEY = 'eco1-guia-concluidos';
   function load() { try { return JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { return {}; } }

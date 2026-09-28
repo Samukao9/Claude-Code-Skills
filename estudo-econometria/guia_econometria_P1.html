@@ -4,6 +4,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@500;700&display=swap">
 <script>
+/* tema escolhido pelo leitor (claro/escuro), aplicado antes de pintar a página */
+(function () { try { var t = localStorage.getItem('eco1-tema'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {} })();
 window.MathJax = {
   tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']], processEscapes: false },
   svg: { fontCache: 'global' },
@@ -78,6 +80,10 @@ a{color:var(--marker)}
   padding:7px 12px;border-radius:8px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;text-decoration:none}
 .btn:hover{border-color:var(--marker)}
 .btn.primary{background:var(--marker);border-color:var(--marker);color:var(--card)}
+.theme-btn svg{flex:none}
+.theme-btn .sun{display:none}
+.theme-btn.is-dark .sun{display:inline}
+.theme-btn.is-dark .moon{display:none}
 .menu-btn{display:none}
 .topbar .btn{white-space:nowrap;padding:6px 10px}
 
@@ -302,8 +308,10 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
   body{font-size:16px}
   .formula-hero,.calc-io{grid-template-columns:1fr}
   .topbar .ptext{display:none}
+  .topbar .theme-btn .lbl-t{display:none}
+  .topbar .theme-btn{padding-inline:9px}
   .topbar{gap:8px}
-  .topbar .brand{font-size:15px}
+  .topbar .brand{display:none}
   .day{grid-template-columns:1fr}
   .lousa .hand{font-size:22px}
 }
@@ -315,6 +323,7 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
   <span class="brand">Econometria I</span>
   <div class="grow"><div class="pbar" aria-hidden="true"><i id="pfill"></i></div></div>
   <span class="ptext" id="ptext">0 de 27 módulos</span>
+  <button class="btn theme-btn" id="themeBtn" type="button" aria-label="Mudar para o modo escuro" title="Alternar modo claro e escuro"><svg class="moon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z" fill="currentColor"/></svg><svg class="sun" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.3 5.3l1.7 1.7M17 17l1.7 1.7M5.3 18.7L7 17M17 7l1.7-1.7" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg><span class="lbl-t">Escuro</span></button>
   <a class="btn" href="#formulas">β̂ Fórmulas</a>
 </header>
 
@@ -6927,6 +6936,31 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
   };
   var rt = null;
   window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(window.__fixMath, 200); });
+
+  /* ---------- modo claro / escuro ---------- */
+  var THEME_KEY = 'eco1-tema';
+  var mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+  function currentTheme() {
+    var t = document.documentElement.getAttribute('data-theme');
+    if (t === 'dark' || t === 'light') return t;
+    return mq && mq.matches ? 'dark' : 'light';
+  }
+  function paintThemeBtn() {
+    var b = $('#themeBtn'); if (!b) return;
+    var dark = currentTheme() === 'dark';
+    b.classList.toggle('is-dark', dark);
+    b.setAttribute('aria-label', dark ? 'Mudar para o modo claro' : 'Mudar para o modo escuro');
+    $('.lbl-t', b).textContent = dark ? 'Claro' : 'Escuro';
+  }
+  var themeBtn = $('#themeBtn');
+  if (themeBtn) themeBtn.addEventListener('click', function () {
+    var next = currentTheme() === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try { localStorage.setItem(THEME_KEY, next); } catch (e) { /* sem armazenamento */ }
+    paintThemeBtn();
+  });
+  if (mq) { if (mq.addEventListener) mq.addEventListener('change', paintThemeBtn); else if (mq.addListener) mq.addListener(paintThemeBtn); }
+  paintThemeBtn();
 
   /* ---------- armazenamento local (opcional) ---------- */
   var KEY = 'eco1-guia-concluidos';
