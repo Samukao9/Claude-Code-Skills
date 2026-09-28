@@ -1,0 +1,16 @@
+<svg class="fig" viewBox="0 0 520 260" role="img" aria-label="Densidade uniforme entre 0 e 10 com a área entre 2 e 5 destacada" xmlns="http://www.w3.org/2000/svg">
+<line class="ax" x1="58" y1="210" x2="500" y2="210"/>
+<line class="ax" x1="58" y1="18" x2="58" y2="210"/>
+<text class="tk" x="94.8" y="226" text-anchor="middle">0</text>
+<text class="tk" x="168.5" y="226" text-anchor="middle">2</text>
+<text class="tk" x="279" y="226" text-anchor="middle">5</text>
+<text class="tk" x="463.2" y="226" text-anchor="middle">10</text>
+<text class="tk" x="51" y="214" text-anchor="end">0</text>
+<text class="tk" x="51" y="76.9" text-anchor="end">0,1</text>
+<text class="lb" x="279" y="254" text-anchor="middle">x</text>
+<text class="lb" x="12" y="114" text-anchor="middle" transform="rotate(-90 12 114)">f(x)</text>
+<rect class="rej" x="168.5" y="72.9" width="110.5" height="137.1"/>
+<polyline class="fit" points="58,210 94.8,210 94.8,72.9 463.2,72.9 463.2,210 500,210"/>
+<text class="an" x="223.8" y="141.4" text-anchor="middle">área = 3 × 0,1 = 0,3</text>
+<text class="an fitc" x="371.1" y="52.3" text-anchor="middle">f(x) = 1/10</text>
+</svg>

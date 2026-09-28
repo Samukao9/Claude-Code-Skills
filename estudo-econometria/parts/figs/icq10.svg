@@ -1,0 +1,23 @@
+<svg class="fig" viewBox="0 0 560 190" role="img" aria-label="Intervalos de confiança dos estudos A e B da Questão 10" xmlns="http://www.w3.org/2000/svg">
+<line class="ax" x1="30" y1="150" x2="540" y2="150"/>
+<line class="ax" x1="30" y1="20" x2="30" y2="150"/>
+<text class="tk" x="72.5" y="166" text-anchor="middle">-0,4</text>
+<text class="tk" x="157.5" y="166" text-anchor="middle">0</text>
+<text class="tk" x="200" y="166" text-anchor="middle">0,2</text>
+<text class="tk" x="285" y="166" text-anchor="middle">0,6</text>
+<text class="tk" x="370" y="166" text-anchor="middle">1</text>
+<text class="tk" x="497.5" y="166" text-anchor="middle">1,6</text>
+<text class="lb" x="285" y="184" text-anchor="middle">valores de β₁</text>
+<text class="lb" x="12" y="85" text-anchor="middle" transform="rotate(-90 12 85)"></text>
+<line class="cB" x1="72.5" y1="60" x2="497.5" y2="60"/>
+<line class="cB" x1="72.5" y1="53" x2="72.5" y2="67"/>
+<line class="cB" x1="497.5" y1="53" x2="497.5" y2="67"/>
+<circle class="pt" cx="285" cy="60" r="5"/>
+<text class="an" x="72.5" y="48">Estudo A: SQTₓ = 16, ep = 0,50 → [−0,40; 1,60]</text>
+<line class="fit" x1="200" y1="118" x2="370" y2="118"/>
+<line class="fit" x1="200" y1="111" x2="200" y2="125"/>
+<line class="fit" x1="370" y1="111" x2="370" y2="125"/>
+<circle class="pt" cx="285" cy="118" r="5"/>
+<text class="an" x="200" y="106">Estudo B: SQTₓ = 100, ep = 0,20 → [0,20; 1,00]</text>
+<line class="obs" x1="157.5" y1="30" x2="157.5" y2="150"/>
+</svg>

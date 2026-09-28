@@ -1,0 +1,95 @@
+
+<!-- ================= EXERCÍCIOS DAS PRÁTICAS EM R ================= -->
+<section class="mod" id="praticas" data-title="Práticas em R">
+  <div class="eyebrow">Práticas em R · Aula 3, Aulas 4–5 e Aula 7</div>
+  <h2>Exercícios das práticas em R</h2>
+  <p>As três práticas terminam com exercícios de “solução orientada”. Na prova não há software, mas as <strong>conclusões</strong> desses exercícios são exatamente o que cai nas afirmativas I, II e III. Onde dá para fazer a conta à mão, ela está aqui. Quando um número foi calculado por nós com os parâmetros verdadeiros da simulação, isso está indicado.</p>
+
+  <h3>Prática da Aula 3: regressão simples com dados reais (wage1, n = 526)</h3>
+  <p>Reta estimada: \(\widehat{wage}=-0{,}905+0{,}541\,educ\) (US$/hora), \(R^2\approx0{,}165\).</p>
+  <details class="sol"><summary>Ex. 1 · previsão e interpretação (10, 12 e 18 anos)</summary><div class="in">
+    <p>\(\widehat{wage}(10)\approx-0{,}905+5{,}41=4{,}51\); \(\widehat{wage}(12)\approx5{,}59\); \(\widehat{wage}(18)\approx8{,}83\). A diferença entre 18 e 10 anos é \(\hat\beta_1(18-10)=0{,}541\times8\approx4{,}33\) US$/hora. É uma <strong>diferença prevista</strong>, não necessariamente um efeito causal.</p>
+  </div></details>
+  <details class="sol"><summary>Ex. 2 · extrapolação (25 anos)</summary><div class="in">
+    <p>\(\widehat{wage}(25)\approx-0{,}905+13{,}53\approx12{,}62\). Mas 25 está <strong>fora do intervalo observado</strong> de educ: é uma extrapolação. Os dados não permitem verificar se a relação continua linear nessa região. Use o intervalo dos dados (menor e maior valor) para checar.</p>
+  </div></details>
+  <details class="sol"><summary>Ex. 3 e 4 · maior resíduo e propriedades do MQO</summary><div class="in">
+    <p><strong>Ex. 3:</strong> o trabalhador mais distante da reta é o de maior \(|\hat u_i|\).</p>
+    <p><strong>Ex. 4:</strong> verificar numericamente que a média dos resíduos é zero e que a correlação entre educ e os resíduos é zero. Os resultados podem não dar <em>exatamente</em> zero por arredondamento numérico, mas são zero por construção (CPOs).</p>
+  </div></details>
+  <details class="sol"><summary>Ex. 5 · associação × causalidade</summary><div class="in">
+    <p>Variáveis omitidas possíveis: <strong>habilidade, origem familiar, qualidade da escola, região</strong>. Se uma característica está relacionada tanto à educação quanto ao salário, parte da sua associação com o salário é atribuída indevidamente à educação na regressão simples.</p>
+  </div></details>
+  <p class="small"><strong>Apêndice da prática (simulação):</strong> em 1.000 amostras, as estimativas da inclinação se concentram em torno do parâmetro usado para gerar os dados, mas variam de uma amostra para outra. Essa variação é a incerteza amostral formalizada nas Aulas 5 e 6.</p>
+
+  <h3>Prática das Aulas 4 e 5: formas funcionais e propriedades do MQO</h3>
+  <p>Mecanismo simulado: \(\ln(salario_i)=6{,}5+0{,}08\,educ_i+u_i\), \(E(u\mid educ)=0\), \(\sigma=0{,}25\), educ sorteada entre 8 e 20.</p>
+  <details class="sol"><summary>Ex. 1 · escala e invariância (salário anual = 12 × mensal)</summary><div class="in">
+    <p>Coeficientes, valores ajustados e resíduos ficam <strong>multiplicados por 12</strong>; o \(R^2\) fica <strong>igual</strong>. É a regra “multiplicar Y por a multiplica \(\hat\beta_0\), \(\hat\beta_1\) e os resíduos por a”.</p>
+  </div></details>
+  <details class="sol"><summary>Ex. 2 · aproximação percentual para 4 anos</summary><div class="in">
+    <p>Com \(\hat\beta_1\approx0{,}08\): aproximada \(100\times0{,}08\times4=32\%\); exata \(100(e^{0,32}-1)\approx37{,}7\%\). A aproximação usa \(\Delta\ln Y\approx\Delta Y/Y\), que funciona melhor para variações pequenas.</p>
+  </div></details>
+  <details class="sol"><summary>Ex. 3 · não viés e precisão (n = 30 × n = 300)</summary><div class="in">
+    <p>As duas médias ficam perto de 0,08. A distribuição com n = 300 é menos dispersa: <strong>aumentar a amostra melhora a precisão, mas não é o que cria a ausência de viés</strong>.</p>
+  </div></details>
+  <details class="sol"><summary>Ex. 4 · violação de média condicional zero</summary><div class="in">
+    <p>Com \(u=0{,}04\,educ+\text{ruído}\), \(E(u\mid educ)=0{,}04\,educ\neq0\). A regressão atribui à educação o 0,08 e também a parcela sistemática 0,04 do erro: a média das estimativas fica perto de <strong>0,12</strong>.</p>
+  </div></details>
+  <details class="sol"><summary>Ex. 5 · efeito marginal do fertilizante</summary><div class="in">
+    <p>Mecanismo: \(producao=4+2f-0{,}25f^2+u\), com f entre 0 e 6. Efeito marginal \(2-0{,}5f\): em f = 0, 2, 4 e 6 vale 2; 1; 0; −1 (com os parâmetros verdadeiros; as estimativas ficam próximas). Ponto de retorno \(-\beta_1/(2\beta_2)=2/0{,}5=4\), <strong>dentro do suporte</strong> observado [0, 6]: pode receber interpretação empírica direta. O coeficiente de fertilizante sozinho (2) é o efeito marginal em f = 0.</p>
+  </div></details>
+  <details class="sol"><summary>Ex. 6 · intensidade do viés de variável omitida</summary><div class="in">
+    <p>Com \(Y=2+0{,}8X+1{,}2Z+\varepsilon\) e \(Z=\rho X+v\), a inclinação da regressão só em X fica centrada em \(0{,}8+1{,}2\rho\): para ρ = 0,2; 0,7; 1,2, dá cerca de 1,04; 1,64; 2,24 (conta nossa com os parâmetros verdadeiros). <strong>Quanto maior a relação entre X e a variável omitida relevante, maior o viés.</strong></p>
+  </div></details>
+  <details class="sol"><summary>Ex. 7 · erro de medida e atenuação</summary><div class="in">
+    <p>Com \(X^*\sim N(0,1)\), \(\beta_1=2\) e erro de medida com desvio d, \(\text{plim}\,\hat\beta_1=2\cdot\frac{1}{1+d^2}\): para d = 0; 0,25; 1; 3 dá cerca de 2; 1,88; 1; 0,2. Quanto maior o erro, maior o peso de Var(r) no denominador, e mais a inclinação se aproxima de zero.</p>
+  </div></details>
+  <details class="sol"><summary>Ex. 8 · informação de X e precisão</summary><div class="in">
+    <p>Com n = 100, ruído com desvio 2 e X uniforme no intervalo, \(SQT_x\approx(n-1)\frac{(b-a)^2}{12}\) e \(dp(\hat\beta_1)\approx2/\sqrt{SQT_x}\) (conta nossa):</p>
+    <div class="tbl"><table>
+      <thead><tr><th>Intervalo de X</th><th class="r">\(SQT_x\) médio (aprox.)</th><th class="r">dp de \(\hat\beta_1\) (aprox.)</th></tr></thead>
+      <tbody>
+        <tr><td>13 a 15</td><td class="r">33</td><td class="r">0,35</td></tr>
+        <tr><td>10 a 18</td><td class="r">528</td><td class="r">0,087</td></tr>
+        <tr><td>0 a 28</td><td class="r">6.468</td><td class="r">0,025</td></tr>
+      </tbody>
+    </table></div>
+    <p>Suportes mais amplos elevam \(SQT_x\) e reduzem a dispersão de \(\hat\beta_1\).</p>
+  </div></details>
+
+  <h3>Prática da Aula 7: regressão pela origem e dummies</h3>
+  <details class="sol"><summary>Ex. 1 · fórmula pela origem</summary><div class="in">
+    <p>Confira \(\hat\beta_1=\sum x_iy_i/\sum x_i^2\) e verifique \(\sum x_i\hat u_i=0\). A soma simples dos resíduos <strong>não</strong> é zero: só a soma ponderada por X é forçada a zero.</p>
+  </div></details>
+  <details class="sol"><summary>Ex. 2 · restrição incorreta e tamanho da amostra</summary><div class="in">
+    <p>Com \(Y=8+0{,}12X+u\), X uniforme entre 0 e 100, forçando a origem: o desvio-padrão cai com n = 50, 500 e 5.000, mas a média <strong>não</strong> converge para 0,12. O pseudoalvo é \(0{,}12+8\cdot\frac{E[X]}{E[X^2]}=0{,}12+8\cdot\frac{50}{3.333{,}3}\approx0{,}24\) (conta nossa). Mais dados não corrigem a restrição falsa.</p>
+  </div></details>
+  <details class="sol"><summary>Ex. 3 · trocar a referência da dummy</summary><div class="in">
+    <p>Com 1 para não sindicalizados, o novo intercepto é a média dos <strong>sindicalizados</strong> e a inclinação <strong>troca de sinal</strong>. As duas médias previstas e o tamanho da diferença continuam iguais.</p>
+  </div></details>
+  <details class="sol"><summary>Ex. 4 · categorias de referência (três setores)</summary><div class="in">
+    <p>Mudando a referência, os coeficientes mudam, mas as três médias reconstruídas coincidem nas duas parametrizações.</p>
+  </div></details>
+  <details class="sol"><summary>Ex. 5 · interação: diferença prevista em 8, 12 e 16 anos</summary><div class="in">
+    <p>A diferença entre grupos é \(\hat\beta_2+\hat\beta_3\,educ\). Com os valores verdadeiros da simulação (\(\beta_2=2{,}5\), \(\beta_3=0{,}18\)): 3,94; 4,66; 5,38. Não é constante porque o coeficiente da interação é diferente de zero.</p>
+  </div></details>
+
+  <h3>Se aparecer código R ou output na prova</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Comando / saída</th><th>O que faz</th></tr></thead>
+    <tbody>
+      <tr><td><code>lm(y ~ x, data = d)</code></td><td>Estima por MQO a regressão de y em x, com intercepto</td></tr>
+      <tr><td><code>lm(y ~ 0 + x)</code></td><td>Regressão pela origem (sem intercepto)</td></tr>
+      <tr><td><code>lm(log(y) ~ x)</code>, <code>I(x^2)</code></td><td>Log–nível; termo quadrático dentro da fórmula</td></tr>
+      <tr><td><code>coef()</code>, <code>fitted()</code>, <code>residuals()</code></td><td>Coeficientes, valores ajustados, resíduos</td></tr>
+      <tr><td><code>predict(m, newdata = ...)</code></td><td>Valores previstos para novos x</td></tr>
+      <tr><td>Estimate · Std. Error · t value · Pr(&gt;|t|)</td><td>\(\hat\beta\) · \(ep(\hat\beta)\) · Estimate/Std. Error · p-valor bilateral de \(H_0:\beta=0\)</td></tr>
+      <tr><td><code>glance()$r.squared</code></td><td>O \(R^2\)</td></tr>
+      <tr><td><code>vcovHC(m, type = "HC1")</code> + <code>coeftest()</code></td><td>Erros-padrão robustos à heterocedasticidade</td></tr>
+      <tr><td><code>factor()</code>, <code>relevel()</code></td><td>Tratar como categoria; escolher a categoria de referência</td></tr>
+      <tr><td><code>set.seed()</code>, <code>replicate()</code></td><td>Simulação reproduzível; repetir o experimento (amostras repetidas)</td></tr>
+    </tbody>
+  </table></div>
+  <div class="done-row"><button class="btn done-btn" data-done="praticas" aria-pressed="false">Marcar como concluído</button></div>
+</section>

@@ -1,0 +1,68 @@
+
+<!-- ================= MATEMÁTICA 4: LAMBDA ================= -->
+<section class="mod" id="mat-lambda" data-title="Lambda">
+  <div class="eyebrow"><span class="tag">Matemática de apoio</span> <span class="tag warn">Fora do material da P1</span></div>
+  <h2>λ (lambda): Lagrange e parâmetro de distribuição</h2>
+  <div class="box trap"><span class="lbl">Leia antes</span>
+    <p>A letra grega λ (lambda) <strong>não aparece em nenhum dos materiais que você enviou (aulas, práticas, listas, gabaritos e lousa)</strong>. Como você pediu para cobrir tudo, aqui estão os dois usos mais comuns de λ em economia e estatística. Se o professor mencionou λ em aula, é quase certamente um destes.</p>
+  </div>
+
+  <h3>Parte A: λ como multiplicador de Lagrange</h3>
+  <p>É a ferramenta para <strong>otimizar com uma restrição</strong>: maximizar ou minimizar \(f(x,y)\) sabendo que \(g(x,y)=c\). O exemplo clássico é o consumidor que maximiza a utilidade gastando exatamente a sua renda.</p>
+  <ol class="steps">
+    <li><div><strong>Monte o Lagrangiano:</strong> \(\mathcal L(x,y,\lambda)=f(x,y)-\lambda\,[g(x,y)-c]\).</div></li>
+    <li><div><strong>CPOs:</strong> derive em relação a x, y e λ e iguale a zero. A derivada em λ devolve a própria restrição.
+      <div class="mathblock">\[\frac{\partial\mathcal L}{\partial x}=0,\qquad\frac{\partial\mathcal L}{\partial y}=0,\qquad\frac{\partial\mathcal L}{\partial\lambda}=-(g(x,y)-c)=0\]</div></div></li>
+    <li><div><strong>Resolva o sistema</strong> para x, y e λ.</div></li>
+  </ol>
+
+  <h4>Exemplo resolvido: max \(xy\) sujeito a \(2x+4y=40\)</h4>
+  <div class="mathblock">\[\mathcal L=xy-\lambda(2x+4y-40)\]</div>
+  <div class="mathblock">\[\frac{\partial\mathcal L}{\partial x}=y-2\lambda=0\Rightarrow y=2\lambda,\qquad \frac{\partial\mathcal L}{\partial y}=x-4\lambda=0\Rightarrow x=4\lambda\]</div>
+  <p>Substituindo na restrição: \(2(4\lambda)+4(2\lambda)=40\Rightarrow16\lambda=40\Rightarrow\boxed{\lambda=2{,}5}\), \(x=10\), \(y=5\) e \(f^*=xy=50\).</p>
+  <figure><div class="scroll">FIG:lagrange</div><figcaption>No ótimo, a curva xy = 50 encosta (tangencia) a reta da restrição. Curvas mais altas (xy = 80) não alcançam a restrição; mais baixas (xy = 30) a cortam e dá para melhorar.</figcaption></figure>
+  <div class="box def"><span class="lbl">O que λ significa</span>
+    <p>λ é quanto o valor ótimo muda se a restrição “afrouxar” uma unidade: \(\lambda=\dfrac{df^*}{dc}\), o <strong>preço sombra</strong> da restrição. No exemplo, com renda 41 em vez de 40, a solução é \(x=41/4\), \(y=41/8\) e \(f^*=41^2/32\approx52{,}53\): cerca de 2,5 a mais, que é λ.</p>
+    <p><strong>Unidade de λ:</strong> unidade de f por unidade de c (utilidade por real, por exemplo).</p>
+  </div>
+  <p><strong>Condição de tangência:</strong> dividindo as duas primeiras CPOs, \(\frac{\partial f/\partial x}{\partial f/\partial y}=\frac{\partial g/\partial x}{\partial g/\partial y}\): aqui, \(y/x=2/4\), coerente com \(x=10\), \(y=5\).</p>
+  <p><strong>Exemplo de mínimo:</strong> min \(x^2+y^2\) s.a. \(x+y=10\). \(\mathcal L=x^2+y^2-\lambda(x+y-10)\): \(2x=\lambda\), \(2y=\lambda\), logo \(x=y=5\), \(\lambda=10\) e \(f^*=50\). Com c = 11: \(f^*=60{,}5\), cerca de 10 a mais.</p>
+
+  <h4>Ligação com o seu conteúdo: regressão pela origem é MQO com restrição</h4>
+  <p>A regressão pela origem (aula de dummies) impõe \(\beta_0=0\). Isso é minimizar a SQR sujeito a \(b_0=0\):</p>
+  <div class="mathblock">\[\mathcal L=\sum_i(y_i-b_0-b_1x_i)^2-\lambda\,b_0\]</div>
+  <div class="mathblock">\[\frac{\partial\mathcal L}{\partial b_1}=-2\sum_ix_i(y_i-b_0-b_1x_i)=0,\qquad \frac{\partial\mathcal L}{\partial\lambda}=-b_0=0,\qquad \frac{\partial\mathcal L}{\partial b_0}=-2\sum_i(y_i-b_0-b_1x_i)-\lambda=0\]</div>
+  <p>Com \(b_0=0\), a primeira dá \(\hat\beta_1=\sum x_iy_i/\sum x_i^2\), o mesmo resultado da aula. A terceira mostra que \(\lambda=-2\sum_i\hat u_i\): λ só é zero se os resíduos somarem zero, isto é, se a restrição não “custar” nada. Isso conecta com a aula: pela origem, em geral \(\sum\hat u_i\neq0\).</p>
+
+  <h3>Parte B: λ como parâmetro de uma distribuição</h3>
+  <h4>Poisson: contagens</h4>
+  <div class="mathblock">\[P(X=k)=\frac{e^{-\lambda}\lambda^k}{k!},\quad k=0,1,2,\dots\qquad E[X]=Var(X)=\lambda\]</div>
+  <p>Aqui λ é o número médio de eventos (por exemplo, 2 falhas de conexão por dia). Com λ = 2:</p>
+  <div class="tbl"><table>
+    <thead><tr><th class="r">k</th><th class="r">0</th><th class="r">1</th><th class="r">2</th><th class="r">3</th><th class="r">4</th></tr></thead>
+    <tbody><tr><td class="r">P(X = k)</td><td class="r">0,1353</td><td class="r">0,2707</td><td class="r">0,2707</td><td class="r">0,1804</td><td class="r">0,0902</td></tr></tbody>
+  </table></div>
+  <p>\(P(X\ge1)=1-0{,}1353=0{,}8647\). <strong>Ligação com a Aula 6:</strong> quando y é uma contagem com poucos valores possíveis, a hipótese de erro normal (RLS.6) não é razoável.</p>
+
+  <h4>Exponencial: durações</h4>
+  <div class="mathblock">\[f(x)=\lambda e^{-\lambda x}\ (x\ge0),\qquad F(x)=\int_0^x\lambda e^{-\lambda t}dt=1-e^{-\lambda x},\qquad E[X]=\frac1\lambda,\quad Var(X)=\frac{1}{\lambda^2}\]</div>
+  <p>λ é a taxa (eventos por unidade de tempo) e 1/λ é a duração média. Com λ = 0,5: média 2, \(P(X\le2)=1-e^{-1}\approx0{,}6321\) e \(P(X&gt;4)=e^{-2}\approx0{,}1353\).</p>
+  <details class="sol"><summary>Derivação de \(E[X]=1/\lambda\) (integral por partes)</summary><div class="in">
+    <p>\(E[X]=\int_0^\infty x\,\lambda e^{-\lambda x}dx\). Com \(u=x\) e \(dv=\lambda e^{-\lambda x}dx\), temos \(du=dx\) e \(v=-e^{-\lambda x}\):</p>
+    <div class="mathblock">\[E[X]=\Big[-xe^{-\lambda x}\Big]_0^\infty+\int_0^\infty e^{-\lambda x}dx=0+\Big[-\tfrac1\lambda e^{-\lambda x}\Big]_0^\infty=\frac1\lambda\]</div>
+  </div></details>
+  <p><strong>Ligação com a Aula 6:</strong> “uma variável censurada, como duração observada apenas até o fim do acompanhamento” também não combina com erro normal.</p>
+
+  <h4>λ como taxa de crescimento</h4>
+  <p>Em \(y=e^{\lambda t}\), a derivada é \(dy/dt=\lambda y\): λ é o crescimento proporcional instantâneo. É o mesmo papel do \(\beta_1\) no log–nível, onde \(d\ln y/dx=\beta_1\).</p>
+
+  <div class="quiz" data-answer="b"><div class="qh">Lagrange</div>
+    <p>No ótimo de um problema com restrição, λ = 3. Se a restrição aumentar 1 unidade, o valor ótimo:</p>
+    <div class="opts"><button data-k="a">a) cai cerca de 3</button><button data-k="b">b) sobe cerca de 3</button><button data-k="c">c) não muda</button><button data-k="d">d) triplica</button></div>
+    <div class="fb" hidden>λ = df*/dc: o preço sombra da restrição (convenção \(\mathcal L=f-\lambda(g-c)\)).</div></div>
+  <div class="quiz" data-answer="c"><div class="qh">Poisson</div>
+    <p>Numa Poisson com λ = 4, a média e a variância valem:</p>
+    <div class="opts"><button data-k="a">a) 4 e 16</button><button data-k="b">b) 2 e 4</button><button data-k="c">c) 4 e 4</button><button data-k="d">d) 0,25 e 0,0625</button></div>
+    <div class="fb" hidden>Na Poisson, E = Var = λ. A opção d seria a exponencial com λ = 4.</div></div>
+  <div class="done-row"><button class="btn done-btn" data-done="mat-lambda" aria-pressed="false">Marcar como concluído</button></div>
+</section>

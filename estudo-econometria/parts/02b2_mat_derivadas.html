@@ -1,0 +1,146 @@
+
+<!-- ================= MATEMÁTICA 2: DERIVADAS ================= -->
+<section class="mod" id="mat-deriv" data-title="Derivadas">
+  <div class="eyebrow"><span class="tag">Matemática de apoio</span> curso completo · base do MQO, da Aula 4 e da Lista 2</div>
+  <h2>Derivadas do zero ao MQO</h2>
+  <p>A derivada aparece em três lugares da P1: na <strong>derivação do MQO</strong> (as CPOs da Aula 3), nos <strong>efeitos marginais</strong> da Aula 4 (log, quadrático, interação) e nos <strong>Ex. 4 e 5 da Lista 2</strong>. Este módulo ensina tudo o que é preciso, e um pouco mais.</p>
+
+  <h3>1. A ideia: inclinação num ponto</h3>
+  <p>Numa reta, a inclinação é a mesma em todo lugar. Numa curva, ela muda de ponto para ponto. A <strong>derivada</strong> \(f'(x)\) é a inclinação da curva <em>exatamente</em> no ponto x: a taxa de variação instantânea.</p>
+  <p>Como medir a inclinação num ponto só? Pegue um segundo ponto próximo, calcule a inclinação da reta que liga os dois (a <strong>secante</strong>) e aproxime o segundo ponto do primeiro. Para \(f(x)=x^2\) em x = 3:</p>
+  <div class="tbl"><table>
+    <thead><tr><th class="r">h (distância)</th><th>Secante \(\dfrac{f(3+h)-f(3)}{h}\)</th><th class="r">Inclinação</th></tr></thead>
+    <tbody>
+      <tr><td class="r">1</td><td>\((16-9)/1\)</td><td class="r">7</td></tr>
+      <tr><td class="r">0,1</td><td>\((9{,}61-9)/0{,}1\)</td><td class="r">6,1</td></tr>
+      <tr><td class="r">0,01</td><td>\((9{,}0601-9)/0{,}01\)</td><td class="r">6,01</td></tr>
+      <tr><td class="r">0,001</td><td>—</td><td class="r">6,001</td></tr>
+    </tbody>
+  </table></div>
+  <p>As inclinações se aproximam de <strong>6</strong>: \(f'(3)=6\).</p>
+  <figure><div class="scroll">FIG:tangente</div><figcaption>A secante entre x = 3 e x = 4 tem inclinação 7. Conforme o segundo ponto se aproxima, ela vira a tangente em x = 3, com inclinação 6.</figcaption></figure>
+
+  <h3>2. Definição formal (limite)</h3>
+  <div class="mathblock">\[f'(x)=\lim_{h\to0}\frac{f(x+h)-f(x)}{h}\]</div>
+  <p>“Limite quando h tende a zero” quer dizer o valor de que a fração se aproxima quando h fica cada vez menor, sem nunca ser zero. Para \(f(x)=x^2\):</p>
+  <div class="mathblock">\[\frac{(x+h)^2-x^2}{h}=\frac{x^2+2xh+h^2-x^2}{h}=\frac{2xh+h^2}{h}=2x+h\ \xrightarrow{h\to0}\ 2x\]</div>
+  <p>Logo \(f'(x)=2x\), e em x = 3 dá 6, como a tabela mostrou. Na prática ninguém usa a definição: usamos as regras abaixo, que saem dela.</p>
+  <p><strong>Notações equivalentes:</strong> \(f'(x)\), \(\frac{dy}{dx}\), \(\frac{df}{dx}\). Com várias variáveis, \(\frac{\partial f}{\partial x}\) (derivada parcial). A segunda derivada é \(f''(x)\) ou \(\frac{d^2y}{dx^2}\). <strong>Unidade:</strong> a derivada tem a unidade de y dividida pela unidade de x.</p>
+
+  <h3>3. As regras</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Regra</th><th>Fórmula</th><th>Exemplo</th></tr></thead>
+    <tbody>
+      <tr><td>Constante</td><td>\((c)'=0\)</td><td>\((40)'=0\)</td></tr>
+      <tr><td>Potência</td><td>\((x^n)'=nx^{n-1}\)</td><td>\((x^5)'=5x^4\); \((x^{-1})'=-x^{-2}\); \((\sqrt x)'=\frac{1}{2\sqrt x}\)</td></tr>
+      <tr><td>Constante vezes função</td><td>\((c\,f)'=c\,f'\)</td><td>\((7x^3)'=21x^2\)</td></tr>
+      <tr><td>Soma e diferença</td><td>\((f\pm g)'=f'\pm g'\)</td><td>\((4+3x-2x^2)'=3-4x\)</td></tr>
+      <tr><td>Produto</td><td>\((fg)'=f'g+fg'\)</td><td>\((x^2\ln x)'=2x\ln x+x\)</td></tr>
+      <tr><td>Quociente</td><td>\(\left(\frac fg\right)'=\frac{f'g-fg'}{g^2}\)</td><td>\(\left(\frac{x}{1+x}\right)'=\frac{1}{(1+x)^2}\)</td></tr>
+      <tr><td>Cadeia (função de função)</td><td>\([f(g(x))]'=f'(g(x))\cdot g'(x)\)</td><td>\([(3x+1)^2]'=2(3x+1)\cdot3\)</td></tr>
+      <tr><td>Exponencial</td><td>\((e^x)'=e^x\); \((e^{g})'=e^{g}g'\)</td><td>\((e^{0,25x})'=0{,}25e^{0,25x}\)</td></tr>
+      <tr><td>Logaritmo</td><td>\((\ln x)'=\frac1x\); \((\ln g)'=\frac{g'}{g}\)</td><td>\((\ln(x^2+1))'=\frac{2x}{x^2+1}\)</td></tr>
+    </tbody>
+  </table></div>
+  <div class="lousa">
+    <div class="who">Na lousa do professor</div>
+    <div class="hand">
+      <span class="l">f(x) = xⁿ  →  f′(x) = n · xⁿ⁻¹</span>
+      <span class="l">f(x) = √x = x^(1/2)  →  f′(x) = ½ · x^(−1/2) = ½ · 1/√x</span>
+      <span class="l">f′(x) = 1 · 12Q⁰ − 2Q¹ = 12 − 2Q</span>
+    </div>
+  </div>
+  <details class="sol"><summary>Passo a passo das regras mais difíceis (produto, quociente, cadeia)</summary><div class="in">
+    <p><strong>Produto:</strong> \(f=x^2\), \(g=\ln x\). \(f'=2x\), \(g'=1/x\). Então \((x^2\ln x)'=2x\cdot\ln x+x^2\cdot\frac1x=2x\ln x+x\).</p>
+    <p><strong>Quociente:</strong> \(f=x\), \(g=1+x\), \(f'=1\), \(g'=1\). \(\frac{1\cdot(1+x)-x\cdot1}{(1+x)^2}=\frac{1}{(1+x)^2}\).</p>
+    <p><strong>Cadeia:</strong> “derive a de fora, mantenha a de dentro, multiplique pela derivada da de dentro”. Em \((3x+1)^2\), a de fora é \(u^2\) (derivada \(2u\)) e a de dentro é \(u=3x+1\) (derivada 3): resultado \(2(3x+1)\cdot3=6(3x+1)\).</p>
+    <p>A cadeia é exatamente o que o MQO usa: em \((y_i-b_0-b_1x_i)^2\), a de fora é \(u^2\) e a de dentro é \(u=y_i-b_0-b_1x_i\).</p>
+  </div></details>
+
+  <h3>4. Derivada = efeito marginal (leitura econômica)</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Modelo (Aula 4)</th><th>Derivada</th><th>Leitura</th></tr></thead>
+    <tbody>
+      <tr><td>\(y=\beta_0+\beta_1x\)</td><td>\(\frac{dy}{dx}=\beta_1\)</td><td>Efeito constante: \(\beta_1\) unidades de y por unidade de x</td></tr>
+      <tr><td>\(\ln y=\beta_0+\beta_1x\)</td><td>\(\frac{d\ln y}{dx}=\beta_1\), logo \(\frac{dy}{dx}=\beta_1y\)</td><td>Variação proporcional constante: \(100\beta_1\%\)</td></tr>
+      <tr><td>\(y=\beta_0+\beta_1\ln x\)</td><td>\(\frac{dy}{dx}=\frac{\beta_1}{x}\)</td><td>Efeito em unidades cai quando x cresce</td></tr>
+      <tr><td>\(\ln y=\beta_0+\beta_1\ln x\)</td><td>\(\frac{d\ln y}{d\ln x}=\beta_1\)</td><td>Elasticidade constante</td></tr>
+      <tr><td>\(y=\beta_0+\beta_1x+\beta_2x^2\)</td><td>\(\beta_1+2\beta_2x\)</td><td>Efeito muda com x</td></tr>
+      <tr><td>\(y=\beta_0+\beta_1x_1+\beta_2x_2+\beta_3x_1x_2\)</td><td>\(\frac{\partial y}{\partial x_1}=\beta_1+\beta_3x_2\)</td><td>Efeito de \(x_1\) depende de \(x_2\)</td></tr>
+    </tbody>
+  </table></div>
+  <p><strong>Elasticidade pela derivada:</strong> \(\varepsilon=\frac{dy}{dx}\cdot\frac{x}{y}\). Para \(y=Ax^{\beta}\): \(\frac{dy}{dx}=A\beta x^{\beta-1}\), e \(\varepsilon=A\beta x^{\beta-1}\cdot\frac{x}{Ax^\beta}=\beta\). É por isso que o log–log tem elasticidade constante.</p>
+
+  <h3>5. Aproximação linear, efeito marginal e mudança discreta</h3>
+  <div class="mathblock">\[f(x+\Delta)\approx f(x)+f'(x)\,\Delta\]</div>
+  <p>A derivada prevê bem mudanças <strong>pequenas</strong>. No Ex. 4, \(lucro(2)=60\) e \(lucro'(2)=8\): a aproximação diz \(lucro(3)\approx68\), mas o valor exato é 67. A diferença vem da curvatura. É exatamente o item (c) do Ex. 4: “o efeito marginal é local; a mudança discreta incorpora a curvatura”.</p>
+
+  <h3>6. Segunda derivada: concavidade</h3>
+  <ul>
+    <li>\(f''(x)\lt0\): <strong>côncava</strong> (“boca para baixo”). A inclinação diminui: efeito marginal decrescente.</li>
+    <li>\(f''(x)&gt;0\): <strong>convexa</strong> (“boca para cima”). A inclinação aumenta.</li>
+    <li>Exemplos: \(40+12Q-Q^2\) tem \(f''=-2\) (côncava, Ex. 4); \(12+6\sqrt t\) tem \(f''=-\frac{3}{2t^{3/2}}\lt0\) (côncava, Ex. 5); \(Y=\beta_0+\beta_1X+\beta_2X^2\) com \(\beta_2&gt;0\) tem \(f''=2\beta_2&gt;0\) (convexa, Lista 1, Q50-III).</li>
+  </ul>
+
+  <h3>7. Máximos e mínimos</h3>
+  <ol class="steps">
+    <li><div><strong>Condição de primeira ordem (CPO):</strong> no topo ou no fundo, a tangente é horizontal, então \(f'(x)=0\). Resolva para achar o candidato.</div></li>
+    <li><div><strong>Condição de segunda ordem (CSO):</strong> \(f''&lt;0\) ⇒ <strong>máximo</strong>; \(f''&gt;0\) ⇒ <strong>mínimo</strong>.</div></li>
+    <li><div>Calcule o valor da função no ponto encontrado.</div></li>
+  </ol>
+  <p><strong>Máximo:</strong> \(f(x)=-x^2+6x+1\). \(f'=-2x+6=0\Rightarrow x=3\); \(f''=-2\lt0\); \(f(3)=-9+18+1=10\). <strong>Mínimo:</strong> \(f(x)=x^2-4x+7\). \(f'=2x-4=0\Rightarrow x=2\); \(f''=2&gt;0\); \(f(2)=3\).</p>
+  <p>O ponto de retorno do quadrático é esta conta em geral: \(\beta_1+2\beta_2X=0\Rightarrow X^*=-\beta_1/(2\beta_2)\).</p>
+
+  <h3>8. Derivadas parciais</h3>
+  <p>Com mais de uma variável, a <strong>derivada parcial</strong> \(\partial f/\partial x\) deriva em relação a x tratando todas as outras como constantes.</p>
+  <p>\(f(x,y)=x^2y+3y\): \(\frac{\partial f}{\partial x}=2xy\) (y é constante) e \(\frac{\partial f}{\partial y}=x^2+3\) (x é constante). Na Lista 1, Q56: \(3+2X_1+5X_2-0{,}3X_1X_2\) tem \(\partial/\partial X_1=2-0{,}3X_2\).</p>
+
+  <h3>9. A aplicação central: derivando o MQO</h3>
+  <p>O MQO escolhe \(b_0\) e \(b_1\) para minimizar \(SQR(b_0,b_1)=\sum_i(y_i-b_0-b_1x_i)^2\). São duas variáveis, então usamos derivadas parciais e a regra da cadeia em cada termo:</p>
+  <div class="mathblock">\[\frac{\partial}{\partial b_0}(y_i-b_0-b_1x_i)^2=2(y_i-b_0-b_1x_i)\cdot(-1),\qquad \frac{\partial}{\partial b_1}(y_i-b_0-b_1x_i)^2=2(y_i-b_0-b_1x_i)\cdot(-x_i)\]</div>
+  <p>A derivada de uma soma é a soma das derivadas. Somando e igualando a zero, saem as CPOs (7) e (8) da Aula 3:</p>
+  <div class="mathblock">\[-2\sum_i(y_i-\hat\beta_0-\hat\beta_1x_i)=0,\qquad -2\sum_ix_i(y_i-\hat\beta_0-\hat\beta_1x_i)=0\]</div>
+  <p>Daí em diante é álgebra: veja a <a href="#aula3">Aula 3, seção 5</a>.</p>
+  <div class="box ok"><span class="lbl">Aquecimento que ajuda a entender</span>
+    <p>Qual número m minimiza \(\sum_i(y_i-m)^2\)? Derivando: \(-2\sum(y_i-m)=0\Rightarrow\sum y_i=nm\Rightarrow m=\bar y\). <strong>A média é o “MQO sem x”.</strong> Com x, o MQO faz a mesma coisa para uma reta inteira.</p>
+  </div>
+
+  <h3>Exercícios</h3>
+  <details class="sol"><summary>16 exercícios de derivadas (com respostas)</summary><div class="in">
+    <ol>
+      <li>\((7)'\) = <strong>0</strong></li>
+      <li>\((3x^4)'\) = <strong>\(12x^3\)</strong></li>
+      <li>\((5-2x+x^3)'\) = <strong>\(-2+3x^2\)</strong></li>
+      <li>\((1/x)'\) = <strong>\(-1/x^2\)</strong></li>
+      <li>\((\sqrt x)'\) em x = 4 = <strong>\(1/(2\cdot2)=0{,}25\)</strong></li>
+      <li>\((6\sqrt t)'\) = <strong>\(3/\sqrt t\)</strong> (Lista 2, Ex. 5)</li>
+      <li>\([(2x+1)^3]'\) = <strong>\(3(2x+1)^2\cdot2=6(2x+1)^2\)</strong></li>
+      <li>\((e^{3x})'\) = <strong>\(3e^{3x}\)</strong></li>
+      <li>\((\ln5x)'\) = <strong>\(1/x\)</strong> (porque \(\ln5x=\ln5+\ln x\))</li>
+      <li>\((xe^x)'\) = <strong>\(e^x+xe^x=e^x(1+x)\)</strong></li>
+      <li>\(\left(\frac{\ln x}{x}\right)'\) = <strong>\(\frac{1-\ln x}{x^2}\)</strong></li>
+      <li>Primeira e segunda derivadas de \(40+12Q-Q^2\) = <strong>\(12-2Q\) e \(-2\)</strong> (Lista 2, Ex. 4)</li>
+      <li>\((6+5X-0{,}4X^2)'\) = <strong>\(5-0{,}8X\)</strong>; retorno em <strong>6,25</strong> (Lista 1, Q55)</li>
+      <li>\(\partial/\partial x\) e \(\partial/\partial y\) de \(3+2x+5y-0{,}3xy\) = <strong>\(2-0{,}3y\) e \(5-0{,}3x\)</strong></li>
+      <li>\((\beta_0+\beta_1\ln x)'\) = <strong>\(\beta_1/x\)</strong> (nível–log)</li>
+      <li>Máximo de \(-2x^2+8x\): <strong>x = 2</strong>, valor <strong>8</strong> (\(f''=-4\lt0\))</li>
+    </ol>
+  </div></details>
+  <div class="quiz" data-answer="d"><div class="qh">Derivadas</div>
+    <p>A derivada de \(f(x)=4x^3-x+10\) é:</p>
+    <div class="opts"><button data-k="a">a) \(12x^2-x\)</button><button data-k="b">b) \(4x^2-1\)</button><button data-k="c">c) \(12x^2-1+10\)</button><button data-k="d">d) \(12x^2-1\)</button></div>
+    <div class="fb" hidden>Potência em cada termo: \(4\cdot3x^2=12x^2\), \(-x\to-1\), \(10\to0\).</div></div>
+  <div class="quiz" data-answer="a"><div class="qh">Derivadas</div>
+    <p>\(f(x)=-3x^2+18x\). Qual é o ponto de máximo e o valor máximo?</p>
+    <div class="opts"><button data-k="a">a) x = 3; f = 27</button><button data-k="b">b) x = 6; f = 0</button><button data-k="c">c) x = 3; f = 54</button><button data-k="d">d) x = −3; f = −81</button></div>
+    <div class="fb" hidden>\(f'=-6x+18=0\Rightarrow x=3\); \(f''=-6\lt0\) (máximo); \(f(3)=-27+54=27\).</div></div>
+  <div class="quiz" data-answer="b"><div class="qh">Derivadas</div>
+    <p>A derivada de \((y_i-b_0-b_1x_i)^2\) em relação a \(b_1\) é:</p>
+    <div class="opts"><button data-k="a">a) \(2(y_i-b_0-b_1x_i)\)</button><button data-k="b">b) \(-2x_i(y_i-b_0-b_1x_i)\)</button><button data-k="c">c) \(-2(y_i-b_0-b_1x_i)\)</button><button data-k="d">d) \(2x_i^2\)</button></div>
+    <div class="fb" hidden>Regra da cadeia: \(2(\dots)\) vezes a derivada de dentro em relação a \(b_1\), que é \(-x_i\). A opção c é a derivada em \(b_0\).</div></div>
+  <div class="quiz" data-answer="c"><div class="qh">Derivadas</div>
+    <p>Se \(f''(x)=-2\) em todo ponto, a função é:</p>
+    <div class="opts"><button data-k="a">a) convexa, com mínimo</button><button data-k="b">b) linear</button><button data-k="c">c) côncava, com efeito marginal decrescente</button><button data-k="d">d) crescente em todo ponto</button></div>
+    <div class="fb" hidden>Segunda derivada negativa ⇒ côncava. Nada garante que seja crescente em todo ponto: o Ex. 4 cresce até Q = 6 e depois cai.</div></div>
+  <div class="done-row"><button class="btn done-btn" data-done="mat-deriv" aria-pressed="false">Marcar como concluído</button></div>
+</section>

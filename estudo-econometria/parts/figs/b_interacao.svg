@@ -1,0 +1,21 @@
+<svg class="fig" viewBox="0 0 620 226" role="img" aria-label="Dummy sozinha desloca a reta; com interação, a inclinação também muda" xmlns="http://www.w3.org/2000/svg">
+<line class="ax" x1="16" y1="170" x2="286" y2="170"/>
+<line class="ax" x1="16" y1="16" x2="16" y2="170"/>
+<line class="fit" x1="16" y1="144.3" x2="286" y2="80.2"/>
+<line class="tgn" x1="16" y1="125.1" x2="286" y2="60.9"/>
+<line class="brk" x1="70" y1="131.5" x2="70" y2="112.2"/>
+<line class="brk" x1="232" y1="93" x2="232" y2="73.8"/>
+<text class="an sm fitc" x="286" y="134.2" text-anchor="end">grupo base (D = 0)</text>
+<text class="an sm resc" x="286" y="52.9" text-anchor="end">grupo D = 1</text>
+<text class="an sm" x="151" y="190" text-anchor="middle">Só a dummy: retas paralelas</text>
+<text class="an sm" x="151" y="205" text-anchor="middle">diferença constante = β₂</text><line class="ax" x1="336" y1="170" x2="606" y2="170"/>
+<line class="ax" x1="336" y1="16" x2="336" y2="170"/>
+<line class="fit" x1="336" y1="144.3" x2="606" y2="80.2"/>
+<line class="tgn" x1="336" y1="131.5" x2="606" y2="28.8"/>
+<line class="brk" x1="390" y1="131.5" x2="390" y2="111"/>
+<line class="brk" x1="552" y1="93" x2="552" y2="49.4"/>
+<text class="an sm fitc" x="606" y="134.2" text-anchor="end">grupo base (D = 0)</text>
+<text class="an sm resc" x="606" y="20.8" text-anchor="end">grupo D = 1</text>
+<text class="an sm" x="471" y="190" text-anchor="middle">Dummy + interação D·x: inclinações diferentes</text>
+<text class="an sm" x="471" y="205" text-anchor="middle">diferença = β₂ + β₃·x (cresce com x)</text>
+</svg>
