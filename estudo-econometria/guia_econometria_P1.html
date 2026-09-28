@@ -80,6 +80,7 @@ a{color:var(--marker)}
   padding:7px 12px;border-radius:8px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;text-decoration:none}
 .btn:hover{border-color:var(--marker)}
 .btn.primary{background:var(--marker);border-color:var(--marker);color:var(--card)}
+.nc{text-transform:none}
 .theme-btn svg{flex:none}
 .theme-btn .sun{display:none}
 .theme-btn.is-dark .sun{display:inline}
@@ -227,6 +228,8 @@ svg.fig.wide{min-width:560px}
 .fig .brk{stroke:var(--green);stroke-width:2.2;fill:none}
 .fig .ptB{fill:var(--red);stroke:var(--card);stroke-width:1.5}
 .fig text.sm{font-size:11.5px}
+.fig .tot{stroke:var(--ink);stroke-width:2.2}
+.fig .expl{stroke:var(--marker);stroke-width:4;opacity:.85}
 /* fichas dos betas */
 .bcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin:14px 0}
 .bcard{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--marker);border-radius:12px;padding:14px 16px;box-shadow:var(--shadow)}
@@ -387,7 +390,7 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
     <li><a href="#zero" data-mod="zero"><span class="n">M0</span><span>Do zero: variável, média, Σ</span></a></li>
     <li><a href="#estat" data-mod="estat"><span class="n">E</span><span>Estatística 1 e 2 do zero</span></a></li>
     <li><a href="#conceitos" data-mod="conceitos"><span class="n">C</span><span>Conceitos-chave: MQO/OLS, viés, estimador…</span></a></li>
-    <li><a href="#betas" data-mod="betas"><span class="n">β</span><span>Os betas, visualmente <b class="star">★</b></span></a></li>
+    <li><a href="#betas" data-mod="betas"><span class="n">β</span><span>Os betas e SQT/SQE/SQR, em desenho <b class="star">★</b></span></a></li>
     <li><a href="#mat-log" data-mod="mat-log"><span class="n">∫1</span><span>Funções, exponencial e log</span></a></li>
     <li><a href="#mat-deriv" data-mod="mat-deriv"><span class="n">∫2</span><span>Derivadas do zero ao MQO</span></a></li>
     <li><a href="#mat-int" data-mod="mat-int"><span class="n">∫3</span><span>Integrais e probabilidade</span></a></li>
@@ -521,6 +524,7 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
   <div class="eyebrow"><span class="tag hot">Decorar</span> Aula 3 · Lista 2 · lousa</div>
   <h2>As 2 fórmulas para decorar</h2>
   <p>Estas duas fórmulas calculam a reta de regressão por <strong>Mínimos Quadrados Ordinários (MQO)</strong>. Quase toda conta da prova passa por elas. Se “Σ”, “x̄” ou o chapéu ainda não fazem sentido, leia antes o <a href="#zero">Módulo 0</a> e volte. Para ver em desenho o que cada β significa (intercepto, inclinação, log, dummy, múltipla), veja <a href="#betas">Os betas, visualmente</a>.</p>
+  <p class="small"><strong>Não confunda:</strong> \(\beta_0\) é o <strong>intercepto</strong> (coeficiente linear, o valor de y quando x = 0) e \(\beta_1\) é a <strong>inclinação</strong> (coeficiente angular, o número que multiplica x). No ensino médio, \(y=ax+b\) começa pelo angular; aqui, \(y=\beta_0+\beta_1x\) começa pelo linear (<a href="#beta0-beta1">entenda</a>).</p>
 
   <div class="formula-hero">
     <div class="fcard">
@@ -1309,7 +1313,7 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
 <section class="mod" id="betas" data-title="Os betas">
   <div class="eyebrow"><span class="tag hot">Visual</span> Todos os β do curso, um por um, com desenho</div>
   <h2>Os betas, visualmente</h2>
-  <p>Quase toda questão da P1 gira em torno de um β: calcular, interpretar, testar ou dizer se tem viés. Este módulo mostra <strong>cada beta como um desenho</strong>. Para cada um há uma ficha com quatro linhas: <strong>o que é</strong>, <strong>em que unidade vem</strong>, <strong>a frase para a prova</strong> e <strong>o erro mais comum</strong>. Os números são os mesmos das aulas e listas.</p>
+  <p>Quase toda questão da P1 gira em torno de um β: calcular, interpretar, testar ou dizer se tem viés. Este módulo mostra <strong>cada beta como um desenho</strong>. Para cada um há uma ficha com quatro linhas: <strong>o que é</strong>, <strong>em que unidade vem</strong>, <strong>a frase para a prova</strong> e <strong>o erro mais comum</strong>. Os números são os mesmos das aulas e listas. No fim, a seção 12 faz o mesmo com <strong>SQT, SQE, SQR e o \(R^2\)</strong>.</p>
   <div class="box def"><span class="lbl">O módulo inteiro em 3 linhas</span>
     <ul>
       <li><strong>\(\beta_0\)</strong> é a <strong>altura</strong> da reta onde x = 0. <strong>\(\beta_1\)</strong> é a <strong>inclinação</strong>: quanto y muda, em média, quando x sobe 1.</li>
@@ -1317,40 +1321,51 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
       <li>Com <strong>log</strong>, o beta vira porcentagem; com <strong>dummy</strong>, vira diferença de médias; na <strong>múltipla</strong>, vale “com as outras variáveis fixas”.</li>
     </ul>
   </div>
+  <div class="box trap" id="beta0-beta1"><span class="lbl">Não confunda: β₀ é o intercepto, β₁ é a inclinação</span>
+    <div class="tbl"><table>
+      <thead><tr><th></th><th>Nome no curso</th><th>Nome no ensino médio</th><th>Na equação</th><th>No gráfico</th></tr></thead>
+      <tbody>
+        <tr><td><strong>\(\beta_0\)</strong></td><td>intercepto</td><td><strong>coeficiente linear</strong></td><td>o termo sozinho</td><td>altura onde a reta cruza x = 0</td></tr>
+        <tr><td><strong>\(\beta_1\)</strong></td><td>inclinação</td><td><strong>coeficiente angular</strong></td><td>o número que multiplica x</td><td>quanto a reta sobe a cada +1 em x</td></tr>
+      </tbody>
+    </table></div>
+    <p><strong>Por que confunde:</strong> no ensino médio, \(y=ax+b\) começa pelo angular (a). Em econometria, \(y=\beta_0+\beta_1x\) começa pelo linear (\(\beta_0\)). Mudou a ordem, não a ideia. Nos slides do professor (Aula 3): “\(\beta_0\) é o intercepto populacional. \(\beta_1\) é a inclinação populacional.”</p>
+    <p><strong>Dica para não trocar:</strong> o índice <strong>0</strong> lembra “x = <strong>0</strong>” (\(\beta_0\) é o valor de y quando x = 0). O índice <strong>1</strong> lembra “+<strong>1</strong> em x” (\(\beta_1\) é o efeito de uma unidade a mais de x). E \(\beta_1\) é quem fica <strong>colado no x</strong>.</p>
+  </div>
 
   <h3>1. A anatomia da equação</h3>
-  <figure><div class="scroll"><svg class="fig" viewBox="0 0 640 184" role="img" aria-label="Anatomia da equação y igual a beta zero mais beta um vezes x mais u, com o significado de cada parte" xmlns="http://www.w3.org/2000/svg">
-<path class="brk" d="M150 44 V36 H486 V44"/><text class="an" x="318" y="28" text-anchor="middle">a reta (parte explicada por x): E(y | x) = β₀ + β₁x</text>
-<path class="brk" d="M540 44 V36 H612 V44"/><text class="an" x="576" y="28" text-anchor="middle">o que a reta não vê</text>
-<rect class="nb" x="24" y="52" width="80" height="54" rx="10"/>
-<text class="big " x="64" y="90" text-anchor="middle">y</text>
-<text class="an sm" x="64" y="128" text-anchor="middle">y: o que queremos</text>
-<text class="an sm" x="64" y="144" text-anchor="middle">explicar</text>
-<text class="an sm" x="64" y="160" text-anchor="middle">(ex.: salário-hora)</text>
-<rect class="nr" x="152" y="52" width="80" height="54" rx="10"/>
-<text class="big resc" x="192" y="90" text-anchor="middle">β₀</text>
-<text class="an sm" x="192" y="128" text-anchor="middle">β₀: intercepto</text>
-<text class="an sm" x="192" y="144" text-anchor="middle">valor médio de y</text>
-<text class="an sm" x="192" y="160" text-anchor="middle">quando x = 0</text>
-<rect class="nm" x="280" y="52" width="80" height="54" rx="10"/>
-<text class="big fitc" x="320" y="90" text-anchor="middle">β₁</text>
-<text class="an sm" x="320" y="128" text-anchor="middle">β₁: inclinação</text>
-<text class="an sm" x="320" y="144" text-anchor="middle">quanto y muda, em</text>
-<text class="an sm" x="320" y="160" text-anchor="middle">média, se x sobe 1</text>
-<rect class="nb" x="408" y="52" width="80" height="54" rx="10"/>
-<text class="big " x="448" y="90" text-anchor="middle">x</text>
-<text class="an sm" x="448" y="128" text-anchor="middle">x: variável</text>
-<text class="an sm" x="448" y="144" text-anchor="middle">explicativa</text>
-<text class="an sm" x="448" y="160" text-anchor="middle">(ex.: anos de estudo)</text>
-<rect class="ng" x="536" y="52" width="80" height="54" rx="10"/>
-<text class="big posc" x="576" y="90" text-anchor="middle">u</text>
-<text class="an sm" x="576" y="128" text-anchor="middle">u: erro</text>
-<text class="an sm" x="576" y="144" text-anchor="middle">tudo o mais</text>
-<text class="an sm" x="576" y="160" text-anchor="middle">que afeta y</text>
-<text class="big" x="128" y="90" text-anchor="middle">=</text>
-<text class="big" x="256" y="90" text-anchor="middle">+</text>
-<text class="big" x="384" y="90" text-anchor="middle">·</text>
-<text class="big" x="512" y="90" text-anchor="middle">+</text>
+  <figure><div class="scroll"><svg class="fig" viewBox="0 0 680 184" role="img" aria-label="Anatomia da equação y igual a beta zero mais beta um vezes x mais u, com o significado de cada parte" xmlns="http://www.w3.org/2000/svg">
+<path class="brk" d="M164 44 V36 H516 V44"/><text class="an" x="340" y="28" text-anchor="middle">a reta (parte explicada por x): E(y | x) = β₀ + β₁x</text>
+<path class="brk" d="M572 44 V36 H652 V44"/><text class="an" x="612" y="28" text-anchor="middle">o que a reta não vê</text>
+<rect class="nb" x="28" y="52" width="80" height="54" rx="10"/>
+<text class="big " x="68" y="90" text-anchor="middle">y</text>
+<text class="an sm" x="68" y="128" text-anchor="middle">y: o que queremos</text>
+<text class="an sm" x="68" y="144" text-anchor="middle">explicar</text>
+<text class="an sm" x="68" y="160" text-anchor="middle">(ex.: salário-hora)</text>
+<rect class="nr" x="164" y="52" width="80" height="54" rx="10"/>
+<text class="big resc" x="204" y="90" text-anchor="middle">β₀</text>
+<text class="an sm" x="204" y="128" text-anchor="middle">β₀: intercepto</text>
+<text class="an sm" x="204" y="144" text-anchor="middle">(coeficiente linear)</text>
+<text class="an sm" x="204" y="160" text-anchor="middle">valor de y se x = 0</text>
+<rect class="nm" x="300" y="52" width="80" height="54" rx="10"/>
+<text class="big fitc" x="340" y="90" text-anchor="middle">β₁</text>
+<text class="an sm" x="340" y="128" text-anchor="middle">β₁: inclinação</text>
+<text class="an sm" x="340" y="144" text-anchor="middle">(coeficiente angular)</text>
+<text class="an sm" x="340" y="160" text-anchor="middle">Δy médio se x sobe 1</text>
+<rect class="nb" x="436" y="52" width="80" height="54" rx="10"/>
+<text class="big " x="476" y="90" text-anchor="middle">x</text>
+<text class="an sm" x="476" y="128" text-anchor="middle">x: variável</text>
+<text class="an sm" x="476" y="144" text-anchor="middle">explicativa</text>
+<text class="an sm" x="476" y="160" text-anchor="middle">(ex.: anos de estudo)</text>
+<rect class="ng" x="572" y="52" width="80" height="54" rx="10"/>
+<text class="big posc" x="612" y="90" text-anchor="middle">u</text>
+<text class="an sm" x="612" y="128" text-anchor="middle">u: erro</text>
+<text class="an sm" x="612" y="144" text-anchor="middle">tudo o mais</text>
+<text class="an sm" x="612" y="160" text-anchor="middle">que afeta y</text>
+<text class="big" x="136" y="90" text-anchor="middle">=</text>
+<text class="big" x="272" y="90" text-anchor="middle">+</text>
+<text class="big" x="408" y="90" text-anchor="middle">·</text>
+<text class="big" x="544" y="90" text-anchor="middle">+</text>
 </svg></div><figcaption>Cada pedaço da equação tem um papel. A reta \(\beta_0+\beta_1x\) é a parte de y que x explica; o erro u junta todo o resto (habilidade, sorte, região…).</figcaption></figure>
   <p>Pense numa rampa. <strong>\(\beta_0\)</strong> é a altura em que a rampa começa. <strong>\(\beta_1\)</strong> é o quão íngreme ela é: quanto você sobe a cada passo para a frente. <strong>u</strong> é o quanto cada pessoa fica acima ou abaixo da rampa por motivos que a gente não mediu.</p>
 
@@ -1968,7 +1983,129 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
 </svg></div><figcaption>Exemplo da Aula 6 (n = 5): \(\hat\beta_1=1{,}15\), EP = 0,189. A estimativa está a mais de 6 “passos de EP” do zero, bem além do crítico 3,182, e o IC de 95% não contém o zero: rejeita \(H_0:\beta_1=0\).</figcaption></figure>
   <div class="mathblock">\[t=\frac{\hat\beta_1-\beta_{1,0}}{EP(\hat\beta_1)}=\frac{1{,}15-0}{0{,}189}\approx6{,}08\qquad IC=\hat\beta_1\pm t_c\cdot EP\]</div>
 
-  <h3>12. Quadro-resumo: cada beta numa frase</h3>
+  <h3 id="betas-sq">12. SQT, SQE e SQR: quanto a reta explica</h3>
+  <p>Depois de achar os betas, vem a pergunta: a reta explica muito ou pouco de y? Para responder, compare cada y com a média ȳ. A distância total \(y_i-\bar y\) se divide em duas partes: a que a reta explica (\(\hat y_i-\bar y\)) e a que sobra (o resíduo \(\hat u_i=y_i-\hat y_i\)).</p>
+  <div class="mathblock">\[\underbrace{y_i-\bar y}_{\text{total}}=\underbrace{(\hat y_i-\bar y)}_{\text{explicado pela reta}}+\underbrace{(y_i-\hat y_i)}_{\text{resíduo }\hat u_i}\]</div>
+  <figure><div class="scroll"><svg class="fig" viewBox="0 0 560 330" role="img" aria-label="Para cada ponto, o desvio total em relação à média se divide em parte explicada pela reta e resíduo" xmlns="http://www.w3.org/2000/svg">
+<line class="g" x1="58" y1="280" x2="540" y2="280"/>
+<line class="g" x1="58" y1="242.9" x2="540" y2="242.9"/>
+<line class="g" x1="58" y1="205.7" x2="540" y2="205.7"/>
+<line class="g" x1="58" y1="168.6" x2="540" y2="168.6"/>
+<line class="g" x1="58" y1="131.4" x2="540" y2="131.4"/>
+<line class="g" x1="58" y1="94.3" x2="540" y2="94.3"/>
+<line class="g" x1="58" y1="57.1" x2="540" y2="57.1"/>
+<line class="g" x1="58" y1="20" x2="540" y2="20"/>
+<line class="g" x1="58" y1="20" x2="58" y2="280"/>
+<line class="g" x1="138.3" y1="20" x2="138.3" y2="280"/>
+<line class="g" x1="218.7" y1="20" x2="218.7" y2="280"/>
+<line class="g" x1="299" y1="20" x2="299" y2="280"/>
+<line class="g" x1="379.3" y1="20" x2="379.3" y2="280"/>
+<line class="g" x1="459.7" y1="20" x2="459.7" y2="280"/>
+<line class="g" x1="540" y1="20" x2="540" y2="280"/>
+<line class="ax" x1="58" y1="280" x2="540" y2="280"/>
+<line class="ax" x1="58" y1="20" x2="58" y2="280"/>
+<text class="tk" x="58" y="296" text-anchor="middle">6</text>
+<text class="tk" x="138.3" y="296" text-anchor="middle">8</text>
+<text class="tk" x="218.7" y="296" text-anchor="middle">10</text>
+<text class="tk" x="299" y="296" text-anchor="middle">12</text>
+<text class="tk" x="379.3" y="296" text-anchor="middle">14</text>
+<text class="tk" x="459.7" y="296" text-anchor="middle">16</text>
+<text class="tk" x="540" y="296" text-anchor="middle">18</text>
+<text class="tk" x="51" y="284" text-anchor="end">8</text>
+<text class="tk" x="51" y="246.9" text-anchor="end">10</text>
+<text class="tk" x="51" y="209.7" text-anchor="end">12</text>
+<text class="tk" x="51" y="172.6" text-anchor="end">14</text>
+<text class="tk" x="51" y="135.4" text-anchor="end">16</text>
+<text class="tk" x="51" y="98.3" text-anchor="end">18</text>
+<text class="tk" x="51" y="61.1" text-anchor="end">20</text>
+<text class="tk" x="51" y="24" text-anchor="end">22</text>
+<text class="lb" x="299" y="324" text-anchor="middle">Anos de estudo (x)</text>
+<text class="lb" x="12" y="150" text-anchor="middle" transform="rotate(-90 12 150)">Salário-hora, R$ (y)</text>
+<line class="mean" x1="58" y1="161.1" x2="540" y2="161.1"/>
+<line class="fit" x1="98.2" y1="267.9" x2="499.8" y2="54.4"/>
+<line class="tot" x1="129.3" y1="161.1" x2="129.3" y2="242.9"/>
+<line class="expl" x1="138.3" y1="161.1" x2="138.3" y2="246.6"/>
+<line class="res" x1="147.3" y1="246.6" x2="147.3" y2="242.9"/>
+<line class="tot" x1="209.7" y1="161.1" x2="209.7" y2="205.7"/>
+<line class="expl" x1="218.7" y1="161.1" x2="218.7" y2="203.9"/>
+<line class="res" x1="227.7" y1="203.9" x2="227.7" y2="205.7"/>
+<line class="tot" x1="290" y1="161.1" x2="290" y2="150"/>
+<line class="expl" x1="299" y1="161.1" x2="299" y2="161.1"/>
+<line class="res" x1="308" y1="161.1" x2="308" y2="150"/>
+<line class="tot" x1="370.3" y1="161.1" x2="370.3" y2="150"/>
+<line class="expl" x1="379.3" y1="161.1" x2="379.3" y2="118.4"/>
+<line class="res" x1="388.3" y1="118.4" x2="388.3" y2="150"/>
+<line class="tot" x1="450.7" y1="161.1" x2="450.7" y2="57.1"/>
+<line class="expl" x1="459.7" y1="161.1" x2="459.7" y2="75.7"/>
+<line class="res" x1="468.7" y1="75.7" x2="468.7" y2="57.1"/>
+<circle class="pt" cx="138.3" cy="242.9" r="4.5"/>
+<circle class="pt" cx="218.7" cy="205.7" r="4.5"/>
+<circle class="pt" cx="299" cy="150" r="4.5"/>
+<circle class="pt" cx="379.3" cy="150" r="4.5"/>
+<circle class="pt" cx="459.7" cy="57.1" r="4.5"/>
+<text class="an" x="536" y="244.7" text-anchor="end">em x = 16: total 5,6 =</text><text class="an" x="536" y="265.1" text-anchor="end">explicado 4,6 + resíduo 1,0</text>
+<text class="an" x="536" y="177.1" text-anchor="end">ȳ = 14,4</text>
+<line class="tot" x1="70" y1="30.9" x2="92" y2="30.9"/><text class="an sm" x="98" y="34.9">preta: total, y − ȳ</text>
+<line class="expl" x1="70" y1="48.9" x2="92" y2="48.9"/><text class="an sm" x="98" y="52.9">azul: explicado, ŷ − ȳ</text>
+<line class="res" x1="70" y1="66.9" x2="92" y2="66.9"/><text class="an sm" x="98" y="70.9">vermelha: resíduo, y − ŷ</text>
+</svg></div><figcaption>Os 5 indivíduos da Aula 3. Em cada ponto: a linha preta é a distância total até a média ȳ; a azul, a parte que a reta explica; a vermelha tracejada, o resíduo. Em x = 14 o resíduo aponta para baixo: a reta “passou do ponto”.</figcaption></figure>
+  <p>Elevando cada parte ao quadrado e somando em todos os pontos, saem as três somas de quadrados. O termo cruzado some (é a ortogonalidade entre ajustados e resíduos, mostrada na <a href="#aula3">Aula 3</a>, seção 10), e sobra:</p>
+  <div class="mathblock">\[SQT=SQE+SQR\qquad\Longrightarrow\qquad 57{,}2=52{,}9+4{,}3\]</div>
+  <div class="bcards">
+    <div class="bcard bi"><h4>SQT · Total</h4><dl>
+      <dt>Fórmula</dt><dd>\(\sum(y_i-\bar y)^2\)</dd>
+      <dt>Mede</dt><dd>Quanto y varia em torno da média, antes de qualquer regressão. \(SQT/(n-1)\) é a variância amostral de y.</dd>
+      <dt>Exemplo</dt><dd>19,36 + 5,76 + 0,36 + 0,36 + 31,36 = 57,2</dd>
+    </dl></div>
+    <div class="bcard"><h4>SQE · Explicada</h4><dl>
+      <dt>Fórmula</dt><dd>\(\sum(\hat y_i-\bar y)^2\)</dd>
+      <dt>Mede</dt><dd>A parte da variação de y que a reta acompanha.</dd>
+      <dt>Exemplo</dt><dd>21,16 + 5,29 + 0 + 5,29 + 21,16 = 52,9</dd>
+    </dl></div>
+    <div class="bcard b0"><h4>SQR · Resíduos</h4><dl>
+      <dt>Fórmula</dt><dd>\(\sum\hat u_i^2=\sum(y_i-\hat y_i)^2\)</dd>
+      <dt>Mede</dt><dd>O que sobra fora da reta. É o que o <strong>MQO minimiza</strong> e entra em \(\hat\sigma^2=SQR/(n-2)\).</dd>
+      <dt>Exemplo</dt><dd>0,04 + 0,01 + 0,36 + 2,89 + 1,00 = 4,30</dd>
+    </dl></div>
+  </div>
+  <p class="small">Unidade das três: a de y <strong>ao quadrado</strong>, aqui (R$/h)². Por isso o \(R^2\), que é uma razão entre elas, não tem unidade.</p>
+  <div class="tbl"><table>
+    <thead><tr><th class="r">x</th><th class="r">y</th><th class="r">ŷ</th><th class="r">y − ȳ</th><th class="r">(y − ȳ)²</th><th class="r">ŷ − ȳ</th><th class="r">(ŷ − ȳ)²</th><th class="r">û = y − ŷ</th><th class="r">û²</th></tr></thead>
+    <tbody>
+      <tr><td class="r">8</td><td class="r">10</td><td class="r">9,8</td><td class="r">−4,4</td><td class="r">19,36</td><td class="r">−4,6</td><td class="r">21,16</td><td class="r">0,2</td><td class="r">0,04</td></tr>
+      <tr><td class="r">10</td><td class="r">12</td><td class="r">12,1</td><td class="r">−2,4</td><td class="r">5,76</td><td class="r">−2,3</td><td class="r">5,29</td><td class="r">−0,1</td><td class="r">0,01</td></tr>
+      <tr><td class="r">12</td><td class="r">15</td><td class="r">14,4</td><td class="r">0,6</td><td class="r">0,36</td><td class="r">0</td><td class="r">0</td><td class="r">0,6</td><td class="r">0,36</td></tr>
+      <tr><td class="r">14</td><td class="r">15</td><td class="r">16,7</td><td class="r">0,6</td><td class="r">0,36</td><td class="r">2,3</td><td class="r">5,29</td><td class="r">−1,7</td><td class="r">2,89</td></tr>
+      <tr><td class="r">16</td><td class="r">20</td><td class="r">19,0</td><td class="r">5,6</td><td class="r">31,36</td><td class="r">4,6</td><td class="r">21,16</td><td class="r">1,0</td><td class="r">1,00</td></tr>
+      <tr><td class="r"><strong>Σ</strong></td><td></td><td></td><td class="r">0</td><td class="r"><strong>57,2</strong></td><td class="r">0</td><td class="r"><strong>52,9</strong></td><td class="r">0</td><td class="r"><strong>4,30</strong></td></tr>
+    </tbody>
+  </table></div>
+  <p>Repare: sem elevar ao quadrado, cada coluna de desvios soma <strong>zero</strong>. É por isso que se usam os quadrados.</p>
+  <figure><div class="scroll"><svg class="fig" viewBox="0 0 560 156" role="img" aria-label="Barra da SQT dividida em SQE e SQR, com o R-quadrado como a fração explicada" xmlns="http://www.w3.org/2000/svg">
+<text class="an" x="20" y="22" font-weight="700">SQT = 57,2: toda a variação de y em torno de ȳ</text>
+<rect class="barA" x="20" y="34" width="480.9" height="44" rx="4"/>
+<rect class="sqr" x="500.9" y="34" width="39.1" height="44" rx="4"/>
+<text class="an" x="260.5" y="61" text-anchor="middle" font-weight="700">SQE = 52,9 (explicada pela reta)</text>
+<text class="an resc" x="540" y="98" text-anchor="end">SQR = 4,3 (resíduos) ↑</text>
+<text class="an fitc" x="20" y="124">R² = SQE / SQT = 52,9 / 57,2 = 0,925: 92,5% da barra é azul</text>
+<text class="an resc" x="20" y="144">1 − R² = SQR / SQT = 4,3 / 57,2 = 0,075: o que a reta não explica</text>
+</svg></div><figcaption>A SQT é a barra inteira. A reta explica a parte azul (SQE); a vermelha é o que sobra (SQR). O \(R^2\) é a fração azul.</figcaption></figure>
+  <div class="mathblock">\[R^2=\frac{SQE}{SQT}=1-\frac{SQR}{SQT}=\frac{52{,}9}{57{,}2}\approx0{,}925\]</div>
+  <p><strong>Frase para a prova:</strong> “A reta de MQO responde por 92,5% da variação amostral do salário-hora em torno da média.” Com intercepto, \(0\le R^2\le1\). Na regressão simples, \(R^2\) é também o quadrado da correlação entre x e y: \(0{,}9617^2\approx0{,}925\).</p>
+  <div class="box trap"><span class="lbl">Atenção às letras</span>
+    <p>No curso (slides do professor e Wooldridge): <strong>SQE = Explicada</strong> e <strong>SQR = dos Resíduos</strong>. Lembre: <strong>E de Explicada, R de Resíduos</strong>.</p>
+    <p>Alguns livros de estatística e materiais em inglês usam as letras ao contrário: “R” de <em>Regressão</em> para a parte explicada e “E” de <em>Erro</em> para os resíduos (em inglês, SSR = <em>sum of squares due to regression</em> e SSE = <em>sum of squared errors</em>). Se estudar por outra fonte, confira a fórmula, não a letra. Na prova, use a convenção do professor e, na dúvida, escreva a fórmula ao lado: \(SQE=\sum(\hat y_i-\bar y)^2\), \(SQR=\sum\hat u_i^2\).</p>
+  </div>
+  <div class="box trap"><span class="lbl">Erros que custam ponto</span>
+    <ul>
+      <li>Trocar as letras e escrever \(R^2=SQR/SQT\). Isso é \(1-R^2\), a parte <strong>não</strong> explicada.</li>
+      <li>Somar os desvios sem elevar ao quadrado: dá sempre zero.</li>
+      <li>Dividir SQR por n (ou n − 1) para achar \(\hat\sigma^2\). Na regressão simples é <strong>n − 2</strong>.</li>
+      <li>Dizer que \(R^2\) alto prova causalidade, ou que \(R^2\) baixo torna \(\hat\beta_1\) inútil. \(R^2\) mede só ajuste.</li>
+    </ul>
+  </div>
+
+  <h3>13. Quadro-resumo: cada beta numa frase</h3>
   <div class="tbl"><table>
     <thead><tr><th>Beta</th><th>Onde aparece</th><th>Leitura para a prova</th><th>Unidade</th></tr></thead>
     <tbody>
@@ -1988,6 +2125,18 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
   </table></div>
 
   <h3>Teste rápido</h3>
+  <div class="quiz" data-answer="b"><div class="qh">β₀ × β₁</div>
+    <p>Em \(y=\beta_0+\beta_1x+u\), qual é o <strong>coeficiente angular</strong> (a inclinação da reta)?</p>
+    <div class="opts"><button data-k="a">a) \(\beta_0\)</button><button data-k="b">b) \(\beta_1\)</button><button data-k="c">c) x</button><button data-k="d">d) u</button></div>
+    <div class="fb" hidden>b. \(\beta_1\) multiplica o x: é a inclinação (coeficiente angular). \(\beta_0\) é o intercepto (coeficiente linear), o valor de y quando x = 0.</div></div>
+  <div class="quiz" data-answer="b"><div class="qh">SQT, SQE e SQR</div>
+    <p>Numa regressão, SQT = 200 e SQE = 150. Quanto valem SQR e \(R^2\)?</p>
+    <div class="opts"><button data-k="a">a) SQR = 50 e \(R^2=0{,}25\)</button><button data-k="b">b) SQR = 50 e \(R^2=0{,}75\)</button><button data-k="c">c) SQR = 350 e \(R^2=0{,}75\)</button><button data-k="d">d) SQR = 50 e \(R^2=1{,}33\)</button></div>
+    <div class="fb" hidden>b. SQR = SQT − SQE = 200 − 150 = 50 e \(R^2=SQE/SQT=150/200=0{,}75\). A letra a calculou SQR/SQT, que é \(1-R^2\).</div></div>
+  <div class="quiz" data-answer="c"><div class="qh">As letras</div>
+    <p>Na convenção do curso, a SQR é:</p>
+    <div class="opts"><button data-k="a">a) a soma dos quadrados da regressão (parte explicada)</button><button data-k="b">b) a soma dos quadrados totais</button><button data-k="c">c) a soma dos quadrados dos resíduos, \(\sum\hat u_i^2\)</button><button data-k="d">d) a raiz de \(R^2\)</button></div>
+    <div class="fb" hidden>c. E de Explicada, R de Resíduos. A letra a é a convenção de alguns outros livros, não a do professor.</div></div>
   <div class="quiz" data-answer="b"><div class="qh">β₁ simples</div>
     <p>Em \(\hat y=0{,}6+1{,}15x\) (x = anos de estudo; y = salário-hora em R$), o número 1,15 significa:</p>
     <div class="opts"><button data-k="a">a) o salário-hora de quem não estudou</button><button data-k="b">b) cada ano a mais de estudo está associado, em média, a R$ 1,15 a mais por hora</button><button data-k="c">c) cada ano a mais aumenta o salário em 115%</button><button data-k="d">d) o salário-hora médio da amostra</button></div>
@@ -3312,6 +3461,7 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
   </div>
 
   <h3>10. Decomposição da variação: SQT = SQE + SQR</h3>
+  <p class="small">Em desenho, com a tabela completa dos 5 indivíduos e o aviso sobre as letras trocadas em outros livros: <a href="#betas-sq">SQT, SQE e SQR em desenho</a>.</p>
   <div class="mathblock">\[SQT\equiv\sum_{i=1}^{n}(y_i-\bar y)^2,\qquad SQE\equiv\sum_{i=1}^{n}(\hat y_i-\bar y)^2,\qquad SQR\equiv\sum_{i=1}^{n}\hat u_i^2\]</div>
   <p>Comece por \(y_i-\bar y=(\hat y_i-\bar y)+\hat u_i\). Elevando ao quadrado e somando:</p>
   <div class="mathblock">\[SQT=SQE+SQR+2\underbrace{\sum_{i=1}^{n}(\hat y_i-\bar y)\hat u_i}_{=0}\quad\Longrightarrow\quad SQT=SQE+SQR\]</div>
@@ -6656,12 +6806,12 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
       <div class="fl"><span>Unidade</span>—</div>
       <div class="fl warn"><span>Cuidado</span>Não implica homocedasticidade nem independência.</div>
     </div>
-    <div class="fentry" data-s="inclinação do mqo beta1 inclinacao mqo formula aula 3; listas 1 e 2 ★ variação média de ŷ por unidade a mais de x (associação).">
+    <div class="fentry" data-s="inclinação do mqo beta1 inclinacao mqo formula coeficiente angular aula 3; listas 1 e 2 ★ variação média de ŷ por unidade a mais de x (associação).">
       <div class="fh"><b>Inclinação do MQO</b><span class="src">Aula 3; Listas 1 e 2 ★</span></div>
       <div class="mathblock">\[\hat\beta_1=\frac{\sum_i(x_i-\bar x)(y_i-\bar y)}{\sum_i(x_i-\bar x)^2}=\frac{\widehat{Cov}(x,y)}{\widehat{Var}(x)}\]</div>
       <div class="fl"><span>Significa</span>Variação média de ŷ por unidade a mais de x (associação).</div>
       <div class="fl"><span>Unidade</span>Unidade de y por unidade de x (ex.: R$ por m²).</div>
-      <div class="fl warn"><span>Cuidado</span>Calcule antes de \(\hat\beta_0\). Divisor n ou n − 1 cancela se for o mesmo.</div>
+      <div class="fl warn"><span>Cuidado</span>Calcule antes de \(\hat\beta_0\). Divisor n ou n − 1 cancela se for o mesmo. β₁ é a inclinação (coeficiente angular), o número que multiplica x.</div>
     </div>
     <div class="fentry" data-s="inclinação: outras formas  lista 2 ex. 1 e 2 as mesmas contas a partir de somas brutas ou de correlação e desvios-padrão.">
       <div class="fh"><b>Inclinação: outras formas</b><span class="src">Lista 2 Ex. 1 e 2</span></div>
@@ -6676,12 +6826,12 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
       <div class="fl"><span>Unidade</span>Cada equação na unidade de y (vezes x na segunda).</div>
       <div class="fl warn"><span>Cuidado</span>Confira a solução substituindo nas duas equações.</div>
     </div>
-    <div class="fentry" data-s="intercepto do mqo beta0 intercepto formula aula 3; listas 1 e 2 ★ altura da reta em x = 0; garante que a reta passe por \((\bar x,\bar y)\).">
+    <div class="fentry" data-s="intercepto do mqo beta0 intercepto formula coeficiente linear aula 3; listas 1 e 2 ★ altura da reta em x = 0; garante que a reta passe por \((\bar x,\bar y)\).">
       <div class="fh"><b>Intercepto do MQO</b><span class="src">Aula 3; Listas 1 e 2 ★</span></div>
       <div class="mathblock">\[\hat\beta_0=\bar y-\hat\beta_1\bar x\]</div>
       <div class="fl"><span>Significa</span>Altura da reta em x = 0; garante que a reta passe por \((\bar x,\bar y)\).</div>
       <div class="fl"><span>Unidade</span>Unidade de y.</div>
-      <div class="fl warn"><span>Cuidado</span>Só tem leitura econômica se x = 0 fizer sentido.</div>
+      <div class="fl warn"><span>Cuidado</span>Só tem leitura econômica se x = 0 fizer sentido. β₀ é o intercepto (coeficiente linear), não a inclinação.</div>
     </div>
     <div class="fentry" data-s="valor ajustado e resíduo residuo ajustado aula 3; lista 2 valor da reta para a observação i; distância do observado até a reta.">
       <div class="fh"><b>Valor ajustado e resíduo</b><span class="src">Aula 3; Lista 2</span></div>
@@ -6697,12 +6847,12 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
       <div class="fl"><span>Unidade</span>—</div>
       <div class="fl warn"><span>Cuidado</span>Ortogonalidade não é exogeneidade.</div>
     </div>
-    <div class="fentry" data-s="sqt, sqe e sqr sqt sqe sqr aula 3; lista 2 ex. 3 variação total = sinal capturado pela reta + ruído residual.">
-      <div class="fh"><b>SQT, SQE e SQR</b><span class="src">Aula 3; Lista 2 Ex. 3</span></div>
+    <div class="fentry" data-s="sqt, sqe e sqr sqt sqe sqr soma dos quadrados total explicada residuos aula 3; lista 2 ex. 3; os betas, seção 12 variação total = sinal capturado pela reta + ruído residual.">
+      <div class="fh"><b>SQT, SQE e SQR</b><span class="src">Aula 3; Lista 2 Ex. 3; Os betas, seção 12</span></div>
       <div class="mathblock">\[SQT=\sum(y_i-\bar y)^2,\quad SQE=\sum(\hat y_i-\bar y)^2,\quad SQR=\sum\hat u_i^2,\quad SQT=SQE+SQR\]</div>
       <div class="fl"><span>Significa</span>Variação total = sinal capturado pela reta + ruído residual.</div>
       <div class="fl"><span>Unidade</span>Unidade de y ao quadrado.</div>
-      <div class="fl warn"><span>Cuidado</span>O termo cruzado some pela ortogonalidade.</div>
+      <div class="fl warn"><span>Cuidado</span>O termo cruzado some pela ortogonalidade. E de Explicada, R de Resíduos: alguns livros trocam as letras (R de Regressão, E de Erro); confira a fórmula.</div>
     </div>
     <div class="fentry" data-s="coeficiente de determinação r2 r quadrado ajuste aula 3; listas 1 e 2 fração da variação amostral de y contabilizada pela reta.">
       <div class="fh"><b>Coeficiente de determinação</b><span class="src">Aula 3; Listas 1 e 2</span></div>
@@ -7675,6 +7825,26 @@ details.sol>.in{padding:2px 16px 14px;border-top:1px dashed var(--line)}
   };
   var rt = null;
   window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(window.__fixMath, 200); });
+
+  /* ---------- letras gregas não viram maiúsculas nos rótulos em caixa alta (β₀ não pode virar Β₀) ---------- */
+  (function () {
+    var sel = '.countdown .lbl, nav.toc h3, .eyebrow, .tag, .box>.lbl, .lousa .who, .fcard .num, th, .quiz .qh, .flash .face small, .fentry .fl span';
+    var has = /[Ͱ-Ͽἀ-῿]/;
+    var run = /((?:[Ͱ-Ͽἀ-῿][̀-ͯ]*)+)/;
+    $$(sel).forEach(function (el) {
+      var w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null), nodes = [], n;
+      while ((n = w.nextNode())) if (has.test(n.nodeValue) && n.nodeValue.indexOf('\\') < 0) nodes.push(n);
+      nodes.forEach(function (t) {
+        var wrap = document.createElement('span');  /* um só item, mesmo dentro de flex */
+        t.nodeValue.split(run).forEach(function (part, i) {
+          if (!part) return;
+          if (i % 2) { var s = document.createElement('span'); s.className = 'nc'; s.textContent = part; wrap.appendChild(s); }
+          else wrap.appendChild(document.createTextNode(part));
+        });
+        t.parentNode.replaceChild(wrap, t);
+      });
+    });
+  })();
 
   /* ---------- modo claro / escuro ---------- */
   var THEME_KEY = 'eco1-tema';

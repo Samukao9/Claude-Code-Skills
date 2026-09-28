@@ -18,6 +18,26 @@
   var rt = null;
   window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(window.__fixMath, 200); });
 
+  /* ---------- letras gregas não viram maiúsculas nos rótulos em caixa alta (β₀ não pode virar Β₀) ---------- */
+  (function () {
+    var sel = '.countdown .lbl, nav.toc h3, .eyebrow, .tag, .box>.lbl, .lousa .who, .fcard .num, th, .quiz .qh, .flash .face small, .fentry .fl span';
+    var has = /[Ͱ-Ͽἀ-῿]/;
+    var run = /((?:[Ͱ-Ͽἀ-῿][̀-ͯ]*)+)/;
+    $$(sel).forEach(function (el) {
+      var w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null), nodes = [], n;
+      while ((n = w.nextNode())) if (has.test(n.nodeValue) && n.nodeValue.indexOf('\\') < 0) nodes.push(n);
+      nodes.forEach(function (t) {
+        var wrap = document.createElement('span');  /* um só item, mesmo dentro de flex */
+        t.nodeValue.split(run).forEach(function (part, i) {
+          if (!part) return;
+          if (i % 2) { var s = document.createElement('span'); s.className = 'nc'; s.textContent = part; wrap.appendChild(s); }
+          else wrap.appendChild(document.createTextNode(part));
+        });
+        t.parentNode.replaceChild(wrap, t);
+      });
+    });
+  })();
+
   /* ---------- modo claro / escuro ---------- */
   var THEME_KEY = 'eco1-tema';
   var mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;

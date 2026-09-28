@@ -505,21 +505,21 @@ def ols(xs,ys):
     b1=sum((x-mx)*(y-my) for x,y in zip(xs,ys))/sum((x-mx)**2 for x in xs); return my-b1*mx,b1
 
 # ---------- anatomia da equação ----------
-cols=[(64,"y","nb","",["y: o que queremos","explicar","(ex.: salário-hora)"]),
-      (192,"β₀","nr","resc",["β₀: intercepto","valor médio de y","quando x = 0"]),
-      (320,"β₁","nm","fitc",["β₁: inclinação","quanto y muda, em","média, se x sobe 1"]),
-      (448,"x","nb","",["x: variável","explicativa","(ex.: anos de estudo)"]),
-      (576,"u","ng","posc",["u: erro","tudo o mais","que afeta y"])]
+cols=[(68,"y","nb","",["y: o que queremos","explicar","(ex.: salário-hora)"]),
+      (204,"β₀","nr","resc",["β₀: intercepto","(coeficiente linear)","valor de y se x = 0"]),
+      (340,"β₁","nm","fitc",["β₁: inclinação","(coeficiente angular)","Δy médio se x sobe 1"]),
+      (476,"x","nb","",["x: variável","explicativa","(ex.: anos de estudo)"]),
+      (612,"u","ng","posc",["u: erro","tudo o mais","que afeta y"])]
 b=[]
-b.append(f'<path class="brk" d="M150 44 V36 H486 V44"/><text class="an" x="318" y="28" text-anchor="middle">a reta (parte explicada por x): E(y | x) = β₀ + β₁x</text>')
-b.append(f'<path class="brk" d="M540 44 V36 H612 V44"/><text class="an" x="576" y="28" text-anchor="middle">o que a reta não vê</text>')
+b.append(f'<path class="brk" d="M164 44 V36 H516 V44"/><text class="an" x="340" y="28" text-anchor="middle">a reta (parte explicada por x): E(y | x) = β₀ + β₁x</text>')
+b.append(f'<path class="brk" d="M572 44 V36 H652 V44"/><text class="an" x="612" y="28" text-anchor="middle">o que a reta não vê</text>')
 for cx,t,box,tc,lab in cols:
     b.append(f'<rect class="{box}" x="{cx-40}" y="52" width="80" height="54" rx="10"/>')
     b.append(f'<text class="big {tc}" x="{cx}" y="90" text-anchor="middle">{t}</text>')
     for i,l in enumerate(lab): b.append(f'<text class="an sm" x="{cx}" y="{128+i*16}" text-anchor="middle">{l}</text>')
-for cx,t in [(128,"="),(256,"+"),(384,"·"),(512,"+")]:
+for cx,t in [(136,"="),(272,"+"),(408,"·"),(544,"+")]:
     b.append(f'<text class="big" x="{cx}" y="90" text-anchor="middle">{t}</text>')
-save("b_anatomia", svg(640,184,'\n'.join(b),"Anatomia da equação y igual a beta zero mais beta um vezes x mais u, com o significado de cada parte"))
+save("b_anatomia", svg(680,184,'\n'.join(b),"Anatomia da equação y igual a beta zero mais beta um vezes x mais u, com o significado de cada parte"))
 
 # ---------- β verdadeiro × β̂ de várias amostras ----------
 P=Plot(560,300, 50,540,24,250, 0,10,0,12)
@@ -714,3 +714,37 @@ b.append(f'<text class="an resc" x="{f(P.X(0)+6)}" y="112">H₀: β₁ = 0</text
 b.append(f'<text class="an fitc" x="{f(P.R)}" y="112" text-anchor="end">β̂₁ = 1,15 está a t = 1,15 / 0,189 ≈ 6,08 EPs do zero</text>')
 save("b_regua", svg(600,178,'\n'.join(b),"Régua de erros-padrão: a estimativa está a cerca de seis erros-padrão do zero e o intervalo não contém o zero"))
 print("v7 figs ok", BETA_EST)
+
+# ---------- SQT = SQE + SQR: desvios de cada ponto ----------
+P=Plot(560,330, 58,540,20,280, 6,18,8,22)
+b=[P.axes([6,8,10,12,14,16,18],[8,10,12,14,16,18,20,22],"Anos de estudo (x)","Salário-hora, R$ (y)")]
+xs=[8,10,12,14,16]; ys=[10,12,15,15,20]; my=14.4
+b.append(f'<line class="mean" x1="{f(P.L)}" y1="{f(P.Y(my))}" x2="{f(P.R)}" y2="{f(P.Y(my))}"/>')
+b.append(f'<line class="fit" x1="{f(P.X(7))}" y1="{f(P.Y(0.6+1.15*7))}" x2="{f(P.X(17))}" y2="{f(P.Y(0.6+1.15*17))}"/>')
+for x,y in zip(xs,ys):
+    yh=0.6+1.15*x
+    b.append(f'<line class="tot" x1="{f(P.X(x)-9)}" y1="{f(P.Y(my))}" x2="{f(P.X(x)-9)}" y2="{f(P.Y(y))}"/>')
+    b.append(f'<line class="expl" x1="{f(P.X(x))}" y1="{f(P.Y(my))}" x2="{f(P.X(x))}" y2="{f(P.Y(yh))}"/>')
+    b.append(f'<line class="res" x1="{f(P.X(x)+9)}" y1="{f(P.Y(yh))}" x2="{f(P.X(x)+9)}" y2="{f(P.Y(y))}"/>')
+for x,y in zip(xs,ys): b.append(f'<circle class="pt" cx="{f(P.X(x))}" cy="{f(P.Y(y))}" r="4.5"/>')
+b.append(f'<text class="an" x="{f(P.X(17.9))}" y="{f(P.Y(9.9))}" text-anchor="end">em x = 16: total 5,6 =</text><text class="an" x="{f(P.X(17.9))}" y="{f(P.Y(8.8))}" text-anchor="end">explicado 4,6 + resíduo 1,0</text>')
+b.append(f'<text class="an" x="{f(P.R-4)}" y="{f(P.Y(my)+16)}" text-anchor="end">ȳ = 14,4</text>')
+lx=P.X(6.3); ly=P.Y(21.2)
+for i,(cls,t) in enumerate([("tot","preta: total, y − ȳ"),("expl","azul: explicado, ŷ − ȳ"),("res","vermelha: resíduo, y − ŷ")]):
+    yy=ly+i*18
+    b.append(f'<line class="{cls}" x1="{f(lx)}" y1="{f(yy-4)}" x2="{f(lx+22)}" y2="{f(yy-4)}"/><text class="an sm" x="{f(lx+28)}" y="{f(yy)}">{t}</text>')
+save("sq_desvios", svg(560,330,'\n'.join(b),"Para cada ponto, o desvio total em relação à média se divide em parte explicada pela reta e resíduo"))
+
+# ---------- barra SQT = SQE + SQR ----------
+b=[]
+x0,x1=20,540; W=x1-x0; sqt,sqe,sqr=57.2,52.9,4.3
+xe=x0+W*sqe/sqt
+b.append(f'<text class="an" x="{x0}" y="22" font-weight="700">SQT = 57,2: toda a variação de y em torno de ȳ</text>')
+b.append(f'<rect class="barA" x="{x0}" y="34" width="{f(xe-x0)}" height="44" rx="4"/>')
+b.append(f'<rect class="sqr" x="{f(xe)}" y="34" width="{f(x1-xe)}" height="44" rx="4"/>')
+b.append(f'<text class="an" x="{f((x0+xe)/2)}" y="61" text-anchor="middle" font-weight="700">SQE = 52,9 (explicada pela reta)</text>')
+b.append(f'<text class="an resc" x="{x1}" y="98" text-anchor="end">SQR = 4,3 (resíduos) ↑</text>')
+b.append(f'<text class="an fitc" x="{x0}" y="124">R² = SQE / SQT = 52,9 / 57,2 = 0,925: 92,5% da barra é azul</text>')
+b.append(f'<text class="an resc" x="{x0}" y="144">1 − R² = SQR / SQT = 4,3 / 57,2 = 0,075: o que a reta não explica</text>')
+save("sq_barra", svg(560,156,'\n'.join(b),"Barra da SQT dividida em SQE e SQR, com o R-quadrado como a fração explicada"))
+print("sq figs ok")

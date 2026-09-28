@@ -1,33 +1,33 @@
-<svg class="fig" viewBox="0 0 640 184" role="img" aria-label="Anatomia da equação y igual a beta zero mais beta um vezes x mais u, com o significado de cada parte" xmlns="http://www.w3.org/2000/svg">
-<path class="brk" d="M150 44 V36 H486 V44"/><text class="an" x="318" y="28" text-anchor="middle">a reta (parte explicada por x): E(y | x) = β₀ + β₁x</text>
-<path class="brk" d="M540 44 V36 H612 V44"/><text class="an" x="576" y="28" text-anchor="middle">o que a reta não vê</text>
-<rect class="nb" x="24" y="52" width="80" height="54" rx="10"/>
-<text class="big " x="64" y="90" text-anchor="middle">y</text>
-<text class="an sm" x="64" y="128" text-anchor="middle">y: o que queremos</text>
-<text class="an sm" x="64" y="144" text-anchor="middle">explicar</text>
-<text class="an sm" x="64" y="160" text-anchor="middle">(ex.: salário-hora)</text>
-<rect class="nr" x="152" y="52" width="80" height="54" rx="10"/>
-<text class="big resc" x="192" y="90" text-anchor="middle">β₀</text>
-<text class="an sm" x="192" y="128" text-anchor="middle">β₀: intercepto</text>
-<text class="an sm" x="192" y="144" text-anchor="middle">valor médio de y</text>
-<text class="an sm" x="192" y="160" text-anchor="middle">quando x = 0</text>
-<rect class="nm" x="280" y="52" width="80" height="54" rx="10"/>
-<text class="big fitc" x="320" y="90" text-anchor="middle">β₁</text>
-<text class="an sm" x="320" y="128" text-anchor="middle">β₁: inclinação</text>
-<text class="an sm" x="320" y="144" text-anchor="middle">quanto y muda, em</text>
-<text class="an sm" x="320" y="160" text-anchor="middle">média, se x sobe 1</text>
-<rect class="nb" x="408" y="52" width="80" height="54" rx="10"/>
-<text class="big " x="448" y="90" text-anchor="middle">x</text>
-<text class="an sm" x="448" y="128" text-anchor="middle">x: variável</text>
-<text class="an sm" x="448" y="144" text-anchor="middle">explicativa</text>
-<text class="an sm" x="448" y="160" text-anchor="middle">(ex.: anos de estudo)</text>
-<rect class="ng" x="536" y="52" width="80" height="54" rx="10"/>
-<text class="big posc" x="576" y="90" text-anchor="middle">u</text>
-<text class="an sm" x="576" y="128" text-anchor="middle">u: erro</text>
-<text class="an sm" x="576" y="144" text-anchor="middle">tudo o mais</text>
-<text class="an sm" x="576" y="160" text-anchor="middle">que afeta y</text>
-<text class="big" x="128" y="90" text-anchor="middle">=</text>
-<text class="big" x="256" y="90" text-anchor="middle">+</text>
-<text class="big" x="384" y="90" text-anchor="middle">·</text>
-<text class="big" x="512" y="90" text-anchor="middle">+</text>
+<svg class="fig" viewBox="0 0 680 184" role="img" aria-label="Anatomia da equação y igual a beta zero mais beta um vezes x mais u, com o significado de cada parte" xmlns="http://www.w3.org/2000/svg">
+<path class="brk" d="M164 44 V36 H516 V44"/><text class="an" x="340" y="28" text-anchor="middle">a reta (parte explicada por x): E(y | x) = β₀ + β₁x</text>
+<path class="brk" d="M572 44 V36 H652 V44"/><text class="an" x="612" y="28" text-anchor="middle">o que a reta não vê</text>
+<rect class="nb" x="28" y="52" width="80" height="54" rx="10"/>
+<text class="big " x="68" y="90" text-anchor="middle">y</text>
+<text class="an sm" x="68" y="128" text-anchor="middle">y: o que queremos</text>
+<text class="an sm" x="68" y="144" text-anchor="middle">explicar</text>
+<text class="an sm" x="68" y="160" text-anchor="middle">(ex.: salário-hora)</text>
+<rect class="nr" x="164" y="52" width="80" height="54" rx="10"/>
+<text class="big resc" x="204" y="90" text-anchor="middle">β₀</text>
+<text class="an sm" x="204" y="128" text-anchor="middle">β₀: intercepto</text>
+<text class="an sm" x="204" y="144" text-anchor="middle">(coeficiente linear)</text>
+<text class="an sm" x="204" y="160" text-anchor="middle">valor de y se x = 0</text>
+<rect class="nm" x="300" y="52" width="80" height="54" rx="10"/>
+<text class="big fitc" x="340" y="90" text-anchor="middle">β₁</text>
+<text class="an sm" x="340" y="128" text-anchor="middle">β₁: inclinação</text>
+<text class="an sm" x="340" y="144" text-anchor="middle">(coeficiente angular)</text>
+<text class="an sm" x="340" y="160" text-anchor="middle">Δy médio se x sobe 1</text>
+<rect class="nb" x="436" y="52" width="80" height="54" rx="10"/>
+<text class="big " x="476" y="90" text-anchor="middle">x</text>
+<text class="an sm" x="476" y="128" text-anchor="middle">x: variável</text>
+<text class="an sm" x="476" y="144" text-anchor="middle">explicativa</text>
+<text class="an sm" x="476" y="160" text-anchor="middle">(ex.: anos de estudo)</text>
+<rect class="ng" x="572" y="52" width="80" height="54" rx="10"/>
+<text class="big posc" x="612" y="90" text-anchor="middle">u</text>
+<text class="an sm" x="612" y="128" text-anchor="middle">u: erro</text>
+<text class="an sm" x="612" y="144" text-anchor="middle">tudo o mais</text>
+<text class="an sm" x="612" y="160" text-anchor="middle">que afeta y</text>
+<text class="big" x="136" y="90" text-anchor="middle">=</text>
+<text class="big" x="272" y="90" text-anchor="middle">+</text>
+<text class="big" x="408" y="90" text-anchor="middle">·</text>
+<text class="big" x="544" y="90" text-anchor="middle">+</text>
 </svg>
