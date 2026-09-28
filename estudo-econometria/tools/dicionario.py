@@ -10,7 +10,7 @@ E=[
 (r"Estatística do zero",r"Normal e regra 68–95–99,7",r"X\sim N(\mu,\sigma^2):\ P(|X-\mu|\le\sigma)\approx0{,}68,\ \le2\sigma\approx0{,}95,\ \le3\sigma\approx0{,}997",r"Forma de sino; padronize e use \(\Phi\).",r"A de X.",r"Módulo Estatística do zero; Aula 2",r"Com 95%, o valor exato é 1,96σ.",r"normal gaussiana sino"),
 (r"Estatística do zero",r"Desigualdade de Chebyshev",r"P(|X-\mu|\ge\varepsilon)\le\frac{\sigma^2}{\varepsilon^2}",r"Limite para a chance de ficar longe da média, em qualquer distribuição.",r"Probabilidade.",r"Aula 2; módulo LGN",r"É folgada: a normal dá bem menos.",r"chebyshev tchebychev desigualdade"),
 (r"Estatística do zero",r"Lei dos Grandes Números",r"\bar X_n\xrightarrow{p}\mu\quad(\text{iid, média finita})",r"A média amostral se aproxima da populacional quando n cresce.",r"A de X.",r"Aulas 1, 2 e 5; módulo LGN",r"Não funciona por compensação (falácia do jogador) e não corrige viés.",r"lgn lei grandes numeros consistencia"),
-(r"Estatística do zero",r"Teorema Central do Limite",r"\frac{\sqrt n(\bar X_n-\mu)}{\sigma}\xrightarrow{d}N(0,1)",r"A média padronizada fica aproximadamente normal.",r"Sem unidade.",r"Aula 2; módulo LGN",r"É a média, não cada observação, que fica normal.",r"tcl teorema central limite normal"),
+(r"Estatística do zero",r"Teorema Central do Limite",r"\frac{\sqrt n(\bar X_n-\mu)}{\sigma}\xrightarrow{d}N(0,1)\quad(\text{iid, variância finita})",r"A média padronizada fica aproximadamente normal quando n é grande.",r"Sem unidade.",r"Aula 2; módulo LGN",r"É a média, não cada observação, que fica normal.",r"tcl teorema central limite normal"),
 (r"Estatística descritiva (Aula 2)",r"Somatório",r"\sum_{i=1}^{n}x_i=x_1+\dots+x_n",r"Soma de todos os valores.",r"A mesma de x.",r"Aula 2 (P1–P5)",r"\(\sum x_i^2\neq(\sum x_i)^2\) e \(\sum x_i/y_i\neq\sum x_i/\sum y_i\).",r"soma sigma"),
 (r"Estatística descritiva (Aula 2)",r"Média amostral",r"\bar x=\frac1n\sum_{i=1}^{n}x_i",r"Centro da amostra.",r"A mesma de x.",r"Aulas 2 e 3",r"A reta de MQO sempre passa por \((\bar x,\bar y)\).",r"media barra"),
 (r"Estatística descritiva (Aula 2)",r"Desvio em relação à média",r"x_i-\bar x,\qquad\sum_i(x_i-\bar x)=0",r"Quanto cada observação se afasta da média. A soma é sempre zero.",r"A mesma de x.",r"Aula 2 (P1)",r"Use a soma zero para conferir contas.",r"desvio"),
@@ -38,7 +38,7 @@ E=[
 (r"Regressão simples (Aula 3)",r"Equações normais (CPOs do MQO)",r"n\hat\beta_0+\Big(\sum x_i\Big)\hat\beta_1=\sum y_i,\qquad\Big(\sum x_i\Big)\hat\beta_0+\Big(\sum x_i^2\Big)\hat\beta_1=\sum x_iy_i",r"O sistema que o MQO resolve; a solução são as duas fórmulas decoradas.",r"Cada equação na unidade de y (vezes x na segunda).",r"Aula 3; Lista em sala Ex. 5",r"Confira a solução substituindo nas duas equações.",r"cpo equacoes normais sistema lista em sala"),
 (r"Regressão simples (Aula 3)",r"Intercepto do MQO",r"\hat\beta_0=\bar y-\hat\beta_1\bar x",r"Altura da reta em x = 0; garante que a reta passe por \((\bar x,\bar y)\).",r"Unidade de y.",r"Aula 3; Listas 1 e 2 ★",r"Só tem leitura econômica se x = 0 fizer sentido. β₀ é o intercepto (coeficiente linear), não a inclinação.",r"beta0 intercepto formula coeficiente linear"),
 (r"Regressão simples (Aula 3)",r"Valor ajustado e resíduo",r"\hat y_i=\hat\beta_0+\hat\beta_1x_i,\qquad \hat u_i=y_i-\hat y_i",r"Valor da reta para a observação i; distância do observado até a reta.",r"Unidade de y.",r"Aula 3; Lista 2",r"Resíduo = observado − ajustado. Resíduo ≠ erro.",r"residuo ajustado"),
-(r"Regressão simples (Aula 3)",r"Propriedades algébricas",r"\sum_i\hat u_i=0,\qquad\sum_ix_i\hat u_i=0,\qquad\bar{\hat y}=\bar y",r"Saem das CPOs; valem em qualquer amostra.",r"—",r"Aula 3; Lista 1 Q33, Q37, Q41",r"Ortogonalidade não é exogeneidade.",r"propriedades cpo"),
+(r"Regressão simples (Aula 3)",r"Propriedades algébricas",r"\sum_i\hat u_i=0,\qquad\sum_ix_i\hat u_i=0,\qquad\bar{\hat y}=\bar y,\qquad\widehat{Cov}(\hat y,\hat u)=0",r"Saem das CPOs; valem em qualquer amostra, desde que o modelo tenha intercepto.",r"—",r"Aula 3; Lista 1 Q33, Q37, Q41",r"Ortogonalidade não é exogeneidade.",r"propriedades cpo"),
 (r"Regressão simples (Aula 3)",r"SQT, SQE e SQR",r"SQT=\sum(y_i-\bar y)^2,\quad SQE=\sum(\hat y_i-\bar y)^2,\quad SQR=\sum\hat u_i^2,\quad SQT=SQE+SQR",r"Variação total = sinal capturado pela reta + ruído residual.",r"Unidade de y ao quadrado.",r"Aula 3; Lista 2 Ex. 3; Os betas, seção 12",r"O termo cruzado some pela ortogonalidade. E de Explicada, R de Resíduos: alguns livros trocam as letras (R de Regressão, E de Erro); confira a fórmula.",r"sqt sqe sqr soma dos quadrados total explicada residuos"),
 (r"Regressão simples (Aula 3)",r"Coeficiente de determinação",r"R^2=\frac{SQE}{SQT}=1-\frac{SQR}{SQT}",r"Fração da variação amostral de y contabilizada pela reta.",r"Sem unidade (0 a 1 com intercepto).",r"Aula 3; Listas 1 e 2",r"Não mede causalidade; não se compara Y com ln Y; não muda com unidades.",r"r2 r quadrado ajuste"),
 (r"Regressão simples (Aula 3)",r"Variância do erro estimada",r"\hat\sigma^2=\frac{SQR}{n-2},\qquad\hat\sigma=\sqrt{\hat\sigma^2}",r"Dispersão dos pontos em torno da reta (não viesada sob RLS.1–5).",r"\(\hat\sigma^2\) em unidade de y ao quadrado; \(\hat\sigma\) em unidade de y.",r"Aulas 3 e 5; Lista 3 Q4",r"n − 2 porque estimamos 2 parâmetros (pela origem: n − 1).",r"sigma chapeu variancia erro"),
@@ -46,10 +46,10 @@ E=[
 (r"Unidades e forma funcional (Aula 4)",r"Mudança de escala",r"\tilde y=by,\ \tilde x=cx\ \Rightarrow\ \tilde\beta_1=\frac bc\hat\beta_1,\quad\tilde\beta_0=b\hat\beta_0",r"Trocar unidades muda os números, não a relação.",r"—",r"Aula 4; Lista 1 Q42 e Q44",r"\(R^2\) igual; escalar só x não muda \(\hat\beta_0\).",r"escala unidade"),
 (r"Unidades e forma funcional (Aula 4)",r"Transformação afim",r"\tilde y=a+by,\ \tilde x=d+cx\ \Rightarrow\ \tilde\beta_1=\frac bc\hat\beta_1,\quad\tilde\beta_0=a+b\hat\beta_0-\frac bc\hat\beta_1d",r"Escala muda inclinação; deslocamentos de origem mudam só o intercepto.",r"—",r"Aula 4; Lista 1 Q51 e Q59",r"Celsius → Fahrenheit é afim.",r"afim"),
 (r"Unidades e forma funcional (Aula 4)",r"Log e variação percentual",r"\Delta\ln x\approx\frac{\Delta x}{x},\qquad\Delta\ln x=\ln(1+g)",r"Diferença de logs ≈ variação proporcional.",r"Sem unidade (proporção; × 100 = %).",r"Aula 4",r"Boa só para variações pequenas.",r"log percentual"),
-(r"Unidades e forma funcional (Aula 4)",r"Log–nível",r"\ln y=\beta_0+\beta_1x:\quad\%\Delta y\approx100\beta_1\Delta x,\quad\text{exato }100(e^{\beta_1\Delta x}-1)\%",r"+1 em x ⇒ cerca de \(100\beta_1\)% em y.",r"\(\beta_1\) em proporção por unidade de x.",r"Aula 4; Lista 1 Q52 e Q60",r"A aproximação subestima para Δ grandes.",r"log nivel semielasticidade"),
+(r"Unidades e forma funcional (Aula 4)",r"Log–nível",r"\ln y=\beta_0+\beta_1x:\quad\%\Delta y\approx100\beta_1\Delta x,\quad\text{exato }100(e^{\beta_1\Delta x}-1)\%",r"+1 em x ⇒ cerca de \(100\beta_1\)% em y (\(\beta_1\) é a semi-elasticidade).",r"\(\beta_1\) em proporção por unidade de x (× 100 = % por unidade).",r"Aula 4; Lista 1 Q52 e Q60",r"A aproximação fica abaixo do exato, e a diferença cresce com \(\beta_1\Delta x\): 0,30 dá 30% contra 35% exato.",r"log nivel semielasticidade"),
 (r"Unidades e forma funcional (Aula 4)",r"Nível–log",r"y=\beta_0+\beta_1\ln x:\quad\frac{dy}{dx}=\frac{\beta_1}{x},\quad+1\%\text{ em }x\Rightarrow\Delta y\approx\frac{\beta_1}{100}",r"+1% em x ⇒ cerca de \(\beta_1/100\) unidades em y.",r"\(\beta_1\) na unidade de y.",r"Aula 4; Lista 1 Q53",r"Exato: \(\beta_1\ln(1+g)\).",r"nivel log"),
-(r"Unidades e forma funcional (Aula 4)",r"Log–log (elasticidade)",r"\ln y=\beta_0+\beta_1\ln x:\quad\beta_1=\frac{d\ln y}{d\ln x},\quad\text{exato }100[(1+g)^{\beta_1}-1]\%",r"+1% em x ⇒ cerca de \(\beta_1\)% em y.",r"Sem unidade (elasticidade).",r"Aula 4; Lista 1 Q54",r"A aproximação superestima no exemplo 0,45.",r"log log elasticidade"),
-(r"Unidades e forma funcional (Aula 4)",r"Quadrático",r"\frac{\partial E(Y\mid X)}{\partial X}=\beta_1+2\beta_2X,\qquad X^*=-\frac{\beta_1}{2\beta_2}",r"Efeito marginal que muda com X; ponto de retorno.",r"Efeito em unid. y / unid. x; \(X^*\) em unidade de x.",r"Aula 4; Lista 2 Ex. 4 ★; Lista 1 Q55",r"\(\beta_2&lt;0\) côncava (máximo); \(\beta_1\) é o efeito em X = 0.",r"quadratico efeito marginal ponto retorno"),
+(r"Unidades e forma funcional (Aula 4)",r"Log–log (elasticidade)",r"\ln y=\beta_0+\beta_1\ln x:\quad\beta_1=\frac{d\ln y}{d\ln x},\quad\text{exato }100[(1+g)^{\beta_1}-1]\%",r"+1% em x ⇒ cerca de \(\beta_1\)% em y.",r"Sem unidade (elasticidade).",r"Aula 4; Lista 1 Q54",r"Com 0 &lt; \(\beta_1\) &lt; 1 e x subindo, a aproximação \(\beta_1\cdot g\) superestima (Lista 1 Q54: 0,45 × 4% = 1,80% contra 1,78% exato).",r"log log elasticidade"),
+(r"Unidades e forma funcional (Aula 4)",r"Quadrático",r"\frac{\partial E(Y\mid X)}{\partial X}=\beta_1+2\beta_2X,\qquad X^*=-\frac{\beta_1}{2\beta_2}",r"Efeito marginal que muda com X; ponto de retorno.",r"\(\beta_1\) em unid. y / unid. x; \(\beta_2\) em unid. y / (unid. x)²; \(X^*\) em unidade de x.",r"Aula 4; Lista 2 Ex. 4 ★; Lista 1 Q55",r"\(\beta_2&lt;0\) côncava (máximo); \(\beta_1\) é o efeito em X = 0.",r"quadratico efeito marginal ponto retorno"),
 (r"Unidades e forma funcional (Aula 4)",r"Interação",r"\frac{\partial E(Y\mid X_1,X_2)}{\partial X_1}=\beta_1+\beta_3X_2",r"O efeito de \(X_1\) depende de \(X_2\).",r"Unid. y / unid. \(X_1\).",r"Aula 4; Lista 1 Q56",r"Mantenha \(X_1\) e \(X_2\) no modelo.",r"interacao"),
 (r"Unidades e forma funcional (Aula 4)",r"Retransformação do log",r"E[Y\mid X]\neq\exp(E[\ln Y\mid X]);\quad\text{erros normais: }E[Y\mid X=x]=e^{\beta_0+\beta_1x+\sigma^2/2}",r"Exponenciar a previsão em log não dá a média de Y.",r"Unidade de y.",r"Aula 4 (apêndice)",r"",r""),
 (r"Propriedades do MQO (Aula 5)",r"Equação-chave",r"\hat\beta_1=\beta_1+\frac{1}{SQT_x}\sum_id_iu_i,\qquad d_i=x_i-\bar x",r"Estimativa = parâmetro + erro de estimação (combinação dos erros).",r"Unid. y / unid. x.",r"Aula 5 ★",r"Base de todas as provas da aula.",r"equacao chave"),
@@ -66,7 +66,7 @@ E=[
 (r"Inferência (Aula 6)",r"Do intervalo para a estimativa e o EP",r"[L;\,U]=\hat\beta_1\pm c\cdot EP\ \Rightarrow\ \hat\beta_1=\frac{L+U}{2},\quad\text{margem}=\frac{U-L}{2},\quad EP=\frac{\text{margem}}{c}",r"Recuperar a estimativa, a margem e o erro-padrão a partir de um IC divulgado.",r"A de \(\beta_1\).",r"Lista em sala Ex. 3 e 4",r"A margem não é o EP: divida pelo valor crítico.",r"intervalo margem erro padrao lista em sala"),
 (r"Inferência (Aula 6)",r"p-valor",r"p=P(\text{estatística tão ou mais extrema}\mid H_0)",r"Compatibilidade dos dados com \(H_0\).",r"Probabilidade (0 a 1).",r"Aulas 2 e 6; Lista 3 Q2 e Q5",r"Não é a probabilidade de \(H_0\) ser verdadeira.",r"p valor"),
 (r"Inferência (Aula 6)",r"Erros tipo I e II e poder",r"P(\text{tipo I})=\alpha,\quad P(\text{tipo II})=\beta,\quad\text{poder}=1-\beta",r"Rejeitar H₀ verdadeira; não rejeitar H₀ falsa; detectar um efeito que existe.",r"Probabilidades.",r"Aula 6; Lista 3 Q8",r"",r""),
-(r"Inferência (Aula 6)",r"Erro-padrão robusto (HC0)",r"\widehat{Var}_{HC0}(\hat\beta_1)=\frac{\sum_i(x_i-\bar x)^2\hat u_i^2}{SQT_x^2}",r"Variância válida sob heterocedasticidade.",r"(Unid. y / unid. x) ao quadrado.",r"Aula 6; Lista 3 Q9",r"Pode ser maior ou menor; é assintótico.",r"robusto hc0 heterocedasticidade"),
+(r"Inferência (Aula 6)",r"Erro-padrão robusto (HC0)",r"\widehat{Var}_{HC0}(\hat\beta_1)=\frac{\sum_i(x_i-\bar x)^2\hat u_i^2}{SQT_x^2},\qquad\widehat{Var}_{HC1}=\frac{n}{n-2}\,\widehat{Var}_{HC0}",r"Variância válida sob heterocedasticidade; o HC1 corrige o HC0 para amostras pequenas.",r"(Unid. y / unid. x) ao quadrado.",r"Aula 6; Lista 3 Q9",r"Pode ser maior ou menor; é assintótico.",r"robusto hc0 hc1 heterocedasticidade"),
 (r"Inferência (Aula 6)",r"Origem da distribuição t",r"Z=\frac{\hat\beta_1-\beta_1}{\sigma/\sqrt{SQT_x}}\sim N(0,1),\quad\frac{(n-2)\hat\sigma^2}{\sigma^2}\sim\chi^2_{n-2},\quad t_{n-2}=\frac{Z}{\sqrt{\chi^2_{n-2}/(n-2)}}",r"Trocar σ por \(\hat\sigma\) gera caudas mais gordas.",r"Sem unidade.",r"Aula 6 (apêndice; RLS.6)",r"",r""),
 (r"Inferência (Aula 6)",r"Breusch–Pagan",r"\hat u_i^2=\delta_0+\delta_1X_i+v_i,\qquad LM=nR^2_{aux}\xrightarrow{d}\chi^2_1",r"Testa se a variância muda com X.",r"Sem unidade.",r"Aula 6 (apêndice)",r"Não rejeitar não prova homocedasticidade.",r"breusch pagan"),
 (r"Dummies e origem (Aula 7)",r"Regressão com uma dummy",r"\hat\beta_0=\bar y_0,\qquad\hat\beta_1=\bar y_1-\bar y_0",r"Média da referência e diferença de médias.",r"Unidade de y.",r"Aula 7",r"Diferença observada não é causal por si só.",r"dummy diferenca medias"),
@@ -83,6 +83,13 @@ E=[
 (r"Matemática de apoio",r"Integral definida",r"\int_a^bf(x)\,dx=F(b)-F(a),\quad F'=f",r"Área sob a curva; na densidade, uma probabilidade.",r"Unid. f × unid. x.",r"Módulo Integrais; Aula 2",r"",r""),
 (r"Matemática de apoio",r"Lagrangiano",r"\mathcal L=f(x,y)-\lambda[g(x,y)-c],\qquad\lambda=\frac{df^*}{dc}",r"Otimização com restrição; λ = preço sombra.",r"Unid. f / unid. c.",r"Módulo λ (fora do material)",r"",r""),
 ]
+import sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from dic_extra import NEW, SYM, ESYM, UNITS, GLOSS
+E += NEW
+missing = [e[1] for e in E if e[1] not in ESYM]
+badk = sorted({k for v in ESYM.values() for k in v.split() if k not in SYM})
+assert not missing and not badk, (missing, badk)
 groups=[]
 for g in E:
     if g[0] not in groups: groups.append(g[0])
@@ -92,10 +99,12 @@ out.append('''
 <section class="mod" id="dicionario" data-title="Dicionário">
   <div class="eyebrow">Revisão · todas as fórmulas do curso</div>
   <h2>Dicionário de fórmulas e unidades</h2>
-  <p>Cada fórmula do curso com o que ela significa em palavras, a sua <strong>unidade de medida</strong>, onde aparece e o erro mais comum. Digite no campo abaixo para filtrar (ex.: “variância”, “log”, “R2”, “Lista 2”).</p>
-  <div class="field"><label for="dictSearch">Buscar fórmula</label><input id="dictSearch" type="search" autocomplete="off" placeholder="ex.: erro padrão, elasticidade, Bayes"></div>
+  <p>Cada fórmula do curso com o que ela significa em palavras, <strong>o que cada símbolo quer dizer</strong>, a sua <strong>unidade de medida</strong>, onde aparece e o erro mais comum. No fim há dois glossários: um de <strong>símbolos</strong> (cada letra grega e sinal) e um de <strong>palavras</strong> (cada termo do curso, com exemplo). A busca filtra tudo ao mesmo tempo (ex.: “variância”, “log”, “R2”, “Lista 2”, “ponto percentual”, “sigma”).</p>
+  <nav class="vnav" aria-label="Partes do dicionário"><a href="#dic-ler">Como ler</a><a href="#dic-unid">Unidades</a><a href="#dic-form">Fórmulas</a><a href="#dic-sim">Símbolos</a><a href="#dic-pal">Palavras</a><a href="#dic-cart">Cartões</a></nav>
+  <div class="field"><label for="dictSearch">Buscar fórmula, símbolo ou palavra</label><input id="dictSearch" type="search" autocomplete="off" placeholder="ex.: erro padrão, elasticidade, sigma, ponto percentual"></div>
   <p class="small muted" id="dictCount"></p>
 
+@@UNIDADES@@
   <h3>Como pensar em unidades (análise dimensional)</h3>
   <p>Toda fórmula carrega unidades. Conferir a unidade do resultado é uma forma rápida de achar erros. Exemplo com a Lista 2, Ex. 1 (área em m², aluguel em R$):</p>
   <div class="tbl"><table>
@@ -127,6 +136,32 @@ out.append('''
     <p>\\(\\hat\\beta_1\\) tem unidade “y por x”. Se y passa de reais para milhares de reais, o mesmo efeito vira um número 1.000 vezes menor. Se x passa de anos para meses, “por mês” é 12 vezes menor que “por ano”. \\(R^2\\), t e elasticidades não têm unidade, então não mudam.</p>
   </div>
 ''')
+def symline(name):
+    return " · ".join(f"<b>{SYM[k][0]}</b> {SYM[k][1]}" for k in ESYM[name].split())
+ler = """  <h3 id="dic-ler">Como ler uma ficha</h3>
+  <div class="box def"><span class="lbl">As partes de cada ficha</span>
+    <ul>
+      <li><strong>Título e fonte</strong> (à direita): o nome da fórmula e onde ela aparece no curso (aula, lista, prática).</li>
+      <li><strong>A fórmula</strong>, do jeito que cai na prova.</li>
+      <li><strong>Significa</strong>: o que ela diz, em português.</li>
+      <li><strong>Símbolos</strong>: o que cada letra ou sinal da fórmula quer dizer.</li>
+      <li><strong>Unidade</strong>: em que medida o resultado sai (veja a tabela logo abaixo).</li>
+      <li><strong>Cuidado</strong>: o erro mais comum ou um exemplo com números do curso.</li>
+    </ul>
+  </div>
+"""
+urows = "\n".join(f"      <tr><td><strong>{u}</strong></td><td>{m}</td><td>{ex}</td></tr>" for u, m, ex in UNITS)
+unid = f"""  <h3 id="dic-unid">Unidades: o que significa cada uma</h3>
+  <p>Toda grandeza do curso tem uma unidade. Saber qual é ajuda a interpretar o número e a pegar erros de conta: se a unidade do resultado não faz sentido, a conta está errada.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Unidade ou expressão</th><th>O que significa</th><th>Exemplo do curso</th></tr></thead>
+    <tbody>
+{urows}
+    </tbody>
+  </table></div>
+"""
+out[-1] = out[-1].replace("@@UNIDADES@@", ler + unid)
+out.append('  <h3 id="dic-form">Fórmulas por tema</h3>')
 for gname in groups:
     out.append(f'  <h3 class="dgroup">{gname}</h3>\n  <div class="dgrid">')
     for (g,name,tex,mean,unit,where,care,kw) in E:
@@ -135,12 +170,36 @@ for gname in groups:
         out.append(f'''    <div class="fentry" data-s="{s}">
       <div class="fh"><b>{name}</b><span class="src">{where}</span></div>
       <div class="mathblock">\\[{tex}\\]</div>
-      <div class="fl"><span>Significa</span>{mean}</div>
-      <div class="fl"><span>Unidade</span>{unit}</div>''' + (f'''
-      <div class="fl warn"><span>Cuidado</span>{care}</div>''' if care else "") + '''
+      <div class="fl"><span>Significa</span><div>{mean}</div></div>
+      <div class="fl sym"><span>Símbolos</span><div>{symline(name)}</div></div>
+      <div class="fl"><span>Unidade</span><div>{unit}</div></div>''' + (f'''
+      <div class="fl warn"><span>Cuidado</span><div>{care}</div></div>''' if care else "") + '''
     </div>''')
     out.append('  </div>')
-out.append('''  <h3>Cartões de revisão (unidades, hipóteses, conceitos)</h3>
+# glossário de símbolos
+out.append('  <h3 class="dgroup" id="dic-sim">Símbolos: o que cada letra e sinal significa</h3>\n  <div class="dgrid dgrid2">')
+seen = set()
+for k, (disp, mean) in SYM.items():
+    key = (disp, mean)
+    if key in seen: continue
+    seen.add(key)
+    sdata = html.escape((k + " " + disp + " " + mean).lower(), quote=True)
+    out.append(f'    <div class="fentry gl" data-s="{sdata}"><div class="fh"><b>{disp}</b></div><div class="gm">{mean}</div></div>')
+out.append('  </div>')
+# glossário de palavras
+out.append('  <h3 id="dic-pal">Palavras: o que cada termo significa</h3>')
+cats = []
+for c, *_ in GLOSS:
+    if c not in cats: cats.append(c)
+for c in cats:
+    out.append(f'  <h4 class="dgroup">{c}</h4>\n  <div class="dgrid dgrid2">')
+    for cc, termo, mean, ex in GLOSS:
+        if cc != c: continue
+        sdata = html.escape((termo + " " + mean + " " + ex).lower(), quote=True)
+        exl = f'<div class="gx"><span>Exemplo</span> {ex}</div>' if ex else ""
+        out.append(f'    <div class="fentry gl" data-s="{sdata}"><div class="fh"><b>{termo}</b></div><div class="gm">{mean}</div>{exl}</div>')
+    out.append('  </div>')
+out.append('''  <h3 id="dic-cart">Cartões de revisão (unidades, hipóteses, conceitos)</h3>
   <div class="flash-grid">
     <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Unidade</small>Unidade de \\(\\hat\\beta_1\\)</div><div class="face back">Unidade de y por unidade de x (ex.: R$ por m²)</div></div></div>
     <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Unidade</small>Unidade de \\(\\hat\\beta_0\\)</div><div class="face back">A mesma de y</div></div></div>
@@ -169,6 +228,12 @@ out.append('''  <h3>Cartões de revisão (unidades, hipóteses, conceitos)</h3>
     <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Derivada</small>Regra da cadeia</div><div class="face back">\\([f(g(x))]'=f'(g(x))\\cdot g'(x)\\)</div></div></div>
     <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Derivada</small>Máximo ou mínimo?</div><div class="face back">\\(f'=0\\); \\(f''\\lt0\\) máximo, \\(f''&gt;0\\) mínimo</div></div></div>
     <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Integral</small>Teorema Fundamental</div><div class="face back">\\(\\int_a^bf=F(b)-F(a)\\), com \\(F'=f\\)</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Unidade</small>% × ponto percentual</div><div class="face back">Taxa de 5% para 6%: +1 p.p., que é +20%</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Unidade</small>β₂ do quadrático</div><div class="face back">Unidade de y por (unidade de x)²</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Símbolo</small>O chapéu (^)</div><div class="face back">Estimado com os dados: β̂₁ é a estimativa de β₁</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Símbolo</small>A barra (x̄)</div><div class="face back">Média amostral de x</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Dummies</small>G categorias</div><div class="face back">Use G − 1 dummies (uma fica de referência)</div></div></div>
+    <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>Aula 5</small>Gauss–Markov</div><div class="face back">RLS.1–RLS.5 ⇒ MQO é BLUE (menor variância entre lineares não viesados)</div></div></div>
     <div class="flash" role="button" tabindex="0"><div class="inner"><div class="face"><small>λ</small>Multiplicador de Lagrange</div><div class="face back">\\(\\lambda=df^*/dc\\): quanto o ótimo muda se a restrição afrouxa 1 unidade</div></div></div>
   </div>
   <div class="quiz" data-answer="c"><div class="qh">Unidades</div>
@@ -179,6 +244,14 @@ out.append('''  <h3>Cartões de revisão (unidades, hipóteses, conceitos)</h3>
     <p>Se x está em metros e y em reais, qual é a unidade de \\(SQT_x\\)?</p>
     <div class="opts"><button data-k="a">a) metros ao quadrado</button><button data-k="b">b) reais ao quadrado</button><button data-k="c">c) reais por metro</button><button data-k="d">d) sem unidade</button></div>
     <div class="fb" hidden>\\(SQT_x=\\sum(x_i-\\bar x)^2\\) soma desvios de x ao quadrado. SQT (sem o x) seria em reais ao quadrado.</div></div>
+  <div class="quiz" data-answer="b"><div class="qh">Unidades</div>
+    <p>A taxa de juros passou de 10% para 12% ao ano. Qual frase está correta?</p>
+    <div class="opts"><button data-k="a">a) subiu 2%</button><button data-k="b">b) subiu 2 pontos percentuais, ou 20%</button><button data-k="c">c) subiu 12%</button><button data-k="d">d) subiu 0,2 ponto percentual</button></div>
+    <div class="fb" hidden>b. A diferença entre as taxas é 12 − 10 = 2 p.p.; em termos relativos, 2/10 = 20%.</div></div>
+  <div class="quiz" data-answer="d"><div class="qh">Símbolos</div>
+    <p>Em \\(\\hat\\sigma^2=SQR/(n-2)\\), o chapéu sobre σ indica que:</p>
+    <div class="opts"><button data-k="a">a) é a variância da população, conhecida</button><button data-k="b">b) é elevado ao quadrado duas vezes</button><button data-k="c">c) é um valor máximo</button><button data-k="d">d) é uma estimativa calculada com os dados da amostra</button></div>
+    <div class="fb" hidden>d. O chapéu sempre significa “estimado”. σ² (sem chapéu) é a variância verdadeira do erro, desconhecida.</div></div>
   <div class="done-row"><button class="btn done-btn" data-done="dicionario" aria-pressed="false">Marcar como concluído</button></div>
 </section>
 ''')
