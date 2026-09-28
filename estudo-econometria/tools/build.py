@@ -5,6 +5,7 @@ html="\n".join(open(p).read() for p in parts)
 def fig(m):
     name=m.group(1)
     return open(f"{base}/parts/figs/{name}.svg").read()
+html=re.sub(r"STRIP:([a-z0-9_]+)", lambda m: open(f"{base}/parts/strips/{m.group(1)}.html").read(), html)
 html=re.sub(r"FIG:([a-z0-9_]+)", fig, html)
 out=base+"/guia_econometria_P1.html"
 open(out,"w").write(html)

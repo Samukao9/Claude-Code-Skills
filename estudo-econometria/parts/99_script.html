@@ -38,6 +38,21 @@
     });
   })();
 
+  /* ---------- busca no Mapa visual ---------- */
+  (function () {
+    var inp = $('#vsearch'), cnt = $('#vcount'); if (!inp) return;
+    var cards = $$('#mapa .vcard');
+    function norm(s) { return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); }
+    var texts = cards.map(function (c) { return norm(c.textContent); });
+    function run() {
+      var q = norm(inp.value.trim()), n = 0;
+      cards.forEach(function (c, i) { var ok = !q || texts[i].indexOf(q) >= 0; c.hidden = !ok; if (ok) n++; });
+      $$('#mapa .vgrid').forEach(function (g) { var any = $$('.vcard', g).some(function (c) { return !c.hidden; }); g.hidden = !any; var h = g.previousElementSibling; if (h && h.classList.contains('vgh')) h.hidden = !any; });
+      cnt.textContent = q ? n + ' de ' + cards.length + ' cartões' : cards.length + ' cartões';
+    }
+    inp.addEventListener('input', run); run();
+  })();
+
   /* ---------- modo claro / escuro ---------- */
   var THEME_KEY = 'eco1-tema';
   var mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
