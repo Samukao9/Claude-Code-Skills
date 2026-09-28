@@ -8,6 +8,71 @@
   <div class="mathblock">\[\underbrace{\hat\beta_1}_{\text{estimativa}}\;+\;\underbrace{ep(\hat\beta_1)}_{\text{erro-padrão}}\;+\;\underbrace{t\text{ ou normal}}_{\text{distribuição de referência}}\;\Longrightarrow\;\text{inferência}\]</div>
   <p><strong>Pergunta central:</strong> a distância entre \(\hat\beta_1\) e um valor hipotético é grande em relação à incerteza amostral?</p>
 
+  <h3 id="h0-h1-pvalor">Do zero: H₀, H₁ e p-valor em linguagem simples</h3>
+  <p>Antes da parte técnica, a ideia inteira em três passos, com o exemplo da própria aula.</p>
+
+  <h4>Passo 1. H₀ e H₁ são duas afirmações que brigam</h4>
+  <div class="box def"><span class="lbl">Pense num tribunal</span>
+    <ul>
+      <li><strong>\(H_0\) (hipótese nula)</strong> é o “réu inocente”: a afirmação de que <strong>não há efeito</strong>. Na regressão, quase sempre é \(\beta_1=0\): “x não afeta y”. Ela é tratada como verdadeira até que os dados provem o contrário.</li>
+      <li><strong>\(H_1\) (hipótese alternativa)</strong> é a acusação, o que você suspeita: \(\beta_1\neq0\) (teste <strong>bilateral</strong>, duas caudas) ou \(\beta_1&gt;0\) / \(\beta_1\lt0\) (<strong>unilateral</strong>, uma cauda). Nos slides do professor ela aparece como \(H_A\); é a mesma coisa.</li>
+      <li>Os <strong>dados são as provas</strong>. O veredito só pode ser <strong style="white-space:nowrap">“rejeito \(H_0\)”</strong> ou <strong style="white-space:nowrap">“não rejeito \(H_0\)”</strong>.</li>
+    </ul>
+    <p><strong>Nunca escreva <span style="white-space:nowrap">“aceito \(H_0\)”</span>.</strong> Absolvido por falta de provas não significa provado inocente: talvez a amostra só fosse pequena demais para enxergar o efeito.</p>
+  </div>
+
+  <h4>Passo 2. A estatística t mede o peso das provas</h4>
+  <div class="mathblock">\[t=\frac{\hat\beta_1-\text{valor de }H_0}{EP(\hat\beta_1)}\]</div>
+  <p>Ela diz <strong>quantos erros-padrão</strong> a sua estimativa está longe do que \(H_0\) afirma. No exemplo da aula (os 5 indivíduos): \(\hat\beta_1=1{,}15\) e \(EP=0{,}189\), então \(t=1{,}15/0{,}189\approx\mathbf{6{,}08}\). A estimativa está a mais de 6 “passos de EP” do zero.</p>
+  <figure><div class="scroll">FIG:b_regua</div><figcaption>A régua de erros-padrão: cada traço é 1 EP a partir de \(H_0:\beta_1=0\). A estimativa 1,15 está além do 6º traço. Com n = 5 (3 graus de liberdade), o crítico de 5% é 3,182: passou dele, rejeita.</figcaption></figure>
+
+  <h4>Passo 3. O p-valor mede a surpresa</h4>
+  <p>O p-valor responde: <strong>se \(H_0\) fosse verdadeira, qual seria a chance de aparecer um resultado tão extremo quanto o meu, ou mais?</strong></p>
+  <div class="vgrid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">
+    <figure style="margin:0"><div class="vcard"><div class="vfig">FIG:v_pvalor</div><p class="small">Com z = 2,5, as duas caudas vermelhas somam p = 0,012.</p></div></figure>
+    <div class="box ok" style="margin:0"><span class="lbl">Como ler</span>
+      <ul>
+        <li><strong>p pequeno</strong>: o resultado seria muito raro num mundo onde \(H_0\) vale. É prova contra \(H_0\).</li>
+        <li><strong>Regra:</strong> \(p\lt\alpha\) (em geral 5%) ⇒ rejeita \(H_0\).</li>
+        <li>z = 2,5 ⇒ p = 0,012 &lt; 0,05 ⇒ rejeita. No exemplo da aula, t = 6,08 com 3 g.l. ⇒ p ≈ 0,009.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="box trap"><span class="lbl">O que o p-valor não é (pegadinha frequente)</span>
+    <ul>
+      <li>Não é a probabilidade de \(H_0\) ser verdadeira. É calculado <em>supondo</em> que ela é.</li>
+      <li>Não é o tamanho nem a importância do efeito. Um efeito minúsculo pode ter p pequeno com n enorme.</li>
+      <li>p ≥ 0,05 não prova que não há efeito: só que as provas não bastaram.</li>
+    </ul>
+  </div>
+
+  <h4>As duas formas de decidir dão sempre a mesma resposta</h4>
+  <div class="tbl"><table>
+    <thead><tr><th>Comparação</th><th>Decisão</th></tr></thead>
+    <tbody>
+      <tr><td>\(|t|&gt;\) crítico &nbsp;⇔&nbsp; \(p\lt\alpha\)</td><td><strong>rejeita \(H_0\)</strong></td></tr>
+      <tr><td>\(|t|\le\) crítico &nbsp;⇔&nbsp; \(p\ge\alpha\)</td><td><strong>não rejeita \(H_0\)</strong></td></tr>
+    </tbody>
+  </table></div>
+  <div class="box prova"><span class="lbl">Frase de prova (modelo)</span>
+    <p>“\(H_0:\beta_1=0\) contra \(H_1:\beta_1\neq0\). Como \(|t|=6{,}08&gt;t_{0{,}025;\,3}=3{,}182\) (ou p ≈ 0,009 &lt; 0,05), rejeitamos \(H_0\) ao nível de 5%: a educação tem associação estatisticamente significante com o salário-hora.”</p>
+  </div>
+
+  <h4>Agora você</h4>
+  <p>Numa regressão com n = 5, o resultado foi \(\hat\beta_1=0{,}6\) e \(EP=0{,}4\). Teste \(H_0:\beta_1=0\) contra \(H_1:\beta_1\neq0\) a 5% (crítico 3,182). Quanto dá o t? Você rejeita ou não rejeita \(H_0\)? O p-valor fica acima ou abaixo de 0,05?</p>
+  <details class="sol"><summary>Resolução (tente antes de abrir)</summary><div class="in">
+    <ol class="steps">
+      <li><div><strong>t:</strong> \(t=\dfrac{0{,}6-0}{0{,}4}=\mathbf{1{,}5}\). A estimativa está a só 1,5 EP do zero.</div></li>
+      <li><div><strong>Decisão:</strong> \(|1{,}5|\lt3{,}182\) ⇒ <strong>não rejeitamos \(H_0\)</strong> a 5%.</div></li>
+      <li><div><strong>p-valor:</strong> acima de 0,05 (com 3 g.l., p ≈ 0,23). Um resultado assim apareceria em cerca de 23% das amostras mesmo se \(\beta_1=0\): não é surpresa.</div></li>
+      <li><div><strong>Frase:</strong> “Como \(|t|=1{,}5\lt3{,}182\), não rejeitamos \(H_0:\beta_1=0\) a 5%; os dados não dão evidência suficiente de associação.” Repare: <em>não</em> “aceitamos \(H_0\)”. Com n = 5 o EP é grande, e um efeito real de 0,6 poderia passar despercebido.</div></li>
+    </ol>
+  </div></details>
+  <div class="quiz" data-answer="c"><div class="qh">H₀ e p-valor</div>
+    <p>Um teste de \(H_0:\beta_1=0\) deu p = 0,20. A conclusão correta a 5% é:</p>
+    <div class="opts"><button data-k="a">a) aceitamos \(H_0\): β₁ é zero</button><button data-k="b">b) há 20% de chance de \(H_0\) ser verdadeira</button><button data-k="c">c) não rejeitamos \(H_0\): os dados não dão evidência suficiente de que β₁ ≠ 0</button><button data-k="d">d) rejeitamos \(H_0\), porque 0,20 &gt; 0,05</button></div>
+    <div class="fb" hidden>c. p ≥ α ⇒ não rejeita. A letra a “aceita” \(H_0\) (erro clássico); a b trata o p-valor como probabilidade de \(H_0\); a d inverte a regra (rejeita quando p &lt; α).</div></div>
+
   <h3>1. Hipóteses</h3>
   <ul>
     <li><strong>Hipótese nula \(H_0\)</strong>: a afirmação que confrontamos com os dados. Caso frequente: \(H_0:\beta_1=0\), “X não tem associação linear com Y no modelo”.</li>
