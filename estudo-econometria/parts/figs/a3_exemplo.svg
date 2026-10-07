@@ -1,0 +1,47 @@
+<svg class="fig" viewBox="0 0 520 320" role="img" aria-label="Gráfico de dispersão dos 5 indivíduos com a reta de MQO" xmlns="http://www.w3.org/2000/svg">
+<line class="g" x1="58" y1="270" x2="500" y2="270"/>
+<line class="g" x1="58" y1="207" x2="500" y2="207"/>
+<line class="g" x1="58" y1="144" x2="500" y2="144"/>
+<line class="g" x1="58" y1="81" x2="500" y2="81"/>
+<line class="g" x1="58" y1="18" x2="500" y2="18"/>
+<line class="g" x1="58" y1="18" x2="58" y2="270"/>
+<line class="g" x1="131.7" y1="18" x2="131.7" y2="270"/>
+<line class="g" x1="205.3" y1="18" x2="205.3" y2="270"/>
+<line class="g" x1="279" y1="18" x2="279" y2="270"/>
+<line class="g" x1="352.7" y1="18" x2="352.7" y2="270"/>
+<line class="g" x1="426.3" y1="18" x2="426.3" y2="270"/>
+<line class="g" x1="500" y1="18" x2="500" y2="270"/>
+<line class="ax" x1="58" y1="270" x2="500" y2="270"/>
+<line class="ax" x1="58" y1="18" x2="58" y2="270"/>
+<text class="tk" x="58" y="286" text-anchor="middle">6</text>
+<text class="tk" x="131.7" y="286" text-anchor="middle">8</text>
+<text class="tk" x="205.3" y="286" text-anchor="middle">10</text>
+<text class="tk" x="279" y="286" text-anchor="middle">12</text>
+<text class="tk" x="352.7" y="286" text-anchor="middle">14</text>
+<text class="tk" x="426.3" y="286" text-anchor="middle">16</text>
+<text class="tk" x="500" y="286" text-anchor="middle">18</text>
+<text class="tk" x="51" y="274" text-anchor="end">6</text>
+<text class="tk" x="51" y="211" text-anchor="end">10</text>
+<text class="tk" x="51" y="148" text-anchor="end">14</text>
+<text class="tk" x="51" y="85" text-anchor="end">18</text>
+<text class="tk" x="51" y="22" text-anchor="end">22</text>
+<text class="lb" x="279" y="314" text-anchor="middle">Anos de estudo (x)</text>
+<text class="lb" x="12" y="144" text-anchor="middle" transform="rotate(-90 12 144)">Salário/hora, R$ (y)</text>
+<line class="fit" x1="76.4" y1="237.3" x2="481.6" y2="38.1"/>
+<line class="res" x1="131.7" y1="207" x2="131.7" y2="210.2"/>
+<line class="res" x1="205.3" y1="175.5" x2="205.3" y2="173.9"/>
+<line class="res" x1="279" y1="128.2" x2="279" y2="137.7"/>
+<line class="res" x1="352.7" y1="128.2" x2="352.7" y2="101.5"/>
+<line class="res" x1="426.3" y1="49.5" x2="426.3" y2="65.2"/>
+<circle class="pt" cx="131.7" cy="207" r="5"/>
+<circle class="pt" cx="205.3" cy="175.5" r="5"/>
+<circle class="pt" cx="279" cy="128.2" r="5"/>
+<circle class="pt" cx="352.7" cy="128.2" r="5"/>
+<circle class="pt" cx="426.3" cy="49.5" r="5"/>
+<line class="mean" x1="279" y1="270" x2="279" y2="137.7"/>
+<line class="mean" x1="58" y1="137.7" x2="279" y2="137.7"/>
+<rect class="meanpt" x="273" y="131.7" width="12" height="12" transform="rotate(45 279 137.7)"/>
+<text class="an" x="291" y="155.7">(x̄, ȳ) = (12; 14,4)</text>
+<text class="an fitc" x="323.2" y="51.1">ŷ = 0,6 + 1,15x</text>
+<text class="an resc" x="360.7" y="114.1">û₄ = −1,7</text>
+</svg>

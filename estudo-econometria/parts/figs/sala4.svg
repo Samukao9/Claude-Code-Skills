@@ -1,0 +1,18 @@
+<svg class="fig" viewBox="0 0 560 160" role="img" aria-label="Conjunto de valores não rejeitados do Exercício 4 e o valor teórico" xmlns="http://www.w3.org/2000/svg">
+<line class="ax" x1="30" y1="122" x2="540" y2="122"/>
+<line class="ax" x1="30" y1="20" x2="30" y2="122"/>
+<text class="tk" x="106.5" y="138" text-anchor="middle">-1,5</text>
+<text class="tk" x="259.5" y="138" text-anchor="middle">-0,9</text>
+<text class="tk" x="412.5" y="138" text-anchor="middle">-0,3</text>
+<text class="tk" x="438" y="138" text-anchor="middle">-0,2</text>
+<text class="tk" x="489" y="138" text-anchor="middle">0</text>
+<text class="lb" x="285" y="154" text-anchor="middle">valores de β₁ (preço)</text>
+<text class="lb" x="12" y="71" text-anchor="middle" transform="rotate(-90 12 71)"></text>
+<line class="fit" x1="106.5" y1="74" x2="412.5" y2="74"/>
+<line class="fit" x1="106.5" y1="67" x2="106.5" y2="81"/>
+<line class="fit" x1="412.5" y1="67" x2="412.5" y2="81"/>
+<circle class="pt" cx="259.5" cy="74" r="5"/>
+<text class="an" x="106.5" y="62">não rejeitados: −0,9 ± 2(0,3) = [−1,5; −0,3]</text>
+<line class="obs" x1="438" y1="40" x2="438" y2="122"/>
+<text class="an resc" x="432" y="108" text-anchor="end">teoria: −0,2 (fora → rejeita)</text>
+</svg>

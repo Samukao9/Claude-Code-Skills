@@ -1,0 +1,269 @@
+
+<!-- ================= OS BETAS, VISUALMENTE ================= -->
+<section class="mod" id="betas" data-title="Os betas">
+  <div class="eyebrow"><span class="tag hot">Visual</span> Todos os β do curso, um por um, com desenho</div>
+  <h2>Os betas, visualmente</h2>
+  <p>Quase toda questão da P1 gira em torno de um β: calcular, interpretar, testar ou dizer se tem viés. Este módulo mostra <strong>cada beta como um desenho</strong>. Para cada um há uma ficha com quatro linhas: <strong>o que é</strong>, <strong>em que unidade vem</strong>, <strong>a frase para a prova</strong> e <strong>o erro mais comum</strong>. Os números são os mesmos das aulas e listas. No fim, a seção 12 faz o mesmo com <strong>SQT, SQE, SQR e o \(R^2\)</strong>.</p>
+  <div class="box def"><span class="lbl">O módulo inteiro em 3 linhas</span>
+    <ul>
+      <li><strong>\(\beta_0\)</strong> é a <strong>altura</strong> da reta onde x = 0. <strong>\(\beta_1\)</strong> é a <strong>inclinação</strong>: quanto y muda, em média, quando x sobe 1.</li>
+      <li><strong>Sem chapéu</strong> (\(\beta\)) é o valor verdadeiro, fixo e desconhecido. <strong>Com chapéu</strong> (\(\hat\beta\)) é o que a amostra estimou; muda de amostra para amostra.</li>
+      <li>Com <strong>log</strong>, o beta vira porcentagem; com <strong>dummy</strong>, vira diferença de médias; na <strong>múltipla</strong>, vale “com as outras variáveis fixas”.</li>
+    </ul>
+  </div>
+  <div class="box trap" id="beta0-beta1"><span class="lbl">Não confunda: β₀ é o intercepto, β₁ é a inclinação</span>
+    <div class="tbl"><table>
+      <thead><tr><th></th><th>Nome no curso</th><th>Nome no ensino médio</th><th>Na equação</th><th>No gráfico</th></tr></thead>
+      <tbody>
+        <tr><td><strong>\(\beta_0\)</strong></td><td>intercepto</td><td><strong>coeficiente linear</strong></td><td>o termo sozinho</td><td>altura onde a reta cruza x = 0</td></tr>
+        <tr><td><strong>\(\beta_1\)</strong></td><td>inclinação</td><td><strong>coeficiente angular</strong></td><td>o número que multiplica x</td><td>quanto a reta sobe a cada +1 em x</td></tr>
+      </tbody>
+    </table></div>
+    <p><strong>Por que confunde:</strong> no ensino médio, \(y=ax+b\) começa pelo angular (a). Em econometria, \(y=\beta_0+\beta_1x\) começa pelo linear (\(\beta_0\)). Mudou a ordem, não a ideia. Nos slides do professor (Aula 3): “\(\beta_0\) é o intercepto populacional. \(\beta_1\) é a inclinação populacional.”</p>
+    <p><strong>Dica para não trocar:</strong> o índice <strong>0</strong> lembra “x = <strong>0</strong>” (\(\beta_0\) é o valor de y quando x = 0). O índice <strong>1</strong> lembra “+<strong>1</strong> em x” (\(\beta_1\) é o efeito de uma unidade a mais de x). E \(\beta_1\) é quem fica <strong>colado no x</strong>.</p>
+  </div>
+
+  <h3>1. A anatomia da equação</h3>
+  <figure><div class="scroll">FIG:b_anatomia</div><figcaption>Cada pedaço da equação tem um papel. A reta \(\beta_0+\beta_1x\) é a parte de y que x explica; o erro u junta todo o resto (habilidade, sorte, região…).</figcaption></figure>
+  <p>Pense numa rampa. <strong>\(\beta_0\)</strong> é a altura em que a rampa começa. <strong>\(\beta_1\)</strong> é o quão íngreme ela é: quanto você sobe a cada passo para a frente. <strong>u</strong> é o quanto cada pessoa fica acima ou abaixo da rampa por motivos que a gente não mediu.</p>
+
+  <h3>2. β sem chapéu × β̂ com chapéu</h3>
+  <figure><div class="scroll">FIG:b_popamostra</div><figcaption>A reta tracejada é a verdadeira da população: existe, mas ninguém a vê. Cada amostra de 12 pessoas produz uma reta estimada um pouco diferente. Os pontos são os da primeira amostra.</figcaption></figure>
+  <div class="tbl"><table>
+    <thead><tr><th></th><th>\(\beta_1\) (sem chapéu)</th><th>\(\hat\beta_1\) (com chapéu)</th></tr></thead>
+    <tbody>
+      <tr><td>Nome</td><td>Parâmetro</td><td>Estimador (a fórmula) / estimativa (o número)</td></tr>
+      <tr><td>Muda com a amostra?</td><td>Não: é fixo</td><td><strong>Sim</strong>: cada amostra dá um valor</td></tr>
+      <tr><td>Conhecemos?</td><td>Não</td><td>Sim, calculamos</td></tr>
+      <tr><td>Tem viés, variância, EP?</td><td>Não (é só um número)</td><td><strong>Sim</strong>: é aqui que moram as propriedades da Aula 5</td></tr>
+    </tbody>
+  </table></div>
+  <p>O chapéu “^” significa <strong>“estimado”</strong>. Na figura, o β₁ verdadeiro é 0,8 e as três amostras deram estimativas diferentes, em volta dele. “Não viesado” quer dizer que, repetindo isso muitas vezes, as estimativas acertam o 0,8 <strong>na média</strong> (veja os <a href="#aula5">laboratórios da Aula 5</a>).</p>
+
+  <h3>3. β₀: o intercepto</h3>
+  <figure><div class="scroll">FIG:b_beta0</div><figcaption>\(\beta_0\) é onde a reta cruza o eixo vertical (x = 0). Mudar só o \(\beta_0\) sobe ou desce a reta inteira, sem girar.</figcaption></figure>
+  <div class="bcards">
+    <div class="bcard b0"><h4>\(\beta_0\) · intercepto</h4><dl>
+      <dt>É</dt><dd>O valor médio de y quando x = 0. Na figura, a altura da reta no eixo vertical.</dd>
+      <dt>Unidade</dt><dd>A mesma de y (R$, R$/h, toneladas…).</dd>
+      <dt>Frase</dt><dd>“Para x = 0, o valor ajustado de y é \(\hat\beta_0\).”</dd>
+      <dt>Cuidado</dt><dd>Muitas vezes x = 0 está fora dos dados. Aí \(\hat\beta_0\) é só a altura da reta, sem leitura econômica.</dd>
+    </dl></div>
+    <div class="bcard b0"><h4>Exemplos do curso</h4><dl>
+      <dt>Lista 2</dt><dd>\(\widehat{aluguel}=560+24\,area\): R$ 560 seria o aluguel de um imóvel de 0 m². Não existe; é só onde a reta começa.</dd>
+      <dt>Aula 3</dt><dd>\(\widehat{salhora}=-0{,}90+0{,}50\,educ\): salário negativo com 0 anos de estudo. Provavelmente ninguém na amostra tinha 0 anos: o intercepto só posiciona a reta.</dd>
+    </dl></div>
+  </div>
+
+  <h3>4. β₁: a inclinação</h3>
+  <figure><div class="scroll">FIG:b_beta1</div><figcaption>A inclinação é uma escada: cada ano a mais de estudo (+1 em x) sobe o salário ajustado em R$ 1,15 (\(\hat\beta_1\)). Vários degraus somam: \(\Delta\hat y=\hat\beta_1\,\Delta x\).</figcaption></figure>
+  <figure><div class="scroll">FIG:b_sinais</div><figcaption>O sinal de \(\beta_1\) diz a direção: positivo, a nuvem sobe; zero, fica plana; negativo, desce.</figcaption></figure>
+  <div class="bcards">
+    <div class="bcard"><h4>\(\beta_1\) · inclinação</h4><dl>
+      <dt>É</dt><dd>Quanto y muda, <strong>em média</strong>, quando x aumenta 1 unidade. É a derivada \(dy/dx\) da reta.</dd>
+      <dt>Unidade</dt><dd>Unidade de y <strong>por</strong> unidade de x: R$/h por ano de estudo; R$ por m².</dd>
+      <dt>Frase</dt><dd>“Na amostra, um ano a mais de estudo está associado, em média, a R$ 1,15 a mais de salário-hora.”</dd>
+      <dt>Cuidado</dt><dd>“Associado” não é “causa”. Só vira efeito causal se \(E(u\mid x)=0\) (nada no u anda junto com x).</dd>
+    </dl></div>
+    <div class="bcard"><h4>Mudou a unidade? Muda o β</h4><dl>
+      <dt>x em meses</dt><dd>Em vez de anos: \(\hat\beta_1\) fica 12 vezes menor (1,15/12 ≈ 0,096 por mês).</dd>
+      <dt>y em centavos</dt><dd>Em vez de reais: \(\hat\beta_0\) e \(\hat\beta_1\) ficam 100 vezes maiores.</dd>
+      <dt>O que não muda</dt><dd>O \(R^2\), a estatística t e a conclusão do teste (<a href="#aula4">Aula 4</a>).</dd>
+    </dl></div>
+  </div>
+
+  <h3>5. De onde vem o número de β̂₁: a conta em desenho</h3>
+  <p>A fórmula \(\hat\beta_1=\frac{\sum(x_i-\bar x)(y_i-\bar y)}{\sum(x_i-\bar x)^2}\) parece abstrata, mas tem um desenho simples. Marque o ponto das médias (x̄, ȳ) e ligue cada observação a ele por um retângulo. A área do retângulo, com sinal, é o produto \((x_i-\bar x)(y_i-\bar y)\).</p>
+  <figure><div class="scroll">FIG:b_quadrantes</div><figcaption>Os 5 indivíduos da Aula 3. Os retângulos verdes caem nos quadrantes I e III (produto positivo). Não há nenhum vermelho, então a soma é positiva e a reta sobe.</figcaption></figure>
+  <div class="tbl"><table>
+    <thead><tr><th class="r">i</th><th class="r">x</th><th class="r">y</th><th class="r">x − x̄</th><th class="r">y − ȳ</th><th class="r">produto (área)</th><th class="r">(x − x̄)²</th></tr></thead>
+    <tbody>
+      <tr><td class="r">1</td><td class="r">8</td><td class="r">10</td><td class="r">−4</td><td class="r">−4,4</td><td class="r">+17,6</td><td class="r">16</td></tr>
+      <tr><td class="r">2</td><td class="r">10</td><td class="r">12</td><td class="r">−2</td><td class="r">−2,4</td><td class="r">+4,8</td><td class="r">4</td></tr>
+      <tr><td class="r">3</td><td class="r">12</td><td class="r">15</td><td class="r">0</td><td class="r">+0,6</td><td class="r">0</td><td class="r">0</td></tr>
+      <tr><td class="r">4</td><td class="r">14</td><td class="r">15</td><td class="r">+2</td><td class="r">+0,6</td><td class="r">+1,2</td><td class="r">4</td></tr>
+      <tr><td class="r">5</td><td class="r">16</td><td class="r">20</td><td class="r">+4</td><td class="r">+5,6</td><td class="r">+22,4</td><td class="r">16</td></tr>
+      <tr><td><strong>Σ</strong></td><td></td><td></td><td class="r">0</td><td class="r">0</td><td class="r"><strong>46</strong></td><td class="r"><strong>40</strong></td></tr>
+    </tbody>
+  </table></div>
+  <div class="mathblock">\[\hat\beta_1=\frac{\text{soma das áreas com sinal}}{\text{soma dos quadrados dos desvios de }x}=\frac{46}{40}=1{,}15\]</div>
+  <ul>
+    <li><strong>Numerador</strong> (vira a covariância ao dividir por n): se os pontos ficam nos quadrantes I e III, x e y andam juntos → positivo. Nos quadrantes II e IV → negativo. Espalhados por todos → perto de zero.</li>
+    <li><strong>Denominador</strong> (vira a variância de x): quanto x varia. Por isso \(\hat\beta_1=\dfrac{Cov(x,y)}{Var(x)}\), e se x não varia (todos iguais) a conta é impossível: é a hipótese <strong>RLS.3</strong>.</li>
+  </ul>
+
+  <h3>6. De onde vem β̂₀: a reta passa pelo ponto das médias</h3>
+  <figure><div class="scroll">FIG:b_pivo</div><figcaption>A reta do MQO sempre passa por (x̄, ȳ). Para achar onde ela corta o eixo, saia desse ponto, volte x̄ unidades até x = 0 e desça \(\hat\beta_1\cdot\bar x\).</figcaption></figure>
+  <div class="mathblock">\[\hat\beta_0=\bar y-\hat\beta_1\,\bar x=14{,}4-1{,}15\times12=0{,}6\]</div>
+  <p>É exatamente o caminho do desenho, em conta. Por isso <strong>\(\hat\beta_1\) vem sempre primeiro</strong>: sem a inclinação, não dá para “descer” até o eixo. Na Lista 2: \(\hat\beta_0=2.000-24\times60=560\).</p>
+
+  <h3>7. Os betas quando há log</h3>
+  <p>Regra de bolso: <strong>onde tem log, tem porcentagem</strong>. Log em y transforma o efeito em y em %; log em x transforma a mudança em x em %.</p>
+  <figure><div class="scroll">FIG:b_tradutor</div><figcaption>O “tradutor”: à esquerda, o que muda em x; à direita, o que acontece com y. As leituras com “≈” valem para mudanças pequenas.</figcaption></figure>
+  <div class="tbl"><table>
+    <thead><tr><th>Modelo</th><th>Leitura rápida</th><th>Conta exata (quando o β ou a mudança é grande)</th></tr></thead>
+    <tbody>
+      <tr><td>Log–nível, \(\hat\beta_1=0{,}080\)</td><td>+1 ano ⇒ ≈ +8%</td><td>\(100(e^{0{,}080}-1)=8{,}33\%\)</td></tr>
+      <tr><td>Log–log, \(\hat\beta_1=1{,}5\)</td><td>x +10% ⇒ ≈ +15%</td><td>\(100(1{,}1^{1{,}5}-1)=15{,}37\%\)</td></tr>
+      <tr><td>Nível–log, \(\hat\beta_1=50\)</td><td>x +1% ⇒ +0,5 unidade</td><td>\(50\cdot\ln(1{,}01)=0{,}4975\)</td></tr>
+    </tbody>
+  </table></div>
+  <p class="small">Tudo isso está derivado, com as regras de log, na <a href="#aula4">Aula 4</a> e no módulo <a href="#mat-log">Funções, exponencial e log</a>.</p>
+
+  <h3>8. Dois betas numa curva: o modelo quadrático</h3>
+  <figure><div class="scroll">FIG:parabola</div><figcaption>Lista 2, Ex. 4: \(lucro=40+12Q-Q^2\), ou seja, \(\hat\beta_1=12\) e \(\hat\beta_2=-1\). A inclinação muda ao longo da curva: +8 em Q = 2, zero em Q = 6, −4 em Q = 8.</figcaption></figure>
+  <div class="bcards">
+    <div class="bcard bg"><h4>\(\beta_1\) e \(\beta_2\) juntos</h4><dl>
+      <dt>Inclinação</dt><dd>\(\dfrac{d\hat y}{dx}=\hat\beta_1+2\hat\beta_2\,x\): depende de onde você está.</dd>
+      <dt>\(\beta_1\)</dt><dd>A inclinação em x = 0 (o começo da curva).</dd>
+      <dt>\(\beta_2\)</dt><dd>A curvatura: negativo = morro (∩), positivo = vale (∪).</dd>
+      <dt>Virada</dt><dd>\(x^*=-\dfrac{\hat\beta_1}{2\hat\beta_2}=-\dfrac{12}{2(-1)}=6\).</dd>
+    </dl></div>
+    <div class="bcard bg"><h4>Erro comum</h4><dl>
+      <dt>Errado</dt><dd>“Uma unidade a mais de Q aumenta o lucro em 12.”</dd>
+      <dt>Certo</dt><dd>“Em Q = 2, uma unidade a mais está associada a ≈ 8 a mais de lucro; depois de Q = 6, o lucro cai.”</dd>
+    </dl></div>
+  </div>
+
+  <h3>9. Betas de dummies</h3>
+  <figure><div class="scroll">FIG:b_dummy</div><figcaption>Aula de dummies: 5 não sindicalizados (pontos pretos) e 5 sindicalizados (pontos vermelhos). A “reta” só liga as duas médias: \(\hat\beta_0\) é a média do grupo base e \(\hat\beta_1\) é o degrau entre os grupos.</figcaption></figure>
+  <figure><div class="scroll">FIG:b_interacao</div><figcaption>Esquema com números ilustrativos. À esquerda, a dummy só desloca a reta (o intercepto muda, a inclinação é a mesma). À direita, a interação D·x também muda a inclinação: a distância entre os grupos cresce com x.</figcaption></figure>
+  <div class="bcards">
+    <div class="bcard b0"><h4>\(\beta_0\) numa dummy</h4><dl>
+      <dt>É</dt><dd>A média de y no grupo de referência (D = 0).</dd>
+      <dt>Exemplo</dt><dd>\(\hat\beta_0=9\): salário-hora médio dos não sindicalizados.</dd>
+    </dl></div>
+    <div class="bcard"><h4>\(\beta_1\) da dummy D</h4><dl>
+      <dt>É</dt><dd>A diferença de médias: grupo D = 1 menos grupo D = 0.</dd>
+      <dt>Exemplo</dt><dd>\(\hat\beta_1=13-9=4\): sindicalizados ganham, em média, R$ 4 a mais por hora na amostra.</dd>
+      <dt>Com log em y</dt><dd>Diferença percentual: \(100(e^{\hat\beta}-1)\%\). Com −0,18: \(100(e^{-0{,}18}-1)=-16{,}5\%\).</dd>
+    </dl></div>
+    <div class="bcard bi"><h4>\(\beta_3\) da interação D·x</h4><dl>
+      <dt>É</dt><dd>Quanto a inclinação do grupo D = 1 difere da do grupo base.</dd>
+      <dt>Diferença</dt><dd>Entre os grupos: \(\beta_2+\beta_3x\), não é mais constante.</dd>
+      <dt>Cuidado</dt><dd>Com interação, \(\beta_2\) sozinho é a diferença só em x = 0.</dd>
+    </dl></div>
+  </div>
+
+  <h3>10. Betas na regressão múltipla: “com o resto constante”</h3>
+  <p>Na múltipla, \(\hat\beta_1\) responde a uma pergunta diferente da simples: <strong>comparando pessoas com a mesma habilidade</strong>, quanto um ano a mais de estudo está associado ao salário? Os dados são os da <a href="#p2">Prévia da P2</a>.</p>
+  <figure><div class="scroll">FIG:b_multipla</div><figcaption>Cada ponto traz a habilidade (h). A reta vermelha, da regressão simples, sobe 2,8 por ano porque quem estuda mais também tem mais habilidade. As azuis fixam a habilidade (2 ou 6) e sobem só 1 por ano: esse é o \(\hat\beta_1\) da múltipla.</figcaption></figure>
+  <figure><div class="scroll">FIG:b_caminhos</div><figcaption>A educação chega ao salário por dois caminhos: o direto (\(\beta_1=1\)) e o indireto, pela habilidade (educação → habilidade → salário = 0,9 × 2). A regressão simples soma os dois.</figcaption></figure>
+  <div class="mathblock">\[\underbrace{\tilde\beta_1}_{\text{simples}}=\underbrace{\hat\beta_1}_{\text{direto}}+\underbrace{\hat\beta_2}_{\text{hab}\to\text{sal}}\times\underbrace{\hat\delta_1}_{\text{educ}\to\text{hab}}=1+2\times0{,}9=2{,}8\]</div>
+  <p>É a fórmula do <strong>viés de variável omitida</strong> da <a href="#aula5">Aula 5</a>: se a habilidade fica no u, a simples atribui à educação o caminho indireto.</p>
+
+  <h3>11. β̂ tem erro: EP, t e IC numa régua</h3>
+  <p>Como \(\hat\beta_1\) muda de amostra para amostra, ele tem um desvio-padrão. A versão estimada é o <strong>erro-padrão (EP)</strong>. Use o EP como a <strong>unidade de medida</strong> da régua: a estatística t diz quantos EPs a estimativa está do valor de \(H_0\).</p>
+  <figure><div class="scroll">FIG:b_regua</div><figcaption>Exemplo da Aula 6 (n = 5): \(\hat\beta_1=1{,}15\), EP = 0,189. A estimativa está a mais de 6 “passos de EP” do zero, bem além do crítico 3,182, e o IC de 95% não contém o zero: rejeita \(H_0:\beta_1=0\).</figcaption></figure>
+  <div class="mathblock">\[t=\frac{\hat\beta_1-\beta_{1,0}}{EP(\hat\beta_1)}=\frac{1{,}15-0}{0{,}189}\approx6{,}08\qquad IC=\hat\beta_1\pm t_c\cdot EP\]</div>
+
+  <h3 id="betas-sq">12. SQT, SQE e SQR: quanto a reta explica</h3>
+  <p>Depois de achar os betas, vem a pergunta: a reta explica muito ou pouco de y? Para responder, compare cada y com a média ȳ. A distância total \(y_i-\bar y\) se divide em duas partes: a que a reta explica (\(\hat y_i-\bar y\)) e a que sobra (o resíduo \(\hat u_i=y_i-\hat y_i\)).</p>
+  <div class="mathblock">\[\underbrace{y_i-\bar y}_{\text{total}}=\underbrace{(\hat y_i-\bar y)}_{\text{explicado pela reta}}+\underbrace{(y_i-\hat y_i)}_{\text{resíduo }\hat u_i}\]</div>
+  <figure><div class="scroll">FIG:sq_desvios</div><figcaption>Os 5 indivíduos da Aula 3. Em cada ponto: a linha preta é a distância total até a média ȳ; a azul, a parte que a reta explica; a vermelha tracejada, o resíduo. Em x = 14 o resíduo aponta para baixo: a reta “passou do ponto”.</figcaption></figure>
+  <p>Elevando cada parte ao quadrado e somando em todos os pontos, saem as três somas de quadrados. O termo cruzado some (é a ortogonalidade entre ajustados e resíduos, mostrada na <a href="#aula3">Aula 3</a>, seção 10), e sobra:</p>
+  <div class="mathblock">\[SQT=SQE+SQR\qquad\Longrightarrow\qquad 57{,}2=52{,}9+4{,}3\]</div>
+  <div class="bcards">
+    <div class="bcard bi"><h4>SQT · Total</h4><dl>
+      <dt>Fórmula</dt><dd>\(\sum(y_i-\bar y)^2\)</dd>
+      <dt>Mede</dt><dd>Quanto y varia em torno da média, antes de qualquer regressão. \(SQT/(n-1)\) é a variância amostral de y.</dd>
+      <dt>Exemplo</dt><dd>19,36 + 5,76 + 0,36 + 0,36 + 31,36 = 57,2</dd>
+    </dl></div>
+    <div class="bcard"><h4>SQE · Explicada</h4><dl>
+      <dt>Fórmula</dt><dd>\(\sum(\hat y_i-\bar y)^2\)</dd>
+      <dt>Mede</dt><dd>A parte da variação de y que a reta acompanha.</dd>
+      <dt>Exemplo</dt><dd>21,16 + 5,29 + 0 + 5,29 + 21,16 = 52,9</dd>
+    </dl></div>
+    <div class="bcard b0"><h4>SQR · Resíduos</h4><dl>
+      <dt>Fórmula</dt><dd>\(\sum\hat u_i^2=\sum(y_i-\hat y_i)^2\)</dd>
+      <dt>Mede</dt><dd>O que sobra fora da reta. É o que o <strong>MQO minimiza</strong> e entra em \(\hat\sigma^2=SQR/(n-2)\).</dd>
+      <dt>Exemplo</dt><dd>0,04 + 0,01 + 0,36 + 2,89 + 1,00 = 4,30</dd>
+    </dl></div>
+  </div>
+  <p class="small">Unidade das três: a de y <strong>ao quadrado</strong>, aqui (R$/h)². Por isso o \(R^2\), que é uma razão entre elas, não tem unidade.</p>
+  <div class="tbl"><table>
+    <thead><tr><th class="r">x</th><th class="r">y</th><th class="r">ŷ</th><th class="r">y − ȳ</th><th class="r">(y − ȳ)²</th><th class="r">ŷ − ȳ</th><th class="r">(ŷ − ȳ)²</th><th class="r">û = y − ŷ</th><th class="r">û²</th></tr></thead>
+    <tbody>
+      <tr><td class="r">8</td><td class="r">10</td><td class="r">9,8</td><td class="r">−4,4</td><td class="r">19,36</td><td class="r">−4,6</td><td class="r">21,16</td><td class="r">0,2</td><td class="r">0,04</td></tr>
+      <tr><td class="r">10</td><td class="r">12</td><td class="r">12,1</td><td class="r">−2,4</td><td class="r">5,76</td><td class="r">−2,3</td><td class="r">5,29</td><td class="r">−0,1</td><td class="r">0,01</td></tr>
+      <tr><td class="r">12</td><td class="r">15</td><td class="r">14,4</td><td class="r">0,6</td><td class="r">0,36</td><td class="r">0</td><td class="r">0</td><td class="r">0,6</td><td class="r">0,36</td></tr>
+      <tr><td class="r">14</td><td class="r">15</td><td class="r">16,7</td><td class="r">0,6</td><td class="r">0,36</td><td class="r">2,3</td><td class="r">5,29</td><td class="r">−1,7</td><td class="r">2,89</td></tr>
+      <tr><td class="r">16</td><td class="r">20</td><td class="r">19,0</td><td class="r">5,6</td><td class="r">31,36</td><td class="r">4,6</td><td class="r">21,16</td><td class="r">1,0</td><td class="r">1,00</td></tr>
+      <tr><td class="r"><strong>Σ</strong></td><td></td><td></td><td class="r">0</td><td class="r"><strong>57,2</strong></td><td class="r">0</td><td class="r"><strong>52,9</strong></td><td class="r">0</td><td class="r"><strong>4,30</strong></td></tr>
+    </tbody>
+  </table></div>
+  <p>Repare: sem elevar ao quadrado, cada coluna de desvios soma <strong>zero</strong>. É por isso que se usam os quadrados.</p>
+  <figure><div class="scroll">FIG:sq_barra</div><figcaption>A SQT é a barra inteira. A reta explica a parte azul (SQE); a vermelha é o que sobra (SQR). O \(R^2\) é a fração azul.</figcaption></figure>
+  <div class="mathblock">\[R^2=\frac{SQE}{SQT}=1-\frac{SQR}{SQT}=\frac{52{,}9}{57{,}2}\approx0{,}925\]</div>
+  <p><strong>Frase para a prova:</strong> “A reta de MQO responde por 92,5% da variação amostral do salário-hora em torno da média.” Com intercepto, \(0\le R^2\le1\). Na regressão simples, \(R^2\) é também o quadrado da correlação entre x e y: \(0{,}9617^2\approx0{,}925\).</p>
+  <div class="box trap"><span class="lbl">Atenção às letras</span>
+    <p>No curso (slides do professor e Wooldridge): <strong>SQE = Explicada</strong> e <strong>SQR = dos Resíduos</strong>. Lembre: <strong>E de Explicada, R de Resíduos</strong>.</p>
+    <p>Alguns livros de estatística e materiais em inglês usam as letras ao contrário: “R” de <em>Regressão</em> para a parte explicada e “E” de <em>Erro</em> para os resíduos (em inglês, SSR = <em>sum of squares due to regression</em> e SSE = <em>sum of squared errors</em>). Se estudar por outra fonte, confira a fórmula, não a letra. Na prova, use a convenção do professor e, na dúvida, escreva a fórmula ao lado: \(SQE=\sum(\hat y_i-\bar y)^2\), \(SQR=\sum\hat u_i^2\).</p>
+  </div>
+  <div class="box trap"><span class="lbl">Erros que custam ponto</span>
+    <ul>
+      <li>Trocar as letras e escrever \(R^2=SQR/SQT\). Isso é \(1-R^2\), a parte <strong>não</strong> explicada.</li>
+      <li>Somar os desvios sem elevar ao quadrado: dá sempre zero.</li>
+      <li>Dividir SQR por n (ou n − 1) para achar \(\hat\sigma^2\). Na regressão simples é <strong>n − 2</strong>.</li>
+      <li>Dizer que \(R^2\) alto prova causalidade, ou que \(R^2\) baixo torna \(\hat\beta_1\) inútil. \(R^2\) mede só ajuste.</li>
+    </ul>
+  </div>
+
+  <h3>13. Quadro-resumo: cada beta numa frase</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Beta</th><th>Onde aparece</th><th>Leitura para a prova</th><th>Unidade</th></tr></thead>
+    <tbody>
+      <tr><td>\(\beta_0\)</td><td>\(y=\beta_0+\beta_1x+u\)</td><td>Valor médio de y quando x = 0</td><td>de y</td></tr>
+      <tr><td>\(\beta_1\)</td><td>idem</td><td>Variação média de y quando x sobe 1</td><td>de y por unidade de x</td></tr>
+      <tr><td>\(\hat\beta_0,\ \hat\beta_1\)</td><td>reta estimada</td><td>As estimativas da amostra; mudam de amostra para amostra</td><td>as mesmas</td></tr>
+      <tr><td>\(\beta_1\) log–nível</td><td>\(\ln y=\beta_0+\beta_1x\)</td><td>+1 em x ⇒ ≈ \(100\beta_1\)% em y</td><td>% por unidade de x</td></tr>
+      <tr><td>\(\beta_1\) nível–log</td><td>\(y=\beta_0+\beta_1\ln x\)</td><td>+1% em x ⇒ \(\beta_1/100\) unidades de y</td><td>de y por 1%</td></tr>
+      <tr><td>\(\beta_1\) log–log</td><td>\(\ln y=\beta_0+\beta_1\ln x\)</td><td>Elasticidade: +1% em x ⇒ \(\beta_1\)% em y</td><td>% por %</td></tr>
+      <tr><td>\(\beta_1,\ \beta_2\) quadrático</td><td>\(y=\beta_0+\beta_1x+\beta_2x^2\)</td><td>Efeito marginal \(\beta_1+2\beta_2x\); virada em \(-\beta_1/(2\beta_2)\)</td><td>de y por unidade de x</td></tr>
+      <tr><td>\(\beta_1\) dummy</td><td>\(y=\beta_0+\beta_1D\)</td><td>Diferença de médias entre D = 1 e D = 0</td><td>de y</td></tr>
+      <tr><td>\(\beta_3\) interação</td><td>\(+\beta_2D+\beta_3D\cdot x\)</td><td>Diferença de inclinações entre os grupos</td><td>de y por unidade de x</td></tr>
+      <tr><td>\(\beta_j\) múltipla</td><td>\(y=\beta_0+\beta_1x_1+\beta_2x_2\)</td><td>Efeito de \(x_j\) com as outras variáveis fixas</td><td>de y por unidade de \(x_j\)</td></tr>
+      <tr><td>EP\((\hat\beta_1)\)</td><td>saída da regressão</td><td>Desvio-padrão estimado de \(\hat\beta_1\): a incerteza</td><td>a mesma de \(\hat\beta_1\)</td></tr>
+      <tr><td>t</td><td>\((\hat\beta_1-\beta_{1,0})/EP\)</td><td>Quantos EPs a estimativa está do valor de \(H_0\)</td><td>sem unidade</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Teste rápido</h3>
+  <div class="quiz" data-answer="b"><div class="qh">β₀ × β₁</div>
+    <p>Em \(y=\beta_0+\beta_1x+u\), qual é o <strong>coeficiente angular</strong> (a inclinação da reta)?</p>
+    <div class="opts"><button data-k="a">a) \(\beta_0\)</button><button data-k="b">b) \(\beta_1\)</button><button data-k="c">c) x</button><button data-k="d">d) u</button></div>
+    <div class="fb" hidden>b. \(\beta_1\) multiplica o x: é a inclinação (coeficiente angular). \(\beta_0\) é o intercepto (coeficiente linear), o valor de y quando x = 0.</div></div>
+  <div class="quiz" data-answer="b"><div class="qh">SQT, SQE e SQR</div>
+    <p>Numa regressão, SQT = 200 e SQE = 150. Quanto valem SQR e \(R^2\)?</p>
+    <div class="opts"><button data-k="a">a) SQR = 50 e \(R^2=0{,}25\)</button><button data-k="b">b) SQR = 50 e \(R^2=0{,}75\)</button><button data-k="c">c) SQR = 350 e \(R^2=0{,}75\)</button><button data-k="d">d) SQR = 50 e \(R^2=1{,}33\)</button></div>
+    <div class="fb" hidden>b. SQR = SQT − SQE = 200 − 150 = 50 e \(R^2=SQE/SQT=150/200=0{,}75\). A letra a calculou SQR/SQT, que é \(1-R^2\).</div></div>
+  <div class="quiz" data-answer="c"><div class="qh">As letras</div>
+    <p>Na convenção do curso, a SQR é:</p>
+    <div class="opts"><button data-k="a">a) a soma dos quadrados da regressão (parte explicada)</button><button data-k="b">b) a soma dos quadrados totais</button><button data-k="c">c) a soma dos quadrados dos resíduos, \(\sum\hat u_i^2\)</button><button data-k="d">d) a raiz de \(R^2\)</button></div>
+    <div class="fb" hidden>c. E de Explicada, R de Resíduos. A letra a é a convenção de alguns outros livros, não a do professor.</div></div>
+  <div class="quiz" data-answer="b"><div class="qh">β₁ simples</div>
+    <p>Em \(\hat y=0{,}6+1{,}15x\) (x = anos de estudo; y = salário-hora em R$), o número 1,15 significa:</p>
+    <div class="opts"><button data-k="a">a) o salário-hora de quem não estudou</button><button data-k="b">b) cada ano a mais de estudo está associado, em média, a R$ 1,15 a mais por hora</button><button data-k="c">c) cada ano a mais aumenta o salário em 115%</button><button data-k="d">d) o salário-hora médio da amostra</button></div>
+    <div class="fb" hidden>b. A inclinação está em R$/h por ano. A letra a descreve o \(\hat\beta_0\); a c seria leitura de modelo com log; a d é o ȳ = 14,4.</div></div>
+  <div class="quiz" data-answer="c"><div class="qh">Log–nível</div>
+    <p>Em \(\widehat{\ln(salario)}=1{,}674+0{,}080\,educ\), um ano a mais de estudo está associado a:</p>
+    <div class="opts"><button data-k="a">a) R$ 0,08 a mais</button><button data-k="b">b) 0,08% a mais</button><button data-k="c">c) cerca de 8% a mais</button><button data-k="d">d) 80% a mais</button></div>
+    <div class="fb" hidden>c. Log só em y: +1 em x ⇒ ≈ \(100\times0{,}080=8\%\). O exato é \(100(e^{0{,}08}-1)=8{,}33\%\).</div></div>
+  <div class="quiz" data-answer="c"><div class="qh">Dummy</div>
+    <p>Em \(\widehat{salario}=9+4D\), com D = 1 para sindicalizados, o salário-hora médio dos sindicalizados na amostra é:</p>
+    <div class="opts"><button data-k="a">a) 4</button><button data-k="b">b) 9</button><button data-k="c">c) 13</button><button data-k="d">d) 36</button></div>
+    <div class="fb" hidden>c. Grupo D = 1: \(\hat\beta_0+\hat\beta_1=9+4=13\). O 4 é a diferença, não a média.</div></div>
+  <div class="quiz" data-answer="b"><div class="qh">Retângulos de β̂₁</div>
+    <p>Se quase todos os retângulos entre (x̄, ȳ) e os pontos caíssem nos quadrantes II e IV, \(\hat\beta_1\) seria:</p>
+    <div class="opts"><button data-k="a">a) positivo</button><button data-k="b">b) negativo</button><button data-k="c">c) zero</button><button data-k="d">d) impossível de calcular</button></div>
+    <div class="fb" hidden>b. Nos quadrantes II e IV um desvio é positivo e o outro negativo: o produto é negativo, a soma do numerador é negativa e a reta desce.</div></div>
+  <div class="quiz" data-answer="d"><div class="qh">Quadrático</div>
+    <p>Em \(lucro=40+12Q-Q^2\), o efeito aproximado de uma unidade a mais de Q quando Q = 8 é:</p>
+    <div class="opts"><button data-k="a">a) +12</button><button data-k="b">b) −1</button><button data-k="c">c) 0</button><button data-k="d">d) −4</button></div>
+    <div class="fb" hidden>d. \(12+2(-1)(8)=12-16=-4\). Depois do ponto de virada (Q = 6), o lucro cai.</div></div>
+  <div class="quiz" data-answer="b"><div class="qh">Múltipla</div>
+    <p>Por que a inclinação da educação na regressão simples (2,8) é maior que na múltipla com habilidade (1)?</p>
+    <div class="opts"><button data-k="a">a) erro de conta: as duas deveriam ser iguais</button><button data-k="b">b) a simples atribui à educação parte do efeito da habilidade, que anda junto com ela</button><button data-k="c">c) a múltipla usa menos observações</button><button data-k="d">d) a múltipla sempre dá coeficientes menores</button></div>
+    <div class="fb" hidden>b. Caminho indireto: \(\hat\beta_2\times\hat\delta_1=2\times0{,}9=1{,}8\). Somado ao direto (1), dá 2,8. É o viés de variável omitida.</div></div>
+  <div class="done-row"><button class="btn done-btn" data-done="betas" aria-pressed="false">Marcar como concluído</button></div>
+</section>

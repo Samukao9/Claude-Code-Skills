@@ -1,0 +1,24 @@
+<svg class="fig" viewBox="0 0 560 170" role="img" aria-label="Boxplot dos salários com um outlier" xmlns="http://www.w3.org/2000/svg">
+<line class="ax" x1="30" y1="120" x2="540" y2="120"/>
+<line class="ax" x1="30" y1="20" x2="30" y2="120"/>
+<text class="tk" x="30" y="136" text-anchor="middle">0</text>
+<text class="tk" x="66.4" y="136" text-anchor="middle">2</text>
+<text class="tk" x="84.6" y="136" text-anchor="middle">3</text>
+<text class="tk" x="102.9" y="136" text-anchor="middle">4</text>
+<text class="tk" x="139.3" y="136" text-anchor="middle">6</text>
+<text class="tk" x="221.2" y="136" text-anchor="middle">10,5</text>
+<text class="tk" x="503.6" y="136" text-anchor="middle">26</text>
+<text class="lb" x="285" y="164" text-anchor="middle">salário (R$ mil)</text>
+<text class="lb" x="12" y="70" text-anchor="middle" transform="rotate(-90 12 70)"></text>
+<rect class="t3" x="84.6" y="47" width="54.6" height="36"/>
+<line class="fit" x1="102.9" y1="47" x2="102.9" y2="83"/>
+<line class="ax" x1="66.4" y1="65" x2="84.6" y2="65"/><line class="ax" x1="139.3" y1="65" x2="139.3" y2="65"/>
+<line class="ax" x1="66.4" y1="55" x2="66.4" y2="75"/>
+<line class="true" x1="221.2" y1="39" x2="221.2" y2="91"/>
+<circle class="shot" cx="503.6" cy="65" r="6"/>
+<text class="an resc" x="503.6" y="51" text-anchor="middle">outlier (26)</text>
+<text class="an" x="112" y="39" text-anchor="middle">Q1 = 3 · mediana = 4 · Q3 = 6</text>
+<text class="an" x="227.2" y="91">limite Q3 + 1,5·AIQ = 10,5</text>
+<polygon class="meanpt" points="157.5,77 151.5,87 163.5,87"/>
+<text class="an" x="157.5" y="101" text-anchor="middle">média = 7</text>
+</svg>

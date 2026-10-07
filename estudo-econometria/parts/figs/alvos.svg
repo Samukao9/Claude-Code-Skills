@@ -1,0 +1,62 @@
+<svg class="fig" viewBox="0 0 700 180" role="img" aria-label="Quatro alvos combinando viés e variância" xmlns="http://www.w3.org/2000/svg">
+<circle class="t1" cx="80" cy="80" r="62"/>
+<circle class="t2" cx="80" cy="80" r="44"/>
+<circle class="t3" cx="80" cy="80" r="26"/>
+<circle class="t4" cx="80" cy="80" r="9"/>
+<circle class="shot" cx="77.3" cy="85.3" r="3.6"/>
+<circle class="shot" cx="87.4" cy="83.6" r="3.6"/>
+<circle class="shot" cx="78.4" cy="79.6" r="3.6"/>
+<circle class="shot" cx="78.2" cy="79.9" r="3.6"/>
+<circle class="shot" cx="82.4" cy="80.6" r="3.6"/>
+<circle class="shot" cx="80.9" cy="80.6" r="3.6"/>
+<circle class="shot" cx="78.5" cy="80.8" r="3.6"/>
+<circle class="shot" cx="80.5" cy="83.1" r="3.6"/>
+<circle class="shot" cx="73.9" cy="73.8" r="3.6"/>
+<circle class="shot" cx="77.6" cy="81.8" r="3.6"/>
+<text class="an" x="80" y="164" text-anchor="middle">Não viesado, baixa variância</text>
+<circle class="t1" cx="260" cy="80" r="62"/>
+<circle class="t2" cx="260" cy="80" r="44"/>
+<circle class="t3" cx="260" cy="80" r="26"/>
+<circle class="t4" cx="260" cy="80" r="9"/>
+<circle class="shot" cx="308.7" cy="72.7" r="3.6"/>
+<circle class="shot" cx="256.3" cy="94.4" r="3.6"/>
+<circle class="shot" cx="270.2" cy="93" r="3.6"/>
+<circle class="shot" cx="266.1" cy="66.2" r="3.6"/>
+<circle class="shot" cx="273.6" cy="109.3" r="3.6"/>
+<circle class="shot" cx="247.3" cy="93.1" r="3.6"/>
+<circle class="shot" cx="252" cy="77.5" r="3.6"/>
+<circle class="shot" cx="261" cy="83.4" r="3.6"/>
+<circle class="shot" cx="251.4" cy="61.6" r="3.6"/>
+<circle class="shot" cx="251.5" cy="74.9" r="3.6"/>
+<text class="an" x="260" y="164" text-anchor="middle">Não viesado, alta variância</text>
+<circle class="t1" cx="440" cy="80" r="62"/>
+<circle class="t2" cx="440" cy="80" r="44"/>
+<circle class="t3" cx="440" cy="80" r="26"/>
+<circle class="t4" cx="440" cy="80" r="9"/>
+<circle class="shot" cx="462.3" cy="61.1" r="3.6"/>
+<circle class="shot" cx="462.3" cy="48.8" r="3.6"/>
+<circle class="shot" cx="466.3" cy="67.6" r="3.6"/>
+<circle class="shot" cx="468.7" cy="57.3" r="3.6"/>
+<circle class="shot" cx="465.4" cy="55.4" r="3.6"/>
+<circle class="shot" cx="480" cy="72.9" r="3.6"/>
+<circle class="shot" cx="465.8" cy="60.1" r="3.6"/>
+<circle class="shot" cx="462" cy="60.3" r="3.6"/>
+<circle class="shot" cx="471.7" cy="61.4" r="3.6"/>
+<circle class="shot" cx="456.7" cy="55.4" r="3.6"/>
+<text class="an" x="440" y="164" text-anchor="middle">Viesado, baixa variância</text>
+<circle class="t1" cx="620" cy="80" r="62"/>
+<circle class="t2" cx="620" cy="80" r="44"/>
+<circle class="t3" cx="620" cy="80" r="26"/>
+<circle class="t4" cx="620" cy="80" r="9"/>
+<circle class="shot" cx="657.1" cy="49" r="3.6"/>
+<circle class="shot" cx="615.4" cy="39.4" r="3.6"/>
+<circle class="shot" cx="604" cy="37" r="3.6"/>
+<circle class="shot" cx="658.7" cy="55.4" r="3.6"/>
+<circle class="shot" cx="641.3" cy="60.8" r="3.6"/>
+<circle class="shot" cx="643.6" cy="52.5" r="3.6"/>
+<circle class="shot" cx="616.9" cy="21.5" r="3.6"/>
+<circle class="shot" cx="645.5" cy="62" r="3.6"/>
+<circle class="shot" cx="644" cy="61.8" r="3.6"/>
+<circle class="shot" cx="641.3" cy="61.2" r="3.6"/>
+<text class="an" x="620" y="164" text-anchor="middle">Viesado, alta variância</text>
+</svg>
