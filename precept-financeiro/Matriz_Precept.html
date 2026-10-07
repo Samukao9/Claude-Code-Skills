@@ -1,0 +1,1030 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Matriz Precept</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Spectral:ital,wght@0,600;0,700;1,600&display=swap">
+
+<style>
+  :root {
+    --ground:        #F6F4FA;
+    --surface:       #FFFFFF;
+    --surface-2:     #EEEBF5;
+    --ink:           #1A1626;
+    --ink-2:         #4B4562;
+    --ink-3:         #7C7593;
+    --rule:          #DEDAE9;
+    --rule-strong:   #C4BEDA;
+    --accent:        #5B3FA8;
+    --accent-on:     #FFFFFF;
+    --accent-soft:   #EAE3F8;
+    --good:          #1E7455;
+    --good-soft:     #DDEFE7;
+    --warn:          #8E6210;
+    --warn-soft:     #F5EAD5;
+    --bad:           #9E322A;
+    --bad-soft:      #F7E1DF;
+    --shadow:        0 1px 2px rgba(26,22,38,.05), 0 8px 24px -14px rgba(26,22,38,.22);
+
+    --f-display: "Spectral", Georgia, "Times New Roman", serif;
+    --f-body:    "Archivo", "Segoe UI", Helvetica, Arial, sans-serif;
+    --f-mono:    "IBM Plex Mono", "Consolas", "SF Mono", monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:      #121020;
+      --surface:     #1A1730;
+      --surface-2:   #221E3B;
+      --ink:         #EFEDF7;
+      --ink-2:       #B6B0CE;
+      --ink-3:       #857EA1;
+      --rule:        #302B4A;
+      --rule-strong: #443D64;
+      --accent:      #A78BF5;
+      --accent-on:   #16112B;
+      --accent-soft: #261F44;
+      --good:        #55C398;
+      --good-soft:   #172F2A;
+      --warn:        #DBA855;
+      --warn-soft:   #2E2618;
+      --bad:         #E67C72;
+      --bad-soft:    #321D1E;
+      --shadow:      0 1px 2px rgba(0,0,0,.3), 0 10px 28px -16px rgba(0,0,0,.7);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground:      #121020;
+    --surface:     #1A1730;
+    --surface-2:   #221E3B;
+    --ink:         #EFEDF7;
+    --ink-2:       #B6B0CE;
+    --ink-3:       #857EA1;
+    --rule:        #302B4A;
+    --rule-strong: #443D64;
+    --accent:      #A78BF5;
+    --accent-on:   #16112B;
+    --accent-soft: #261F44;
+    --good:        #55C398;
+    --good-soft:   #172F2A;
+    --warn:        #DBA855;
+    --warn-soft:   #2E2618;
+    --bad:         #E67C72;
+    --bad-soft:    #321D1E;
+    --shadow:      0 1px 2px rgba(0,0,0,.3), 0 10px 28px -16px rgba(0,0,0,.7);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--f-body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    padding: 0 clamp(1rem, 4vw, 3rem) 6rem;
+  }
+
+  .wrap { max-width: 62rem; margin: 0 auto; }
+  .prose { max-width: 40rem; }
+
+  h1, h2, h3, h4 { font-family: var(--f-display); font-weight: 700; text-wrap: balance; margin: 0; line-height: 1.15; }
+  h1 { font-size: clamp(2.6rem, 7vw, 4.2rem); letter-spacing: -.02em; }
+  h2 { font-size: clamp(1.5rem, 3.4vw, 2rem); letter-spacing: -.01em; }
+  h3 { font-size: 1.14rem; font-weight: 600; }
+  h4 { font-family: var(--f-body); font-size: .82rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-3); }
+  p  { margin: 0 0 1em; }
+  a  { color: var(--accent); }
+  strong { font-weight: 600; color: var(--ink); }
+
+  .eyebrow {
+    font-family: var(--f-mono); font-size: .72rem; font-weight: 500;
+    text-transform: uppercase; letter-spacing: .16em; color: var(--accent);
+    margin: 0 0 1.1rem;
+  }
+  .deck { font-size: 1.13rem; color: var(--ink-2); line-height: 1.55; }
+  .note { font-size: .88rem; color: var(--ink-3); line-height: 1.55; }
+  .mono { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+
+  header.masthead { padding: clamp(3rem, 9vw, 6rem) 0 2.6rem; }
+  .brandline { display: flex; align-items: baseline; gap: .9rem; flex-wrap: wrap; margin: 0 0 .9rem; }
+  .brandline .tag {
+    font-family: var(--f-mono); font-size: .7rem; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--ink-3);
+    border: 1px solid var(--rule-strong); border-radius: 2px;
+    padding: .28rem .5rem; white-space: nowrap;
+  }
+  .masthead .deck { margin-top: 1.2rem; max-width: 38rem; }
+
+  section { padding-top: clamp(3rem, 7vw, 4.5rem); }
+  .sec-head { border-top: 2px solid var(--ink); padding-top: 1rem; margin-bottom: 1.8rem; }
+  .sec-head .step {
+    font-family: var(--f-mono); font-size: .72rem; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--accent); display: block; margin-bottom: .5rem;
+  }
+  .sec-head p { margin: .7rem 0 0; color: var(--ink-2); max-width: 40rem; }
+
+  /* verdict */
+  .verdict { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1rem; margin-top: 2.4rem; }
+  .vcard {
+    background: var(--surface); border: 1px solid var(--rule); border-radius: 3px;
+    padding: 1.4rem 1.5rem 1.5rem; box-shadow: var(--shadow);
+    display: flex; flex-direction: column; gap: .35rem;
+  }
+  .vcard.now { border-left: 3px solid var(--good); }
+  .vcard.next { border-left: 3px solid var(--accent); }
+  .vcard .lbl { font-family: var(--f-mono); font-size: .7rem; letter-spacing: .13em; text-transform: uppercase; color: var(--ink-3); }
+  .vcard .score {
+    font-family: var(--f-display); font-size: 3.4rem; font-weight: 700;
+    line-height: 1; letter-spacing: -.03em; font-variant-numeric: tabular-nums;
+  }
+  .vcard.now .score  { color: var(--good); }
+  .vcard.next .score { color: var(--accent); }
+  .vcard .band { font-weight: 600; font-size: .95rem; }
+  .vcard .say { font-size: .88rem; color: var(--ink-2); line-height: 1.5; margin: .3rem 0 0; }
+
+  /* tables */
+  .scroller { overflow-x: auto; border: 1px solid var(--rule); border-radius: 3px; background: var(--surface); box-shadow: var(--shadow); }
+  table { border-collapse: collapse; width: 100%; min-width: 40rem; font-size: .9rem; }
+  thead th {
+    text-align: left; font-family: var(--f-mono); font-weight: 500;
+    font-size: .68rem; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--ink-3); padding: .8rem .9rem; border-bottom: 1px solid var(--rule-strong);
+    white-space: nowrap; background: var(--surface-2);
+  }
+  tbody td { padding: .75rem .9rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  tbody tr:last-child td { border-bottom: none; }
+  td.num, th.num { text-align: right; font-family: var(--f-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  tr.total td { background: var(--surface-2); font-weight: 700; border-top: 1px solid var(--rule-strong); }
+  tr.total td.fin { color: var(--accent); font-size: 1.05rem; }
+  td .code { font-family: var(--f-mono); color: var(--accent); font-size: .82rem; }
+
+  /* filtros */
+  .filters { display: flex; flex-direction: column; gap: .55rem; }
+  .filter {
+    display: grid; grid-template-columns: 3rem 1fr auto; gap: 1rem; align-items: start;
+    background: var(--surface); border: 1px solid var(--rule); border-radius: 3px;
+    padding: 1rem 1.15rem; box-shadow: var(--shadow);
+  }
+  .filter .fid { font-family: var(--f-mono); font-size: .8rem; color: var(--accent); padding-top: .1rem; }
+  .filter .q { font-size: .95rem; line-height: 1.5; }
+  .filter .q em { color: var(--ink-3); font-style: normal; font-size: .85rem; display: block; margin-top: .35rem; line-height: 1.5; }
+  .stamp {
+    font-family: var(--f-mono); font-size: .72rem; font-weight: 500; letter-spacing: .08em;
+    text-transform: uppercase; padding: .3rem .6rem; border-radius: 2px; white-space: nowrap;
+    border: 1px solid currentColor;
+  }
+  .stamp.pass { color: var(--good); background: var(--good-soft); }
+  .stamp.hold { color: var(--warn); background: var(--warn-soft); }
+  .stamp.late { color: var(--bad); background: var(--bad-soft); }
+  .stamp.now  { color: var(--accent); background: var(--accent-soft); }
+  .stamp.soon { color: var(--ink-3); background: var(--surface-2); }
+  td .stamp { display: inline-block; }
+  .datecell { font-family: var(--f-mono); font-size: .78rem; white-space: nowrap; color: var(--accent); }
+  @media (max-width: 34rem) {
+    .filter { grid-template-columns: 2.2rem 1fr; }
+    .filter .stamp { grid-column: 2; justify-self: start; }
+  }
+
+  /* criterion cards */
+  .crits { display: flex; flex-direction: column; gap: .8rem; }
+  .crit {
+    background: var(--surface); border: 1px solid var(--rule); border-radius: 3px;
+    padding: 1.2rem 1.3rem 1.3rem; box-shadow: var(--shadow);
+  }
+  .crit-top { display: flex; flex-wrap: wrap; align-items: baseline; gap: .6rem 1rem; margin-bottom: .55rem; }
+  .crit-top .code {
+    font-family: var(--f-mono); font-size: .78rem; color: var(--accent-on);
+    background: var(--accent); border-radius: 2px; padding: .16rem .4rem;
+  }
+  .crit-top h3 { flex: 1 1 12rem; }
+  .crit-top .peso { font-family: var(--f-mono); font-size: .75rem; color: var(--ink-3); }
+  .scores { display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center; margin: .9rem 0 1rem; padding: .75rem 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .sblock { display: flex; align-items: center; gap: .6rem; }
+  .sblock .stag { font-family: var(--f-mono); font-size: .66rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
+  .sblock .sval { font-family: var(--f-display); font-weight: 700; font-size: 1.55rem; line-height: 1; font-variant-numeric: tabular-nums; color: var(--accent); }
+  .meter { display: inline-flex; gap: 3px; }
+  .meter i { display: block; width: 15px; height: 8px; border-radius: 1px; background: var(--rule-strong); }
+  .meter i.on { background: var(--accent); }
+  .meter i.tgt { background: var(--accent-soft); border: 1px dashed var(--accent); height: 8px; }
+  .crit p { font-size: .93rem; color: var(--ink-2); margin: 0 0 .8rem; }
+  .crit p:last-child { margin-bottom: 0; }
+  .lift { font-size: .88rem; background: var(--accent-soft); color: var(--ink); border-radius: 2px; padding: .65rem .8rem; line-height: 1.5; }
+  .lift b { font-family: var(--f-mono); font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: .25rem; }
+
+  /* generic cards */
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: .8rem; }
+  .card { background: var(--surface); border: 1px solid var(--rule); border-radius: 3px; padding: 1.15rem 1.25rem; box-shadow: var(--shadow); }
+  .card h3 { margin-bottom: .5rem; }
+  .card p { font-size: .91rem; color: var(--ink-2); margin: 0 0 .7rem; }
+  .card p:last-child { margin-bottom: 0; }
+  .card .kicker { font-family: var(--f-mono); font-size: .68rem; letter-spacing: .11em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: .45rem; }
+
+  .callout {
+    border-left: 3px solid var(--accent); background: var(--surface);
+    border-top: 1px solid var(--rule); border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+    border-radius: 3px; padding: 1.15rem 1.3rem; box-shadow: var(--shadow);
+  }
+  .callout.risk { border-left-color: var(--bad); }
+  .callout.win { border-left-color: var(--good); }
+  .callout h3 { margin-bottom: .45rem; }
+  .callout p { font-size: .93rem; color: var(--ink-2); }
+  .callout p:last-child { margin-bottom: 0; }
+
+  /* moat layers */
+  .layers { display: flex; flex-direction: column; gap: .6rem; }
+  .layer {
+    display: grid; grid-template-columns: auto 1fr; gap: 1.1rem;
+    background: var(--surface); border: 1px solid var(--rule); border-radius: 3px;
+    padding: 1.15rem 1.3rem; box-shadow: var(--shadow);
+  }
+  .layer .depth {
+    font-family: var(--f-mono); font-size: .66rem; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--accent-on); background: var(--accent); border-radius: 2px;
+    padding: .3rem .45rem; height: fit-content; white-space: nowrap;
+  }
+  .layer h3 { margin-bottom: .4rem; }
+  .layer p { font-size: .93rem; color: var(--ink-2); margin: 0 0 .6rem; }
+  .layer p:last-child { margin: 0; }
+  .layer .dur { font-family: var(--f-mono); font-size: .74rem; color: var(--good); }
+  @media (max-width: 34rem) { .layer { grid-template-columns: 1fr; gap: .6rem; } .layer .depth { justify-self: start; } }
+
+  /* economics */
+  .econ { display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); gap: .8rem; }
+  .econ .card .calc {
+    font-family: var(--f-mono); font-size: .82rem; font-variant-numeric: tabular-nums;
+    background: var(--surface-2); border-radius: 2px; padding: .7rem .8rem;
+    line-height: 1.8; color: var(--ink-2); overflow-x: auto;
+  }
+  .econ .card .calc span { color: var(--ink); font-weight: 500; }
+  .ratio { display: flex; align-items: baseline; gap: .5rem; margin-top: .85rem; }
+  .ratio .big { font-family: var(--f-display); font-weight: 700; font-size: 1.9rem; line-height: 1; color: var(--good); font-variant-numeric: tabular-nums; }
+  .ratio .cap { font-size: .82rem; color: var(--ink-3); }
+
+  /* funnel */
+  .funnel { display: flex; flex-direction: column; gap: .3rem; }
+  .frow {
+    display: grid; grid-template-columns: 1fr auto; gap: 1rem; align-items: baseline;
+    padding: .6rem .9rem; background: var(--surface); border: 1px solid var(--rule); border-radius: 3px; font-size: .92rem;
+  }
+  .frow .v { font-family: var(--f-mono); font-variant-numeric: tabular-nums; font-weight: 500; white-space: nowrap; }
+  .frow.out { background: var(--accent-soft); border-color: var(--accent); }
+  .frow.out .v { color: var(--accent); font-weight: 500; }
+
+  /* timeline */
+  .tl { display: flex; flex-direction: column; gap: 0; border-left: 1px solid var(--rule-strong); margin-left: .3rem; }
+  .tl-item { position: relative; padding: 0 0 1.5rem 1.6rem; }
+  .tl-item::before { content: ""; position: absolute; left: -4.5px; top: .45rem; width: 8px; height: 8px; border-radius: 50%; background: var(--rule-strong); }
+  .tl-item.hot::before { background: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  .tl-item .date { font-family: var(--f-mono); font-size: .72rem; letter-spacing: .06em; color: var(--accent); }
+  .tl-item .what { font-weight: 600; font-size: .96rem; margin: .15rem 0 .2rem; }
+  .tl-item .how { font-size: .88rem; color: var(--ink-2); line-height: 1.5; }
+
+  /* questions */
+  ol.qs { list-style: none; counter-reset: q; padding: 0; margin: 0; display: flex; flex-direction: column; gap: .65rem; }
+  ol.qs li {
+    counter-increment: q; position: relative; padding: 1rem 1.2rem 1rem 3.2rem;
+    background: var(--surface); border: 1px solid var(--rule); border-radius: 3px; box-shadow: var(--shadow); font-size: .95rem;
+  }
+  ol.qs li::before {
+    content: counter(q, decimal-leading-zero); position: absolute; left: 1.2rem; top: 1rem;
+    font-family: var(--f-mono); font-size: .78rem; color: var(--accent);
+  }
+  ol.qs li .why { display: block; font-size: .86rem; color: var(--ink-3); margin-top: .3rem; line-height: 1.5; }
+
+  ul.plain { padding-left: 1.1rem; margin: 0 0 1em; }
+  ul.plain li { margin-bottom: .45rem; font-size: .93rem; color: var(--ink-2); }
+
+  .fillin { background: var(--surface); border: 1px dashed var(--rule-strong); border-radius: 3px; padding: 1.1rem 1.25rem; font-size: .93rem; }
+  .fillin dl { margin: 0; display: grid; grid-template-columns: minmax(7rem, auto) 1fr; gap: .5rem 1rem; }
+  .fillin dt { font-family: var(--f-mono); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); padding-top: .2rem; }
+  .fillin dd { margin: 0; color: var(--ink); }
+  @media (max-width: 30rem) { .fillin dl { grid-template-columns: 1fr; gap: .2rem 0; } .fillin dd { margin-bottom: .7rem; } }
+
+  footer.foot { margin-top: 5rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); }
+  footer.foot p { font-size: .84rem; color: var(--ink-3); max-width: 42rem; }
+
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="eyebrow">Projetos Empreendedores 2026/2 · Mackenzie · Turmas 5N e 5V</p>
+    <div class="brandline">
+      <h1>Precept</h1>
+      <span class="tag">Nome provisório</span>
+    </div>
+    <p class="deck">
+      Inteligência operacional para escritórios de advocacia de pequeno e médio porte.
+      Matriz de avaliação, vantagem competitiva, produto e plano de arranque — o documento
+      de trabalho do grupo até a entrega da Parte&nbsp;I.
+    </p>
+
+    <div class="verdict">
+      <div class="vcard now">
+        <span class="lbl">Nota hoje</span>
+        <span class="score">4,25</span>
+        <span class="band">Candidata forte</span>
+        <p class="say">Acima do corte de 4,0. Ação prevista pela matriz: avançar para os 24 passos do Aulet. Nenhum critério abaixo de 4.</p>
+      </div>
+      <div class="vcard next">
+        <span class="lbl">Teto após a semana de campo</span>
+        <span class="score">4,80</span>
+        <span class="band">Faltam três evidências</span>
+        <p class="say">TAM com fonte, os três números &ldquo;Como É&rdquo; das entrevistas e o primeiro diagnóstico vendido. Cada um vale meio ponto e nenhum depende de sorte.</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- ====================== ETAPA 0 ====================== -->
+  <section id="etapa0">
+    <div class="sec-head">
+      <span class="step">Etapa 0</span>
+      <h2>Filtros eliminatórios</h2>
+      <p>Qualquer &ldquo;Não&rdquo; tira a ideia da disputa. Em F5 a lógica inverte: ali o &ldquo;Sim&rdquo; é que elimina. <strong>Passa nos cinco.</strong></p>
+    </div>
+
+    <div class="filters">
+      <div class="filter">
+        <span class="fid">F1</span>
+        <div class="q">
+          Existe um cliente pagante identificável?
+          <em>Sócio-proprietário de escritório com faturamento anual entre R$ 250 mil e R$ 10 milhões. Nominável um a um pelo Cadastro Nacional de Sociedades de Advogados, OAB/SP, LinkedIn e Instagram. Já compra software jurídico, agência de marketing e consultoria — o orçamento existe e está sendo gasto hoje, com outro fornecedor.</em>
+        </div>
+        <span class="stamp pass">Sim</span>
+      </div>
+
+      <div class="filter">
+        <span class="fid">F2</span>
+        <div class="q">
+          É legal e regulatoriamente viável no Brasil?
+          <em>Sim — e o regulatório é ativo, não obstáculo. A publicidade na advocacia é regida pelo Provimento CFOAB nº 205/2021 (confirmar a redação vigente e alterações posteriores no site do Conselho Federal antes de citar). Ele restringe captação de clientela e mercantilização. Quem não domina isso não pode atender este mercado com segurança.</em>
+        </div>
+        <span class="stamp pass">Sim</span>
+      </div>
+
+      <div class="filter">
+        <span class="fid">F3</span>
+        <div class="q">
+          O time consegue conversar com clientes reais durante o semestre?
+          <em>Advogado é um dos públicos mais acessíveis que existe: perfil público, responde DM e gosta de falar do próprio escritório. A Semana da Escola de Engenharia (31/08 a 04/09) já está reservada no plano de aula para entrevistas exploratórias com diário de bordo.</em>
+        </div>
+        <span class="stamp pass">Sim</span>
+      </div>
+
+      <div class="filter">
+        <span class="fid">F4</span>
+        <div class="q">
+          Está livre de riscos éticos ou socioambientais inaceitáveis?
+          <em>Sim, com uma condição de arquitetura: dado de processo é coberto por sigilo profissional (Lei 8.906/94) e por LGPD. Anonimização antes de qualquer envio a terceiro, contrato de tratamento de dados com o provedor e proibição explícita de treinar modelo com dado de cliente.</em>
+        </div>
+        <span class="stamp pass">Sim</span>
+      </div>
+
+      <div class="filter">
+        <span class="fid">F5</span>
+        <div class="q">
+          Existe algum defeito fatal conhecido? <span class="note">(aqui o &ldquo;Sim&rdquo; elimina)</span>
+          <em>Não. Havia um risco de dependência de fornecedor único enquanto o produto fosse descrito como &ldquo;o software ChatGPT&rdquo;; resolvido pela camada de abstração de modelo descrita na seção de produto. O mesmo produto roda sobre mais de um provedor de IA. O modelo é peça trocável; o produto é o método e a base de dados.</em>
+        </div>
+        <span class="stamp pass">Não</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== ETAPA 1 ====================== -->
+  <section id="etapa1">
+    <div class="sec-head">
+      <span class="step">Etapa 1</span>
+      <h2>Matriz de pontuação ponderada</h2>
+      <p>Escala de 1 a 5, nota final = Σ (nota × peso) ÷ 100. A coluna <strong>alvo</strong> não é otimismo: é a nota que cada critério assume quando a evidência correspondente entrar, e ao lado de cada uma está escrito exatamente qual evidência é. Preencham individualmente antes de comparar — divergência grande num critério é hipótese de campo, não briga.</p>
+    </div>
+
+    <div class="scroller">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th><th>Critério</th><th class="num">Peso</th>
+            <th class="num">Nota</th><th class="num">Ponderado</th><th class="num">Alvo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="code">C1</span></td><td>Intensidade da dor</td><td class="num">15%</td><td class="num">5</td><td class="num">75</td><td class="num">5</td></tr>
+          <tr><td><span class="code">C2</span></td><td>Mercado-praia definido</td><td class="num">15%</td><td class="num">4</td><td class="num">60</td><td class="num">5</td></tr>
+          <tr><td><span class="code">C3</span></td><td>Proposta de valor quantificada</td><td class="num">15%</td><td class="num">4</td><td class="num">60</td><td class="num">5</td></tr>
+          <tr><td><span class="code">C4</span></td><td>Modelo de negócio e economia unitária</td><td class="num">15%</td><td class="num">4</td><td class="num">60</td><td class="num">5</td></tr>
+          <tr><td><span class="code">C5</span></td><td>Vantagem competitiva (Core)</td><td class="num">10%</td><td class="num">4</td><td class="num">40</td><td class="num">5</td></tr>
+          <tr><td><span class="code">C6</span></td><td>Viabilidade técnica e operacional</td><td class="num">10%</td><td class="num">5</td><td class="num">50</td><td class="num">5</td></tr>
+          <tr><td><span class="code">C7</span></td><td>Escalabilidade</td><td class="num">10%</td><td class="num">4</td><td class="num">40</td><td class="num">4</td></tr>
+          <tr><td><span class="code">C8</span></td><td>Aderência do time</td><td class="num">10%</td><td class="num">4</td><td class="num">40</td><td class="num">5</td></tr>
+          <tr class="total">
+            <td></td><td>TOTAL</td><td class="num">100%</td>
+            <td class="num"></td><td class="num fin">4,25</td><td class="num fin">4,80</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4 style="margin:2.6rem 0 1rem;">Justificativa critério a critério</h4>
+
+    <div class="crits">
+
+      <article class="crit">
+        <div class="crit-top"><span class="code">C1</span><h3>Intensidade da dor</h3><span class="peso">peso 15%</span></div>
+        <div class="scores">
+          <div class="sblock"><span class="stag">nota</span><span class="sval">5</span>
+            <span class="meter" role="img" aria-label="5 de 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></div>
+        </div>
+        <p>A âncora de nota 5 é objetiva: <em>&ldquo;cliente já gasta dinheiro ou tempo para resolver&rdquo;</em>. E gasta. Escritórios pequenos contratam agência de marketing, assinam software de gestão de processos, pagam consultor, contratam secretária para tarefa administrativa. O dinheiro já está saindo do caixa — a disputa é por realocação de gasto, não por criação de orçamento novo, que é a venda mais difícil que existe.</p>
+        <p>O sócio de um escritório pequeno é o gargalo da própria empresa: advoga, vende, cobra, gerencia e contrata. Dor frequente, cara e com prova de gasto no mercado.</p>
+        <div class="lift"><b>Como sustentar na banca</b>Nas entrevistas, uma pergunta fecha o assunto: &ldquo;quanto você gastou nos últimos 12 meses tentando resolver isso, e com o quê?&rdquo;. Três respostas com número viram anexo do projeto. Nunca perguntem se ele <em>gostaria</em> de resolver — perguntem o que ele <em>já fez</em>.</div>
+      </article>
+
+      <article class="crit">
+        <div class="crit-top"><span class="code">C2</span><h3>Mercado-praia definido</h3><span class="peso">peso 15%</span></div>
+        <div class="scores">
+          <div class="sblock"><span class="stag">nota</span><span class="sval">4</span>
+            <span class="meter" role="img" aria-label="4 de 5, alvo 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="tgt"></i></span></div>
+        </div>
+        <p>Com o recorte fechado — <strong>escritórios previdenciários da Grande São Paulo, faturamento anual de R$&nbsp;250&nbsp;mil a R$&nbsp;10&nbsp;milhões, sócio-fundador que ainda participa da operação</strong> — duas das três condições de mercado-praia do Aulet são plenamente atendidas: compram produtos similares e conversam muito entre si. A terceira, ciclo e expectativa de valor similares, fica parcialmente atendida: o decisor é sempre o sócio, o que mantém o ciclo curto, mas a expectativa varia com o porte — e é por isso que a oferta é segmentada em três estágios de maturidade.</p>
+        <p>Fica em 4 e não em 5 por uma razão só: a âncora de 5 exige TAM estimado <em>com fonte</em>. O funil está montado na seção de mercado; falta trocar as hipóteses por números citáveis.</p>
+        <div class="lift"><b>O que vale o quinto ponto</b>Uma tarde no Cadastro Nacional de Sociedades de Advogados e no Mapa de Empresas (CNAE 6911-7/01), substituindo cada percentual do funil por um dado com referência. Isso é trabalho de biblioteca, não de sorte.</div>
+      </article>
+
+      <article class="crit">
+        <div class="crit-top"><span class="code">C3</span><h3>Proposta de valor quantificada</h3><span class="peso">peso 15%</span></div>
+        <div class="scores">
+          <div class="sblock"><span class="stag">nota</span><span class="sval">4</span>
+            <span class="meter" role="img" aria-label="4 de 5, alvo 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="tgt"></i></span></div>
+        </div>
+        <p>A proposta deixa de ser &ldquo;mais eficiência&rdquo; e passa a ser três números com base de cálculo, no formato &ldquo;Como É / Como Poderia Ser&rdquo; do passo 8:</p>
+        <ul class="plain">
+          <li><strong>Tempo de produção</strong> de uma petição padrão do nicho: de ~4h para ~40min.</li>
+          <li><strong>Conversão</strong> de consulta em contrato: de ~20% para ~35%.</li>
+          <li><strong>Inadimplência</strong> de honorários: de ~18% para ~8%.</li>
+        </ul>
+        <p>Cada um desses vira reais no caixa do escritório, e é assim que se justifica a escada de preços sem constrangimento: R$&nbsp;997 a R$&nbsp;1.497/mês no Core (mais R$&nbsp;300 por licença extra), R$&nbsp;9.997 no Sprint e R$&nbsp;29.997 no Scale.</p>
+        <div class="lift"><b>O que vale o quinto ponto</b>Os números do &ldquo;Como É&rdquo; medidos em campo, não estimados. Os do &ldquo;Como Poderia Ser&rdquo; só ficam honestos depois que vocês souberem de onde estão partindo.</div>
+      </article>
+
+      <article class="crit">
+        <div class="crit-top"><span class="code">C4</span><h3>Modelo de negócio e economia unitária</h3><span class="peso">peso 15%</span></div>
+        <div class="scores">
+          <div class="sblock"><span class="stag">nota</span><span class="sval">4</span>
+            <span class="meter" role="img" aria-label="4 de 5, alvo 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="tgt"></i></span></div>
+        </div>
+        <p>Escada de valor de três degraus — Core, Sprint e Scale —, com margem de contribuição clara por degrau e LTV/CAC de ~35× no Core (LTV de R$&nbsp;36,0&nbsp;mil contra CAC de mídia de ~R$&nbsp;1.040), contra o piso de 3× indicado no material da disciplina. O modelo financeiro de 24 meses fecha com VPL de R$&nbsp;173&nbsp;mil e TIR de 131% a.a. Isso é modelo bem desenhado.</p>
+        <p>A âncora de 5 pede três coisas: <em>preço testado</em>, COCA estimado e margem clara. Duas já existem. A terceira ainda não, e é a única honesta de admitir: nenhum preço passou por um sócio de verdade.</p>
+        <div class="lift"><b>O que vale o quinto ponto</b>Vender o primeiro Sprint (R$&nbsp;9.997) ou fechar os primeiros clientes Core antes de dezembro. Uma venda real é o passo 22 cumprido — &ldquo;se não pagam, você tem um hobby&rdquo; — e vale mais na banca que qualquer projeção. É o item de maior retorno por esforço do semestre inteiro.</div>
+      </article>
+
+      <article class="crit">
+        <div class="crit-top"><span class="code">C5</span><h3>Vantagem competitiva (Core)</h3><span class="peso">peso 10%</span></div>
+        <div class="scores">
+          <div class="sblock"><span class="stag">nota</span><span class="sval">4</span>
+            <span class="meter" role="img" aria-label="4 de 5, alvo 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="tgt"></i></span></div>
+        </div>
+        <p>Três defesas independentes, detalhadas na seção seguinte: a barreira regulatória da OAB, que exclui o conjunto inteiro de agências genéricas <em>hoje</em>; a base de benchmarks, que se acumula e não se compra; e a integração vertical da escada, que exige dois músculos operacionais que os concorrentes têm separados. A âncora de 5 fala em <em>&ldquo;ativo, dado, rede ou expertise raros&rdquo;</em> — a expertise regulatória se encaixa e já é possível construí-la neste semestre.</p>
+        <p>Fica em 4 porque duas das três defesas ainda são projeto: a base de benchmark tem zero escritórios e o compliance ainda não virou regra escrita. Nota 5 pede o ativo existindo, não o ativo planejado.</p>
+        <div class="lift"><b>O que vale o quinto ponto</b>Um integrante assume a frente de compliance, lê o Provimento 205/2021 inteiro e o transforma numa lista de regras verificáveis. No dia em que essa lista existir, a expertise deixou de ser promessa. É a tarefa de menor custo e maior retorno de nota do projeto.</div>
+      </article>
+
+      <article class="crit">
+        <div class="crit-top"><span class="code">C6</span><h3>Viabilidade técnica e operacional</h3><span class="peso">peso 10%</span></div>
+        <div class="scores">
+          <div class="sblock"><span class="stag">nota</span><span class="sval">5</span>
+            <span class="meter" role="img" aria-label="5 de 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></div>
+        </div>
+        <p>Não depende de tecnologia inexistente, laboratório ou capital. O MVBP pode ser inteiramente manual no modelo Concierge do passo 20: vocês entregam o Raio-X à mão, com formulário e reunião, como diagnóstico de entrada que vende o Core. Só depois automatizam o que se provou repetitivo.</p>
+        <div class="lift"><b>Como manter em 5</b>Resistir a começar programando. O entregável do semestre é o diagnóstico vendido, não o software bonito. Software feito antes de saber o que automatizar é a armadilha do canivete suíço.</div>
+      </article>
+
+      <article class="crit">
+        <div class="crit-top"><span class="code">C7</span><h3>Escalabilidade</h3><span class="peso">peso 10%</span></div>
+        <div class="scores">
+          <div class="sblock"><span class="stag">nota</span><span class="sval">4</span>
+            <span class="meter" role="img" aria-label="4 de 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div>
+        </div>
+        <p>Modelo híbrido, ordenado no tempo. Os primeiros Sprints e Scales <em>são</em> o &ldquo;do things that don't scale&rdquo; do Airbnb: é com eles que se constrói a base de benchmark e se descobre quais processos se repetem em todo escritório. O software escala depois sobre esse aprendizado, com custo marginal próximo de zero, vendido aos 1.050 escritórios do mercado-praia, a maioria dos quais nunca contrataria uma consultoria.</p>
+        <p>Não fica em 5, e não deveria: o braço de consultoria tem custo que cresce com a receita, e isso é verdade em qualquer cenário. Um 5 aqui seria a nota que a banca derruba primeiro. 4 é a nota certa e ela sustenta o argumento inteiro.</p>
+        <div class="lift"><b>Como defender</b>Deixar a sequência explícita: serviço primeiro para gerar o dado, produto depois para escalar sobre o dado. Escrito assim, os projetos de Sprint e Scale deixam de ser limitação e viram estratégia deliberada.</div>
+      </article>
+
+      <article class="crit">
+        <div class="crit-top"><span class="code">C8</span><h3>Aderência do time</h3><span class="peso">peso 10%</span></div>
+        <div class="scores">
+          <div class="sblock"><span class="stag">nota</span><span class="sval">4</span>
+            <span class="meter" role="img" aria-label="4 de 5, alvo 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="tgt"></i></span></div>
+        </div>
+        <p>Seis integrantes cobrindo seis frentes — campo, mercado, produto, compliance, financeiro e pitch —, com o método de gestão dos cinco pilares já dominado pelo grupo. Time completo para o escopo, o que sustenta a metade &ldquo;competência&rdquo; da âncora.</p>
+        <p>A outra metade da âncora de 5 é <em>acesso direto ao cliente-alvo</em>, e essa é a única variável que eu não consigo avaliar de fora. Se alguém do grupo conhece pessoalmente sócios de escritório — família, estágio, cliente, amizade —, é 5 imediatamente, e vale mais que qualquer outra nota desta matriz porque destrava as entrevistas do passo 9.</p>
+        <div class="lift"><b>O que vale o quinto ponto</b>Cada integrante responde por escrito: &ldquo;quantos sócios de escritório eu coloco numa call até 04/09?&rdquo;. Se a soma passar de 8, é 5 e está provado no diário de bordo.</div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ====================== O CORE ====================== -->
+  <section id="core">
+    <div class="sec-head">
+      <span class="step">Vantagem competitiva</span>
+      <h2>Três defesas, não uma</h2>
+      <p>O erro clássico deste tipo de negócio é responder &ldquo;nosso diferencial é a IA&rdquo;. Não é — e a banca sabe. A IA é a parte que qualquer um copia num fim de semana. O que defende a Precept são três camadas de durabilidade crescente, e vale saber recitar as três.</p>
+    </div>
+
+    <div class="layers">
+      <div class="layer">
+        <span class="depth">Camada 1</span>
+        <div>
+          <h3>A régua da OAB</h3>
+          <p>A publicidade na advocacia é regulada. Uma agência de growth que faz tráfego pago para e-commerce <strong>não pode fazer o mesmo para um escritório</strong> sem expor o cliente a processo disciplinar. Isso não é detalhe: elimina de uma vez o concorrente mais óbvio e mais barato que o cliente teria contratado.</p>
+          <p>Um motor de conteúdo que já nasce com essas regras embutidas é algo que só constrói quem estudou o nicho. E dá para construir neste semestre.</p>
+          <p class="dur">Durabilidade: alta enquanto a regulação existir · Custo de cópia: meses de estudo especializado</p>
+        </div>
+      </div>
+
+      <div class="layer">
+        <span class="depth">Camada 2</span>
+        <div>
+          <h3>O Índice Precept</h3>
+          <p>Cada Raio-X gera o retrato operacional e financeiro de um escritório brasileiro real: tempo de ciclo, conversão, margem por área, inadimplência, receita por advogado. Cem diagnósticos viram uma base de referência que <strong>ninguém no país tem</strong>.</p>
+          <p>E ela se paga duas vezes. Para o cliente, vira o argumento mais forte da venda: <em>&ldquo;seu escritório converte 22%; a mediana dos previdenciários do seu estágio é 31% — são R$&nbsp;140&nbsp;mil por ano em cima da mesa&rdquo;</em>. Para vocês, cada cliente novo melhora a recomendação entregue a todos os outros. Isso não se compra: só se acumula.</p>
+          <p class="dur">Durabilidade: cresce com o tempo · Custo de cópia: impossível sem refazer os 100 diagnósticos</p>
+        </div>
+      </div>
+
+      <div class="layer">
+        <span class="depth">Camada 3</span>
+        <div>
+          <h3>A escada inteira sob um teto</h3>
+          <p>O mercado está partido em dois. De um lado, software que gerencia processo e prazo, mas não gerencia negócio. Do outro, consultor que gerencia negócio, mas vai embora e leva o método na cabeça. <strong>Ninguém entrega diagnóstico, ferramenta e implementação assistida no mesmo contrato.</strong></p>
+          <p>Copiar isso exige dois músculos operacionais diferentes — engenharia de produto e entrega de serviço de alto toque — e empresas raramente conseguem os dois ao mesmo tempo.</p>
+          <p class="dur">Durabilidade: média-alta · Custo de cópia: reestruturação da empresa concorrente</p>
+        </div>
+      </div>
+    </div>
+
+    <h4 style="margin:2.4rem 0 .9rem;">Quem não consegue competir, e por quê</h4>
+    <p class="note prose" style="margin-bottom:.9rem;">Este quadro é o rascunho do passo 11 (posição competitiva). Os nomes citados são exemplos de categoria — antes da Parte&nbsp;I, verifiquem o posicionamento atual de cada um e citem a fonte.</p>
+    <div class="scroller">
+      <table>
+        <thead><tr><th>Concorrente</th><th>O que resolve</th><th>Por que não alcança</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Agência de marketing digital</strong></td><td>Tráfego e conteúdo</td><td>Barrada pela régua da OAB; sabe vender, não sabe advocacia</td></tr>
+          <tr><td><strong>Software de gestão de processos</strong><br><span class="note">Astrea, Projuris, ADVBOX e similares</span></td><td>Prazo, andamento, controle de processo</td><td>Gerencia o processo jurídico, não gerencia o negócio: não olha funil, margem nem gargalo</td></tr>
+          <tr><td><strong>Consultor de gestão generalista</strong></td><td>Organização e método</td><td>Não conhece a operação jurídica nem a regulação; sem produto, o método vai embora com ele</td></tr>
+          <tr><td><strong>Outro wrapper de IA jurídica</strong></td><td>Redação assistida de peças</td><td>Copia a interface em semanas, mas não copia a base de benchmark nem a trava de compliance</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout win" style="margin-top:1rem;">
+      <h3>A frase de uma linha para o pitch</h3>
+      <p>&ldquo;Software jurídico organiza o processo. Consultor organiza o escritório e vai embora. A Precept mede, corrige e mantém — com a régua da OAB embutida e um banco de referência que nenhum concorrente tem.&rdquo;</p>
+    </div>
+  </section>
+
+  <!-- ====================== PRODUTO ====================== -->
+  <section id="produto">
+    <div class="sec-head">
+      <span class="step">Produto</span>
+      <h2>O que construir, e em que ordem</h2>
+      <p>Cinco módulos. Nem todos entram neste semestre — a regra é construir o que prova o negócio e prototipar o que impressiona na banca, deixando o resto documentado no roadmap do passo 24.</p>
+    </div>
+
+    <div class="scroller">
+      <table>
+        <thead><tr><th>Módulo</th><th>O que faz</th><th>Por que importa</th><th class="num">Custo</th><th class="num">Quando</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Raio-X dos 5 Pilares</strong></td>
+            <td>Formulário de 40 perguntas + entrevista de 30min → laudo operacional com nota por pilar e gargalo identificado</td>
+            <td>É a porta de entrada do funil: o diagnóstico que vende o Core e alimenta a base de benchmark</td>
+            <td class="num">Baixo</td><td class="num">Agora</td>
+          </tr>
+          <tr>
+            <td><strong>Painel dos 5 Pilares</strong></td>
+            <td>As notas do Raio-X atualizadas mês a mês, com evolução e alerta de queda</td>
+            <td>É o Precept Core: R$&nbsp;997 a R$&nbsp;1.497/mês recorrentes, com 5 licenças (1 master + 4 dependentes) e R$&nbsp;300 por licença extra. É o que cria o LTV</td>
+            <td class="num">Médio</td><td class="num">Set–Out</td>
+          </tr>
+          <tr>
+            <td><strong>Motor de Conteúdo com trava OAB</strong></td>
+            <td>Gera conteúdo de marketing e submete cada saída a uma checagem de conformidade antes de exibir</td>
+            <td>O módulo que ninguém tem. É a Camada 1 virando software — e é o momento do pitch</td>
+            <td class="num">Médio</td><td class="num">Out–Nov</td>
+          </tr>
+          <tr>
+            <td><strong>Esteira de Peças</strong></td>
+            <td>Modelos e redação assistida das petições repetitivas do nicho previdenciário</td>
+            <td>É a métrica de 4h → 40min. O ganho mais fácil de sentir no primeiro dia de uso</td>
+            <td class="num">Alto</td><td class="num">Roadmap</td>
+          </tr>
+          <tr>
+            <td><strong>Radar de Honorários</strong></td>
+            <td>Controle de recebíveis e réguas de cobrança automatizadas</td>
+            <td>Ataca a inadimplência de 18% → 8%. Vira reais no caixa em menos de 60 dias</td>
+            <td class="num">Médio</td><td class="num">Roadmap</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout" style="margin-top:1.4rem;">
+      <h3>O momento do pitch — 30 segundos que ninguém mais vai ter</h3>
+      <p>No pitch final de 5 minutos, uma demonstração ao vivo do Motor de Conteúdo: alguém digita uma ideia de post para um escritório, o sistema gera o texto e <strong>trava</strong> — &ldquo;esta chamada configura captação de clientela e viola o Provimento 205/2021; sugestão de reescrita:&nbsp;…&rdquo;.</p>
+      <p>Em meia dúzia de segundos essa tela comunica três coisas de uma vez: que vocês conhecem o cliente, que conhecem a regulação, e que o produto faz algo que o ChatGPT puro não faz. É o tipo de demonstração que a banca lembra depois de vinte pitches.</p>
+    </div>
+
+    <h4 style="margin:2.4rem 0 .9rem;">Como o Raio-X funciona por dentro</h4>
+    <div class="cards">
+      <div class="card">
+        <span class="kicker">Entrada</span>
+        <h3>O que se coleta</h3>
+        <p>Formulário de 40 perguntas divididas nos 5 pilares, uma entrevista de 30 minutos com o sócio, e acesso de leitura a três coisas: a planilha financeira, o controle de leads e uma amostra de 5 processos, para medir tempo de ciclo real.</p>
+      </div>
+      <div class="card">
+        <span class="kicker">Processamento</span>
+        <h3>Como se pontua</h3>
+        <p>Rubrica de 0 a 100 por pilar, com pesos fixos. A nota mais baixa não é só um número: é o <strong>gargalo</strong>, no sentido da Teoria das Restrições. Otimizar qualquer outro pilar antes dele não muda o resultado do escritório — e essa é a tese de engenharia do projeto.</p>
+      </div>
+      <div class="card">
+        <span class="kicker">Saída</span>
+        <h3>O que o cliente recebe</h3>
+        <p>Laudo de ~12 páginas: nota por pilar, posição contra o benchmark, o gargalo nomeado, e um plano de 90 dias atacando só ele. O plano é, não por acaso, o ponto de partida do Sprint (imersão de 7 dias, R$&nbsp;9.997).</p>
+      </div>
+    </div>
+
+    <h4 style="margin:2.4rem 0 .9rem;">Arquitetura mínima — e por que ela mata o filtro F5</h4>
+    <p class="prose">Nada aqui exige stack complexa. Formulário, banco, uma camada de orquestração e o painel. O ponto não negociável é um: <strong>o código nunca chama um provedor de IA diretamente</strong>. Chama uma interface interna, e a interface decide qual modelo usar. Trocar de fornecedor vira uma linha de configuração, não uma reescrita.</p>
+    <ul class="plain">
+      <li><strong>Camada de dados</strong> — respostas, notas e a base de benchmark anonimizada. É o ativo; tudo o mais é substituível.</li>
+      <li><strong>Camada de abstração de modelo</strong> — uma interface, vários provedores atrás dela. Resolve o risco de fornecedor único, de preço e de disponibilidade.</li>
+      <li><strong>Camada de regras</strong> — o compliance da OAB como regra verificável, aplicada <em>depois</em> da geração e antes de exibir. Regra determinística não alucina; modelo alucina.</li>
+      <li><strong>Camada de apresentação</strong> — painel e laudo. É o que o cliente vê, e é a parte mais fácil de refazer.</li>
+    </ul>
+  </section>
+
+  <!-- ====================== TIME ====================== -->
+  <section id="time">
+    <div class="sec-head">
+      <span class="step">A empresa</span>
+      <h2>Seis pessoas, seis frentes</h2>
+      <p>Cada frente é dona de passos específicos do Aulet e responde por documentos específicos. Sem dono, o passo não acontece — e o plano de aula prevê que o grupo pode excluir quem não executa.</p>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <span class="kicker">Frente 1 · passos 1–3 e 9</span>
+        <h3>Cliente e campo</h3>
+        <p>Entrevistas, persona, diário de bordo, próximos 10 clientes. Dono do mínimo de 5 entrevistas exigido na Parte&nbsp;I. É a frente que sustenta C1, C3 e C8.</p>
+      </div>
+      <div class="card">
+        <span class="kicker">Frente 2 · passos 3 e 23</span>
+        <h3>Mercado e dados</h3>
+        <p>TAM, SAM e SOM com fonte citada, benchmark, desenho do Índice Precept, mercados adjacentes. Sustenta C2 e a Camada 2 da vantagem competitiva.</p>
+      </div>
+      <div class="card">
+        <span class="kicker">Frente 3 · passos 7, 14 e 21</span>
+        <h3>Produto</h3>
+        <p>Especificação de alto nível, protótipo do painel, demo do Motor de Conteúdo, definição do MVBP. Entrega o momento do pitch.</p>
+      </div>
+      <div class="card">
+        <span class="kicker">Frente 4 · passo 15</span>
+        <h3>Compliance e regulatório</h3>
+        <p>Provimento 205/2021 transformado em lista de regras verificáveis, sigilo profissional, LGPD. É a frente que leva C5 de 4 para 5 e domina o DOCUMENTO 6.</p>
+      </div>
+      <div class="card">
+        <span class="kicker">Frente 5 · passos 10–12 e 17</span>
+        <h3>Financeiro</h3>
+        <p>Escada de preços, LTV e COCA, fluxo de caixa de 12 meses, VPL, TIR e payback. Dono do DOCUMENTO 5, que é a entrega mais técnica da N1.</p>
+      </div>
+      <div class="card">
+        <span class="kicker">Frentes 1–5 · documentos 9 e 10</span>
+        <h3>Narrativa e coordenação</h3>
+        <p>Representante do grupo. Prazos, consolidação em ABNT, storytelling, slides e o ensaio cronometrado dos 5 minutos. Costura o que as outras cinco produzem.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== ARRANQUE ====================== -->
+  <section id="arranque">
+    <div class="sec-head">
+      <span class="step">Plano de entregas</span>
+      <h2>Os dez documentos, e como responder cada um</h2>
+      <p>A disciplina não pede um trabalho no fim: pede dez documentos ao longo do semestre, que se consolidam em três partes. Cada documento é uma fatia dos 24 passos do Aulet. O mapa abaixo diz o que cada um exige, o que a Precept já tem pronto e o que falta ir buscar.</p>
+    </div>
+
+    <div class="callout risk">
+      <h3>Onde vocês estão hoje, 26/08</h3>
+      <p>Os documentos <strong>1, 2 e 3 já venceram</strong> — os prazos eram 25/08, 18/08 e 25/08. O DOCUMENTO 1 está pronto e entregue em arquivo. Os documentos 2 e 3 eu consigo redigir agora, porque o conteúdo deles já está todo neste documento: mercado-praia, persona, TAM/SAM/SOM, proposta de valor quantificada e o Canvas.</p>
+      <p>A próxima terça, 01/09, é a Semana da Escola de Engenharia: <strong>não tem entrega avaliativa</strong>. A próxima entrega valendo nota é o DOCUMENTO 4, em 08/09.</p>
+    </div>
+
+    <h4 style="margin:2.2rem 0 .9rem;">Mapa das entregas</h4>
+    <div class="scroller">
+      <table>
+        <thead><tr><th>Entrega</th><th>Data</th><th>O que o professor pede</th><th>Situação da Precept</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>DOC 1</strong><br><span class="note">Ideação</span></td><td class="datecell">18–25/08</td>
+            <td>Formação do grupo e tema preliminar, com justificativa da escolha. Brainstorming de 4 projetos e nível de viabilidade.</td>
+            <td>Pronto. Arquivo <span class="mono">.docx</span> preenchido, viabilidade 8 fundamentada na matriz.</td>
+            <td><span class="stamp pass">Feito</span></td>
+          </tr>
+          <tr>
+            <td><strong>DOC 2</strong><br><span class="note">Passos 1 a 3</span></td><td class="datecell">18/08</td>
+            <td>Público-alvo, dores e problemas enfrentados, e estimativa de mercado com TAM, SAM e SOM.</td>
+            <td>Conteúdo pronto: mercado-praia recortado, dores mapeadas, funil de TAM 31,5 mi / SAM 315 mi / SOM 680 mil, segmentado em três estágios. Falta citar fonte e dar nome à persona.</td>
+            <td><span class="stamp late">Vencido</span></td>
+          </tr>
+          <tr>
+            <td><strong>DOC 3</strong><br><span class="note">Passos 4 a 6</span></td><td class="datecell">25/08</td>
+            <td>Proposta de valor e esboço inicial do Business Model Canvas.</td>
+            <td>Conteúdo pronto: as três métricas Como É / Como Poderia Ser e o core em três camadas. Falta desenhar os nove blocos do Canvas.</td>
+            <td><span class="stamp late">Vencido</span></td>
+          </tr>
+          <tr>
+            <td><strong>Campo</strong><br><span class="note">Semana da Engenharia</span></td><td class="datecell">31/08–04/09</td>
+            <td>Sem entrega avaliativa. Benchmarking de concorrentes e entrevistas exploratórias registradas em diário de bordo.</td>
+            <td>Meta de 8 entrevistas. É a semana que alimenta os documentos 2, 3, 4, 5 e a Parte I de uma vez.</td>
+            <td><span class="stamp now">Agora</span></td>
+          </tr>
+          <tr>
+            <td><strong>DOC 4</strong><br><span class="note">Passos 7 a 9</span></td><td class="datecell">08/09</td>
+            <td>Plano de acesso ao mercado: canais, estimativa de CAC e potenciais parcerias.</td>
+            <td>Escada de valor e COCA por degrau já calculados. A unidade de tomada de decisão é curta: no escritório pequeno, o sócio é campeão, comprador e veto ao mesmo tempo.</td>
+            <td><span class="stamp now">Próxima nota</span></td>
+          </tr>
+          <tr>
+            <td><strong>DOC 5</strong><br><span class="note">Passos 10 a 12</span></td><td class="datecell">22/09</td>
+            <td>Planilha de modelo de receita: fluxo de caixa de 12 meses, VPL e TIR.</td>
+            <td>Feito: Ficha de Levantamento Financeiro e Planilha Financeira de 24 meses. TMA de 24% a.a., VPL de R$&nbsp;173&nbsp;mil, TIR de 131% a.a., break-even no mês 6.</td>
+            <td><span class="stamp pass">Feito</span></td>
+          </tr>
+          <tr>
+            <td><strong>PARTE I</strong><br><span class="note">Consolida 1 a 4</span></td><td class="datecell">22/09</td>
+            <td>Relatório de 10 a 15 páginas em ABNT, com no mínimo 5 entrevistas exploratórias registradas.</td>
+            <td>Fecha a N1. As 5 entrevistas são requisito formal, não recomendação — sem elas o relatório está incompleto.</td>
+            <td><span class="stamp soon">A fazer</span></td>
+          </tr>
+          <tr>
+            <td><strong>DOC 6</strong><br><span class="note">Passos 13 a 15</span></td><td class="datecell">29/09</td>
+            <td>Plano de desenvolvimento de produto: MVP, recursos principais e barreiras regulatórias.</td>
+            <td>Os cinco módulos, a arquitetura de quatro camadas e a análise de Provimento 205, sigilo e LGPD já estão escritos. <strong>É onde a Precept abre vantagem sobre os outros grupos.</strong></td>
+            <td><span class="stamp soon">A fazer</span></td>
+          </tr>
+          <tr>
+            <td><strong>DOC 7</strong><br><span class="note">Passos 16 e 17</span></td><td class="datecell">20/10</td>
+            <td>Estratégias de escala: projeções de crescimento e pontos críticos em pessoas, tecnologia e capital.</td>
+            <td>Rota de expansão: previdenciário, depois trabalhista, depois outras praças. Métricas de TIR, ROI e payback.</td>
+            <td><span class="stamp soon">A fazer</span></td>
+          </tr>
+          <tr>
+            <td><strong>DOC 8</strong><br><span class="note">Passos 18 a 20</span></td><td class="datecell">27/10</td>
+            <td>Relatório de ajustes: feedbacks recebidos, pontos a aprimorar e melhorias imediatas.</td>
+            <td>Alimentado pela devolutiva da N1 em 06/10 e pelo retorno de campo. Documento fácil se o diário de bordo estiver em dia.</td>
+            <td><span class="stamp soon">A fazer</span></td>
+          </tr>
+          <tr>
+            <td><strong>DOC 9</strong><br><span class="note">Passos 21 a 24</span></td><td class="datecell">10/11</td>
+            <td>Versão beta do pitch, de 2 a 3 minutos, com slides preliminares.</td>
+            <td>Ensaio do pitch final. É aqui que a demo do Motor de Conteúdo precisa estar de pé.</td>
+            <td><span class="stamp soon">A fazer</span></td>
+          </tr>
+          <tr>
+            <td><strong>PARTE II</strong><br><span class="note">Consolida 5 a 8</span></td><td class="datecell">17/11</td>
+            <td>Modelo de negócio e viabilidade técnico-econômica, incorporando as correções da N1.</td>
+            <td>Fecha a N2, que pesa mais que a N1 na média final.</td>
+            <td><span class="stamp soon">A fazer</span></td>
+          </tr>
+          <tr>
+            <td><strong>PARTE III</strong><br><span class="note">Consolidado</span></td><td class="datecell">01/12</td>
+            <td>Projeto integrado, com sumário executivo de até 2 páginas dirigido a investidores e análise de riscos.</td>
+            <td>Base documental do pitch final.</td>
+            <td><span class="stamp soon">A fazer</span></td>
+          </tr>
+          <tr>
+            <td><strong>DOC 10</strong><br><span class="note">Pitch final</span></td><td class="datecell">07–12/12</td>
+            <td>Apresentação de 5 minutos sintetizando todo o plano de negócio.</td>
+            <td>Peso 5 na média final — metade da nota do semestre inteiro.</td>
+            <td><span class="stamp soon">A fazer</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout" style="margin-top:1.4rem;">
+      <h3>Como a nota fecha, e por que isso muda a prioridade</h3>
+      <p>Média final = (N1 × 2 + N2 × 3 + AF × 5) ÷ 10. O pitch final e a Parte&nbsp;III sozinhos valem <strong>metade</strong> da nota. A N1, que é tudo o que está vencendo agora, vale 20%.</p>
+      <p>Isso não é licença para relaxar no começo — a Parte&nbsp;I é a fundação de tudo o que vem depois, e a devolutiva de 06/10 é a chance de corrigir de graça. Mas define onde investir o esforço extra: no semestre inteiro, o que mais paga é chegar em dezembro com uma demo funcionando e uma venda real na mão.</p>
+    </div>
+
+    <h4 style="margin:2.4rem 0 .9rem;">Detalhe do curto prazo</h4>
+
+    <div class="tl">
+      <div class="tl-item hot">
+        <span class="date">26/08 – 30/08 · Sprint 0</span>
+        <p class="what">Fechar as decisões e montar a lista</p>
+        <p class="how">Fechar nome e recorte de mercado-praia. Montar uma lista nominal de 40 escritórios previdenciários da Grande SP (Instagram, Google Maps, Cadastro de Sociedades). Escrever o roteiro de entrevista no estilo <em>The Mom Test</em> — perguntas sobre o passado, nunca sobre a solução. Cadastrar o negócio na plataforma Wadhwani. Confirmar com o professor a aderência do tema ao núcleo de Produção.</p>
+      </div>
+      <div class="tl-item hot">
+        <span class="date">31/08 – 04/09 · Sprint 1</span>
+        <p class="what">Semana da Escola de Engenharia — a janela de campo</p>
+        <p class="how">Semana sem entrega avaliativa, reservada no plano de aula justamente para entrevistas exploratórias com diário de bordo. Meta: 8 entrevistas. Objetivo único — sair com os três números do &ldquo;Como É&rdquo; e com a resposta de &ldquo;quanto você já gastou tentando resolver isso&rdquo;. É a semana que vale meio ponto na matriz.</p>
+      </div>
+      <div class="tl-item">
+        <span class="date">05/09 – 08/09 · Sprint 2</span>
+        <p class="what">DOCUMENTO 4 — canais, CAC e parcerias</p>
+        <p class="how">COCA por degrau da escada e unidade de tomada de decisão. Num escritório pequeno o sócio costuma ser campeão, comprador e poder de veto ao mesmo tempo — ciclo curto, e mais um argumento a favor deste mercado-praia.</p>
+      </div>
+      <div class="tl-item">
+        <span class="date">15/09</span>
+        <p class="what">Oficina de validação — repreencher a matriz</p>
+        <p class="how">Segunda rodada da matriz, agora com evidência de campo. A diferença entre as duas rodadas é material de reflexão e rende um parágrafo forte na Parte&nbsp;I.</p>
+      </div>
+      <div class="tl-item">
+        <span class="date">22/09</span>
+        <p class="what">DOCUMENTO 5 + PROJETO PARTE I</p>
+        <p class="how">Fluxo de caixa de 12 meses, VPL e TIR sobre a escada de valor. Mínimo de 5 entrevistas registradas, TAM/SAM/SOM com fonte, Canvas v1 e proposta de valor quantificada. Relatório de 10 a 15 páginas em ABNT.</p>
+      </div>
+      <div class="tl-item">
+        <span class="date">29/09</span>
+        <p class="what">DOCUMENTO 6 — MVP e barreiras regulatórias</p>
+        <p class="how">Onde a Frente 4 vira nota: Provimento 205/2021, sigilo profissional, LGPD e a camada de abstração de modelo. Poucos grupos terão análise regulatória concreta; esta tem.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== MERCADO E DINHEIRO ====================== -->
+  <section id="mercado">
+    <div class="sec-head">
+      <span class="step">Mercado e dinheiro</span>
+      <h2>Os números que sustentam a matriz</h2>
+      <p>Tudo abaixo é hipótese de trabalho. Cada percentual precisa virar um dado com fonte antes de entrar no DOCUMENTO 2 — Cadastro Nacional de Sociedades de Advogados, Quadro de Advogados do Conselho Federal e Mapa de Empresas / Receita Federal pelo CNAE 6911-7/01.</p>
+    </div>
+
+    <h4 style="margin:0 0 .9rem;">TAM bottom-up do mercado-praia</h4>
+    <div class="funnel">
+      <div class="frow"><span>Sociedades de advogados ativas no Brasil</span><span class="v">~120.000</span></div>
+      <div class="frow"><span>× São Paulo capital e região metropolitana (~10%)</span><span class="v">12.000</span></div>
+      <div class="frow"><span>× faixa de faturamento R$ 250 mil a R$ 10 milhões (~35%)</span><span class="v">4.200</span></div>
+      <div class="frow"><span>× especialização em previdenciário (~25%)</span><span class="v">1.050 escritórios</span></div>
+      <div class="frow"><span>× receita anual média, ponderada pelos três estágios</span><span class="v">R$ 30.000</span></div>
+      <div class="frow out"><span><strong>TAM do mercado-praia</strong></span><span class="v">R$ 31,5 milhões/ano</span></div>
+    </div>
+    <p class="note" style="margin-top:.9rem;max-width:40rem;">Ordem de grandeza correta para um mercado-praia: grande o bastante para sustentar a empresa, pequeno o bastante para ser dominado. <strong>SAM</strong> — mesmo perfil em todo o Brasil, ~10.500 escritórios, cerca de R$&nbsp;315&nbsp;milhões. <strong>SOM ano 1</strong> (modelo financeiro) — 31 clientes Core no mês 12, 11 Sprints e 4 Scales, cerca de R$&nbsp;513&nbsp;mil de receita, ou ~1,6% do TAM. No ano 2, R$&nbsp;1,78&nbsp;milhão, com 79 clientes Core no mês 24.</p>
+
+    <div class="callout risk" style="margin-top:1.2rem;">
+      <h3>O que a faixa ampla custa, em número</h3>
+      <p>Ampliar o ICP para R$&nbsp;250&nbsp;mil a R$&nbsp;10&nbsp;milhões <strong>mais que dobra</strong> os escritórios elegíveis, de 450 para 1.050. Mas derruba o ticket médio anual de R$&nbsp;60&nbsp;mil para R$&nbsp;30&nbsp;mil, porque a maior parte da base fica no estágio de menor porte. Efeito líquido sobre o TAM: <strong>cerca de 17% de aumento</strong>, não 130%.</p>
+      <p>Vale ter esse número na ponta da língua antes de a banca perguntar. O ganho real da faixa ampla não é tamanho de mercado — é <strong>entrar barato num escritório pequeno e crescer junto com ele</strong>. Isso é LTV, e é o que sustenta o modelo.</p>
+    </div>
+
+    <h4 style="margin:2.4rem 0 .9rem;">Os três estágios dentro do ICP</h4>
+    <p class="prose">A faixa de faturamento é ampla por decisão deliberada. O que torna o conjunto homogêneo não é o tamanho — é que <strong>quem decide é sempre o sócio-fundador</strong>, o problema é sempre o mesmo, e todos circulam na mesma comunidade. O tamanho não define o cliente: define qual degrau da escada ele contrata. A régua de maturidade é a mesma do corpus do G4 — tração, transição e escala.</p>
+    <div class="scroller">
+      <table>
+        <thead><tr><th>Estágio</th><th class="num">Faturamento</th><th class="num">Advogados</th><th>Dor dominante</th><th>Oferta</th><th class="num">Receita/ano</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Tração</strong></td><td class="num">250 mil – 1 mi</td><td class="num">1 a 3</td><td>Clientes e finanças. Não sabe de onde vem o próximo caso nem se dá lucro.</td><td>Core Essencial</td><td class="num">R$ 13.764</td></tr>
+          <tr style="background:var(--accent-soft);"><td><strong>Transição</strong><br><span class="note">onde o grupo começa</span></td><td class="num">1 mi – 4 mi</td><td class="num">4 a 12</td><td>Operação e pessoas. O sócio virou o gargalo de aprovação de tudo.</td><td>Core Avançado e Sprint</td><td class="num">R$ 34.261</td></tr>
+          <tr><td><strong>Escala</strong></td><td class="num">4 mi – 10 mi</td><td class="num">13 a 40</td><td>Estratégia e pessoas. Tem estrutura, não tem sistema de gestão.</td><td>Core, Sprint e Scale</td><td class="num">R$ 64.258</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note" style="margin-top:.9rem;max-width:42rem;">A pesquisa primária e as primeiras vendas vão para o estágio de <strong>transição</strong>: é onde a dependência do dono dói mais, já existe orçamento, e o escritório ainda é pequeno o bastante para a decisão sair numa conversa só. Os outros dois são atendidos pelos degraus acima e abaixo da mesma escada, sem exigir produto novo. Distribuição estimada da base: 60% em tração, 30% em transição, 10% em escala — <em>a validar em campo</em>.</p>
+
+    <h4 style="margin:2.4rem 0 .9rem;">A escada de valor</h4>
+    <div class="scroller">
+      <table>
+        <thead><tr><th>Degrau</th><th>Oferta</th><th class="num">Preço</th><th class="num">Margem de contribuição</th><th>Função no modelo</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">1</td><td><strong>Precept Core</strong> — software, IA e Índice Precept</td><td class="num">R$ 997–1.497/mês<br><span class="note">5 licenças; extra R$ 300</span></td><td class="num">~72%</td><td>Recorrência; o produto que escala</td></tr>
+          <tr><td class="mono">2</td><td><strong>Precept Sprint</strong> — planejamento estratégico e tático em imersão de 7 dias</td><td class="num">R$ 9.997<br><span class="note">Pix ou cartão · 1 mês de Core</span></td><td class="num">~33%</td><td>Planejamento; vendido à base Core e a escritórios de fora</td></tr>
+          <tr><td class="mono">3</td><td><strong>Precept Scale</strong> — implementação dos 6 pilares em 6 meses</td><td class="num">R$ 29.997<br><span class="note">Pix ou cartão · 3 meses de Core</span></td><td class="num">~35%</td><td>Prova de resultado; maior ticket da escada</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4 style="margin:2.4rem 0 .9rem;">LTV e COCA</h4>
+    <p class="note prose" style="margin-bottom:1rem;">Usando LTV = (receita média × margem de contribuição) ÷ churn, exatamente como no material do professor. O fluxo de caixa completo está na Ficha de Levantamento Financeiro e na Planilha Financeira (24 meses, TMA de 24% a.a.).</p>
+    <div class="econ">
+      <div class="card">
+        <span class="kicker">Degrau 1 · Precept Core</span>
+        <div class="calc">
+          ARPU &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>R$ 1.497/mês</span><br>
+          Margem &nbsp;&nbsp;&nbsp;<span>72%</span><br>
+          Churn &nbsp;&nbsp;&nbsp;&nbsp;<span>3%/mês</span><br>
+          LTV &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>R$ 35.982</span><br>
+          CAC &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>R$ 1.040</span>
+        </div>
+        <div class="ratio"><span class="big">34,7×</span><span class="cap">LTV / CAC (só mídia)</span></div>
+      </div>
+      <div class="card">
+        <span class="kicker">Modelo financeiro · 24 meses</span>
+        <div class="calc">
+          VPL &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>R$ 172.527</span><br>
+          TMA &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>24% a.a.</span><br>
+          Break-even <span>mês 6</span><br>
+          Payback &nbsp;&nbsp;<span>mês 16</span><br>
+          Caixa máx. <span>R$ 120.918</span>
+        </div>
+        <div class="ratio"><span class="big">131%</span><span class="cap">TIR ao ano</span></div>
+      </div>
+    </div>
+    <p class="note" style="margin-top:.9rem;max-width:40rem;">O CAC considera só mídia (R$&nbsp;3.500/mês para ~3,4 clientes novos); o tempo de venda dos sócios fica fora, então o LTV/CAC real é menor — mas segue muito acima do piso de 3×. O número mais frágil é o volume do Core: com 30% menos clientes, o VPL cai para R$&nbsp;52&nbsp;mil e o resultado só fica positivo de forma contínua a partir do mês 8, ainda dentro do capital de R$&nbsp;150&nbsp;mil. Isso é <strong>aposta</strong> até as primeiras vendas.</p>
+
+    <h4 style="margin:2.4rem 0 .9rem;">Os 5 pilares, com ferramenta de engenharia</h4>
+    <p class="prose">São os cinco pilares do método que o grupo já domina: <strong>clientes, operação, pessoas, finanças e estratégia</strong>. Reordenados aqui na sequência do diagnóstico, da porta de entrada do escritório até o topo da casa.</p>
+    <p class="prose">Marketing, comercial, vendas e aquisição são <em>um</em> pilar só, e num escritório pequeno isso não é simplificação: é descrição. As quatro funções são a mesma pessoa, o sócio, na mesma agenda. Separá-las produziria quatro notas medindo o mesmo gargalo.</p>
+    <p class="prose">Amarrar cada pilar a uma ferramenta de Engenharia de Produção é o que transforma o projeto de &ldquo;consultoria de negócios&rdquo; em <strong>engenharia aplicada a serviços profissionais</strong> — que é o núcleo temático da disciplina.</p>
+    <div class="scroller">
+      <table>
+        <thead><tr><th>Pilar</th><th>Pergunta do escritório</th><th>Ferramenta de engenharia</th><th>Indicador</th></tr></thead>
+        <tbody>
+          <tr><td><strong>1. Clientes</strong><br><span class="note">marketing, comercial e vendas</span></td><td>De onde vem o próximo cliente, e por que ele fecha?</td><td>Funil e conversão por etapa; jornada de compra</td><td>CAC; conversão consulta→contrato; ticket médio</td></tr>
+          <tr><td><strong>2. Operação</strong></td><td>Quanto tempo leva para entregar, e onde trava?</td><td>Mapeamento BPMN; Teoria das Restrições; tempo de ciclo</td><td>Lead time; peças por advogado/mês; retrabalho</td></tr>
+          <tr><td><strong>3. Pessoas</strong></td><td>Quem faz o quê, e quanto rende?</td><td>Matriz RACI; curva de aprendizado; dimensionamento de equipe</td><td>Receita por advogado; turnover; ocupação</td></tr>
+          <tr><td><strong>4. Finanças</strong></td><td>O escritório dá lucro, e em qual área?</td><td>DRE gerencial; fluxo de caixa; margem de contribuição</td><td>Margem por área; inadimplência; fôlego de caixa</td></tr>
+          <tr><td><strong>5. Estratégia</strong></td><td>Para onde vamos, e o que decidimos não fazer?</td><td>Análise de portfólio; painel de indicadores; benchmarking</td><td>Índice Precept; concentração de receita por cliente</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout" style="margin-top:1.6rem;">
+      <h3>Dois métodos, e não podem se misturar no pitch</h3>
+      <p>Os cinco pilares são <strong>o produto</strong> — o que a Precept vende e mede dentro do escritório do cliente. Os 24 passos do Aulet são <strong>o método do projeto</strong> — como o grupo prova, para a banca, que esse produto tem mercado.</p>
+      <p>Na entrega, a linguagem é a do Aulet: mercado-praia, persona, TAM, COCA, LTV, MVBP. Os cinco pilares aparecem dentro do passo 7, como especificação de produto de alto nível. Trocar os dois de lugar é o erro que faz um bom projeto parecer um plano de consultoria.</p>
+    </div>
+
+    <div class="callout risk" style="margin-top:.8rem;">
+      <h3>Um risco a resolver esta semana</h3>
+      <p>A Aula 1 sugere energias renováveis, materiais avançados, automação, mobilidade e saneamento como áreas de interesse. Uma legaltech não está na lista. A defesa é sólida — o objeto é um sistema de produção de peças jurídicas, analisado com BPMN, tempo de ciclo, gargalo e indicadores, e otimizado por automação, que <em>está</em> na lista. Ainda assim, <strong>confirmem com o professor antes de consolidar a Parte I</strong>. É uma pergunta de dois minutos que evita retrabalho de semanas.</p>
+    </div>
+  </section>
+
+  <!-- ====================== PREENCHIMENTOS ====================== -->
+  <section id="entregas">
+    <div class="sec-head">
+      <span class="step">Formulários</span>
+      <h2>Textos prontos</h2>
+      <p>Para o DOCUMENTO 1 e para o perfil na plataforma Wadhwani, onde o grupo ainda não entrou em nenhum negócio (a turma já tem ELOA e SILLAGE cadastrados).</p>
+    </div>
+
+    <h4 style="margin:0 0 .9rem;">DOCUMENTO 1 — brainstorming de quatro projetos</h4>
+    <p class="note prose" style="margin-bottom:.9rem;">Os três alternativos não são enchimento: são recortes vizinhos do mesmo mercado, o que torna o brainstorm defensável e mostra que a escolha foi feita, não herdada.</p>
+    <div class="fillin">
+      <dl>
+        <dt>Título 1</dt><dd><strong>Precept</strong> — sistema de inteligência operacional para escritórios de advocacia de pequeno e médio porte <span class="note">(escolhido)</span></dd>
+        <dt>Título 2</dt><dd>Peticiona — automação de produção de peças repetitivas para escritórios previdenciários</dd>
+        <dt>Título 3</dt><dd>Radar OAB — auditoria automatizada de conformidade da publicidade jurídica</dd>
+        <dt>Título 4</dt><dd>Honorários+ — gestão e recuperação de recebíveis para pequenos escritórios</dd>
+        <dt>Maior nota</dt><dd>Precept</dd>
+        <dt>Viabilidade</dt><dd><strong>8 — robustamente viável.</strong> Corresponde a 4,25 na matriz de 5 pontos: fundamentação sólida, planejamento detalhado e boa escalabilidade. Sobe para 9 quando as entrevistas e a primeira venda entrarem. Um 8 justificado por matriz sustenta arguição; um 10 sem lastro cai na primeira pergunta.</dd>
+      </dl>
+    </div>
+
+    <h4 style="margin:2.2rem 0 .9rem;">Plataforma Wadhwani — perfil do negócio</h4>
+    <div class="fillin">
+      <dl>
+        <dt>Nome</dt><dd>Precept</dd>
+        <dt>Segmento</dt><dd>Tecnologia / Software B2B — LegalTech</dd>
+        <dt>País / Cidade</dt><dd>Brasil / São Paulo</dd>
+        <dt>Descrição</dt><dd>A Precept organiza a operação de escritórios de advocacia de pequeno e médio porte. Combinamos um diagnóstico de cinco pilares — clientes, operação, pessoas, finanças e estratégia — com software de inteligência artificial e programas de implementação assistida. Nosso mercado inicial são escritórios de direito previdenciário da Grande São Paulo com faturamento anual entre 250 mil e 10 milhões de reais, onde o sócio-fundador ainda acumula advogar, vender e gerir.</dd>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ====================== PERGUNTAS ====================== -->
+  <section id="perguntas">
+    <div class="sec-head">
+      <span class="step">De volta para vocês</span>
+      <h2>Cinco decisões que só o grupo toma</h2>
+      <p>Preenchi tudo o que consigo sustentar. Estas são as lacunas que mudam o que eu escreveria a seguir.</p>
+    </div>
+
+    <ol class="qs">
+      <li>Alguém do grupo tem acesso pessoal a sócios de escritório — família, estágio, cliente, amizade?
+        <span class="why">A pergunta mais importante da lista. Leva C8 de 4 para 5 sozinha e destrava as entrevistas do passo 9.</span></li>
+      <li>Previdenciário confirmado, ou outro recorte?
+        <span class="why">Recomendo previdenciário pelo volume, pela repetição de processo e pelo boca a boca forte. Mas se alguém já tem contato em trabalhista ou tributário, o contato vence a recomendação — sempre.</span></li>
+      <li>Quem assume qual das seis frentes?
+        <span class="why">Especialmente a Frente 4, compliance. É a que menos parece atraente e a que mais rende nota — vale escolher alguém que goste de ler regra e transformar em lista.</span></li>
+      <li>Dá para vender o primeiro Sprint (R$ 9.997) antes de dezembro?
+        <span class="why">Uma venda real cumpre o passo 22 e leva C4 para 5. Se não for possível, carta de intenção assinada serve — é evidência mais fraca, e vale dizer isso no projeto em vez de disfarçar.</span></li>
+      <li>O nome Precept fica?
+        <span class="why">Alternativas trabalhadas: Toga, Praxis, Cátedra, Bússola Jurídica. Precisa estar fechado antes do cadastro na Wadhwani e da capa da Parte I.</span></li>
+    </ol>
+  </section>
+
+  <footer class="foot">
+    <p>Documento de trabalho do grupo — Projetos Empreendedores 2026/2, turmas 5N e 5V, Prof. Dr. Rodrigo Martins Baptista. Método: Bill Aulet, <em>Empreendedorismo Disciplinado</em>. Valores de mercado, preços, margens e taxas de churn são hipóteses de trabalho e precisam ser substituídos por dados com fonte citada antes da entrega da Parte&nbsp;I. Atualizado em 07/10/2026 com a escada Core, Sprint e Scale, as licenças, o Core como base de todo cliente, o recebimento do Sprint e do Scale no mês da venda e os números do modelo financeiro.</p>
+  </footer>
+
+</div>
+
+</head></html>
