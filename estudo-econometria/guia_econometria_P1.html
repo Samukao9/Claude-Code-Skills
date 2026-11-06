@@ -175,6 +175,8 @@ hr{border:0;border-top:1px dashed var(--line);margin:28px 0}
 .caderno .t{font-size:32px;font-weight:700;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:5px}
 .caderno .item{font-weight:700;margin-top:var(--lh)}
 .caderno .nota{color:var(--pen-red);font-size:21px}
+.caderno .jus{font-size:22px}
+.caderno .jus>b:first-child{color:var(--pen-green)}
 .caderno u{text-decoration-thickness:2px;text-underline-offset:3px}
 .caderno mjx-container{color:inherit}
 .caderno mjx-container:not([display="true"]){margin:0 1px}
@@ -407,6 +409,7 @@ h4.dgroup{margin:16px 0 4px;font-family:var(--f-display)}
   .caderno .t{font-size:28px}
   .caderno .l.mx{font-size:16px}
   .caderno .nota{font-size:19px}
+  .caderno .jus{font-size:20px}
 }
 </style>
 
@@ -8917,6 +8920,7 @@ h4.dgroup{margin:16px 0 4px;font-family:var(--f-display)}
       <li>Faça <strong>uma conta por linha</strong>, sem pular passo.</li>
       <li>Feche cada item com a <strong>resposta dentro de um quadro</strong>.</li>
       <li>Nas de alternativa, marque <strong>V ou F</strong> em cada afirmação e escreva o motivo em uma linha.</li>
+      <li>As linhas <strong>“Por quê”</strong> são a justificativa. Copie quando a questão pedir “justifique”, “explique” ou “interprete”.</li>
     </ol>
   </div>
 
@@ -9033,23 +9037,29 @@ h4.dgroup{margin:16px 0 4px;font-family:var(--f-display)}
     <span class="l">\(\delta_1=\dfrac{-4}{4}=-1\)</span>
     <span class="l nota">↳ divide pela variância de quem FICA na regressão (o fertilizante)</span>
     <span class="l"><span class="resp">\(\text{Corr}=-0{,}4\) e \(\delta_1=-1\)</span></span>
+    <span class="l jus"><b>Por quê:</b> a correlação é a covariância dividida pelos dois desvios-padrão, por isso fica entre −1 e 1. Corr = −0,4 é uma relação negativa moderada: onde se usa mais fertilizante, o solo tende a ser pior.</span>
+    <span class="l jus">O \(\delta_1\) é a inclinação da regressão de solo sobre fertilizante, por isso divide pela variância do fertilizante: cada unidade a mais de fertilizante vem, em média, com 1 ponto a menos no índice de solo.</span>
 
     <span class="l item">b) Viés e plim</span>
     <span class="l">\(\text{viés}=\beta_2\cdot\delta_1=2\cdot(-1)=-2\)</span>
     <span class="l">\(\operatorname{plim}\tilde\beta_1=\beta_1+\beta_2\,\delta_1\)</span>
     <span class="l">\(\operatorname{plim}\tilde\beta_1=3+(-2)=1\)</span>
     <span class="l"><span class="resp">viés \(=-2\) e \(\operatorname{plim}\tilde\beta_1=1\)</span></span>
+    <span class="l jus"><b>Por quê:</b> ao omitir o solo, ele vai para o erro da regressão curta: \(v=\beta_2\,\text{solo}+u\). Como o solo é correlacionado com o fertilizante, esse erro fica correlacionado com o regressor, e a curta converge para \(\beta_1+\beta_2\delta_1\), não para \(\beta_1\).</span>
+    <span class="l jus">O termo \(\beta_2\delta_1\) é o viés assintótico: ele não some quando n cresce.</span>
 
     <span class="l item">c) Super ou sub?</span>
     <span class="l">\(\operatorname{plim}\tilde\beta_1=1\lt3=\beta_1\)</span>
     <span class="l"><span class="resp">SUBESTIMA</span></span>
     <span class="l nota">↳ porque \(\beta_2\gt0\) (solo bom aumenta a produtividade) e \(\text{Cov}\lt0\)</span>
+    <span class="l jus"><b>Por quê:</b> o sinal do viés é o sinal de \(\beta_2\) vezes o sinal da Cov: (+) × (−) = negativo. A curta atribui ao fertilizante o efeito ruim do solo pior que vem junto com ele, e por isso o coeficiente fica abaixo do verdadeiro.</span>
 
     <span class="l item">d) Agora com Cov = +4</span>
     <span class="l">\(\delta_1=\dfrac{+4}{4}=1\)</span>
     <span class="l">\(\text{viés}=\beta_2\cdot\delta_1=2\cdot1=+2\)</span>
     <span class="l">\(\operatorname{plim}\tilde\beta_1=3+2=5\gt3\)</span>
     <span class="l"><span class="resp">viés \(=+2\), \(\operatorname{plim}=5\): SUPERESTIMA</span></span>
+    <span class="l jus"><b>Por quê:</b> agora (+) × (+) = positivo. Como \(|\delta_1|\) continua 1, o viés tem o mesmo tamanho (2), só com o sinal trocado: a curta atribui ao fertilizante o efeito do solo bom que vem junto com ele.</span>
   </div>
 
   <!-- ===== QUESTÃO 6 ===== -->
@@ -9081,6 +9091,7 @@ h4.dgroup{margin:16px 0 4px;font-family:var(--f-display)}
     <span class="l">\(\bar X_1=\dfrac{\sum X_1}{n}=\dfrac{10}{5}=2\)</span>
     <span class="l">\(\bar X_2=\dfrac{\sum X_2}{n}=\dfrac{15}{5}=3\)</span>
     <span class="l"><span class="resp">\(n=5,\ \bar X_1=2,\ \bar X_2=3\)</span></span>
+    <span class="l jus"><b>Por quê:</b> \(X'X=\sum x_ix_i'\). A primeira coluna de X é de uns (o intercepto), então o elemento (1,1) é \(\sum 1\cdot1=n\), e o resto da 1ª linha é \(\sum X_1\) e \(\sum X_2\). A média é a soma dividida por n.</span>
 
     <span class="l item">b) Variâncias (divisor n − 1 = 4)</span>
     <span class="l">\(\text{Var}(X)=\dfrac{\sum X^2-n\,\bar X^2}{n-1}\)</span>
@@ -9089,12 +9100,14 @@ h4.dgroup{margin:16px 0 4px;font-family:var(--f-display)}
     <span class="l">\(\text{Var}(X_2)=\dfrac{57-5\cdot3^2}{4}\)</span>
     <span class="l">\(\text{Var}(X_2)=\dfrac{57-45}{4}=\dfrac{12}{4}=3\)</span>
     <span class="l"><span class="resp">\(\text{Var}(X_1)=2\) e \(\text{Var}(X_2)=3\)</span></span>
+    <span class="l jus"><b>Por quê:</b> a soma \(\sum(X-\bar X)^2\) é igual a \(\sum X^2-n\bar X^2\), e \(\sum X_1^2\) e \(\sum X_2^2\) estão na diagonal de X'X (posições 2 e 3). Divide por n − 1 porque o enunciado pede a variância amostral.</span>
 
     <span class="l item">c) Covariância</span>
     <span class="l">\(\text{Cov}=\dfrac{\sum X_1X_2-n\,\bar X_1\bar X_2}{n-1}\)</span>
     <span class="l">\(\text{Cov}(X_1,X_2)=\dfrac{34-5\cdot2\cdot3}{4}\)</span>
     <span class="l">\(\text{Cov}(X_1,X_2)=\dfrac{34-30}{4}=\dfrac44=1\)</span>
     <span class="l"><span class="resp">\(\text{Cov}(X_1,X_2)=1\)</span></span>
+    <span class="l jus"><b>Por quê:</b> a soma \(\sum(X_1-\bar X_1)(X_2-\bar X_2)\) é igual a \(\sum X_1X_2-n\bar X_1\bar X_2\), e \(\sum X_1X_2=34\) é o elemento (2,3) de X'X. O divisor é n − 1, como pede o enunciado.</span>
 
     <span class="l item">d) Os betas</span>
     <span class="l">\(\hat\beta=(X'X)^{-1}X'y\)</span>
@@ -9110,6 +9123,8 @@ h4.dgroup{margin:16px 0 4px;font-family:var(--f-display)}
     <span class="l">\(\hat\beta_0=2-2\cdot2-(-1)\cdot3=1\) <b class="ok">✓</b></span>
     <span class="l"><span class="resp">\(\hat\beta_0=1\quad\hat\beta_1=2\quad\hat\beta_2=-1\)</span></span>
     <span class="l"><span class="resp">\(\hat Y=1+2X_1-X_2\)</span></span>
+    <span class="l jus"><b>Por quê:</b> o MQO resolve as equações normais \(X'X\hat\beta=X'y\). Como X'X tem inversa (dada no enunciado), \(\hat\beta=(X'X)^{-1}X'y\). A conferência usa que, com intercepto, a reta passa pelo ponto das médias.</span>
+    <span class="l jus">Interpretação: mantendo \(X_2\) fixo, +1 em \(X_1\) aumenta \(\hat Y\) em 2; mantendo \(X_1\) fixo, +1 em \(X_2\) diminui \(\hat Y\) em 1.</span>
 
     <span class="l item">e) Variâncias dos betas</span>
     <span class="l">\(\widehat{\text{Var}}(\hat\beta_j)=\hat\sigma^2\cdot\big[(X'X)^{-1}\big]_{jj}\)</span>
@@ -9119,6 +9134,8 @@ h4.dgroup{margin:16px 0 4px;font-family:var(--f-display)}
     <span class="l"><span class="resp">\(\widehat{\text{Var}}(\hat\beta_1)=0{,}75\)</span></span>
     <span class="l"><span class="resp">\(\widehat{\text{Var}}(\hat\beta_2)=0{,}5\)</span></span>
     <span class="l nota">↳ se pedirem erro-padrão: √0,75 ≈ 0,866 e √0,5 ≈ 0,707</span>
+    <span class="l jus"><b>Por quê:</b> com homocedasticidade e erros não correlacionados, \(\text{Var}(\hat\beta\mid X)=\sigma^2(X'X)^{-1}\). Como \(\sigma^2\) é desconhecido, usa-se \(\hat\sigma^2\). A variância de cada \(\hat\beta\) fica na diagonal, na posição do seu β.</span>
+    <span class="l jus">Confere com \(\hat\sigma^2/[SQT_1(1-R_1^2)]\): \(SQT_1=4\cdot2=8\) e \(R_1^2=\text{Corr}^2=\tfrac{1}{2\cdot3}=\tfrac16\), então \(5/(8\cdot\tfrac56)=0{,}75\) <b class="ok">✓</b></span>
   </div>
 
   <!-- ===== QUESTÃO 7 ===== -->
@@ -9158,6 +9175,8 @@ h4.dgroup{margin:16px 0 4px;font-family:var(--f-display)}
     <span class="l mx">\(X'X=\begin{bmatrix}n&\sum X_1&\sum X_2\\ \sum X_1&\sum X_1^2&\sum X_1X_2\\ \sum X_2&\sum X_1X_2&\sum X_2^2\end{bmatrix}\)</span>
     <span class="l"><span class="resp">\(X'X=\begin{bmatrix}11&0&0\\0&20&0\\0&0&20\end{bmatrix}\)</span></span>
     <span class="l"><span class="resp">\(X'y=\begin{bmatrix}55\\40\\-40\end{bmatrix}\)</span></span>
+    <span class="l jus"><b>Por quê:</b> X'X reúne as somas de produtos das colunas (1, X₁, X₂), e X'y as somas de cada coluna vezes Y.</span>
+    <span class="l jus">Como X₁ e X₂ têm média zero, \(\sum X^2=\sum(X-\bar X)^2\), que é \((n-1)\,\text{Var}(X)\), e o mesmo vale para os produtos cruzados: \(\sum X_1Y=(n-1)\,\text{Cov}(X_1,Y)\), porque o termo \(n\bar X_1\bar Y\) é zero. Por fim, \(\sum Y=n\bar Y\).</span>
 
     <span class="l item">b) Vetor \(\hat\beta\)</span>
     <span class="l">\(\hat\beta=(X'X)^{-1}X'y\)</span>
@@ -9168,6 +9187,9 @@ h4.dgroup{margin:16px 0 4px;font-family:var(--f-display)}
     <span class="l">\(\hat\beta_2=\dfrac{-40}{20}=-2\)</span>
     <span class="l"><span class="resp">\(\hat\beta=(5;\ 2;\ -2)'\)</span></span>
     <span class="l"><span class="resp">\(\hat Y=5+2X_1-2X_2\)</span></span>
+    <span class="l jus"><b>Por quê:</b> \(\hat\beta=(X'X)^{-1}X'y\) vem das equações normais. X'X é diagonal porque os regressores têm média zero e Cov(X₁, X₂) = 0, e a inversa de uma diagonal é 1 sobre cada número.</span>
+    <span class="l jus">Com regressores centrados, \(\hat\beta_0=\bar Y=5\). Como X₁ e X₂ não são correlacionados, cada inclinação é igual à da regressão simples: 4/2 = 2 e −4/2 = −2.</span>
+    <span class="l jus">Interpretação: mantendo X₂ fixo, +1 em X₁ aumenta \(\hat Y\) em 2; mantendo X₁ fixo, +1 em X₂ diminui \(\hat Y\) em 2.</span>
 
     <span class="l item">c) SQT, SQR, R² e R² ajustado</span>
     <span class="l">\(SQT=\sum(Y-\bar Y)^2\)</span>
@@ -9191,6 +9213,8 @@ h4.dgroup{margin:16px 0 4px;font-family:var(--f-display)}
     <span class="l">\(\bar R^2=1-\dfrac{5}{20}=0{,}75\)</span>
     <span class="l"><span class="resp">\(SQT=200\quad SQR=40\)</span></span>
     <span class="l"><span class="resp">\(R^2=0{,}8\quad\bar R^2=0{,}75\)</span></span>
+    <span class="l jus"><b>Por quê:</b> com intercepto, vale SQT = SQE + SQR. A SQT é a variação total de Y em torno da média; a SQE é a parte explicada pelos regressores (com regressores centrados, \(SQE=\hat\beta_1\sum X_1Y+\hat\beta_2\sum X_2Y\)).</span>
+    <span class="l jus">R² = 0,8: o modelo explica 80% da variação de Y. O R² ajustado desconta os graus de liberdade (n − k − 1 = 8 na SQR e n − 1 = 10 na SQT), por isso fica menor.</span>
 
     <span class="l item">d) Variâncias e erros-padrão</span>
     <span class="l">\(\hat\sigma^2=\dfrac{SQR}{n-k-1}=\dfrac{40}{8}=5\)</span>
@@ -9207,6 +9231,9 @@ h4.dgroup{margin:16px 0 4px;font-family:var(--f-display)}
     <span class="l nota">↳ na diferença, a covariância entra com sinal de menos e vezes 2</span>
     <span class="l"><span class="resp">\(\hat\sigma^2=5\quad EP=0{,}5\) e \(0{,}5\)</span></span>
     <span class="l"><span class="resp">\(\widehat{\text{Var}}(\hat\beta_1-\hat\beta_2)=0{,}5\)</span></span>
+    <span class="l jus"><b>Por quê:</b> \(\hat\sigma^2=SQR/(n-k-1)\) é o estimador não viesado de σ², porque divide pelos graus de liberdade (foram estimados 3 parâmetros).</span>
+    <span class="l jus">\(\widehat{\text{Var}}(\hat\beta)=\hat\sigma^2(X'X)^{-1}\), e a parte de \((\hat\beta_1,\hat\beta_2)\) é o bloco 2 × 2 de baixo. A covariância é zero porque X₁ e X₂ não são correlacionados.</span>
+    <span class="l jus">Para a diferença: Var(a − b) = Var(a) + Var(b) − 2·Cov(a, b).</span>
   </div>
 
   <!-- ===== QUESTÃO 8 ===== -->
@@ -9243,12 +9270,20 @@ h4.dgroup{margin:16px 0 4px;font-family:var(--f-display)}
     <span class="l nota">↳ Var(u | X) = σ² e Cov = 0 para i ≠ j</span>
     <span class="l">\(\text{Var}(\hat\beta_1\mid X)=\dfrac{\sigma^2\sum r_i^2}{(\sum r_i^2)^2}\)</span>
     <span class="l"><span class="resp">\(\text{Var}(\hat\beta_1\mid X)=\dfrac{\sigma^2}{\sum r_i^2}\)</span></span>
+    <span class="l jus"><b>Por quê:</b> passo a passo:</span>
+    <span class="l jus">1) dado X, os \(r_i\) (resíduos da regressão auxiliar, que só dependem de X) e \(\sum r_i^2\) são constantes;</span>
+    <span class="l jus">2) \(\beta_1\) é um parâmetro, então não tem variância, e \(\text{Var}(cZ)=c^2\,\text{Var}(Z)\) tira \(1/\sum r_i^2\) para fora ao quadrado;</span>
+    <span class="l jus">3) a variância de uma soma é a soma das variâncias mais as covariâncias;</span>
+    <span class="l jus">4) \(\text{Var}(u_i\mid X)=\sigma^2\) (homocedasticidade) e \(\text{Cov}(u_i,u_j\mid X)=0\) (erros não correlacionados);</span>
+    <span class="l jus">5) simplifica: \(\dfrac{\sum r_i^2}{(\sum r_i^2)^2}=\dfrac{1}{\sum r_i^2}\).</span>
 
     <span class="l item">b) Com SQT e R²</span>
     <span class="l">\(\sum r_i^2\) = SQR da regressão auxiliar</span>
     <span class="l">\(R_1^2=1-\dfrac{SQR_{aux}}{SQT_{X_1}}\)</span>
     <span class="l">\(\Rightarrow\ \sum r_i^2=SQT_{X_1}(1-R_1^2)\)</span>
     <span class="l"><span class="resp">\(\text{Var}(\hat\beta_1\mid X)=\dfrac{\sigma^2}{SQT_{X_1}(1-R_1^2)}\)</span></span>
+    <span class="l jus"><b>Por quê:</b> os \(r_i\) são os resíduos da regressão auxiliar, então \(\sum r_i^2\) é a SQR dela. Pela definição do R², \(R_1^2=1-SQR_{aux}/SQT_{X_1}\), o que dá \(SQR_{aux}=SQT_{X_1}(1-R_1^2)\).</span>
+    <span class="l jus">Intuição: só a parte de X₁ que os outros regressores não explicam ajuda a estimar \(\beta_1\). Quanto maior o \(R_1^2\), maior a variância.</span>
 
     <span class="l item">c) As duas especificações</span>
     <span class="l">Curta: \(\text{Var}=\dfrac{18}{200\,(1-0)}=\dfrac{18}{200}=0{,}09\)</span>
@@ -9258,6 +9293,8 @@ h4.dgroup{margin:16px 0 4px;font-family:var(--f-display)}
     <span class="l">\(EP=\sqrt{0{,}16}=0{,}4\)</span>
     <span class="l"><span class="resp">Curta: Var = 0,09 e EP = 0,3</span></span>
     <span class="l"><span class="resp">Longa: Var = 0,16 e EP = 0,4</span></span>
+    <span class="l jus"><b>Por quê:</b> é a fórmula do item (b). Na curta, \(R_1^2=0\) porque não há outros regressores.</span>
+    <span class="l jus">A longa tem σ² menor (o regressor incluído explica parte de Y), mas \(R_1^2=0{,}75\) deixa só 25% da variação de X₁ livre. Esse segundo efeito pesa mais, e a variância sobe de 0,09 para 0,16.</span>
 
     <span class="l item">d) Viés e EQM</span>
     <span class="l">\(\text{viés}=E(\hat\beta_1)-\beta_1\)</span>
@@ -9270,6 +9307,8 @@ h4.dgroup{margin:16px 0 4px;font-family:var(--f-display)}
     <span class="l"><span class="resp">Curta: viés = 0,4 e EQM = 0,25</span></span>
     <span class="l"><span class="resp">Longa: viés = 0 e EQM = 0,16</span></span>
     <span class="l nota">↳ a curta tem variância menor, mas a longa tem EQM menor (erra menos no total)</span>
+    <span class="l jus"><b>Por quê:</b> viés = \(E(\hat\beta_1)-\beta_1\) e \(EQM=E[(\hat\beta_1-\beta_1)^2]\), que é \(\text{Var}+\text{viés}^2\).</span>
+    <span class="l jus">A curta é viesada porque omite uma variável relevante e correlacionada com X₁. Ela é mais precisa, mas erra mais no total (EQM 0,25 &gt; 0,16), então pelo critério do EQM a longa é melhor.</span>
   </div>
 
   <h3>O que essa prova repetiu das listas</h3>
