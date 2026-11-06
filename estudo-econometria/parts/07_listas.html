@@ -1,0 +1,88 @@
+
+<!-- ================= LISTA 1 ================= -->
+<section class="mod" id="lista1" data-title="Lista 1">
+  <div class="eyebrow">Lista de Exercícios 1 · Aulas 1 a 4</div>
+  <h2>Lista 1: as 60 questões</h2>
+  <p>Versão compacta do gabarito: nas conceituais, a alternativa e o motivo; nas numéricas, o caminho e o resultado. As conceituais também estão como teste interativo dentro de cada aula.</p>
+
+  <details class="sol"><summary>Questões 1 a 15: natureza da econometria e dados</summary><div class="in">
+    <ul>
+      <li><strong>Q1 (E).</strong> As três verdadeiras.</li>
+      <li><strong>Q2 (D).</strong> “Efeito” é causal e exige contrafactual; II e III verdadeiras.</li>
+      <li><strong>Q3 (A).</strong> Só I. Mais dados e inferência não resolvem identificação.</li>
+      <li><strong>Q4 (C).</strong> I e III. Reordenar um corte transversal não muda a informação.</li>
+      <li><strong>Q5 (B).</strong> I e II. O valor do estimador varia entre amostras.</li>
+      <li><strong>Q6.</strong> Turmas A (78, 85, 90, 74, 88) e B (70, 75, 68, 80, 72): médias 83 e 73, diferença 10. \(s_A^2=184/4=46\), \(s_B^2=88/4=22\). Diferença padronizada \(10/\sqrt{(46+22)/2}=10/\sqrt{34}\approx1{,}71\).</li>
+      <li><strong>Q7.</strong> Erros \(e_i=Y_i-\hat Y_i\): modelo 1 (−1, 1, −1, 2), modelo 2 (1, −1, 2, −2). EAM 1,25 × 1,50; EQM 1,75 × 2,50. O modelo 1 é preferido pelos dois critérios.</li>
+      <li><strong>Q8.</strong> Estimativas (30, 33, 28, 35, 29): média 31; desvios (−1, 2, −3, 4, −2), soma de quadrados 34, Var = 34/5 = 6,80. Parâmetro 31 ⇒ viés 0, e EQM = Var + Viés² = 6,80 + 0 = 6,80.</li>
+      <li><strong>Q9.</strong> \(1200+150educ+40exper+300mulher\): (10, 8) dá 3.020 e 3.320; (14, 3) dá 3.420 e 3.720. Diferença de 300 nos dois casos, porque o modelo é aditivo.</li>
+      <li><strong>Q10.</strong> Diferença antes 68 − 71 = −3; depois 79 − 74 = 5; mudanças 11 e 3; diferença em diferenças 11 − 3 = 8 (= 5 − (−3)).</li>
+      <li><strong>Q11.</strong> Mudanças (4, −2, 7), média 3,00. Médias dos anos 8,33 e 11,33: diferença 3,00, igual porque são as mesmas empresas.</li>
+      <li><strong>Q12.</strong> Médias 2.070 (2010) e 2.655 (2020): mudança 585. Dentro de A, +400; dentro de B, +500. Com pesos de 2010, 2020 seria 2.515 (mudança 445). Os 140 restantes vêm da mudança de composição (emprego migrando para B, que paga mais).</li>
+      <li><strong>Q13.</strong> Média populacional 0,65(1.800) + 0,35(3.200) = 2.290; amostral 50–50 = 2.500; diferença 210. Com amostra 10× maior e mesmos 50–50, a diferença continua 210: n maior reduz variância, mas não corrige falta de representatividade.</li>
+      <li><strong>Q14.</strong> Preços mensais 2015–2024: série temporal, N = 1, T ≈ 120. Renda de 500 famílias num mês: corte transversal, N = 500, T = 1. Notas de 40 alunos em 4 semestres: painel, N = 40, T = 4.</li>
+      <li><strong>Q15.</strong> “Efeito de um ano de experiência mantendo escolaridade” é causal (exige estratégia de identificação). “Média salarial de quem tem mais de 10 anos” é descritiva (basta uma média condicional).</li>
+    </ul>
+  </div></details>
+
+  <details class="sol"><summary>Questões 16 a 30: matemática, probabilidade e estatística</summary><div class="in">
+    <ul>
+      <li><strong>Q16 (B).</strong> I e II; soma de quadrados nunca é negativa.</li>
+      <li><strong>Q17 (E).</strong> Bernoulli: E = π, Var = π(1 − π), máxima em 0,5.</li>
+      <li><strong>Q18 (A).</strong> Só I; covariância zero não implica independência.</li>
+      <li><strong>Q19 (C).</strong> I e III; a covariância depende da unidade.</li>
+      <li><strong>Q20 (D).</strong> II e III; o TCL é sobre a média padronizada.</li>
+      <li><strong>Q21.</strong> x = (3, 6, 7, 8): \(\bar x=6\), \(\sum(x_i-\bar x)=0\), \(\sum(x_i-\bar x)^2=14\) e \(\sum x_i^2-n\bar x^2=158-144=14\).</li>
+      <li><strong>Q22.</strong> E(X) = 0,60, E(Y) = 0,60, E(XY) = P(1, 1) = 0,45, Cov = 0,45 − 0,36 = 0,09, Var(X) = Var(Y) = 0,24, Corr = 0,09/0,24 = 0,375.</li>
+      <li><strong>Q23.</strong> E(Y | X = 0) = 0,15/0,40 = 0,375; E(Y | X = 1) = 0,45/0,60 = 0,75; 0,40(0,375) + 0,60(0,75) = 0,60 = E(Y) (LEI).</li>
+      <li><strong>Q24.</strong> E(3X − 2Y + 4) = 15 − 40 + 4 = −21. Var = 9(9) + 4(16) + 2(3)(−2)(−6) = 81 + 64 + 72 = 217. Cov(3X + 2, 4Y − 1) = 12(−6) = −72. Corr = −6/(3·4) = −0,50.</li>
+      <li><strong>Q25.</strong> E(Y) = 0,6(18) + 0,4(30) = 22,80. Com 50–50: 24,00; 70–30: 21,60; 90–10: 19,20.</li>
+      <li><strong>Q26.</strong> Média 80, variância 144: n = 16 → Var 9, ep 3; n = 36 → 4 e 2; n = 144 → 1 e 1. Quadruplicar n corta o ep pela metade.</li>
+      <li><strong>Q27.</strong> D ~ Bernoulli(0,25): E = 0,25, Var = 0,1875, Std ≈ 0,4330. S = ΣD (150 obs.): E = 37,5, Var = 28,125, Std ≈ 5,30. \(\bar D\): E = 0,25, Var = 0,00125, Std ≈ 0,0354.</li>
+      <li><strong>Q28.</strong> Corr original 6/12 = 0,50. (3X, 2Y): Cov 36, Corr 0,50. (−2X, Y): Cov −12, Corr −0,50. (X − 4, Y + 9): Cov 6, Corr 0,50.</li>
+      <li><strong>Q29.</strong> E(X) = 2, E(X²) = 4,6, Var(X) = 0,6. E(Y) = 2 + 5(2) = 12. Cov[X, E(Y|X)] = 5 Var(X) = 3. Var[E(Y|X)] = 25(0,6) = 15.</li>
+      <li><strong>Q30.</strong> Some e subtraia E(Y|X): \(Y-E(Y)=a+b\), com \(a=Y-E(Y\mid X)\) e \(b=E(Y\mid X)-E(Y)\). \(E(a^2)=E[Var(Y\mid X)]\) pela LEI; \(E(b^2)=Var[E(Y\mid X)]\); o termo cruzado some porque, dado X, b é constante e \(E(a\mid X)=0\). Logo \(Var(Y)=E[Var(Y\mid X)]+Var[E(Y\mid X)]\).</li>
+    </ul>
+  </div></details>
+
+  <details class="sol"><summary>Questões 31 a 45: regressão linear simples</summary><div class="in">
+    <ul>
+      <li><strong>Q31 (A).</strong> Só I; média condicional zero não implica homocedasticidade nem independência.</li>
+      <li><strong>Q32 (C).</strong> I e III; resíduo ≠ erro.</li>
+      <li><strong>Q33 (E).</strong> As três são propriedades algébricas do MQO com intercepto.</li>
+      <li><strong>Q34 (B).</strong> I e II; o intercepto nem sempre é interpretável.</li>
+      <li><strong>Q35 (D).</strong> II e III; \(R^2\) alto não garante causalidade.</li>
+      <li><strong>Q36.</strong> x = (2, 3, 5, 6), y = (4, 5, 8, 9): \(\bar x=4\), \(\bar y=6{,}5\); desvios de x (−2, −1, 1, 2) e de y (−2,5; −1,5; 1,5; 2,5); produtos somam 13; quadrados somam 10. \(\hat\beta_1=1{,}30\), \(\hat\beta_0=6{,}5-1{,}3(4)=1{,}30\).</li>
+      <li><strong>Q37.</strong> \(\hat y\) = (3,90; 5,20; 7,80; 9,10); \(\hat u\) = (0,10; −0,20; 0,20; −0,10). \(\sum\hat u_i=0\) e \(\sum x_i\hat u_i=0{,}2-0{,}6+1{,}0-0{,}6=0\).</li>
+      <li><strong>Q38.</strong> SQT = 6,25 + 2,25 + 2,25 + 6,25 = 17; SQR = 0,01 + 0,04 + 0,04 + 0,01 = 0,10; SQE = 16,90; \(R^2\approx0{,}9941\).</li>
+      <li><strong>Q39.</strong> \(\hat\beta_1=35/50=0{,}70\); \(\hat\beta_0=20-0{,}7(8)=14{,}40\). \(\hat y(4)=17{,}20\), \(\hat y(12)=22{,}80\); diferença 5,60 = 8 × 0,70.</li>
+      <li><strong>Q40.</strong> A derivação completa das CPOs está na <a href="#aula3">Aula 3, seção 5</a>.</li>
+      <li><strong>Q41.</strong> \(\sum(x_i-\bar x)\hat u_i=\sum x_i\hat u_i-\bar x\sum\hat u_i=0\). Como \(\hat y_i-\bar y=\hat\beta_1(x_i-\bar x)\), \(\sum(\hat y_i-\bar y)\hat u_i=\hat\beta_1\sum(x_i-\bar x)\hat u_i=0\).</li>
+      <li><strong>Q42.</strong> \(\hat y=6+0{,}8x\) (y em R$ mil, x em anos). Em reais: 6.000 + 800x. Em meses (m = 12x): 6 + (0,8/12)m. Ambos: 6.000 + (800/12)m. Para 15 anos (180 meses), todos dão R$ 18.000.</li>
+      <li><strong>Q43.</strong> \(\hat y=3+2x\) em x = 0…4: (3, 5, 7, 9, 11); resíduos (−1, 2, −1, 3, 6); SQR = 51; SQR/n = 10,20.</li>
+      <li><strong>Q44.</strong> SQE = 0,72(400) = 288, SQR = 112. Y × 5 multiplica cada soma de quadrados por 25: SQT = 10.000, SQE = 7.200, SQR = 2.800, e \(R^2\) continua 0,72.</li>
+      <li><strong>Q45.</strong> A: resíduos (−1, 2, −2, 2), SQR 13, EAM 1,75. B: (3, −3, 3, −3), SQR 36, EAM 3,00. A é melhor; redução de SQR de (36 − 13)/36 ≈ 63,89%.</li>
+    </ul>
+  </div></details>
+
+  <details class="sol"><summary>Questões 46 a 60: escala e forma funcional</summary><div class="in">
+    <ul>
+      <li><strong>Q46 (E).</strong> As três verdadeiras.</li>
+      <li><strong>Q47 (D).</strong> II e III; nível–nível mede unidades, não percentual.</li>
+      <li><strong>Q48 (A).</strong> Só I; log–log é elasticidade, e “β₁ vezes” é aproximação.</li>
+      <li><strong>Q49 (C).</strong> I e III; \(\sqrt{\beta_1}\) não é linear no parâmetro.</li>
+      <li><strong>Q50 (B).</strong> I e II; \(\beta_2&gt;0\) é convexa.</li>
+      <li><strong>Q51.</strong> \(\hat Y=18+2X\), \(\tilde Y=5+3Y\), \(\tilde X=8+2X\). Como \(X=(\tilde X-8)/2\): \(Y=10+\tilde X\) e \(\tilde Y=35+3\tilde X\). Para X = 6: Y = 30, \(\tilde X=20\), \(\tilde Y=95=35+3(20)\).</li>
+      <li><strong>Q52.</strong> \(\widehat{\ln sal}=1{,}80+0{,}06\,educ\). +2 anos: 12% aprox., \(100(e^{0,12}-1)\approx12{,}75\%\) exato. +4: 24% e 27,12%. +6: 36% e 43,33%. A aproximação subestima cada vez mais.</li>
+      <li><strong>Q53.</strong> \(\widehat{gastos}=15+9\ln(renda)\). Exato: \(9\ln(1+p)\); aproximação: \(9p\). 2%: 0,18 e 0,18. 8%: 0,72 e 0,69. 30%: 2,70 e 2,36.</li>
+      <li><strong>Q54.</strong> Elasticidade 0,45: 4% → 1,80% aprox., \(100[(1{,}04)^{0,45}-1]\approx1{,}78\%\). 12% → 5,40% e 5,23%. 20% → 9,00% e 8,55%. Aqui a aproximação superestima.</li>
+      <li><strong>Q55.</strong> \(\hat Y=6+5X-0{,}4X^2\): efeito marginal \(5-0{,}8X\) = (5; 3,4; 1; 0,2; −1,4) em X = 0, 2, 5, 6, 8. Retorno em 6,25. \(\hat Y(5)=21\), \(\hat Y(6)=21{,}6\), \(\hat Y(7)=21{,}4\).</li>
+      <li><strong>Q56.</strong> \(3+2X_1+5X_2-0{,}3X_1X_2\): \(\partial/\partial X_1=2-0{,}3X_2\) = (2; 1,1; 0,5) em \(X_2\) = 0, 3, 5; \(\partial/\partial X_2=5-0{,}3X_1\) = (4,7; 3,8) em \(X_1\) = 1, 4. \(\hat Y(1,0)=5\), \(\hat Y(1,3)=19{,}1\), \(\hat Y(4,3)=22{,}4\).</li>
+      <li><strong>Q57.</strong> \(\widehat{\ln Y}=1{,}5+0{,}25X\): (1,50; 1,75; 2,00; 2,25; 2,50); exponenciando, ≈ (4,48; 5,75; 7,39; 9,49; 12,18). A razão entre consecutivos é sempre \(e^{0,25}\approx1{,}2840\).</li>
+      <li><strong>Q58.</strong> Linear 8 + 3X: (8, 14, 20, 26, 32), efeito 3. Quadrático 4 + 6X − 0,6X²: (4; 13,6; 18,4; 18,4; 13,6), efeito 6 − 1,2X = (6; 3,6; 1,2; −1,2; −3,6). \(\hat Y_Q-\hat Y_L\) = (−4; −0,4; −1,6; −7,6; −18,4). Pico em X = 5.</li>
+      <li><strong>Q59.</strong> \(\hat y=12+2{,}5X\). Com \(Y^*=1000Y\), \(X^*=10X\): inclinação 1000(2,5)/10 = 250, intercepto 12.000. Com \(Y^{**}=200+1000Y\), \(X^{**}=30+10X\): inclinação 250 e intercepto 200 + 12.000 − 250(30) = 4.700. A inclinação depende só da razão das escalas; o intercepto, também dos deslocamentos.</li>
+      <li><strong>Q60.</strong> educ (9, 11, 13, 15), ln(sal) (2,60; 2,75; 2,95; 3,05): \(\bar x=12\), \(\bar y=2{,}8375\), soma dos produtos 1,55, \(SQT_x=20\). \(\hat\beta_1=0{,}0775\), \(\hat\beta_0=1{,}9075\). Ajustados (2,6050; 2,7600; 2,9150; 3,0700), resíduos (−0,005; −0,010; 0,035; −0,020). SQT = 0,12188, SQR = 0,00175, \(R^2\approx0{,}9856\). +2 anos: 15,50% aprox., 16,77% exato.</li>
+    </ul>
+  </div></details>
+  <div class="done-row"><button class="btn done-btn" data-done="lista1" aria-pressed="false">Marcar como concluído</button></div>
+</section>

@@ -1,0 +1,51 @@
+<svg class="fig" viewBox="0 0 560 300" role="img" aria-label="Reta verdadeira fixa e três retas estimadas em amostras diferentes" xmlns="http://www.w3.org/2000/svg">
+<line class="g" x1="50" y1="250" x2="540" y2="250"/>
+<line class="g" x1="50" y1="212.3" x2="540" y2="212.3"/>
+<line class="g" x1="50" y1="174.7" x2="540" y2="174.7"/>
+<line class="g" x1="50" y1="137" x2="540" y2="137"/>
+<line class="g" x1="50" y1="99.3" x2="540" y2="99.3"/>
+<line class="g" x1="50" y1="61.7" x2="540" y2="61.7"/>
+<line class="g" x1="50" y1="24" x2="540" y2="24"/>
+<line class="g" x1="50" y1="24" x2="50" y2="250"/>
+<line class="g" x1="148" y1="24" x2="148" y2="250"/>
+<line class="g" x1="246" y1="24" x2="246" y2="250"/>
+<line class="g" x1="344" y1="24" x2="344" y2="250"/>
+<line class="g" x1="442" y1="24" x2="442" y2="250"/>
+<line class="g" x1="540" y1="24" x2="540" y2="250"/>
+<line class="ax" x1="50" y1="250" x2="540" y2="250"/>
+<line class="ax" x1="50" y1="24" x2="50" y2="250"/>
+<text class="tk" x="50" y="266" text-anchor="middle">0</text>
+<text class="tk" x="148" y="266" text-anchor="middle">2</text>
+<text class="tk" x="246" y="266" text-anchor="middle">4</text>
+<text class="tk" x="344" y="266" text-anchor="middle">6</text>
+<text class="tk" x="442" y="266" text-anchor="middle">8</text>
+<text class="tk" x="540" y="266" text-anchor="middle">10</text>
+<text class="tk" x="43" y="254" text-anchor="end">0</text>
+<text class="tk" x="43" y="216.3" text-anchor="end">2</text>
+<text class="tk" x="43" y="178.7" text-anchor="end">4</text>
+<text class="tk" x="43" y="141" text-anchor="end">6</text>
+<text class="tk" x="43" y="103.3" text-anchor="end">8</text>
+<text class="tk" x="43" y="65.7" text-anchor="end">10</text>
+<text class="tk" x="43" y="28" text-anchor="end">12</text>
+<text class="lb" x="295" y="294" text-anchor="middle">x</text>
+<text class="lb" x="12" y="137" text-anchor="middle" transform="rotate(-90 12 137)">y</text>
+<line class="samp" x1="50" y1="217.2" x2="540" y2="45.1"/>
+<line class="samp" x1="50" y1="181.7" x2="540" y2="87"/>
+<line class="samp" x1="50" y1="202.6" x2="540" y2="59.6"/>
+<circle class="pt sm" cx="274" cy="97.2" r="3"/>
+<circle class="pt sm" cx="321.4" cy="99.3" r="3"/>
+<circle class="pt sm" cx="482.1" cy="82.5" r="3"/>
+<circle class="pt sm" cx="279.9" cy="149.9" r="3"/>
+<circle class="pt sm" cx="298.5" cy="58.5" r="3"/>
+<circle class="pt sm" cx="333.5" cy="133.9" r="3"/>
+<circle class="pt sm" cx="155.9" cy="203.4" r="3"/>
+<circle class="pt sm" cx="300.3" cy="169.7" r="3"/>
+<circle class="pt sm" cx="352.3" cy="116.5" r="3"/>
+<circle class="pt sm" cx="424.2" cy="92.9" r="3"/>
+<circle class="pt sm" cx="116" cy="202.4" r="3"/>
+<circle class="pt sm" cx="208.3" cy="165.5" r="3"/>
+<line class="truel" x1="50" y1="212.3" x2="540" y2="61.7"/>
+<text class="an" x="535.1" y="186" text-anchor="end">tracejada: reta verdadeira, β₁ = 0,8 (fixa)</text>
+<text class="an fitc" x="535.1" y="206.7" text-anchor="end">azuis: retas de 3 amostras diferentes</text>
+<text class="an fitc" x="535.1" y="227.4" text-anchor="end">β̂₁ = 0,91; 0,50; 0,76</text>
+</svg>

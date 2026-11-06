@@ -1,0 +1,63 @@
+<svg class="fig" viewBox="0 0 560 330" role="img" aria-label="Para cada ponto, o desvio total em relação à média se divide em parte explicada pela reta e resíduo" xmlns="http://www.w3.org/2000/svg">
+<line class="g" x1="58" y1="280" x2="540" y2="280"/>
+<line class="g" x1="58" y1="242.9" x2="540" y2="242.9"/>
+<line class="g" x1="58" y1="205.7" x2="540" y2="205.7"/>
+<line class="g" x1="58" y1="168.6" x2="540" y2="168.6"/>
+<line class="g" x1="58" y1="131.4" x2="540" y2="131.4"/>
+<line class="g" x1="58" y1="94.3" x2="540" y2="94.3"/>
+<line class="g" x1="58" y1="57.1" x2="540" y2="57.1"/>
+<line class="g" x1="58" y1="20" x2="540" y2="20"/>
+<line class="g" x1="58" y1="20" x2="58" y2="280"/>
+<line class="g" x1="138.3" y1="20" x2="138.3" y2="280"/>
+<line class="g" x1="218.7" y1="20" x2="218.7" y2="280"/>
+<line class="g" x1="299" y1="20" x2="299" y2="280"/>
+<line class="g" x1="379.3" y1="20" x2="379.3" y2="280"/>
+<line class="g" x1="459.7" y1="20" x2="459.7" y2="280"/>
+<line class="g" x1="540" y1="20" x2="540" y2="280"/>
+<line class="ax" x1="58" y1="280" x2="540" y2="280"/>
+<line class="ax" x1="58" y1="20" x2="58" y2="280"/>
+<text class="tk" x="58" y="296" text-anchor="middle">6</text>
+<text class="tk" x="138.3" y="296" text-anchor="middle">8</text>
+<text class="tk" x="218.7" y="296" text-anchor="middle">10</text>
+<text class="tk" x="299" y="296" text-anchor="middle">12</text>
+<text class="tk" x="379.3" y="296" text-anchor="middle">14</text>
+<text class="tk" x="459.7" y="296" text-anchor="middle">16</text>
+<text class="tk" x="540" y="296" text-anchor="middle">18</text>
+<text class="tk" x="51" y="284" text-anchor="end">8</text>
+<text class="tk" x="51" y="246.9" text-anchor="end">10</text>
+<text class="tk" x="51" y="209.7" text-anchor="end">12</text>
+<text class="tk" x="51" y="172.6" text-anchor="end">14</text>
+<text class="tk" x="51" y="135.4" text-anchor="end">16</text>
+<text class="tk" x="51" y="98.3" text-anchor="end">18</text>
+<text class="tk" x="51" y="61.1" text-anchor="end">20</text>
+<text class="tk" x="51" y="24" text-anchor="end">22</text>
+<text class="lb" x="299" y="324" text-anchor="middle">Anos de estudo (x)</text>
+<text class="lb" x="12" y="150" text-anchor="middle" transform="rotate(-90 12 150)">Salário-hora, R$ (y)</text>
+<line class="mean" x1="58" y1="161.1" x2="540" y2="161.1"/>
+<line class="fit" x1="98.2" y1="267.9" x2="499.8" y2="54.4"/>
+<line class="tot" x1="129.3" y1="161.1" x2="129.3" y2="242.9"/>
+<line class="expl" x1="138.3" y1="161.1" x2="138.3" y2="246.6"/>
+<line class="res" x1="147.3" y1="246.6" x2="147.3" y2="242.9"/>
+<line class="tot" x1="209.7" y1="161.1" x2="209.7" y2="205.7"/>
+<line class="expl" x1="218.7" y1="161.1" x2="218.7" y2="203.9"/>
+<line class="res" x1="227.7" y1="203.9" x2="227.7" y2="205.7"/>
+<line class="tot" x1="290" y1="161.1" x2="290" y2="150"/>
+<line class="expl" x1="299" y1="161.1" x2="299" y2="161.1"/>
+<line class="res" x1="308" y1="161.1" x2="308" y2="150"/>
+<line class="tot" x1="370.3" y1="161.1" x2="370.3" y2="150"/>
+<line class="expl" x1="379.3" y1="161.1" x2="379.3" y2="118.4"/>
+<line class="res" x1="388.3" y1="118.4" x2="388.3" y2="150"/>
+<line class="tot" x1="450.7" y1="161.1" x2="450.7" y2="57.1"/>
+<line class="expl" x1="459.7" y1="161.1" x2="459.7" y2="75.7"/>
+<line class="res" x1="468.7" y1="75.7" x2="468.7" y2="57.1"/>
+<circle class="pt" cx="138.3" cy="242.9" r="4.5"/>
+<circle class="pt" cx="218.7" cy="205.7" r="4.5"/>
+<circle class="pt" cx="299" cy="150" r="4.5"/>
+<circle class="pt" cx="379.3" cy="150" r="4.5"/>
+<circle class="pt" cx="459.7" cy="57.1" r="4.5"/>
+<text class="an" x="536" y="244.7" text-anchor="end">em x = 16: total 5,6 =</text><text class="an" x="536" y="265.1" text-anchor="end">explicado 4,6 + resíduo 1,0</text>
+<text class="an" x="536" y="177.1" text-anchor="end">ȳ = 14,4</text>
+<line class="tot" x1="70" y1="30.9" x2="92" y2="30.9"/><text class="an sm" x="98" y="34.9">preta: total, y − ȳ</text>
+<line class="expl" x1="70" y1="48.9" x2="92" y2="48.9"/><text class="an sm" x="98" y="52.9">azul: explicado, ŷ − ȳ</text>
+<line class="res" x1="70" y1="66.9" x2="92" y2="66.9"/><text class="an sm" x="98" y="70.9">vermelha: resíduo, y − ŷ</text>
+</svg>

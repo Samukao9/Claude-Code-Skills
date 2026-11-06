@@ -1,0 +1,3 @@
+<svg class="fig mini" viewBox="0 0 240 140" role="img" aria-label="Duas retas com inclinações diferentes: interação entre a dummy e x" xmlns="http://www.w3.org/2000/svg">
+<line class="ax" x1="16" y1="112" x2="228" y2="112"/><line class="ax" x1="16" y1="10" x2="16" y2="112"/><line class="fit" x1="16" y1="95" x2="228" y2="52.5"/><line class="tgn" x1="16" y1="86.5" x2="228" y2="18.5"/><line class="brk" x1="58.4" y1="86.5" x2="58.4" y2="72.9"/><line class="brk" x1="185.6" y1="61" x2="185.6" y2="32.1"/><text class="an sm fitc" x="223.8" y="74.5" text-anchor="end">D = 0</text><text class="an sm resc" x="223.8" y="12.5" text-anchor="end">D = 1</text><text class="an sm" x="120" y="130" text-anchor="middle">interação D·x: inclinações diferentes</text>
+</svg>

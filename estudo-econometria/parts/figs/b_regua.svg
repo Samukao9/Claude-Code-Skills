@@ -1,0 +1,32 @@
+<svg class="fig" viewBox="0 0 600 178" role="img" aria-label="Régua de erros-padrão: a estimativa está a cerca de seis erros-padrão do zero e o intervalo não contém o zero" xmlns="http://www.w3.org/2000/svg">
+<line class="ax" x1="30" y1="120" x2="580" y2="120"/>
+<line class="ax" x1="30" y1="20" x2="30" y2="120"/>
+<text class="tk" x="71.2" y="136" text-anchor="middle">0</text>
+<text class="tk" x="222.5" y="136" text-anchor="middle">0,55</text>
+<text class="tk" x="387.5" y="136" text-anchor="middle">1,15</text>
+<text class="tk" x="552.5" y="136" text-anchor="middle">1,75</text>
+<text class="lb" x="305" y="172" text-anchor="middle">valores de β₁</text>
+<text class="lb" x="12" y="70" text-anchor="middle" transform="rotate(-90 12 70)"></text>
+<line class="mean" x1="71.2" y1="30" x2="71.2" y2="120"/>
+<text class="tk" x="71.2" y="26" text-anchor="middle">0 EP</text>
+<line class="mean" x1="123.2" y1="30" x2="123.2" y2="120"/>
+<text class="tk" x="123.2" y="26" text-anchor="middle">1 EP</text>
+<line class="mean" x1="175.2" y1="30" x2="175.2" y2="120"/>
+<text class="tk" x="175.2" y="26" text-anchor="middle">2 EP</text>
+<line class="mean" x1="227.2" y1="30" x2="227.2" y2="120"/>
+<text class="tk" x="227.2" y="26" text-anchor="middle">3 EP</text>
+<line class="mean" x1="279.1" y1="30" x2="279.1" y2="120"/>
+<text class="tk" x="279.1" y="26" text-anchor="middle">4 EP</text>
+<line class="mean" x1="331.1" y1="30" x2="331.1" y2="120"/>
+<text class="tk" x="331.1" y="26" text-anchor="middle">5 EP</text>
+<line class="mean" x1="383.1" y1="30" x2="383.1" y2="120"/>
+<text class="tk" x="383.1" y="26" text-anchor="middle">6 EP</text>
+<line class="fit" x1="222.2" y1="86" x2="552.8" y2="86"/>
+<line class="fit" x1="222.2" y1="79" x2="222.2" y2="93"/>
+<line class="fit" x1="552.8" y1="79" x2="552.8" y2="93"/>
+<circle class="pt" cx="387.5" cy="86" r="5"/>
+<text class="an" x="222.2" y="74">IC 95%: 1,15 ± 3,182 × 0,189 = [0,55; 1,75]</text>
+<line class="obs" x1="71.2" y1="34" x2="71.2" y2="120"/>
+<text class="an resc" x="77.2" y="112">H₀: β₁ = 0</text>
+<text class="an fitc" x="580" y="112" text-anchor="end">β̂₁ = 1,15 está a t = 1,15 / 0,189 ≈ 6,08 EPs do zero</text>
+</svg>

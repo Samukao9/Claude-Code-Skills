@@ -1,0 +1,9 @@
+<svg class="fig" viewBox="0 0 560 156" role="img" aria-label="Barra da SQT dividida em SQE e SQR, com o R-quadrado como a fração explicada" xmlns="http://www.w3.org/2000/svg">
+<text class="an" x="20" y="22" font-weight="700">SQT = 57,2: toda a variação de y em torno de ȳ</text>
+<rect class="barA" x="20" y="34" width="480.9" height="44" rx="4"/>
+<rect class="sqr" x="500.9" y="34" width="39.1" height="44" rx="4"/>
+<text class="an" x="260.5" y="61" text-anchor="middle" font-weight="700">SQE = 52,9 (explicada pela reta)</text>
+<text class="an resc" x="540" y="98" text-anchor="end">SQR = 4,3 (resíduos) ↑</text>
+<text class="an fitc" x="20" y="124">R² = SQE / SQT = 52,9 / 57,2 = 0,925: 92,5% da barra é azul</text>
+<text class="an resc" x="20" y="144">1 − R² = SQR / SQT = 4,3 / 57,2 = 0,075: o que a reta não explica</text>
+</svg>

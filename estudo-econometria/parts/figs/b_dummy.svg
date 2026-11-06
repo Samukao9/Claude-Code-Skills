@@ -1,0 +1,38 @@
+<svg class="fig" viewBox="0 0 560 300" role="img" aria-label="Regressão numa dummy: beta zero é a média do grupo base e beta um é a diferença de médias" xmlns="http://www.w3.org/2000/svg">
+<line class="g" x1="58" y1="240" x2="540" y2="240"/>
+<line class="g" x1="58" y1="196" x2="540" y2="196"/>
+<line class="g" x1="58" y1="152" x2="540" y2="152"/>
+<line class="g" x1="58" y1="108" x2="540" y2="108"/>
+<line class="g" x1="58" y1="64" x2="540" y2="64"/>
+<line class="g" x1="58" y1="20" x2="540" y2="20"/>
+<line class="ax" x1="58" y1="240" x2="540" y2="240"/>
+<line class="ax" x1="58" y1="20" x2="58" y2="240"/>
+<text class="tk" x="51" y="244" text-anchor="end">6</text>
+<text class="tk" x="51" y="200" text-anchor="end">8</text>
+<text class="tk" x="51" y="156" text-anchor="end">10</text>
+<text class="tk" x="51" y="112" text-anchor="end">12</text>
+<text class="tk" x="51" y="68" text-anchor="end">14</text>
+<text class="tk" x="51" y="24" text-anchor="end">16</text>
+<text class="lb" x="299" y="294" text-anchor="middle"></text>
+<text class="lb" x="12" y="130" text-anchor="middle" transform="rotate(-90 12 130)">Salário-hora, R$</text>
+<text class="tk" x="170.1" y="258" text-anchor="middle">D = 0: não sindicalizados</text>
+<text class="tk" x="394.3" y="258" text-anchor="middle">D = 1: sindicalizados</text>
+<circle class="pt" cx="170.1" cy="196" r="5"/>
+<circle class="pt" cx="155.5" cy="174" r="5"/>
+<circle class="pt" cx="170.1" cy="152" r="5"/>
+<circle class="pt" cx="170.1" cy="174" r="5"/>
+<circle class="pt" cx="184.7" cy="174" r="5"/>
+<circle class="ptB" cx="394.3" cy="86" r="5"/>
+<circle class="ptB" cx="387" cy="64" r="5"/>
+<circle class="ptB" cx="387" cy="108" r="5"/>
+<circle class="ptB" cx="401.6" cy="64" r="5"/>
+<circle class="ptB" cx="401.6" cy="108" r="5"/>
+<line class="fit" x1="170.1" y1="174" x2="394.3" y2="86"/>
+<line class="mean" x1="170.1" y1="174" x2="444.7" y2="174"/>
+<rect class="meanpt" x="164.1" y="168" width="12" height="12" transform="rotate(45 170.1 174)"/>
+<rect class="meanpt" x="388.3" y="80" width="12" height="12" transform="rotate(45 394.3 86)"/>
+<line class="brk" x1="444.7" y1="174" x2="444.7" y2="86"/>
+<text class="an posc" x="452.7" y="121.2">β̂₁ = 13 − 9</text><text class="an posc" x="452.7" y="138.8">= 4</text>
+<text class="an resc" x="170.1" y="215.8" text-anchor="middle">β̂₀ = 9 (média do grupo base)</text>
+<text class="an" x="394.3" y="39.8" text-anchor="middle">média do grupo D = 1: β̂₀ + β̂₁ = 13</text>
+</svg>

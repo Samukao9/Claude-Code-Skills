@@ -1,0 +1,22 @@
+<svg class="fig" viewBox="0 0 640 272" role="img" aria-label="Tradutor dos betas nas quatro formas funcionais: o que muda em x e o que muda em y" xmlns="http://www.w3.org/2000/svg">
+<text class="an" x="0" y="28" font-weight="700">Nível–nível</text><text class="an sm" x="0" y="45">y = β₀ + β₁x</text>
+<rect class="nb" x="150" y="12" width="170" height="38" rx="8"/><text class="an" x="235" y="36" text-anchor="middle">+1 unidade em x</text>
+<line class="arw" x1="326" y1="31" x2="373" y2="31"/><polygon class="arwh" points="382,31 373,26.9 373,35"/>
+<rect class="nm" x="388" y="12" width="252" height="38" rx="8"/><text class="an fitc" x="514" y="36" text-anchor="middle">+β₁ unidades em y</text>
+<text class="an sm cBt" x="150" y="66">exemplo: área +1 m² ⇒ aluguel +R$ 24 (β̂₁ = 24)</text>
+<text class="an" x="0" y="94" font-weight="700">Log–nível</text><text class="an sm" x="0" y="111">ln y = β₀ + β₁x</text>
+<rect class="nb" x="150" y="78" width="170" height="38" rx="8"/><text class="an" x="235" y="102" text-anchor="middle">+1 unidade em x</text>
+<line class="arw" x1="326" y1="97" x2="373" y2="97"/><polygon class="arwh" points="382,97 373,93 373,101"/>
+<rect class="nm" x="388" y="78" width="252" height="38" rx="8"/><text class="an fitc" x="514" y="102" text-anchor="middle">≈ +100·β₁ % em y</text>
+<text class="an sm cBt" x="150" y="132">exemplo: estudo +1 ano ⇒ salário ≈ +8% (β̂₁ = 0,080)</text>
+<text class="an" x="0" y="160" font-weight="700">Nível–log</text><text class="an sm" x="0" y="177">y = β₀ + β₁ ln x</text>
+<rect class="nb" x="150" y="144" width="170" height="38" rx="8"/><text class="an" x="235" y="168" text-anchor="middle">+1% em x</text>
+<line class="arw" x1="326" y1="163" x2="373" y2="163"/><polygon class="arwh" points="382,163 373,158.9 373,167.1"/>
+<rect class="nm" x="388" y="144" width="252" height="38" rx="8"/><text class="an fitc" x="514" y="168" text-anchor="middle">≈ +β₁/100 unidades em y</text>
+<text class="an sm cBt" x="150" y="198">exemplo: β̂₁ = 50: x +1% ⇒ y +0,5 unidade</text>
+<text class="an" x="0" y="226" font-weight="700">Log–log</text><text class="an sm" x="0" y="243">ln y = β₀ + β₁ ln x</text>
+<rect class="nb" x="150" y="210" width="170" height="38" rx="8"/><text class="an" x="235" y="234" text-anchor="middle">+1% em x</text>
+<line class="arw" x1="326" y1="229" x2="373" y2="229"/><polygon class="arwh" points="382,229 373,224.9 373,233.1"/>
+<rect class="nm" x="388" y="210" width="252" height="38" rx="8"/><text class="an fitc" x="514" y="234" text-anchor="middle">≈ +β₁ % em y (elasticidade)</text>
+<text class="an sm cBt" x="150" y="264">exemplo: β̂₁ = 1,5: x +10% ⇒ y ≈ +15%</text>
+</svg>
