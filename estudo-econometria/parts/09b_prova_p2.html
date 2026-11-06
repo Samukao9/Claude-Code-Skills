@@ -24,6 +24,8 @@
       <tr><td>4 · hipóteses RLM</td><td><strong>(a)</strong> Somente I</td></tr>
       <tr><td>5 · fertilizante e solo</td><td>Corr = −0,4 · δ₁ = −1 · viés = −2 · plim = 1 · subestima · com Cov = +4: viés = +2, plim = 5, superestima</td></tr>
       <tr><td>6 · matrizes</td><td>n = 5 · médias 2 e 3 · Var 2 e 3 · Cov = 1 · β̂ = (1; 2; −1) · Var(β̂₁) = 0,75 · Var(β̂₂) = 0,5</td></tr>
+      <tr><td>7 · matrizes a partir de variâncias</td><td>X'X = diag(11, 20, 20) · X'y = (55; 40; −40) · β̂ = (5; 2; −2) · SQT = 200 · SQR = 40 · R² = 0,8 · R² ajustado = 0,75 · σ̂² = 5 · Var 0,25 e 0,25, Cov 0 · EP 0,5 e 0,5 · Var(β̂₁ − β̂₂) = 0,5</td></tr>
+      <tr><td>8 · variância e EQM</td><td>Var = σ²/Σrᵢ² = σ²/[SQT(1 − R₁²)] · curta: Var 0,09, EP 0,3, viés 0,4, EQM 0,25 · longa: Var 0,16, EP 0,4, viés 0, EQM 0,16</td></tr>
     </tbody>
   </table></div>
 
@@ -214,6 +216,157 @@
     <span class="l nota">↳ se pedirem erro-padrão: √0,75 ≈ 0,866 e √0,5 ≈ 0,707</span>
   </div>
 
+  <!-- ===== QUESTÃO 7 ===== -->
+  <h3 id="provap2-q7">Questão 7 · matrizes a partir de variâncias (3,5 pontos)</h3>
+  <div class="enun"><span class="lbl">Enunciado</span>
+    <p>Em uma amostra de n = 11 observações, estima-se por MQO a regressão de Y sobre um intercepto e duas variáveis, \(X_1\) e \(X_2\), ambas medidas em desvios da média (isto é, \(\bar X_1=\bar X_2=0\)). São conhecidos (variâncias e covariâncias amostrais, com divisor n − 1):</p>
+    <div class="tbl"><table>
+      <thead><tr><th>Ȳ</th><th>Var(X₁)</th><th>Var(X₂)</th><th>Cov(X₁,X₂)</th><th>Cov(X₁,Y)</th><th>Cov(X₂,Y)</th><th>Var(Y)</th></tr></thead>
+      <tbody><tr><td>5</td><td>2</td><td>2</td><td>0</td><td>4</td><td>−4</td><td>20</td></tr></tbody>
+    </table></div>
+    <p><strong>a)</strong> (1,0) Monte as matrizes \(X'X\) e \(X'y\).<br>
+    <strong>b)</strong> (0,5) Calcule o vetor de estimadores \(\hat\beta\).<br>
+    <strong>c)</strong> (1,0) Calcule SQT, SQR, \(R^2\) e \(\bar R^2\).<br>
+    <strong>d)</strong> (1,0) Calcule \(\hat\sigma^2\), a matriz estimada de variâncias e covariâncias de \((\hat\beta_1,\hat\beta_2)'\), os erros-padrão de \(\hat\beta_1\) e \(\hat\beta_2\) e a variância estimada de \(\hat\beta_1-\hat\beta_2\).</p>
+  </div>
+  <div class="caderno">
+    <span class="l t">Questão 7</span>
+    <span class="l">Dados: \(n=11\qquad\bar Y=5\)</span>
+    <span class="l">\(\bar X_1=\bar X_2=0\) (em desvios)</span>
+    <span class="l">\(\text{Var}(X_1)=2\qquad\text{Var}(X_2)=2\)</span>
+    <span class="l">\(\text{Cov}(X_1,X_2)=0\qquad\text{Var}(Y)=20\)</span>
+    <span class="l">\(\text{Cov}(X_1,Y)=4\)</span>
+    <span class="l">\(\text{Cov}(X_2,Y)=-4\)</span>
+    <span class="l nota">↳ truque: divisor n − 1 = 10, então cada soma = 10 × a variância ou a covariância</span>
+
+    <span class="l item">a) Montar X'X e X'y</span>
+    <span class="l">\(\sum X_1=\sum X_2=0\) (médias zero)</span>
+    <span class="l">\(\sum X_1^2=(n-1)\,\text{Var}(X_1)\)</span>
+    <span class="l">\(\sum X_1^2=10\cdot2=20\)</span>
+    <span class="l">\(\sum X_2^2=10\cdot2=20\)</span>
+    <span class="l">\(\sum X_1X_2=10\cdot0=0\)</span>
+    <span class="l">\(\sum Y=n\,\bar Y=11\cdot5=55\)</span>
+    <span class="l">\(\sum X_1Y=10\cdot4=40\)</span>
+    <span class="l">\(\sum X_2Y=10\cdot(-4)=-40\)</span>
+    <span class="l nota">↳ \(\sum X_1Y=(n-1)\text{Cov}+n\bar X_1\bar Y\)</span>
+    <span class="l nota">e como \(\bar X_1=0\), sobra só \(10\cdot4=40\)</span>
+    <span class="l mx">\(X'X=\begin{bmatrix}n&\sum X_1&\sum X_2\\ \sum X_1&\sum X_1^2&\sum X_1X_2\\ \sum X_2&\sum X_1X_2&\sum X_2^2\end{bmatrix}\)</span>
+    <span class="l"><span class="resp">\(X'X=\begin{bmatrix}11&0&0\\0&20&0\\0&0&20\end{bmatrix}\)</span></span>
+    <span class="l"><span class="resp">\(X'y=\begin{bmatrix}55\\40\\-40\end{bmatrix}\)</span></span>
+
+    <span class="l item">b) Vetor \(\hat\beta\)</span>
+    <span class="l">\(\hat\beta=(X'X)^{-1}X'y\)</span>
+    <span class="l nota">↳ X'X é diagonal: a inversa é só 1 sobre cada número</span>
+    <span class="l">\((X'X)^{-1}=\begin{bmatrix}\tfrac{1}{11}&0&0\\0&\tfrac{1}{20}&0\\0&0&\tfrac{1}{20}\end{bmatrix}\)</span>
+    <span class="l">\(\hat\beta_0=\dfrac{55}{11}=5\)</span>
+    <span class="l">\(\hat\beta_1=\dfrac{40}{20}=2\)</span>
+    <span class="l">\(\hat\beta_2=\dfrac{-40}{20}=-2\)</span>
+    <span class="l"><span class="resp">\(\hat\beta=(5;\ 2;\ -2)'\)</span></span>
+    <span class="l"><span class="resp">\(\hat Y=5+2X_1-2X_2\)</span></span>
+
+    <span class="l item">c) SQT, SQR, R² e R² ajustado</span>
+    <span class="l">\(SQT=\sum(Y-\bar Y)^2\)</span>
+    <span class="l">\(SQT=(n-1)\,\text{Var}(Y)\)</span>
+    <span class="l">\(SQT=10\cdot20=200\)</span>
+    <span class="l">\(SQE=\hat\beta_1\sum X_1Y+\hat\beta_2\sum X_2Y\)</span>
+    <span class="l">\(SQE=2\cdot40+(-2)(-40)\)</span>
+    <span class="l">\(SQE=80+80=160\)</span>
+    <span class="l">\(SQR=SQT-SQE\)</span>
+    <span class="l">\(SQR=200-160=40\)</span>
+    <span class="l">Conferência: \(y'y=\sum Y^2=SQT+n\bar Y^2\)</span>
+    <span class="l">\(y'y=200+11\cdot25=475\)</span>
+    <span class="l">\(\hat\beta'X'y=5(55)+2(40)-2(-40)\)</span>
+    <span class="l">\(\hat\beta'X'y=275+80+80=435\)</span>
+    <span class="l">\(SQR=y'y-\hat\beta'X'y\)</span>
+    <span class="l">\(SQR=475-435=40\) <b class="ok">✓</b></span>
+    <span class="l">\(R^2=\dfrac{SQE}{SQT}=\dfrac{160}{200}=0{,}8\)</span>
+    <span class="l nota">↳ k = 2 regressores: n − k − 1 = 11 − 2 − 1 = 8</span>
+    <span class="l">\(\bar R^2=1-\dfrac{SQR/(n-k-1)}{SQT/(n-1)}\)</span>
+    <span class="l">\(\bar R^2=1-\dfrac{40/8}{200/10}\)</span>
+    <span class="l">\(\bar R^2=1-\dfrac{5}{20}=0{,}75\)</span>
+    <span class="l"><span class="resp">\(SQT=200\quad SQR=40\)</span></span>
+    <span class="l"><span class="resp">\(R^2=0{,}8\quad\bar R^2=0{,}75\)</span></span>
+
+    <span class="l item">d) Variâncias e erros-padrão</span>
+    <span class="l">\(\hat\sigma^2=\dfrac{SQR}{n-k-1}=\dfrac{40}{8}=5\)</span>
+    <span class="l">\(\widehat{\text{Var}}(\hat\beta)=\hat\sigma^2\,(X'X)^{-1}\)</span>
+    <span class="l nota">↳ para (β₁, β₂), pegue o pedaço 2 × 2 de baixo da inversa</span>
+    <span class="l">\(\widehat{\text{Var}}\begin{pmatrix}\hat\beta_1\\ \hat\beta_2\end{pmatrix}=5\begin{bmatrix}\tfrac{1}{20}&0\\0&\tfrac{1}{20}\end{bmatrix}\)</span>
+    <span class="l"><span class="resp">\(=\begin{bmatrix}0{,}25&0\\0&0{,}25\end{bmatrix}\)</span></span>
+    <span class="l">\(EP(\hat\beta_1)=\sqrt{0{,}25}=0{,}5\)</span>
+    <span class="l">\(EP(\hat\beta_2)=\sqrt{0{,}25}=0{,}5\)</span>
+    <span class="l">\(\widehat{\text{Var}}(\hat\beta_1-\hat\beta_2)=\)</span>
+    <span class="l">\(\widehat{\text{Var}}(\hat\beta_1)+\widehat{\text{Var}}(\hat\beta_2)\)</span>
+    <span class="l">\(-\,2\,\widehat{\text{Cov}}(\hat\beta_1,\hat\beta_2)\)</span>
+    <span class="l">\(=0{,}25+0{,}25-2\cdot0=0{,}5\)</span>
+    <span class="l nota">↳ na diferença, a covariância entra com sinal de menos e vezes 2</span>
+    <span class="l"><span class="resp">\(\hat\sigma^2=5\quad EP=0{,}5\) e \(0{,}5\)</span></span>
+    <span class="l"><span class="resp">\(\widehat{\text{Var}}(\hat\beta_1-\hat\beta_2)=0{,}5\)</span></span>
+  </div>
+
+  <!-- ===== QUESTÃO 8 ===== -->
+  <h3 id="provap2-q8">Questão 8 · variância com a regressão auxiliar (2,0 pontos)</h3>
+  <div class="enun"><span class="lbl">Enunciado</span>
+    <p>Considere o modelo</p>
+    <div class="mathblock">\[\begin{aligned}Y_i&=\beta_0+\beta_1X_{1i}+\beta_2X_{2i}\\&\quad+\dots+\beta_kX_{ki}+u_i.\end{aligned}\]</div>
+    <p>Na regressão auxiliar de \(X_1\) sobre um intercepto e os demais regressores, denote o resíduo da observação i por \(r_i\). Suponha que \(\sum_i r_i^2\gt0\) e considere a representação</p>
+    <div class="mathblock">\[\hat\beta_1-\beta_1=\frac{\sum_{i=1}^n r_iu_i}{\sum_{i=1}^n r_i^2}.\]</div>
+    <p>Condicionalmente à matriz de variáveis explicativas, admita que \(E(u_i\mid X)=0\), \(\text{Var}(u_i\mid X)=\sigma^2\) e \(\text{Cov}(u_i,u_j\mid X)=0\) para \(i\neq j\).</p>
+    <p><strong>a)</strong> (0,75) Derive \(\text{Var}(\hat\beta_1\mid X)\) e expresse o resultado em função de \(\sigma^2\) e \(\sum_i r_i^2\).<br>
+    <strong>b)</strong> (0,25) Seja \(R_1^2\) o coeficiente de determinação da regressão auxiliar e \(SQT_{X_1}=\sum_{i=1}^n(X_{1i}-\bar X_1)^2\). Reescreva o resultado do item anterior usando somente \(\sigma^2\), \(SQT_{X_1}\) e \(R_1^2\).<br>
+    <strong>c)</strong> (0,5) Considere duas especificações:</p>
+    <div class="tbl"><table>
+      <thead><tr><th></th><th>σ²</th><th>SQT<sub>X1</sub></th><th>R₁²</th></tr></thead>
+      <tbody><tr><td>Especificação curta</td><td>18</td><td>200</td><td>0</td></tr><tr><td>Especificação longa</td><td>8</td><td>200</td><td>0,75</td></tr></tbody>
+    </table></div>
+    <p>Calcule a variância e o erro-padrão do estimador da inclinação em cada especificação.<br>
+    <strong>d)</strong> (0,5) O verdadeiro parâmetro é \(\beta_1=2\). O estimador da especificação curta possui esperança igual a 2,4, enquanto o estimador da especificação longa possui esperança igual a 2. Calcule o viés e o erro quadrático médio de cada estimador.</p>
+  </div>
+  <div class="caderno">
+    <span class="l t">Questão 8</span>
+
+    <span class="l item">a) Derivar a variância</span>
+    <span class="l">\(\hat\beta_1=\beta_1+\dfrac{\sum r_iu_i}{\sum r_i^2}\)</span>
+    <span class="l nota">↳ dado X, os \(r_i\) e a soma \(\sum r_i^2\) são constantes (só dependem de X)</span>
+    <span class="l nota">↳ \(\beta_1\) é constante e não tem variância; a constante sai da Var ao quadrado</span>
+    <span class="l">\(\text{Var}(\hat\beta_1\mid X)=\dfrac{\text{Var}(\sum r_iu_i\mid X)}{(\sum r_i^2)^2}\)</span>
+    <span class="l">Variância da soma:</span>
+    <span class="l">\(\text{Var}(\sum r_iu_i\mid X)=\)</span>
+    <span class="l">\(\sum r_i^2\,\text{Var}(u_i\mid X)\)</span>
+    <span class="l">\(+\sum_{i\neq j}r_ir_j\,\text{Cov}(u_i,u_j\mid X)\)</span>
+    <span class="l">\(=\sigma^2\sum r_i^2+0\)</span>
+    <span class="l nota">↳ Var(u | X) = σ² e Cov = 0 para i ≠ j</span>
+    <span class="l">\(\text{Var}(\hat\beta_1\mid X)=\dfrac{\sigma^2\sum r_i^2}{(\sum r_i^2)^2}\)</span>
+    <span class="l"><span class="resp">\(\text{Var}(\hat\beta_1\mid X)=\dfrac{\sigma^2}{\sum r_i^2}\)</span></span>
+
+    <span class="l item">b) Com SQT e R²</span>
+    <span class="l">\(\sum r_i^2\) = SQR da regressão auxiliar</span>
+    <span class="l">\(R_1^2=1-\dfrac{SQR_{aux}}{SQT_{X_1}}\)</span>
+    <span class="l">\(\Rightarrow\ \sum r_i^2=SQT_{X_1}(1-R_1^2)\)</span>
+    <span class="l"><span class="resp">\(\text{Var}(\hat\beta_1\mid X)=\dfrac{\sigma^2}{SQT_{X_1}(1-R_1^2)}\)</span></span>
+
+    <span class="l item">c) As duas especificações</span>
+    <span class="l">Curta: \(\text{Var}=\dfrac{18}{200\,(1-0)}=\dfrac{18}{200}=0{,}09\)</span>
+    <span class="l">\(EP=\sqrt{0{,}09}=0{,}3\)</span>
+    <span class="l">Longa: \(\text{Var}=\dfrac{8}{200\,(1-0{,}75)}\)</span>
+    <span class="l">\(\text{Var}=\dfrac{8}{200\cdot0{,}25}=\dfrac{8}{50}=0{,}16\)</span>
+    <span class="l">\(EP=\sqrt{0{,}16}=0{,}4\)</span>
+    <span class="l"><span class="resp">Curta: Var = 0,09 e EP = 0,3</span></span>
+    <span class="l"><span class="resp">Longa: Var = 0,16 e EP = 0,4</span></span>
+
+    <span class="l item">d) Viés e EQM</span>
+    <span class="l">\(\text{viés}=E(\hat\beta_1)-\beta_1\)</span>
+    <span class="l">\(EQM=\text{Var}+\text{viés}^2\)</span>
+    <span class="l">Curta: viés \(=2{,}4-2=0{,}4\)</span>
+    <span class="l">\(EQM=0{,}09+0{,}4^2\)</span>
+    <span class="l">\(EQM=0{,}09+0{,}16=0{,}25\)</span>
+    <span class="l">Longa: viés \(=2-2=0\)</span>
+    <span class="l">\(EQM=0{,}16+0=0{,}16\)</span>
+    <span class="l"><span class="resp">Curta: viés = 0,4 e EQM = 0,25</span></span>
+    <span class="l"><span class="resp">Longa: viés = 0 e EQM = 0,16</span></span>
+    <span class="l nota">↳ a curta tem variância menor, mas a longa tem EQM menor (erra menos no total)</span>
+  </div>
+
   <h3>O que essa prova repetiu das listas</h3>
   <div class="tbl"><table>
     <thead><tr><th>Questão da prova</th><th>De onde veio</th></tr></thead>
@@ -224,9 +377,10 @@
       <tr><td>4 · hipóteses e variância</td><td>Lista de regressão múltipla, Questão 5; Lista da aula de 14/out, Exercício 1</td></tr>
       <tr><td>5 · fertilizante e solo</td><td>Lista da aula de 14/out, Exercício 3; Lista de regressão múltipla, Questão 13</td></tr>
       <tr><td>6 · matrizes</td><td>Lista de regressão múltipla, Questões 7, 8 e 12</td></tr>
+      <tr><td>7 · matrizes a partir de variâncias</td><td>Lista de regressão múltipla, Questões 7, 8 e 11</td></tr>
+      <tr><td>8 · variância e EQM</td><td>Lista da aula de 14/out, <strong>Exercício 1</strong> (o mesmo exercício, só com outros números); Lista de regressão múltipla, Questão 15</td></tr>
     </tbody>
   </table></div>
-  <p class="muted small">As questões 1 a 6 somam 6,5 pontos. Pela transparência do papel aparece mais uma questão, com SQT, SQR, R² e R² ajustado, que não estava nas fotos.</p>
 
   <div class="done-row"><button class="btn done-btn" data-done="provap2" aria-pressed="false">Marcar como concluído</button></div>
 </section>
