@@ -36,6 +36,7 @@ window.MathJax = {
   --f-body:"IBM Plex Sans","Segoe UI",system-ui,-apple-system,sans-serif;
   --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
   --f-hand:"Caveat","Segoe Print","Bradley Hand",cursive;
+  --nb-paper:#FFFEF7; --nb-line:#CADAF0; --nb-margin:#E9A2A0; --pen:#1E3DA6; --pen-red:#C0352A; --pen-green:#1B7A4B;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
@@ -44,6 +45,7 @@ window.MathJax = {
     --line:#26313F; --grid:rgba(134,165,255,.05); --marker:#8AA8FF; --marker-soft:#1A2849;
     --red:#FF8A7C; --red-soft:#3A1D1A; --green:#62D6A1; --green-soft:#132B20;
     --hl:#6B5712; --hl-ink:#FFEBAA; --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 18px rgba(0,0,0,.25);
+    --nb-paper:#182030; --nb-line:#2A3852; --nb-margin:#74403E; --pen:#A4BCFF; --pen-red:#FF9184; --pen-green:#70DAA9;
   }
 }
 :root[data-theme="dark"]{
@@ -52,6 +54,7 @@ window.MathJax = {
   --line:#26313F; --grid:rgba(134,165,255,.05); --marker:#8AA8FF; --marker-soft:#1A2849;
   --red:#FF8A7C; --red-soft:#3A1D1A; --green:#62D6A1; --green-soft:#132B20;
   --hl:#6B5712; --hl-ink:#FFEBAA; --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 18px rgba(0,0,0,.25);
+    --nb-paper:#182030; --nb-line:#2A3852; --nb-margin:#74403E; --pen:#A4BCFF; --pen-red:#FF9184; --pen-green:#70DAA9;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:72px}
@@ -153,6 +156,35 @@ hr{border:0;border-top:1px dashed var(--line);margin:28px 0}
 .lousa .hand{font-family:var(--f-hand);color:var(--marker);font-size:26px;line-height:1.28;font-weight:500}
 .lousa .hand .l{display:block}
 .lousa .note{font-size:14px;color:var(--ink-2);margin-top:6px}
+
+/* prova antiga: enunciado e folha de caderno */
+.enun{margin:10px 0 0;padding:12px 16px;border:1px solid var(--line);border-left:4px solid var(--ink-3);border-radius:8px;background:var(--card);font-size:15px;color:var(--ink-2)}
+.enun>.lbl{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--ink-3);margin-bottom:4px}
+.enun p{margin:0 0 8px}.enun p:last-child{margin-bottom:0}
+.enun .alts{color:var(--ink);font-weight:500}
+.caderno{--lh:36px;--mx:46px;position:relative;margin:12px 0 30px;padding:6px 14px 14px calc(var(--mx) + 14px);
+  background-color:var(--nb-paper);
+  background-image:linear-gradient(90deg,transparent var(--mx),var(--nb-margin) var(--mx),var(--nb-margin) calc(var(--mx) + 2px),transparent calc(var(--mx) + 2px)),
+    repeating-linear-gradient(180deg,transparent 0,transparent calc(var(--lh) - 1px),var(--nb-line) calc(var(--lh) - 1px),var(--nb-line) var(--lh));
+  background-position:0 0,0 6px;border:1px solid var(--line);border-radius:3px 10px 10px 3px;box-shadow:var(--shadow);
+  font-family:var(--f-hand);font-size:24px;line-height:var(--lh);color:var(--pen);overflow-wrap:anywhere}
+.caderno::before{content:"";position:absolute;left:12px;top:10px;bottom:10px;width:14px;
+  background:radial-gradient(circle at 7px 7px,var(--paper) 4.5px,color-mix(in srgb,var(--ink-3) 35%,transparent) 5.5px,transparent 6.5px) 0 0/14px 72px repeat-y}
+.caderno .l{display:block;min-height:var(--lh)}
+.caderno .l:has([data-mml-node="mfrac"]),.caderno .l.mx{padding:7px 0}
+.caderno .t{font-size:32px;font-weight:700;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:5px}
+.caderno .item{font-weight:700;margin-top:var(--lh)}
+.caderno .nota{color:var(--pen-red);font-size:21px}
+.caderno u{text-decoration-thickness:2px;text-underline-offset:3px}
+.caderno mjx-container{color:inherit}
+.caderno mjx-container:not([display="true"]){margin:0 1px}
+.caderno .vf{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;margin-right:6px;border:2.5px solid currentColor;border-radius:50%;
+  font-size:20px;line-height:1;font-weight:700;vertical-align:2px}
+.caderno .vf.v{color:var(--pen-green)}.caderno .vf.f{color:var(--pen-red)}
+.caderno .ok{color:var(--pen-green);font-weight:700}
+.caderno .resp{display:inline-block;margin:4px 0;padding:0 12px;border:2.5px solid var(--pen-red);color:var(--pen);font-weight:700;
+  border-radius:255px 15px 225px 15px/15px 225px 15px 255px}
+.caderno .alt{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;margin:0 4px;border:2.5px solid var(--pen-red);border-radius:50%;line-height:1;vertical-align:1px}
 
 /* fórmulas */
 .mathblock{overflow-x:auto;overflow-y:hidden;padding:4px 0;margin:8px 0}
@@ -370,6 +402,11 @@ h4.dgroup{margin:16px 0 4px;font-family:var(--f-display)}
   .topbar .brand{display:none}
   .day{grid-template-columns:1fr}
   .lousa .hand{font-size:22px}
+  .caderno{--mx:30px;--lh:34px;font-size:21px;padding-right:10px}
+  .caderno::before{left:6px;transform:scale(.8);transform-origin:left top}
+  .caderno .t{font-size:28px}
+  .caderno .l.mx{font-size:16px}
+  .caderno .nota{font-size:19px}
 }
 </style>
 
@@ -378,7 +415,7 @@ h4.dgroup{margin:16px 0 4px;font-family:var(--f-display)}
   <button class="btn menu-btn" id="menuBtn" aria-controls="toc" aria-expanded="false">☰ Sumário</button>
   <span class="brand">Econometria I</span>
   <div class="grow"><div class="pbar" aria-hidden="true"><i id="pfill"></i></div></div>
-  <span class="ptext" id="ptext">0 de 29 módulos</span>
+  <span class="ptext" id="ptext">0 de 30 módulos</span>
   <button class="btn theme-btn" id="themeBtn" type="button" aria-label="Mudar para o modo escuro" title="Alternar modo claro e escuro"><svg class="moon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z" fill="currentColor"/></svg><svg class="sun" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.3 5.3l1.7 1.7M17 17l1.7 1.7M5.3 18.7L7 17M17 7l1.7-1.7" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg><span class="lbl-t">Escuro</span></button>
   <a class="btn" href="#formulas">β̂ Fórmulas</a>
 </header>
@@ -389,6 +426,7 @@ h4.dgroup{margin:16px 0 4px;font-family:var(--f-display)}
     <p class="lead">Todo o conteúdo das suas aulas, listas, gabaritos e fotos da lousa, em ordem de aprendizado, mais Estatística 1 e 2 do zero, os conceitos-chave (MQO/OLS, parâmetro, estimador, viés), todas as Leis dos Grandes Números, matemática de apoio (log, derivada, integral e λ) e uma prévia da P2. Começa em “o que é uma variável” e vai até as demonstrações da Aula 5 e a inferência da Aula 6. O que vai além do seu material está sempre marcado.</p>
     <div class="actions">
       <a class="btn primary" href="#zero">Começar do zero</a>
+      <a class="btn" href="#provap2">Prova antiga da P2 ✍</a>
       <a class="btn" href="#formulas">As 2 fórmulas</a>
       <a class="btn" href="#mapa">Mapa visual</a>
       <a class="btn" href="#betas">Os betas em desenho</a>
@@ -454,8 +492,9 @@ h4.dgroup{margin:16px 0 4px;font-family:var(--f-display)}
     <li><a href="#simulado" data-mod="simulado"><span class="n">?</span><span>Simulado final</span></a></li>
     <li><a href="#cola" data-mod="cola"><span class="n">✎</span><span>Cola de véspera e pegadinhas</span></a></li>
   </ol>
-  <h3>Depois da P1</h3>
+  <h3>P2</h3>
   <ol>
+    <li><a href="#provap2" data-mod="provap2"><span class="n">✍</span><span>Prova antiga da P2 resolvida, modo caderno <b class="star">★</b></span></a></li>
     <li><a href="#p2" data-mod="p2"><span class="n">P2</span><span>Prévia da P2: múltipla, multicolinearidade, autocorrelação</span></a></li>
   </ol>
 </nav>
@@ -8862,6 +8901,239 @@ h4.dgroup{margin:16px 0 4px;font-family:var(--f-display)}
     <div class="opts"><button data-k="a">a) 1,75</button><button data-k="b">b) 1,84</button><button data-k="c">c) 1,79</button><button data-k="d">d) 2</button></div>
     <div class="fb" hidden>d. n − k − 1 = 35 e 70/35 = 2. Dividir por n − 2 (1,84) é o erro de copiar a regressão simples.</div></div>
   <div class="done-row"><button class="btn done-btn" data-done="p2" aria-pressed="false">Marcar como concluído</button></div>
+</section>
+
+
+<!-- ================= PROVA ANTIGA DA P2, MODO CADERNO ================= -->
+<section class="mod" id="provap2" data-title="Prova antiga da P2">
+  <div class="eyebrow">Prova antiga da P2 · Prof. Tiago Ferraz <span class="tag hot">Modo caderno</span></div>
+  <h2>Prova antiga da P2 resolvida, do jeito de copiar no caderno</h2>
+  <p>Cada questão tem duas partes: o <strong>enunciado</strong> da prova, num quadro cinza, e logo abaixo a <strong>folha de caderno</strong>, com a resolução escrita exatamente como você pode copiar. Uma conta por linha, a fórmula sempre antes do número e a resposta final dentro do quadro vermelho.</p>
+
+  <div class="box prova"><span class="lbl">Como copiar no caderno</span>
+    <ol>
+      <li>Copie os <strong>dados</strong> do enunciado numa linha só.</li>
+      <li>Escreva a <strong>fórmula com letras</strong> antes de colocar qualquer número.</li>
+      <li>Faça <strong>uma conta por linha</strong>, sem pular passo.</li>
+      <li>Feche cada item com a <strong>resposta dentro de um quadro</strong>.</li>
+      <li>Nas de alternativa, marque <strong>V ou F</strong> em cada afirmação e escreva o motivo em uma linha.</li>
+    </ol>
+  </div>
+
+  <div class="tbl"><table>
+    <thead><tr><th>Questão</th><th>Resposta</th></tr></thead>
+    <tbody>
+      <tr><td>1 · controles</td><td><strong>(c)</strong> Somente I e II</td></tr>
+      <tr><td>2 · regressão curta</td><td><strong>(d)</strong> Somente I e III</td></tr>
+      <tr><td>3 · FWL e R²</td><td><strong>(b)</strong> Somente II e III</td></tr>
+      <tr><td>4 · hipóteses RLM</td><td><strong>(a)</strong> Somente I</td></tr>
+      <tr><td>5 · fertilizante e solo</td><td>Corr = −0,4 · δ₁ = −1 · viés = −2 · plim = 1 · subestima · com Cov = +4: viés = +2, plim = 5, superestima</td></tr>
+      <tr><td>6 · matrizes</td><td>n = 5 · médias 2 e 3 · Var 2 e 3 · Cov = 1 · β̂ = (1; 2; −1) · Var(β̂₁) = 0,75 · Var(β̂₂) = 0,5</td></tr>
+    </tbody>
+  </table></div>
+
+  <!-- ===== QUESTÃO 1 ===== -->
+  <h3 id="provap2-q1">Questão 1 · escolha de controles (0,5 ponto)</h3>
+  <div class="enun"><span class="lbl">Enunciado</span>
+    <p>Sobre a escolha de variáveis de controle em uma regressão múltipla, avalie as afirmativas:</p>
+    <p><em>I.</em> Incluir como controle um confundidor (variável que afeta X e Y) reduz o viés de variável omitida.<br>
+    <em>II.</em> Controlar por um colisor pode criar associação espúria entre X e Y.<br>
+    <em>III.</em> Toda variável medida antes de X deve ser incluída como controle.</p>
+    <p class="alts">(a) Somente I · (b) Somente II · (c) Somente I e II · (d) Somente II e III · (e) I, II e III</p>
+  </div>
+  <div class="caderno">
+    <span class="l t">Questão 1</span>
+    <span class="l"><b class="vf v">V</b> I. Confundidor fora da regressão causa viés de variável omitida. Incluir resolve.</span>
+    <span class="l"><b class="vf v">V</b> II. Colisor (causado por X e por Y) cria uma ligação falsa entre X e Y.</span>
+    <span class="l nota">↳ é a mesma ideia da seleção amostral (Exercício 5 da Lista da aula de 14/out)</span>
+    <span class="l"><b class="vf f">F</b> III. “Toda” é exagero: pode ser um colisor ou só aumentar a variância.</span>
+    <span class="l"><span class="resp">Resposta: <b class="alt">c</b> Somente I e II</span></span>
+  </div>
+
+  <!-- ===== QUESTÃO 2 ===== -->
+  <h3 id="provap2-q2">Questão 2 · regressão curta (0,5 ponto)</h3>
+  <div class="enun"><span class="lbl">Enunciado</span>
+    <p>No modelo \(Y=\beta_0+\beta_1X+\beta_2Z+u\), com \(E(u\mid X,Z)=0\), estima-se a regressão curta de Y sobre X, com coeficiente \(\tilde\beta_1\). Avalie as afirmativas:</p>
+    <p><em>I.</em> Se \(\beta_2\neq0\) e \(\text{Cov}(X,Z)=0\), então \(\operatorname{plim}\tilde\beta_1=\beta_1\).<br>
+    <em>II.</em> Se o viés assintótico é positivo, a regressão curta sempre superestima o efeito de X sobre Y.<br>
+    <em>III.</em> Aumentar o tamanho da amostra reduz a variância de \(\tilde\beta_1\), mas não altera o valor para o qual ele converge.</p>
+    <p class="alts">(a) Somente I · (b) Somente III · (c) Somente I e II · (d) Somente I e III · (e) I, II e III</p>
+  </div>
+  <div class="caderno">
+    <span class="l t">Questão 2</span>
+    <span class="l"><b class="vf v">V</b> I. \(\text{Cov}=0\Rightarrow\delta_1=0\Rightarrow\) viés \(=\beta_2\cdot0=0\)</span>
+    <span class="l"><b class="vf f">F</b> II. Viés positivo só diz que \(\operatorname{plim}\tilde\beta_1\gt\beta_1\).</span>
+    <span class="l">Se \(\beta_1\) é negativo, o efeito parece <u>menor</u>: \(-0{,}5+0{,}8=+0{,}3\)</span>
+    <span class="l"><b class="vf v">V</b> III. n maior diminui a variância, mas o limite continua \(\beta_1+\beta_2\delta_1\).</span>
+    <span class="l"><span class="resp">Resposta: <b class="alt">d</b> Somente I e III</span></span>
+  </div>
+
+  <!-- ===== QUESTÃO 3 ===== -->
+  <h3 id="provap2-q3">Questão 3 · FWL e R² (0,5 ponto)</h3>
+  <div class="enun"><span class="lbl">Enunciado</span>
+    <p>Considere o MQO com intercepto e k regressores. Avalie as afirmativas:</p>
+    <p><em>I.</em> O teorema de Frisch–Waugh–Lovell é um procedimento de estimação alternativo que, em geral, produz um \(\hat\beta_1\) diferente do da regressão múltipla.<br>
+    <em>II.</em> O R² nunca diminui quando se acrescenta um regressor ao modelo, mesmo que ele seja irrelevante.<br>
+    <em>III.</em> O R² ajustado pode diminuir ao se acrescentar um regressor, mesmo que o R² aumente.</p>
+    <p class="alts">(a) Somente III · (b) Somente II e III · (c) Somente II · (d) Somente I e II · (e) I, II e III</p>
+  </div>
+  <div class="caderno">
+    <span class="l t">Questão 3</span>
+    <span class="l"><b class="vf f">F</b> I. O FWL dá <u>exatamente</u> o mesmo \(\hat\beta_1\). É igualdade, não aproximação.</span>
+    <span class="l"><b class="vf v">V</b> II. Novo regressor nunca aumenta a SQR \(\Rightarrow\) o R² nunca cai.</span>
+    <span class="l"><b class="vf v">V</b> III. O R² ajustado desconta 1 grau de liberdade por regressor.</span>
+    <span class="l nota">↳ Questão 11 da lista: R² foi de 0,921 para 0,934 e o ajustado caiu de 0,842 para 0,737</span>
+    <span class="l"><span class="resp">Resposta: <b class="alt">b</b> Somente II e III</span></span>
+  </div>
+
+  <!-- ===== QUESTÃO 4 ===== -->
+  <h3 id="provap2-q4">Questão 4 · hipóteses RLM (0,5 ponto)</h3>
+  <div class="enun"><span class="lbl">Enunciado</span>
+    <p>Sobre o MQO sob as hipóteses RLM, avalie as afirmativas:</p>
+    <p><em>I.</em> A ausência de viés de \(\hat\beta_j\) não exige homocedasticidade (RLM.5).<br>
+    <em>II.</em> Mantidos \(\sigma^2\) e \(SQT_j\) fixos, se \(R_j^2\) aumenta, então \(\text{Var}(\hat\beta_j\mid X)\) diminui.<br>
+    <em>III.</em> O teorema de Gauss–Markov afirma que o MQO tem a menor variância entre todos os estimadores não viesados de \(\beta\).</p>
+    <p class="alts">(a) Somente I · (b) Somente II · (c) Somente III · (d) Somente I e II · (e) I, II e III</p>
+  </div>
+  <div class="caderno">
+    <span class="l t">Questão 4</span>
+    <span class="l"><b class="vf v">V</b> I. Não viés usa só RLM.1 a RLM.4. A RLM.5 entra na variância.</span>
+    <span class="l"><b class="vf f">F</b> II. \(\text{Var}(\hat\beta_j)=\dfrac{\sigma^2}{SQT_j\,(1-R_j^2)}\)</span>
+    <span class="l">\(R_j^2\uparrow\ \Rightarrow\ (1-R_j^2)\downarrow\ \Rightarrow\) a variância <u>aumenta</u></span>
+    <span class="l"><b class="vf f">F</b> III. Faltou a palavra <u>LINEARES</u> (e ainda precisa de homocedasticidade).</span>
+    <span class="l"><span class="resp">Resposta: <b class="alt">a</b> Somente I</span></span>
+  </div>
+
+  <!-- ===== QUESTÃO 5 ===== -->
+  <h3 id="provap2-q5">Questão 5 · fertilizante e solo (1,5 ponto)</h3>
+  <div class="enun"><span class="lbl">Enunciado</span>
+    <p>Considere o modelo populacional</p>
+    <div class="mathblock">\[\begin{aligned}\text{produtividade}&=\beta_0+\beta_1\,\text{fertilizante}\\&\quad+\beta_2\,\text{solo}+u\end{aligned}\]</div>
+    <p>com \(E(u\mid \text{fertilizante},\text{solo})=0\), em que fertilizante é a dose aplicada e solo é um índice de qualidade do solo. Sabe-se que \(\beta_1=3\), \(\beta_2=2\), Var(fertilizante) = 4, Var(solo) = 25 e Cov(fertilizante, solo) = −4. A variável solo é omitida, e estima-se a regressão curta de produtividade sobre fertilizante, com coeficiente \(\tilde\beta_1\).</p>
+    <p><strong>a)</strong> (0,5) Calcule a correlação entre fertilizante e solo e a inclinação \(\delta_1\) da projeção de solo sobre fertilizante.<br>
+    <strong>b)</strong> (0,5) Calcule o viés assintótico e o limite em probabilidade de \(\tilde\beta_1\).<br>
+    <strong>c)</strong> (0,25) A regressão curta superestima ou subestima \(\beta_1\)?<br>
+    <strong>d)</strong> (0,25) Refaça o item (b) supondo agora Cov(fertilizante, solo) = +4 (demais valores inalterados). A regressão curta superestima ou subestima \(\beta_1\)?</p>
+  </div>
+  <div class="caderno">
+    <span class="l t">Questão 5</span>
+    <span class="l">Dados: \(\beta_1=3\qquad\beta_2=2\)</span>
+    <span class="l">\(\text{Var(fert)}=4\qquad\text{Var(solo)}=25\)</span>
+    <span class="l">\(\text{Cov(fert, solo)}=-4\)</span>
+
+    <span class="l item">a) Correlação</span>
+    <span class="l">\(\text{DP(fert)}=\sqrt4=2\)</span>
+    <span class="l">\(\text{DP(solo)}=\sqrt{25}=5\)</span>
+    <span class="l">\(\text{Corr}=\dfrac{\text{Cov}}{\text{DP(fert)}\cdot\text{DP(solo)}}\)</span>
+    <span class="l">\(\text{Corr}=\dfrac{-4}{2\cdot5}=\dfrac{-4}{10}=-0{,}4\)</span>
+    <span class="l item">a) Inclinação \(\delta_1\)</span>
+    <span class="l">\(\delta_1=\dfrac{\text{Cov(fert, solo)}}{\text{Var(fert)}}\)</span>
+    <span class="l">\(\delta_1=\dfrac{-4}{4}=-1\)</span>
+    <span class="l nota">↳ divide pela variância de quem FICA na regressão (o fertilizante)</span>
+    <span class="l"><span class="resp">\(\text{Corr}=-0{,}4\) e \(\delta_1=-1\)</span></span>
+
+    <span class="l item">b) Viés e plim</span>
+    <span class="l">\(\text{viés}=\beta_2\cdot\delta_1=2\cdot(-1)=-2\)</span>
+    <span class="l">\(\operatorname{plim}\tilde\beta_1=\beta_1+\beta_2\,\delta_1\)</span>
+    <span class="l">\(\operatorname{plim}\tilde\beta_1=3+(-2)=1\)</span>
+    <span class="l"><span class="resp">viés \(=-2\) e \(\operatorname{plim}\tilde\beta_1=1\)</span></span>
+
+    <span class="l item">c) Super ou sub?</span>
+    <span class="l">\(\operatorname{plim}\tilde\beta_1=1\lt3=\beta_1\)</span>
+    <span class="l"><span class="resp">SUBESTIMA</span></span>
+    <span class="l nota">↳ porque \(\beta_2\gt0\) (solo bom aumenta a produtividade) e \(\text{Cov}\lt0\)</span>
+
+    <span class="l item">d) Agora com Cov = +4</span>
+    <span class="l">\(\delta_1=\dfrac{+4}{4}=1\)</span>
+    <span class="l">\(\text{viés}=\beta_2\cdot\delta_1=2\cdot1=+2\)</span>
+    <span class="l">\(\operatorname{plim}\tilde\beta_1=3+2=5\gt3\)</span>
+    <span class="l"><span class="resp">viés \(=+2\), \(\operatorname{plim}=5\): SUPERESTIMA</span></span>
+  </div>
+
+  <!-- ===== QUESTÃO 6 ===== -->
+  <h3 id="provap2-q6">Questão 6 · forma matricial (3,0 pontos)</h3>
+  <div class="enun"><span class="lbl">Enunciado</span>
+    <p>Em uma regressão por MQO de Y sobre um intercepto e duas variáveis, \(X_1\) e \(X_2\) (nessa ordem), obtiveram-se</p>
+    <div class="mathblock">\[X'X=\begin{bmatrix}5&10&15\\10&28&34\\15&34&57\end{bmatrix},\qquad (X'X)^{-1}=\begin{bmatrix}\tfrac{11}{10}&-\tfrac{3}{20}&-\tfrac15\\[2pt]-\tfrac{3}{20}&\tfrac{3}{20}&-\tfrac{1}{20}\\[2pt]-\tfrac15&-\tfrac{1}{20}&\tfrac{1}{10}\end{bmatrix},\]</div>
+    <div class="mathblock">\[X'y=\begin{bmatrix}10\\32\\26\end{bmatrix},\qquad \hat\sigma^2=5.\]</div>
+    <p>Use variâncias e covariâncias amostrais (divisor n − 1).</p>
+    <p><strong>a)</strong> (0,5) Identifique o tamanho da amostra e calcule as médias de \(X_1\) e \(X_2\).<br>
+    <strong>b)</strong> (0,5) Calcule as variâncias de \(X_1\) e de \(X_2\).<br>
+    <strong>c)</strong> (0,5) Calcule \(\text{Cov}(X_1,X_2)\).<br>
+    <strong>d)</strong> (1,0) Calcule \(\hat\beta_0\), \(\hat\beta_1\) e \(\hat\beta_2\).<br>
+    <strong>e)</strong> (0,5) Calcule as variâncias estimadas de \(\hat\beta_1\) e de \(\hat\beta_2\).</p>
+  </div>
+  <div class="caderno">
+    <span class="l t">Questão 6</span>
+    <span class="l item">Primeiro: ler as matrizes</span>
+    <span class="l mx">\(X'X=\begin{bmatrix}n&\sum X_1&\sum X_2\\ \sum X_1&\sum X_1^2&\sum X_1X_2\\ \sum X_2&\sum X_1X_2&\sum X_2^2\end{bmatrix}\)</span>
+    <span class="l">\(n=5\)</span>
+    <span class="l">\(\sum X_1=10\qquad\sum X_2=15\)</span>
+    <span class="l">\(\sum X_1^2=28\qquad\sum X_2^2=57\)</span>
+    <span class="l">\(\sum X_1X_2=34\)</span>
+    <span class="l">De \(X'y\): \(\ \sum Y=10\)</span>
+    <span class="l">\(\sum X_1Y=32\qquad\sum X_2Y=26\)</span>
+
+    <span class="l item">a) Tamanho da amostra e médias</span>
+    <span class="l">O canto de cima de X'X é n \(\Rightarrow n=5\)</span>
+    <span class="l">\(\bar X_1=\dfrac{\sum X_1}{n}=\dfrac{10}{5}=2\)</span>
+    <span class="l">\(\bar X_2=\dfrac{\sum X_2}{n}=\dfrac{15}{5}=3\)</span>
+    <span class="l"><span class="resp">\(n=5,\ \bar X_1=2,\ \bar X_2=3\)</span></span>
+
+    <span class="l item">b) Variâncias (divisor n − 1 = 4)</span>
+    <span class="l">\(\text{Var}(X)=\dfrac{\sum X^2-n\,\bar X^2}{n-1}\)</span>
+    <span class="l">\(\text{Var}(X_1)=\dfrac{28-5\cdot2^2}{4}\)</span>
+    <span class="l">\(\text{Var}(X_1)=\dfrac{28-20}{4}=\dfrac84=2\)</span>
+    <span class="l">\(\text{Var}(X_2)=\dfrac{57-5\cdot3^2}{4}\)</span>
+    <span class="l">\(\text{Var}(X_2)=\dfrac{57-45}{4}=\dfrac{12}{4}=3\)</span>
+    <span class="l"><span class="resp">\(\text{Var}(X_1)=2\) e \(\text{Var}(X_2)=3\)</span></span>
+
+    <span class="l item">c) Covariância</span>
+    <span class="l">\(\text{Cov}=\dfrac{\sum X_1X_2-n\,\bar X_1\bar X_2}{n-1}\)</span>
+    <span class="l">\(\text{Cov}(X_1,X_2)=\dfrac{34-5\cdot2\cdot3}{4}\)</span>
+    <span class="l">\(\text{Cov}(X_1,X_2)=\dfrac{34-30}{4}=\dfrac44=1\)</span>
+    <span class="l"><span class="resp">\(\text{Cov}(X_1,X_2)=1\)</span></span>
+
+    <span class="l item">d) Os betas</span>
+    <span class="l">\(\hat\beta=(X'X)^{-1}X'y\)</span>
+    <span class="l nota">↳ cada \(\hat\beta\) = uma linha da inversa vezes (10; 32; 26)</span>
+    <span class="l">\(\hat\beta_0=\tfrac{11}{10}(10)-\tfrac{3}{20}(32)-\tfrac15(26)\)</span>
+    <span class="l">\(\hat\beta_0=11-4{,}8-5{,}2=1\)</span>
+    <span class="l">\(\hat\beta_1=-\tfrac{3}{20}(10)+\tfrac{3}{20}(32)-\tfrac{1}{20}(26)\)</span>
+    <span class="l">\(\hat\beta_1=-1{,}5+4{,}8-1{,}3=2\)</span>
+    <span class="l">\(\hat\beta_2=-\tfrac15(10)-\tfrac{1}{20}(32)+\tfrac{1}{10}(26)\)</span>
+    <span class="l">\(\hat\beta_2=-2-1{,}6+2{,}6=-1\)</span>
+    <span class="l">Conferência: \(\bar Y=\dfrac{10}{5}=2\)</span>
+    <span class="l">\(\hat\beta_0=\bar Y-\hat\beta_1\bar X_1-\hat\beta_2\bar X_2\)</span>
+    <span class="l">\(\hat\beta_0=2-2\cdot2-(-1)\cdot3=1\) <b class="ok">✓</b></span>
+    <span class="l"><span class="resp">\(\hat\beta_0=1\quad\hat\beta_1=2\quad\hat\beta_2=-1\)</span></span>
+    <span class="l"><span class="resp">\(\hat Y=1+2X_1-X_2\)</span></span>
+
+    <span class="l item">e) Variâncias dos betas</span>
+    <span class="l">\(\widehat{\text{Var}}(\hat\beta_j)=\hat\sigma^2\cdot\big[(X'X)^{-1}\big]_{jj}\)</span>
+    <span class="l nota">↳ \(\hat\beta_1\) usa o 2º número da diagonal (o 1º é do \(\hat\beta_0\))</span>
+    <span class="l">\(\widehat{\text{Var}}(\hat\beta_1)=5\cdot\tfrac{3}{20}=\tfrac{15}{20}=0{,}75\)</span>
+    <span class="l">\(\widehat{\text{Var}}(\hat\beta_2)=5\cdot\tfrac{1}{10}=\tfrac{5}{10}=0{,}5\)</span>
+    <span class="l"><span class="resp">\(\widehat{\text{Var}}(\hat\beta_1)=0{,}75\)</span></span>
+    <span class="l"><span class="resp">\(\widehat{\text{Var}}(\hat\beta_2)=0{,}5\)</span></span>
+    <span class="l nota">↳ se pedirem erro-padrão: √0,75 ≈ 0,866 e √0,5 ≈ 0,707</span>
+  </div>
+
+  <h3>O que essa prova repetiu das listas</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Questão da prova</th><th>De onde veio</th></tr></thead>
+    <tbody>
+      <tr><td>1 · controles</td><td>Lista da aula de 14/out, Exercícios 4 e 5 (mediador e seleção)</td></tr>
+      <tr><td>2 · regressão curta</td><td>Lista de regressão múltipla, Questões 1 e 5</td></tr>
+      <tr><td>3 · FWL e R²</td><td>Lista de regressão múltipla, Questões 3, 4 e 11</td></tr>
+      <tr><td>4 · hipóteses e variância</td><td>Lista de regressão múltipla, Questão 5; Lista da aula de 14/out, Exercício 1</td></tr>
+      <tr><td>5 · fertilizante e solo</td><td>Lista da aula de 14/out, Exercício 3; Lista de regressão múltipla, Questão 13</td></tr>
+      <tr><td>6 · matrizes</td><td>Lista de regressão múltipla, Questões 7, 8 e 12</td></tr>
+    </tbody>
+  </table></div>
+  <p class="muted small">As questões 1 a 6 somam 6,5 pontos. Pela transparência do papel aparece mais uma questão, com SQT, SQR, R² e R² ajustado, que não estava nas fotos.</p>
+
+  <div class="done-row"><button class="btn done-btn" data-done="provap2" aria-pressed="false">Marcar como concluído</button></div>
 </section>
 
 
