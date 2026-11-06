@@ -15,6 +15,7 @@
       <li>As linhas <strong>“Por quê”</strong> são a justificativa. Copie quando a questão pedir “justifique”, “explique” ou “interprete”.</li>
     </ol>
   </div>
+  <p>Quer copiar mais rápido? Use a <a href="#provap2-resumo">versão resumida</a>, no fim desta página: só a fórmula, a conta direta e a resposta.</p>
 
   <div class="tbl"><table>
     <thead><tr><th>Questão</th><th>Resposta</th></tr></thead>
@@ -401,6 +402,100 @@
     <span class="l nota">↳ a curta tem variância menor, mas a longa tem EQM menor (erra menos no total)</span>
     <span class="l jus"><b>Por quê:</b> viés = \(E(\hat\beta_1)-\beta_1\) e \(EQM=E[(\hat\beta_1-\beta_1)^2]\), que é \(\text{Var}+\text{viés}^2\).</span>
     <span class="l jus">A curta é viesada porque omite uma variável relevante e correlacionada com X₁. Ela é mais precisa, mas erra mais no total (EQM 0,25 &gt; 0,16), então pelo critério do EQM a longa é melhor.</span>
+  </div>
+
+  <!-- ===== VERSÃO RESUMIDA ===== -->
+  <h3 id="provap2-resumo">Versão resumida: só o essencial para copiar</h3>
+  <p>A mesma resolução com o mínimo de passos: a fórmula, a conta direta e a resposta no quadro. O motivo aparece entre parênteses só onde ele vale ponto.</p>
+
+  <div class="caderno" id="provap2-r14">
+    <span class="l t">Questões 1 a 4</span>
+    <span class="l"><b class="it">1)</b> <b class="alt">c</b> I V · II V · III F</span>
+    <span class="l nota">I: confundidor fora da regressão = viés · II: colisor cria ligação falsa · III: “toda” é exagero</span>
+    <span class="l"><b class="it">2)</b> <b class="alt">d</b> I V · II F · III V</span>
+    <span class="l nota">I: Cov = 0 ⇒ \(\delta_1=0\) ⇒ sem viés · II: viés + só diz \(\operatorname{plim}\gt\beta_1\) · III: n maior reduz a variância, mas o limite não muda</span>
+    <span class="l"><b class="it">3)</b> <b class="alt">b</b> I F · II V · III V</span>
+    <span class="l nota">I: FWL dá o mesmo \(\hat\beta_1\) · II: a SQR nunca sobe · III: o \(\bar R^2\) desconta graus de liberdade</span>
+    <span class="l"><b class="it">4)</b> <b class="alt">a</b> I V · II F · III F</span>
+    <span class="l nota">I: não viés usa só RLM.1 a 4 · II: \(R_j^2\uparrow\Rightarrow\) Var sobe · III: faltou “lineares”</span>
+  </div>
+
+  <div class="caderno" id="provap2-r5">
+    <span class="l t">Questão 5</span>
+    <span class="l nota">solo omitido · β₁ = 3, β₂ = 2 · Var(fert) = 4, Var(solo) = 25, Cov = −4</span>
+    <span class="l"><b class="it">a)</b> \(\text{Corr}=\dfrac{\text{Cov}}{DP\cdot DP}\)</span>
+    <span class="l"><span class="resp">\(\text{Corr}=\dfrac{-4}{2\cdot5}=-0{,}4\)</span></span>
+    <span class="l"><span class="resp">\(\delta_1=\dfrac{\text{Cov}}{\text{Var(fert)}}=\dfrac{-4}{4}=-1\)</span></span>
+    <span class="l"><b class="it">b)</b> \(\text{viés}=\beta_2\,\delta_1=2(-1)=-2\)</span>
+    <span class="l">\(\operatorname{plim}\tilde\beta_1=\beta_1+\beta_2\delta_1\)</span>
+    <span class="l"><span class="resp">\(\operatorname{plim}\tilde\beta_1=3-2=1\)</span></span>
+    <span class="l"><b class="it">c)</b> <span class="resp">SUBESTIMA</span> (β₂ &gt; 0 e Cov &lt; 0 ⇒ viés negativo)</span>
+    <span class="l"><b class="it">d)</b> \(\delta_1=\tfrac{4}{4}=1\qquad\text{viés}=2\cdot1=+2\)</span>
+    <span class="l"><span class="resp">\(\operatorname{plim}=3+2=5\): SUPERESTIMA</span></span>
+  </div>
+
+  <div class="caderno" id="provap2-r6">
+    <span class="l t">Questão 6</span>
+    <span class="l nota">dados: X'X, a inversa, X'y = (10; 32; 26) e \(\hat\sigma^2=5\) · divisor n − 1</span>
+    <span class="l">Ler X'X: \(n=5\quad\sum X_1=10\)</span>
+    <span class="l">\(\sum X_2=15\quad\sum X_1^2=28\)</span>
+    <span class="l">\(\sum X_1X_2=34\quad\sum X_2^2=57\)</span>
+    <span class="l"><b class="it">a)</b> <span class="resp">\(n=5\)</span></span>
+    <span class="l"><span class="resp">\(\bar X_1=\tfrac{10}{5}=2\quad\bar X_2=\tfrac{15}{5}=3\)</span></span>
+    <span class="l"><b class="it">b)</b> <span class="resp">\(\text{Var}(X_1)=\tfrac{28-5\cdot2^2}{4}=2\)</span></span>
+    <span class="l"><span class="resp">\(\text{Var}(X_2)=\tfrac{57-5\cdot3^2}{4}=3\)</span></span>
+    <span class="l"><b class="it">c)</b> <span class="resp">\(\text{Cov}=\tfrac{34-5\cdot2\cdot3}{4}=1\)</span></span>
+    <span class="l"><b class="it">d)</b> \(\hat\beta=(X'X)^{-1}X'y\) (linha da inversa × X'y)</span>
+    <span class="l">\(\hat\beta_0=11-4{,}8-5{,}2=1\)</span>
+    <span class="l">\(\hat\beta_1=-1{,}5+4{,}8-1{,}3=2\)</span>
+    <span class="l">\(\hat\beta_2=-2-1{,}6+2{,}6=-1\)</span>
+    <span class="l"><span class="resp">\(\hat Y=1+2X_1-X_2\)</span></span>
+    <span class="l"><b class="it">e)</b> \(\widehat{\text{Var}}(\hat\beta_j)=\hat\sigma^2\times\) diagonal da inversa</span>
+    <span class="l"><span class="resp">\(\widehat{\text{Var}}(\hat\beta_1)=5\cdot\tfrac{3}{20}=0{,}75\)</span></span>
+    <span class="l"><span class="resp">\(\widehat{\text{Var}}(\hat\beta_2)=5\cdot\tfrac{1}{10}=0{,}5\)</span></span>
+  </div>
+
+  <div class="caderno" id="provap2-r7">
+    <span class="l t">Questão 7</span>
+    <span class="l nota">n = 11 · médias de X₁ e X₂ = 0 · divisor 10 ⇒ cada soma = 10 × Var ou Cov</span>
+    <span class="l"><b class="it">a)</b> \(\sum X_j^2=10\cdot2=20\)</span>
+    <span class="l">\(\sum X_1X_2=10\cdot0=0\)</span>
+    <span class="l">\(\sum Y=11\cdot5=55\)</span>
+    <span class="l">\(\sum X_1Y=10\cdot4=40\)</span>
+    <span class="l">\(\sum X_2Y=10\cdot(-4)=-40\)</span>
+    <span class="l"><span class="resp">\(X'X=\begin{bmatrix}11&0&0\\0&20&0\\0&0&20\end{bmatrix}\)</span></span>
+    <span class="l"><span class="resp">\(X'y=\begin{bmatrix}55\\40\\-40\end{bmatrix}\)</span></span>
+    <span class="l"><b class="it">b)</b> X'X diagonal ⇒ inversa = 1 sobre cada número</span>
+    <span class="l">\(\hat\beta=\big(\tfrac{55}{11};\ \tfrac{40}{20};\ \tfrac{-40}{20}\big)\)</span>
+    <span class="l"><span class="resp">\(\hat\beta=(5;\ 2;\ -2)\)</span></span>
+    <span class="l"><b class="it">c)</b> \(SQT=10\cdot20=200\)</span>
+    <span class="l">\(SQE=2\cdot40+(-2)(-40)=160\)</span>
+    <span class="l"><span class="resp">\(SQR=200-160=40\)</span></span>
+    <span class="l"><span class="resp">\(R^2=\tfrac{160}{200}=0{,}8\)</span></span>
+    <span class="l"><span class="resp">\(\bar R^2=1-\tfrac{40/8}{200/10}=0{,}75\)</span></span>
+    <span class="l"><b class="it">d)</b> <span class="resp">\(\hat\sigma^2=\tfrac{SQR}{n-k-1}=\tfrac{40}{8}=5\)</span></span>
+    <span class="l">\(\widehat{\text{Var}}=5\begin{bmatrix}\tfrac{1}{20}&0\\0&\tfrac{1}{20}\end{bmatrix}\)</span>
+    <span class="l"><span class="resp">\(=\begin{bmatrix}0{,}25&0\\0&0{,}25\end{bmatrix}\)</span></span>
+    <span class="l"><span class="resp">\(EP=\sqrt{0{,}25}=0{,}5\)</span> (os dois)</span>
+    <span class="l">\(\widehat{\text{Var}}(\hat\beta_1-\hat\beta_2)\)</span>
+    <span class="l"><span class="resp">\(=0{,}25+0{,}25-2\cdot0=0{,}5\)</span></span>
+  </div>
+
+  <div class="caderno" id="provap2-r8">
+    <span class="l t">Questão 8</span>
+    <span class="l nota">curta: σ² = 18, R₁² = 0 · longa: σ² = 8, R₁² = 0,75 · SQT = 200 · β₁ = 2</span>
+    <span class="l"><b class="it">a)</b> dado X, os \(r_i\) são constantes; \(\text{Var}(u_i)=\sigma^2\) e \(\text{Cov}(u_i,u_j)=0\)</span>
+    <span class="l">\(\text{Var}(\hat\beta_1\mid X)=\dfrac{\sigma^2\sum r_i^2}{(\sum r_i^2)^2}\)</span>
+    <span class="l"><span class="resp">\(\text{Var}(\hat\beta_1\mid X)=\dfrac{\sigma^2}{\sum r_i^2}\)</span></span>
+    <span class="l"><b class="it">b)</b> \(\sum r_i^2=SQR_{aux}\)</span>
+    <span class="l">\(\sum r_i^2=SQT_{X_1}(1-R_1^2)\)</span>
+    <span class="l"><span class="resp">\(\text{Var}(\hat\beta_1\mid X)=\dfrac{\sigma^2}{SQT_{X_1}(1-R_1^2)}\)</span></span>
+    <span class="l"><b class="it">c)</b> <span class="resp">Curta: \(\tfrac{18}{200}=0{,}09\), EP = 0,3</span></span>
+    <span class="l"><span class="resp">Longa: \(\tfrac{8}{200\cdot0{,}25}=0{,}16\), EP = 0,4</span></span>
+    <span class="l"><b class="it">d)</b> \(EQM=\text{Var}+\text{viés}^2\)</span>
+    <span class="l"><span class="resp">Curta: viés = 0,4 · EQM = 0,09 + 0,16 = 0,25</span></span>
+    <span class="l"><span class="resp">Longa: viés = 0 · EQM = 0,16</span></span>
+    <span class="l nota">(a curta tem variância menor, mas a longa tem EQM menor)</span>
   </div>
 
   <h3>O que essa prova repetiu das listas</h3>
